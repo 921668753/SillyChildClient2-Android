@@ -62,7 +62,7 @@ public class NumericConstants {
     public static final int REQUEST_CODE_PREVIEW2 = 103;
 
     //定位权限权限所需参数
-    public final static int  LOCATION_CODE = 104;
+    public final static int LOCATION_CODE = 104;
 
     /**
      * 订单状态：0未支付
@@ -161,18 +161,22 @@ public class NumericConstants {
     /**
      * 图片选择的最大数量
      */
-    public static final int MAXPICTURE=8;
+    public static final int MAXPICTURE = 8;
 
     /**
      * 输入框小数的位数
      */
     public static final int DECIMAL_DIGITS = 2;
 
-    /** 银联支付 */
+    /**
+     * 银联支付
+     */
     public static final int PLUGIN_VALID = 0;//已经安装银联插件
     public static final int PLUGIN_NOT_INSTALLED = -1;//未安装银联插件
     public static final int PLUGIN_NEED_UPGRADE = 2;//需要重新安装银联插件
-    /** mMode参数解释： "00" - 启动银联正式环境 "01" - 连接银联测试环境 */
+    /**
+     * mMode参数解释： "00" - 启动银联正式环境 "01" - 连接银联测试环境
+     */
     public static final String MODE = "01";
 
 }

@@ -80,34 +80,40 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
     private BGABanner mForegroundBanner;
 
     /**
-     * 接机
+     * 签证
      */
-    @BindView(id = R.id.ll_airportPickup, click = true)
-    private LinearLayout ll_airportPickup;
+    @BindView(id = R.id.ll_visa, click = true)
+    private LinearLayout ll_visa;
 
     /**
-     * 精品线路
+     * 攻略
      */
-    @BindView(id = R.id.ll_boutiqueLine, click = true)
-    private LinearLayout ll_boutiqueLine;
+    @BindView(id = R.id.ll_strategy, click = true)
+    private LinearLayout ll_strategy;
 
     /**
-     * 私人订制
+     * 线路
      */
-    @BindView(id = R.id.ll_privateOrdering, click = true)
-    private LinearLayout ll_privateOrdering;
+    @BindView(id = R.id.ll_route, click = true)
+    private LinearLayout ll_route;
 
     /**
-     * 按天包车
+     * 活动
      */
-    @BindView(id = R.id.ll_byTheDay, click = true)
-    private LinearLayout ll_byTheDay;
+    @BindView(id = R.id.ll_activity, click = true)
+    private LinearLayout ll_activity;
 
     /**
-     * 送机
+     * 热门视频  更多视频
      */
-    @BindView(id = R.id.ll_airportDropOff, click = true)
-    private LinearLayout ll_airportDropOff;
+    @BindView(id = R.id.ll_hotVideo)
+    private LinearLayout ll_hotVideo;
+
+    @BindView(id = R.id.tv_moreVideo, click = true)
+    private TextView tv_moreVideo;
+
+    @BindView(id = R.id.hlv_hotVideo)
+    private HorizontalListView hlv_hotVideo;
 
     /**
      * 热门地区  更多城市
@@ -121,14 +127,6 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
     @BindView(id = R.id.hlv_hotRegion)
     private HorizontalListView hlv_hotRegion;
 
-    /**
-     * 精品线路  更多线路
-     */
-    @BindView(id = R.id.ll_boutiqueLine1)
-    private LinearLayout ll_boutiqueLine1;
-
-    @BindView(id = R.id.tv_moreLines, click = true)
-    private TextView tv_moreLines;
 
     @BindView(id = R.id.clv_boutiqueLine)
     private ChildListView clv_boutiqueLine;
@@ -152,29 +150,29 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
     @Override
     protected void initData() {
         super.initData();
-        screenAdaptation();
-        mPresenter = new HomePagePresenter(this);
-        RefreshLayoutUtil.initRefreshLayout(mRefreshLayout, this, aty, false);
-        hotRegionViewAdapter = new HotRegionViewAdapter(aty, hlv_hotRegion);
-        boutiqueLineViewAdapter = new BoutiqueLineViewAdapter(aty);
-        mLocationClient = new LocationClient(aty.getApplicationContext());
-        myListener = new MyLocationListener();
+//        screenAdaptation();
+//        mPresenter = new HomePagePresenter(this);
+//        RefreshLayoutUtil.initRefreshLayout(mRefreshLayout, this, aty, false);
+//        hotRegionViewAdapter = new HotRegionViewAdapter(aty, hlv_hotRegion);
+//        boutiqueLineViewAdapter = new BoutiqueLineViewAdapter(aty);
+//        mLocationClient = new LocationClient(aty.getApplicationContext());
+//        myListener = new MyLocationListener();
     }
 
     @Override
     protected void initWidget(View parentView) {
         super.initWidget(parentView);
-        initBanner();
-        hlv_hotRegion.setAdapter(hotRegionViewAdapter);
-        hlv_hotRegion.setOnItemClickListener(this);
-        clv_boutiqueLine.setAdapter(boutiqueLineViewAdapter);
-        clv_boutiqueLine.setOnItemClickListener(this);
-        //声明LocationClient类
-        mLocationClient.registerLocationListener(myListener);
-        //注册监听函数
-        ((HomePagePresenter) mPresenter).initLocation(aty, mLocationClient);
-        showLoadingDialog(aty.getString(R.string.dataLoad));
-        ((HomePagePresenter) mPresenter).getHomePage("");
+//        initBanner();
+//        hlv_hotRegion.setAdapter(hotRegionViewAdapter);
+//        hlv_hotRegion.setOnItemClickListener(this);
+//        clv_boutiqueLine.setAdapter(boutiqueLineViewAdapter);
+//        clv_boutiqueLine.setOnItemClickListener(this);
+//        //声明LocationClient类
+//        mLocationClient.registerLocationListener(myListener);
+//        //注册监听函数
+//        ((HomePagePresenter) mPresenter).initLocation(aty, mLocationClient);
+//        showLoadingDialog(aty.getString(R.string.dataLoad));
+//        ((HomePagePresenter) mPresenter).getHomePage("");
 //        EMConversation conversation = EMClient.getInstance().chatManager().getConversation(BuildConfig.HUANXIN_IM);
 //        try {
 //            if (conversation.getUnreadMsgCount() > 0) {
@@ -206,19 +204,19 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
             case R.id.ll_airportPickup:
                 aty.showActivity(aty, AirportPickupActivity.class);
                 break;
-            case R.id.ll_boutiqueLine:
-                aty.showActivity(aty, BoutiqueLineActivity.class);
-                break;
-            case R.id.ll_privateOrdering:
-                Intent intent1 = new Intent(aty, MainActivity.class);
-                intent1.putExtra("newChageIcon", 2);
-                aty.showActivity(aty, intent1);
-                break;
-            case R.id.ll_byTheDay:
+//            case R.id.ll_boutiqueLine:
+//                aty.showActivity(aty, BoutiqueLineActivity.class);
+//                break;
+//            case R.id.ll_privateOrdering:
 //                Intent intent1 = new Intent(aty, MainActivity.class);
 //                intent1.putExtra("newChageIcon", 2);
 //                aty.showActivity(aty, intent1);
-                break;
+//                break;
+//            case R.id.ll_byTheDay:
+////                Intent intent1 = new Intent(aty, MainActivity.class);
+////                intent1.putExtra("newChageIcon", 2);
+////                aty.showActivity(aty, intent1);
+//                break;
             case R.id.ll_airportDropOff:
 //                Intent intent1 = new Intent(aty, MainActivity.class);
 //                intent1.putExtra("newChageIcon", 2);
@@ -227,11 +225,11 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
             case R.id.tv_moreCities:
                 aty.showActivity(aty, LocalTalentActivity.class);
                 break;
-            case R.id.tv_moreLines:
-                Intent intent2 = new Intent(aty, HotStrategyActivity.class);
-                //    intent2.putExtra("city", tv_address.getText().toString());
-                aty.showActivity(aty, intent2);
-                break;
+//            case R.id.tv_moreLines:
+//                Intent intent2 = new Intent(aty, HotStrategyActivity.class);
+//                //    intent2.putExtra("city", tv_address.getText().toString());
+//                aty.showActivity(aty, intent2);
+//                break;
             default:
                 break;
         }
@@ -245,8 +243,6 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
     @Override
     public void getSuccess(String success, int flag) {
         if (flag == 0) {
-            PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshingChangeHomePageFragment", false);
-            PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshingHomePageFragment", false);
             HomePageBean homePageBean = (HomePageBean) JsonUtil.getInstance().json2Obj(success, HomePageBean.class);
             processLogic(homePageBean.getData().getAd());
             if (homePageBean.getData().getAction() == null) {
@@ -263,15 +259,15 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
                 homePageBean.getData().getAction().getLocal().get(homePageBean.getData().getAction().getLocal().size() - 1).setStatusL("last");
                 hotRegionViewAdapter.addNewData(homePageBean.getData().getAction().getLocal());
             }
-            if (homePageBean.getData().getAction().getHot() == null || homePageBean.getData().getAction().getHot().size() == 0 || homePageBean.getData().getAction().getHot().isEmpty()) {
-                ll_boutiqueLine1.setVisibility(View.GONE);
-                clv_boutiqueLine.setVisibility(View.GONE);
-            } else {
-                ll_boutiqueLine1.setVisibility(View.VISIBLE);
-                clv_boutiqueLine.setVisibility(View.VISIBLE);
-                boutiqueLineViewAdapter.clear();
-                boutiqueLineViewAdapter.addNewData(homePageBean.getData().getAction().getHot());
-            }
+//            if (homePageBean.getData().getAction().getHot() == null || homePageBean.getData().getAction().getHot().size() == 0 || homePageBean.getData().getAction().getHot().isEmpty()) {
+//                ll_boutiqueLine1.setVisibility(View.GONE);
+//                clv_boutiqueLine.setVisibility(View.GONE);
+//            } else {
+//                ll_boutiqueLine1.setVisibility(View.VISIBLE);
+//                clv_boutiqueLine.setVisibility(View.VISIBLE);
+//                boutiqueLineViewAdapter.clear();
+//                boutiqueLineViewAdapter.addNewData(homePageBean.getData().getAction().getHot());
+//            }
         } else if (flag == 1) {
             dismissLoadingDialog();
             tv_tag.setVisibility(View.GONE);

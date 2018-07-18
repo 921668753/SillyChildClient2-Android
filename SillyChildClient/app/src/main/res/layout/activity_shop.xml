@@ -5,7 +5,7 @@
     android:background="@color/background"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    tools:context="com.sillykid.app.homepage.goodslist.shop.ShopActivity">
+    tools:context=".mall.goodslist.shop.ShopActivity">
 
     <include layout="@layout/common_title" />
 

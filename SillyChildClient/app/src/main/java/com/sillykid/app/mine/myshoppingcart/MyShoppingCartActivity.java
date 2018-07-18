@@ -24,7 +24,7 @@ import com.sillykid.app.R;
 import com.sillykid.app.adapter.mine.myshoppingcart.MyShoppingCartViewAdapter;
 import com.sillykid.app.entity.mine.myshoppingcart.MyShoppingCartBean;
 import com.sillykid.app.entity.mine.myshoppingcart.MyShoppingCartBean.DataBean.StorelistBean.GoodslistBean;
-import com.sillykid.app.homepage.goodslist.goodsdetails.GoodsDetailsActivity;
+import com.sillykid.app.mall.goodslist.goodsdetails.GoodsDetailsActivity;
 import com.sillykid.app.loginregister.LoginActivity;
 import com.sillykid.app.mine.myshoppingcart.makesureorder.MakeSureOrderActivity;
 

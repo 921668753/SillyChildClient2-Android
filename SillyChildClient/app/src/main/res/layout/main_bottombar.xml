@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/dimen50"
     android:layout_gravity="bottom"
-    android:background="@android:color/white"
+    android:background="@color/whiteColors"
     android:orientation="horizontal">
 
     <LinearLayout
@@ -22,14 +22,14 @@
         <TextView
             android:id="@+id/tv_homePage"
             style="@style/WrapWrap"
-            android:layout_marginTop="@dimen/dimen1"
+            android:layout_marginTop="@dimen/dimen4"
             android:text="@string/homePage"
-            android:textColor="@color/tabColors"
-            android:textSize="@dimen/textSize_10" />
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize9" />
     </LinearLayout>
 
     <RelativeLayout
-        android:id="@+id/bottombar_message"
+        android:id="@+id/bottombar_community"
         style="@style/AutoMatch">
 
         <LinearLayout
@@ -39,50 +39,71 @@
             android:paddingTop="@dimen/dimen5">
 
             <ImageView
-                android:id="@+id/img_message"
+                android:id="@+id/img_community"
                 style="@style/Image20"
-                android:src="@mipmap/tab_message" />
+                android:src="@mipmap/tab_community" />
 
             <TextView
-                android:id="@+id/tv_message"
+                android:id="@+id/tv_community"
                 style="@style/WrapWrap"
-                android:layout_marginTop="@dimen/dimen1"
-                android:text="@string/message"
-                android:textColor="@color/tabColors"
-                android:textSize="@dimen/textSize_10" />
+                android:layout_marginTop="@dimen/dimen4"
+                android:text="@string/community"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize9" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/tv_messageTag"
-            android:layout_width="@dimen/dimen10"
-            android:layout_height="@dimen/dimen10"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/dimen20"
-            android:layout_marginTop="@dimen/dimen10"
-            android:background="@drawable/shape_homepage_dot"
-            android:visibility="gone" />
+        <!--<TextView-->
+            <!--android:id="@+id/tv_messageTag"-->
+            <!--android:layout_width="@dimen/dimen10"-->
+            <!--android:layout_height="@dimen/dimen10"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_marginRight="@dimen/dimen20"-->
+            <!--android:layout_marginTop="@dimen/dimen10"-->
+            <!--android:background="@drawable/shape_homepage_dot"-->
+            <!--android:visibility="gone" />-->
 
     </RelativeLayout>
 
     <LinearLayout
-        android:id="@+id/bottombar_activities"
+        android:id="@+id/bottombar_mall"
         style="@style/AutoMatch"
         android:gravity="center"
         android:orientation="vertical"
         android:paddingTop="@dimen/dimen5">
 
         <ImageView
-            android:id="@+id/img_activities"
+            android:id="@+id/img_mall"
             style="@style/Image20"
-            android:src="@mipmap/tab_activity" />
+            android:src="@mipmap/tab_mall" />
 
         <TextView
-            android:id="@+id/tv_activities"
+            android:id="@+id/tv_mall"
             style="@style/WrapWrap"
-            android:layout_marginTop="@dimen/dimen1"
-            android:text="@string/activity"
-            android:textColor="@color/tabColors"
-            android:textSize="@dimen/textSize_10" />
+            android:layout_marginTop="@dimen/dimen4"
+            android:text="@string/mall"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize9" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bottombar_trip"
+        style="@style/AutoMatch"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/dimen5">
+
+        <ImageView
+            android:id="@+id/img_trip"
+            style="@style/Image20"
+            android:src="@mipmap/tab_trip" />
+
+        <TextView
+            android:id="@+id/tv_trip"
+            style="@style/WrapWrap"
+            android:layout_marginTop="@dimen/dimen4"
+            android:text="@string/trip"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize9" />
     </LinearLayout>
 
     <LinearLayout
@@ -100,9 +121,10 @@
         <TextView
             android:id="@+id/tv_mine"
             style="@style/WrapWrap"
-            android:layout_marginTop="@dimen/dimen1"
+            android:layout_marginTop="@dimen/dimen4"
             android:text="@string/mine"
-            android:textColor="@color/tabColors"
-            android:textSize="@dimen/textSize_10" />
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize9" />
+
     </LinearLayout>
 </LinearLayout>

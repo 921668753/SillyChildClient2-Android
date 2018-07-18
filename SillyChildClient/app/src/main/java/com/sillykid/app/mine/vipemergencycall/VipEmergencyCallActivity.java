@@ -1,143 +1,146 @@
 package com.sillykid.app.mine.vipemergencycall;
 
-import android.content.Intent;
-import android.net.Uri;
-import android.text.TextUtils;
-import android.text.method.ScrollingMovementMethod;
-import android.util.Log;
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.support.annotation.NonNull;
+import android.view.KeyEvent;
+import android.Manifest;
 
 import com.common.cklibrary.common.BaseActivity;
 import com.common.cklibrary.common.BindView;
-import com.common.cklibrary.common.StringConstants;
 import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.ActivityTitleUtils;
-import com.common.cklibrary.utils.JsonUtil;
-import com.kymjs.common.PreferenceHelper;
+import com.common.cklibrary.utils.myview.WebViewLayout1;
+import com.kymjs.common.Log;
+import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
-import com.sillykid.app.dialog.VIPPermissionsDialog;
-import com.sillykid.app.entity.VipPhoneBean;
-import com.sillykid.app.loginregister.LoginActivity;
+import com.sillykid.app.constant.NumericConstants;
+import com.sillykid.app.constant.URLConstants;
+import com.sillykid.app.mine.vipemergencycall.dialog.VIPServicePhoneDialog;
+
+import java.util.List;
+
+import pub.devrel.easypermissions.AfterPermissionGranted;
+import pub.devrel.easypermissions.EasyPermissions;
 
 
 /**
  * VIP紧急电话
  * Created by Administrator on 2017/9/2.
  */
+public class VipEmergencyCallActivity extends BaseActivity implements EasyPermissions.PermissionCallbacks, WebViewLayout1.WebViewCallBack {
 
-public class VipEmergencyCallActivity extends BaseActivity implements VipEmergencyCallContract.View{
+    @BindView(id = R.id.web_viewlayout)
+    private WebViewLayout1 webViewLayout;
 
-    @BindView( id = R.id.ll_call , click = true)
-    private LinearLayout ll_call;
+    private VIPServicePhoneDialog vipServicePhoneDialog = null;
 
-    @BindView( id = R.id.ll_content )
-    private LinearLayout ll_content;
-    @BindView( id = R.id.tv_content)
-    private TextView tv_content;
-
-    private Intent jumpintent;
-    private Uri data;
-    private VipPhoneBean vipPhoneBean;
+    private String tel = "";
 
     @Override
     public void setRootView() {
-        setContentView(R.layout.activity_vipemergencycall);
+        setContentView(R.layout.activity_sharingceremony);
     }
 
     @Override
     public void initData() {
         super.initData();
-        mPresenter=new VipEmergencyCallPresenter(this);
-        tv_content.setMovementMethod(ScrollingMovementMethod.getInstance());
+        vipServicePhoneDialog = new VIPServicePhoneDialog(aty);
     }
 
     @Override
     public void initWidget() {
         super.initWidget();
         initTitle();
-        showLoadingDialog(getString(R.string.dataLoad));
-        ((VipEmergencyCallPresenter)mPresenter).getVIPServicePhone();
+        webViewLayout.setTitleVisibility(false);
+        webViewLayout.setWebViewCallBack(this);
+        String url = URLConstants.VIPEMERGENCYCALL;
+        if (!StringUtils.isEmpty(url)) {
+            webViewLayout.loadUrl(url);
+        }
     }
 
     /**
      * 设置标题
      */
     public void initTitle() {
-        ActivityTitleUtils.initToolbar(aty, getString(R.string.vipEmergencyCall),true, R.id.titlebar);
+        ActivityTitleUtils.initToolbar(aty, getString(R.string.vipEmergencyCall), true, R.id.titlebar);
     }
 
+    @Override
+    public void backOnclick(String id) {
+        tel = id;
+        choiceLocationWrapper();
+    }
+
+    @AfterPermissionGranted(NumericConstants.READ_AND_WRITE_CODE)
+    private void choiceLocationWrapper() {
+        String[] perms = {Manifest.permission.CALL_PHONE};
+        if (EasyPermissions.hasPermissions(this, perms)) {
+            if (vipServicePhoneDialog == null) {
+                vipServicePhoneDialog = new VIPServicePhoneDialog(aty);
+            }
+            if (vipServicePhoneDialog != null && !vipServicePhoneDialog.isShowing()) {
+                vipServicePhoneDialog.show();
+                vipServicePhoneDialog.setPhone(tel);
+            }
+            return;
+        }
+        EasyPermissions.requestPermissions(this, getString(R.string.callSwitch), NumericConstants.READ_AND_WRITE_CODE, perms);
+    }
 
     @Override
-    public void widgetClick(View v) {
-        super.widgetClick(v);
-        if (vipPhoneBean!=null&&vipPhoneBean.getData()!=null&&!TextUtils.isEmpty(vipPhoneBean.getData().getTelephone())){
-            jumpintent = new Intent(Intent.ACTION_DIAL);
-            data = Uri.parse("tel:" + vipPhoneBean.getData().getTelephone());
-            jumpintent.setData(data);
-            showActivity(aty, jumpintent);
-        }else{
-            initDialog(getString(R.string.noHavePhone));
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        // EasyPermissions handles the request result.
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+    }
+
+    @Override
+    public void onPermissionsGranted(int requestCode, List<String> perms) {
+        Log.d("tag", "onPermissionsDenied:" + requestCode + ":" + perms.size());
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, List<String> perms) {
+        if (requestCode == NumericConstants.READ_AND_WRITE_CODE) {
+            ViewInject.toast(getString(R.string.callPermission));
         }
+    }
+
+    @Override
+    public void loadFailedError() {
+
+    }
+
+    /**
+     * 返回
+     *
+     * @param keyCode
+     * @param event
+     * @return
+     */
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_BACK:
+                if (vipServicePhoneDialog != null && vipServicePhoneDialog.isShowing()) {
+                    vipServicePhoneDialog.dismiss();
+                    return true;
+                }
+        }
+        return super.onKeyUp(keyCode, event);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-    }
-
-    @Override
-    public void setPresenter(VipEmergencyCallContract.Presenter presenter) {
-        mPresenter=presenter;
-    }
-
-    @Override
-    public void getSuccess(String success, int flag) {
-        Log.d("调试","结果："+success);
-        vipPhoneBean = (VipPhoneBean) JsonUtil.getInstance().json2Obj(success, VipPhoneBean.class);
-        if (vipPhoneBean!=null&&vipPhoneBean.getData()!=null){
-            if (TextUtils.isEmpty(vipPhoneBean.getData().getContent())){
-                ll_content.setVisibility(View.GONE);
-            }else{
-                ll_content.setVisibility(View.VISIBLE);
-                tv_content.setText(vipPhoneBean.getData().getContent());
-            }
-            dismissLoadingDialog();
-        }else{
-            initDialog(getString(R.string.noHavePhone));
+        if (vipServicePhoneDialog != null && vipServicePhoneDialog.isShowing()) {
+            vipServicePhoneDialog.cancel();
         }
+        vipServicePhoneDialog = null;
+        webViewLayout.removeAllViews();
+        webViewLayout = null;
     }
 
-    @Override
-    public void errorMsg(String msg, int flag) {
-        dismissLoadingDialog();
-        if (isLogin(msg)){
-            ViewInject.toast(getString(R.string.reloginPrompting));
-            PreferenceHelper.write(this, StringConstants.FILENAME, "isRefreshMineFragment", false);
-            PreferenceHelper.write(this, StringConstants.FILENAME, "isReLogin", true);
-            showActivity(this,LoginActivity.class);
-            return;
-        }
-        initDialog(msg+getString(R.string.getPhoneError));
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        showLoadingDialog(getString(R.string.dataLoad));
-        ((VipEmergencyCallPresenter)mPresenter).getVIPServicePhone();
-    }
-
-    private void initDialog(String msg){
-        VIPPermissionsDialog vipPermissionsDialog= new VIPPermissionsDialog(aty) {
-            @Override
-            public void doAction() {
-                finish();
-            }
-        };
-        vipPermissionsDialog.show();
-        vipPermissionsDialog.setContent(msg);
-    }
 
 }

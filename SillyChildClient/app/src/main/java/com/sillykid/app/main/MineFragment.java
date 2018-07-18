@@ -25,6 +25,7 @@ import com.kymjs.common.PreferenceHelper;
 import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
 import com.sillykid.app.entity.main.UserInfoBean;
+import com.sillykid.app.homepage.BannerDetailsActivity;
 import com.sillykid.app.loginregister.LoginActivity;
 import com.sillykid.app.message.interactivemessage.imuitl.UserUtil;
 import com.sillykid.app.mine.deliveryaddress.DeliveryAddressActivity;
@@ -35,12 +36,15 @@ import com.sillykid.app.mine.mywallet.MyWalletActivity;
 import com.sillykid.app.mine.personaldata.PersonalDataActivity;
 import com.sillykid.app.mine.setup.SetUpActivity;
 import com.sillykid.app.mine.sharingceremony.SharingCeremonyActivity;
+import com.sillykid.app.mine.vipemergencycall.VipEmergencyCallActivity;
 import com.sillykid.app.utils.GlideImageLoader;
 
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 
 import static android.app.Activity.RESULT_OK;
 import static com.sillykid.app.constant.NumericConstants.REQUEST_CODE;
+import static com.sillykid.app.constant.URLConstants.ABOUTUS;
+import static com.sillykid.app.constant.URLConstants.VIPEMERGENCYCALL;
 
 /**
  * 个人中心
@@ -75,6 +79,9 @@ public class MineFragment extends BaseFragment implements MineContract.View, Vie
     @BindView(id = R.id.tv_editData, click = true)
     private TextView tv_editData;
 
+    @BindView(id = R.id.tv_minetouxiang)
+    private TextView tv_minetouxiang;
+
     @BindView(id = R.id.iv_minetouxiang, click = true)
     private ImageView iv_minetouxiang;
 
@@ -108,8 +115,8 @@ public class MineFragment extends BaseFragment implements MineContract.View, Vie
     @BindView(id = R.id.ll_minesetup, click = true)
     private LinearLayout ll_minesetup;
 
-    @BindView(id = R.id.tv_vipEmergencyCall, click = true)
-    private TextView tv_vipEmergencyCall;
+    @BindView(id = R.id.ll_vipEmergencyCall, click = true)
+    private LinearLayout ll_vipEmergencyCall;
 
     @Override
     protected View inflaterView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -169,25 +176,9 @@ public class MineFragment extends BaseFragment implements MineContract.View, Vie
             case R.id.ll_minesetup:
                 aty.showActivity(aty, SetUpActivity.class);
                 break;
-            case R.id.tv_vipEmergencyCall:
-//                if (userInfoBean == null) {
-//                    ViewInject.toast(getString(R.string.reloginPrompting));
-//                    PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshMineFragment", false);
-//                    PreferenceHelper.write(aty, StringConstants.FILENAME, "isReLogin", true);
-//                    aty.showActivity(aty, LoginActivity.class);
-//                } else {
-////                    if (userInfoBean.getData().getLevel() > 3) {
-////                        aty.showActivity(aty, VipEmergencyCallActivity.class);
-////                    } else {
-////                        VIPPermissionsDialog vipPermissionsDialog = new VIPPermissionsDialog(aty) {
-////                            @Override
-////                            public void doAction() {
-////
-////                            }
-////                        };
-////                        vipPermissionsDialog.show();
-////                    }
-//                }
+
+            case R.id.ll_vipEmergencyCall:
+                aty.showActivity(aty, VipEmergencyCallActivity.class);
                 break;
 
 
@@ -209,6 +200,7 @@ public class MineFragment extends BaseFragment implements MineContract.View, Vie
                 ll_notLogin.setVisibility(View.GONE);
                 tv_editData.setVisibility(View.VISIBLE);
                 tv_editData1.setVisibility(View.VISIBLE);
+                tv_minetouxiang.setVisibility(View.VISIBLE);
                 iv_minetouxiang.setVisibility(View.VISIBLE);
                 tv_nickname.setVisibility(View.VISIBLE);
                 tv_serialNumber.setVisibility(View.VISIBLE);
@@ -291,6 +283,7 @@ public class MineFragment extends BaseFragment implements MineContract.View, Vie
         UserUtil.clearUserInfo(aty);
         tv_editData.setVisibility(View.GONE);
         tv_editData1.setVisibility(View.GONE);
+        tv_minetouxiang.setVisibility(View.GONE);
         iv_minetouxiang.setVisibility(View.GONE);
         tv_nickname.setVisibility(View.GONE);
         tv_synopsis.setVisibility(View.GONE);

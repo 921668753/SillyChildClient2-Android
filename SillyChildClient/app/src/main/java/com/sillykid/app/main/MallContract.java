@@ -1,5 +1,8 @@
 package com.sillykid.app.main;
 
+import android.app.Activity;
+
+import com.baidu.location.LocationClient;
 import com.common.cklibrary.common.BasePresenter;
 import com.common.cklibrary.common.BaseView;
 
@@ -8,16 +11,30 @@ import com.common.cklibrary.common.BaseView;
  */
 
 public interface MallContract {
+
     interface Presenter extends BasePresenter {
-        /**
-         * 账号登录
-         */
-        void postToLogin(String phone, String pwd);
+
+//        /**
+//         * 获取分类广告
+//         */
+//        void getAdvCat();
 
         /**
-         * 获取用户信息
+         * 获取首页信息
          */
-        void getInfo();
+        void getHomePage();
+
+        /**
+         * 获取商品分类
+         */
+        void postBaiDuUpdateInfo();
+
+        /**
+         * 设置定位信息
+         */
+        void initLocation(Activity activity, LocationClient mLocationClient);
+
+
     }
 
     interface View extends BaseView<Presenter, String> {

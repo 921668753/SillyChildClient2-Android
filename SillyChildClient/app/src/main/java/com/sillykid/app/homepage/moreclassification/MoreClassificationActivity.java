@@ -16,7 +16,7 @@ import com.sillykid.app.adapter.homepage.moreclassification.ClassificationViewAd
 import com.sillykid.app.adapter.homepage.moreclassification.MoreClassificationViewAdapter;
 import com.sillykid.app.entity.homepage.moreclassification.ClassificationBean;
 import com.sillykid.app.entity.homepage.moreclassification.MoreClassificationBean;
-import com.sillykid.app.homepage.goodslist.GoodsListActivity;
+import com.sillykid.app.mall.goodslist.GoodsListActivity;
 
 import java.util.List;
 

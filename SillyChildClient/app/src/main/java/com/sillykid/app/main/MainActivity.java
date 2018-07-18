@@ -52,27 +52,32 @@ public class MainActivity extends BaseActivity implements MainContract.View, Mai
     @BindView(id = R.id.tv_homePage)
     private TextView tv_homePage;
 
-    @BindView(id = R.id.bottombar_message, click = true)
-    private RelativeLayout bottombar_message;
+    @BindView(id = R.id.bottombar_community, click = true)
+    private RelativeLayout bottombar_community;
 
-    @BindView(id = R.id.tv_messageTag)
-    public TextView tv_messageTag;
+    @BindView(id = R.id.img_community)
+    private ImageView img_community;
 
-    @BindView(id = R.id.img_message)
-    private ImageView img_message;
+    @BindView(id = R.id.tv_community)
+    private TextView tv_community;
 
-    @BindView(id = R.id.tv_message)
-    private TextView tv_message;
+    @BindView(id = R.id.bottombar_mall, click = true)
+    private LinearLayout bottombar_mall;
 
-    @BindView(id = R.id.bottombar_activities, click = true)
-    private LinearLayout bottombar_activities;
+    @BindView(id = R.id.img_mall)
+    private ImageView img_mall;
 
-    @BindView(id = R.id.img_activities)
-    private ImageView img_activities;
+    @BindView(id = R.id.tv_mall)
+    private TextView tv_mall;
 
-    @BindView(id = R.id.tv_activities)
-    private TextView tv_activities;
+    @BindView(id = R.id.bottombar_trip, click = true)
+    private LinearLayout bottombar_trip;
 
+    @BindView(id = R.id.img_trip)
+    private ImageView img_trip;
+
+    @BindView(id = R.id.tv_trip)
+    private TextView tv_trip;
 
     @BindView(id = R.id.bottombar_mine, click = true)
     private LinearLayout bottombar_mine;
@@ -88,6 +93,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Mai
     private BaseFragment contentFragment1;
     private BaseFragment contentFragment2;
     private BaseFragment contentFragment3;
+    private BaseFragment contentFragment4;
     private long firstTime = 0;
 
 
@@ -111,10 +117,11 @@ public class MainActivity extends BaseActivity implements MainContract.View, Mai
     public void initData() {
         super.initData();
         mPresenter = new MainPresenter(this);
-        contentFragment = new MallHomePageFragment();
-        contentFragment1 = new MessageFragment();
-        contentFragment2 = new ActivitiesFragment();
-        contentFragment3 = new MineFragment();
+        contentFragment = new HomePageFragment();
+        contentFragment1 = new CommunityFragment();
+        contentFragment2 = new MallFragment();
+        contentFragment3 = new TripFragment();
+        contentFragment4 = new MineFragment();
         chageIcon = getIntent().getIntExtra("chageIcon", 0);
         registerMessageReceiver();  //   极光推送 used for receive msg
         ((MainContract.Presenter) mPresenter).getChatManagerListener();
@@ -145,15 +152,18 @@ public class MainActivity extends BaseActivity implements MainContract.View, Mai
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         setIntent(intent);
-        int newChageIcon = intent.getIntExtra("newChageIcon", 4);
+        int newChageIcon = intent.getIntExtra("newChageIcon", 5);
         Log.d("newChageIcon", newChageIcon + "");
         if (newChageIcon == 0) {
             setSimulateClick(bottombar_homePage, 160, 100);
         } else if (newChageIcon == 1) {
-            setSimulateClick(bottombar_message, 160, 100);
+            setSimulateClick(bottombar_community, 160, 100);
         } else if (newChageIcon == 2) {
-            setSimulateClick(bottombar_activities, 160, 100);
+            setSimulateClick(bottombar_mall, 160, 100);
         } else if (newChageIcon == 3) {
+            setSimulateClick(bottombar_trip, 160, 100);
+        } else if (newChageIcon == 4) {
+            setSimulateClick(bottombar_mine, 160, 100);
         }
     }
 
@@ -184,14 +194,17 @@ public class MainActivity extends BaseActivity implements MainContract.View, Mai
             case R.id.bottombar_homePage:
                 cleanColors(0);
                 break;
-            case R.id.bottombar_message:
-                ((MainContract.Presenter) mPresenter).getIsLogin(this, 0);
+            case R.id.bottombar_community:
+                cleanColors(1);
                 break;
-            case R.id.bottombar_activities:
+            case R.id.bottombar_mall:
                 cleanColors(2);
                 break;
-            case R.id.bottombar_mine:
+            case R.id.bottombar_trip:
                 cleanColors(3);
+                break;
+            case R.id.bottombar_mine:
+                cleanColors(4);
                 break;
             default:
                 break;
@@ -289,14 +302,18 @@ public class MainActivity extends BaseActivity implements MainContract.View, Mai
                     tv_homePage.setTextColor(getResources().getColor(R.color.textColor));
                     break;
                 case 1:
-                    img_message.setImageResource(R.mipmap.tab_message);
-                    tv_message.setTextColor(getResources().getColor(R.color.textColor));
+                    img_community.setImageResource(R.mipmap.tab_community);
+                    tv_community.setTextColor(getResources().getColor(R.color.textColor));
                     break;
                 case 2:
-                    img_activities.setImageResource(R.mipmap.tab_activity);
-                    tv_activities.setTextColor(getResources().getColor(R.color.textColor));
+                    img_mall.setImageResource(R.mipmap.tab_mall);
+                    tv_mall.setTextColor(getResources().getColor(R.color.textColor));
                     break;
                 case 3:
+                    img_trip.setImageResource(R.mipmap.tab_trip);
+                    tv_trip.setTextColor(getResources().getColor(R.color.textColor));
+                    break;
+                case 4:
                     img_mine.setImageResource(R.mipmap.tab_personal);
                     tv_mine.setTextColor(getResources().getColor(R.color.textColor));
                     break;
@@ -309,19 +326,24 @@ public class MainActivity extends BaseActivity implements MainContract.View, Mai
                     changeFragment(contentFragment);
                     break;
                 case 1:
-                    img_message.setImageResource(R.mipmap.tab_message_selected);
-                    tv_message.setTextColor(getResources().getColor(R.color.ffe206Colors));
+                    img_community.setImageResource(R.mipmap.tab_community_selected);
+                    tv_community.setTextColor(getResources().getColor(R.color.ffe206Colors));
                     changeFragment(contentFragment1);
                     break;
                 case 2:
-                    img_activities.setImageResource(R.mipmap.tab_activity_selected);
-                    tv_activities.setTextColor(getResources().getColor(R.color.f3516dColors));
+                    img_mall.setImageResource(R.mipmap.tab_mall_selected);
+                    tv_mall.setTextColor(getResources().getColor(R.color.f3516dColors));
                     changeFragment(contentFragment2);
                     break;
                 case 3:
+                    img_trip.setImageResource(R.mipmap.tab_trip_selected);
+                    tv_trip.setTextColor(getResources().getColor(R.color.d0a4fcColors));
+                    changeFragment(contentFragment3);
+                    break;
+                case 4:
                     img_mine.setImageResource(R.mipmap.tab_personal_selected);
                     tv_mine.setTextColor(getResources().getColor(R.color.e9e5Colors));
-                    changeFragment(contentFragment3);
+                    changeFragment(contentFragment4);
                     break;
             }
         }
@@ -336,26 +358,30 @@ public class MainActivity extends BaseActivity implements MainContract.View, Mai
         switch (chageIcon) {
             case 0:
                 img_homePage.setImageResource(R.mipmap.tab_home_selected);
-                tv_homePage.setTextColor(getResources().getColor(R.color.greenColors));
+                tv_homePage.setTextColor(getResources().getColor(R.color.ea73Colors));
                 changeFragment(contentFragment);
                 break;
             case 1:
-                img_message.setImageResource(R.mipmap.tab_message_selected);
-                tv_message.setTextColor(getResources().getColor(R.color.greenColors));
+                img_community.setImageResource(R.mipmap.tab_community_selected);
+                tv_community.setTextColor(getResources().getColor(R.color.ffe206Colors));
                 changeFragment(contentFragment1);
                 break;
             case 2:
-                img_activities.setImageResource(R.mipmap.tab_activity_selected);
-                tv_activities.setTextColor(getResources().getColor(R.color.greenColors));
+                img_mall.setImageResource(R.mipmap.tab_mall_selected);
+                tv_mall.setTextColor(getResources().getColor(R.color.f3516dColors));
                 changeFragment(contentFragment2);
                 break;
             case 3:
-                img_mine.setImageResource(R.mipmap.tab_personal_selected);
-                tv_mine.setTextColor(getResources().getColor(R.color.greenColors));
+                img_trip.setImageResource(R.mipmap.tab_trip_selected);
+                tv_trip.setTextColor(getResources().getColor(R.color.d0a4fcColors));
                 changeFragment(contentFragment3);
                 break;
+            case 4:
+                img_mine.setImageResource(R.mipmap.tab_personal_selected);
+                tv_mine.setTextColor(getResources().getColor(R.color.e9e5Colors));
+                changeFragment(contentFragment4);
+                break;
         }
-
     }
 
 
@@ -390,11 +416,11 @@ public class MainActivity extends BaseActivity implements MainContract.View, Mai
 
     @Override
     public void msgStyle(boolean havemsg) {
-        if (havemsg) {
-            tv_messageTag.setVisibility(View.VISIBLE);
-        } else {
-            tv_messageTag.setVisibility(View.GONE);
-        }
+//        if (havemsg) {
+//            tv_messageTag.setVisibility(View.VISIBLE);
+//        } else {
+//            tv_messageTag.setVisibility(View.GONE);
+//        }
     }
 
     public int getChageIcon() {

@@ -164,13 +164,16 @@ public class WebViewLayout1 extends LinearLayout {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             if (url.contains("intent://gooddetail/")) {
-              //  view.canGoBack();
+                //  view.canGoBack();
                 String good_id = url.substring(url.indexOf("intent://gooddetail/") + 20);
                 Log.d("tag+good_id", good_id);
                 callBack.backOnclick(good_id);
                 return true;
             } else if (url.contains("intent://share") || url.contains("intent://comment")) {
                 callBack.backOnclick("");
+                return true;
+            } else if (url.contains("tel:")) {
+                callBack.backOnclick(url);
                 return true;
             }
             Log.d("tag", url);

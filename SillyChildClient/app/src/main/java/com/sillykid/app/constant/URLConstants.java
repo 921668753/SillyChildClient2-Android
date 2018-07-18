@@ -447,6 +447,11 @@ public class URLConstants {
     public static String HELPDETAIL = SERVERURL1 + "dist/pages/helpDetal.html";
 
     /**
+     * VIP救助电话
+     */
+    public static String VIPEMERGENCYCALL = SERVERURL1 + "pages/rescue_phone.html";
+
+    /**
      * 分享有礼
      */
     public static String SHARE = SERVERURL1 + "html/share.html?icode=";

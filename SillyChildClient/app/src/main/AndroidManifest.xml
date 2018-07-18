@@ -39,6 +39,8 @@
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
 
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <!-- 拨打电话 -->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <!--如果是安卓8.0，应用编译配置的targetSdkVersion>=26，请务必添加以下权限 -->
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
@@ -152,22 +154,22 @@
 
         <!--首页   商品列表-->
         <activity
-            android:name=".homepage.goodslist.GoodsListActivity"
+            android:name=".mall.goodslist.GoodsListActivity"
             android:screenOrientation="portrait" />
 
         <!--首页   商品详情-->
         <activity
-            android:name=".homepage.goodslist.goodsdetails.GoodsDetailsActivity"
+            android:name=".mall.goodslist.goodsdetails.GoodsDetailsActivity"
             android:screenOrientation="portrait" />
 
         <!--首页   评论-->
         <activity
-            android:name=".homepage.goodslist.goodsdetails.comments.CommentsActivity"
+            android:name=".mall.goodslist.goodsdetails.comments.CommentsActivity"
             android:screenOrientation="portrait" />
 
         <!--首页   搜索界面-->
         <activity
-            android:name=".homepage.search.SearchGoodsActivity"
+            android:name=".mall.search.SearchGoodsActivity"
             android:screenOrientation="portrait" />
 
         <!--首页   轮播图-->
@@ -346,7 +348,7 @@
 
         <!--首页    店铺首页  全部商品-->
         <activity
-            android:name=".homepage.goodslist.shop.ShopActivity"
+            android:name=".mall.goodslist.shop.ShopActivity"
             android:screenOrientation="portrait" />
 
 

@@ -22,8 +22,8 @@ import com.sillykid.app.R;
 import com.sillykid.app.adapter.mine.mycollection.MyCollectionViewAdapter;
 import com.sillykid.app.constant.NumericConstants;
 import com.sillykid.app.entity.mine.mycollection.MyCollectionBean;
-import com.sillykid.app.homepage.goodslist.goodsdetails.GoodsDetailsActivity;
-import com.sillykid.app.homepage.goodslist.goodsdetails.dialog.SpecificationsBouncedDialog;
+import com.sillykid.app.mall.goodslist.goodsdetails.GoodsDetailsActivity;
+import com.sillykid.app.mall.goodslist.goodsdetails.dialog.SpecificationsBouncedDialog;
 import com.sillykid.app.loginregister.LoginActivity;
 import com.sillykid.app.mine.mycollection.dialog.DeleteCollectionDialog;
 

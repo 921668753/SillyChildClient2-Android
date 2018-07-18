@@ -11,6 +11,17 @@
         android:background="@color/whiteColors"
         android:gravity="center_vertical">
 
+        <ImageView
+            android:layout_width="@dimen/dimen69"
+            android:layout_height="@dimen/dimen43"
+            android:paddingBottom="@dimen/dimen10"
+            android:paddingLeft="@dimen/dimen23"
+            android:paddingRight="@dimen/dimen23"
+            android:paddingTop="@dimen/dimen10"
+            android:scaleType="fitXY"
+            android:src="@mipmap/kefu" />
+
+
         <TextView
             style="@style/WrapWrap"
             android:layout_centerHorizontal="true"
@@ -43,10 +54,11 @@
                 android:layout_marginRight="@dimen/dimen10"
                 android:layout_marginTop="@dimen/dimen5"
                 android:background="@drawable/shape_homepage_dot"
-                android:visibility="gone" />
+                android:visibility="visible" />
         </RelativeLayout>
     </RelativeLayout>
 
+    <TextView style="@style/DividerWidth" />
 
     <cn.bingoogolapple.refreshlayout.BGARefreshLayout xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/mRefreshLayout"
@@ -55,6 +67,7 @@
         <ScrollView
             style="@style/MatchMatch"
             android:background="@color/background"
+            android:paddingTop="@dimen/dimen3"
             android:scrollbars="none">
 
             <LinearLayout
@@ -65,7 +78,7 @@
                 <cn.bingoogolapple.bgabanner.BGABanner
                     android:id="@+id/banner_ad"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dimen198"
+                    android:layout_height="@dimen/dimen160"
                     android:background="@mipmap/placeholderfigure2"
                     app:banner_isNeedShowIndicatorOnOnlyOnePage="true"
                     app:banner_pageChangeDuration="2000"
@@ -78,102 +91,84 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dimen90"
+                    android:layout_height="@dimen/dimen75"
+                    android:layout_marginTop="@dimen/dimen6"
                     android:background="@color/whiteColors"
                     android:orientation="horizontal">
 
                     <LinearLayout
-                        android:id="@+id/ll_airportPickup"
+                        android:id="@+id/ll_visa"
                         style="@style/AutoMatch"
                         android:gravity="center"
                         android:orientation="vertical">
 
                         <ImageView
-                            style="@style/Image40"
+                            style="@style/Image33"
                             android:src="@mipmap/ic_launcher" />
 
                         <TextView
                             style="@style/WrapWrap"
-                            android:layout_marginTop="@dimen/dimen10"
-                            android:text="@string/airportPickup"
+                            android:layout_marginTop="@dimen/dimen5"
+                            android:text="@string/visa"
                             android:textColor="@color/textColor"
-                            android:textSize="@dimen/textsize13" />
+                            android:textSize="@dimen/textsize9" />
 
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/ll_boutiqueLine"
+                        android:id="@+id/ll_strategy"
                         style="@style/AutoMatch"
                         android:gravity="center"
                         android:orientation="vertical">
 
                         <ImageView
-                            style="@style/Image40"
+                            style="@style/Image33"
                             android:src="@mipmap/ic_launcher" />
 
                         <TextView
                             style="@style/WrapWrap"
-                            android:layout_marginTop="@dimen/dimen10"
-                            android:text="@string/boutiqueLine"
+                            android:layout_marginTop="@dimen/dimen5"
+                            android:text="@string/strategy"
                             android:textColor="@color/textColor"
-                            android:textSize="@dimen/textsize13" />
+                            android:textSize="@dimen/textsize9" />
 
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/ll_privateOrdering"
+                        android:id="@+id/ll_route"
                         style="@style/AutoMatch"
                         android:gravity="center"
                         android:orientation="vertical">
 
                         <ImageView
-                            style="@style/Image40"
+                            style="@style/Image33"
                             android:src="@mipmap/ic_launcher" />
 
                         <TextView
                             style="@style/WrapWrap"
-                            android:layout_marginTop="@dimen/dimen10"
-                            android:text="@string/privateOrdering"
+                            android:layout_marginTop="@dimen/dimen5"
+                            android:text="@string/route2"
                             android:textColor="@color/textColor"
-                            android:textSize="@dimen/textsize13" />
+                            android:textSize="@dimen/textsize9" />
 
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/ll_byTheDay"
+                        android:id="@+id/ll_activity"
                         style="@style/AutoMatch"
                         android:gravity="center"
                         android:orientation="vertical">
 
                         <ImageView
-                            style="@style/Image40"
+                            style="@style/Image33"
                             android:src="@mipmap/ic_launcher" />
 
                         <TextView
                             style="@style/WrapWrap"
-                            android:layout_marginTop="@dimen/dimen10"
-                            android:text="@string/byTheDay"
+                            android:layout_marginTop="@dimen/dimen5"
+                            android:text="@string/activity"
                             android:textColor="@color/textColor"
-                            android:textSize="@dimen/textsize13" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/ll_airportDropOff"
-                        style="@style/AutoMatch"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            style="@style/Image40"
-                            android:src="@mipmap/ic_launcher" />
-
-                        <TextView
-                            style="@style/WrapWrap"
-                            android:layout_marginTop="@dimen/dimen10"
-                            android:text="@string/airportDropOff"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/textsize13" />
+                            android:textSize="@dimen/textsize9" />
 
                     </LinearLayout>
 
@@ -181,14 +176,56 @@
 
 
                 <LinearLayout
-                    android:id="@+id/ll_hotRegion"
+                    android:id="@+id/ll_hotVideo"
                     style="@style/MatchWrap"
-                    android:layout_marginTop="@dimen/dimen10"
+                    android:layout_marginTop="@dimen/dimen6"
                     android:background="@color/whiteColors"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:paddingLeft="@dimen/dimen15"
-                    android:paddingRight="@dimen/dimen15">
+                    android:paddingLeft="@dimen/dimen30"
+                    android:paddingRight="@dimen/dimen18"
+                    android:paddingTop="@dimen/dimen3">
+
+                    <TextView
+                        style="@style/AutoWrap"
+                        android:paddingBottom="@dimen/dimen10"
+                        android:paddingTop="@dimen/dimen10"
+                        android:text="@string/hotVideo"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/textsize15" />
+
+                    <TextView
+                        android:id="@+id/tv_moreVideo"
+                        style="@style/WrapMatch"
+                        android:gravity="center"
+                        android:paddingRight="@dimen/dimen5"
+                        android:text="@string/moreVideo"
+                        android:textColor="@color/hintColors"
+                        android:textSize="@dimen/textsize11" />
+
+                    <ImageView
+                        android:layout_width="@dimen/dimen6"
+                        android:layout_height="@dimen/dimen10"
+                        android:src="@mipmap/arrow" />
+                </LinearLayout>
+
+                <com.common.cklibrary.utils.myview.HorizontalListView
+                    android:id="@+id/hlv_hotVideo"
+                    style="@style/MatchWrap"
+                    android:background="@color/whiteColors"
+                    android:scrollbars="none"
+                    tools:listitem="@layout/item_hotregion" />
+
+                <LinearLayout
+                    android:id="@+id/ll_hotRegion"
+                    style="@style/MatchWrap"
+                    android:layout_marginTop="@dimen/dimen9"
+                    android:background="@color/whiteColors"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/dimen30"
+                    android:paddingRight="@dimen/dimen18"
+                    android:paddingTop="@dimen/dimen3">
 
                     <TextView
                         style="@style/AutoWrap"
@@ -201,15 +238,15 @@
                     <TextView
                         android:id="@+id/tv_moreCities"
                         style="@style/WrapMatch"
-                        android:layout_marginTop="@dimen/dimen1"
                         android:gravity="center"
                         android:paddingRight="@dimen/dimen5"
                         android:text="@string/moreCities"
-                        android:textColor="@color/textColor"
-                        android:textSize="@dimen/textsize12" />
+                        android:textColor="@color/hintColors"
+                        android:textSize="@dimen/textsize11" />
 
                     <ImageView
-                        style="@style/WrapWrap"
+                        android:layout_width="@dimen/dimen6"
+                        android:layout_height="@dimen/dimen10"
                         android:src="@mipmap/arrow" />
                 </LinearLayout>
 
@@ -220,42 +257,11 @@
                     android:scrollbars="none"
                     tools:listitem="@layout/item_hotregion" />
 
-                <LinearLayout
-                    android:id="@+id/ll_boutiqueLine1"
-                    style="@style/MatchWrap"
-                    android:layout_marginTop="@dimen/dimen10"
-                    android:background="@color/whiteColors"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingLeft="@dimen/dimen15"
-                    android:paddingRight="@dimen/dimen15">
-
-                    <TextView
-                        style="@style/AutoWrap"
-                        android:paddingBottom="@dimen/dimen10"
-                        android:paddingTop="@dimen/dimen10"
-                        android:text="@string/boutiqueLine"
-                        android:textColor="@color/textColor"
-                        android:textSize="@dimen/textsize15" />
-
-                    <TextView
-                        android:id="@+id/tv_moreLines"
-                        style="@style/WrapMatch"
-                        android:layout_marginTop="@dimen/dimen1"
-                        android:gravity="center"
-                        android:paddingRight="@dimen/dimen5"
-                        android:text="@string/moreLines"
-                        android:textColor="@color/textColor"
-                        android:textSize="@dimen/textsize12" />
-
-                    <ImageView
-                        style="@style/WrapWrap"
-                        android:src="@mipmap/arrow" />
-                </LinearLayout>
 
                 <com.common.cklibrary.utils.myview.ChildListView
                     android:id="@+id/clv_boutiqueLine"
                     style="@style/MatchWrap"
+                    android:layout_marginTop="@dimen/dimen9"
                     android:background="@color/whiteColors"
                     android:divider="@color/whiteColors"
                     android:dividerHeight="@dimen/dimen15"
@@ -264,11 +270,10 @@
                     android:scrollbars="none"
                     tools:listitem="@layout/item_boutiqueline" />
 
-
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dimen15"
-                    android:background="@color/whiteColors" />
+                    android:layout_height="@dimen/dimen16" />
+
             </LinearLayout>
 
 

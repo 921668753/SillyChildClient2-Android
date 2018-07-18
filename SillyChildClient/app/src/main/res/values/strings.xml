@@ -133,7 +133,7 @@
     <!--主界面-->
     <string name="homePage">首页</string>
     <string name="message">消息</string>
-    <string name="activity">活动</string>
+    <string name="community">社区</string>
     <string name="mall">商城</string>
     <string name="trip">出行</string>
     <string name="mine">我的</string>
@@ -142,11 +142,20 @@
 
     <!--首页-->
     <string name="sillyChild">傻孩志</string>
+    <string name="visa">签证</string>
+    <string name="strategy">攻略</string>
+    <string name="route2">线路</string>
+    <string name="activity">活动</string>
+    <string name="hotVideo">热门视频</string>
+    <string name="moreVideo">更多视频</string>
+
+
     <string name="airportPickup">接机</string>
     <string name="boutiqueLine">精品线路</string>
     <string name="privateOrdering">私人订制</string>
     <string name="byTheDay">按天包车</string>
     <string name="airportDropOff">送机</string>
+
     <string name="hotRegion">热门地区</string>
     <string name="moreCities">更多城市</string>
     <string name="moreLines">更多线路</string>
@@ -163,9 +172,11 @@
     <string name="locateFailure">定位失败</string>
     <string name="travelCity1">,请选择出行城市</string>
     <string name="travelCity2">请选择出行城市</string>
+    <string name="callSwitch">「拨打电话」需要以下权限:通话的相关权限</string>
+    <string name="callPermission">您拒绝了「拨打电话」所需要的相关权限!</string>
     <string name="locationRelatedPermission">您拒绝了「定位」所需要的相关权限!</string>
     <string name="notOpenPositionSwitch">未打开位置开关，可能导致定位失败或定位不准，请打开GPS</string>
-    <string name="openPositionSwitch">定位选择需要以下权限:\n\n1.访问设备上的gps\n\n2.读写权限</string>
+    <string name="openPositionSwitch">定位需要以下权限:\n\n1.访问设备上的gps\n\n2.读写权限</string>
     <string name="moreClassification">更多分类</string>
 
 
@@ -671,9 +682,7 @@
     <!--<string name="reliableCompanyGuide">可靠司导</string>-->
 
     <!--出行-->
-    <string name="visa">签证</string>
     <string name="charter">包车</string>
-    <string name="strategy">攻略</string>
     <string name="gastronomy">美食</string>
     <string name="greatHouses">超赞房源</string>
     <string name="reliableCompanyGuide">可靠司导</string>
@@ -739,7 +748,7 @@
     <string name="sharingCeremony">分享有礼</string>
     <string name="deliveryAddress">收货地址</string>
     <string name="setUp">设置</string>
-    <string name="vipEmergencyCall">VIP紧急电话</string>
+    <string name="vipEmergencyCall">VIP救助电话</string>
     <string name="yuan">元</string>
     <string name="yuan1">元/天</string>
     <string name="yuan2">元/次</string>
@@ -790,7 +799,6 @@
     <!-- 个人中心 我的收藏-->
     <string name="good">商品</string>
     <string name="route">路线</string>
-    <string name="route2">线路</string>
     <string name="house">房源</string>
     <string name="personCollection">人收藏</string>
     <string name="synthesiseScore">综合评分：</string>

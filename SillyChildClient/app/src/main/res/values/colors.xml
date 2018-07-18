@@ -8,7 +8,7 @@
     <!--标题栏-->
     <color name="titletextcolors">#000000</color>
     <color name="titlebackground">#fafafa</color>
-    <color name="background">#f0f0f0</color>
+    <color name="background">#f5f9fc</color>
     <color name="titledivider">#dbdbdb</color>
 
     <color name="dividercolors">#cfcfcf</color>
@@ -46,9 +46,11 @@
     <color name="fF4E00Colors">#FF4E00</color>
     <color name="c9FFD2Colors">#C9FFD2</color>
     <color name="fF7565Colors">#FF7565</color>
+
     <color name="ea73Colors">#63ea73</color>
     <color name="ffe206Colors">#ffe206</color>
     <color name="f3516dColors">#f3516d</color>
+    <color name="d0a4fcColors">#d0a4fc</color>
     <color name="e9e5Colors">#13e9e5</color>
 
 

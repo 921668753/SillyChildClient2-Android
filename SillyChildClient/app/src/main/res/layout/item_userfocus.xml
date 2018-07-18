@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrap"
+    android:background="@color/whiteColors"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:layout_width="@dimen/dimen30"
+        android:layout_height="@dimen/dimen30"
+        android:layout_marginBottom="@dimen/dimen9"
+        android:layout_marginLeft="@dimen/dimen15"
+        android:layout_marginTop="@dimen/dimen9"
+        android:src="@mipmap/avatar" />
+
+
+    <LinearLayout
+        style="@style/AutoMatch"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/dimen6"
+        android:paddingRight="@dimen/dimen6">
+
+        <TextView
+            style="@style/MatchWrap"
+            android:layout_marginTop="@dimen/dimen11"
+            android:singleLine="true"
+            android:text="薄荷味的夏天"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize10"
+            android:textStyle="bold" />
+
+
+        <LinearLayout
+            style="@style/MatchWrap"
+            android:layout_marginTop="@dimen/dimen5"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/WrapWrap"
+                android:text="32"
+                android:textColor="@color/tabColors"
+                android:textSize="@dimen/textsize8" />
+
+            <TextView
+                style="@style/WrapWrap"
+                android:text="@string/diary"
+                android:textColor="@color/tabColors"
+                android:textSize="@dimen/textsize8" />
+
+
+            <TextView
+                style="@style/WrapWrap"
+                android:layout_marginLeft="@dimen/dimen13"
+                android:text="32"
+                android:textColor="@color/tabColors"
+                android:textSize="@dimen/textsize8" />
+
+            <TextView
+                style="@style/WrapWrap"
+                android:text="@string/fan"
+                android:textColor="@color/tabColors"
+                android:textSize="@dimen/textsize8" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="@dimen/dimen50"
+        android:layout_height="@dimen/dimen19"
+        android:layout_marginRight="@dimen/dimen15"
+        android:background="@drawable/shape_followed"
+        android:gravity="center"
+        android:text="@string/followed"
+        android:textColor="@color/tabColors"
+        android:textSize="@dimen/textsize10" />
+
+</LinearLayout>

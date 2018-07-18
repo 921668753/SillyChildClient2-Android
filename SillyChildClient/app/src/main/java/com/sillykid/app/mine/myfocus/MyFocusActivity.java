@@ -1,4 +1,4 @@
-package com.sillykid.app.mine.myrelease;
+package com.sillykid.app.mine.myfocus;
 
 import android.content.Intent;
 import android.os.SystemClock;
@@ -13,50 +13,64 @@ import com.common.cklibrary.common.BindView;
 import com.common.cklibrary.utils.ActivityTitleUtils;
 import com.kymjs.common.Log;
 import com.sillykid.app.R;
-import com.sillykid.app.mine.myrelease.mydynamic.MyDynamicFragment;
-import com.sillykid.app.mine.myrelease.mystrategy.MyStrategyFragment;
+import com.sillykid.app.mine.myfocus.companyguide.CompanyGuideFragment;
+import com.sillykid.app.mine.myfocus.merchants.MerchantsFragment;
+import com.sillykid.app.mine.myfocus.user.UserFragment;
+
 
 /**
- * 我的发布
- * Created by Administrator on 2018/9/2.
+ * 我的关注
  */
-public class MyReleaseActivity extends BaseActivity {
+public class MyFocusActivity extends BaseActivity {
 
-    @BindView(id = R.id.ll_myDynamic, click = true)
-    private LinearLayout ll_myDynamic;
+    @BindView(id = R.id.ll_user, click = true)
+    private LinearLayout ll_user;
 
-    @BindView(id = R.id.tv_myDynamic)
-    private TextView tv_myDynamic;
+    @BindView(id = R.id.tv_user)
+    private TextView tv_user;
 
-    @BindView(id = R.id.tv_myDynamic1)
-    private TextView tv_myDynamic1;
+    @BindView(id = R.id.tv_user1)
+    private TextView tv_user1;
 
-    @BindView(id = R.id.ll_myStrategy, click = true)
-    private LinearLayout ll_myStrategy;
+    @BindView(id = R.id.ll_companyGuide, click = true)
+    private LinearLayout ll_companyGuide;
 
-    @BindView(id = R.id.tv_myStrategy)
-    private TextView tv_myStrategy;
+    @BindView(id = R.id.tv_companyGuide)
+    private TextView tv_companyGuide;
 
-    @BindView(id = R.id.tv_myStrategy1)
-    private TextView tv_myStrategy1;
+    @BindView(id = R.id.tv_companyGuide1)
+    private TextView tv_companyGuide1;
+
+    @BindView(id = R.id.ll_merchants, click = true)
+    private LinearLayout ll_merchants;
+
+    @BindView(id = R.id.tv_merchants)
+    private TextView tv_merchants;
+
+    @BindView(id = R.id.tv_merchants1)
+    private TextView tv_merchants1;
 
     private BaseFragment baseFragment;
     private BaseFragment baseFragment1;
+    private BaseFragment baseFragment2;
 
     private int chageIcon = 0;
 
     @Override
     public void setRootView() {
-        setContentView(R.layout.activity_myrelease);
+        setContentView(R.layout.activity_myfocus);
     }
+
 
     @Override
     public void initData() {
         super.initData();
-        baseFragment = new MyDynamicFragment();
-        baseFragment1 = new MyStrategyFragment();
+        baseFragment = new UserFragment();
+        baseFragment1 = new CompanyGuideFragment();
+        baseFragment2 = new MerchantsFragment();
         chageIcon = aty.getIntent().getIntExtra("chageIcon", 0);
     }
+
 
     @Override
     public void initWidget() {
@@ -70,12 +84,15 @@ public class MyReleaseActivity extends BaseActivity {
             cleanColors(1);
             changeFragment(baseFragment1);
             chageIcon = 1;
+        } else if (chageIcon == 2) {
+            cleanColors(2);
+            changeFragment(baseFragment2);
+            chageIcon = 2;
         } else {
             cleanColors(0);
             changeFragment(baseFragment);
             chageIcon = 0;
         }
-
     }
 
     /**
@@ -99,11 +116,13 @@ public class MyReleaseActivity extends BaseActivity {
         int newChageIcon = intent.getIntExtra("newChageIcon", 0);
         Log.d("newChageIcon", newChageIcon + "");
         if (newChageIcon == 0) {
-            setSimulateClick(ll_myDynamic, 160, 100);
+            setSimulateClick(ll_user, 160, 100);
         } else if (newChageIcon == 1) {
-            setSimulateClick(ll_myStrategy, 160, 100);
+            setSimulateClick(ll_companyGuide, 160, 100);
+        } else if (newChageIcon == 2) {
+            setSimulateClick(ll_merchants, 160, 100);
         } else {
-            setSimulateClick(ll_myDynamic, 160, 100);
+            setSimulateClick(ll_user, 160, 100);
         }
     }
 
@@ -128,7 +147,7 @@ public class MyReleaseActivity extends BaseActivity {
     }
 
     public void changeFragment(BaseFragment targetFragment) {
-        super.changeFragment(R.id.release_content, targetFragment);
+        super.changeFragment(R.id.focus_content, targetFragment);
     }
 
 
@@ -136,15 +155,20 @@ public class MyReleaseActivity extends BaseActivity {
     public void widgetClick(View v) {
         super.widgetClick(v);
         switch (v.getId()) {
-            case R.id.ll_myDynamic:
+            case R.id.ll_user:
                 cleanColors(0);
                 changeFragment(baseFragment);
                 chageIcon = 0;
                 break;
-            case R.id.ll_myStrategy:
+            case R.id.ll_companyGuide:
                 cleanColors(1);
                 changeFragment(baseFragment1);
                 chageIcon = 1;
+                break;
+            case R.id.ll_merchants:
+                cleanColors(2);
+                changeFragment(baseFragment2);
+                chageIcon = 2;
                 break;
         }
 
@@ -156,18 +180,22 @@ public class MyReleaseActivity extends BaseActivity {
      */
     @SuppressWarnings("deprecation")
     public void cleanColors(int chageIcon) {
-        tv_myDynamic.setTextColor(getResources().getColor(R.color.textColor));
-        tv_myDynamic1.setTextColor(getResources().getColor(R.color.whiteColors));
-        tv_myStrategy.setTextColor(getResources().getColor(R.color.textColor));
-        tv_myStrategy1.setTextColor(getResources().getColor(R.color.whiteColors));
+        tv_user.setTextColor(getResources().getColor(R.color.textColor));
+        tv_user1.setTextColor(getResources().getColor(R.color.whiteColors));
+        tv_companyGuide.setTextColor(getResources().getColor(R.color.textColor));
+        tv_companyGuide1.setTextColor(getResources().getColor(R.color.whiteColors));
+        tv_merchants.setTextColor(getResources().getColor(R.color.textColor));
+        tv_merchants1.setTextColor(getResources().getColor(R.color.whiteColors));
         if (chageIcon == 0) {
-            tv_myDynamic.setTextColor(getResources().getColor(R.color.greenColors));
-            tv_myDynamic1.setTextColor(getResources().getColor(R.color.greenColors));
+            tv_user.setTextColor(getResources().getColor(R.color.greenColors));
+            tv_user1.setTextColor(getResources().getColor(R.color.greenColors));
         } else if (chageIcon == 1) {
-            tv_myStrategy.setTextColor(getResources().getColor(R.color.greenColors));
-            tv_myStrategy1.setTextColor(getResources().getColor(R.color.greenColors));
+            tv_companyGuide.setTextColor(getResources().getColor(R.color.greenColors));
+            tv_companyGuide1.setTextColor(getResources().getColor(R.color.greenColors));
+        } else if (chageIcon == 2) {
+            tv_merchants.setTextColor(getResources().getColor(R.color.greenColors));
+            tv_merchants1.setTextColor(getResources().getColor(R.color.greenColors));
         }
     }
 
 }
-

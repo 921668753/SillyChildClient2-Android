@@ -167,7 +167,6 @@
     <string name="recentNews">最新动态</string>
     <string name="memberShowAll">查看全部</string>
     <string name="zan">赞</string>
-    <string name="user">用户</string>
     <string name="inputDestination">输入目的地</string>
     <string name="locateFailure">定位失败</string>
     <string name="travelCity1">,请选择出行城市</string>
@@ -572,7 +571,6 @@
     <!--消息-->
     <string name="system">系统</string>
     <string name="platform">平台</string>
-    <string name="companyGuide">司导</string>
     <string name="homestay">民宿</string>
     <string name="shop">店铺</string>
     <string name="login1">请登录</string>
@@ -766,7 +764,7 @@
     <string name="purse">钱包</string>
     <string name="inviteFriends">邀请好友</string>
     <string name="helpCustomerService">帮助与客服</string>
-
+    <string name="giveLike">点赞</string>
 
 
 
@@ -973,6 +971,24 @@
     <!--确认支付密码-->
     <string name="confirmPaymentPassword">确认支付密码</string>
     <string name="modifyPaymentPasswordSucceed">修改支付密码成功！</string>
+
+
+    <!-- 个人中心 我的关注-->
+    <string name="myFocus">我的关注</string>
+    <string name="user">用户</string>
+    <string name="companyGuide">司导</string>
+    <string name="merchants">商家</string>
+    <string name="diary">篇日记</string>
+    <string name="fan">个粉丝</string>
+
+
+    <!-- 个人中心 我的粉丝-->
+    <string name="myFans">我的粉丝</string>
+
+
+
+
+
 
 
     <!-- 个人中心 我的购物车-->
@@ -1301,6 +1317,14 @@
 
 
     <!-- 个人中心  我的发布  动态-->
+    <string name="myDynamic">我的动态</string>
+    <string name="myStrategy">我的攻略</string>
+
+
+
+
+
+
     <string name="newTrends">发布新动态</string>
     <string name="newStrategy">发布新攻略</string>
     <string name="addTitle">添加标题</string>

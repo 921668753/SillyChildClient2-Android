@@ -7,10 +7,10 @@
 
     <include layout="@layout/common_title" />
 
-    <include layout="@layout/release_topbar" />
+    <include layout="@layout/focus_topbar" />
 
     <FrameLayout
-        android:id="@+id/release_content"
+        android:id="@+id/focus_content"
         style="@style/MatchMatch" />
 
 </LinearLayout>

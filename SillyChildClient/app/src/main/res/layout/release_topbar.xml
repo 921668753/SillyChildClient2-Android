@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dimen41"
+    android:layout_marginTop="@dimen/dimen6"
+    android:background="@color/whiteColors"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/ll_myDynamic"
+        style="@style/AutoMatch"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_myDynamic"
+            style="@style/MatchAuto"
+            android:gravity="center"
+            android:text="@string/myDynamic"
+            android:textColor="@color/greenColors"
+            android:textSize="@dimen/textsize15" />
+
+        <TextView
+            android:id="@+id/tv_myDynamic1"
+            android:layout_width="@dimen/dimen39"
+            android:layout_height="@dimen/dimen2"
+            android:background="@color/greenColors" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll_myStrategy"
+        style="@style/AutoMatch"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_myStrategy"
+            style="@style/MatchAuto"
+            android:gravity="center"
+            android:text="@string/myStrategy"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize14" />
+
+        <TextView
+            android:id="@+id/tv_myStrategy1"
+            android:layout_width="@dimen/dimen39"
+            android:layout_height="@dimen/dimen2"
+            android:background="@color/whiteColors" />
+
+    </LinearLayout>
+
+</LinearLayout>

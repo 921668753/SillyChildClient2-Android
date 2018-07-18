@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchMatch"
+    android:background="@color/black01"
+    android:gravity="center">
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:layout_marginBottom="@dimen/dimen40"
+        android:layout_marginTop="@dimen/dimen40"
+        android:background="@drawable/shape_picturesourceacncel"
+        android:orientation="vertical">
+
+
+        <RelativeLayout
+            style="@style/MatchWrap"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_title"
+                style="@style/WrapWrap"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/dimen16"
+                android:text="@string/compensationChangeBack"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize16"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/img_back"
+                style="@style/WrapWrap"
+                android:layout_alignParentRight="true"
+                android:paddingBottom="@dimen/dimen16"
+                android:paddingLeft="@dimen/dimen16"
+                android:paddingRight="@dimen/dimen23"
+                android:paddingTop="@dimen/dimen16"
+                android:src="@mipmap/logincancel" />
+
+        </RelativeLayout>
+
+        <WebView
+            android:id="@+id/web_view"
+            style="@style/MatchWrap"
+            android:layout_marginBottom="@dimen/dimen15" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

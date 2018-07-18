@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchMatch"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/tv_askRoadCueCard"
+        style="@style/WrapWrap"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="1111111"
+        android:textColor="@color/textColor"
+        android:textSize="@dimen/textsize36" />
+
+
+    <ImageView
+        android:id="@+id/img_back"
+        style="@style/WrapWrap"
+        android:padding="@dimen/dimen15"
+        android:src="@mipmap/back" />
+
+
+</RelativeLayout>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrap"
+    android:background="@drawable/shape_boutiqueline"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/img_boutiqueLine"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen160"
+        android:scaleType="fitXY"
+        android:src="@mipmap/ic_launcher" />
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_boutiqueLine"
+            style="@style/AutoWrap"
+            android:paddingBottom="@dimen/dimen10"
+            android:paddingLeft="@dimen/dimen10"
+            android:paddingTop="@dimen/dimen10"
+            android:text="意大利豪华10日游意大利豪华10日游意大利豪华10日游意大利豪华10日游意大利豪华10日游意大利豪华10日游"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize12" />
+
+        <ImageView
+            android:layout_width="@dimen/dimen32"
+            android:layout_height="@dimen/dimen32"
+            android:padding="@dimen/dimen10"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_arrow" />
+
+        <TextView
+            android:id="@+id/tv_collectionNum"
+            style="@style/WrapWrap"
+            android:maxWidth="@dimen/dimen30"
+            android:paddingRight="@dimen/dimen10"
+            android:singleLine="true"
+            android:text="500"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize12" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/AutoWrap"
+            android:paddingBottom="@dimen/dimen10"
+            android:paddingLeft="@dimen/dimen10"
+            android:text="@string/circuitProfileSummary"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize12" />
+
+        <ImageView
+            android:layout_width="@dimen/dimen32"
+            android:layout_height="@dimen/dimen22"
+            android:paddingBottom="@dimen/dimen10"
+            android:paddingLeft="@dimen/dimen10"
+            android:paddingRight="@dimen/dimen10"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_arrow" />
+
+        <TextView
+            android:id="@+id/tv_zanNum"
+            style="@style/WrapWrap"
+            android:maxWidth="@dimen/dimen30"
+            android:paddingBottom="@dimen/dimen10"
+            android:paddingRight="@dimen/dimen10"
+            android:singleLine="true"
+            android:text="500"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize12" />
+
+    </LinearLayout>
+
+</LinearLayout>

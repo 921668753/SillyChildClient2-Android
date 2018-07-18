@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true">
+
+    <RelativeLayout
+        android:id="@+id/rl_personalData"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen235"
+        android:background="@mipmap/minebgxxx">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            style="@style/WrapWrap"
+            android:src="@mipmap/back1"
+            android:paddingLeft="@dimen/dimen15"
+            android:paddingTop="@dimen/dimen5"
+            android:paddingBottom="@dimen/dimen5"
+            android:paddingRight="@dimen/dimen15"
+            android:layout_marginTop="@dimen/dimen18"/>
+
+        <ImageView
+            android:id="@+id/iv_minetouxiang"
+            android:layout_width="@dimen/dimen84"
+            android:layout_height="@dimen/dimen84"
+            android:src="@mipmap/avatar"
+            android:layout_marginTop="@dimen/dimen40"
+            android:layout_centerHorizontal="true"/>
+
+        <ImageView
+            android:id="@+id/iv_minetype"
+            style="@style/WrapWrap"
+            android:src="@mipmap/minepthyxxx"
+            android:layout_marginTop="@dimen/dimen112"
+            android:layout_centerHorizontal="true"/>
+
+        <LinearLayout
+            android:id="@+id/ll_nickname"
+            style="@style/WrapWrap"
+            android:layout_marginTop="@dimen/dimen5"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/iv_minetype"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+            <TextView
+                android:id="@+id/tv_mineusername"
+                style="@style/WrapWrap"
+                android:textColor="@color/whitemine"
+                android:textSize="@dimen/textsize15"/>
+            <ImageView
+                android:id="@+id/iv_minesexicon"
+                android:layout_width="@dimen/dimen15"
+                android:layout_height="@dimen/dimen15"
+                android:layout_marginLeft="@dimen/dimen4"/>
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/WrapWrap"
+            android:orientation="horizontal"
+            android:layout_below="@id/ll_nickname"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dimen5"
+            android:gravity="center">
+            <TextView
+                android:id="@+id/tv_address"
+                style="@style/WrapWrap"
+                android:textColor="@color/whitemine"
+                android:textSize="@dimen/textsize12" />
+            <TextView
+                android:id="@+id/tv_attention"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dimen20"
+                android:drawableLeft="@mipmap/icon_guanzhu_add"
+                android:drawablePadding="@dimen/dimen4"
+                android:paddingRight="@dimen/dimen5"
+                android:paddingLeft="@dimen/dimen5"
+                android:text="@string/follow"
+                android:gravity="center"
+                android:textSize="@dimen/textsize12"
+                android:textColor="@color/whiteColors"
+                android:background="@drawable/shape_fansattention"
+                android:layout_marginLeft="@dimen/dimen11"
+                android:visibility="gone"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            style="@style/MatchWrap"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/dimen10"
+            android:paddingLeft="@dimen/dimen5"
+            android:paddingRight="@dimen/dimen5"
+            android:gravity="center_vertical">
+
+            <LinearLayout
+                android:id="@+id/ll_fensi"
+                style="@style/AutoWrap"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+                <TextView
+                    android:id="@+id/tv_minefsnum"
+                    style="@style/WrapWrap"
+                    android:text="0"
+                    android:textColor="@color/whitemine"
+                    android:textSize="@dimen/textsize15"/>
+                <TextView
+                    style="@style/WrapWrap"
+                    android:text="@string/fans"
+                    android:textColor="@color/whitemine"
+                    android:textSize="@dimen/textsize15"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="@dimen/dimen20"
+                android:background="@color/whitemine"/>
+
+            <LinearLayout
+                android:id="@+id/ll_guanzhu"
+                style="@style/AutoWrap"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+                <TextView
+                    android:id="@+id/tv_minegznum"
+                    style="@style/WrapWrap"
+                    android:text="0"
+                    android:textColor="@color/whitemine"
+                    android:textSize="@dimen/textsize15"/>
+                <TextView
+                    style="@style/WrapWrap"
+                    android:text="@string/follow"
+                    android:textColor="@color/whitemine"
+                    android:textSize="@dimen/textsize15"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="@dimen/dimen20"
+                android:background="@color/whitemine"/>
+
+            <LinearLayout
+                style="@style/AutoWrap"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+                <TextView
+                    android:id="@+id/tv_minebznum"
+                    style="@style/WrapWrap"
+                    android:text="0"
+                    android:textColor="@color/whitemine"
+                    android:textSize="@dimen/textsize15"/>
+                <TextView
+                    style="@style/WrapWrap"
+                    android:text="@string/beLike"
+                    android:textColor="@color/whitemine"
+                    android:textSize="@dimen/textsize15"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="@dimen/dimen20"
+                android:background="@color/whitemine"/>
+
+            <LinearLayout
+                style="@style/AutoWrap"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+                <TextView
+                    android:id="@+id/tv_minebscnum"
+                    style="@style/WrapWrap"
+                    android:text="0"
+                    android:textColor="@color/whitemine"
+                    android:textSize="@dimen/textsize15"/>
+                <TextView
+                    style="@style/WrapWrap"
+                    android:text="@string/beCollected"
+                    android:textColor="@color/whitemine"
+                    android:textSize="@dimen/textsize15"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen38"
+        android:background="@color/whiteColors"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/dimen2">
+        <LinearLayout
+            android:id="@+id/ll_dynamicstate"
+            style="@style/AutoMatch"
+            android:orientation="vertical"
+            android:gravity="center_horizontal|bottom">
+            <TextView
+                android:id="@+id/tv_dynamicstate"
+                style="@style/WrapWrap"
+                android:text="@string/dynamicState"
+                android:textColor="@color/tabColors"
+                android:textSize="@dimen/textsize14"/>
+            <View
+                android:id="@+id/v_dynamicstate"
+                android:layout_width="@dimen/dimen43"
+                android:layout_height="@dimen/dimen2"
+                android:background="@android:color/transparent"
+                android:layout_marginTop="@dimen/dimen8"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_strate"
+            style="@style/AutoMatch"
+            android:orientation="vertical"
+            android:gravity="center_horizontal|bottom">
+            <TextView
+                android:id="@+id/tv_strate"
+                style="@style/WrapWrap"
+                android:text="@string/strategy"
+                android:textColor="@color/greenColors"
+                android:textSize="@dimen/textsize14"/>
+            <View
+                android:id="@+id/v_strate"
+                android:layout_width="@dimen/dimen43"
+                android:layout_height="@dimen/dimen2"
+                android:background="@color/greenColors"
+                android:layout_marginTop="@dimen/dimen8"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_collectiondynamic"
+            style="@style/AutoMatch"
+            android:orientation="vertical"
+            android:gravity="center_horizontal|bottom">
+            <TextView
+                android:id="@+id/tv_collectiondynamic"
+                style="@style/WrapWrap"
+                android:text="@string/collectionDynamics"
+                android:textColor="@color/tabColors"
+                android:textSize="@dimen/textsize14"/>
+            <View
+                android:id="@+id/v_collectiondynamic"
+                android:layout_width="@dimen/dimen43"
+                android:layout_height="@dimen/dimen2"
+                android:background="@android:color/transparent"
+                android:layout_marginTop="@dimen/dimen8"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_collectionstrate"
+            style="@style/AutoMatch"
+            android:orientation="vertical"
+            android:gravity="center_horizontal|bottom">
+            <TextView
+                android:id="@+id/tv_collectionstrate"
+                style="@style/WrapWrap"
+                android:text="@string/collectionStrategy"
+                android:textColor="@color/tabColors"
+                android:textSize="@dimen/textsize14"/>
+            <View
+                android:id="@+id/v_collectionstrate"
+                android:layout_width="@dimen/dimen43"
+                android:layout_height="@dimen/dimen2"
+                android:background="@android:color/transparent"
+                android:layout_marginTop="@dimen/dimen8"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_release"
+        style="@style/MatchMatch"
+        android:layout_marginTop="@dimen/dimen10"
+        android:layout_marginLeft="@dimen/dimen10"
+        android:layout_marginRight="@dimen/dimen10"/>
+
+</LinearLayout>

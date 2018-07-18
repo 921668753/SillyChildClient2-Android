@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrap"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/dimen15"
+    android:paddingRight="@dimen/dimen15">
+
+    <TextView
+        style="@style/MatchWrap"
+        android:paddingBottom="@dimen/dimen10"
+        android:paddingTop="@dimen/dimen10"
+        android:text="第一站"
+        android:textColor="@color/hintColors"
+        android:textSize="@dimen/textsize15" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen180"
+        android:src="@mipmap/default_image" />
+
+    <TextView
+        style="@style/MatchWrap"
+        android:paddingBottom="@dimen/dimen20"
+        android:paddingTop="@dimen/dimen20"
+        android:text="第一站第一站第一站第一站第一站第一站第一站第一站第一站第一站第一站第一站第一站第一站第一站第一站"
+        android:textColor="@color/hintColors"
+        android:textSize="@dimen/textsize15" />
+
+</LinearLayout>

@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:zhy="http://schemas.android.com/apk/res-auto"
+    style="@style/MatchMatch"
+    android:background="@color/whiteColors"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        style="@style/Match44"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/img_back"
+            android:layout_width="@dimen/dimen39"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:paddingLeft="@dimen/dimen15"
+            android:paddingRight="@dimen/dimen15"
+            android:src="@mipmap/back" />
+
+        <LinearLayout
+            android:id="@+id/ll_title1"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dimen36"
+            android:layout_weight="1"
+            android:background="@mipmap/home_border"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/img_search1"
+                android:layout_width="@dimen/dimen14"
+                android:layout_height="@dimen/dimen14"
+                android:layout_marginLeft="@dimen/dimen15"
+                android:src="@mipmap/search" />
+
+            <EditText
+                android:id="@+id/et_search"
+                style="@style/AutoMatch"
+                android:background="@android:color/transparent"
+                android:gravity="center_vertical"
+                android:hint="@string/searchThousandsOverseasGoods"
+                android:imeOptions="actionSearch"
+                android:maxLength="20"
+                android:minWidth="@dimen/dimen150"
+                android:paddingLeft="@dimen/dimen10"
+                android:singleLine="true"
+                android:textColorHint="@color/hintColors"
+                android:textCursorDrawable="@drawable/shape_cursor"
+                android:textSize="@dimen/textsize13" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_search"
+            style="@style/WrapMatch"
+            android:gravity="center"
+            android:paddingLeft="@dimen/dimen15"
+            android:paddingRight="@dimen/dimen15"
+            android:text="@string/search"
+            android:textColor="@color/titletextcolors"
+            android:textSize="@dimen/textsize15" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_recentSearch"
+        style="@style/MatchWrap"
+        android:gravity="bottom"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_recentSearch"
+            style="@style/AutoWrap"
+            android:paddingLeft="@dimen/dimen15"
+            android:paddingTop="@dimen/dimen15"
+            android:text="@string/recentSearch"
+            android:textColor="@color/titletextcolors"
+            android:textSize="@dimen/textsize14" />
+
+        <ImageView
+            android:id="@+id/img_delete"
+            android:layout_width="@dimen/dimen43"
+            android:layout_height="@dimen/dimen26"
+            android:paddingBottom="@dimen/dimen5"
+            android:paddingLeft="@dimen/dimen15"
+            android:paddingRight="@dimen/dimen15"
+            android:paddingTop="@dimen/dimen5"
+            android:scaleType="fitXY"
+            android:src="@mipmap/collection_delete" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.zhy.view.flowlayout.TagFlowLayout
+            android:id="@+id/tfl_recentSearch"
+            style="@style/MatchWrap"
+            android:paddingLeft="@dimen/dimen15"
+            android:paddingRight="@dimen/dimen15"
+            zhy:max_select="1" />
+
+    </LinearLayout>
+
+
+    <!--tools:listitem="@layout/item_recentsearch"-->
+
+    <!--<cn.bingoogolapple.flowlayout.BGAFlowLayout-->
+    <!--android:id="@+id/fl_recentSearch"-->
+    <!--style="@style/MatchWrap"-->
+    <!--android:paddingLeft="@dimen/dimen15"-->
+    <!--android:paddingRight="@dimen/dimen15"-->
+    <!--app:fl_horizontalChildGap="@dimen/dimen10"-->
+    <!--app:fl_isDistributionWhiteSpacing="false"-->
+    <!--app:fl_verticalChildGap="@dimen/dimen15">-->
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:background="@drawable/shape_recentsearch"-->
+    <!--android:paddingBottom="@dimen/dimen6"-->
+    <!--android:paddingLeft="@dimen/dimen12"-->
+    <!--android:paddingRight="@dimen/dimen12"-->
+    <!--android:paddingTop="@dimen/dimen6"-->
+    <!--android:text="@string/dataLoad"-->
+    <!--android:textColor="@color/textColor"-->
+    <!--android:textSize="@dimen/textsize11" />-->
+
+
+    <!--</cn.bingoogolapple.flowlayout.BGAFlowLayout>-->
+
+
+    <TextView
+        style="@style/WrapWrap"
+        android:paddingBottom="@dimen/dimen15"
+        android:paddingLeft="@dimen/dimen15"
+        android:paddingTop="@dimen/dimen15"
+        android:text="@string/searchFound"
+        android:textColor="@color/titletextcolors"
+        android:textSize="@dimen/textsize14"
+        android:visibility="gone" />
+
+    <com.zhy.view.flowlayout.TagFlowLayout
+        android:id="@+id/tfl_searchFound"
+        style="@style/MatchWrap"
+        android:paddingLeft="@dimen/dimen10"
+        android:paddingRight="@dimen/dimen10"
+        zhy:max_select="1" />
+
+    <!--<cn.bingoogolapple.flowlayout.BGAFlowLayout-->
+    <!--android:id="@+id/fl_searchFound"-->
+    <!--style="@style/MatchWrap"-->
+    <!--android:paddingLeft="@dimen/dimen15"-->
+    <!--android:paddingRight="@dimen/dimen15"-->
+    <!--app:fl_horizontalChildGap="@dimen/dimen10"-->
+    <!--app:fl_isDistributionWhiteSpacing="false"-->
+    <!--app:fl_verticalChildGap="@dimen/dimen15">-->
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:background="@drawable/shape_recentsearch"-->
+    <!--android:paddingBottom="@dimen/dimen6"-->
+    <!--android:paddingLeft="@dimen/dimen12"-->
+    <!--android:paddingRight="@dimen/dimen12"-->
+    <!--android:paddingTop="@dimen/dimen6"-->
+    <!--android:text="@string/renminbi"-->
+    <!--android:textColor="@color/textColor"-->
+    <!--android:textSize="@dimen/textsize11" />-->
+
+
+    <!--</cn.bingoogolapple.flowlayout.BGAFlowLayout>-->
+
+
+    <TextView
+        style="@style/WrapWrap"
+        android:paddingBottom="@dimen/dimen15"
+        android:paddingLeft="@dimen/dimen15"
+        android:paddingTop="@dimen/dimen15"
+        android:text="@string/commonlyClassification"
+        android:textColor="@color/titletextcolors"
+        android:textSize="@dimen/textsize14"
+        android:visibility="gone" />
+
+
+    <com.common.cklibrary.utils.myview.NoScrollGridView
+        android:id="@+id/gv_seachClassification"
+        style="@style/MatchWrap"
+        android:background="@android:color/white"
+        android:horizontalSpacing="@dimen/dimen30"
+        android:numColumns="5"
+        android:overScrollMode="never"
+        android:paddingLeft="@dimen/dimen15"
+        android:paddingRight="@dimen/dimen15"
+        android:scrollbars="none"
+        android:verticalSpacing="@dimen/dimen15"
+        android:visibility="gone"
+        tools:listitem="@layout/item_seachclassification" />
+
+
+</LinearLayout>

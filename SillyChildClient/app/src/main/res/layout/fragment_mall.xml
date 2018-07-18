@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchMatch"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <cn.bingoogolapple.refreshlayout.BGARefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/mRefreshLayout"
+        style="@style/MatchMatch">
+
+
+        <com.common.cklibrary.utils.myview.ScrollInterceptScrollView
+            android:id="@+id/sv_home"
+            style="@style/MatchMatch"
+            android:background="@color/background"
+            android:scrollbars="none">
+
+            <RelativeLayout
+                style="@style/MatchWrap"
+                android:descendantFocusability="blocksDescendants">
+
+                <cn.bingoogolapple.bgabanner.BGABanner
+                    android:id="@+id/banner_ad"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen210"
+                    android:background="@mipmap/home_banner"
+                    app:banner_pageChangeDuration="2000"
+                    app:banner_pointAutoPlayAble="false"
+                    app:banner_pointContainerBackground="@android:color/transparent"
+                    app:banner_pointDrawable="@drawable/bga_banner_selector_point"
+                    app:banner_pointTopBottomMargin="2dp"
+                    app:banner_transitionEffect="alpha" />
+
+
+                <com.common.cklibrary.utils.myview.NoScrollGridView
+                    android:id="@+id/gv_classification"
+                    style="@style/MatchWrap"
+                    android:layout_below="@id/banner_ad"
+                    android:background="@android:color/white"
+                    android:listSelector="@color/whiteColors"
+                    android:numColumns="5"
+                    android:overScrollMode="never"
+                    android:paddingBottom="@dimen/dimen15"
+                    android:scrollbars="none"
+                    tools:listitem="@layout/item_homeclassification" />
+
+                <!--<LinearLayout-->
+                <!--android:id="@+id/ll_icon"-->
+                <!--style="@style/MatchWrap"-->
+                <!--android:layout_below="@id/banner_ad"-->
+                <!--android:background="@android:color/white"-->
+                <!--android:orientation="horizontal">-->
+
+                <!--<LinearLayout-->
+                <!--android:id="@+id/ll_cosmetics"-->
+                <!--style="@style/AutoWrap"-->
+                <!--android:gravity="center"-->
+                <!--android:orientation="vertical">-->
+
+                <!--<ImageView-->
+                <!--style="@style/Image40"-->
+                <!--android:layout_marginTop="@dimen/dimen15"-->
+                <!--android:scaleType="fitXY"-->
+                <!--android:src="@mipmap/home_beauty_makeup_icon" />-->
+
+                <!--<TextView-->
+                <!--style="@style/WrapWrap"-->
+                <!--android:paddingBottom="@dimen/dimen7"-->
+                <!--android:paddingTop="@dimen/dimen11"-->
+                <!--android:text="@string/cosmetics"-->
+                <!--android:textColor="@color/textColor"-->
+                <!--android:textSize="@dimen/textsize13" />-->
+
+                <!--</LinearLayout>-->
+
+                <!--<LinearLayout-->
+                <!--android:id="@+id/ll_personalCare"-->
+                <!--style="@style/AutoWrap"-->
+                <!--android:gravity="center"-->
+                <!--android:orientation="vertical">-->
+
+                <!--<ImageView-->
+                <!--style="@style/Image40"-->
+                <!--android:layout_marginTop="@dimen/dimen15"-->
+                <!--android:scaleType="fitXY"-->
+                <!--android:src="@mipmap/home_nursing_icon" />-->
+
+                <!--<TextView-->
+                <!--style="@style/WrapWrap"-->
+                <!--android:paddingBottom="@dimen/dimen7"-->
+                <!--android:paddingTop="@dimen/dimen11"-->
+                <!--android:text="@string/personalCare"-->
+                <!--android:textColor="@color/textColor"-->
+                <!--android:textSize="@dimen/textsize13" />-->
+
+                <!--</LinearLayout>-->
+
+                <!--<LinearLayout-->
+                <!--android:id="@+id/ll_maternalAndInfant"-->
+                <!--style="@style/AutoWrap"-->
+                <!--android:gravity="center"-->
+                <!--android:orientation="vertical">-->
+
+                <!--<ImageView-->
+                <!--style="@style/Image40"-->
+                <!--android:layout_marginTop="@dimen/dimen15"-->
+                <!--android:scaleType="fitXY"-->
+                <!--android:src="@mipmap/home_mother_and_child_icon" />-->
+
+                <!--<TextView-->
+                <!--style="@style/WrapWrap"-->
+                <!--android:paddingBottom="@dimen/dimen7"-->
+                <!--android:paddingTop="@dimen/dimen11"-->
+                <!--android:text="@string/maternalAndInfant"-->
+                <!--android:textColor="@color/textColor"-->
+                <!--android:textSize="@dimen/textsize13" />-->
+
+                <!--</LinearLayout>-->
+
+                <!--<LinearLayout-->
+                <!--android:id="@+id/ll_bagAccessories"-->
+                <!--style="@style/AutoWrap"-->
+                <!--android:gravity="center"-->
+                <!--android:orientation="vertical">-->
+
+                <!--<ImageView-->
+                <!--style="@style/Image40"-->
+                <!--android:layout_marginTop="@dimen/dimen15"-->
+                <!--android:scaleType="fitXY"-->
+                <!--android:src="@mipmap/home_shoe_bag_icon" />-->
+
+                <!--<TextView-->
+                <!--style="@style/WrapWrap"-->
+                <!--android:paddingBottom="@dimen/dimen7"-->
+                <!--android:paddingTop="@dimen/dimen11"-->
+                <!--android:text="@string/bagAccessories"-->
+                <!--android:textColor="@color/textColor"-->
+                <!--android:textSize="@dimen/textsize13" />-->
+
+                <!--</LinearLayout>-->
+
+                <!--<LinearLayout-->
+                <!--android:id="@+id/ll_clothingAndShoes"-->
+                <!--style="@style/AutoWrap"-->
+                <!--android:gravity="center"-->
+                <!--android:orientation="vertical">-->
+
+                <!--<ImageView-->
+                <!--style="@style/Image40"-->
+                <!--android:layout_marginTop="@dimen/dimen15"-->
+                <!--android:scaleType="fitXY"-->
+                <!--android:src="@mipmap/home_clothing_icon" />-->
+
+                <!--<TextView-->
+                <!--style="@style/WrapWrap"-->
+                <!--android:paddingBottom="@dimen/dimen7"-->
+                <!--android:paddingTop="@dimen/dimen11"-->
+                <!--android:text="@string/clothingAndShoes"-->
+                <!--android:textColor="@color/textColor"-->
+                <!--android:textSize="@dimen/textsize13" />-->
+
+                <!--</LinearLayout>-->
+
+                <!--</LinearLayout>-->
+
+                <!--<LinearLayout-->
+                <!--android:id="@+id/ll_icon1"-->
+                <!--style="@style/MatchWrap"-->
+                <!--android:layout_below="@id/ll_icon"-->
+                <!--android:background="@android:color/white"-->
+                <!--android:orientation="horizontal">-->
+
+                <!--<LinearLayout-->
+                <!--android:id="@+id/ll_homeApplianceDigital"-->
+                <!--style="@style/AutoWrap"-->
+                <!--android:gravity="center"-->
+                <!--android:orientation="vertical">-->
+
+                <!--<ImageView-->
+                <!--style="@style/Image40"-->
+                <!--android:layout_marginTop="@dimen/dimen8"-->
+                <!--android:scaleType="fitXY"-->
+                <!--android:src="@mipmap/home_digital_icon" />-->
+
+                <!--<TextView-->
+                <!--style="@style/WrapWrap"-->
+                <!--android:paddingBottom="@dimen/dimen14"-->
+                <!--android:paddingTop="@dimen/dimen11"-->
+                <!--android:text="@string/homeApplianceDigital"-->
+                <!--android:textColor="@color/textColor"-->
+                <!--android:textSize="@dimen/textsize13" />-->
+
+                <!--</LinearLayout>-->
+
+                <!--<LinearLayout-->
+                <!--android:id="@+id/ll_household"-->
+                <!--style="@style/AutoWrap"-->
+                <!--android:gravity="center"-->
+                <!--android:orientation="vertical">-->
+
+                <!--<ImageView-->
+                <!--style="@style/Image40"-->
+                <!--android:layout_marginTop="@dimen/dimen8"-->
+                <!--android:scaleType="fitXY"-->
+                <!--android:src="@mipmap/home_household_icon" />-->
+
+                <!--<TextView-->
+                <!--style="@style/WrapWrap"-->
+                <!--android:paddingBottom="@dimen/dimen14"-->
+                <!--android:paddingTop="@dimen/dimen11"-->
+                <!--android:text="@string/household"-->
+                <!--android:textColor="@color/textColor"-->
+                <!--android:textSize="@dimen/textsize13" />-->
+
+                <!--</LinearLayout>-->
+
+                <!--<LinearLayout-->
+                <!--android:id="@+id/ll_beautyCare"-->
+                <!--style="@style/AutoWrap"-->
+                <!--android:gravity="center"-->
+                <!--android:orientation="vertical">-->
+
+                <!--<ImageView-->
+                <!--style="@style/Image40"-->
+                <!--android:layout_marginTop="@dimen/dimen8"-->
+                <!--android:scaleType="fitXY"-->
+                <!--android:src="@mipmap/home_health_care_icon" />-->
+
+                <!--<TextView-->
+                <!--style="@style/WrapWrap"-->
+                <!--android:paddingBottom="@dimen/dimen14"-->
+                <!--android:paddingTop="@dimen/dimen11"-->
+                <!--android:text="@string/beautyCare"-->
+                <!--android:textColor="@color/textColor"-->
+                <!--android:textSize="@dimen/textsize13" />-->
+
+                <!--</LinearLayout>-->
+
+                <!--<LinearLayout-->
+                <!--android:id="@+id/ll_food"-->
+                <!--style="@style/AutoWrap"-->
+                <!--android:gravity="center"-->
+                <!--android:orientation="vertical">-->
+
+                <!--<ImageView-->
+                <!--style="@style/Image40"-->
+                <!--android:layout_marginTop="@dimen/dimen8"-->
+                <!--android:scaleType="fitXY"-->
+                <!--android:src="@mipmap/home_food_icon" />-->
+
+                <!--<TextView-->
+                <!--style="@style/WrapWrap"-->
+                <!--android:paddingBottom="@dimen/dimen14"-->
+                <!--android:paddingTop="@dimen/dimen11"-->
+                <!--android:text="@string/food"-->
+                <!--android:textColor="@color/textColor"-->
+                <!--android:textSize="@dimen/textsize13" />-->
+
+                <!--</LinearLayout>-->
+
+                <!--<LinearLayout-->
+                <!--android:id="@+id/ll_more"-->
+                <!--style="@style/AutoWrap"-->
+                <!--android:gravity="center"-->
+                <!--android:orientation="vertical">-->
+
+                <!--<ImageView-->
+                <!--style="@style/Image40"-->
+                <!--android:layout_marginTop="@dimen/dimen8"-->
+                <!--android:scaleType="fitXY"-->
+                <!--android:src="@mipmap/home_more_icon" />-->
+
+                <!--<TextView-->
+                <!--style="@style/WrapWrap"-->
+                <!--android:paddingBottom="@dimen/dimen14"-->
+                <!--android:paddingTop="@dimen/dimen11"-->
+                <!--android:text="@string/more"-->
+                <!--android:textColor="@color/textColor"-->
+                <!--android:textSize="@dimen/textsize13" />-->
+
+                <!--</LinearLayout>-->
+
+                <!--</LinearLayout>-->
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv"
+                    style="@style/MatchWrap"
+                    android:layout_below="@id/gv_classification"
+                    android:layout_marginTop="@dimen/dimen5"
+                    android:background="@android:color/transparent"
+                    android:paddingLeft="@dimen/dimen2"
+                    android:paddingRight="@dimen/dimen2"
+                    tools:listitem="@layout/item_mallhomepage" />
+
+                <!--<com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView-->
+                <!--android:id="@+id/pullLoadMoreRecyclerView"-->
+                <!--style="@style/MatchWrap"-->
+                <!--android:layout_below="@id/ll_icon1"-->
+                <!--android:layout_marginTop="@dimen/dimen10"-->
+                <!--android:background="@android:color/transparent"-->
+                <!--tools:listitem="@layout/item_mallhomepage" />-->
+
+                <LinearLayout
+                    android:id="@+id/ll_title1"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen36"
+                    android:layout_marginLeft="@dimen/dimen18"
+                    android:layout_marginRight="@dimen/dimen18"
+                    android:layout_marginTop="@dimen/dimen7"
+                    android:background="@mipmap/home_search_bar_bg"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/img_search1"
+                        android:layout_width="@dimen/dimen14"
+                        android:layout_height="@dimen/dimen14"
+                        android:layout_marginLeft="@dimen/dimen15"
+                        android:src="@mipmap/search" />
+
+                    <TextView
+                        android:id="@+id/et_search1"
+                        style="@style/AutoMatch"
+                        android:background="@android:color/transparent"
+                        android:gravity="center_vertical"
+                        android:hint="@string/search"
+                        android:maxLength="20"
+                        android:minWidth="@dimen/dimen150"
+                        android:paddingLeft="@dimen/dimen10"
+                        android:singleLine="true"
+                        android:textColorHint="@color/hintColors"
+                        android:textCursorDrawable="@drawable/shape_cursor"
+                        android:textSize="@dimen/textsize13" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </com.common.cklibrary.utils.myview.ScrollInterceptScrollView>
+
+
+    </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen36"
+        android:layout_marginLeft="@dimen/dimen18"
+        android:layout_marginRight="@dimen/dimen18"
+        android:layout_marginTop="@dimen/dimen7"
+        android:background="@mipmap/home_search_bar_bg"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/img_search"
+            android:layout_width="@dimen/dimen14"
+            android:layout_height="@dimen/dimen14"
+            android:layout_marginLeft="@dimen/dimen15"
+            android:src="@mipmap/search" />
+
+        <TextView
+            android:id="@+id/et_search"
+            style="@style/AutoMatch"
+            android:background="@android:color/transparent"
+            android:gravity="center_vertical"
+            android:hint="@string/search"
+            android:maxLength="20"
+            android:minWidth="@dimen/dimen150"
+            android:paddingLeft="@dimen/dimen10"
+            android:singleLine="true"
+            android:textColorHint="@color/hintColors"
+            android:textCursorDrawable="@drawable/shape_cursor"
+            android:textSize="@dimen/textsize13" />
+
+    </LinearLayout>
+
+</RelativeLayout>

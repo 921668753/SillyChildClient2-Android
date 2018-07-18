@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrap"
+    android:background="@color/whiteColors"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_distance"
+        style="@style/WrapWrap"
+        android:padding="@dimen/dimen15"
+        android:singleLine="true"
+        android:text="500米"
+        android:textColor="@color/greenColors"
+        android:textSize="@dimen/textsize15" />
+
+    <TextView
+        android:id="@+id/tv_distance1"
+        style="@style/DividerWidth"
+        android:background="@color/greenColors" />
+
+</LinearLayout>

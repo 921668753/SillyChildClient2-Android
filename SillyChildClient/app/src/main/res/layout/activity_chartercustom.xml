@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title1" />
+
+
+    <cn.bingoogolapple.refreshlayout.BGARefreshLayout xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/mRefreshLayout"
+        style="@style/MatchMatch">
+
+        <com.ruitukeji.scc.utils.myview.MScrollView
+            style="@style/MatchMatch"
+            android:scrollbars="none">
+
+            <LinearLayout
+                style="@style/MatchMatch"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen30"
+                    android:layout_marginBottom="@dimen/dimen8"
+                    android:layout_marginLeft="@dimen/dimen15"
+                    android:layout_marginRight="@dimen/dimen15"
+                    android:layout_marginTop="@dimen/dimen8"
+                    android:background="@drawable/shape_chartercustom"
+                    android:gravity="center|center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/dimen5">
+
+                    <ImageView
+                        style="@style/WrapWrap"
+                        android:layout_marginRight="@dimen/dimen10"
+                        android:src="@mipmap/search" />
+
+                    <EditText
+                        android:id="@+id/et_designatedDriverHint"
+                        style="@style/WrapMatch"
+                        android:background="@android:color/transparent"
+                        android:gravity="center_vertical|left"
+                        android:hint="@string/designatedDriverHint"
+                        android:imeOptions="actionSearch"
+                        android:maxLength="20"
+                        android:singleLine="true"
+                        android:textColor="@color/textColor"
+                        android:textColorHint="@color/designatedDriverColors"
+                        android:textCursorDrawable="@drawable/shape_cursor"
+                        android:textSize="@dimen/textsize13" />
+
+                </LinearLayout>
+
+
+                <cn.bingoogolapple.bgabanner.BGABanner
+                    android:id="@+id/banner_ad"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen130"
+                    android:background="@mipmap/placeholderfigure2"
+                    app:banner_pageChangeDuration="2000"
+                    app:banner_pointAutoPlayAble="false"
+                    app:banner_pointContainerBackground="@android:color/transparent"
+                    app:banner_pointDrawable="@drawable/bga_banner_selector_point"
+                    app:banner_pointTopBottomMargin="2dp"
+                    app:banner_transitionEffect="alpha" />
+
+                <com.common.cklibrary.utils.myview.NoScrollGridView
+                    android:id="@+id/gv_chartercustom"
+                    style="@style/MatchWrap"
+                    android:background="@color/whiteColors"
+                    android:listSelector="@color/whiteColors"
+                    android:numColumns="3"
+                    android:overScrollMode="never"
+                    android:paddingBottom="@dimen/dimen20"
+                    android:paddingTop="@dimen/dimen20"
+                    android:scrollbars="none"
+                    android:verticalSpacing="@dimen/dimen15"
+                    tools:listitem="@layout/item_chartercustom" />
+
+                <TextView style="@style/DividerWidth" />
+
+                <LinearLayout
+                    android:id="@+id/ll_selectLine"
+                    style="@style/MatchWrap"
+                    android:background="@color/whiteColors"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/dimen15"
+                    android:paddingRight="@dimen/dimen15">
+
+                    <TextView
+                        style="@style/AutoWrap"
+                        android:paddingTop="@dimen/dimen20"
+                        android:text="@string/selectLine"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/textsize17" />
+
+                    <TextView
+                        android:id="@+id/tv_allSelectLine"
+                        style="@style/WrapMatch"
+                        android:gravity="center"
+                        android:paddingRight="@dimen/dimen7"
+                        android:paddingTop="@dimen/dimen20"
+                        android:text="@string/memberShowAll"
+                        android:textColor="@color/hintColors"
+                        android:textSize="@dimen/textsize12" />
+
+                    <ImageView
+                        style="@style/WrapWrap"
+                        android:paddingTop="@dimen/dimen20"
+                        app:srcCompat="@mipmap/arrow" />
+
+                </LinearLayout>
+
+                <com.common.cklibrary.utils.myview.ChildLiistView
+                    android:id="@+id/lv_selectLine"
+                    style="@style/MatchWrap"
+                    android:background="@color/whiteColors"
+                    android:divider="@color/background"
+                    android:dividerHeight="@dimen/dimen1"
+                    android:overScrollMode="never"
+                    android:scrollbars="none"
+                    tools:listitem="@layout/item_selectline" />
+
+
+                <TextView style="@style/DividerWidth" />
+
+                <LinearLayout
+                    android:id="@+id/ll_localGuide"
+                    style="@style/MatchWrap"
+                    android:background="@color/whiteColors"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/dimen15"
+                    android:paddingRight="@dimen/dimen15">
+
+                    <TextView
+                        style="@style/AutoWrap"
+                        android:paddingTop="@dimen/dimen20"
+                        android:text="@string/localGuide"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/textsize17" />
+
+                    <TextView
+                        android:id="@+id/tv_allLocalGuide"
+                        style="@style/WrapMatch"
+                        android:gravity="center"
+                        android:paddingRight="@dimen/dimen7"
+                        android:paddingTop="@dimen/dimen20"
+                        android:text="@string/memberShowAll"
+                        android:textColor="@color/hintColors"
+                        android:textSize="@dimen/textsize12" />
+
+                    <ImageView
+                        style="@style/WrapWrap"
+                        android:paddingTop="@dimen/dimen20"
+                        app:srcCompat="@mipmap/arrow" />
+
+                </LinearLayout>
+
+                <com.common.cklibrary.utils.myview.ChildLiistView
+                    android:id="@+id/lv_localGuide"
+                    style="@style/MatchWrap"
+                    android:background="@color/whiteColors"
+                    android:divider="@color/background"
+                    android:dividerHeight="@dimen/dimen1"
+                    android:overScrollMode="never"
+                    android:scrollbars="none"
+                    tools:listitem="@layout/item_localguide" />
+            </LinearLayout>
+
+        </com.ruitukeji.scc.utils.myview.MScrollView>
+    </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
+
+</LinearLayout>

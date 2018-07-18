@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchWrap"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="vertical">
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:background="@color/whiteColors"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/dimen10"
+        android:paddingLeft="@dimen/dimen15"
+        android:paddingRight="@dimen/dimen15"
+        android:paddingTop="@dimen/dimen10">
+
+        <TextView
+            style="@style/WrapWrap"
+            android:text="@string/orderNumber1"
+            android:textColor="@color/titletextcolors"
+            android:textSize="@dimen/textsize13" />
+
+        <TextView
+            android:id="@+id/tv_orderNumber"
+            style="@style/AutoWrap"
+            android:singleLine="true"
+            android:text="201804290939"
+            android:textColor="@color/titletextcolors"
+            android:textSize="@dimen/textsize13" />
+
+        <TextView
+            android:id="@+id/tv_goodStatus"
+            style="@style/WrapWrap"
+            android:text="@string/obligation"
+            android:textColor="@color/titletextcolors"
+            android:textSize="@dimen/textsize13" />
+    </LinearLayout>
+
+    <TextView style="@style/DividerWidth" />
+
+    <com.common.cklibrary.utils.myview.ChildListView
+        android:id="@+id/clv_shopgoods"
+        style="@style/MatchWrap"
+        android:divider="@color/dividercolors2"
+        android:dividerHeight="@dimen/dimen1"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        tools:listitem="@layout/item_shopgoodsup" />
+
+    <TextView style="@style/DividerWidth" />
+
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:background="@color/whiteColors"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dimen15">
+
+        <LinearLayout
+            style="@style/WrapWrap"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/dimen10">
+
+            <TextView
+                android:id="@+id/tv_goodNumber"
+                style="@style/WrapWrap"
+                android:layout_marginTop="@dimen/dimen10"
+                android:text="共2件商品"
+                android:textColor="@color/titletextcolors"
+                android:textSize="@dimen/textsize13" />
+
+
+            <LinearLayout
+                style="@style/WrapWrap"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginTop="@dimen/dimen10"
+                    android:text="@string/actualPaymentInCart"
+                    android:textColor="@color/titletextcolors"
+                    android:textSize="@dimen/textsize13" />
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginTop="@dimen/dimen10"
+                    android:text="@string/renminbi"
+                    android:textColor="@color/fF0000Colors"
+                    android:textSize="@dimen/textsize13" />
+
+                <TextView
+                    android:id="@+id/tv_goodsMoney"
+                    style="@style/WrapWrap"
+                    android:layout_marginTop="@dimen/dimen10"
+                    android:maxWidth="@dimen/dimen90"
+                    android:singleLine="true"
+                    android:text="1314.00"
+                    android:textColor="@color/fF0000Colors"
+                    android:textSize="@dimen/textsize13" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <include layout="@layout/gooddetails_bottombar" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen10"
+        android:background="@color/background" />
+
+</LinearLayout>

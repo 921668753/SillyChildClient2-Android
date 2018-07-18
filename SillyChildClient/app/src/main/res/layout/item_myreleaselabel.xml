@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    style="@style/MatchWrap"
+    android:orientation="vertical"
+    android:background="@android:color/transparent">
+
+    <android.support.v7.widget.CardView
+        style="@style/MatchWrap"
+        card_view:cardCornerRadius="@dimen/dimen5"
+        card_view:cardBackgroundColor="@color/whiteColors"
+        card_view:cardElevation="0dp"
+        card_view:cardPreventCornerOverlap="false">
+
+        <LinearLayout
+            android:id="@+id/ll_content"
+            android:orientation="vertical"
+            style="@style/MatchWrap"
+            android:background="@android:color/transparent">
+
+            <com.ruitukeji.scc.utils.myview.UpRoundImageView
+                android:id="@+id/iv_picture"
+                style="@style/MatchWrap"
+                android:src="@mipmap/placeholderfigure1"
+                android:scaleType="fitXY"
+                android:adjustViewBounds="true"/>
+
+            <TextView
+                android:id="@+id/tv_title"
+                style="@style/MatchWrap"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize13"
+                android:singleLine="true"
+                android:layout_marginTop="@dimen/dimen10"
+                android:paddingLeft="@dimen/dimen10"
+                android:paddingRight="@dimen/dimen10"/>
+
+            <TextView
+                android:id="@+id/tv_detail"
+                style="@style/MatchWrap"
+                android:textColor="@color/hintColors"
+                android:textSize="@dimen/textsize13"
+                android:singleLine="true"
+                android:layout_marginTop="@dimen/dimen13"
+                android:paddingLeft="@dimen/dimen10"
+                android:paddingRight="@dimen/dimen10"/>
+
+            <RelativeLayout
+                style="@style/MatchWrap"
+                android:padding="@dimen/dimen10">
+                <ImageView
+                    android:id="@+id/iv_touxiang"
+                    android:layout_width="@dimen/dimen25"
+                    android:layout_height="@dimen/dimen25"
+                    android:layout_centerVertical="true"/>
+                <TextView
+                    android:id="@+id/tv_name"
+                    style="@style/WrapWrap"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize11"
+                    android:layout_marginLeft="@dimen/dimen5"
+                    android:layout_toRightOf="@id/iv_touxiang"
+                    android:layout_centerVertical="true"/>
+
+                <RelativeLayout
+                    style="@style/MatchWrap"
+                    android:layout_toRightOf="@id/tv_name"
+                    android:layout_centerVertical="true">
+                    <TextView
+                        android:id="@+id/tv_zanstr"
+                        style="@style/WrapWrap"
+                        android:text="@string/zan"
+                        android:textColor="@color/hintColors"
+                        android:textSize="@dimen/textsize11"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"/>
+
+                    <TextView
+                        android:id="@+id/tv_zannumber"
+                        style="@style/WrapWrap"
+                        android:text="16090"
+                        android:singleLine="true"
+                        android:textColor="@color/hintColors"
+                        android:textSize="@dimen/textsize11"
+                        android:layout_marginLeft="@dimen/dimen5"
+                        android:layout_centerVertical="true"
+                        android:layout_toLeftOf="@id/tv_zanstr"/>
+                </RelativeLayout>
+
+            </RelativeLayout>
+        </LinearLayout>
+
+        <com.ruitukeji.scc.utils.myview.LinearLayoutWidth
+            android:id="@+id/ll_new"
+            android:orientation="vertical"
+            style="@style/MatchWrap"
+            android:gravity="center"
+            android:background="@android:color/transparent">
+            <ImageView
+                style="@style/WrapWrap"
+                android:src="@mipmap/mine_addxxx"/>
+            <TextView
+                android:id="@+id/tv_release"
+                style="@style/WrapWrap"
+                android:textSize="@dimen/textsize15"
+                android:textColor="@color/textColor"
+                android:layout_marginTop="@dimen/dimen30"/>
+        </com.ruitukeji.scc.utils.myview.LinearLayoutWidth>
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

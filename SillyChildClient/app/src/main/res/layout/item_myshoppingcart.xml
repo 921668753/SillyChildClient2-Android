@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchMatch"
+    android:background="@color/whiteColors"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen40"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/dimen10"
+        android:paddingRight="@dimen/dimen10"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/iv_choseshopicon"
+            style="@style/WrapWrap"
+            android:src="@mipmap/arrow" />
+
+        <TextView
+            style="@style/WrapWrap"
+            android:layout_marginLeft="@dimen/dimen12"
+            android:singleLine="true"
+            android:text="法国及详细官方品牌店"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize14" />
+    </RelativeLayout>
+
+    <View style="@style/DividerWidth" />
+
+    <com.common.cklibrary.utils.myview.ChildListView
+        android:id="@+id/lv_shopgoods"
+        style="@style/MatchWrap"
+        android:dividerHeight="@dimen/dimen20"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        tools:listitem="@layout/item_shopgoods" />
+
+</LinearLayout>

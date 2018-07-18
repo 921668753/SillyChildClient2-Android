@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title" />
+
+    <View style="@style/DividerWidth" />
+
+    <com.common.cklibrary.utils.myview.WebViewLayout1
+        android:id="@+id/web_content"
+        style="@style/MatchAuto"
+        android:scrollbars="none"
+        app:isJavaScriptEnabled="true" />
+
+    <View style="@style/DividerWidth" />
+
+    <LinearLayout
+        android:id="@+id/ll_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen49"
+        android:layout_alignParentBottom="true"
+        android:background="@color/whiteColors"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:id="@+id/ll_shop"
+            style="@style/AutoMatch"
+            android:background="@mipmap/mallcart_shopxxx"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <!--<ImageView-->
+            <!--style="@style/Image20"-->
+            <!--android:scaleType="fitXY"-->
+            <!--android:src="@mipmap/mallcart_shopxxx" />-->
+
+            <!--<TextView-->
+            <!--style="@style/WrapWrap"-->
+            <!--android:layout_marginTop="@dimen/dimen5"-->
+            <!--android:text="@string/shop"-->
+            <!--android:textColor="@color/titletextcolors"-->
+            <!--android:textSize="@dimen/textsize11" />-->
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ll_customerService"
+            style="@style/AutoMatch"
+            android:background="@mipmap/mallkefuxxx"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <!--<ImageView-->
+            <!--style="@style/Image20"-->
+            <!--android:scaleType="fitXY"-->
+            <!--android:src="@mipmap/mallkefuxxx" />-->
+
+            <!--<TextView-->
+            <!--style="@style/WrapWrap"-->
+            <!--android:layout_marginTop="@dimen/dimen5"-->
+            <!--android:text="@string/customerService"-->
+            <!--android:textColor="@color/titletextcolors"-->
+            <!--android:textSize="@dimen/textsize11" />-->
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_follow"
+            style="@style/AutoMatch"
+            android:background="@mipmap/mall_uncollect"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <!--<ImageView-->
+            <!--style="@style/Image20"-->
+            <!--android:scaleType="fitXY"-->
+            <!--android:src="@mipmap/mallguanzhuxxx" />-->
+
+            <!--<TextView-->
+            <!--style="@style/WrapWrap"-->
+            <!--android:layout_marginTop="@dimen/dimen5"-->
+            <!--android:text="@string/follow"-->
+            <!--android:textColor="@color/titletextcolors"-->
+            <!--android:textSize="@dimen/textsize11" />-->
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_addShoppingCart"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.9"
+            android:background="@mipmap/product_details_add_to_cart"
+            android:gravity="center"
+            android:text="@string/addShoppingCart"
+            android:textColor="@color/whiteColors"
+            android:textSize="@dimen/textsize14" />
+
+        <TextView
+            android:id="@+id/tv_buyNow"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.9"
+            android:background="@mipmap/product_details_buy"
+            android:gravity="center"
+            android:text="@string/buyNow"
+            android:textColor="@color/whiteColors"
+            android:textSize="@dimen/textsize14" />
+    </LinearLayout>
+
+</LinearLayout>

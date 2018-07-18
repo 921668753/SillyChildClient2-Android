@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrap"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/img_comment"
+        style="@style/MatchWrap"
+        android:src="@mipmap/placeholderfigure" />
+
+</LinearLayout>

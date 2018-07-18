@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrap"
+    android:background="@color/whiteColors"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/dimen15"
+    android:paddingRight="@dimen/dimen15"
+    android:paddingTop="@dimen/dimen10">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen200">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen200"
+            android:src="@mipmap/placeholderfigure" />
+
+        <LinearLayout
+            style="@style/WrapWrap"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:background="@color/titletextcolors"
+            android:gravity="bottom"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/dimen9"
+            android:paddingLeft="@dimen/dimen6"
+            android:paddingRight="@dimen/dimen6"
+            android:paddingTop="@dimen/dimen9">
+
+            <TextView
+                style="@style/WrapWrap"
+                android:text="@string/moneySign"
+                android:textColor="@color/whiteColors"
+                android:textSize="@dimen/textsize12" />
+
+            <TextView
+                style="@style/WrapWrap"
+                android:text="3700"
+                android:textColor="@color/whiteColors"
+                android:textSize="@dimen/textsize18" />
+
+            <TextView
+                style="@style/WrapWrap"
+                android:text="@string/oneNight"
+                android:textColor="@color/whiteColors"
+                android:textSize="@dimen/textsize12" />
+        </LinearLayout>
+    </RelativeLayout>
+
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/dimen15">
+
+        <LinearLayout
+            style="@style/AutoWrap"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/WrapWrap"
+                android:ellipsize="end"
+                android:paddingRight="@dimen/dimen10"
+                android:singleLine="true"
+                android:text="苏梅岛蔓娜泰度假村豪华大床房"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize15" />
+
+
+            <LinearLayout
+                style="@style/WrapWrap"
+                android:layout_marginTop="@dimen/dimen15"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_houseusername"
+                    style="@style/WrapWrap"
+                    android:layout_marginRight="@dimen/dimen10"
+                    android:text="湟中县"
+                    android:textColor="@color/tabColors"
+                    android:textSize="@dimen/textsize13" />
+
+                <ImageView
+                    style="@style/WrapWrap"
+                    android:layout_marginRight="@dimen/dimen10"
+                    android:src="@mipmap/mineicon_locationxxx" />
+
+                <TextView
+                    android:id="@+id/tv_houseaddress"
+                    style="@style/WrapWrap"
+                    android:text="泰国.曼谷"
+                    android:textColor="@color/hintColors"
+                    android:textSize="@dimen/textsize12" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <ImageView
+            style="@style/WrapWrap"
+            android:src="@mipmap/heart_full" />
+    </LinearLayout>
+
+
+</LinearLayout>

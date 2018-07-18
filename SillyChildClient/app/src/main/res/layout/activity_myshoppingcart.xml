@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title" />
+
+    <View style="@style/DividerWidth" />
+
+    <cn.bingoogolapple.refreshlayout.BGARefreshLayout
+        android:id="@+id/mRefreshLayout"
+        style="@style/MatchAuto"
+        android:background="@color/background">
+        <!-- item_companyguidemassage -->
+        <ListView
+            android:id="@+id/lv_myShoppingCart"
+            style="@style/MatchMatch"
+            android:dividerHeight="@dimen/dimen1"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            tools:listitem="@layout/item_shopgoods" />
+
+    </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
+
+    <include
+        style="@style/MatchAuto"
+        layout="@layout/common_error" />
+
+    <View style="@style/DividerWidth" />
+
+    <LinearLayout
+        android:id="@+id/ll_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen49"
+        android:background="@color/whiteColors"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingRight="@dimen/dimen10">
+
+        <LinearLayout
+            android:id="@+id/ll_allcheck"
+            style="@style/WrapMatch"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/dimen18">
+
+            <ImageView
+                android:id="@+id/img_unselected"
+                android:layout_width="@dimen/dimen18"
+                android:layout_height="@dimen/dimen18"
+                android:src="@mipmap/shopping_cart_unselected" />
+
+            <TextView
+                style="@style/WrapWrap"
+                android:paddingLeft="@dimen/dimen7"
+                android:text="@string/allcheck"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize14" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tv_delete"
+            android:layout_width="@dimen/dimen90"
+            android:layout_height="@dimen/dimen35"
+            android:background="@drawable/shape_cart"
+            android:gravity="center"
+            android:text="@string/delete"
+            android:textColor="@color/fF0000Colors"
+            android:textSize="@dimen/textsize16"
+            android:visibility="gone" />
+
+
+        <TextView
+            android:id="@+id/tv_total"
+            style="@style/WrapWrap"
+            android:text="@string/total"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize14" />
+
+        <TextView
+            android:id="@+id/tv_renminbi"
+            style="@style/WrapWrap"
+            android:text="@string/renminbi"
+            android:textColor="@color/fF3542Colors"
+            android:textSize="@dimen/textsize14" />
+
+        <TextView
+            android:id="@+id/tv_money"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:singleLine="true"
+            android:text="0.00"
+            android:textColor="@color/fF3542Colors"
+            android:textSize="@dimen/textsize14" />
+
+        <TextView
+            android:id="@+id/tv_settleAccounts"
+            android:layout_width="@dimen/dimen120"
+            android:layout_height="@dimen/dimen35"
+            android:layout_marginLeft="@dimen/dimen5"
+            android:background="@drawable/shape_determinepay"
+            android:gravity="center"
+            android:text="@string/settleAccounts"
+            android:textColor="@color/whiteColors"
+            android:textSize="@dimen/textsize16" />
+    </LinearLayout>
+
+</LinearLayout>

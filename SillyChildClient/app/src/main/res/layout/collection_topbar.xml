@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dimen44"
+    android:background="@android:color/white">
+
+    <LinearLayout
+        android:id="@+id/ll_charter"
+        style="@style/AutoMatch"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_charter"
+            style="@style/MatchAuto"
+            android:gravity="center"
+            android:text="@string/charter"
+            android:textColor="@color/greenColors"
+            android:textSize="@dimen/dimen15" />
+
+        <View
+            android:id="@+id/v_charter"
+            android:layout_width="@dimen/dimen52"
+            android:layout_height="@dimen/dimen2"
+            android:background="@color/greenColors" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_route"
+        style="@style/AutoMatch"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_route"
+            style="@style/MatchAuto"
+            android:gravity="center"
+            android:text="@string/route2"
+            android:textColor="@color/hintColors"
+            android:textSize="@dimen/dimen15" />
+
+        <View
+            android:id="@+id/v_route"
+            android:layout_width="@dimen/dimen52"
+            android:layout_height="@dimen/dimen2"
+            android:background="@android:color/transparent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_good"
+        style="@style/AutoMatch"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_good"
+            style="@style/MatchAuto"
+            android:gravity="center"
+            android:text="@string/good"
+            android:textColor="@color/hintColors"
+            android:textSize="@dimen/dimen15" />
+
+        <View
+            android:id="@+id/v_good"
+            android:layout_width="@dimen/dimen52"
+            android:layout_height="@dimen/dimen2"
+            android:background="@android:color/transparent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_house"
+        style="@style/AutoMatch"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_house"
+            style="@style/MatchAuto"
+            android:gravity="center"
+            android:text="@string/house"
+            android:textColor="@color/hintColors"
+            android:textSize="@dimen/dimen15" />
+
+        <View
+            android:id="@+id/v_house"
+            android:layout_width="@dimen/dimen52"
+            android:layout_height="@dimen/dimen2"
+            android:background="@android:color/transparent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_shop"
+        style="@style/AutoMatch"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_shop"
+            style="@style/MatchAuto"
+            android:gravity="center"
+            android:text="@string/shop"
+            android:textColor="@color/hintColors"
+            android:textSize="@dimen/dimen15" />
+
+        <View
+            android:id="@+id/v_shop"
+            android:layout_width="@dimen/dimen52"
+            android:layout_height="@dimen/dimen2"
+            android:background="@android:color/transparent" />
+    </LinearLayout>
+
+</LinearLayout>

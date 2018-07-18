@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_bargain"
+    style="@style/WrapWrap"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/img_good"
+        android:layout_width="@dimen/dimen130"
+        android:layout_height="@dimen/dimen105"
+        android:background="@drawable/shape_boutiqueline"
+        android:padding="@dimen/dimen1"
+        android:scaleType="fitXY"
+        android:src="@mipmap/placeholderfigure" />
+
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/img_proprietary"
+            android:layout_width="@dimen/dimen22"
+            android:layout_height="@dimen/dimen11"
+            android:layout_marginRight="@dimen/dimen5"
+            android:layout_marginTop="@dimen/dimen5"
+            android:src="@mipmap/home_self_support" />
+
+        <TextView
+            android:id="@+id/tv_goodName"
+            style="@style/AutoWrap"
+            android:gravity="center"
+            android:paddingBottom="@dimen/dimen5"
+            android:paddingTop="@dimen/dimen3"
+            android:singleLine="true"
+            android:text="luna luna mini2洁面仪luna mini2洁面仪luna mini2洁面仪luna mini2洁面仪luna mini2洁面仪luna mini2洁面仪luna mini2洁面仪luna mini2洁面仪luna mini2洁面仪luna mini2洁面仪luna mini2洁面仪luna mini2洁面仪luna mini2洁面仪luna mini2洁面仪luna mini2洁面仪luna mini2洁面仪luna mini2洁面仪luna mini2洁面仪luna mini2洁面仪luna mini2洁面仪luna mini2洁面仪luna mini2洁面仪luna mini2洁面仪"
+            android:textColor="@color/titletextcolors"
+            android:textSize="@dimen/textsize11" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:gravity="bottom"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/WrapWrap"
+            android:paddingLeft="@dimen/dimen5"
+            android:text="@string/renminbi"
+            android:textColor="@color/fF0000Colors"
+            android:textSize="@dimen/textsize9" />
+
+        <TextView
+            android:id="@+id/tv_specialOffer"
+            style="@style/WrapWrap"
+            android:maxWidth="@dimen/dimen50"
+            android:singleLine="true"
+            android:text="998.000000000000"
+            android:textColor="@color/fF0000Colors"
+            android:textSize="@dimen/textsize12" />
+
+        <TextView
+            android:id="@+id/tv_marketPrice"
+            style="@style/WrapWrap"
+            android:layout_marginLeft="@dimen/dimen5"
+            android:maxWidth="@dimen/dimen60"
+            android:singleLine="true"
+            android:text="¥998.00"
+            android:textColor="@color/hintColors"
+            android:textSize="@dimen/textsize11" />
+        <!--tv = (TextView) this .findViewById(R.id. text_view );-->
+        <!--中间加横线-->
+        <!--tv.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG );-->
+        <!--底部加横线：-->
+        <!--tv .getPaint().setFlags(Paint. UNDERLINE_TEXT_FLAG );-->
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

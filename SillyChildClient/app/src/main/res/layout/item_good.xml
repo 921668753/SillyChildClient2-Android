@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dimen101"
+    android:background="@color/whiteColors"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingLeft="@dimen/dimen15">
+
+
+    <ImageView
+        android:id="@+id/img_good"
+        android:layout_width="@dimen/dimen81"
+        android:layout_height="@dimen/dimen81"
+        android:background="@drawable/shape_boutiqueline"
+        android:padding="@dimen/dimen1"
+        android:scaleType="fitXY"
+        android:src="@mipmap/placeholderfigure1" />
+
+    <LinearLayout
+        style="@style/AutoWrap"
+        android:layout_marginLeft="@dimen/dimen15"
+        android:orientation="vertical">
+
+        <LinearLayout
+            style="@style/MatchWrap"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_goodName"
+                style="@style/AutoWrap"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="纪梵希Givenchy禁忌之吻口红"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize14" />
+
+
+            <ImageView
+                android:id="@+id/img_delete"
+                android:layout_width="@dimen/dimen45"
+                android:layout_height="match_parent"
+                android:paddingLeft="@dimen/dimen14"
+                android:paddingRight="@dimen/dimen14"
+                android:scaleType="fitXY"
+                android:src="@mipmap/collection_delete" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_goodSynopsis"
+            style="@style/WrapWrap"
+            android:paddingTop="@dimen/dimen4"
+            android:singleLine="true"
+            android:text="漆光唇膏黑色口红"
+            android:textColor="@color/hintColors"
+            android:textSize="@dimen/textsize12" />
+
+        <TextView
+            android:id="@+id/tv_money"
+            style="@style/WrapWrap"
+            android:layout_marginTop="@dimen/dimen4"
+            android:singleLine="true"
+            android:text="￥429.00"
+            android:textColor="@color/fF3542Colors"
+            android:textSize="@dimen/textsize15" />
+
+        <!--<TextView-->
+        <!--android:id="@+id/tv_addcarte"-->
+        <!--android:layout_width="@dimen/dimen90"-->
+        <!--android:layout_height="@dimen/dimen25"-->
+        <!--android:layout_gravity="right"-->
+        <!--android:background="@drawable/shape_addshoppingcarte"-->
+        <!--android:gravity="center"-->
+        <!--android:text="@string/addShoppingCart"-->
+        <!--android:textColor="@color/textColor"-->
+        <!--android:textSize="@dimen/textsize13" />-->
+        <LinearLayout
+            style="@style/MatchWrap"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_proprietary"
+                android:layout_width="@dimen/dimen22"
+                android:layout_height="@dimen/dimen11"
+                android:background="@drawable/shape_proprietary"
+                android:gravity="center"
+                android:text="@string/proprietary"
+                android:textColor="@color/whiteColors"
+                android:textSize="@dimen/textsize8" />
+
+            <TextView style="@style/AutoWrap" />
+
+            <ImageView
+                android:id="@+id/img_shoppingCart"
+                android:layout_width="@dimen/dimen45"
+                android:layout_height="@dimen/dimen20"
+                android:paddingRight="@dimen/dimen15"
+                android:src="@mipmap/collection_shopping_cart" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrap"
+    android:background="@color/whiteColors"
+    android:orientation="vertical">
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:layout_marginBottom="@dimen/dimen15"
+        android:layout_marginTop="@dimen/dimen15"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dimen15"
+        android:paddingRight="@dimen/dimen15">
+
+        <TextView
+            android:id="@+id/tv_deliveryaddressname"
+            style="@style/WrapWrap"
+            android:maxWidth="@dimen/dimen180"
+            android:singleLine="true"
+            android:text="某某某"
+            android:textColor="@color/titletextcolors"
+            android:textSize="@dimen/textsize14" />
+
+        <TextView
+            android:id="@+id/tv_deliveryaddressphone"
+            style="@style/AutoWrap"
+            android:layout_marginLeft="@dimen/dimen15"
+            android:gravity="right"
+            android:text="12345678910"
+            android:textColor="@color/titletextcolors"
+            android:textSize="@dimen/textsize14" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_deliveryaddress"
+        style="@style/MatchWrap"
+        android:paddingBottom="@dimen/dimen15"
+        android:paddingLeft="@dimen/dimen15"
+        android:paddingRight="@dimen/dimen15"
+        android:text="上海市闵行区吴泾镇放鹤路1088号博济园区7号楼301"
+        android:textColor="@color/textColor"
+        android:textSize="@dimen/textsize12" />
+
+    <include layout="@layout/common_dividerwidth1" />
+
+    <LinearLayout style="@style/MatchWrap">
+
+        <LinearLayout
+            android:id="@+id/ll_setdefault"
+            style="@style/WrapWrap"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/dimen15">
+
+            <ImageView
+                android:id="@+id/iv_deliveryaddresschose"
+                style="@style/WrapWrap"
+                android:src="@mipmap/address_address_select" />
+
+            <TextView
+                android:id="@+id/tv_promptcharacters"
+                style="@style/WrapWrap"
+                android:layout_marginLeft="@dimen/dimen9"
+                android:paddingBottom="@dimen/dimen10"
+                android:paddingTop="@dimen/dimen10"
+                android:text="@string/defaultAddress"
+                android:textColor="@color/deliveryaddressdefault"
+                android:textSize="@dimen/textsize12" />
+        </LinearLayout>
+
+        <TextView style="@style/AutoWrap" />
+
+        <LinearLayout
+            android:id="@+id/ll_deliveryaddressedit"
+            style="@style/WrapWrap"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/dimen10"
+            android:paddingRight="@dimen/dimen20"
+            android:paddingTop="@dimen/dimen10">
+
+            <ImageView
+                android:layout_width="@dimen/dimen15"
+                android:layout_height="@dimen/dimen16"
+                android:src="@mipmap/address_edit" />
+
+            <TextView
+                style="@style/WrapWrap"
+                android:layout_marginLeft="@dimen/dimen5"
+                android:text="@string/edit"
+                android:textColor="@color/deliveryaddressdefault"
+                android:textSize="@dimen/textsize12" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_deliveryaddressdelete"
+            style="@style/WrapWrap"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/dimen10"
+            android:paddingTop="@dimen/dimen10">
+
+            <ImageView
+                android:layout_width="@dimen/dimen16"
+                android:layout_height="@dimen/dimen15"
+                android:src="@mipmap/address_delete" />
+
+            <TextView
+                style="@style/WrapWrap"
+                android:layout_marginLeft="@dimen/dimen5"
+                android:paddingRight="@dimen/dimen15"
+                android:text="@string/delete"
+                android:textColor="@color/deliveryaddressdefault"
+                android:textSize="@dimen/textsize12" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/WrapWrap"
+    android:background="@color/whiteColors"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/dimen15">
+
+    <RelativeLayout
+        style="@style/WrapWrap"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/img_classification"
+            android:layout_width="@dimen/dimen108"
+            android:layout_height="@dimen/dimen75"
+            android:scaleType="fitXY"
+            android:src="@mipmap/placeholderfigure1" />
+
+        <TextView
+            android:id="@+id/tv_classificationName"
+            android:layout_width="@dimen/dimen65"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="@color/partTranslucent"
+            android:gravity="center"
+            android:minHeight="@dimen/dimen25"
+            android:text="面膜"
+            android:textColor="@color/whiteColors"
+            android:textSize="@dimen/textsize12" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

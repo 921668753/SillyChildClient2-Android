@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:background="@color/whiteColors"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/img_back"
+            style="@style/WrapWrap"
+            android:paddingBottom="@dimen/dimen13"
+            android:paddingLeft="@dimen/dimen15"
+            android:paddingRight="@dimen/dimen15"
+            android:paddingTop="@dimen/dimen13"
+            android:src="@mipmap/back" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen30"
+            android:layout_marginBottom="@dimen/dimen7"
+            android:layout_marginRight="@dimen/dimen20"
+            android:layout_marginTop="@dimen/dimen7"
+            android:background="@drawable/shape_search"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center|center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/dimen5">
+
+            <ImageView
+                style="@style/WrapWrap"
+                android:layout_marginRight="@dimen/dimen10"
+                android:src="@mipmap/search" />
+
+            <EditText
+                android:id="@+id/et_checkProduct"
+                style="@style/WrapMatch"
+                android:background="@color/searchBackgroundColors"
+                android:gravity="center"
+                android:hint="@string/checkProduct"
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/searchTextColors"
+                android:textCursorDrawable="@drawable/shape_cursor"
+                android:textSize="@dimen/textsize14" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <TextView style="@style/DividerWidth" />
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:background="@color/whiteColors"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/ll_startingpoint"
+            style="@style/AutoMatch"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_destination"
+                style="@style/WrapMatch"
+                android:gravity="center"
+                android:paddingLeft="@dimen/dimen15"
+                android:singleLine="true"
+                android:text="@string/near"
+                android:textColor="@color/tabColors"
+                android:textSize="@dimen/textsize15" />
+
+            <ImageView
+                style="@style/WrapWrap"
+                android:layout_marginLeft="@dimen/dimen4"
+                android:layout_marginRight="@dimen/dimen15"
+                android:src="@mipmap/down" />
+        </LinearLayout>
+
+        <TextView
+            style="@style/DividerHeight"
+            android:layout_marginBottom="@dimen/dimen15"
+            android:layout_marginTop="@dimen/dimen15" />
+
+        <LinearLayout
+            android:id="@+id/ll_gastronomy"
+            style="@style/AutoMatch"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_gastronomy"
+                style="@style/WrapMatch"
+                android:gravity="center"
+                android:paddingLeft="@dimen/dimen15"
+                android:singleLine="true"
+                android:text="@string/gastronomy"
+                android:textColor="@color/tabColors"
+                android:textSize="@dimen/textsize15" />
+
+
+            <ImageView
+                style="@style/WrapWrap"
+                android:layout_marginLeft="@dimen/dimen4"
+                android:layout_marginRight="@dimen/dimen15"
+                android:src="@mipmap/down" />
+        </LinearLayout>
+
+
+        <TextView
+            style="@style/DividerHeight"
+            android:layout_marginBottom="@dimen/dimen15"
+            android:layout_marginTop="@dimen/dimen15" />
+
+        <LinearLayout
+            android:id="@+id/ll_price"
+            style="@style/AutoMatch"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_price"
+                style="@style/WrapMatch"
+                android:gravity="center"
+                android:paddingLeft="@dimen/dimen15"
+                android:singleLine="true"
+                android:text="@string/price"
+                android:textColor="@color/tabColors"
+                android:textSize="@dimen/textsize15" />
+
+            <ImageView
+                style="@style/WrapWrap"
+                android:layout_marginLeft="@dimen/dimen4"
+                android:layout_marginRight="@dimen/dimen15"
+                android:src="@mipmap/down" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView style="@style/DividerWidth" />
+
+
+    <cn.bingoogolapple.refreshlayout.BGARefreshLayout xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/mRefreshLayout"
+        style="@style/MatchMatch">
+
+        <ListView
+            android:id="@+id/lv_gastronomy"
+            style="@style/MatchWrap"
+            android:background="@color/whiteColors"
+            android:divider="@android:color/transparent"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            tools:listitem="@layout/item_gastronomy" />
+
+    </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
+
+    <include layout="@layout/common_error" />
+
+</LinearLayout>

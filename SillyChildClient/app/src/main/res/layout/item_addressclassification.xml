@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrap"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_classification"
+        style="@style/MatchWrap"
+        android:background="@color/whiteColors"
+        android:padding="@dimen/dimen15"
+        android:singleLine="true"
+        android:text="@string/aboutMe"
+        android:textColor="@color/greenColors"
+        android:textSize="@dimen/textsize15" />
+
+</LinearLayout>

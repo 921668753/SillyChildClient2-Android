@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title" />
+
+    <View style="@style/DividerWidth" />
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:background="@color/whiteColors"
+        android:orientation="vertical">
+        <!--版本号-->
+        <LinearLayout
+            android:id="@+id/ll_versionNumber"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen45"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/dimen15"
+            android:paddingRight="@dimen/dimen15">
+
+            <TextView
+                style="@style/WrapWrap"
+                android:text="@string/versionNumber"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize15" />
+
+            <View style="@style/AutoWrap" />
+
+            <TextView
+                android:id="@+id/tv_versionname"
+                style="@style/WrapWrap"
+                android:textColor="@color/hintColors"
+                android:textSize="@dimen/textsize15" />
+        </LinearLayout>
+
+        <include layout="@layout/common_dividerwidth1" />
+        <!--清除缓存-->
+        <LinearLayout
+            android:id="@+id/ll_clearCache"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen45"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/dimen15"
+            android:paddingRight="@dimen/dimen15">
+
+            <TextView
+                style="@style/WrapWrap"
+                android:text="@string/clearCache"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize15" />
+
+            <TextView style="@style/AutoWrap" />
+
+            <TextView
+                android:id="@+id/tv_cache"
+                style="@style/WrapWrap"
+                android:singleLine="true"
+                android:text=""
+                android:textColor="@color/hintColors"
+                android:textSize="@dimen/textsize15" />
+        </LinearLayout>
+
+        <include layout="@layout/common_dividerwidth1" />
+        <!--帮助中心-->
+        <LinearLayout
+            android:id="@+id/ll_help"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen45"
+            android:gravity="right|center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/dimen15"
+            android:paddingRight="@dimen/dimen15">
+
+            <TextView
+                style="@style/AutoWrap"
+                android:text="@string/helpCenter"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize15" />
+
+            <ImageView
+                style="@style/Image812"
+                android:src="@mipmap/right_arrow" />
+        </LinearLayout>
+        <!--意见反馈-->
+        <include layout="@layout/common_dividerwidth1" />
+
+        <LinearLayout
+            android:id="@+id/ll_feedback"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen45"
+            android:gravity="right|center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/dimen15"
+            android:paddingRight="@dimen/dimen15">
+
+            <TextView
+                style="@style/AutoWrap"
+                android:text="@string/feedback"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize15" />
+
+            <ImageView
+                style="@style/Image812"
+                android:src="@mipmap/right_arrow" />
+        </LinearLayout>
+
+        <include layout="@layout/common_dividerwidth1" />
+        <!--关于我们-->
+        <LinearLayout
+            android:id="@+id/ll_aboutus"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen45"
+            android:gravity="right|center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/dimen15"
+            android:paddingRight="@dimen/dimen15">
+
+            <TextView
+                style="@style/AutoWrap"
+                android:text="@string/aboutUs"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize15" />
+
+            <ImageView
+                style="@style/Image812"
+                android:src="@mipmap/right_arrow" />
+        </LinearLayout>
+
+        <include layout="@layout/common_dividerwidth1" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_logOut"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen40"
+        android:layout_marginLeft="@dimen/dimen73"
+        android:layout_marginRight="@dimen/dimen73"
+        android:layout_marginTop="@dimen/dimen20"
+        android:background="@drawable/shape_determinepay"
+        android:gravity="center"
+        android:text="@string/logOut"
+        android:textColor="@color/whiteColors"
+        android:textSize="@dimen/textsize16" />
+
+</LinearLayout>

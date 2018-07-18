@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchWrap"
+    android:orientation="vertical">
+
+    <com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView
+        android:id="@+id/pullLoadMoreRecyclerView"
+        style="@style/MatchMatch"
+        android:layout_marginTop="@dimen/dimen10"
+        android:background="@android:color/transparent"
+        tools:listitem="@layout/item_mallhomepage" />
+</LinearLayout>

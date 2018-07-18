@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:background="@android:color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            style="@style/WrapWrap"
+            android:paddingBottom="@dimen/dimen10"
+            android:paddingLeft="@dimen/dimen15"
+            android:paddingRight="@dimen/dimen20"
+            android:paddingTop="@dimen/dimen10"
+            android:src="@mipmap/back" />
+
+        <LinearLayout
+            style="@style/MatchWrap"
+            android:layout_marginBottom="@dimen/dimen10"
+            android:layout_marginRight="@dimen/dimen20"
+            android:layout_marginTop="@dimen/dimen10"
+            android:background="@drawable/shape_search"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center|center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/dimen5">
+
+            <ImageView
+                style="@style/WrapWrap"
+                android:layout_marginRight="@dimen/dimen10"
+                android:src="@mipmap/search" />
+
+            <EditText
+                style="@style/WrapWrap"
+                android:minWidth="@dimen/dimen150"
+                android:singleLine="true"
+                android:maxLength="20"
+                android:hint="@string/checkProduct"
+                android:textCursorDrawable="@drawable/shape_cursor"
+                android:textColorHint="@color/searchTextColors"
+                android:background="@android:color/transparent"
+                android:textSize="@dimen/textsize14"
+                android:gravity="center_vertical"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView style="@style/DividerWidth" />
+
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:background="@android:color/white"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dimen15"
+        android:paddingRight="@dimen/dimen15">
+
+        <LinearLayout
+            android:id="@+id/ll_publishedTime"
+            style="@style/AutoMatch"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/dimen15"
+            android:paddingTop="@dimen/dimen15">
+
+            <TextView
+                android:id="@+id/tv_publishedTime"
+                style="@style/AutoMatch"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="@string/comprehensiveRanking"
+                android:textColor="@color/greenColors"
+                android:textSize="@dimen/textsize14" />
+
+        </LinearLayout>
+
+        <TextView
+            style="@style/DividerHeight"
+            android:layout_marginBottom="@dimen/dimen15"
+            android:layout_marginTop="@dimen/dimen15" />
+
+        <LinearLayout
+            android:id="@+id/ll_greatNumber"
+            style="@style/AutoMatch"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_greatNumber"
+                style="@style/AutoMatch"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="@string/salesPreferred"
+                android:textColor="@color/tabColors"
+                android:textSize="@dimen/textsize14" />
+
+        </LinearLayout>
+
+        <TextView
+            style="@style/DividerHeight"
+            android:layout_marginBottom="@dimen/dimen15"
+            android:layout_marginTop="@dimen/dimen15" />
+
+
+        <LinearLayout
+            android:id="@+id/ll_greatNumber1"
+            style="@style/AutoMatch"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_greatNumber1"
+                style="@style/AutoMatch"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="@string/pricePriority"
+                android:textColor="@color/tabColors"
+                android:textSize="@dimen/textsize14" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <TextView style="@style/DividerWidth" />
+
+    <com.common.cklibrary.utils.myview.NoScrollGridView
+        android:id="@+id/lv_mall"
+        style="@style/MatchWrap"
+        android:horizontalSpacing="@dimen/dimen5"
+        android:numColumns="2"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        android:verticalSpacing="@dimen/dimen5"
+        tools:listitem="@layout/item_mall" />
+</LinearLayout>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen50"
+        android:background="@color/whiteColors">
+
+        <ImageView
+            android:id="@+id/img_back"
+            style="@style/WrapMatch"
+            android:paddingLeft="@dimen/dimen15"
+            android:paddingRight="@dimen/dimen15"
+            android:src="@mipmap/back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize18"
+            android:text="@string/chosecity"/>
+        <!--<LinearLayout-->
+        <!--android:id="@+id/ll_addressSearch"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/dimen30"-->
+        <!--android:layout_marginBottom="@dimen/dimen7"-->
+        <!--android:layout_marginRight="@dimen/dimen20"-->
+        <!--android:layout_marginTop="@dimen/dimen7"-->
+        <!--android:background="@drawable/shape_search"-->
+        <!--android:gravity="center|center_vertical"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:padding="@dimen/dimen5">-->
+
+        <!--<ImageView-->
+        <!--style="@style/WrapWrap"-->
+        <!--android:layout_marginRight="@dimen/dimen10"-->
+        <!--android:src="@mipmap/search" />-->
+
+        <!--<TextView-->
+        <!--style="@style/WrapMatch"-->
+        <!--android:background="@android:color/transparent"-->
+        <!--android:gravity="center"-->
+        <!--android:hint="@string/cityName"-->
+        <!--android:textColor="@color/textColor"-->
+        <!--android:textColorHint="@color/searchTextColors"-->
+        <!--android:textSize="@dimen/textsize13" />-->
+
+        <!--</LinearLayout>-->
+
+
+    </RelativeLayout>
+
+    <TextView style="@style/DividerWidth" />
+
+    <include layout="@layout/fragment_inland" />
+
+</LinearLayout>

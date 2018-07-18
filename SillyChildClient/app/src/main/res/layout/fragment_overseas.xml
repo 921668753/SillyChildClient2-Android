@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <!--<include layout="@layout/inland_item_header_top" />-->
+
+    <LinearLayout
+        style="@style/MatchMatch"
+        android:orientation="horizontal">
+
+
+        <ListView
+            android:id="@+id/lv_addressClassification"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:divider="@android:color/transparent"
+            android:scrollbars="none"
+            tools:listitem="@layout/item_addressclassification" />
+
+        <ScrollView
+            android:id="@+id/sv_addressClassification"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="@color/whiteColors"
+            android:scrollbars="none">
+
+            <LinearLayout
+                style="@style/MatchMatch"
+                android:background="@color/whiteColors"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/dimen10">
+
+                <!--<LinearLayout-->
+                    <!--android:id="@+id/ll_GPSPositioning"-->
+                    <!--style="@style/MatchWrap"-->
+                    <!--android:gravity="center_vertical"-->
+                    <!--android:orientation="horizontal"-->
+                    <!--android:paddingLeft="@dimen/dimen15"-->
+                    <!--android:visibility="gone">-->
+
+                    <!--<TextView-->
+                        <!--android:layout_width="@dimen/dimen3"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginBottom="@dimen/dimen15"-->
+                        <!--android:layout_marginTop="@dimen/dimen15"-->
+                        <!--android:background="@color/greenColors" />-->
+
+
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:paddingLeft="@dimen/dimen10"-->
+                        <!--android:text="@string/GPSPositioning"-->
+                        <!--android:textColor="@color/textColor"-->
+                        <!--android:textSize="@dimen/textsize15" />-->
+
+                <!--</LinearLayout>-->
+
+                <!--<LinearLayout-->
+                    <!--android:id="@+id/ll_city"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:orientation="horizontal"-->
+                    <!--android:visibility="gone">-->
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/tv_city"-->
+                        <!--style="@style/AutoWrap"-->
+                        <!--android:layout_marginLeft="@dimen/dimen15"-->
+                        <!--android:background="@drawable/shape_code1"-->
+                        <!--android:gravity="center"-->
+                        <!--android:padding="@dimen/dimen7"-->
+                        <!--android:singleLine="true"-->
+                        <!--android:text="@string/aboutMe"-->
+                        <!--android:textColor="@color/textColor"-->
+                        <!--android:textSize="@dimen/textsize14" />-->
+
+                    <!--<TextView-->
+                        <!--style="@style/AutoWrap"-->
+                        <!--android:layout_marginLeft="@dimen/dimen10"-->
+                        <!--android:layout_marginRight="@dimen/dimen15" />-->
+                <!--</LinearLayout>-->
+
+                <!--<LinearLayout-->
+                    <!--android:id="@+id/ll_historyDestinations"-->
+                    <!--style="@style/MatchWrap"-->
+                    <!--android:gravity="center_vertical"-->
+                    <!--android:orientation="horizontal"-->
+                    <!--android:paddingLeft="@dimen/dimen15"-->
+                    <!--android:visibility="gone">-->
+
+                    <!--<TextView-->
+                        <!--android:layout_width="@dimen/dimen3"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginBottom="@dimen/dimen15"-->
+                        <!--android:layout_marginTop="@dimen/dimen15"-->
+                        <!--android:background="@color/greenColors" />-->
+
+
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:paddingLeft="@dimen/dimen10"-->
+                        <!--android:text="@string/historyDestinations"-->
+                        <!--android:textColor="@color/textColor"-->
+                        <!--android:textSize="@dimen/textsize15" />-->
+
+
+                <!--</LinearLayout>-->
+
+
+                <!--<com.common.cklibrary.utils.myview.NoScrollGridView-->
+                    <!--android:id="@+id/gv_historyDestinations"-->
+                    <!--style="@style/MatchWrap"-->
+                    <!--android:horizontalSpacing="10dp"-->
+                    <!--android:numColumns="2"-->
+                    <!--android:overScrollMode="never"-->
+                    <!--android:paddingLeft="@dimen/dimen15"-->
+                    <!--android:paddingRight="@dimen/dimen15"-->
+                    <!--android:scrollbars="none"-->
+                    <!--android:verticalSpacing="10dp"-->
+                    <!--android:visibility="gone"-->
+                    <!--tools:listitem="@layout/item_addressclassification2" />-->
+
+
+                <!--<LinearLayout-->
+                    <!--android:id="@+id/ll_hotDestination"-->
+                    <!--style="@style/MatchWrap"-->
+                    <!--android:gravity="center_vertical"-->
+                    <!--android:orientation="horizontal"-->
+                    <!--android:paddingLeft="@dimen/dimen15"-->
+                    <!--android:visibility="gone">-->
+
+                    <!--<TextView-->
+                        <!--android:layout_width="@dimen/dimen3"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginBottom="@dimen/dimen15"-->
+                        <!--android:layout_marginTop="@dimen/dimen15"-->
+                        <!--android:background="@color/greenColors" />-->
+
+
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:paddingLeft="@dimen/dimen10"-->
+                        <!--android:text="@string/hotDestination"-->
+                        <!--android:textColor="@color/textColor"-->
+                        <!--android:textSize="@dimen/textsize15" />-->
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/tv_hotDestination"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:paddingLeft="@dimen/dimen10"-->
+                        <!--android:text="8"-->
+                        <!--android:textColor="@color/hintColors"-->
+                        <!--android:textSize="@dimen/textsize13" />-->
+
+
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/hotDestinationNum"-->
+                        <!--android:textColor="@color/hintColors"-->
+                        <!--android:textSize="@dimen/textsize13" />-->
+
+                <!--</LinearLayout>-->
+
+
+                <!--<com.common.cklibrary.utils.myview.NoScrollGridView-->
+                    <!--android:id="@+id/gv_hotDestination"-->
+                    <!--style="@style/MatchWrap"-->
+                    <!--android:horizontalSpacing="10dp"-->
+                    <!--android:numColumns="2"-->
+                    <!--android:overScrollMode="never"-->
+                    <!--android:paddingLeft="@dimen/dimen15"-->
+                    <!--android:paddingRight="@dimen/dimen15"-->
+                    <!--android:scrollbars="none"-->
+                    <!--android:verticalSpacing="10dp"-->
+                    <!--android:visibility="gone"-->
+                    <!--tools:listitem="@layout/item_addressclassification2" />-->
+
+
+                <LinearLayout
+                    android:id="@+id/ll_allCountries"
+                    style="@style/MatchWrap"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/dimen15"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="@dimen/dimen3"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/dimen15"
+                        android:layout_marginTop="@dimen/dimen15"
+                        android:background="@color/greenColors" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/dimen10"
+                        android:text="@string/allCountries"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/textsize15" />
+
+                    <TextView
+                        android:id="@+id/tv_allCountriesNum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/dimen10"
+                        android:text="8"
+                        android:textColor="@color/hintColors"
+                        android:textSize="@dimen/textsize13" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/allCountriesNum"
+                        android:textColor="@color/hintColors"
+                        android:textSize="@dimen/textsize13" />
+                </LinearLayout>
+
+
+                <com.common.cklibrary.utils.myview.NoScrollGridView
+                    android:id="@+id/gv_allCountries"
+                    style="@style/MatchWrap"
+                    android:horizontalSpacing="10dp"
+                    android:numColumns="2"
+                    android:overScrollMode="never"
+                    android:paddingLeft="@dimen/dimen15"
+                    android:paddingRight="@dimen/dimen15"
+                    android:scrollbars="none"
+                    android:verticalSpacing="10dp"
+                    android:visibility="gone"
+                    tools:listitem="@layout/item_addressclassification2" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+</LinearLayout>

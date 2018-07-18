@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_moreClassification"
+    style="@style/Match45"
+    android:background="@color/f1F4F6Colors"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/tv_tab"
+        android:layout_width="@dimen/dimen3"
+        android:layout_height="@dimen/dimen22"
+        android:src="@mipmap/more_classification_selected" />
+
+    <TextView
+        android:id="@+id/tv_moreClassification"
+        style="@style/MatchMatch"
+        android:gravity="center"
+        android:text="护肤彩妆"
+        android:textColor="@color/greenColors"
+        android:textSize="@dimen/textsize13" />
+
+</LinearLayout>

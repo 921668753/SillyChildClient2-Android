@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchMatch"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <cn.bingoogolapple.refreshlayout.BGARefreshLayout
+        android:id="@+id/mRefreshLayout"
+        style="@style/MatchMatch"
+        android:background="@color/background">
+
+        <ScrollView
+            android:id="@+id/sv_mine"
+            style="@style/MatchMatch"
+            android:scrollbars="none">
+
+            <LinearLayout
+                style="@style/MatchMatch"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen204"
+                    android:background="@mipmap/mine_background">
+
+                    <TextView
+                        android:id="@+id/tv_editData"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dimen44"
+                        android:layout_alignParentRight="true"
+                        android:gravity="center_vertical|right"
+                        android:paddingRight="@dimen/dimen15"
+                        android:text="@string/editData"
+                        android:textColor="@color/whiteColors"
+                        android:textSize="@dimen/textsize13" />
+
+                    <ImageView
+                        android:id="@+id/iv_minetouxiang"
+                        android:layout_width="@dimen/dimen75"
+                        android:layout_height="@dimen/dimen75"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/dimen37"
+                        android:src="@mipmap/avatar"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/tv_nickname"
+                        style="@style/WrapWrap"
+                        android:layout_below="@id/iv_minetouxiang"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/dimen17"
+                        android:text="@string/loginOrRegister"
+                        android:textColor="@color/whiteColors"
+                        android:textSize="@dimen/textsize17"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/tv_serialNumber"
+                        style="@style/WrapWrap"
+                        android:layout_below="@id/tv_nickname"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/dimen11"
+                        android:text="SHZ0427"
+                        android:textColor="@color/whiteColors"
+                        android:textSize="@dimen/textsize12"
+                        android:visibility="gone" />
+
+                    <LinearLayout
+                        android:id="@+id/ll_notLogin"
+                        style="@style/WrapWrap"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/WrapWrap"
+                            android:text="@string/notLogin"
+                            android:textColor="@color/whiteColors"
+                            android:textSize="@dimen/textsize14"
+                            android:visibility="visible" />
+
+
+                        <TextView
+                            android:layout_width="@dimen/dimen130"
+                            android:layout_height="@dimen/dimen40"
+                            android:layout_marginTop="@dimen/dimen10"
+                            android:background="@drawable/shape_login1"
+                            android:gravity="center"
+                            android:text="@string/loginImmediately"
+                            android:textColor="@color/whiteColors"
+                            android:textSize="@dimen/textsize16" />
+
+                    </LinearLayout>
+
+
+                </RelativeLayout>
+
+
+                <TextView
+                    android:id="@+id/tv_synopsis"
+                    style="@style/MatchWrap"
+                    android:background="@color/whiteColors"
+                    android:paddingBottom="@dimen/dimen13"
+                    android:paddingLeft="@dimen/dimen15"
+                    android:paddingRight="@dimen/dimen15"
+                    android:paddingTop="@dimen/dimen13"
+                    android:text="简介:某年某月某日，下午某时，天气晴，我在某地，想念你。 "
+                    android:textColor="@color/titletextcolors"
+                    android:textSize="@dimen/textsize13" />
+
+
+                <!--我的购物车-->
+                <LinearLayout
+                    android:id="@+id/ll_mineshopping"
+                    style="@style/Match50"
+                    android:layout_marginTop="@dimen/dimen10"
+                    android:background="@color/whiteColors"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        style="@style/Image20"
+                        android:layout_marginLeft="@dimen/dimen15"
+                        android:src="@mipmap/mineshoppingxxx" />
+
+                    <TextView
+                        style="@style/WrapWrap"
+                        android:layout_marginLeft="@dimen/dimen17"
+                        android:text="@string/shoppingCart"
+                        android:textColor="@color/titletextcolors"
+                        android:textSize="@dimen/textsize13" />
+
+                </LinearLayout>
+
+
+                <include layout="@layout/common_dividerwidth1" />
+
+                <!--我的订单-->
+                <LinearLayout
+                    android:id="@+id/ll_mineorder"
+                    style="@style/Match50"
+                    android:background="@color/whiteColors"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        style="@style/Image20"
+                        android:layout_marginLeft="@dimen/dimen15"
+                        android:src="@mipmap/mineorderxxx" />
+
+                    <TextView
+                        style="@style/WrapWrap"
+                        android:layout_marginLeft="@dimen/dimen17"
+                        android:text="@string/myOrder"
+                        android:textColor="@color/titletextcolors"
+                        android:textSize="@dimen/textsize13" />
+
+                </LinearLayout>
+
+                <include layout="@layout/common_dividerwidth1" />
+
+                <!--我的钱包-->
+                <LinearLayout
+                    android:id="@+id/ll_minewallet"
+                    style="@style/Match50"
+                    android:background="@color/whiteColors"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/dimen20"
+                        android:layout_height="@dimen/dimen19"
+                        android:layout_marginLeft="@dimen/dimen15"
+                        android:src="@mipmap/minewalletxxx" />
+
+                    <TextView
+                        style="@style/WrapWrap"
+                        android:layout_marginLeft="@dimen/dimen16"
+                        android:text="@string/myWallet"
+                        android:textColor="@color/titletextcolors"
+                        android:textSize="@dimen/textsize13" />
+
+                </LinearLayout>
+
+                <!--我的收藏-->
+                <LinearLayout
+                    android:id="@+id/ll_minecollection"
+                    style="@style/Match50"
+                    android:layout_marginTop="@dimen/dimen10"
+                    android:background="@color/whiteColors"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/dimen20"
+                        android:layout_height="@dimen/dimen23"
+                        android:layout_marginLeft="@dimen/dimen15"
+                        android:src="@mipmap/minecollectionxxx" />
+
+                    <TextView
+                        style="@style/WrapWrap"
+                        android:layout_marginLeft="@dimen/dimen16"
+                        android:text="@string/myCollection"
+                        android:textColor="@color/titletextcolors"
+                        android:textSize="@dimen/textsize13" />
+
+                </LinearLayout>
+
+                <include layout="@layout/common_dividerwidth1" />
+
+                <!--分享有礼-->
+                <LinearLayout
+                    android:id="@+id/ll_mineshare"
+                    style="@style/Match50"
+                    android:background="@color/whiteColors"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        style="@style/Image20"
+                        android:layout_marginLeft="@dimen/dimen15"
+                        android:src="@mipmap/minesharexxx" />
+
+                    <TextView
+                        style="@style/WrapWrap"
+                        android:layout_marginLeft="@dimen/dimen16"
+                        android:text="@string/sharingCeremony"
+                        android:textColor="@color/titletextcolors"
+                        android:textSize="@dimen/textsize13" />
+
+                </LinearLayout>
+
+
+                <!--收货地址-->
+                <LinearLayout
+                    android:id="@+id/ll_mineaddress"
+                    style="@style/Match50"
+                    android:layout_marginTop="@dimen/dimen10"
+                    android:background="@color/whiteColors"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        style="@style/Image20"
+                        android:layout_marginLeft="@dimen/dimen15"
+                        android:src="@mipmap/mineaddressxxx" />
+
+                    <TextView
+                        style="@style/WrapWrap"
+                        android:layout_marginLeft="@dimen/dimen17"
+                        android:text="@string/deliveryAddress"
+                        android:textColor="@color/titletextcolors"
+                        android:textSize="@dimen/textsize13" />
+
+                </LinearLayout>
+
+                <include layout="@layout/common_dividerwidth1" />
+
+                <!--设置-->
+                <LinearLayout
+                    android:id="@+id/ll_minesetup"
+                    style="@style/Match50"
+                    android:layout_marginBottom="@dimen/dimen15"
+                    android:background="@color/whiteColors"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        style="@style/Image20"
+                        android:layout_marginLeft="@dimen/dimen15"
+                        android:src="@mipmap/minesetxxx" />
+
+                    <TextView
+                        style="@style/WrapWrap"
+                        android:layout_marginLeft="@dimen/dimen17"
+                        android:text="@string/setUp"
+                        android:textColor="@color/titletextcolors"
+                        android:textSize="@dimen/textsize13" />
+
+                </LinearLayout>
+
+
+                <!--VIP紧急电话-->
+
+                <TextView
+                    android:id="@+id/tv_vipEmergencyCall"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen40"
+                    android:layout_marginBottom="@dimen/dimen15"
+                    android:layout_marginTop="@dimen/dimen10"
+                    android:background="@color/fF0000Colors"
+                    android:gravity="center"
+                    android:text="@string/vipEmergencyCall"
+                    android:textColor="@color/whiteColors"
+                    android:textSize="@dimen/textsize13"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+        </ScrollView>
+    </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_title"
+        style="@style/Match45"
+        android:background="@android:color/transparent"
+        android:visibility="visible">
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/WrapWrap"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="@string/mine"
+            android:textColor="@android:color/transparent"
+            android:textSize="@dimen/textsize17" />
+
+        <TextView
+            android:id="@+id/tv_editData1"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dimen44"
+            android:layout_alignParentRight="true"
+            android:gravity="center_vertical|right"
+            android:paddingRight="@dimen/dimen15"
+            android:text="@string/editData"
+            android:textColor="@android:color/transparent"
+            android:textSize="@dimen/textsize13" />
+
+        <TextView
+            android:id="@+id/tv_divider"
+            style="@style/DividerWidth"
+            android:layout_alignParentBottom="true"
+            android:visibility="gone" />
+    </RelativeLayout>
+</RelativeLayout>

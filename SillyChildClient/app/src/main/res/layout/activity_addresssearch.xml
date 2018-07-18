@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:background="@color/whiteColors"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/img_back"
+            style="@style/WrapWrap"
+            android:paddingBottom="@dimen/dimen13"
+            android:paddingLeft="@dimen/dimen15"
+            android:paddingRight="@dimen/dimen15"
+            android:paddingTop="@dimen/dimen13"
+            android:src="@mipmap/back" />
+
+        <LinearLayout
+            android:id="@+id/ll_addressSearch"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen30"
+            android:layout_marginBottom="@dimen/dimen7"
+            android:layout_marginRight="@dimen/dimen20"
+            android:layout_marginTop="@dimen/dimen7"
+            android:background="@drawable/shape_search"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center|center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/dimen5">
+
+            <ImageView
+                style="@style/WrapWrap"
+                android:layout_marginRight="@dimen/dimen10"
+                android:src="@mipmap/search" />
+
+            <EditText
+                android:id="@+id/et_cityName"
+                style="@style/AutoMatch"
+                android:background="@android:color/transparent"
+                android:gravity="center_vertical"
+                android:hint="@string/cityName"
+                android:singleLine="true"
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/searchTextColors"
+                android:textCursorDrawable="@drawable/shape_cursor"
+                android:textSize="@dimen/textsize13" />
+
+            <ImageView
+                android:id="@+id/img_quxiao"
+                android:layout_width="@dimen/dimen30"
+                android:layout_height="@dimen/dimen30"
+                android:layout_marginRight="@dimen/dimen15"
+                android:paddingBottom="@dimen/dimen7"
+                android:paddingLeft="@dimen/dimen7"
+                android:paddingTop="@dimen/dimen7"
+                android:src="@mipmap/delete"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView style="@style/DividerWidth" />
+
+    <ScrollView
+        style="@style/MatchMatch"
+        android:scrollbars="none">
+
+        <LinearLayout
+            style="@style/MatchMatch"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_searchHistory"
+                style="@style/MatchWrap"
+                android:paddingBottom="@dimen/dimen10"
+                android:paddingLeft="@dimen/dimen15"
+                android:paddingTop="@dimen/dimen10"
+                android:text="@string/searchHistory"
+                android:textColor="@color/tabColors"
+                android:textSize="@dimen/textsize15" />
+
+            <TextView
+                android:id="@+id/tv_divider"
+                style="@style/DividerWidth" />
+
+            <com.common.cklibrary.utils.myview.ChildListView
+                android:id="@+id/lv_addressSearch"
+                style="@style/MatchWrap"
+                android:divider="@android:color/transparent"
+                android:overScrollMode="never"
+                android:scrollbars="none"
+                tools:listitem="@layout/item_addresssearch" />
+
+            <TextView
+                android:id="@+id/tv_clearSearchRecord"
+                style="@style/MatchWrap"
+                android:background="@color/whiteColors"
+                android:gravity="center"
+                android:padding="@dimen/dimen15"
+                android:text="@string/clearSearchRecord"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize15" />
+
+            <TextView
+                android:id="@+id/tv_divider1"
+                style="@style/DividerWidth" />
+
+
+            <include layout="@layout/common_error" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

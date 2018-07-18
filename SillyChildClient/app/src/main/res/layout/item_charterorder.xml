@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchMatch"
+    android:orientation="vertical">
+
+    <LinearLayout
+        style="@style/MatchMatch"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/dimen10">
+        <View
+            style="@style/DividerWidth"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen44"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/dimen15"
+            android:paddingRight="@dimen/dimen15"
+            android:background="@color/whiteColors">
+            <TextView
+                style="@style/WrapWrap"
+                android:textSize="@dimen/textsize13"
+                android:textColor="@color/textColor"
+                android:text="@string/orderNumber"/>
+            <TextView
+                android:id="@+id/tv_charter_code"
+                style="@style/AutoWrap"
+                android:textSize="@dimen/textsize13"
+                android:textColor="@color/textColor"
+                android:singleLine="true"/>
+            <TextView
+                android:id="@+id/tv_charter_status"
+                style="@style/WrapWrap"
+                android:textSize="@dimen/textsize14"
+                android:textColor="@color/guideShapeColors"/>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen105"
+            android:paddingLeft="@dimen/dimen15"
+            android:paddingRight="@dimen/dimen15"
+            android:background="@color/shareDialogColors">
+
+            <ImageView
+                android:id="@+id/iv_goodsicon"
+                android:layout_width="@dimen/dimen80"
+                android:layout_height="@dimen/dimen80"
+                android:src="@mipmap/avatar"
+                android:layout_centerVertical="true"/>
+
+            <LinearLayout
+                style="@style/WrapWrap"
+                android:orientation="vertical"
+                android:layout_marginLeft="@dimen/dimen15"
+                android:layout_toRightOf="@id/iv_goodsicon"
+                android:layout_centerVertical="true">
+                <TextView
+                    android:id="@+id/tv_charter_title"
+                    style="@style/WrapWrap"
+                    android:maxLines="2"
+                    android:text="@string/aboutMe"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15"/>
+                <TextView
+                    android:id="@+id/tv_charter_datetime"
+                    style="@style/WrapWrap"
+                    android:singleLine="true"
+                    android:text="@string/aboutMe"
+                    android:textColor="@color/hintColors"
+                    android:textSize="@dimen/textsize12"
+                    android:layout_marginTop="@dimen/dimen9"/>
+                <TextView
+                    android:id="@+id/tv_charter_describe"
+                    style="@style/WrapWrap"
+                    android:singleLine="true"
+                    android:textColor="@color/hintColors"
+                    android:textSize="@dimen/textsize12"
+                    android:layout_marginTop="@dimen/dimen9"/>
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen35"
+            android:orientation="horizontal"
+            android:background="@color/whiteColors"
+            android:paddingLeft="@dimen/dimen15"
+            android:paddingRight="@dimen/dimen15"
+            android:gravity="center_vertical|right">
+            <LinearLayout
+                style="@style/AutoWrap"
+                android:orientation="horizontal"
+                android:gravity="center_vertical|right">
+                <TextView
+                    style="@style/WrapWrap"
+                    android:text="@string/orderPrice"
+                    android:singleLine="true"
+                    android:textColor="@color/hintColors"
+                    android:textSize="@dimen/textsize12"/>
+                <TextView
+                    android:id="@+id/tv_charter_orderprice"
+                    style="@style/WrapWrap"
+                    android:singleLine="true"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize14"/>
+            </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_charter_paymoney_hint"
+                    style="@style/WrapWrap"
+                    android:text="@string/actualPaymentInCart"
+                    android:textColor="@color/hintColors"
+                    android:textSize="@dimen/textsize12"
+                    android:layout_marginLeft="@dimen/dimen15"/>
+
+                <TextView
+                    android:id="@+id/tv_charter_paymoney"
+                    style="@style/WrapWrap"
+                    android:singleLine="true"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize14"/>
+        </LinearLayout>
+
+        <include layout="@layout/common_dividerwidth1"/>
+
+        <LinearLayout
+            android:id="@+id/ll_btns"
+           style="@style/MatchWrap"
+            android:orientation="vertical">
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:background="@color/whiteColors"
+                android:orientation="horizontal"
+                android:gravity="right">
+
+                <TextView
+                    android:id="@+id/tv_leftbtn"
+                    android:layout_width="@dimen/dimen75"
+                    android:layout_height="@dimen/dimen30"
+                    android:layout_marginTop="@dimen/dimen10"
+                    android:layout_marginBottom="@dimen/dimen10"
+                    android:text="@string/callUp"
+                    android:gravity="center"
+                    android:textSize="@dimen/textsize13"
+                    android:textColor="@color/textColor"
+                    android:background="@drawable/shape_code1"
+                    android:layout_marginRight="@dimen/dimen15"/>
+
+                <TextView
+                    android:id="@+id/tv_rightbtn"
+                    android:layout_width="@dimen/dimen75"
+                    android:layout_height="@dimen/dimen30"
+                    android:layout_marginTop="@dimen/dimen10"
+                    android:layout_marginBottom="@dimen/dimen10"
+                    android:text="@string/payment"
+                    android:gravity="center"
+                    android:textSize="@dimen/textsize13"
+                    android:textColor="@color/guideShapeColors"
+                    android:background="@drawable/shape_guidelabels"
+                    android:layout_marginRight="@dimen/dimen15"/>
+
+                <TextView
+                    android:id="@+id/tv_rightbtn2"
+                    android:layout_width="@dimen/dimen75"
+                    android:layout_height="@dimen/dimen30"
+                    android:layout_marginTop="@dimen/dimen10"
+                    android:layout_marginBottom="@dimen/dimen10"
+                    android:text="@string/confirmCompleted"
+                    android:gravity="center"
+                    android:textSize="@dimen/textsize13"
+                    android:textColor="@color/greenColors"
+                    android:background="@drawable/shape_code"
+                    android:layout_marginRight="@dimen/dimen15"/>
+
+            </LinearLayout>
+
+            <View
+                style="@style/DividerWidth"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

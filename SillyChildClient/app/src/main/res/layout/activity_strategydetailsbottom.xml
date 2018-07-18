@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dimen50"
+    android:background="@color/whiteColors"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/ll_zan"
+        style="@style/AutoMatch"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/img_zan"
+            android:layout_width="@dimen/dimen18"
+            android:layout_height="@dimen/dimen18"
+            android:src="@mipmap/btn_favor_normal1" />
+
+        <TextView
+            style="@style/WrapWrap"
+            android:layout_marginLeft="@dimen/dimen8"
+            android:text="@string/zan"
+            android:textColor="@color/hintColors"
+            android:textSize="@dimen/textsize14" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll_share"
+        style="@style/AutoMatch"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/img_share1"
+            android:layout_width="@dimen/dimen18"
+            android:layout_height="@dimen/dimen18"
+            android:src="@mipmap/share1" />
+
+        <TextView
+            style="@style/WrapWrap"
+            android:layout_marginLeft="@dimen/dimen8"
+            android:text="@string/share"
+            android:textColor="@color/hintColors"
+            android:textSize="@dimen/textsize14" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll_comment"
+        style="@style/AutoMatch"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tv_read"
+            style="@style/WrapWrap"
+            android:layout_marginLeft="@dimen/dimen8"
+            android:text="@string/comment"
+            android:textColor="@color/hintColors"
+            android:textSize="@dimen/textsize14" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_dynamicCollection"
+        style="@style/AutoMatch"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/img_collect"
+            android:layout_width="@dimen/dimen18"
+            android:layout_height="@dimen/dimen18"
+            android:src="@mipmap/btn_collect_normal1" />
+
+        <TextView
+            style="@style/WrapWrap"
+            android:layout_marginLeft="@dimen/dimen8"
+            android:text="@string/dynamicCollection"
+            android:textColor="@color/hintColors"
+            android:textSize="@dimen/textsize14" />
+
+    </LinearLayout>
+</LinearLayout>

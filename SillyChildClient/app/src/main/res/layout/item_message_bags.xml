@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_bags"
+    style="@style/MatchWrap"
+    android:orientation="horizontal">
+
+    <TextView
+        style="@style/WrapWrap"
+        android:text="@string/bags1"
+        android:textColor="@color/hintColors"
+        android:textSize="@dimen/textsize14" />
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_tags"
+            style="@style/WrapWrap"
+            android:layout_marginLeft="@dimen/dimen25"
+            android:paddingBottom="@dimen/dimen10"
+            android:text="6"
+            android:textColor="@color/hintColors"
+            android:textSize="@dimen/textsize14" />
+
+        <TextView
+            android:id="@+id/tv_tags1"
+            style="@style/WrapWrap"
+            android:layout_marginLeft="@dimen/dimen25"
+            android:paddingBottom="@dimen/dimen10"
+            android:text="6"
+            android:textColor="@color/hintColors"
+            android:textSize="@dimen/textsize14" />
+
+        <TextView
+            android:id="@+id/tv_tags2"
+            style="@style/WrapWrap"
+            android:layout_marginLeft="@dimen/dimen25"
+            android:paddingBottom="@dimen/dimen10"
+            android:text="6"
+            android:textColor="@color/hintColors"
+            android:textSize="@dimen/textsize14" />
+
+        <TextView
+            android:id="@+id/tv_tags3"
+            style="@style/WrapWrap"
+            android:layout_marginLeft="@dimen/dimen25"
+            android:paddingBottom="@dimen/dimen10"
+            android:text="6"
+            android:textColor="@color/hintColors"
+            android:textSize="@dimen/textsize14" />
+
+    </LinearLayout>
+
+</LinearLayout>

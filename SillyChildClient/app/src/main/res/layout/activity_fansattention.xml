@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:fitsSystemWindows="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen45"
+        android:background="@color/whiteColors">
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@mipmap/back"
+            android:paddingLeft="@dimen/dimen15"
+            android:paddingRight="@dimen/dimen15"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_centerInParent="true">
+            <LinearLayout
+                android:id="@+id/ll_fs"
+                android:layout_width="@dimen/dimen40"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/tv_fs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/fans"
+                    android:textSize="@dimen/textsize18"
+                    android:textColor="@color/greenColors"/>
+                <View
+                    android:id="@+id/v_fs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dimen3"
+                    android:background="@color/greenColors"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_gz"
+                android:layout_width="@dimen/dimen40"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginLeft="@dimen/dimen40">
+                <TextView
+                    android:id="@+id/tv_gz"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/follow"
+                    android:textSize="@dimen/textsize18"
+                    android:textColor="@color/textColor"/>
+                <View
+                    android:id="@+id/v_gz"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dimen3"
+                    android:background="@android:color/transparent"/>
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/dividercolors1"/>
+
+    <FrameLayout
+        android:id="@+id/fl"
+        style="@style/MatchMatch"/>
+
+</LinearLayout>

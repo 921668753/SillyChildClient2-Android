@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/Match44"
+        android:background="@color/whiteColors"
+        android:gravity="center"
+        android:text="@string/activity"
+        android:textColor="@color/titletextcolors"
+        android:textSize="@dimen/textsize17" />
+
+    <cn.bingoogolapple.refreshlayout.BGARefreshLayout
+        android:id="@+id/mRefreshLayout"
+        style="@style/MatchMatch">
+
+        <com.common.cklibrary.utils.myview.ScrollInterceptScrollView
+            style="@style/MatchMatch"
+            android:background="@color/background"
+            android:scrollbars="none">
+
+            <RelativeLayout
+                style="@style/MatchWrap"
+                android:descendantFocusability="blocksDescendants">
+
+                <LinearLayout
+                    android:id="@+id/ll_top"
+                    style="@style/MatchWrap"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:id="@+id/ll_search"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dimen36"
+                        android:layout_marginBottom="@dimen/dimen10"
+                        android:layout_marginLeft="@dimen/dimen18"
+                        android:layout_marginRight="@dimen/dimen18"
+                        android:layout_marginTop="@dimen/dimen10"
+                        android:background="@mipmap/home_search_bar_bg"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/dimen14"
+                            android:layout_height="@dimen/dimen14"
+                            android:layout_marginLeft="@dimen/dimen15"
+                            android:src="@mipmap/search" />
+
+                        <TextView
+                            style="@style/AutoMatch"
+                            android:background="@android:color/transparent"
+                            android:gravity="center_vertical"
+                            android:hint="@string/search"
+                            android:maxLength="20"
+                            android:minWidth="@dimen/dimen150"
+                            android:paddingLeft="@dimen/dimen10"
+                            android:singleLine="true"
+                            android:textColorHint="@color/hintColors"
+                            android:textSize="@dimen/textsize13" />
+
+                    </LinearLayout>
+
+
+                    <cn.bingoogolapple.bgabanner.BGABanner
+                        android:id="@+id/banner_ad"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dimen166"
+                        android:background="@mipmap/placeholderfigure"
+                        app:banner_pageChangeDuration="2000"
+                        app:banner_pointAutoPlayAble="false"
+                        app:banner_pointContainerBackground="@android:color/transparent"
+                        app:banner_pointDrawable="@drawable/bga_banner_selector_point"
+                        app:banner_pointTopBottomMargin="2dp"
+                        app:banner_transitionEffect="alpha" />
+
+
+                    <LinearLayout
+                        android:id="@+id/ll_bargain"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dimen55"
+                        android:background="@color/whiteColors"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="@dimen/dimen79"
+                            android:layout_height="@dimen/dimen25"
+                            android:background="@mipmap/activity_box"
+                            android:paddingLeft="@dimen/dimen8"
+                            android:text="@string/bargain"
+                            android:textColor="@color/whiteColors"
+                            android:textSize="@dimen/textsize15" />
+
+                        <TextView
+                            android:id="@+id/tv_seeMore"
+                            style="@style/AutoWrap"
+                            android:background="@color/whiteColors"
+                            android:gravity="right"
+                            android:text="@string/seeMore"
+                            android:textColor="@color/titletextcolors"
+                            android:textSize="@dimen/textsize12" />
+
+                        <TextView
+                            style="@style/WrapWrap"
+                            android:layout_marginRight="@dimen/dimen15"
+                            android:background="@color/whiteColors"
+                            android:gravity="right"
+                            android:paddingLeft="@dimen/dimen5"
+                            android:text=">>"
+                            android:textColor="@color/titletextcolors"
+                            android:textSize="@dimen/textsize12" />
+
+                    </LinearLayout>
+
+                    <com.common.cklibrary.utils.myview.HorizontalListView
+                        android:id="@+id/hlv_bargain"
+                        style="@style/MatchWrap"
+                        android:background="@color/whiteColors"
+                        android:scrollbars="none"
+                        tools:listitem="@layout/item_bargain" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_product1"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen55"
+                    android:layout_below="@id/ll_top"
+                    android:layout_marginTop="@dimen/dimen10"
+                    android:background="@color/whiteColors"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="@dimen/dimen79"
+                        android:layout_height="@dimen/dimen25"
+                        android:background="@mipmap/activity_box"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="@dimen/dimen8"
+                        android:text="@string/productl"
+                        android:textColor="@color/whiteColors"
+                        android:textSize="@dimen/textsize15" />
+
+                    <TextView
+                        android:id="@+id/tv_productlSeeMore"
+                        style="@style/AutoWrap"
+                        android:background="@color/whiteColors"
+                        android:gravity="right"
+                        android:text="@string/seeMore"
+                        android:textColor="@color/titletextcolors"
+                        android:textSize="@dimen/textsize12" />
+
+                    <TextView
+                        style="@style/WrapWrap"
+                        android:layout_marginRight="@dimen/dimen15"
+                        android:background="@color/whiteColors"
+                        android:gravity="right"
+                        android:paddingLeft="@dimen/dimen5"
+                        android:text=">>"
+                        android:textColor="@color/titletextcolors"
+                        android:textSize="@dimen/textsize12" />
+
+                </LinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv"
+                    style="@style/MatchWrap"
+                    android:layout_below="@id/ll_product1"
+                    android:layout_marginTop="@dimen/dimen5"
+                    android:paddingLeft="@dimen/dimen2"
+                    android:paddingRight="@dimen/dimen2"
+                    android:background="@android:color/transparent"
+                    tools:listitem="@layout/item_mallhomepage" />
+
+            </RelativeLayout>
+
+        </com.common.cklibrary.utils.myview.ScrollInterceptScrollView>
+
+    </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
+
+
+</LinearLayout>

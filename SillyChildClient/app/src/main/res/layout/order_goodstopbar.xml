@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dimen40"
+    android:background="@color/whiteColors"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/tv_good_obligation"
+        style="@style/AutoMatch"
+        android:gravity="center"
+        android:text="@string/obligation"
+        android:textColor="@color/textColor"
+        android:textSize="@dimen/textsize14" />
+
+
+    <TextView
+        android:id="@+id/tv_good_send"
+        style="@style/AutoMatch"
+        android:gravity="center"
+        android:text="@string/sendGoods"
+        android:textColor="@color/textColor"
+        android:textSize="@dimen/textsize14" />
+
+    <TextView
+        android:id="@+id/tv_good_wait"
+        style="@style/AutoMatch"
+        android:gravity="center"
+        android:text="@string/waitGoods"
+        android:textColor="@color/textColor"
+        android:textSize="@dimen/textsize14" />
+
+
+    <TextView
+        android:id="@+id/tv_good_completed"
+        style="@style/AutoMatch"
+        android:gravity="center"
+        android:text="@string/completed"
+        android:textColor="@color/textColor"
+        android:textSize="@dimen/textsize14" />
+
+
+    <TextView
+        android:id="@+id/tv_good_afterSale"
+        style="@style/AutoMatch"
+        android:gravity="center"
+        android:text="@string/afterSale"
+        android:textColor="@color/textColor"
+        android:textSize="@dimen/textsize14" />
+
+
+    <TextView
+        android:id="@+id/tv_good_all"
+        style="@style/AutoMatch"
+        android:gravity="center"
+        android:text="@string/all"
+        android:textColor="@color/greenColors"
+        android:textSize="@dimen/textsize14" />
+
+
+</LinearLayout>

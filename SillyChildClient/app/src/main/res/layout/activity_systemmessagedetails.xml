@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title" />
+
+    <TextView style="@style/DividerWidth" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        style="@style/MatchWrap"
+        android:background="@android:color/white"
+        android:gravity="center"
+        android:padding="@dimen/dimen15"
+        android:text="白体"
+        android:textColor="@color/textColor"
+        android:textSize="@dimen/textsize15" />
+
+    <TextView
+        android:id="@+id/tv_time"
+        style="@style/MatchWrap"
+        android:background="@android:color/white"
+        android:gravity="right"
+        android:paddingBottom="@dimen/dimen15"
+        android:paddingLeft="@dimen/dimen15"
+        android:paddingRight="@dimen/dimen15"
+        android:paddingTop="@dimen/dimen5"
+        android:singleLine="true"
+        android:text="--"
+        android:textColor="@color/hintColors"
+        android:textSize="@dimen/textsize13"
+        android:visibility="visible" />
+
+    <include layout="@layout/common_dividerwidth" />
+
+    <TextView
+        android:id="@+id/tv_content"
+        style="@style/MatchWrap"
+        android:background="@android:color/white"
+        android:paddingBottom="@dimen/dimen15"
+        android:paddingLeft="@dimen/dimen15"
+        android:paddingRight="@dimen/dimen15"
+        android:paddingTop="@dimen/dimen15"
+        android:singleLine="true"
+        android:text="白体白体白体"
+        android:textColor="@color/hintColors"
+        android:textSize="@dimen/textsize13" />
+    <!--<WebView-->
+    <!--android:id="@+id/web_content"-->
+    <!--style="@style/MatchWrap"-->
+    <!--android:background="@color/whiteColors"-->
+    <!--android:scrollbars="none"-->
+    <!--android:verticalScrollbarPosition="@null" />-->
+
+
+    <!--<TextView-->
+    <!--android:id="@+id/tv_content"-->
+    <!--style="@style/MatchWrap"-->
+    <!--android:background="@android:color/white"-->
+    <!--android:padding="@dimen/dimen15"-->
+    <!--android:text="傻孩子APP上线"-->
+    <!--android:textColor="@color/hintColors"-->
+    <!--android:textSize="@dimen/textsize14" />-->
+
+
+</LinearLayout>

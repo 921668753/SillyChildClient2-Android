@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/MatchWrap"
+        android:background="@color/whiteColors"
+        android:gravity="center"
+        android:padding="@dimen/dimen11"
+        android:text="@string/trip"
+        android:textColor="@color/titletextcolors"
+        android:textSize="@dimen/textsize18"
+        android:textStyle="bold"
+        android:typeface="sans" />
+
+    <cn.bingoogolapple.refreshlayout.BGARefreshLayout xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/mRefreshLayout"
+        style="@style/MatchMatch">
+
+        <com.common.cklibrary.utils.myview.NoTouchEventScrollView
+            style="@style/MatchMatch"
+            android:scrollbars="none">
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:orientation="vertical">
+
+                <cn.bingoogolapple.bgabanner.BGABanner
+                    android:id="@+id/banner_ad"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen150"
+                    android:background="@mipmap/placeholderfigure2"
+                    app:banner_pageChangeDuration="2000"
+                    app:banner_pointAutoPlayAble="false"
+                    app:banner_pointContainerBackground="@android:color/transparent"
+                    app:banner_pointDrawable="@drawable/bga_banner_selector_point"
+                    app:banner_pointTopBottomMargin="13dp"
+                    app:banner_transitionEffect="alpha" />
+
+                <com.common.cklibrary.utils.myview.NoScrollGridView
+                    android:id="@+id/gv_tripClassification"
+                    style="@style/MatchWrap"
+                    android:background="@android:color/white"
+                    android:horizontalSpacing="0dp"
+                    android:numColumns="5"
+                    android:overScrollMode="never"
+                    android:scrollbars="none"
+                    android:verticalSpacing="0dp"
+                    tools:listitem="@layout/item_trip" />
+
+                <LinearLayout
+                    android:id="@+id/ll_greatHouses"
+                    style="@style/MatchWrap"
+                    android:background="@color/whiteColors"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/dimen15"
+                    android:paddingRight="@dimen/dimen10"
+                    android:visibility="gone">
+
+                    <TextView
+                        style="@style/WrapWrap"
+                        android:paddingBottom="@dimen/dimen20"
+                        android:paddingTop="@dimen/dimen20"
+                        android:text="@string/greatHouses"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/textsize17" />
+
+                    <TextView style="@style/AutoMatch" />
+
+                    <TextView
+                        android:id="@+id/tv_greatHouses"
+                        style="@style/WrapMatch"
+                        android:layout_marginRight="@dimen/dimen7"
+                        android:gravity="right|center_vertical"
+                        android:text="@string/memberShowAll"
+                        android:textColor="@color/hintColors"
+                        android:textSize="@dimen/textsize12" />
+
+                    <ImageView
+                        style="@style/WrapWrap"
+                        android:src="@mipmap/arrow" />
+                </LinearLayout>
+
+
+                <com.common.cklibrary.utils.myview.HorizontalListView
+                    android:id="@+id/lv_greatHouses"
+                    style="@style/MatchWrap"
+                    android:layout_height="@dimen/dimen250"
+                    android:background="@color/whiteColors"
+                    android:scrollbars="none"
+                    android:visibility="gone"
+                    tools:listitem="@layout/item_greathouses" />
+
+                <LinearLayout
+                    android:id="@+id/ll_reliableCompanyGuide"
+                    style="@style/MatchWrap"
+                    android:background="@color/whiteColors"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/dimen15"
+                    android:paddingRight="@dimen/dimen10"
+                    android:visibility="gone">
+
+                    <TextView
+                        style="@style/WrapWrap"
+                        android:paddingBottom="@dimen/dimen20"
+                        android:paddingTop="@dimen/dimen20"
+                        android:text="@string/reliableCompanyGuide"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/textsize17" />
+
+                    <TextView style="@style/AutoMatch" />
+
+                    <TextView
+                        android:id="@+id/tv_reliableCompanyGuide"
+                        style="@style/WrapMatch"
+                        android:layout_marginRight="@dimen/dimen7"
+                        android:gravity="right|center_vertical"
+                        android:text="@string/memberShowAll"
+                        android:textColor="@color/hintColors"
+                        android:textSize="@dimen/textsize12" />
+
+                    <ImageView
+                        style="@style/WrapWrap"
+                        android:src="@mipmap/arrow" />
+                </LinearLayout>
+
+                <com.common.cklibrary.utils.myview.HorizontalListView
+                    android:id="@+id/lv_reliableCompanyGuide"
+                    style="@style/MatchWrap"
+                    android:layout_height="@dimen/dimen250"
+                    android:background="@color/whiteColors"
+                    android:scrollbars="none"
+                    android:visibility="gone"
+                    tools:listitem="@layout/item_greathouses" />
+
+                <LinearLayout
+                    android:id="@+id/ll_popularStrategy"
+                    style="@style/MatchWrap"
+                    android:background="@color/whiteColors"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/dimen15"
+                    android:paddingRight="@dimen/dimen10"
+                    android:visibility="gone">
+
+                    <TextView
+                        style="@style/WrapWrap"
+                        android:paddingBottom="@dimen/dimen20"
+                        android:paddingTop="@dimen/dimen20"
+                        android:text="@string/popularStrategy"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/textsize17" />
+
+                    <TextView style="@style/AutoMatch" />
+
+                    <TextView
+                        android:id="@+id/tv_popularStrategy"
+                        style="@style/WrapMatch"
+                        android:layout_marginRight="@dimen/dimen7"
+                        android:gravity="right|center_vertical"
+                        android:text="@string/memberShowAll"
+                        android:textColor="@color/hintColors"
+                        android:textSize="@dimen/textsize12" />
+
+                    <ImageView
+                        style="@style/WrapWrap"
+                        android:src="@mipmap/arrow" />
+                </LinearLayout>
+
+                <com.common.cklibrary.utils.myview.HorizontalListView
+                    android:id="@+id/lv_popularStrategy"
+                    style="@style/MatchWrap"
+                    android:layout_height="@dimen/dimen246"
+                    android:background="@color/whiteColors"
+                    android:scrollbars="none"
+                    android:visibility="gone"
+                    tools:listitem="@layout/item_popularstrategy" />
+
+            </LinearLayout>
+
+        </com.common.cklibrary.utils.myview.NoTouchEventScrollView>
+
+    </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
+
+</LinearLayout>

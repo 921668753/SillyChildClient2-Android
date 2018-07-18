@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title" />
+
+    <include layout="@layout/item_prompt1" />
+
+    <ScrollView
+        style="@style/MatchAuto"
+        android:scrollbars="none">
+
+        <LinearLayout
+            style="@style/MatchWrap"
+            android:orientation="vertical">
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:layout_marginTop="@dimen/dimen10"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:paddingBottom="@dimen/dimen10"
+                    android:paddingLeft="@dimen/dimen15"
+                    android:paddingTop="@dimen/dimen15"
+                    android:text="@string/origin"
+                    android:textColor="@color/tabColors"
+                    android:textSize="@dimen/textsize13" />
+
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:background="@color/whiteColors"
+                    android:paddingLeft="@dimen/dimen5"
+                    android:paddingTop="@dimen/dimen8"
+                    android:text="@string/xing"
+                    android:textColor="@color/redColors"
+                    android:textSize="@dimen/textsize13" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/ll_origin"
+                style="@style/MatchWrap"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/et_origin"
+                    style="@style/AutoWrap"
+                    android:background="@color/whiteColors"
+                    android:gravity="center_vertical"
+                    android:hint="@string/whereDoYouStart"
+                    android:paddingBottom="@dimen/dimen15"
+                    android:paddingLeft="@dimen/dimen15"
+                    android:paddingTop="@dimen/dimen7"
+                    android:singleLine="true"
+                    android:textColor="@color/tabColors"
+                    android:textColorHint="@color/byTheDayHintColors"
+                    android:textCursorDrawable="@drawable/shape_cursor"
+                    android:textSize="@dimen/textsize16" />
+
+                <!--<ImageView-->
+                <!--style="@style/WrapWrap"-->
+                <!--android:paddingRight="@dimen/dimen15"-->
+                <!--android:src="@mipmap/arrow" />-->
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:layout_marginTop="@dimen/dimen10"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:paddingBottom="@dimen/dimen10"
+                    android:paddingLeft="@dimen/dimen15"
+                    android:paddingTop="@dimen/dimen15"
+                    android:text="@string/destination"
+                    android:textColor="@color/tabColors"
+                    android:textSize="@dimen/textsize13" />
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:background="@color/whiteColors"
+                    android:paddingLeft="@dimen/dimen5"
+                    android:paddingTop="@dimen/dimen8"
+                    android:text="@string/xing"
+                    android:textColor="@color/redColors"
+                    android:textSize="@dimen/textsize13" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_destination"
+                style="@style/MatchWrap"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/et_destination"
+                    style="@style/AutoWrap"
+                    android:background="@color/whiteColors"
+                    android:gravity="center_vertical"
+                    android:hint="@string/whereToGo"
+                    android:paddingBottom="@dimen/dimen15"
+                    android:paddingLeft="@dimen/dimen15"
+                    android:paddingTop="@dimen/dimen7"
+                    android:singleLine="true"
+                    android:textColor="@color/tabColors"
+                    android:textColorHint="@color/byTheDayHintColors"
+                    android:textCursorDrawable="@drawable/shape_cursor"
+                    android:textSize="@dimen/textsize16" />
+
+                <!--<ImageView-->
+                <!--style="@style/WrapWrap"-->
+                <!--android:paddingRight="@dimen/dimen15"-->
+                <!--android:src="@mipmap/arrow" />-->
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:layout_marginTop="@dimen/dimen10"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:paddingBottom="@dimen/dimen10"
+                    android:paddingLeft="@dimen/dimen15"
+                    android:paddingTop="@dimen/dimen15"
+                    android:text="@string/charterDate"
+                    android:textColor="@color/tabColors"
+                    android:textSize="@dimen/textsize13" />
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:background="@color/whiteColors"
+                    android:paddingLeft="@dimen/dimen5"
+                    android:paddingTop="@dimen/dimen8"
+                    android:text="@string/xing"
+                    android:textColor="@color/redColors"
+                    android:textSize="@dimen/textsize13" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_charterDate"
+                style="@style/MatchWrap"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_selectStartEndDateCar"
+                    style="@style/AutoWrap"
+                    android:hint="@string/selectStartEndDateCar1"
+                    android:paddingBottom="@dimen/dimen15"
+                    android:paddingLeft="@dimen/dimen15"
+                    android:paddingTop="@dimen/dimen7"
+                    android:textColor="@color/tabColors"
+                    android:textColorHint="@color/byTheDayHintColors"
+                    android:textSize="@dimen/textsize16" />
+
+                <ImageView
+                    style="@style/WrapWrap"
+                    android:paddingRight="@dimen/dimen15"
+                    android:src="@mipmap/arrow" />
+
+            </LinearLayout>
+
+            <include layout="@layout/item_bythedag_selectmodels" />
+
+            <include layout="@layout/item_bythedag_specifycompanyguide" />
+
+            <include layout="@layout/item_singletransport_passengersnumber1" />
+
+            <include layout="@layout/item_bythedag_bags" />
+
+            <include layout="@layout/item_bythedag_contactway" />
+
+            <include layout="@layout/item_cost_instruction" />
+
+            <EditText
+                android:id="@+id/et_remark"
+                style="@style/MatchWrap"
+                android:layout_marginBottom="@dimen/dimen18"
+                android:layout_marginTop="@dimen/dimen10"
+                android:background="@color/whiteColors"
+                android:gravity="left|top"
+                android:hint="@string/pleaseFillInRemarks"
+                android:minHeight="@dimen/dimen85"
+                android:padding="@dimen/dimen15"
+                android:textColorHint="@color/byTheDayHintColors"
+                android:textCursorDrawable="@drawable/shape_cursor"
+                android:textSize="@dimen/textsize15" />
+
+            <include layout="@layout/common_bottombar" />
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrap"
+    android:background="@color/whiteColors"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_addressName"
+        style="@style/WrapWrap"
+        android:padding="@dimen/dimen15"
+        android:singleLine="true"
+        android:text="全部"
+        android:textColor="@color/greenColors"
+        android:textSize="@dimen/textsize16" />
+
+    <TextView
+        android:id="@+id/tv_addressName1"
+        style="@style/DividerWidth"
+        android:layout_marginLeft="@dimen/dimen15"
+        android:background="@color/greenColors" />
+
+</LinearLayout>

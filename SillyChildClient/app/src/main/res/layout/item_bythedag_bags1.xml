@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrap"
+    android:orientation="vertical">
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:background="@android:color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dimen15"
+        android:paddingRight="@dimen/dimen15">
+
+        <TextView
+            style="@style/AutoWrap"
+            android:paddingBottom="@dimen/dimen20"
+            android:paddingRight="@dimen/dimen15"
+            android:paddingTop="@dimen/dimen20"
+            android:text="@string/number"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize16" />
+
+        <TextView
+            android:id="@+id/tv_subtractionBags"
+            android:layout_width="@dimen/dimen30"
+            android:layout_height="@dimen/dimen30"
+            android:layout_marginRight="@dimen/dimen5"
+            android:background="@drawable/shape_code1"
+            android:gravity="center"
+            android:text="—"
+            android:textColor="@color/hintColors"
+            android:textSize="@dimen/textsize15" />
+
+        <TextView
+            android:id="@+id/tv_bags"
+            android:layout_width="@dimen/dimen43"
+            android:layout_height="@dimen/dimen30"
+            android:background="@drawable/shape_code1"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="3"
+            android:singleLine="true"
+            android:text="0"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize15" />
+
+        <TextView
+            android:id="@+id/tv_addBags"
+            android:layout_width="@dimen/dimen30"
+            android:layout_height="@dimen/dimen30"
+            android:layout_marginLeft="@dimen/dimen5"
+            android:background="@drawable/shape_code"
+            android:gravity="center"
+            android:text="+"
+            android:textColor="@color/greenColors"
+            android:textSize="@dimen/textsize15" />
+
+    </LinearLayout>
+
+    <include layout="@layout/common_dividerwidth1" />
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:background="@color/whiteColors"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dimen15"
+        android:paddingRight="@dimen/dimen15">
+
+        <TextView
+            style="@style/WrapWrap"
+            android:paddingBottom="@dimen/dimen20"
+            android:paddingTop="@dimen/dimen20"
+            android:text="@string/dimension"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize16" />
+
+        <ImageView
+            android:id="@+id/img_dimension30"
+            style="@style/WrapWrap"
+            android:paddingBottom="@dimen/dimen10"
+            android:paddingLeft="@dimen/dimen20"
+            android:paddingRight="@dimen/dimen9"
+            android:paddingTop="@dimen/dimen10"
+            android:src="@mipmap/icon_checkbox_unselect" />
+
+        <TextView
+            style="@style/WrapWrap"
+            android:text="@string/inch30"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize14" />
+
+        <ImageView
+            android:id="@+id/img_dimension28"
+            style="@style/WrapWrap"
+            android:paddingBottom="@dimen/dimen10"
+            android:paddingLeft="@dimen/dimen20"
+            android:paddingRight="@dimen/dimen9"
+            android:paddingTop="@dimen/dimen10"
+            android:src="@mipmap/icon_checkbox_unselect" />
+
+        <TextView
+            style="@style/WrapWrap"
+            android:text="@string/inch28"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize14" />
+
+        <ImageView
+            android:id="@+id/img_dimension26"
+            style="@style/WrapWrap"
+            android:paddingBottom="@dimen/dimen10"
+            android:paddingLeft="@dimen/dimen20"
+            android:paddingRight="@dimen/dimen9"
+            android:paddingTop="@dimen/dimen10"
+            android:src="@mipmap/icon_checkbox_unselect" />
+
+        <TextView
+            style="@style/WrapWrap"
+            android:text="@string/inch26"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize14" />
+
+        <ImageView
+            android:id="@+id/img_dimension24"
+            style="@style/WrapWrap"
+            android:paddingBottom="@dimen/dimen10"
+            android:paddingLeft="@dimen/dimen20"
+            android:paddingRight="@dimen/dimen9"
+            android:paddingTop="@dimen/dimen10"
+            android:src="@mipmap/icon_checkbox_unselect" />
+
+        <TextView
+            style="@style/WrapWrap"
+            android:text="@string/inch24"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize14" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    tools:context="com.yinglan.scc.homepage.chartercustom.chartercommon.CharterDetailsActivity">
+
+    <LinearLayout
+        android:id="@+id/ll_bottom"
+        style="@style/MatchWrap"
+        android:layout_alignParentBottom="true"
+        android:background="@color/whiteColors"
+        android:orientation="vertical">
+
+        <View style="@style/DividerWidth" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen45"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/img_collect"
+                android:layout_width="@dimen/dimen52"
+                android:layout_height="match_parent"
+                android:paddingLeft="@dimen/dimen16"
+                android:paddingRight="@dimen/dimen16"
+                android:src="@mipmap/btn_collect_normal" />
+
+            <TextView style="@style/DividerHeight" />
+
+            <ImageView
+                android:id="@+id/img_share1"
+                android:layout_width="@dimen/dimen52"
+                android:layout_height="match_parent"
+                android:paddingLeft="@dimen/dimen16"
+                android:paddingRight="@dimen/dimen16"
+                android:src="@mipmap/share1" />
+
+            <TextView style="@style/DividerHeight" />
+
+            <TextView
+                android:id="@+id/tv_contactCustomer"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dimen30"
+                android:layout_marginLeft="@dimen/dimen16"
+                android:layout_marginRight="@dimen/dimen20"
+                android:layout_weight="1"
+                android:background="@drawable/shape_charter"
+                android:gravity="center"
+                android:text="@string/contact_customer_failure_seconed"
+                android:textColor="@color/greenColors"
+                android:textSize="@dimen/textsize16" />
+
+
+            <TextView
+                android:id="@+id/tv_reservationsNow"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dimen30"
+                android:layout_marginRight="@dimen/dimen15"
+                android:layout_weight="1"
+                android:background="@drawable/shape_charter1"
+                android:gravity="center"
+                android:text="@string/reservationsNow"
+                android:textColor="@color/whiteColors"
+                android:textSize="@dimen/textsize16" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <com.common.cklibrary.utils.myview.WebViewLayout
+        android:id="@+id/web_viewlayout"
+        style="@style/MatchMatch"
+        android:layout_above="@id/ll_bottom"
+        android:background="@color/whiteColors"
+        app:isJavaScriptEnabled="true"
+        app:isUpdateTitle="true" />
+
+
+    <ImageView
+        android:id="@+id/img_back"
+        style="@style/WrapWrap"
+        android:padding="@dimen/dimen15"
+        android:src="@mipmap/back1" />
+
+</RelativeLayout>

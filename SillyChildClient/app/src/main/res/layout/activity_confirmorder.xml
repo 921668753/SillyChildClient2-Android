@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title" />
+
+    <TextView style="@style/DividerWidth" />
+
+
+    <ScrollView
+        style="@style/MatchAuto"
+        android:scrollbars="none">
+
+        <LinearLayout
+            style="@style/MatchWrap"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:layout_marginTop="@dimen/dimen10"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/dimen15">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:text="@string/lineTitle"
+                    android:textColor="@color/hintColors"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    android:id="@+id/tv_lineTitle"
+                    style="@style/AutoWrap"
+                    android:gravity="right"
+                    android:paddingLeft="@dimen/dimen10"
+                    android:singleLine="true"
+                    android:text="--"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+
+            </LinearLayout>
+
+            <include layout="@layout/common_dividerwidth1" />
+
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/dimen15">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:text="@string/serviceDate2"
+                    android:textColor="@color/hintColors"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    android:id="@+id/tv_serviceDate"
+                    style="@style/AutoWrap"
+                    android:gravity="right"
+                    android:paddingLeft="@dimen/dimen10"
+                    android:singleLine="true"
+                    android:text="--"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+
+            </LinearLayout>
+
+            <include layout="@layout/common_dividerwidth1" />
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/dimen15">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:text="@string/touristNumber"
+                    android:textColor="@color/hintColors"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    android:id="@+id/tv_touristNumber"
+                    style="@style/AutoWrap"
+                    android:gravity="right"
+                    android:paddingLeft="@dimen/dimen10"
+                    android:singleLine="true"
+                    android:text="--"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/MatchWrap"
+                android:paddingBottom="@dimen/dimen12"
+                android:paddingLeft="@dimen/dimen15"
+                android:paddingRight="@dimen/dimen15"
+                android:paddingTop="@dimen/dimen12"
+                android:text="@string/confirmInformation"
+                android:textColor="@color/hintColors"
+                android:textSize="@dimen/textsize12" />
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/dimen15">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:text="@string/bookingPeople"
+                    android:textColor="@color/hintColors"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    android:id="@+id/tv_bookingPeople"
+                    style="@style/AutoWrap"
+                    android:gravity="right"
+                    android:paddingLeft="@dimen/dimen10"
+                    android:singleLine="true"
+                    android:text="--"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+
+            </LinearLayout>
+
+            <include layout="@layout/common_dividerwidth1" />
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/dimen15">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:text="@string/contactWay"
+                    android:textColor="@color/hintColors"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    android:id="@+id/tv_contactWay"
+                    style="@style/AutoWrap"
+                    android:gravity="right"
+                    android:paddingLeft="@dimen/dimen10"
+                    android:singleLine="true"
+                    android:text="--"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+
+            </LinearLayout>
+
+            <include
+                layout="@layout/common_dividerwidth1"
+                android:visibility="gone" />
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/dimen15"
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:text="@string/origin"
+                    android:textColor="@color/hintColors"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    android:id="@+id/tv_origin"
+                    style="@style/AutoWrap"
+                    android:gravity="right"
+                    android:paddingLeft="@dimen/dimen10"
+                    android:singleLine="true"
+                    android:text="--"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+
+            </LinearLayout>
+
+
+            <include
+                layout="@layout/common_dividerwidth1"
+                android:visibility="gone" />
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/dimen15"
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:text="@string/destination"
+                    android:textColor="@color/hintColors"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    android:id="@+id/tv_destination"
+                    style="@style/AutoWrap"
+                    android:gravity="right"
+                    android:paddingLeft="@dimen/dimen10"
+                    android:singleLine="true"
+                    android:text="--"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/MatchWrap"
+                android:paddingBottom="@dimen/dimen12"
+                android:paddingLeft="@dimen/dimen15"
+                android:paddingTop="@dimen/dimen12"
+                android:text="@string/amount"
+                android:textColor="@color/hintColors"
+                android:textSize="@dimen/textsize12" />
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/dimen15">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:text="@string/orderAmount"
+                    android:textColor="@color/hintColors"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    style="@style/AutoWrap"
+                    android:gravity="right"
+                    android:paddingLeft="@dimen/dimen10"
+                    android:singleLine="true"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+                <!--android:text="@string/moneySign"-->
+                <TextView
+                    android:id="@+id/tv_orderAmount"
+                    style="@style/WrapWrap"
+                    android:gravity="right"
+                    android:singleLine="true"
+                    android:text="--"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+
+            </LinearLayout>
+
+            <include
+                layout="@layout/common_dividerwidth1"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/ll_useCoupons"
+                style="@style/MatchWrap"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/dimen15"
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:text="@string/useCoupons"
+                    android:textColor="@color/hintColors"
+                    android:textSize="@dimen/textsize15" />
+
+
+                <TextView
+                    android:id="@+id/tv_useCoupons"
+                    style="@style/AutoWrap"
+                    android:gravity="right"
+                    android:paddingRight="@dimen/dimen10"
+                    android:singleLine="true"
+                    android:text="--"
+                    android:textColor="@color/lightRedColors"
+                    android:textSize="@dimen/textsize15" />
+
+
+                <ImageView
+                    style="@style/WrapWrap"
+                    android:src="@mipmap/arrow" />
+
+            </LinearLayout>
+
+
+            <include
+                layout="@layout/common_dividerwidth1"
+                android:visibility="gone" />
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/dimen15"
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:text="@string/actualPayment"
+                    android:textColor="@color/hintColors"
+                    android:textSize="@dimen/textsize15" />
+
+
+                <TextView
+                    style="@style/AutoWrap"
+                    android:gravity="right"
+                    android:paddingLeft="@dimen/dimen10"
+                    android:singleLine="true"
+                    android:text="@string/moneySign"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+
+
+                <TextView
+                    android:id="@+id/tv_actualPayment"
+                    style="@style/WrapWrap"
+                    android:gravity="right"
+                    android:singleLine="true"
+                    android:text="--"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <TextView style="@style/DividerWidth" />
+
+    <include layout="@layout/common_bottombar" />
+
+</LinearLayout>

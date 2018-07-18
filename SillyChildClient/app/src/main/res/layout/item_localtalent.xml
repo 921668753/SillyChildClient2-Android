@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/WrapWrap"
+    android:background="@color/whiteColors"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/ll_localTalentcone"
+        style="@style/MatchWrap"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/dimen15">
+
+        <ImageView
+            android:id="@+id/img_localTalent"
+            android:layout_width="@dimen/dimen186"
+            android:layout_height="@dimen/dimen105"
+            android:scaleType="fitXY"
+            android:src="@mipmap/placeholderfigure" />
+
+        <LinearLayout
+            style="@style/MatchWrap"
+            android:orientation="horizontal"
+            android:paddingTop="@dimen/dimen10">
+
+            <TextView
+                android:id="@+id/tv_name"
+                style="@style/WrapMatch"
+                android:singleLine="true"
+                android:text="--"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize14" />
+
+            <TextView
+                android:id="@+id/tv_address"
+                style="@style/MatchMatch"
+                android:gravity="bottom|right"
+                android:singleLine="true"
+                android:text="--"
+                android:textColor="@color/hintColors"
+                android:textSize="@dimen/textsize12" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            style="@style/MatchWrap"
+            android:layout_marginTop="@dimen/dimen6"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_shopkeepers"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dimen15"
+                android:layout_marginRight="@dimen/dimen8"
+                android:background="@drawable/shape_guidelabels"
+                android:gravity="center"
+                android:paddingLeft="@dimen/dimen5"
+                android:paddingRight="@dimen/dimen5"
+                android:singleLine="true"
+                android:text="@string/shopkeepers"
+                android:textColor="@color/guideShapeColors"
+                android:textSize="@dimen/textsize10" />
+
+            <TextView
+                android:id="@+id/tv_landlord"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dimen15"
+                android:layout_marginRight="@dimen/dimen8"
+                android:background="@drawable/shape_landlord"
+                android:gravity="center"
+                android:paddingLeft="@dimen/dimen5"
+                android:paddingRight="@dimen/dimen5"
+                android:singleLine="true"
+                android:text="@string/landlord"
+                android:textColor="@color/blueColors"
+                android:textSize="@dimen/textsize10" />
+
+            <TextView
+                android:id="@+id/tv_companyGuide"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dimen15"
+                android:layout_marginRight="@dimen/dimen8"
+                android:background="@drawable/shape_code"
+                android:gravity="center"
+                android:paddingLeft="@dimen/dimen5"
+                android:paddingRight="@dimen/dimen5"
+                android:singleLine="true"
+                android:text="@string/companyGuide"
+                android:textColor="@color/greenColors"
+                android:textSize="@dimen/textsize10" />
+
+
+            <TextView
+                android:id="@+id/tv_platform"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dimen15"
+                android:background="@drawable/shape_code1"
+                android:gravity="center"
+                android:paddingLeft="@dimen/dimen5"
+                android:paddingRight="@dimen/dimen5"
+                android:singleLine="true"
+                android:text="@string/app_name"
+                android:textColor="@color/hintColors"
+                android:textSize="@dimen/textsize10" />
+
+
+            <TextView
+                android:id="@+id/tv_user"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dimen15"
+                android:background="@drawable/shape_userlabels"
+                android:gravity="center"
+                android:paddingLeft="@dimen/dimen5"
+                android:paddingRight="@dimen/dimen5"
+                android:singleLine="true"
+                android:text="@string/user"
+                android:textColor="@color/userShapeColors"
+                android:textSize="@dimen/textsize10" />
+
+
+            <TextView
+                android:id="@+id/tv_zan"
+                style="@style/AutoMatch"
+                android:layout_marginTop="@dimen/dimen2"
+                android:gravity="bottom|right"
+                android:singleLine="true"
+                android:text="--"
+                android:textColor="@color/hintColors"
+                android:textSize="@dimen/textsize10" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

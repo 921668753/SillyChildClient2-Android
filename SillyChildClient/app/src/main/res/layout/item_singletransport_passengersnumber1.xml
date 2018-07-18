@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrap"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:layout_marginTop="@dimen/dimen10"
+        android:background="@color/whiteColors"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/WrapWrap"
+            android:paddingBottom="@dimen/dimen14"
+            android:paddingLeft="@dimen/dimen15"
+            android:paddingTop="@dimen/dimen15"
+            android:text="@string/choiceTravel"
+            android:textColor="@color/tabColors"
+            android:textSize="@dimen/textsize13" />
+
+
+        <TextView
+            style="@style/WrapWrap"
+            android:background="@color/whiteColors"
+            android:paddingLeft="@dimen/dimen5"
+            android:paddingTop="@dimen/dimen5"
+            android:text="@string/xing"
+            android:textColor="@color/redColors"
+            android:textSize="@dimen/textsize13" />
+
+    </LinearLayout>
+
+
+    <include layout="@layout/common_dividerwidth1" />
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:background="@color/whiteColors"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dimen15"
+        android:paddingRight="@dimen/dimen15">
+
+        <TextView
+            style="@style/AutoWrap"
+            android:paddingBottom="@dimen/dimen20"
+            android:paddingRight="@dimen/dimen15"
+            android:paddingTop="@dimen/dimen20"
+            android:text="@string/adult"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize16" />
+
+
+        <TextView
+            android:id="@+id/tv_subtractionAdult"
+            android:layout_width="@dimen/dimen30"
+            android:layout_height="@dimen/dimen30"
+            android:layout_marginRight="@dimen/dimen5"
+            android:background="@drawable/shape_code1"
+            android:gravity="center"
+            android:text="—"
+            android:textColor="@color/hintColors"
+            android:textSize="@dimen/textsize15" />
+
+        <TextView
+            android:id="@+id/tv_adultNum"
+            android:layout_width="@dimen/dimen43"
+            android:layout_height="@dimen/dimen30"
+            android:background="@drawable/shape_code1"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="3"
+            android:singleLine="true"
+            android:text="0"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize15" />
+
+        <TextView
+            android:id="@+id/tv_addAdult"
+            android:layout_width="@dimen/dimen30"
+            android:layout_height="@dimen/dimen30"
+            android:layout_marginLeft="@dimen/dimen5"
+            android:background="@drawable/shape_code"
+            android:gravity="center"
+            android:text="+"
+            android:textColor="@color/greenColors"
+            android:textSize="@dimen/textsize15" />
+
+    </LinearLayout>
+
+    <include layout="@layout/common_dividerwidth1" />
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:background="@android:color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dimen15"
+        android:paddingRight="@dimen/dimen15">
+
+        <TextView
+            style="@style/AutoWrap"
+            android:paddingBottom="@dimen/dimen20"
+            android:paddingRight="@dimen/dimen15"
+            android:paddingTop="@dimen/dimen20"
+            android:text="@string/children"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize16" />
+
+        <TextView
+            android:id="@+id/tv_subtractionChildren"
+            android:layout_width="@dimen/dimen30"
+            android:layout_height="@dimen/dimen30"
+            android:layout_marginRight="@dimen/dimen5"
+            android:background="@drawable/shape_code1"
+            android:gravity="center"
+            android:text="—"
+            android:textColor="@color/dividercolors1"
+            android:textSize="@dimen/textsize15" />
+
+        <TextView
+            android:id="@+id/tv_childrenNum"
+            android:layout_width="@dimen/dimen43"
+            android:layout_height="@dimen/dimen30"
+            android:background="@drawable/shape_code1"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="3"
+            android:singleLine="true"
+            android:text="0"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize15" />
+
+        <TextView
+            android:id="@+id/tv_addChildren"
+            android:layout_width="@dimen/dimen30"
+            android:layout_height="@dimen/dimen30"
+            android:layout_marginLeft="@dimen/dimen5"
+            android:background="@drawable/shape_code"
+            android:gravity="center"
+            android:text="+"
+            android:textColor="@color/greenColors"
+            android:textSize="@dimen/textsize15" />
+
+    </LinearLayout>
+</LinearLayout>

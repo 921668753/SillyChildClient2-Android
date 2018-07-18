@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrap"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/dimen15">
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/dimen13"
+        android:paddingRight="@dimen/dimen15"
+        android:paddingTop="@dimen/dimen13">
+
+        <ImageView
+            android:id="@+id/iv_itemcompanyguidmessage"
+            android:layout_width="@dimen/dimen48"
+            android:layout_height="@dimen/dimen48"
+            android:src="@mipmap/default_image" />
+
+        <LinearLayout
+            style="@style/WrapWrap"
+            android:layout_marginLeft="@dimen/dimen14"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/dimen8">
+
+            <RelativeLayout
+                style="@style/WrapWrap"
+                android:layout_marginBottom="@dimen/dimen10">
+
+                <TextView
+                    android:id="@+id/tv_itemcompanyguidmessagename"
+                    style="@style/WrapWrap"
+                    android:singleLine="true"
+                    android:textColor="@color/itemMessageNameColors"
+                    android:textSize="@dimen/textsize16" />
+
+                <TextView
+                    android:id="@+id/tv_itemcompanyguidmessagetime"
+                    style="@style/WrapWrap"
+                    android:layout_alignParentRight="true"
+                    android:textColor="@color/itemmessageColors"
+                    android:textSize="@dimen/textsize12" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_itemcompanyguidmessagecontent"
+                style="@style/WrapWrap"
+                android:textColor="@color/itemmessageColors"
+                android:textSize="@dimen/textsize12" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        style="@style/DividerWidth"
+        android:background="@color/itemMessageDividerColors" />
+
+</LinearLayout>

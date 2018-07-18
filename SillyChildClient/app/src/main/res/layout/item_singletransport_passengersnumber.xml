@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrap"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/MatchWrap"
+        android:layout_marginTop="@dimen/dimen10"
+        android:background="@color/whiteColors"
+        android:paddingBottom="@dimen/dimen10"
+        android:paddingLeft="@dimen/dimen15"
+        android:paddingTop="@dimen/dimen15"
+        android:text="@string/passengersNumber"
+        android:textColor="@color/tabColors"
+        android:textSize="@dimen/textsize13" />
+
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:background="@color/whiteColors"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dimen15"
+        android:paddingRight="@dimen/dimen15">
+
+        <TextView
+            android:id="@+id/tv_fewAdults"
+            style="@style/AutoMatch"
+            android:hint="@string/fewAdults"
+            android:paddingBottom="@dimen/dimen15"
+            android:paddingTop="@dimen/dimen7"
+            android:textColor="@color/tabColors"
+            android:textColorHint="@color/byTheDayHintColors"
+            android:textSize="@dimen/textsize16" />
+
+        <TextView
+            style="@style/DividerHeight"
+            android:layout_marginBottom="@dimen/dimen15"
+            android:layout_marginTop="@dimen/dimen7" />
+
+
+        <TextView
+            android:id="@+id/tv_severalChildren"
+            style="@style/AutoMatch"
+            android:hint="@string/severalChildren"
+            android:paddingBottom="@dimen/dimen15"
+            android:paddingLeft="@dimen/dimen27"
+            android:paddingTop="@dimen/dimen7"
+            android:textColor="@color/tabColors"
+            android:textColorHint="@color/byTheDayHintColors"
+            android:textSize="@dimen/textsize16" />
+
+    </LinearLayout>
+</LinearLayout>

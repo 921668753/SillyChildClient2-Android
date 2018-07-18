@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrap"
+    android:background="@color/lightYellowColor"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <TextView
+        style="@style/WrapWrap"
+        android:gravity="center"
+        android:paddingBottom="@dimen/dimen5"
+        android:paddingLeft="@dimen/dimen15"
+        android:paddingTop="@dimen/dimen5"
+        android:text="@string/prompt1"
+        android:textColor="@color/textColor"
+        android:textSize="@dimen/textsize11" />
+
+    <TextView
+        style="@style/WrapWrap"
+        android:layout_marginTop="@dimen/dimen2"
+        android:text="@string/xing"
+        android:textColor="@color/redColors"
+        android:textSize="@dimen/textsize13" />
+
+    <TextView
+        style="@style/WrapWrap"
+        android:gravity="center"
+        android:paddingBottom="@dimen/dimen5"
+        android:paddingTop="@dimen/dimen5"
+        android:text="@string/prompt3"
+        android:textColor="@color/textColor"
+        android:textSize="@dimen/textsize11" />
+
+
+</LinearLayout>

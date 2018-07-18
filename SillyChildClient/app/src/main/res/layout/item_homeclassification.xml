@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrap"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/img_icon"
+        style="@style/Image40"
+        android:layout_marginTop="@dimen/dimen15"
+        android:scaleType="fitXY"
+        android:src="@mipmap/home_beauty_makeup_icon" />
+
+    <TextView
+        android:id="@+id/tv_classificationName"
+        style="@style/WrapWrap"
+        android:gravity="center"
+        android:paddingTop="@dimen/dimen10"
+        android:text="美妆11111111美妆"
+        android:textColor="@color/textColor"
+        android:textSize="@dimen/textsize12" />
+
+</LinearLayout>

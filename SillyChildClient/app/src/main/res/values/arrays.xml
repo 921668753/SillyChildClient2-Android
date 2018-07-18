@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="chooseDetail">
+        <item>今天</item>
+        <item>本周</item>
+        <item>本月</item>
+        <item>近一个月</item>
+        <item>近两个月</item>
+        <item>近三个月</item>
+        <item>近一年</item>
+        <item>近两年</item>
+    </string-array>
+</resources>

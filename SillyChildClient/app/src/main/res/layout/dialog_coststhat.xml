@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchMatch"
+    android:background="@color/black01"
+    android:gravity="center">
+
+    <LinearLayout
+        style="@style/MatchMatch"
+        android:background="@drawable/shape_vippermissions"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <WebView
+            android:id="@+id/web_view"
+            style="@style/MatchAuto"
+            android:padding="@dimen/dimen15" />
+
+        <ImageView
+            android:id="@+id/img_back"
+            style="@style/WrapWrap"
+            android:layout_alignParentRight="true"
+            android:padding="@dimen/dimen20"
+            android:src="@mipmap/btn_deleted" />
+    </LinearLayout>
+
+
+</RelativeLayout>

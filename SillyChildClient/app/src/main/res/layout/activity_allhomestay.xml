@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title" />
+
+    <TextView style="@style/DividerWidth" />
+
+    <include layout="@layout/item_allcompanyguide_topbar" />
+
+    <TextView style="@style/DividerWidth" />
+
+    <cn.bingoogolapple.refreshlayout.BGARefreshLayout xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/mRefreshLayout"
+        style="@style/MatchMatch">
+
+        <ListView
+            android:id="@+id/lv_allHomestay"
+            style="@style/MatchWrap"
+            android:divider="@color/background"
+            android:dividerHeight="@dimen/dimen1"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            tools:listitem="@layout/item_house" />
+
+    </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
+
+    <include layout="@layout/common_error" />
+
+</LinearLayout>

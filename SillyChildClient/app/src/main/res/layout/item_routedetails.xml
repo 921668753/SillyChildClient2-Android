@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchWrap"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:layout_marginTop="@dimen/dimen30"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="@dimen/dimen90"
+            android:layout_height="@dimen/dimen1"
+            android:layout_marginRight="@dimen/dimen8"
+            android:background="@color/background" />
+
+        <TextView
+            style="@style/WrapWrap"
+            android:text="第一天"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize16" />
+
+        <TextView
+            android:layout_width="@dimen/dimen90"
+            android:layout_height="@dimen/dimen1"
+            android:layout_marginLeft="@dimen/dimen8"
+            android:background="@color/background" />
+
+    </LinearLayout>
+
+
+    <com.common.cklibrary.utils.myview.ChildListView
+        android:id="@+id/lv_itemRouteDetails"
+        style="@style/MatchWrap"
+        android:background="@android:color/white"
+        android:divider="@color/background"
+        android:dividerHeight="@dimen/dimen1"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        tools:listitem="@layout/item_itemroutedetails" />
+
+</LinearLayout>

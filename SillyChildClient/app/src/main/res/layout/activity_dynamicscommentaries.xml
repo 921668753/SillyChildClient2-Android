@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title" />
+
+    <TextView style="@style/DividerWidth" />
+
+    <cn.bingoogolapple.refreshlayout.BGARefreshLayout
+        android:id="@+id/mRefreshLayout"
+        style="@style/MatchAuto"
+        android:background="@color/background">
+        <!-- item_order -->
+        <!--<ScrollView-->
+            <!--android:id="@+id/sv_dynamicsCommentaries"-->
+            <!--style="@style/MatchWrap">-->
+
+            <ListView
+                android:id="@+id/lv_dynamicsCommentaries"
+                style="@style/MatchWrap"
+                android:divider="@color/background"
+                android:dividerHeight="@dimen/dimen1"
+                android:overScrollMode="never"
+                android:scrollbars="none"
+                tools:listitem="@layout/item_dynamicsdetails" />
+        <!--</ScrollView>-->
+
+    </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
+
+    <include
+        android:id="@+id/ll_dynamicsdetailscomment"
+        layout="@layout/activity_dynamicsdetailscomment"
+        android:visibility="gone" />
+
+    <include layout="@layout/common_error" />
+</LinearLayout>

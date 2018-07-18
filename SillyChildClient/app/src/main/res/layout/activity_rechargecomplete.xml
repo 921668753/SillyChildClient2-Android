@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchMatch"
+    android:background="@color/whiteColors"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title" />
+
+    <TextView style="@style/DividerWidth" />
+
+    <ImageView
+        android:id="@+id/img_pay"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen210"
+        android:scaleType="fitXY"
+        android:src="@mipmap/pay_payment_failure" />
+
+
+    <TextView
+        android:id="@+id/tv_returnHomePage"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen38"
+        android:layout_marginLeft="@dimen/dimen57"
+        android:layout_marginRight="@dimen/dimen57"
+        android:layout_marginTop="@dimen/dimen70"
+        android:background="@drawable/shape_paycomplete1"
+        android:gravity="center"
+        android:text="@string/returnHomePage"
+        android:textColor="@color/greenColors"
+        android:textSize="@dimen/textsize16" />
+
+
+</LinearLayout>

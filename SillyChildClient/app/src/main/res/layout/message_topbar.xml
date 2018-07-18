@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrap"
+    android:background="@android:color/white">
+
+
+    <LinearLayout
+        style="@style/WrapWrap"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/ll_system"
+            style="@style/AutoWrap"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_system"
+                style="@style/MatchAuto"
+                android:paddingBottom="@dimen/dimen11"
+                android:gravity="center"
+                android:paddingTop="@dimen/dimen11"
+                android:text="@string/system"
+                android:textColor="@color/messagetopbarColors"
+                android:textSize="@dimen/textsize17" />
+
+            <TextView
+                android:id="@+id/tv_system1"
+                android:layout_width="@dimen/dimen58"
+                android:layout_height="@dimen/dimen2"
+                android:background="@color/greenColors"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_companyGuide"
+            style="@style/AutoWrap"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_companyGuide"
+                style="@style/MatchAuto"
+                android:paddingBottom="@dimen/dimen11"
+                android:gravity="center"
+                android:paddingTop="@dimen/dimen11"
+                android:text="@string/companyGuide"
+                android:textColor="@color/greenColors"
+                android:textSize="@dimen/textsize17" />
+
+            <TextView
+                android:id="@+id/tv_companyGuide1"
+                android:layout_width="@dimen/dimen58"
+                android:layout_height="@dimen/dimen2"
+                android:background="@color/greenColors" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_homestay"
+            style="@style/AutoWrap"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_homestay"
+                style="@style/MatchAuto"
+                android:paddingBottom="@dimen/dimen11"
+                android:gravity="center"
+                android:paddingTop="@dimen/dimen11"
+                android:text="@string/homestay"
+                android:textColor="@color/messagetopbarColors"
+                android:textSize="@dimen/textsize17" />
+
+            <TextView
+                android:id="@+id/tv_homestay1"
+                android:layout_width="@dimen/dimen58"
+                android:layout_height="@dimen/dimen2"
+                android:background="@color/greenColors"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_shop"
+            style="@style/AutoWrap"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_shop"
+                style="@style/MatchAuto"
+                android:paddingBottom="@dimen/dimen11"
+                android:gravity="center"
+                android:paddingTop="@dimen/dimen11"
+                android:text="@string/shop"
+                android:textColor="@color/messagetopbarColors"
+                android:textSize="@dimen/textsize17" />
+
+            <TextView
+                android:id="@+id/tv_shop1"
+                android:layout_width="@dimen/dimen58"
+                android:layout_height="@dimen/dimen2"
+                android:background="@color/greenColors"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

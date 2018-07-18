@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title" />
+
+    <TextView style="@style/DividerWidth" />
+
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:background="@color/whiteColors"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            style="@style/WrapWrap"
+            android:src="@mipmap/mine_pay_successxxx" />
+
+
+        <LinearLayout
+            style="@style/WrapWrap"
+            android:layout_marginBottom="@dimen/dimen39"
+            android:layout_marginLeft="@dimen/dimen25"
+            android:layout_marginRight="@dimen/dimen15"
+            android:layout_marginTop="@dimen/dimen39"
+            android:orientation="vertical">
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:text="@string/paymentAmount"
+                    android:textColor="@color/tabColors"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    android:id="@+id/tv_paymoney"
+                    style="@style/WrapWrap"
+                    android:singleLine="true"
+                    android:textColor="@color/guideShapeColors"
+                    android:textSize="@dimen/textsize15" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:text="@string/modePayment"
+                    android:textColor="@color/tabColors"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    android:id="@+id/tv_paytype"
+                    style="@style/WrapWrap"
+                    android:singleLine="true"
+                    android:textColor="@color/guideShapeColors"
+                    android:textSize="@dimen/textsize15" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:background="@color/whiteColors"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/dimen28"
+        android:paddingLeft="@dimen/dimen20"
+        android:paddingRight="@dimen/dimen20"
+        android:paddingTop="@dimen/dimen11">
+
+        <TextView
+            android:id="@+id/tv_seeorder"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dimen40"
+            android:layout_weight="1"
+            android:background="@drawable/shape_code1"
+            android:gravity="center"
+            android:text="@string/checkOrder"
+            android:textColor="@color/tabColors"
+            android:textSize="@dimen/textsize15" />
+
+
+        <TextView
+            android:id="@+id/tv_backhome"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dimen40"
+            android:layout_marginLeft="@dimen/dimen35"
+            android:layout_weight="1"
+            android:background="@drawable/shape_login1"
+            android:gravity="center"
+            android:text="@string/returnHomePage"
+            android:textColor="@color/whiteColors"
+            android:textSize="@dimen/textsize15" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title" />
+
+    <TextView style="@style/DividerWidth" />
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:background="@color/whiteColors"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dimen15"
+        android:paddingRight="@dimen/dimen15"
+        android:paddingTop="@dimen/dimen16">
+
+        <ImageView
+            android:layout_width="@dimen/dimen17"
+            android:layout_height="@dimen/dimen17"
+            android:src="@mipmap/order_complete_icon" />
+
+        <TextView
+            android:id="@+id/tv_type"
+            style="@style/WrapWrap"
+            android:paddingLeft="@dimen/dimen10"
+            android:text="@string/refundSuccess"
+            android:textColor="@color/titletextcolors"
+            android:textSize="@dimen/textsize15" />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/tv_refundSuccess"
+        style="@style/MatchWrap"
+        android:background="@color/whiteColors"
+        android:paddingBottom="@dimen/dimen15"
+        android:paddingLeft="@dimen/dimen15"
+        android:paddingRight="@dimen/dimen15"
+        android:paddingTop="@dimen/dimen5"
+        android:text="退款金额：￥520.00"
+        android:textColor="@color/titletextcolors"
+        android:textSize="@dimen/textsize13" />
+
+    <LinearLayout
+        android:id="@+id/ll_serviceDetails"
+        style="@style/Match45"
+        android:layout_marginTop="@dimen/dimen10"
+        android:background="@color/whiteColors"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dimen15"
+        android:paddingRight="@dimen/dimen15">
+
+        <TextView
+            style="@style/AutoWrap"
+            android:text="@string/serviceDetails"
+            android:textColor="@color/titletextcolors"
+            android:textSize="@dimen/textsize13" />
+
+        <ImageView
+            style="@style/Image812"
+            android:src="@mipmap/right_arrow" />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/tv_shopName"
+        style="@style/Match45"
+        android:layout_marginTop="@dimen/dimen10"
+        android:background="@color/whiteColors"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/dimen15"
+        android:text="店铺名称：xxxxxxxxxxx"
+        android:textColor="@color/titletextcolors"
+        android:textSize="@dimen/textsize13" />
+
+
+    <TextView
+        android:id="@+id/tv_afterSalesType"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen41"
+        android:layout_marginTop="@dimen/dimen10"
+        android:background="@color/whiteColors"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/dimen15"
+        android:text="售后类型：退货退款"
+        android:textColor="@color/titletextcolors"
+        android:textSize="@dimen/textsize13" />
+
+    <TextView style="@style/DividerWidth" />
+
+    <TextView
+        android:id="@+id/tv_afterNumber"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen41"
+        android:layout_marginTop="@dimen/dimen10"
+        android:background="@color/whiteColors"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/dimen15"
+        android:text="售后数量：123"
+        android:textColor="@color/titletextcolors"
+        android:textSize="@dimen/textsize13" />
+
+    <TextView style="@style/DividerWidth" />
+    <TextView
+        android:id="@+id/tv_refundAmount"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen41"
+        android:background="@color/whiteColors"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/dimen15"
+        android:text="退款金额：￥520.00"
+        android:textColor="@color/titletextcolors"
+        android:textSize="@dimen/textsize13" />
+
+    <TextView style="@style/DividerWidth" />
+
+    <TextView
+        android:id="@+id/tv_refundReason"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen41"
+        android:background="@color/whiteColors"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/dimen15"
+        android:text="退款原因：不合适/不喜欢"
+        android:textColor="@color/titletextcolors"
+        android:textSize="@dimen/textsize13" />
+
+    <TextView style="@style/DividerWidth" />
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:background="@color/whiteColors"
+        android:minHeight="@dimen/dimen41"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dimen15"
+        android:paddingRight="@dimen/dimen15">
+
+        <TextView
+            style="@style/WrapWrap"
+            android:text="@string/productName"
+            android:textColor="@color/titletextcolors"
+            android:textSize="@dimen/textsize13" />
+
+        <TextView
+            android:id="@+id/tv_goodName"
+            style="@style/MatchWrap"
+            android:background="@color/whiteColors"
+            android:gravity="center_vertical"
+            android:paddingBottom="@dimen/dimen10"
+            android:paddingTop="@dimen/dimen10"
+            android:text="niahnnjjjsjsjhdujdjidcxijdcjincdjindcjidcjincdjinjincjicedjicjcjijicjicjicjicjijicjicjicjiijicjcjcjjcjcj"
+            android:textColor="@color/titletextcolors"
+            android:textSize="@dimen/textsize13" />
+
+    </LinearLayout>
+
+    <TextView style="@style/DividerWidth" />
+
+    <TextView
+        android:id="@+id/tv_orderNumber"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen41"
+        android:background="@color/whiteColors"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/dimen15"
+        android:text="订单编号：xxxxxx"
+        android:textColor="@color/titletextcolors"
+        android:textSize="@dimen/textsize13" />
+
+    <TextView style="@style/DividerWidth" />
+
+    <TextView
+        android:id="@+id/tv_orderTime"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen41"
+        android:background="@color/whiteColors"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/dimen15"
+        android:text="订单时间：2018.06.05  12:00:00"
+        android:textColor="@color/titletextcolors"
+        android:textSize="@dimen/textsize13" />
+
+</LinearLayout>

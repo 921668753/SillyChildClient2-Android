@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/MatchWrap"
+    android:orientation="vertical">
+
+    <cn.bingoogolapple.bgabanner.BGABanner
+        android:id="@+id/banner_ad"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen210"
+        android:background="@mipmap/home_banner"
+        app:banner_pageChangeDuration="2000"
+        app:banner_pointAutoPlayAble="false"
+        app:banner_pointContainerBackground="@android:color/transparent"
+        app:banner_pointDrawable="@drawable/bga_banner_selector_point"
+        app:banner_pointTopBottomMargin="2dp"
+        app:banner_transitionEffect="alpha" />
+
+    <LinearLayout
+        android:id="@+id/ll_icon"
+        style="@style/MatchWrap"
+        android:layout_below="@id/banner_ad"
+        android:background="@android:color/white"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/ll_cosmetics"
+            style="@style/AutoWrap"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                style="@style/Image40"
+                android:layout_marginTop="@dimen/dimen15"
+                android:scaleType="fitXY"
+                android:src="@mipmap/default_image" />
+
+            <TextView
+                style="@style/WrapWrap"
+                android:paddingBottom="@dimen/dimen7"
+                android:paddingTop="@dimen/dimen11"
+                android:text="@string/cosmetics"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize13" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_personalCare"
+            style="@style/AutoWrap"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                style="@style/Image40"
+                android:layout_marginTop="@dimen/dimen15"
+                android:scaleType="fitXY"
+                android:src="@mipmap/default_image" />
+
+            <TextView
+                style="@style/WrapWrap"
+                android:paddingBottom="@dimen/dimen7"
+                android:paddingTop="@dimen/dimen11"
+                android:text="@string/personalCare"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize13" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_maternalAndInfant"
+            style="@style/AutoWrap"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                style="@style/Image40"
+                android:layout_marginTop="@dimen/dimen15"
+                android:scaleType="fitXY"
+                android:src="@mipmap/default_image" />
+
+            <TextView
+                style="@style/WrapWrap"
+                android:paddingBottom="@dimen/dimen7"
+                android:paddingTop="@dimen/dimen11"
+                android:text="@string/maternalAndInfant"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize13" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_bagAccessories"
+            style="@style/AutoWrap"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                style="@style/Image40"
+                android:layout_marginTop="@dimen/dimen15"
+                android:scaleType="fitXY"
+                android:src="@mipmap/default_image" />
+
+            <TextView
+                style="@style/WrapWrap"
+                android:paddingBottom="@dimen/dimen7"
+                android:paddingTop="@dimen/dimen11"
+                android:text="@string/bagAccessories"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize13" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_clothingAndShoes"
+            style="@style/AutoWrap"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                style="@style/Image40"
+                android:layout_marginTop="@dimen/dimen15"
+                android:scaleType="fitXY"
+                android:src="@mipmap/default_image" />
+
+            <TextView
+                style="@style/WrapWrap"
+                android:paddingBottom="@dimen/dimen7"
+                android:paddingTop="@dimen/dimen11"
+                android:text="@string/clothingAndShoes"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize13" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_icon1"
+        style="@style/MatchWrap"
+        android:layout_below="@id/ll_icon"
+        android:background="@android:color/white"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/ll_homeApplianceDigital"
+            style="@style/AutoWrap"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                style="@style/Image40"
+                android:layout_marginTop="@dimen/dimen8"
+                android:scaleType="fitXY"
+                android:src="@mipmap/default_image" />
+
+            <TextView
+                style="@style/WrapWrap"
+                android:paddingBottom="@dimen/dimen14"
+                android:paddingTop="@dimen/dimen11"
+                android:text="@string/homeApplianceDigital"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize13" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_household"
+            style="@style/AutoWrap"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                style="@style/Image40"
+                android:layout_marginTop="@dimen/dimen8"
+                android:scaleType="fitXY"
+                android:src="@mipmap/default_image" />
+
+            <TextView
+                style="@style/WrapWrap"
+                android:paddingBottom="@dimen/dimen14"
+                android:paddingTop="@dimen/dimen11"
+                android:text="@string/household"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize13" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_beautyCare"
+            style="@style/AutoWrap"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                style="@style/Image40"
+                android:layout_marginTop="@dimen/dimen8"
+                android:scaleType="fitXY"
+                android:src="@mipmap/default_image" />
+
+            <TextView
+                style="@style/WrapWrap"
+                android:paddingBottom="@dimen/dimen14"
+                android:paddingTop="@dimen/dimen11"
+                android:text="@string/beautyCare"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize13" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_food"
+            style="@style/AutoWrap"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                style="@style/Image40"
+                android:layout_marginTop="@dimen/dimen8"
+                android:scaleType="fitXY"
+                android:src="@mipmap/default_image" />
+
+            <TextView
+                style="@style/WrapWrap"
+                android:paddingBottom="@dimen/dimen14"
+                android:paddingTop="@dimen/dimen11"
+                android:text="@string/food"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize13" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_more"
+            style="@style/AutoWrap"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                style="@style/Image40"
+                android:layout_marginTop="@dimen/dimen8"
+                android:scaleType="fitXY"
+                android:src="@mipmap/default_image" />
+
+            <TextView
+                style="@style/WrapWrap"
+                android:paddingBottom="@dimen/dimen14"
+                android:paddingTop="@dimen/dimen11"
+                android:text="@string/more"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize13" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

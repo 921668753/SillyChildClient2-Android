@@ -1,0 +1,254 @@
+apply plugin: 'com.android.application'
+// 依赖插件脚本
+apply from: 'tinker-support.gradle'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        applicationId "com.sillykid.app"
+        versionCode 43
+        versionName "1.0.0.1807111525"
+        multiDexEnabled true
+
+        aaptOptions.cruncherEnabled = false
+        aaptOptions.useNewCruncher = false
+
+        dataBinding {
+            enabled = true
+        }
+        ndk {
+            //选择要添加的对应cpu类型的.so库。
+            abiFilters "armeabi", "armeabi-v7a", "arm64-v8a", "x86", "x86_64", 'mips', 'mips64'
+            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
+        }
+        manifestPlaceholders = [
+                JPUSH_PKGNAME : applicationId,
+                JPUSH_APPKEY  : "f33675352d0f85cb754fa4b7", //JPush上注册的包名对应的appkey.
+                JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
+                UMENG_APPKEY  : "5b21fb46b27b0a67a00000af",//友盟分享上注册的包名对应的appkey.
+                BAIDU_APPKEY  : "yFsR6oDpLXznfvrwxKCRpDi2MuUbuvzI",//百度定位上注册的包名对应的appkey.
+                RONGYUN_APPKEY: "pkfcgjstpo5w8"//融云即时通讯上注册的包名对应的appkey.
+        ]
+        //   useLibrary 'org.apache.http.legacy'
+    }
+
+    //签名配置signingConfigs一定要在buildTypes前
+    signingConfigs {
+        debug {
+            storeFile file('debug.keystore')
+            storePassword "android"
+            keyAlias "androiddebugkey"
+            keyPassword "android"
+        }
+        release {
+            storeFile file('ruitu.keystore')
+            storePassword "111111"
+            keyAlias "ruitukeji"
+            keyPassword "111111"
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    //执行lint检查，有任何的错误或者警告提示，都会终止构建，我们可以将其关掉。
+    lintOptions {
+        // disable 'InvalidPackage'
+        //lint 遇到 error 时继续 构建
+        abortOnError false
+        //build release 版本 时 开启lint 检测
+        checkReleaseBuilds false
+        // 防止在发布的时候出现因MissingTranslation导致Build Failed!
+        disable 'deprecation' //忽略错误
+        disable 'unchecked' //忽略错误
+        //  disable 'w' //忽略错误
+        disable 'MissingTranslation'
+    }
+    dexOptions {
+        preDexLibraries = false
+    }
+    //打包配置
+    buildTypes {
+        debug {
+            debuggable true
+            jniDebuggable true
+            zipAlignEnabled false
+            shrinkResources false
+            // 是否进行混淆
+            minifyEnabled false
+            // 混淆文件的位置
+            signingConfig signingConfigs.debug
+            buildConfigField "String", "BAIDU_APPKEY", "\"yFsR6oDpLXznfvrwxKCRpDi2MuUbuvzI\""
+            buildConfigField "String", "WEIXIN_APPKEY", "\"wx444bb74a6d803478\""
+            buildConfigField "String", "WEIXIN_APPSECRET", "\"6378e75dd1f12ee6aec861ba39929494\""
+            buildConfigField "String", "TENGXUNBUGLY_APPID", "\"783b064cfd\""
+            buildConfigField "String", "TENGXUNBUGLY_APPKEY", "\"3a193db3-b0b5-4073-bc11-ccaf5bfff5b8\""
+//            buildConfigField "String", "SiNA_WEIBOKEY", "\"2695656281\""
+//            buildConfigField "String", "SiNA_WEIBOSECRET", "\"c45c1c7feb3bfc2c2b1da20cd3594a19\""
+            buildConfigField "String", "QQ_APPID", "\"1106946302\""
+            buildConfigField "String", "QQ_APPKEY", "\"EZIbOeT93qhl7Nw3\""
+            buildConfigField "String", "RONGYUN_APPKEY", "\"pkfcgjstpo5w8\""
+            buildConfigField "String", "RONGYUN_KEFU", "\"KEFU153016724744283\""
+//            buildConfigField "String", "HUANXIN_TENANTID", "\"46895\""
+//            buildConfigField "String", "HUANXIN_PROJECTID", "\"2169000\""
+
+            proguardFiles 'proguard-rules.pro'
+        }
+        release {
+            debuggable false
+            jniDebuggable false
+            zipAlignEnabled true
+            shrinkResources true
+            // 是否进行混淆
+            minifyEnabled true
+            // 混淆文件的位置
+            signingConfig signingConfigs.release
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+            buildConfigField "String", "BAIDU_APPKEY", "\"yFsR6oDpLXznfvrwxKCRpDi2MuUbuvzI\""
+            buildConfigField "String", "WEIXIN_APPKEY", "\"wx444bb74a6d803478\""
+            buildConfigField "String", "WEIXIN_APPSECRET", "\"336027558d4d7274dd33a6d04f375de8\""
+            buildConfigField "String", "TENGXUNBUGLY_APPID", "\"783b064cfd\""
+            buildConfigField "String", "TENGXUNBUGLY_APPKEY", "\"3a193db3-b0b5-4073-bc11-ccaf5bfff5b8\""
+//            buildConfigField "String", "SiNA_WEIBOKEY", "\"2695656281\""
+//            buildConfigField "String", "SiNA_WEIBOSECRET", "\"c45c1c7feb3bfc2c2b1da20cd3594a19\""
+            buildConfigField "String", "QQ_APPID", "\"1106946302\""
+            buildConfigField "String", "QQ_APPKEY", "\"EZIbOeT93qhl7Nw3\""
+            buildConfigField "String", "RONGYUN_APPKEY", "\"pkfcgjstpo5w8\""
+            buildConfigField "String", "RONGYUN_KEFU", "\"KEFU153016724744283\""
+//            buildConfigField "String", "HUANXIN_TENANTID", "\"46895\""
+//            buildConfigField "String", "HUANXIN_PROJECTID", "\"2169000\""
+//            buildConfigField "String", "HUANXIN_IM", "\"shahaizi_kefu_001\""
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            // proguardFiles 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDir 'libs'
+            //说明so的路径为该libs路径，关联所有地图SDK的so文件
+        }
+    }
+    packagingOptions {
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+        exclude 'META-INF/DEPENDENCIES.txt'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/dependencies.txt'
+        exclude 'META-INF/LGPL2.1'
+        exclude 'META-INF/ASL2.0'
+        exclude 'LICENSE'
+        exclude 'NOTICE'
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile "com.android.support:support-annotations:$rootProject.supportLibraryVersion"
+
+    //让应用支持多DEX文件  65K
+    compile 'com.android.support:multidex:1.0.3'
+
+    //极光推送
+    compile 'cn.jiguang.sdk:jpush:3.1.1'
+
+    // 此处以JPush 3.0.5 版本为例。
+    compile 'cn.jiguang.sdk:jcore:1.1.9'
+
+    //或者 compile 'com.hyphenate:kefu-easeui-android:1.0.8'
+    compile project(path: ':Cklibrary')
+
+    /**
+     *              https://github.com/azhon/RatingBar
+     *              自定义评分控件
+     */
+    compile 'com.azhon:ratingbar:1.3.0'
+    compile 'com.parse:parse-android:1.13.1'
+
+    /**
+     *               https://github.com/WuXiaolong/PullLoadMoreRecyclerView
+     */
+    compile 'com.wuxiaolong.pullloadmorerecyclerview:library:1.1.2'
+    compile "com.android.support:cardview-v7:$rootProject.supportLibraryVersion"
+
+    /**
+     *           图片浏览
+     *           https://github.com/bm-x/PhotoView
+     */
+    compile 'com.bm.photoview:library:2.0.7'
+
+    /**
+     *  基于融云开发的 Android 版即时通讯（IM）应用程序
+     *  融云开发 Android 版即时通讯（IM）应用程序
+     * https://github.com/sealtalk/sealtalk-android
+     */
+
+    //    compile 'cn.rongcloud.android:IMLib:2.8.32'
+
+    //    compile 'cn.rongcloud.android:IMKit:2.8.32'
+
+    //    compile 'cn.rongcloud.android:CallLib:2.8.32'
+
+    //    compile 'cn.rongcloud.android:CallKit:2.8.32'
+
+    // compile 'cn.rongcloud.android:RedPacket:2.8.6'
+
+    //融云-----start-----
+    compile project(':IMKit')
+
+    //    compile project(':IMLib')
+
+    //    compile project(':CallKit')
+
+    //    compile project(':CallLib')
+
+    // compile project(':RedPacket')
+
+    //融云-----end-----
+
+    /**
+     * 七牛云
+     */
+    api 'com.qiniu:qiniu-android-sdk:7.2.3'
+
+    /**
+     * 友盟
+     */
+    compile 'com.umeng.sdk:common:latest.integration'
+    compile 'com.umeng.sdk:analytics:latest.integration'
+
+    /**
+     * 腾讯bugly
+     */
+    //注释掉原有bugly的仓库
+    //compile 'com.tencent.bugly:crashreport:latest.release'//其中latest.release指代最新版本号，也可以指定明确的版本号，例如2.3.2
+    // 远程依赖集成方式（推荐）
+    compile 'com.tencent.bugly:crashreport_upgrade:1.3.5'
+    // 指定tinker依赖版本（注：应用升级1.3.5版本起，不再内置tinker）
+    compile 'com.tencent.tinker:tinker-android-lib:1.9.6'
+    //其中latest.release指代最新版本号，也可以指定明确的版本号，例如2.2.0
+    compile 'com.tencent.bugly:nativecrashreport:3.3.1'
+
+    // compile 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
+    implementation files('libs/open_sdk_r5788_lite.jar')
+    implementation files('libs/SocialSDK_QQ_Full.jar')
+    implementation files('libs/SocialSDK_WeiXin_Full.jar')
+    implementation files('libs/umeng_social_api.jar')
+    implementation files('libs/umeng_social_net.jar')
+    implementation files('libs/wechat-sdk-android-with-mta-1.1.6.jar')
+    implementation files('libs/SocialSDK_Sina_Full.jar')
+    implementation files('libs/weiboSDKCore.jar')
+    implementation files('libs/BaiduLBS_Android.jar')
+    implementation files('libs/UPPayAssistEx.jar')
+    implementation files('libs/UPPayPluginExPro.jar')
+    implementation files('libs/alipaySdk-20180316.jar')
+}

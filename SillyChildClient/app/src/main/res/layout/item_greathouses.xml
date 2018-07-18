@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/WrapWrap"
+    android:background="@color/whiteColors"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_greathouses"
+        android:layout_width="@dimen/dimen165"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/img_companyGuide"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen198"
+            android:scaleType="fitXY"
+            android:src="@mipmap/placeholderfigure1" />
+
+        <LinearLayout
+            style="@style/WrapWrap"
+            android:layout_marginTop="@dimen/dimen12"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_name"
+                style="@style/WrapWrap"
+                android:text="吴京"
+                android:maxLength="5"
+                android:singleLine="true"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/dimen16" />
+
+            <TextView
+                android:id="@+id/tv_city"
+                style="@style/WrapWrap"
+                android:layout_marginLeft="@dimen/dimen15"
+                android:text="泰国.吉普岛"
+                android:singleLine="true"
+                android:textColor="@color/hintColors"
+                android:textSize="@dimen/dimen13" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/img_service"
+            android:layout_marginTop="@dimen/dimen9"
+            android:src="@mipmap/star_full"
+            style="@style/WrapWrap" />
+
+    </LinearLayout>
+</LinearLayout>

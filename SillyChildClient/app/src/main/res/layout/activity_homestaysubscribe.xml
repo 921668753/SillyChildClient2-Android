@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title1" />
+
+    <ScrollView
+        style="@style/MatchMatch"
+        android:scrollbars="none">
+
+        <LinearLayout
+            style="@style/MatchMatch"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen30"
+                android:layout_marginBottom="@dimen/dimen8"
+                android:layout_marginLeft="@dimen/dimen15"
+                android:layout_marginRight="@dimen/dimen15"
+                android:layout_marginTop="@dimen/dimen8"
+                android:background="@drawable/shape_chartercustom"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:gravity="center|center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/dimen5">
+
+                <ImageView
+                    style="@style/WrapWrap"
+                    android:layout_marginRight="@dimen/dimen10"
+                    android:src="@mipmap/search" />
+
+                <EditText
+                    style="@style/WrapMatch"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:hint="@string/checkomestay"
+                    android:maxLength="20"
+                    android:singleLine="true"
+                    android:textColor="@color/textColor"
+                    android:textColorHint="@color/designatedDriverColors"
+                    android:textCursorDrawable="@drawable/shape_cursor"
+                    android:textSize="@dimen/textsize13" />
+
+            </LinearLayout>
+
+
+            <cn.bingoogolapple.bgabanner.BGABanner
+                android:id="@+id/banner_ad"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen130"
+                android:background="@mipmap/placeholderfigure2"
+                app:banner_pageChangeDuration="2000"
+                app:banner_pointAutoPlayAble="false"
+                app:banner_pointContainerBackground="@android:color/transparent"
+                app:banner_pointDrawable="@drawable/bga_banner_selector_point"
+                app:banner_pointTopBottomMargin="2dp"
+                app:banner_transitionEffect="alpha" />
+
+            <TextView style="@style/DividerWidth" />
+
+            <include layout="@layout/item_allcompanyguide_topbar" />
+
+            <TextView style="@style/DividerWidth" />
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:layout_marginTop="@dimen/dimen10"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/dimen15"
+                android:paddingRight="@dimen/dimen15">
+
+                <TextView
+                    style="@style/AutoWrap"
+                    android:paddingBottom="@dimen/dimen13"
+                    android:paddingTop="@dimen/dimen13"
+                    android:text="@string/greatHouses"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    android:id="@+id/tv_memberShowAll"
+                    style="@style/WrapMatch"
+                    android:gravity="center"
+                    android:paddingLeft="@dimen/dimen20"
+                    android:paddingRight="@dimen/dimen7"
+                    android:text="@string/memberShowAll"
+                    android:textColor="@color/hintColors"
+                    android:textSize="@dimen/textsize12" />
+
+                <ImageView
+                    style="@style/WrapWrap"
+                    app:srcCompat="@mipmap/arrow" />
+            </LinearLayout>
+
+            <TextView style="@style/DividerWidth" />
+
+            <com.common.cklibrary.utils.myview.ChildListView
+                android:id="@+id/lv_homestaySubscribe"
+                style="@style/MatchWrap"
+                android:background="@color/whiteColors"
+                android:divider="@color/background"
+                android:dividerHeight="@dimen/dimen1"
+                android:overScrollMode="never"
+                android:scrollbars="none"
+                tools:listitem="@layout/item_house" />
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_allactivity"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title" />
+
+    <View style="@style/DividerWidth" />
+
+    <!--
+    <cn.bingoogolapple.refreshlayout.BGARefreshLayout
+        android:id="@+id/mRefreshLayout"
+        style="@style/MatchMatch"
+        android:background="@color/background">
+
+        <ListView
+            android:id="@+id/lv_order"
+            style="@style/MatchWrap"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            tools:listitem="@layout/item_seeevaluation" />
+
+    </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
+
+    <include layout="@layout/common_error"/>
+-->
+
+    <ScrollView
+        android:id="@+id/sv_evaluation"
+        style="@style/MatchAuto">
+
+        <LinearLayout
+            style="@style/MatchWrap"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/dimen15">
+
+            <LinearLayout
+                android:id="@+id/ll_userevaluation"
+                style="@style/MatchWrap"
+                android:background="@color/whiteColors"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/dimen20"
+                android:layout_marginTop="@dimen/dimen15">
+
+                <LinearLayout
+                    style="@style/MatchWrap"
+                    android:layout_marginTop="@dimen/dimen5"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/dimen15"
+                    android:paddingRight="@dimen/dimen15">
+
+                    <ImageView
+                        android:id="@+id/iv_headicon"
+                        android:layout_width="@dimen/dimen45"
+                        android:layout_height="@dimen/dimen45"
+                        android:src="@mipmap/avatar" />
+
+                    <TextView
+                        android:id="@+id/tv_name"
+                        style="@style/AutoWrap"
+                        android:layout_marginLeft="@dimen/dimen15"
+                        android:layout_marginRight="@dimen/dimen20"
+                        android:maxLength="10"
+                        android:singleLine="true"
+                        android:textColor="@color/tabColors"
+                        android:textSize="@dimen/textsize15" />
+
+                    <TextView
+                        android:layout_width="@dimen/dimen35"
+                        android:layout_height="@dimen/dimen17"
+                        android:gravity="center"
+                        android:background="@drawable/shape_userlabels"
+                        android:text="@string/user"
+                        android:textColor="@color/userShapeColors"
+                        android:textSize="@dimen/textsize12"/>
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dimen1"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/tv_time"
+                        style="@style/WrapWrap"
+                        android:layout_marginLeft="@dimen/dimen10"
+                        android:textColor="@color/hintColors"
+                        android:textSize="@dimen/textsize12" />
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_toguidescoring"
+                   style="@style/WrapWrap"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/dimen15"
+                    android:layout_marginTop="@dimen/dimen15">
+                    <TextView
+                        style="@style/WrapWrap"
+                        android:text="@string/guideScoring"
+                        android:textSize="@dimen/textsize14"
+                        android:textColor="@color/greenColors"
+                        android:layout_centerVertical="true"/>
+                    <ImageView
+                        android:id="@+id/iv_heartnumguide"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dimen15"
+                        android:maxHeight="@dimen/dimen15"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/heart_four"
+                        android:layout_marginLeft="@dimen/dimen90"
+                        android:layout_centerVertical="true"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_togoodscoring"
+                    style="@style/WrapWrap"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/dimen15"
+                    android:layout_marginTop="@dimen/dimen15">
+                    <TextView
+                        style="@style/WrapWrap"
+                        android:text="@string/GoodsScoring"
+                        android:textSize="@dimen/textsize14"
+                        android:textColor="@color/greenColors"
+                        android:layout_centerVertical="true"/>
+                    <ImageView
+                        android:id="@+id/iv_heartnumgoods"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dimen15"
+                        android:maxHeight="@dimen/dimen15"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/heart_four"
+                        android:layout_marginLeft="@dimen/dimen90"
+                        android:layout_centerVertical="true"/>
+                </RelativeLayout>
+
+                <com.common.cklibrary.utils.myview.NoScrollGridView
+                    android:id="@+id/noscrollgridview"
+                    style="@style/MatchWrap"
+                    android:minHeight="@dimen/dimen15"
+                    android:horizontalSpacing="@dimen/dimen15"
+                    android:numColumns="4"
+                    android:paddingLeft="@dimen/dimen15"
+                    android:paddingRight="@dimen/dimen15"
+                    android:verticalSpacing="@dimen/dimen10"
+                    tools:listitem="@layout/item_evaluationpictures"
+                    android:listSelector="@android:color/transparent"
+                    android:layout_marginTop="@dimen/dimen15"/>
+                <TextView
+                    android:id="@+id/tv_content"
+                    style="@style/MatchWrap"
+                    android:layout_marginTop="@dimen/dimen15"
+                    android:paddingLeft="@dimen/dimen15"
+                    android:paddingRight="@dimen/dimen15"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/dimen13"
+                    android:layout_marginBottom="@dimen/dimen20"/>
+
+
+                <LinearLayout
+                    android:id="@+id/ll_sillychildreply"
+                    style="@style/MatchWrap"
+                    android:orientation="vertical">
+                    <View
+                        android:id="@+id/v_user"
+                        style="@style/DividerWidth" />
+                    <LinearLayout
+                        style="@style/MatchWrap"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="@dimen/dimen20"
+                        android:paddingLeft="@dimen/dimen15"
+                        android:paddingRight="@dimen/dimen15"
+                        android:gravity="center_vertical">
+                        <TextView
+                            style="@style/WrapWrap"
+                            android:text="@string/sillyChildReply"
+                            android:textColor="@color/blueColors"
+                            android:textSize="@dimen/textsize14" />
+                        <TextView
+                            android:id="@+id/tv_time_silly"
+                            style="@style/MatchWrap"
+                            android:textColor="@color/hintColors"
+                            android:textSize="@dimen/textsize12"
+                            android:gravity="right"/>
+                    </LinearLayout>
+
+
+                    <com.common.cklibrary.utils.myview.NoScrollGridView
+                        android:id="@+id/noscrollgridview_silly"
+                        style="@style/MatchWrap"
+                        android:horizontalSpacing="@dimen/dimen15"
+                        android:listSelector="@android:color/transparent"
+                        android:minHeight="@dimen/dimen15"
+                        android:numColumns="4"
+                        android:paddingLeft="@dimen/dimen15"
+                        android:paddingRight="@dimen/dimen15"
+                        android:verticalSpacing="@dimen/dimen10"
+                        tools:listitem="@layout/item_evaluationpictures"
+                        android:layout_marginTop="@dimen/dimen15" />
+
+                    <TextView
+                        android:id="@+id/tv_sillychildreply"
+                        style="@style/WrapWrap"
+                        android:layout_marginTop="@dimen/dimen15"
+                        android:paddingLeft="@dimen/dimen15"
+                        android:paddingRight="@dimen/dimen15"
+                        android:textSize="@dimen/textsize14"
+                        android:layout_marginBottom="@dimen/dimen20"
+                        android:textColor="@color/tabColors"/>
+
+                    <View
+                        android:id="@+id/v_silly"
+                        style="@style/DividerWidth" />
+                </LinearLayout>
+
+            </LinearLayout>
+            <!--司导评价-->
+            <LinearLayout
+                android:id="@+id/ll_guideevaluation"
+                style="@style/MatchWrap"
+                android:background="@color/whiteColors"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/dimen20"
+                android:layout_marginTop="@dimen/dimen15">
+
+                <LinearLayout
+                    style="@style/MatchWrap"
+                    android:layout_marginTop="@dimen/dimen5"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/dimen15"
+                    android:paddingRight="@dimen/dimen15">
+
+                    <ImageView
+                        android:id="@+id/iv_guideheadicon"
+                        android:layout_width="@dimen/dimen45"
+                        android:layout_height="@dimen/dimen45"
+                        android:src="@mipmap/avatar" />
+
+                    <TextView
+                        android:id="@+id/tv_guidename"
+                        style="@style/AutoWrap"
+                        android:layout_marginLeft="@dimen/dimen15"
+                        android:layout_marginRight="@dimen/dimen20"
+                        android:maxLength="10"
+                        android:singleLine="true"
+                        android:textColor="@color/tabColors"
+                        android:textSize="@dimen/textsize15" />
+
+                    <TextView
+                        android:layout_width="@dimen/dimen35"
+                        android:layout_height="@dimen/dimen17"
+                        android:gravity="center"
+                        android:background="@drawable/shape_code"
+                        android:text="@string/companyGuide"
+                        android:textColor="@color/greenColors"
+                        android:textSize="@dimen/textsize12"/>
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dimen1"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/tv_guidetime"
+                        style="@style/WrapWrap"
+                        android:layout_marginLeft="@dimen/dimen10"
+                        android:textColor="@color/hintColors"
+                        android:textSize="@dimen/textsize12" />
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_guidscoring"
+                    style="@style/WrapWrap"
+                    android:paddingLeft="@dimen/dimen15"
+                    android:layout_marginTop="@dimen/dimen15">
+                    <TextView
+                        style="@style/WrapWrap"
+                        android:text="@string/scoring"
+                        android:textSize="@dimen/textsize14"
+                        android:textColor="@color/greenColors"
+                        android:layout_centerVertical="true"/>
+                    <ImageView
+                        android:id="@+id/iv_heartnumg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dimen15"
+                        android:maxHeight="@dimen/dimen15"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/heart_four"
+                        android:layout_marginLeft="@dimen/dimen90"
+                        android:layout_centerVertical="true"/>
+                </RelativeLayout>
+
+                <com.common.cklibrary.utils.myview.NoScrollGridView
+                android:id="@+id/noscrollgridview_guide"
+                style="@style/MatchWrap"
+                android:minHeight="@dimen/dimen15"
+                android:horizontalSpacing="@dimen/dimen15"
+                android:numColumns="4"
+                android:paddingLeft="@dimen/dimen15"
+                android:paddingRight="@dimen/dimen15"
+                android:verticalSpacing="@dimen/dimen10"
+                tools:listitem="@layout/item_evaluationpictures"
+                android:listSelector="@android:color/transparent"
+                    android:layout_marginTop="@dimen/dimen15"/>
+                <TextView
+                    android:id="@+id/tv_guideevaluation"
+                    style="@style/MatchWrap"
+                    android:layout_marginTop="@dimen/dimen15"
+                    android:paddingLeft="@dimen/dimen15"
+                    android:paddingRight="@dimen/dimen15"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/dimen13"
+                    android:layout_marginBottom="@dimen/dimen20"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <include layout="@layout/common_error" />
+
+</LinearLayout>

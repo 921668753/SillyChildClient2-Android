@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title" />
+
+    <TextView style="@style/DividerWidth" />
+
+    <ScrollView
+        style="@style/MatchAuto"
+        android:scrollbars="none">
+
+        <LinearLayout
+            style="@style/MatchWrap"
+            android:orientation="vertical">
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:layout_marginTop="@dimen/dimen10"
+                android:background="@color/whiteColors"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:paddingBottom="@dimen/dimen15"
+                    android:paddingLeft="@dimen/dimen15"
+                    android:paddingTop="@dimen/dimen15"
+                    android:text="@string/yourName"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+
+                <EditText
+                    android:id="@+id/et_yourName"
+                    style="@style/AutoMatch"
+                    android:background="@color/whiteColors"
+                    android:hint="@string/pleaseFillYourName"
+                    android:paddingLeft="@dimen/dimen28"
+                    android:paddingRight="@dimen/dimen15"
+                    android:singleLine="true"
+                    android:textColorHint="@color/byTheDayHintColors"
+                    android:textCursorDrawable="@drawable/shape_cursor"
+                    android:textSize="@dimen/textsize15" />
+
+            </LinearLayout>
+
+            <TextView style="@style/DividerWidth" />
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:background="@color/whiteColors"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:paddingBottom="@dimen/dimen15"
+                    android:paddingLeft="@dimen/dimen15"
+                    android:paddingTop="@dimen/dimen15"
+                    android:text="@string/contactWay"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+
+                <EditText
+                    android:id="@+id/et_contactWay"
+                    style="@style/AutoMatch"
+                    android:background="@color/whiteColors"
+                    android:digits="1234567890"
+                    android:hint="@string/pleaseFillContactWay"
+                    android:inputType="phone"
+                    android:paddingLeft="@dimen/dimen28"
+                    android:paddingRight="@dimen/dimen15"
+                    android:singleLine="true"
+                    android:textColorHint="@color/byTheDayHintColors"
+                    android:textCursorDrawable="@drawable/shape_cursor"
+                    android:textSize="@dimen/textsize15" />
+
+            </LinearLayout>
+
+            <TextView style="@style/DividerWidth" />
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:background="@color/whiteColors"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:paddingBottom="@dimen/dimen15"
+                    android:paddingLeft="@dimen/dimen15"
+                    android:paddingTop="@dimen/dimen15"
+                    android:text="@string/passportNum"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+
+                <EditText
+                    android:id="@+id/et_passportNum"
+                    style="@style/AutoMatch"
+                    android:background="@color/whiteColors"
+                    android:digits="1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+                    android:hint="@string/pleaseFillPassportNum"
+                    android:inputType="phone"
+                    android:paddingLeft="@dimen/dimen40"
+                    android:paddingRight="@dimen/dimen15"
+                    android:singleLine="true"
+                    android:textColorHint="@color/byTheDayHintColors"
+                    android:textCursorDrawable="@drawable/shape_cursor"
+                    android:textSize="@dimen/textsize15" />
+
+            </LinearLayout>
+
+            <TextView style="@style/DividerWidth" />
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:background="@color/whiteColors"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:paddingBottom="@dimen/dimen15"
+                    android:paddingLeft="@dimen/dimen15"
+                    android:paddingTop="@dimen/dimen15"
+                    android:text="@string/idNumber"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+
+                <EditText
+                    android:id="@+id/et_idNumber"
+                    style="@style/AutoMatch"
+                    android:background="@color/whiteColors"
+                    android:digits="1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+                    android:hint="@string/pleaseFillIdNumber"
+                    android:inputType="phone"
+                    android:paddingLeft="@dimen/dimen28"
+                    android:paddingRight="@dimen/dimen15"
+                    android:singleLine="true"
+                    android:textColorHint="@color/byTheDayHintColors"
+                    android:textCursorDrawable="@drawable/shape_cursor"
+                    android:textSize="@dimen/textsize15" />
+
+            </LinearLayout>
+
+            <TextView style="@style/DividerWidth" />
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:background="@color/whiteColors"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:paddingBottom="@dimen/dimen15"
+                    android:paddingLeft="@dimen/dimen15"
+                    android:paddingTop="@dimen/dimen15"
+                    android:text="@string/strokeModels"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    android:id="@+id/tv_strokeModels"
+                    style="@style/AutoMatch"
+                    android:background="@color/whiteColors"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/dimen28"
+                    android:paddingRight="@dimen/dimen15"
+                    android:singleLine="true"
+                    android:text="--"
+                    android:textColor="@color/hintColors"
+                    android:textSize="@dimen/textsize15" />
+
+            </LinearLayout>
+
+
+            <include layout="@layout/item_bythedag_bags" />
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:layout_marginTop="@dimen/dimen10"
+                android:background="@color/whiteColors"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:paddingBottom="@dimen/dimen15"
+                    android:paddingLeft="@dimen/dimen15"
+                    android:paddingTop="@dimen/dimen15"
+                    android:text="@string/numberTravel"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize16" />
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:background="@color/whiteColors"
+                    android:paddingLeft="@dimen/dimen5"
+                    android:text="@string/xing"
+                    android:textColor="@color/redColors"
+                    android:textSize="@dimen/textsize13"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tv_contactWay"
+                    style="@style/AutoMatch"
+                    android:background="@color/whiteColors"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/dimen28"
+                    android:paddingRight="@dimen/dimen15"
+                    android:singleLine="true"
+                    android:text="--"
+                    android:textColor="@color/hintColors"
+                    android:textSize="@dimen/textsize16" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:layout_marginTop="@dimen/dimen10"
+                android:background="@color/whiteColors"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:paddingBottom="@dimen/dimen15"
+                    android:paddingLeft="@dimen/dimen15"
+                    android:paddingTop="@dimen/dimen15"
+                    android:text="@string/travelTime"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize16" />
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:background="@color/whiteColors"
+                    android:paddingLeft="@dimen/dimen5"
+                    android:text="@string/xing"
+                    android:textColor="@color/redColors"
+                    android:textSize="@dimen/textsize13"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tv_travelTime"
+                    style="@style/AutoMatch"
+                    android:background="@color/whiteColors"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/dimen28"
+                    android:paddingRight="@dimen/dimen15"
+                    android:singleLine="true"
+                    android:text="--"
+                    android:textColor="@color/hintColors"
+                    android:textSize="@dimen/textsize16" />
+
+            </LinearLayout>
+
+
+            <include layout="@layout/item_cost_instruction" />
+
+
+            <EditText
+                android:id="@+id/et_remark"
+                style="@style/MatchWrap"
+                android:layout_marginBottom="@dimen/dimen18"
+                android:layout_marginTop="@dimen/dimen10"
+                android:background="@color/whiteColors"
+                android:gravity="left|top"
+                android:hint="@string/pleaseFillInRemarks"
+                android:minHeight="@dimen/dimen85"
+                android:padding="@dimen/dimen15"
+                android:textColorHint="@color/byTheDayHintColors"
+                android:textCursorDrawable="@drawable/shape_cursor"
+                android:textSize="@dimen/textsize15" />
+
+            <include layout="@layout/common_bottombar" />
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

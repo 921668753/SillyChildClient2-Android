@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title" />
+
+    <TextView style="@style/DividerWidth" />
+
+    <cn.bingoogolapple.refreshlayout.BGARefreshLayout
+        android:id="@+id/mRefreshLayout"
+        style="@style/MatchAuto"
+        android:background="@color/background">
+        <!-- item_companyguidemassage -->
+        <ListView
+            android:id="@+id/lv_address"
+            style="@style/MatchMatch"
+            android:divider="@color/background"
+            android:dividerHeight="@dimen/dimen10"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            tools:listitem="@layout/item_deliveryaddress" />
+
+    </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
+
+    <include layout="@layout/common_error" />
+
+    <LinearLayout
+        style="@style/Match50"
+        android:layout_alignParentBottom="true"
+        android:background="@color/whiteColors"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <View style="@style/DividerWidth" />
+
+        <TextView
+            android:id="@+id/tv_newaddress"
+            android:layout_width="@dimen/dimen230"
+            android:layout_height="@dimen/dimen40"
+            android:layout_marginBottom="@dimen/dimen5"
+            android:layout_marginTop="@dimen/dimen5"
+            android:background="@drawable/shape_determinepay"
+            android:gravity="center"
+            android:text="@string/newAddress"
+            android:textColor="@color/whiteColors"
+            android:textSize="@dimen/textsize16" />
+    </LinearLayout>
+
+</LinearLayout>

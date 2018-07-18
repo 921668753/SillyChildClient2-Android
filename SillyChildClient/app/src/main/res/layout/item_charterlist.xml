@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchWrap"
+    android:background="@color/whiteColors"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_title"
+        style="@style/MatchWrap"
+        android:paddingLeft="@dimen/dimen15"
+        android:paddingRight="@dimen/dimen15"
+        android:paddingTop="@dimen/dimen19"
+        android:singleLine="true"
+        android:text="--"
+        android:textColor="@color/titletextcolors"
+        android:textSize="@dimen/textsize15" />
+
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_price"
+            style="@style/WrapWrap"
+            android:paddingLeft="@dimen/dimen15"
+            android:paddingTop="@dimen/dimen12"
+            android:text="20000"
+            android:textColor="@color/guideShapeColors"
+            android:textSize="@dimen/textsize16" />
+
+        <TextView
+            android:id="@+id/tv_unit"
+            style="@style/WrapWrap"
+            android:paddingTop="@dimen/dimen12"
+            android:text="@string/yuan1"
+            android:textColor="@color/titletextcolors"
+            android:textSize="@dimen/textsize16" />
+
+
+        <TextView style="@style/AutoWrap" />
+
+
+        <TextView
+            style="@style/WrapMatch"
+            android:layout_marginRight="@dimen/dimen15"
+            android:layout_marginTop="@dimen/dimen8"
+            android:background="@drawable/shape_code1"
+            android:gravity="center"
+            android:paddingLeft="@dimen/dimen12"
+            android:paddingRight="@dimen/dimen12"
+            android:text="@string/details"
+            android:textColor="@color/hintColors"
+            android:textSize="@dimen/textsize13" />
+
+    </LinearLayout>
+
+
+    <com.common.cklibrary.utils.myview.NoScrollGridView
+        android:id="@+id/gv_charterList"
+        style="@style/MatchWrap"
+        android:layout_marginBottom="@dimen/dimen16"
+        android:layout_marginTop="@dimen/dimen12"
+        android:focusable="false"
+        android:horizontalSpacing="@dimen/dimen8"
+        android:listSelector="@android:color/transparent"
+        android:numColumns="3"
+        android:overScrollMode="never"
+        android:paddingLeft="@dimen/dimen15"
+        android:paddingRight="@dimen/dimen15"
+        android:scrollbars="none"
+        android:verticalSpacing="@dimen/dimen8"
+        tools:listitem="@layout/item_gv_charterlist" />
+
+</LinearLayout>

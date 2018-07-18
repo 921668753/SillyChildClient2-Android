@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/WrapWrap"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_name"
+        style="@style/WrapWrap"
+        android:background="@drawable/shape_specifications"
+        android:paddingBottom="@dimen/dimen7"
+        android:paddingLeft="@dimen/dimen15"
+        android:paddingRight="@dimen/dimen15"
+        android:paddingTop="@dimen/dimen7"
+        android:text="#506"
+        android:textColor="@color/whiteColors"
+        android:textSize="@dimen/textsize13" />
+
+</LinearLayout>

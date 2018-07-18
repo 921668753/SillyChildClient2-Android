@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/WrapMatch"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_recentNews"
+        style="@style/MatchWrap"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/dimen15">
+
+        <ImageView
+            android:id="@+id/img_recentNews"
+            android:layout_width="@dimen/dimen186"
+            android:layout_height="@dimen/dimen105"
+            android:scaleType="fitXY"
+            android:src="@mipmap/placeholderfigure" />
+
+        <LinearLayout
+            style="@style/MatchWrap"
+            android:orientation="horizontal"
+            android:paddingTop="@dimen/dimen10">
+
+            <TextView
+                android:id="@+id/tv_title"
+                style="@style/WrapMatch"
+                android:singleLine="true"
+                android:text="--"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize14" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            style="@style/MatchWrap"
+            android:orientation="horizontal"
+            android:paddingTop="@dimen/dimen6">
+
+            <TextView
+                android:id="@+id/tv_name"
+                style="@style/WrapMatch"
+                android:singleLine="true"
+                android:text="--"
+                android:textColor="@color/hintColors"
+                android:textSize="@dimen/textsize12" />
+
+            <TextView
+                android:id="@+id/tv_zan"
+                style="@style/MatchMatch"
+                android:gravity="bottom|right"
+                android:singleLine="true"
+                android:text="--"
+                android:textColor="@color/hintColors"
+                android:textSize="@dimen/textsize12" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

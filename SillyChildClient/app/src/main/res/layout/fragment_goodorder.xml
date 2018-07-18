@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    style="@style/MatchMatch"
+    android:background="@color/background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen44"
+        android:background="@color/whiteColors"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/ll_good_obligation"
+            style="@style/AutoMatch"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_good_obligation"
+                style="@style/MatchAuto"
+                android:gravity="center"
+                android:text="@string/obligation"
+                android:textColor="@color/greenColors"
+                android:textSize="@dimen/dimen15" />
+
+            <View
+                android:id="@+id/v_good_obligation"
+                android:layout_width="@dimen/dimen52"
+                android:layout_height="@dimen/dimen2"
+                android:background="@color/greenColors" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_good_send"
+            style="@style/AutoMatch"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_good_send"
+                style="@style/MatchAuto"
+                android:gravity="center"
+                android:text="@string/sendGoods"
+                android:textColor="@color/hintColors"
+                android:textSize="@dimen/dimen15" />
+
+            <View
+                android:id="@+id/v_good_send"
+                android:layout_width="@dimen/dimen52"
+                android:layout_height="@dimen/dimen2"
+                android:background="@android:color/transparent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_good_wait"
+            style="@style/AutoMatch"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_good_wait"
+                style="@style/MatchAuto"
+                android:gravity="center"
+                android:text="@string/waitGoods"
+                android:textColor="@color/hintColors"
+                android:textSize="@dimen/dimen15" />
+
+            <View
+                android:id="@+id/v_good_wait"
+                android:layout_width="@dimen/dimen52"
+                android:layout_height="@dimen/dimen2"
+                android:background="@android:color/transparent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_good_completed"
+            style="@style/AutoMatch"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_good_completed"
+                style="@style/MatchAuto"
+                android:gravity="center"
+                android:text="@string/completed"
+                android:textColor="@color/hintColors"
+                android:textSize="@dimen/dimen15" />
+
+            <View
+                android:id="@+id/v_good_completed"
+                android:layout_width="@dimen/dimen52"
+                android:layout_height="@dimen/dimen2"
+                android:background="@android:color/transparent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_good_afterSale"
+            style="@style/AutoMatch"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_good_afterSale"
+                style="@style/MatchAuto"
+                android:gravity="center"
+                android:text="@string/afterSale"
+                android:textColor="@color/hintColors"
+                android:textSize="@dimen/dimen15" />
+
+            <View
+                android:id="@+id/v_good_afterSale"
+                android:layout_width="@dimen/dimen52"
+                android:layout_height="@dimen/dimen2"
+                android:background="@android:color/transparent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_good_all"
+            style="@style/AutoMatch"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_good_all"
+                style="@style/MatchAuto"
+                android:gravity="center"
+                android:text="@string/all"
+                android:textColor="@color/hintColors"
+                android:textSize="@dimen/dimen15" />
+
+            <View
+                android:id="@+id/v_good_all"
+                android:layout_width="@dimen/dimen52"
+                android:layout_height="@dimen/dimen2"
+                android:background="@android:color/transparent" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/order_content"
+        style="@style/MatchMatch"/>
+
+</LinearLayout>

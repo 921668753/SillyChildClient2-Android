@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrap"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/img_visa"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen102"
+        android:scaleType="fitXY"
+        android:src="@mipmap/placeholderfigure" />
+
+    <TextView
+        android:id="@+id/tv_country"
+        style="@style/MatchWrap"
+        android:layout_marginTop="@dimen/dimen10"
+        android:background="@color/whiteColors"
+        android:gravity="center"
+        android:text="日本"
+        android:textColor="@color/textColor"
+        android:textSize="@dimen/textsize15" />
+
+</LinearLayout>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrap"
+    android:background="@color/whiteColors"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/dimen15"
+    android:paddingRight="@dimen/dimen15"
+    android:paddingTop="@dimen/dimen10">
+
+    <ImageView
+        android:id="@+id/img_hotStrategy"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen200"
+        android:scaleType="fitXY"
+        android:src="@mipmap/placeholderfigure" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        style="@style/MatchWrap"
+        android:paddingBottom="@dimen/dimen10"
+        android:paddingTop="@dimen/dimen11"
+        android:singleLine="true"
+        android:text="穿越来昌庆宫"
+        android:textColor="@color/textColor"
+        android:textSize="@dimen/textsize16" />
+
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/dimen15">
+
+        <TextView
+            android:id="@+id/tv_describe"
+            style="@style/AutoWrap"
+            android:paddingRight="@dimen/dimen10"
+            android:singleLine="true"
+            android:text="穿越来昌庆宫穿越来昌庆宫穿越来昌庆宫穿越来昌庆宫穿越来昌庆宫穿越来昌庆宫穿越来昌庆宫穿越来昌庆宫穿越来昌庆宫"
+            android:textColor="@color/hintColors"
+            android:textSize="@dimen/textsize12" />
+
+        <TextView
+            android:id="@+id/tv_greatNumber"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:gravity="right"
+            android:singleLine="true"
+            android:text="167"
+            android:textColor="@color/hintColors"
+            android:textSize="@dimen/textsize12" />
+
+        <TextView
+            style="@style/WrapWrap"
+            android:text="@string/zan"
+            android:textColor="@color/hintColors"
+            android:textSize="@dimen/textsize12" />
+    </LinearLayout>
+</LinearLayout>

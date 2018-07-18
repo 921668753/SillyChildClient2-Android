@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dimen115"
+    android:paddingBottom="@dimen/dimen15"
+    android:paddingLeft="@dimen/dimen15"
+    android:paddingRight="@dimen/dimen15">
+
+    <LinearLayout
+        android:id="@+id/ll_coupons"
+        style="@style/MatchWrap"
+        android:background="@mipmap/coupon_used"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                style="@style/WrapWrap"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:text="@string/renminbi"
+                    android:textColor="@color/whiteColors"
+                    android:textSize="@dimen/textsize12" />
+
+                <TextView
+                    android:id="@+id/tv_redpacketnum"
+                    style="@style/WrapWrap"
+                    android:singleLine="true"
+                    android:text="111"
+                    android:textColor="@color/whiteColors"
+                    android:textSize="@dimen/textsize31" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_useconditions"
+                style="@style/WrapWrap"
+                android:text="满50可用"
+                android:textColor="@color/whiteColors"
+                android:textSize="@dimen/dimen12" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.87"
+            android:background="@android:color/transparent"
+            android:paddingLeft="@dimen/dimen13"
+            android:paddingTop="@dimen/dimen10">
+
+            <TextView
+                android:id="@+id/tv_couponstype"
+                style="@style/WrapWrap"
+                android:singleLine="true"
+                android:text="通用红包"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize14" />
+
+            <LinearLayout
+                android:id="@+id/ll_expirydate"
+                style="@style/WrapWrap"
+                android:layout_below="@id/tv_couponstype"
+                android:layout_marginTop="@dimen/dimen10"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:text="@string/expiryDate"
+                    android:textColor="@color/hintColors"
+                    android:textSize="@dimen/textsize11" />
+
+                <TextView
+                    android:id="@+id/tv_expirydate"
+                    style="@style/WrapWrap"
+                    android:singleLine="true"
+                    android:text="2018-06-10"
+                    android:textColor="@color/hintColors"
+                    android:textSize="@dimen/textsize11" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_couponsexplain"
+                style="@style/WrapWrap"
+                android:layout_alignParentBottom="true"
+                android:paddingBottom="@dimen/dimen21"
+                android:singleLine="true"
+                android:text="仅限12345678910用户使用"
+                android:textColor="@color/hintColors"
+                android:textSize="@dimen/textsize11" />
+
+            <ImageView
+                android:id="@+id/iv_image"
+                android:layout_width="@dimen/dimen44"
+                android:layout_height="@dimen/dimen44"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/dimen15"
+                android:src="@mipmap/mine_yishiyongxxx" />
+
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>

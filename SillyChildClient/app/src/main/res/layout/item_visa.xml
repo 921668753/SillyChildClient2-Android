@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchWrap"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_name"
+        style="@style/MatchWrap"
+        android:paddingBottom="@dimen/dimen17"
+        android:paddingLeft="@dimen/dimen20"
+        android:paddingRight="@dimen/dimen20"
+        android:paddingTop="@dimen/dimen17"
+        android:text="亚洲"
+        android:textColor="@color/textColor"
+        android:textSize="@dimen/textsize17" />
+
+    <com.common.cklibrary.utils.myview.NoScrollGridView
+        android:id="@+id/gv_itemVisa"
+        style="@style/MatchWrap"
+        android:horizontalSpacing="@dimen/dimen15"
+        android:numColumns="2"
+        android:overScrollMode="never"
+        android:paddingLeft="@dimen/dimen20"
+        android:paddingRight="@dimen/dimen20"
+        android:scrollbars="none"
+        android:verticalSpacing="@dimen/dimen15"
+        tools:listitem="@layout/item_itemvisa" />
+
+</LinearLayout>

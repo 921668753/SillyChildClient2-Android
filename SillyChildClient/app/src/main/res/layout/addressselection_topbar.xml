@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrap"
+    android:background="@color/whiteColors"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/ll_inland"
+        style="@style/AutoWrap"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tv_inland"
+            style="@style/MatchAuto"
+            android:gravity="center"
+            android:paddingBottom="@dimen/dimen13"
+            android:paddingTop="@dimen/dimen13"
+            android:text="@string/inland"
+            android:textColor="@color/messagetopbarColors"
+            android:textSize="@dimen/textsize16" />
+
+        <View
+            android:id="@+id/v_inland1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen2"
+            android:background="@android:color/transparent" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_overseas"
+        style="@style/AutoWrap"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_overseas"
+            style="@style/MatchAuto"
+            android:gravity="center"
+            android:paddingBottom="@dimen/dimen13"
+            android:paddingTop="@dimen/dimen13"
+            android:text="@string/overseas"
+            android:textColor="@color/greenColors"
+            android:textSize="@dimen/textsize16" />
+
+        <View
+            android:id="@+id/v_overseas1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen2"
+            android:background="@color/greenColors" />
+
+    </LinearLayout>
+</LinearLayout>

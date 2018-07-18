@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrap"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/MatchWrap"
+        android:layout_marginTop="@dimen/dimen10"
+        android:background="@color/whiteColors"
+        android:paddingBottom="@dimen/dimen14"
+        android:paddingLeft="@dimen/dimen15"
+        android:paddingTop="@dimen/dimen15"
+        android:text="@string/bags"
+        android:textColor="@color/tabColors"
+        android:textSize="@dimen/textsize13" />
+
+    <include layout="@layout/common_dividerwidth1" />
+
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:background="@android:color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dimen15"
+        android:paddingRight="@dimen/dimen15">
+
+        <TextView
+            style="@style/AutoWrap"
+            android:paddingBottom="@dimen/dimen20"
+            android:paddingRight="@dimen/dimen15"
+            android:paddingTop="@dimen/dimen20"
+            android:text="@string/inch24"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize16" />
+
+        <TextView
+            android:id="@+id/tv_subtractionBags3"
+            android:layout_width="@dimen/dimen30"
+            android:layout_height="@dimen/dimen30"
+            android:layout_marginRight="@dimen/dimen5"
+            android:background="@drawable/shape_code1"
+            android:gravity="center"
+            android:text="—"
+            android:textColor="@color/hintColors"
+            android:textSize="@dimen/textsize15" />
+
+        <TextView
+            android:id="@+id/tv_bags3"
+            android:layout_width="@dimen/dimen43"
+            android:layout_height="@dimen/dimen30"
+            android:background="@drawable/shape_code1"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="3"
+            android:singleLine="true"
+            android:text="0"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize15" />
+
+        <TextView
+            android:id="@+id/tv_addBags3"
+            android:layout_width="@dimen/dimen30"
+            android:layout_height="@dimen/dimen30"
+            android:layout_marginLeft="@dimen/dimen5"
+            android:background="@drawable/shape_code"
+            android:gravity="center"
+            android:text="+"
+            android:textColor="@color/greenColors"
+            android:textSize="@dimen/textsize15" />
+
+    </LinearLayout>
+
+
+    <include layout="@layout/common_dividerwidth1" />
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:background="@android:color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dimen15"
+        android:paddingRight="@dimen/dimen15">
+
+        <TextView
+            style="@style/AutoWrap"
+            android:paddingBottom="@dimen/dimen20"
+            android:paddingRight="@dimen/dimen15"
+            android:paddingTop="@dimen/dimen20"
+            android:text="@string/inch26"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize16" />
+
+        <TextView
+            android:id="@+id/tv_subtractionBags2"
+            android:layout_width="@dimen/dimen30"
+            android:layout_height="@dimen/dimen30"
+            android:layout_marginRight="@dimen/dimen5"
+            android:background="@drawable/shape_code1"
+            android:gravity="center"
+            android:text="—"
+            android:textColor="@color/hintColors"
+            android:textSize="@dimen/textsize15" />
+
+        <TextView
+            android:id="@+id/tv_bags2"
+            android:layout_width="@dimen/dimen43"
+            android:layout_height="@dimen/dimen30"
+            android:background="@drawable/shape_code1"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="3"
+            android:singleLine="true"
+            android:text="0"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize15" />
+
+        <TextView
+            android:id="@+id/tv_addBags2"
+            android:layout_width="@dimen/dimen30"
+            android:layout_height="@dimen/dimen30"
+            android:layout_marginLeft="@dimen/dimen5"
+            android:background="@drawable/shape_code"
+            android:gravity="center"
+            android:text="+"
+            android:textColor="@color/greenColors"
+            android:textSize="@dimen/textsize15" />
+
+    </LinearLayout>
+
+
+    <include layout="@layout/common_dividerwidth1" />
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:background="@android:color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dimen15"
+        android:paddingRight="@dimen/dimen15">
+
+        <TextView
+            style="@style/AutoWrap"
+            android:paddingBottom="@dimen/dimen20"
+            android:paddingRight="@dimen/dimen15"
+            android:paddingTop="@dimen/dimen20"
+            android:text="@string/inch28"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize16" />
+
+        <TextView
+            android:id="@+id/tv_subtractionBags1"
+            android:layout_width="@dimen/dimen30"
+            android:layout_height="@dimen/dimen30"
+            android:layout_marginRight="@dimen/dimen5"
+            android:background="@drawable/shape_code1"
+            android:gravity="center"
+            android:text="—"
+            android:textColor="@color/hintColors"
+            android:textSize="@dimen/textsize15" />
+
+        <TextView
+            android:id="@+id/tv_bags1"
+            android:layout_width="@dimen/dimen43"
+            android:layout_height="@dimen/dimen30"
+            android:background="@drawable/shape_code1"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="3"
+            android:singleLine="true"
+            android:text="0"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize15" />
+
+        <TextView
+            android:id="@+id/tv_addBags1"
+            android:layout_width="@dimen/dimen30"
+            android:layout_height="@dimen/dimen30"
+            android:layout_marginLeft="@dimen/dimen5"
+            android:background="@drawable/shape_code"
+            android:gravity="center"
+            android:text="+"
+            android:textColor="@color/greenColors"
+            android:textSize="@dimen/textsize15" />
+
+    </LinearLayout>
+
+    <include layout="@layout/common_dividerwidth1" />
+
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:background="@android:color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dimen15"
+        android:paddingRight="@dimen/dimen15">
+
+        <TextView
+            style="@style/AutoWrap"
+            android:paddingBottom="@dimen/dimen20"
+            android:paddingRight="@dimen/dimen15"
+            android:paddingTop="@dimen/dimen20"
+            android:text="@string/inch30"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize16" />
+
+        <TextView
+            android:id="@+id/tv_subtractionBags"
+            android:layout_width="@dimen/dimen30"
+            android:layout_height="@dimen/dimen30"
+            android:layout_marginRight="@dimen/dimen5"
+            android:background="@drawable/shape_code1"
+            android:gravity="center"
+            android:text="—"
+            android:textColor="@color/hintColors"
+            android:textSize="@dimen/textsize15" />
+
+        <TextView
+            android:id="@+id/tv_bags"
+            android:layout_width="@dimen/dimen43"
+            android:layout_height="@dimen/dimen30"
+            android:background="@drawable/shape_code1"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="3"
+            android:singleLine="true"
+            android:text="0"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize15" />
+
+        <TextView
+            android:id="@+id/tv_addBags"
+            android:layout_width="@dimen/dimen30"
+            android:layout_height="@dimen/dimen30"
+            android:layout_marginLeft="@dimen/dimen5"
+            android:background="@drawable/shape_code"
+            android:gravity="center"
+            android:text="+"
+            android:textColor="@color/greenColors"
+            android:textSize="@dimen/textsize15" />
+
+    </LinearLayout>
+
+    <!--<com.common.cklibrary.utils.myview.ChildLiistView-->
+    <!--android:id="@+id/lv_bags"-->
+    <!--style="@style/MatchWrap"-->
+    <!--android:background="@color/whiteColors"-->
+    <!--android:divider="@color/background"-->
+    <!--android:dividerHeight="@dimen/dimen1"-->
+    <!--android:overScrollMode="never"-->
+    <!--android:scrollbars="none"-->
+    <!--tools:listitem="@layout/item_bythedag_bags1" />-->
+
+    <!--<TextView style="@style/DividerWidth" />-->
+
+    <!--<LinearLayout-->
+    <!--android:id="@+id/ll_addBag"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="@dimen/dimen54"-->
+    <!--android:background="@color/whiteColors"-->
+    <!--android:gravity="center"-->
+    <!--android:orientation="horizontal">-->
+
+    <!--<ImageView-->
+    <!--style="@style/WrapWrap"-->
+    <!--android:src="@mipmap/icon_add" />-->
+
+    <!--<TextView-->
+    <!--style="@style/WrapWrap"-->
+    <!--android:layout_marginLeft="@dimen/dimen9"-->
+    <!--android:text="@string/addBag"-->
+    <!--android:textColor="@color/textColor"-->
+    <!--android:textSize="@dimen/textsize15" />-->
+
+    <!--</LinearLayout>-->
+
+</LinearLayout>

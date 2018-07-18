@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        style="@style/Match44"
+        android:background="@color/whiteColors"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="@dimen/dimen37"
+            android:layout_height="match_parent"
+            android:paddingLeft="@dimen/dimen15"
+            android:paddingRight="@dimen/dimen15"
+            android:src="@mipmap/back" />
+
+        <LinearLayout
+            android:id="@+id/ll_checkProduct"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen36"
+            android:layout_marginLeft="@dimen/dimen5"
+            android:layout_marginRight="@dimen/dimen24"
+            android:background="@mipmap/home_search_bar_bg"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center|center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/dimen5">
+
+            <ImageView
+                style="@style/WrapWrap"
+                android:layout_marginLeft="@dimen/dimen14"
+                android:src="@mipmap/search" />
+
+            <TextView
+                style="@style/AutoMatch"
+                android:background="@android:color/transparent"
+                android:gravity="center_vertical"
+                android:hint="@string/checkProduct"
+                android:imeOptions="actionSearch"
+                android:maxLength="20"
+                android:minWidth="@dimen/dimen150"
+                android:paddingLeft="@dimen/dimen10"
+                android:singleLine="true"
+                android:textColorHint="@color/searchTextColors"
+                android:textSize="@dimen/textsize14" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <TextView style="@style/DividerWidth" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen40"
+        android:background="@color/whiteColors"
+        android:orientation="horizontal">
+
+
+        <LinearLayout
+            android:id="@+id/ll_comprehensiveRanking"
+            style="@style/AutoMatch"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/WrapWrap"
+                android:text="@string/comprehensiveRanking"
+                android:textColor="@color/titletextcolors"
+                android:textSize="@dimen/textsize12" />
+
+        </LinearLayout>
+
+
+        <TextView style="@style/DividerHeight" />
+
+
+        <LinearLayout
+            android:id="@+id/ll_salesPreferred"
+            style="@style/AutoMatch"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+
+            <TextView
+                style="@style/WrapWrap"
+                android:text="@string/salesPreferred"
+                android:textColor="@color/titletextcolors"
+                android:textSize="@dimen/textsize12" />
+
+
+        </LinearLayout>
+
+        <TextView style="@style/DividerHeight" />
+
+        <LinearLayout
+            android:id="@+id/ll_pricePriority"
+            style="@style/AutoMatch"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/WrapWrap"
+                android:text="@string/pricePriority"
+                android:textColor="@color/titletextcolors"
+                android:textSize="@dimen/textsize12" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <cn.bingoogolapple.refreshlayout.BGARefreshLayout
+        android:id="@+id/mRefreshLayout"
+        style="@style/MatchMatch">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv"
+            style="@style/MatchMatch"
+            android:layout_marginTop="@dimen/dimen5"
+            android:overScrollMode="never"
+            android:paddingLeft="@dimen/dimen2"
+            android:paddingRight="@dimen/dimen2"
+            android:scrollbars="none"
+            tools:listitem="@layout/item_mallhomepage" />
+
+    </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
+
+    <include layout="@layout/common_error" />
+
+</LinearLayout>

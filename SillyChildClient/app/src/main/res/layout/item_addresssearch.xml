@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrap"
+    android:background="@color/whiteColors"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_addressName"
+        style="@style/MatchWrap"
+        android:paddingBottom="@dimen/dimen18"
+        android:paddingLeft="@dimen/dimen15"
+        android:paddingRight="@dimen/dimen15"
+        android:paddingTop="@dimen/dimen18"
+        android:singleLine="true"
+        android:text="@string/aboutMe"
+        android:textColor="@color/textColor"
+        android:textSize="@dimen/textsize16" />
+
+    <include layout="@layout/common_dividerwidth1" />
+
+</LinearLayout>

@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_all"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title" />
+
+    <TextView style="@style/DividerWidth" />
+
+    <LinearLayout
+        style="@style/Match44"
+        android:background="@color/whiteColors"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dimen15">
+
+        <TextView
+            android:layout_width="@dimen/dimen65"
+            android:layout_height="wrap_content"
+            android:text="@string/consignee"
+            android:textColor="@color/titletextcolors"
+            android:textSize="@dimen/textsize14" />
+
+        <EditText
+            android:id="@+id/et_name"
+            style="@style/MatchMatch"
+            android:layout_marginLeft="@dimen/dimen35"
+            android:background="@android:color/transparent"
+            android:gravity="center_vertical"
+            android:hint="@string/consignee1"
+            android:textColor="@color/titletextcolors"
+            android:textColorHint="@color/hintColors"
+            android:textCursorDrawable="@drawable/shape_cursor"
+            android:textSize="@dimen/textsize14" />
+    </LinearLayout>
+
+    <include layout="@layout/common_dividerwidth1" />
+
+    <LinearLayout
+        style="@style/Match44"
+        android:background="@color/whiteColors"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dimen15">
+
+        <TextView
+            android:layout_width="@dimen/dimen65"
+            android:layout_height="wrap_content"
+            android:text="@string/contactWay"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize14" />
+
+        <EditText
+            android:id="@+id/et_phone"
+            style="@style/MatchMatch"
+            android:layout_marginLeft="@dimen/dimen35"
+            android:background="@android:color/transparent"
+            android:gravity="center_vertical"
+            android:hint="@string/contactWayHint"
+            android:digits="@string/number0"
+            android:inputType="phone"
+            android:textColor="@color/textColor"
+            android:textColorHint="@color/hintColors"
+            android:textCursorDrawable="@drawable/shape_cursor"
+            android:textSize="@dimen/textsize14" />
+    </LinearLayout>
+
+    <include layout="@layout/common_dividerwidth1" />
+
+    <LinearLayout
+        style="@style/Match44"
+        android:background="@color/whiteColors"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dimen15">
+
+        <TextView
+            android:layout_width="@dimen/dimen65"
+            android:layout_height="wrap_content"
+            android:text="@string/region"
+            android:textColor="@color/titletextcolors"
+            android:textSize="@dimen/textsize14" />
+
+        <LinearLayout
+            android:id="@+id/ll_select"
+            style="@style/MatchMatch"
+            android:layout_marginLeft="@dimen/dimen35"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_selectAddress"
+                style="@style/AutoMatch"
+                android:background="@android:color/transparent"
+                android:gravity="center_vertical|right"
+                android:hint="@string/pleaseSelect"
+                android:paddingRight="@dimen/dimen10"
+                android:textColor="@color/titletextcolors"
+                android:textColorHint="@color/hintColors"
+                android:textSize="@dimen/textsize12" />
+
+            <ImageView
+                android:layout_width="@dimen/dimen6"
+                android:layout_height="@dimen/dimen12"
+                android:layout_marginRight="@dimen/dimen15"
+                android:src="@mipmap/order_right_arrow" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <include layout="@layout/common_dividerwidth1" />
+
+    <RelativeLayout
+        style="@style/MatchWrap"
+        android:background="@color/whiteColors"
+        android:paddingLeft="@dimen/dimen15">
+
+        <TextView
+            android:id="@+id/tv_detailedAddress"
+            style="@style/WrapWrap"
+            android:paddingTop="@dimen/dimen15"
+            android:text="@string/detailedAddress"
+            android:textColor="@color/titletextcolors"
+            android:textSize="@dimen/textsize14" />
+
+        <EditText
+            android:id="@+id/et_detailedAddress"
+            style="@style/MatchWrap"
+            android:layout_marginLeft="@dimen/dimen35"
+            android:layout_toRightOf="@id/tv_detailedAddress"
+            android:background="@android:color/transparent"
+            android:gravity="center_vertical"
+            android:hint="@string/regiondetail"
+            android:minHeight="@dimen/dimen45"
+            android:paddingBottom="@dimen/dimen13"
+            android:paddingTop="@dimen/dimen13"
+            android:textColor="@color/titletextcolors"
+            android:textColorHint="@color/hintColors"
+            android:textCursorDrawable="@drawable/shape_cursor"
+            android:textSize="@dimen/textsize14" />
+
+    </RelativeLayout>
+
+
+    <include layout="@layout/common_dividerwidth1" />
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:background="@color/whiteColors"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_default"
+            style="@style/WrapWrap"
+            android:layout_marginLeft="@dimen/dimen15"
+            android:paddingBottom="@dimen/dimen12"
+            android:paddingTop="@dimen/dimen12"
+            android:text="@string/defaultAddress1"
+            android:textColor="@color/titletextcolors"
+            android:textSize="@dimen/textsize15" />
+
+        <TextView style="@style/AutoWrap" />
+
+        <ImageView
+            android:id="@+id/iv_defaultAddress"
+            android:layout_width="@dimen/dimen60"
+            android:layout_height="@dimen/dimen35"
+            android:paddingBottom="@dimen/dimen9"
+            android:paddingLeft="@dimen/dimen15"
+            android:paddingRight="@dimen/dimen15"
+            android:paddingTop="@dimen/dimen9"
+            android:src="@mipmap/address_set_as_default_unselected" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_addAddress"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen40"
+        android:layout_marginLeft="@dimen/dimen73"
+        android:layout_marginRight="@dimen/dimen73"
+        android:layout_marginTop="@dimen/dimen20"
+        android:background="@drawable/shape_determinepay"
+        android:gravity="center"
+        android:text="@string/addAddress"
+        android:textColor="@color/whiteColors"
+        android:textSize="@dimen/textsize15" />
+
+</LinearLayout>

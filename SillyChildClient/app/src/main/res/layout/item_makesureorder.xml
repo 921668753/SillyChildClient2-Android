@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrap"
+    android:background="@color/whiteColors"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingBottom="@dimen/dimen10"
+    android:paddingLeft="@dimen/dimen15"
+    android:paddingRight="@dimen/dimen15"
+    android:paddingTop="@dimen/dimen10">
+
+    <ImageView
+        android:id="@+id/img_good"
+        android:layout_width="@dimen/dimen81"
+        android:layout_height="@dimen/dimen81"
+        android:background="@drawable/shape_boutiqueline"
+        android:padding="@dimen/dimen1"
+        android:scaleType="fitXY"
+        android:src="@mipmap/placeholderfigure1" />
+
+    <LinearLayout
+        style="@style/MatchMatch"
+        android:layout_marginLeft="@dimen/dimen16"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_goodName"
+            style="@style/MatchWrap"
+            android:paddingTop="@dimen/dimen5"
+            android:singleLine="true"
+            android:text="Dior迪奥口红"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize14" />
+
+
+        <TextView
+            android:id="@+id/tv_goodDescribe"
+            style="@style/MatchAuto"
+            android:paddingTop="@dimen/dimen5"
+            android:singleLine="true"
+            android:text="520号"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize12" />
+
+        <LinearLayout
+            style="@style/MatchWrap"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/dimen5">
+
+
+            <TextView
+                android:id="@+id/tv_money"
+                style="@style/AutoWrap"
+                android:singleLine="true"
+                android:text="¥285.00"
+                android:textColor="@color/fF0000Colors"
+                android:textSize="@dimen/textsize14" />
+
+
+            <TextView
+                style="@style/WrapWrap"
+                android:text="@string/multiply"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize15" />
+
+            <TextView
+                android:id="@+id/tv_goodNumber"
+                style="@style/WrapWrap"
+                android:singleLine="true"
+                android:text="1"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize15" />
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

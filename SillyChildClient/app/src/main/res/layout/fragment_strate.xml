@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchMatch"
+    android:orientation="vertical"
+    android:background="@color/background">
+
+    <com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView
+        android:id="@+id/pullLoadMoreRecyclerView"
+        style="@style/MatchMatch"
+        android:background="@android:color/transparent"/>
+
+    <include layout="@layout/common_error"/>
+
+
+</LinearLayout>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:background="@color/whiteColors"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/img_back"
+            style="@style/WrapWrap"
+            android:paddingBottom="@dimen/dimen13"
+            android:paddingLeft="@dimen/dimen15"
+            android:paddingRight="@dimen/dimen15"
+            android:paddingTop="@dimen/dimen13"
+            android:src="@mipmap/back" />
+
+        <LinearLayout
+            android:id="@+id/ll_addressSearch"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen30"
+            android:layout_marginBottom="@dimen/dimen7"
+            android:layout_marginRight="@dimen/dimen20"
+            android:layout_marginTop="@dimen/dimen7"
+            android:background="@drawable/shape_search"
+            android:gravity="center|center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/dimen5">
+
+            <ImageView
+                style="@style/WrapWrap"
+                android:layout_marginRight="@dimen/dimen10"
+                android:src="@mipmap/search" />
+
+            <TextView
+                style="@style/WrapMatch"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:hint="@string/cityName"
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/searchTextColors"
+                android:textSize="@dimen/textsize13" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_city"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen35"
+        android:background="@color/background"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/dimen20"
+        android:paddingRight="@dimen/dimen20"
+        android:text="@string/app_name"
+        android:textColor="@color/tabColors"
+        android:textSize="@dimen/textsize14" />
+
+    <LinearLayout
+        style="@style/MatchAuto"
+        android:orientation="horizontal">
+
+        <ListView
+            android:id="@+id/lv_allCountry"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.8"
+            android:divider="@android:color/transparent"
+            android:scrollbars="none"
+            tools:listitem="@layout/item_addressclassification" />
+
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/dimen10"
+            android:layout_weight="2"
+            android:background="@color/whiteColors"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_selectAll"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen35"
+                    android:layout_marginBottom="@dimen/dimen8"
+                    android:layout_marginLeft="@dimen/dimen10"
+                    android:layout_marginRight="@dimen/dimen10"
+                    android:layout_marginTop="@dimen/dimen20"
+                    android:background="@color/background"
+                    android:gravity="center"
+                    android:text="@string/selectAll"
+                    android:textColor="@color/tabColors"
+                    android:textSize="@dimen/textsize16"
+                    android:visibility="gone" />
+
+
+                <com.common.cklibrary.utils.myview.NoScrollGridView
+                    android:id="@+id/gv_allCity"
+                    style="@style/MatchMatch"
+                    android:horizontalSpacing="5dp"
+                    android:numColumns="2"
+                    android:overScrollMode="never"
+                    android:paddingLeft="@dimen/dimen10"
+                    android:paddingRight="@dimen/dimen15"
+                    android:paddingTop="@dimen/dimen10"
+                    android:scrollbars="none"
+                    android:verticalSpacing="5dp"
+                    tools:listitem="@layout/item_city" />
+
+                <include layout="@layout/common_error" />
+
+            </LinearLayout>
+
+
+        </ScrollView>
+
+
+    </LinearLayout>
+</LinearLayout>

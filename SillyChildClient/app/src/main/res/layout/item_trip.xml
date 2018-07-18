@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrap"
+    android:background="@color/whiteColors"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/dimen15"
+    android:paddingTop="@dimen/dimen31">
+
+    <ImageView
+        android:id="@+id/img_classification"
+        style="@style/WrapWrap"
+        android:src="@mipmap/placeholderfigure1" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        style="@style/WrapWrap"
+        android:paddingTop="@dimen/dimen15"
+        android:text="@string/visa"
+        android:textColor="@color/textColor"
+        android:textSize="@dimen/textsize12" />
+
+</LinearLayout>

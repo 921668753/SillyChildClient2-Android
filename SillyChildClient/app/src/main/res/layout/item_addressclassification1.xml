@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchWrap"
+    android:background="@color/whiteColors"
+    android:orientation="vertical">
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dimen15">
+
+        <TextView
+            android:layout_width="@dimen/dimen3"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dimen15"
+            android:layout_marginTop="@dimen/dimen15"
+            android:background="@color/greenColors" />
+
+
+        <TextView
+            android:id="@+id/tv_destination"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/dimen10"
+            android:text="热门目的地"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize15" />
+
+        <TextView
+            android:id="@+id/tv_destinationNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/dimen10"
+            android:text="8个目的地"
+            android:textColor="@color/hintColors"
+            android:textSize="@dimen/textsize13" />
+
+    </LinearLayout>
+
+    <com.common.cklibrary.utils.myview.NoScrollGridView style="@style/MatchWrap" />
+
+    <com.common.cklibrary.utils.myview.NoScrollGridView
+        android:id="@+id/gv_classification"
+        style="@style/MatchWrap"
+        android:horizontalSpacing="10dp"
+        android:paddingLeft="@dimen/dimen15"
+        android:paddingRight="@dimen/dimen15"
+        android:numColumns="2"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        android:verticalSpacing="10dp"
+        tools:listitem="@layout/item_addressclassification2" />
+
+
+</LinearLayout>

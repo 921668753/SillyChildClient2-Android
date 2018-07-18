@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        style="@style/Match44"
+        android:background="@color/whiteColors"
+        android:gravity="center_vertical">
+
+        <TextView
+            style="@style/WrapWrap"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="@string/sillyChild"
+            android:textColor="@color/titletextcolors"
+            android:textSize="@dimen/textsize17" />
+
+        <RelativeLayout
+            android:layout_width="@dimen/dimen105"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true">
+
+            <ImageView
+                android:id="@+id/img_customerService"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dimen25"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:paddingRight="@dimen/dimen15"
+                android:scaleType="fitXY"
+                android:src="@mipmap/kefu" />
+
+            <TextView
+                android:id="@+id/tv_tag"
+                android:layout_width="@dimen/dimen10"
+                android:layout_height="@dimen/dimen10"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/dimen10"
+                android:layout_marginTop="@dimen/dimen5"
+                android:background="@drawable/shape_homepage_dot"
+                android:visibility="gone" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+    <cn.bingoogolapple.refreshlayout.BGARefreshLayout xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/mRefreshLayout"
+        style="@style/MatchMatch">
+
+        <ScrollView
+            style="@style/MatchMatch"
+            android:background="@color/background"
+            android:scrollbars="none">
+
+            <LinearLayout
+                style="@style/MatchMatch"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/dimen6">
+
+                <cn.bingoogolapple.bgabanner.BGABanner
+                    android:id="@+id/banner_ad"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen198"
+                    android:background="@mipmap/placeholderfigure2"
+                    app:banner_isNeedShowIndicatorOnOnlyOnePage="true"
+                    app:banner_pageChangeDuration="2000"
+                    app:banner_pointAutoPlayAble="false"
+                    app:banner_pointContainerBackground="@android:color/transparent"
+                    app:banner_pointDrawable="@drawable/bga_banner_selector_point"
+                    app:banner_pointTopBottomMargin="@dimen/dimen6"
+                    app:banner_transitionEffect="alpha" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen90"
+                    android:background="@color/whiteColors"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/ll_airportPickup"
+                        style="@style/AutoMatch"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            style="@style/Image40"
+                            android:src="@mipmap/ic_launcher" />
+
+                        <TextView
+                            style="@style/WrapWrap"
+                            android:layout_marginTop="@dimen/dimen10"
+                            android:text="@string/airportPickup"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/textsize13" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_boutiqueLine"
+                        style="@style/AutoMatch"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            style="@style/Image40"
+                            android:src="@mipmap/ic_launcher" />
+
+                        <TextView
+                            style="@style/WrapWrap"
+                            android:layout_marginTop="@dimen/dimen10"
+                            android:text="@string/boutiqueLine"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/textsize13" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_privateOrdering"
+                        style="@style/AutoMatch"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            style="@style/Image40"
+                            android:src="@mipmap/ic_launcher" />
+
+                        <TextView
+                            style="@style/WrapWrap"
+                            android:layout_marginTop="@dimen/dimen10"
+                            android:text="@string/privateOrdering"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/textsize13" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_byTheDay"
+                        style="@style/AutoMatch"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            style="@style/Image40"
+                            android:src="@mipmap/ic_launcher" />
+
+                        <TextView
+                            style="@style/WrapWrap"
+                            android:layout_marginTop="@dimen/dimen10"
+                            android:text="@string/byTheDay"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/textsize13" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_airportDropOff"
+                        style="@style/AutoMatch"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            style="@style/Image40"
+                            android:src="@mipmap/ic_launcher" />
+
+                        <TextView
+                            style="@style/WrapWrap"
+                            android:layout_marginTop="@dimen/dimen10"
+                            android:text="@string/airportDropOff"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/textsize13" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/ll_hotRegion"
+                    style="@style/MatchWrap"
+                    android:layout_marginTop="@dimen/dimen10"
+                    android:background="@color/whiteColors"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/dimen15"
+                    android:paddingRight="@dimen/dimen15">
+
+                    <TextView
+                        style="@style/AutoWrap"
+                        android:paddingBottom="@dimen/dimen10"
+                        android:paddingTop="@dimen/dimen10"
+                        android:text="@string/hotRegion"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/textsize15" />
+
+                    <TextView
+                        android:id="@+id/tv_moreCities"
+                        style="@style/WrapMatch"
+                        android:layout_marginTop="@dimen/dimen1"
+                        android:gravity="center"
+                        android:paddingRight="@dimen/dimen5"
+                        android:text="@string/moreCities"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/textsize12" />
+
+                    <ImageView
+                        style="@style/WrapWrap"
+                        android:src="@mipmap/arrow" />
+                </LinearLayout>
+
+                <com.common.cklibrary.utils.myview.HorizontalListView
+                    android:id="@+id/hlv_hotRegion"
+                    style="@style/MatchWrap"
+                    android:background="@color/whiteColors"
+                    android:scrollbars="none"
+                    tools:listitem="@layout/item_hotregion" />
+
+                <LinearLayout
+                    android:id="@+id/ll_boutiqueLine1"
+                    style="@style/MatchWrap"
+                    android:layout_marginTop="@dimen/dimen10"
+                    android:background="@color/whiteColors"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/dimen15"
+                    android:paddingRight="@dimen/dimen15">
+
+                    <TextView
+                        style="@style/AutoWrap"
+                        android:paddingBottom="@dimen/dimen10"
+                        android:paddingTop="@dimen/dimen10"
+                        android:text="@string/boutiqueLine"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/textsize15" />
+
+                    <TextView
+                        android:id="@+id/tv_moreLines"
+                        style="@style/WrapMatch"
+                        android:layout_marginTop="@dimen/dimen1"
+                        android:gravity="center"
+                        android:paddingRight="@dimen/dimen5"
+                        android:text="@string/moreLines"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/textsize12" />
+
+                    <ImageView
+                        style="@style/WrapWrap"
+                        android:src="@mipmap/arrow" />
+                </LinearLayout>
+
+                <com.common.cklibrary.utils.myview.ChildListView
+                    android:id="@+id/clv_boutiqueLine"
+                    style="@style/MatchWrap"
+                    android:background="@color/whiteColors"
+                    android:divider="@color/whiteColors"
+                    android:dividerHeight="@dimen/dimen15"
+                    android:paddingLeft="@dimen/dimen15"
+                    android:paddingRight="@dimen/dimen15"
+                    android:scrollbars="none"
+                    tools:listitem="@layout/item_boutiqueline" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen15"
+                    android:background="@color/whiteColors" />
+            </LinearLayout>
+
+
+        </ScrollView>
+    </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
+
+</LinearLayout>

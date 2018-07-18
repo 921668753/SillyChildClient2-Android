@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:a_zhon="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title" />
+
+    <TextView style="@style/DividerWidth" />
+
+    <ScrollView
+        style="@style/MatchMatch"
+        android:scrollbars="none">
+
+        <LinearLayout
+            style="@style/MatchMatch"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/MatchWrap"
+                android:background="@color/whiteColors"
+                android:paddingBottom="@dimen/dimen14"
+                android:paddingLeft="@dimen/dimen15"
+                android:paddingTop="@dimen/dimen14"
+                android:text="@string/commodityInformation"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize14" />
+
+            <TextView style="@style/DividerWidth" />
+
+            <!--<com.common.cklibrary.utils.myview.ChildListView-->
+            <!--android:id="@+id/clv_publishedeEvaluation"-->
+            <!--style="@style/MatchWrap"-->
+            <!--android:divider="@color/background"-->
+            <!--android:dividerHeight="@dimen/dimen10"-->
+            <!--android:overScrollMode="never"-->
+            <!--android:scrollbars="none"-->
+            <!--tools:listitem="@layout/item_publishedeevaluation" />-->
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rl_publishedeEvaluation"
+                style="@style/MatchWrap"
+                tools:listitem="@layout/item_publishedeevaluation" />
+
+            <TextView
+                style="@style/MatchWrap"
+                android:layout_marginTop="@dimen/dimen10"
+                android:background="@color/whiteColors"
+                android:paddingBottom="@dimen/dimen14"
+                android:paddingLeft="@dimen/dimen15"
+                android:paddingTop="@dimen/dimen14"
+                android:text="@string/storeRatings"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize14" />
+
+            <TextView style="@style/DividerWidth" />
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/dimen5">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:paddingLeft="@dimen/dimen15"
+                    android:text="@string/descriptionConsistent"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize13" />
+
+
+                <com.azhong.ratingbar.RatingBar
+                    android:id="@+id/rb_descriptionConsistent"
+                    style="@style/WrapWrap"
+                    android:background="@color/whiteColors"
+                    android:paddingLeft="@dimen/dimen10"
+                    android:paddingRight="@dimen/dimen15"
+                    android:stepSize="1"
+                    a_zhon:clickable="true"
+                    a_zhon:image_height="@dimen/dimen35"
+                    a_zhon:image_padding="@dimen/dimen5"
+                    a_zhon:image_width="@dimen/dimen35"
+                    a_zhon:star="0"
+                    a_zhon:star_count="5"
+                    a_zhon:star_img="@mipmap/mine_likesen_normalxxx"
+                    a_zhon:unstar_img="@mipmap/mine_likesen_pressedxxx" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:paddingLeft="@dimen/dimen15"
+                    android:text="@string/logisticsService"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize13" />
+
+
+                <com.azhong.ratingbar.RatingBar
+                    android:id="@+id/rb_logisticsService"
+                    style="@style/WrapWrap"
+                    android:background="@color/whiteColors"
+                    android:paddingLeft="@dimen/dimen10"
+                    android:paddingRight="@dimen/dimen15"
+                    android:stepSize="1"
+                    a_zhon:clickable="true"
+                    a_zhon:image_height="@dimen/dimen35"
+                    a_zhon:image_padding="@dimen/dimen5"
+                    a_zhon:image_width="@dimen/dimen35"
+                    a_zhon:star="0"
+                    a_zhon:star_count="5"
+                    a_zhon:star_img="@mipmap/mine_likesen_normalxxx"
+                    a_zhon:unstar_img="@mipmap/mine_likesen_pressedxxx" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/dimen5">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:paddingLeft="@dimen/dimen15"
+                    android:text="@string/serviceAttitude"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize13" />
+
+                <com.azhong.ratingbar.RatingBar
+                    android:id="@+id/rb_serviceAttitude"
+                    style="@style/WrapWrap"
+                    android:background="@color/whiteColors"
+                    android:paddingLeft="@dimen/dimen10"
+                    android:paddingRight="@dimen/dimen15"
+                    android:stepSize="1"
+                    a_zhon:clickable="true"
+                    a_zhon:image_height="@dimen/dimen35"
+                    a_zhon:image_padding="@dimen/dimen5"
+                    a_zhon:image_width="@dimen/dimen35"
+                    a_zhon:star="0"
+                    a_zhon:star_count="5"
+                    a_zhon:star_img="@mipmap/mine_likesen_normalxxx"
+                    a_zhon:unstar_img="@mipmap/mine_likesen_pressedxxx" />
+
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/tv_release"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen40"
+                android:layout_marginLeft="@dimen/dimen73"
+                android:layout_marginRight="@dimen/dimen73"
+                android:layout_marginTop="@dimen/dimen15"
+                android:background="@drawable/shape_determinepay"
+                android:gravity="center"
+                android:text="@string/release"
+                android:textColor="@color/whiteColors"
+                android:textSize="@dimen/textsize16" />
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+</LinearLayout>

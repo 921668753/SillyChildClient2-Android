@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dimen48"
+    android:background="@color/whiteColors"
+    android:orientation="horizontal">
+
+
+    <LinearLayout
+        style="@style/AutoMatch"
+        android:layout_marginBottom="@dimen/dimen6"
+        android:layout_marginLeft="@dimen/dimen15"
+        android:layout_marginTop="@dimen/dimen6"
+        android:background="@drawable/shape_dynamicsdetailscomment"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/dimen12"
+            android:src="@mipmap/write" />
+
+        <EditText
+            android:id="@+id/et_writeComment"
+            style="@style/AutoMatch"
+            android:layout_marginLeft="@dimen/dimen10"
+            android:layout_marginRight="@dimen/dimen10"
+            android:background="@android:color/transparent"
+            android:hint="@string/writeComment"
+            android:textColor="@color/textColor"
+            android:textColorHint="@color/hintColors"
+            android:textCursorDrawable="@drawable/shape_cursor"
+            android:textSize="@dimen/textsize13" />
+
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/tv_published"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:paddingLeft="@dimen/dimen20"
+        android:paddingRight="@dimen/dimen20"
+        android:text="@string/published"
+        android:textColor="@color/greenColors"
+        android:textSize="@dimen/textsize15" />
+
+
+</LinearLayout>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/dimen15"
+        android:paddingRight="@dimen/dimen10"
+        android:background="@color/whiteColors">
+        <ImageView
+            android:id="@+id/iv_headimg"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@mipmap/avatar"
+            android:scaleType="fitXY"/>
+        <TextView
+            android:id="@+id/iv_nickname"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/dimen25"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize16"/>
+        <TextView
+            android:id="@+id/tv_status"
+            android:layout_width="@dimen/dimen65"
+            android:layout_height="@dimen/dimen35"
+            android:text="@string/followed"
+            android:background="@drawable/shape_soldgray_rad"
+            android:gravity="center"
+            android:textColor="@color/whiteColors"
+            android:textSize="@dimen/textsize15"/>
+    </LinearLayout>
+</LinearLayout>

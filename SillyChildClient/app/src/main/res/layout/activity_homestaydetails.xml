@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:scrollbars="none">
+
+    <RelativeLayout
+        style="@style/MatchMatch"
+        android:background="@android:color/white">
+
+        <ImageView
+            android:id="@+id/img_homestayDetails"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen160"
+            android:src="@mipmap/default_image" />
+
+        <LinearLayout
+            style="@style/MatchWrap"
+            android:background="@android:color/transparent"
+            android:orientation="horizontal">
+
+            <ImageView
+                style="@style/WrapWrap"
+                android:padding="@dimen/dimen10"
+                android:src="@mipmap/back" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/MatchWrap"
+            android:layout_below="@id/img_homestayDetails"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/MatchWrap"
+                android:padding="@dimen/dimen15"
+                android:text="三卧-精密花园"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize16"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/dimen15">
+
+                <LinearLayout
+                    style="@style/AutoWrap"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/MatchWrap"
+                        android:singleLine="true"
+                        android:text="精密花园"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/textsize14" />
+
+                    <TextView
+                        style="@style/MatchWrap"
+                        android:layout_marginTop="@dimen/dimen10"
+                        android:singleLine="true"
+                        android:text="精密花园"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/textsize14" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="@dimen/dimen60"
+                    android:layout_height="@dimen/dimen60"
+                    android:src="@mipmap/default_image" />
+            </LinearLayout>
+
+            <include layout="@layout/common_dividerwidth" />
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+</ScrollView>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/WrapWrap"
+    android:background="@color/whiteColors"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_hotStrategy"
+        android:layout_width="@dimen/dimen290"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/img_hotStrategy"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen168"
+            android:scaleType="fitXY"
+            android:src="@mipmap/placeholderfigure" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/WrapWrap"
+            android:layout_marginTop="@dimen/dimen12"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/dimen16" />
+
+        <LinearLayout
+            style="@style/MatchWrap"
+            android:layout_marginTop="@dimen/dimen12"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_describe"
+                style="@style/AutoWrap"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:textColor="@color/hintColors"
+                android:textSize="@dimen/dimen12" />
+
+            <TextView
+                android:id="@+id/tv_greatNumber"
+                style="@style/WrapWrap"
+                android:layout_marginLeft="@dimen/dimen15"
+                android:textColor="@color/hintColors"
+                android:textSize="@dimen/dimen11" />
+
+            <TextView
+                style="@style/WrapWrap"
+                android:layout_marginRight="@dimen/dimen5"
+                android:text="@string/zan"
+                android:textColor="@color/hintColors"
+                android:textSize="@dimen/dimen11" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

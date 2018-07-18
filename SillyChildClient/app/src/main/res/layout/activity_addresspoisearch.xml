@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:background="@color/whiteColors"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/img_back"
+            style="@style/WrapWrap"
+            android:paddingBottom="@dimen/dimen13"
+            android:paddingLeft="@dimen/dimen15"
+            android:paddingRight="@dimen/dimen15"
+            android:paddingTop="@dimen/dimen13"
+            android:src="@mipmap/back" />
+
+        <LinearLayout
+            android:id="@+id/ll_addressSearch"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen30"
+            android:layout_marginBottom="@dimen/dimen7"
+            android:layout_marginRight="@dimen/dimen20"
+            android:layout_marginTop="@dimen/dimen7"
+            android:background="@drawable/shape_search"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center|center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/dimen5">
+
+            <ImageView
+                style="@style/WrapWrap"
+                android:layout_marginRight="@dimen/dimen10"
+                android:src="@mipmap/search" />
+
+            <EditText
+                android:id="@+id/et_cityName"
+                style="@style/AutoMatch"
+                android:background="@color/searchBackgroundColors"
+                android:gravity="center_vertical"
+                android:hint="@string/cityName1"
+                android:singleLine="true"
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/searchTextColors"
+                android:textCursorDrawable="@drawable/shape_cursor"
+                android:textSize="@dimen/textsize13" />
+
+            <ImageView
+                android:id="@+id/img_quxiao"
+                android:layout_width="@dimen/dimen30"
+                android:layout_height="@dimen/dimen30"
+                android:layout_marginRight="@dimen/dimen15"
+                android:paddingBottom="@dimen/dimen7"
+                android:paddingLeft="@dimen/dimen7"
+                android:paddingTop="@dimen/dimen7"
+                android:src="@mipmap/delete"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView style="@style/DividerWidth" />
+
+    <com.common.cklibrary.utils.myview.ChildListView
+        android:id="@+id/lv_addressPoiSearch"
+        style="@style/MatchWrap"
+        android:divider="@color/background"
+        android:dividerHeight="@dimen/dimen1"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        tools:listitem="@layout/item_addresssearch" />
+
+
+</LinearLayout>

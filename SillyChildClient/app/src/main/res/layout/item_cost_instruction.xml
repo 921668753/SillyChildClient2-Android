@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrap"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_costsThat"
+        style="@style/MatchWrap"
+        android:layout_marginTop="@dimen/dimen10"
+        android:background="@color/whiteColors"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/AutoWrap"
+            android:padding="@dimen/dimen15"
+            android:text="@string/costsThat"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize15" />
+
+        <TextView
+            style="@style/WrapWrap"
+            android:padding="@dimen/dimen5"
+            android:text="@string/view"
+            android:textColor="@color/greenColors"
+            android:textSize="@dimen/textsize15" />
+
+        <ImageView
+            style="@style/WrapWrap"
+            android:paddingRight="@dimen/dimen15"
+            android:src="@mipmap/icon_enter" />
+
+    </LinearLayout>
+
+    <include layout="@layout/common_dividerwidth1" />
+
+    <LinearLayout
+        android:id="@+id/ll_compensationChangeBack"
+        style="@style/MatchWrap"
+        android:background="@color/whiteColors"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/AutoWrap"
+            android:padding="@dimen/dimen15"
+            android:text="@string/compensationChangeBack"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize15" />
+
+        <TextView
+            android:id="@+id/tv_compensationChangeBack"
+            style="@style/WrapWrap"
+            android:padding="@dimen/dimen5"
+            android:text="@string/view"
+            android:textColor="@color/greenColors"
+            android:textSize="@dimen/textsize15" />
+
+        <ImageView
+            style="@style/WrapWrap"
+            android:paddingRight="@dimen/dimen15"
+            android:src="@mipmap/icon_enter" />
+
+    </LinearLayout>
+
+</LinearLayout>

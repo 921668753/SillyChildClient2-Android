@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrap"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp">
+
+    <RelativeLayout
+        style="@style/MatchWrap"
+        android:background="@drawable/shape_message_customerservice"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/tv_classification"
+            style="@style/WrapWrap"
+            android:paddingBottom="12dp"
+            android:paddingLeft="19dp"
+            android:paddingTop="12dp"
+            android:singleLine="true"
+            android:text="@string/privateOrdering"
+            android:textColor="#ffffff"
+            android:textSize="14sp" />
+
+
+        <TextView
+            style="@style/WrapWrap"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="19dp"
+            android:text="@string/unpaid"
+            android:textColor="#C7DCF1"
+            android:textSize="12sp" />
+
+        <!--<TextView-->
+        <!--android:id="@+id/tv_orderNumberThreeWord1"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:layout_toLeftOf="@id/tv_orderNumberThreeWord"-->
+        <!--android:text="@string/orderNumberThreeWord1"-->
+        <!--android:textColor="#C7DCF1"-->
+        <!--android:textSize="12sp" />-->
+    </RelativeLayout>
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:background="@drawable/shape_message_customerservice1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/MatchWrap"
+            android:paddingBottom="14dp"
+            android:paddingLeft="19dp"
+            android:paddingTop="16dp"
+            android:text="--"
+            android:textColor="#333333"
+            android:textSize="15sp" />
+
+
+        <LinearLayout
+            style="@style/MatchWrap"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp"
+            android:paddingLeft="19dp">
+
+            <TextView
+                style="@style/WrapWrap"
+                android:text="@string/servicePrice1"
+                android:textColor="#999999"
+                android:textSize="12sp" />
+
+            <TextView
+                style="@style/WrapWrap"
+                android:layout_marginLeft="@dimen/dimen5"
+                android:text="￥"
+                android:textColor="#ff7f19"
+                android:textSize="11sp" />
+
+            <TextView
+                android:id="@+id/tv_price"
+                style="@style/WrapWrap"
+                android:text="--"
+                android:textColor="#ff7f19"
+                android:textSize="13sp" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            style="@style/MatchWrap"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp"
+            android:paddingLeft="19dp">
+
+            <TextView
+                style="@style/WrapWrap"
+                android:text="@string/touristNumber3"
+                android:textColor="#999999"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_adults"
+                style="@style/WrapWrap"
+                android:layout_marginLeft="@dimen/dimen5"
+                android:text="--"
+                android:textColor="#999999"
+                android:textSize="12sp" />
+
+            <TextView
+                style="@style/WrapWrap"
+                android:text="@string/adult"
+                android:textColor="#999999"
+                android:textSize="12sp" />
+
+
+            <TextView
+                android:id="@+id/tv_children"
+                style="@style/WrapWrap"
+                android:layout_marginLeft="10dp"
+                android:text="--"
+                android:textColor="#999999"
+                android:textSize="12sp" />
+
+            <TextView
+                style="@style/WrapWrap"
+                android:text="@string/children"
+                android:textColor="#999999"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            style="@style/MatchWrap"
+            android:orientation="horizontal"
+            android:paddingBottom="15dp"
+            android:paddingLeft="19sp">
+
+            <TextView
+                style="@style/WrapWrap"
+                android:text="@string/destination1"
+                android:textColor="#999999"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_destination"
+                style="@style/WrapWrap"
+                android:layout_marginLeft="@dimen/dimen5"
+                android:text="--"
+                android:textColor="#999999"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#cccccc" />
+
+
+        <TextView
+            android:id="@+id/tv_viewDetails"
+            style="@style/WrapWrap"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="19dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/shape_chatpay_service"
+            android:paddingBottom="8dp"
+            android:paddingLeft="18dp"
+            android:paddingRight="18dp"
+            android:paddingTop="8dp"
+            android:text="@string/viewDetails"
+            android:textColor="#ff7f19" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

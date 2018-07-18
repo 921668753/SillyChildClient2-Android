@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context="com.yinglan.scc.homepage.chartercustom.transfer.TransferActivity">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen45"
+        android:background="@color/whiteColors"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/img_back"
+            style="@style/WrapWrap"
+            android:paddingBottom="@dimen/dimen10"
+            android:paddingLeft="@dimen/dimen15"
+            android:paddingRight="@dimen/dimen15"
+            android:paddingTop="@dimen/dimen10"
+            android:src="@mipmap/back" />
+
+        <LinearLayout
+            style="@style/WrapMatch"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/ll_airportPickup"
+                style="@style/WrapMatch"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_airportPickup"
+                    style="@style/WrapAuto"
+                    android:gravity="center"
+                    android:paddingLeft="@dimen/dimen20"
+                    android:paddingRight="@dimen/dimen28"
+                    android:text="@string/airportPickup"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize18"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_airportPickup1"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen2"
+                    android:layout_marginLeft="@dimen/dimen20"
+                    android:layout_marginRight="@dimen/dimen28"
+                    android:background="@color/greenColors"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_airportDropOff"
+                style="@style/WrapMatch"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tv_airportDropOff"
+                    style="@style/WrapAuto"
+                    android:gravity="center"
+                    android:paddingLeft="@dimen/dimen28"
+                    android:paddingRight="@dimen/dimen20"
+                    android:text="@string/airportDropOff"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize18"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_airportDropOff1"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen2"
+                    android:layout_marginLeft="@dimen/dimen28"
+                    android:layout_marginRight="@dimen/dimen20"
+                    android:background="@color/greenColors"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <ImageView
+            android:id="@+id/img_customerService"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dimen30"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:paddingLeft="@dimen/dimen20"
+            android:paddingRight="@dimen/dimen15"
+            android:src="@mipmap/kefu" />
+
+
+    </RelativeLayout>
+
+    <TextView style="@style/DividerWidth" />
+
+    <include layout="@layout/item_prompt1" />
+
+    <FrameLayout
+        android:id="@+id/main_content"
+        style="@style/MatchAuto" />
+
+</LinearLayout>

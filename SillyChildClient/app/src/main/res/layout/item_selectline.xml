@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrap"
+    android:background="@color/whiteColors"
+    android:orientation="vertical"
+    android:padding="@dimen/dimen15">
+
+    <ImageView
+        android:id="@+id/img_line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen200"
+        android:scaleType="fitXY"
+        android:src="@mipmap/placeholderfigure" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        style="@style/MatchWrap"
+        android:paddingTop="@dimen/dimen10"
+        android:text="--"
+        android:textColor="@color/textColor"
+        android:textSize="@dimen/textsize16" />
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/dimen11">
+
+        <TextView
+            android:id="@+id/tv_describe"
+            style="@style/WrapWrap"
+            android:text="66"
+            android:textColor="@color/hintColors"
+            android:textSize="@dimen/textsize13" />
+
+        <TextView
+            style="@style/WrapWrap"
+            android:paddingRight="@dimen/dimen20"
+            android:text="@string/peopleTravel"
+            android:textColor="@color/hintColors"
+            android:textSize="@dimen/textsize13" />
+
+        <ImageView
+            android:id="@+id/img_evaluation"
+            style="@style/WrapWrap"
+            android:layout_height="@dimen/dimen12"
+            android:src="@mipmap/heart_full" />
+
+    </LinearLayout>
+
+</LinearLayout>

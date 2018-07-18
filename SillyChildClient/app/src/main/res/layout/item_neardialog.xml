@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrap"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_nearName"
+        style="@style/MatchWrap"
+        android:background="@color/background"
+        android:paddingBottom="@dimen/dimen15"
+        android:paddingLeft="@dimen/dimen15"
+        android:paddingTop="@dimen/dimen15"
+        android:singleLine="true"
+        android:text="附近"
+        android:textColor="@color/textColor"
+        android:textSize="@dimen/textsize15" />
+
+</LinearLayout>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dimen80">
+
+    <ImageView
+        android:id="@+id/img_city"
+        style="@style/MatchMatch"
+        android:scaleType="fitXY"
+        android:src="@mipmap/placeholderfigure" />
+
+    <TextView
+        android:id="@+id/tv_city"
+        style="@style/MatchMatch"
+        android:background="@mipmap/bj_mengban"
+        android:gravity="center"
+        android:text=""
+        android:textColor="@android:color/white" />
+
+</RelativeLayout>

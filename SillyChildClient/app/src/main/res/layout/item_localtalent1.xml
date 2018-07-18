@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrap"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen185">
+
+        <ImageView
+            android:id="@+id/img_localTalent"
+            style="@style/MatchMatch"
+            android:scaleType="fitXY"
+            android:src="@mipmap/placeholderfigure" />
+
+        <ImageView
+            android:id="@+id/img_play"
+            android:layout_width="@dimen/dimen43"
+            android:layout_height="@dimen/dimen43"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/play" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dimen15"
+        android:paddingRight="@dimen/dimen15"
+        android:paddingTop="@dimen/dimen10">
+
+        <TextView
+            android:id="@+id/tv_name"
+            style="@style/AutoWrap"
+            android:singleLine="true"
+            android:text="柳倾城"
+            android:textColor="@color/itemMessageNameColors"
+            android:textSize="@dimen/textsize14" />
+
+        <TextView
+            android:id="@+id/tv_address"
+            style="@style/WrapWrap"
+            android:singleLine="true"
+            android:text="泰国·曼谷"
+            android:textColor="@color/hintColors"
+            android:textSize="@dimen/textsize12" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen16"
+        android:layout_marginBottom="@dimen/dimen10"
+        android:layout_marginTop="@dimen/dimen6"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dimen15"
+        android:paddingRight="@dimen/dimen15">
+
+        <TextView
+            android:id="@+id/tv_shopkeepers"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dimen15"
+            android:layout_marginRight="@dimen/dimen8"
+            android:background="@drawable/shape_guidelabels"
+            android:gravity="center"
+            android:paddingLeft="@dimen/dimen5"
+            android:paddingRight="@dimen/dimen5"
+            android:singleLine="true"
+            android:text="@string/shopkeepers"
+            android:textColor="@color/guideShapeColors"
+            android:textSize="@dimen/textsize10" />
+
+        <TextView
+            android:id="@+id/tv_landlord"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dimen15"
+            android:layout_marginRight="@dimen/dimen8"
+            android:background="@drawable/shape_landlord"
+            android:gravity="center"
+            android:paddingLeft="@dimen/dimen5"
+            android:paddingRight="@dimen/dimen5"
+            android:singleLine="true"
+            android:text="@string/landlord"
+            android:textColor="@color/blueColors"
+            android:textSize="@dimen/textsize10" />
+
+        <TextView
+            android:id="@+id/tv_companyGuide"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dimen15"
+            android:background="@drawable/shape_code"
+            android:gravity="center"
+            android:paddingLeft="@dimen/dimen5"
+            android:paddingRight="@dimen/dimen5"
+            android:singleLine="true"
+            android:text="@string/companyGuide"
+            android:textColor="@color/greenColors"
+            android:textSize="@dimen/textsize10" />
+
+        <TextView
+            android:id="@+id/tv_platform"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dimen15"
+            android:background="@drawable/shape_code1"
+            android:gravity="center"
+            android:paddingLeft="@dimen/dimen5"
+            android:paddingRight="@dimen/dimen5"
+            android:singleLine="true"
+            android:text="@string/app_name"
+            android:textColor="@color/hintColors"
+            android:textSize="@dimen/textsize10" />
+
+        <TextView
+            android:id="@+id/tv_user"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dimen15"
+            android:background="@drawable/shape_userlabels"
+            android:gravity="center"
+            android:paddingLeft="@dimen/dimen5"
+            android:paddingRight="@dimen/dimen5"
+            android:singleLine="true"
+            android:text="@string/user"
+            android:textColor="@color/userShapeColors"
+            android:textSize="@dimen/textsize10" />
+
+
+        <TextView
+            android:id="@+id/tv_zan"
+            style="@style/MatchMatch"
+            android:layout_marginTop="@dimen/dimen2"
+            android:gravity="bottom|right"
+            android:singleLine="true"
+            android:text="297赞"
+            android:textColor="@color/hintColors"
+            android:textSize="@dimen/textsize10" />
+
+    </LinearLayout>
+
+</LinearLayout>

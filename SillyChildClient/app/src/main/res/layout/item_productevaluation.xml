@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/dimen224"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_productevaluation"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen160"
+        android:scaleType="fitXY"
+        android:src="@mipmap/placeholderfigure" />
+
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:layout_marginTop="@dimen/dimen11"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dimen14">
+
+        <ImageView
+            android:layout_width="@dimen/dimen26"
+            android:layout_height="@dimen/dimen26"
+            android:src="@mipmap/avatar" />
+
+        <TextView
+            style="@style/WrapWrap"
+            android:layout_marginLeft="@dimen/dimen8"
+            android:text="@string/app_name"
+            android:textColor="@color/hintColors"
+            android:textSize="@dimen/textsize11" />
+
+    </LinearLayout>
+
+
+    <TextView
+        style="@style/MatchWrap"
+        android:paddingBottom="@dimen/dimen20"
+        android:paddingLeft="@dimen/dimen14"
+        android:paddingRight="@dimen/dimen14"
+        android:paddingTop="@dimen/dimen7"
+        android:text="对于面膜来说，我一直觉得我一直觉得我一直觉得我一直觉得我一直觉得我一直觉得我一直觉得我一直觉得我一直觉得我一直觉得"
+        android:textColor="@color/tabColors"
+        android:textSize="@dimen/textsize12" />
+
+</LinearLayout>

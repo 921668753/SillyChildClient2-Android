@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrap"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/MatchWrap"
+        android:layout_marginTop="@dimen/dimen10"
+        android:background="@color/whiteColors"
+        android:paddingBottom="@dimen/dimen10"
+        android:paddingLeft="@dimen/dimen15"
+        android:paddingTop="@dimen/dimen15"
+        android:text="@string/specifyCompanyGuide"
+        android:textColor="@color/tabColors"
+        android:textSize="@dimen/textsize13" />
+
+
+    <EditText
+        android:id="@+id/et_workNumber"
+        style="@style/MatchWrap"
+        android:background="@color/whiteColors"
+        android:hint="@string/inputWorkNumber"
+        android:paddingBottom="@dimen/dimen15"
+        android:paddingLeft="@dimen/dimen15"
+        android:paddingTop="@dimen/dimen7"
+        android:singleLine="true"
+        android:textColor="@color/tabColors"
+        android:textColorHint="@color/byTheDayHintColors"
+        android:textCursorDrawable="@drawable/shape_cursor"
+        android:textSize="@dimen/textsize16" />
+
+</LinearLayout>

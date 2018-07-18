@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/titlebar0"
+        layout="@layout/common_title" />
+
+    <TextView
+        android:id="@+id/tv_divider"
+        style="@style/DividerWidth"
+        android:layout_below="@id/titlebar0" />
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:layout_below="@id/tv_divider"
+        android:layout_marginLeft="@dimen/dimen15"
+        android:layout_marginRight="@dimen/dimen15"
+        android:layout_marginTop="@dimen/dimen70"
+        android:background="@drawable/shape_systemmessage"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            style="@style/WrapWrap"
+            android:layout_marginTop="@dimen/dimen67"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/img_pay"
+                android:layout_width="@dimen/dimen30"
+                android:layout_height="@dimen/dimen30"
+                android:scaleType="fitXY"
+                android:src="@mipmap/pay_failure_icon" />
+
+            <LinearLayout
+                style="@style/WrapWrap"
+                android:layout_marginLeft="@dimen/dimen15"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_payStatus"
+                    style="@style/WrapWrap"
+                    android:text="@string/pay_error"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize16" />
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginTop="@dimen/dimen5"
+                    android:text="@string/buyingSillyChildren"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize12" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <TextView
+            style="@style/DividerWidth"
+            android:layout_marginTop="@dimen/dimen15" />
+
+
+        <LinearLayout
+            style="@style/MatchWrap"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/dimen15"
+            android:paddingRight="@dimen/dimen15"
+            android:paddingTop="@dimen/dimen12">
+
+            <TextView
+                style="@style/WrapWrap"
+                android:text="@string/orderNumber1"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize12" />
+
+            <TextView
+                android:id="@+id/tv_orderNumber"
+                style="@style/WrapWrap"
+                android:paddingLeft="@dimen/dimen25"
+                android:singleLine="true"
+                android:text="201805161539"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize12" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/MatchWrap"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/dimen15"
+            android:paddingRight="@dimen/dimen15"
+            android:paddingTop="@dimen/dimen6">
+
+            <TextView
+                style="@style/WrapWrap"
+                android:text="@string/consignee2"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize12" />
+
+            <TextView
+                android:id="@+id/tv_consignee"
+                style="@style/WrapWrap"
+                android:paddingLeft="@dimen/dimen25"
+                android:singleLine="true"
+                android:text="某某人"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize12" />
+
+            <TextView
+                android:id="@+id/tv_phone"
+                style="@style/WrapWrap"
+                android:paddingLeft="@dimen/dimen15"
+                android:singleLine="true"
+                android:text="12345678910"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize12" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            style="@style/MatchWrap"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/dimen15"
+            android:paddingRight="@dimen/dimen15"
+            android:paddingTop="@dimen/dimen6">
+
+            <TextView
+                style="@style/WrapWrap"
+                android:text="@string/deliveryAddress1"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize12" />
+
+            <TextView
+                android:id="@+id/tv_deliveryAddress"
+                style="@style/WrapWrap"
+                android:paddingLeft="@dimen/dimen12"
+                android:singleLine="true"
+                android:text="上海市闵行区放鹤路1088号博济园区"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize12" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            style="@style/MatchWrap"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/dimen15"
+            android:paddingRight="@dimen/dimen15"
+            android:paddingTop="@dimen/dimen6">
+
+            <TextView
+                style="@style/WrapWrap"
+                android:text="@string/amount1"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize12" />
+
+            <TextView
+                android:id="@+id/tv_payMoney"
+                style="@style/WrapWrap"
+                android:paddingLeft="@dimen/dimen37"
+                android:singleLine="true"
+                android:text="¥520.00"
+                android:textColor="@color/fF0000Colors"
+                android:textSize="@dimen/textsize12" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen40"
+            android:layout_marginBottom="@dimen/dimen20"
+            android:layout_marginTop="@dimen/dimen20"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/dimen33"
+            android:paddingRight="@dimen/dimen33">
+
+            <TextView
+                android:id="@+id/tv_checkOrder"
+                style="@style/AutoMatch"
+                android:background="@drawable/shape_goodbtn"
+                android:gravity="center"
+                android:text="@string/checkOrder"
+                android:textColor="@color/greenColors"
+                android:textSize="@dimen/textsize16" />
+
+            <TextView
+                android:id="@+id/tv_returnHomePage"
+                style="@style/AutoMatch"
+                android:layout_marginLeft="@dimen/dimen20"
+                android:background="@drawable/shape_goodbtn"
+                android:gravity="center"
+                android:text="@string/returnHomePage"
+                android:textColor="@color/greenColors"
+                android:textSize="@dimen/textsize16" />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <ImageView
+        android:layout_width="@dimen/dimen105"
+        android:layout_height="@dimen/dimen105"
+        android:layout_below="@id/tv_divider"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dimen15"
+        android:background="@drawable/shape_pay"
+        android:padding="@dimen/dimen8"
+        android:src="@mipmap/no_data" />
+
+</RelativeLayout>

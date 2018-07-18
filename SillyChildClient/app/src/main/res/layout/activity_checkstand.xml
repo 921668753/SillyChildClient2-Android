@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title" />
+
+    <TextView style="@style/DividerWidth" />
+
+    <ScrollView
+        style="@style/MatchWrap">
+        <LinearLayout
+            style="@style/MatchWrap"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/MatchWrap"
+                android:background="@color/whiteColors"
+                android:gravity="center"
+                android:paddingBottom="@dimen/dimen18"
+                android:paddingTop="@dimen/dimen17"
+                android:text="@string/orderAmount1"
+                android:textColor="@color/hintColors"
+                android:textSize="@dimen/textsize13" />
+
+
+            <TextView
+                android:id="@+id/tv_ordermoney"
+                style="@style/MatchWrap"
+                android:background="@color/whiteColors"
+                android:gravity="center"
+                android:paddingBottom="@dimen/dimen25"
+                android:textColor="@color/lightRedColors"
+                android:textSize="@dimen/textsize36" />
+
+            <LinearLayout
+                android:id="@+id/ll_coupons"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen45"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/dimen10"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:paddingRight="@dimen/dimen15"
+                android:paddingLeft="@dimen/dimen15">
+                <TextView
+                    style="@style/WrapWrap"
+                    android:text="@string/useCoupons"
+                    android:textColor="@color/hintColors"
+                    android:textSize="@dimen/textsize15"/>
+                <LinearLayout
+                    android:id="@+id/ll_couponmoney"
+                    style="@style/AutoMatch"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <View
+                        style="@style/AutoWrap"/>
+                    <TextView
+                        android:id="@+id/tv_couponmoney"
+                        style="@style/WrapWrap"
+                        android:singleLine="true"
+                        android:textColor="@color/lightRedColors"
+                        android:textSize="@dimen/textsize15"
+                        android:padding="@dimen/dimen14"/>
+                </LinearLayout>
+                <ImageView
+                    style="@style/WrapWrap"
+                    android:src="@mipmap/minearrowxxx"
+                    android:layout_marginLeft="@dimen/dimen14"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_needpay"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen45"
+                android:orientation="horizontal"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:paddingRight="@dimen/dimen15"
+                android:paddingLeft="@dimen/dimen15">
+                <View
+                    style="@style/AutoWrap"/>
+                <TextView
+                    style="@style/WrapWrap"
+                    android:text="@string/needpayWithSymbol"
+                    android:textColor="@color/hintColors"
+                    android:textSize="@dimen/textsize15"/>
+                <TextView
+                    android:id="@+id/tv_needpay"
+                    style="@style/WrapWrap"
+                    android:textColor="@color/lightRedColors"
+                    android:textSize="@dimen/textsize15" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/MatchWrap"
+                android:paddingLeft="@dimen/dimen15"
+                android:text="@string/optionPay"
+                android:textColor="@color/tabColors"
+                android:textSize="@dimen/textsize14"
+                android:layout_marginTop="@dimen/dimen14"
+                android:layout_marginBottom="@dimen/dimen14"/>
+
+            <TextView style="@style/DividerWidth" />
+
+            <LinearLayout
+                android:id="@+id/ll_payweixin"
+                style="@style/MatchWrap"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/dimen30"
+                    android:layout_height="@dimen/dimen30"
+                    android:layout_marginBottom="@dimen/dimen13"
+                    android:layout_marginLeft="@dimen/dimen15"
+                    android:layout_marginTop="@dimen/dimen13"
+                    android:src="@mipmap/mine_payweixinxxx" />
+
+
+                <TextView
+                    style="@style/AutoWrap"
+                    android:paddingLeft="@dimen/dimen12"
+                    android:text="@string/weChatPay"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+
+                <ImageView
+                    android:id="@+id/iv_weixin"
+                    android:layout_width="@dimen/dimen23"
+                    android:layout_height="@dimen/dimen23"
+                    android:layout_marginRight="@dimen/dimen14"/>
+
+            </LinearLayout>
+
+
+            <include layout="@layout/common_dividerwidth1" />
+
+            <LinearLayout
+                android:id="@+id/ll_payzhifubao"
+                style="@style/MatchWrap"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/dimen30"
+                    android:layout_height="@dimen/dimen30"
+                    android:layout_marginBottom="@dimen/dimen13"
+                    android:layout_marginLeft="@dimen/dimen15"
+                    android:layout_marginTop="@dimen/dimen13"
+                    android:src="@mipmap/mine_zfbxxx" />
+
+
+                <TextView
+                    style="@style/AutoWrap"
+                    android:paddingLeft="@dimen/dimen12"
+                    android:text="@string/alipayToPay"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+
+                <ImageView
+                    android:id="@+id/iv_zhifubao"
+                    android:layout_width="@dimen/dimen23"
+                    android:layout_height="@dimen/dimen23"
+                    android:layout_marginRight="@dimen/dimen14" />
+
+            </LinearLayout>
+
+            <include layout="@layout/common_dividerwidth1" />
+
+            <LinearLayout
+                android:id="@+id/ll_payyue"
+                style="@style/MatchWrap"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/dimen30"
+                    android:layout_height="@dimen/dimen30"
+                    android:layout_marginBottom="@dimen/dimen13"
+                    android:layout_marginLeft="@dimen/dimen15"
+                    android:layout_marginTop="@dimen/dimen13"
+                    android:src="@mipmap/mine_balancexxx" />
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:paddingLeft="@dimen/dimen12"
+                    android:text="@string/balancePay"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+
+                <LinearLayout
+                    android:id="@+id/ll_yue"
+                    style="@style/AutoWrap"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/dimen15"
+                    android:paddingRight="@dimen/dimen15">
+
+                    <TextView style="@style/AutoWrap" />
+
+                    <TextView
+                        android:id="@+id/tv_yue"
+                        style="@style/WrapWrap"
+                        android:singleLine="true"
+                        android:textColor="@color/hintColors"
+                        android:textSize="@dimen/textsize13"/>
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/iv_yue"
+                    style="@style/WrapWrap"
+                    android:src="@mipmap/mine_payonxxx"
+                    android:layout_marginRight="@dimen/dimen14" />
+
+            </LinearLayout>
+
+            <TextView style="@style/DividerWidth" />
+
+
+            <TextView
+                android:id="@+id/tv_okpay"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen40"
+                android:layout_marginLeft="@dimen/dimen10"
+                android:layout_marginRight="@dimen/dimen10"
+                android:layout_marginTop="@dimen/dimen23"
+                android:background="@drawable/shape_login1"
+                android:gravity="center"
+                android:paddingRight="@dimen/dimen10"
+                android:text="@string/confirmPayment"
+                android:textColor="@color/whiteColors"
+                android:textSize="@dimen/textsize16"
+                android:layout_marginBottom="@dimen/dimen20"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

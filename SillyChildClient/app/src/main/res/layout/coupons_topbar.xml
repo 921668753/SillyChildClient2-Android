@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_topBar"
+    style="@style/Match44"
+    android:background="@color/whiteColors"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/ll_unuser"
+        style="@style/AutoMatch"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_unuser"
+            style="@style/MatchAuto"
+            android:gravity="center"
+            android:text="@string/unused"
+            android:textColor="@color/greenColors"
+            android:textSize="@dimen/dimen14" />
+
+        <View
+            android:id="@+id/v_unuser"
+            android:layout_width="@dimen/dimen90"
+            android:layout_height="@dimen/dimen2"
+            android:background="@color/greenColors" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_useed"
+        style="@style/AutoMatch"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_useed"
+            style="@style/MatchAuto"
+            android:gravity="center"
+            android:text="@string/used"
+            android:textColor="@color/tabColors"
+            android:textSize="@dimen/dimen14" />
+
+        <View
+            android:id="@+id/v_useed"
+            android:layout_width="@dimen/dimen90"
+            android:layout_height="@dimen/dimen2" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_expired"
+        style="@style/AutoMatch"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_expired"
+            style="@style/MatchAuto"
+            android:gravity="center"
+            android:text="@string/expired"
+            android:textColor="@color/tabColors"
+            android:textSize="@dimen/dimen14" />
+
+        <View
+            android:id="@+id/v_expired"
+            android:layout_width="@dimen/dimen90"
+            android:layout_height="@dimen/dimen2" />
+    </LinearLayout>
+
+</LinearLayout>

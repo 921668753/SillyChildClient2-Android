@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrap"
+    android:background="@color/whiteColors"
+    android:orientation="vertical"
+    android:padding="@dimen/dimen15">
+
+    <ImageView
+        android:id="@+id/img_companyGuide"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen200"
+        android:scaleType="fitXY"
+        android:src="@mipmap/placeholderfigure" />
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/dimen10">
+
+        <TextView
+            android:id="@+id/tv_name"
+            style="@style/WrapWrap"
+            android:singleLine="true"
+            android:text="--"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize17" />
+
+
+        <TextView
+            android:id="@+id/tv_jobNumber1"
+            style="@style/WrapWrap"
+            android:maxLength="10"
+            android:paddingLeft="@dimen/dimen8"
+            android:singleLine="true"
+            android:text="@string/jobNumber"
+            android:textColor="@color/hintColors"
+            android:textSize="@dimen/textsize12" />
+
+        <TextView
+            android:id="@+id/tv_jobNumber"
+            style="@style/WrapWrap"
+            android:paddingRight="@dimen/dimen8"
+            android:singleLine="true"
+            android:text="--"
+            android:textColor="@color/hintColors"
+            android:textSize="@dimen/textsize12" />
+
+        <ImageView
+            android:id="@+id/img_location"
+            style="@style/WrapWrap"
+            android:layout_height="@dimen/dimen12"
+            android:src="@mipmap/location" />
+
+        <TextView
+            android:id="@+id/tv_address"
+            style="@style/WrapWrap"
+            android:maxLength="10"
+            android:paddingLeft="@dimen/dimen4"
+            android:paddingRight="@dimen/dimen8"
+            android:singleLine="true"
+            android:text="--"
+            android:textColor="@color/hintColors"
+            android:textSize="@dimen/textsize12" />
+
+        <TextView style="@style/AutoWrap" />
+
+        <ImageView
+            android:id="@+id/img_service"
+            style="@style/WrapWrap"
+            android:layout_height="@dimen/dimen11"
+            android:src="@mipmap/star_four"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/dimen13">
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/WrapWrap"
+            android:paddingRight="@dimen/dimen10"
+            android:singleLine="true"
+            android:text="--"
+            android:textColor="@color/hintColors"
+            android:textSize="@dimen/textsize13" />
+
+        <TextView
+            android:id="@+id/tv_hide"
+            style="@style/AutoWrap" />
+
+        <ImageView
+            android:id="@+id/img_evaluation"
+            style="@style/WrapWrap"
+            android:layout_height="@dimen/dimen12"
+            android:src="@mipmap/heart_full" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchMatch"
+    android:orientation="vertical">
+
+    <RelativeLayout style="@style/MatchAuto">
+
+        <ScrollView
+            style="@style/MatchWrap"
+            android:background="@color/background"
+            android:fitsSystemWindows="true"
+            android:scrollbars="none">
+
+            <RelativeLayout style="@style/MatchWrap">
+
+                <cn.bingoogolapple.bgabanner.BGABanner
+                    android:id="@+id/banner_ad"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen205"
+                    android:background="@mipmap/placeholderfigure"
+                    app:banner_indicatorGravity="bottom|right"
+                    app:banner_isNeedShowIndicatorOnOnlyOnePage="true"
+                    app:banner_isNumberIndicator="true"
+                    app:banner_numberIndicatorBackground="@drawable/shape_number_indicator_background"
+                    app:banner_numberIndicatorTextColor="@color/whiteColors"
+                    app:banner_numberIndicatorTextSize="10sp"
+                    app:banner_pageChangeDuration="2000"
+                    app:banner_pointAutoPlayAble="true"
+                    app:banner_pointContainerBackground="@android:color/transparent"
+                    app:banner_pointTopBottomMargin="2dp"
+                    app:banner_transitionEffect="alpha" />
+
+
+                <LinearLayout
+                    android:id="@+id/ll_attention"
+                    style="@style/MatchWrap"
+                    android:layout_below="@id/banner_ad"
+                    android:background="@color/whiteColors"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        style="@style/MatchWrap"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingBottom="@dimen/dimen10"
+                        android:paddingLeft="@dimen/dimen15"
+                        android:paddingRight="@dimen/dimen15"
+                        android:paddingTop="@dimen/dimen10">
+
+                        <ImageView
+                            android:id="@+id/img_head"
+                            android:layout_width="@dimen/dimen33"
+                            android:layout_height="@dimen/dimen33"
+                            android:src="@mipmap/placeholderfigure1" />
+
+                        <TextView
+                            android:id="@+id/tv_name"
+                            style="@style/AutoWrap"
+                            android:paddingLeft="@dimen/dimen10"
+                            android:paddingRight="@dimen/dimen10"
+                            android:singleLine="true"
+                            android:text="柳倾城"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/textsize14" />
+
+
+                        <TextView
+                            android:id="@+id/tv_attention"
+                            style="@style/WrapWrap"
+                            android:background="@drawable/shape_code"
+                            android:paddingBottom="@dimen/dimen5"
+                            android:paddingLeft="@dimen/dimen15"
+                            android:paddingRight="@dimen/dimen15"
+                            android:paddingTop="@dimen/dimen5"
+                            android:text="@string/attention"
+                            android:textColor="@color/greenColors"
+                            android:textSize="@dimen/textsize14" />
+                    </LinearLayout>
+
+                    <TextView style="@style/DividerWidth" />
+
+                    <TextView
+                        android:id="@+id/tv_title"
+                        style="@style/MatchWrap"
+                        android:paddingBottom="@dimen/dimen20"
+                        android:paddingLeft="@dimen/dimen15"
+                        android:paddingRight="@dimen/dimen15"
+                        android:paddingTop="@dimen/dimen20"
+                        android:text="--"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/textsize15" />
+
+                    <TextView
+                        android:id="@+id/tv_content"
+                        style="@style/MatchWrap"
+                        android:paddingBottom="@dimen/dimen18"
+                        android:paddingLeft="@dimen/dimen15"
+                        android:paddingRight="@dimen/dimen15"
+                        android:text="--"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/textsize13" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_time"
+                    style="@style/MatchWrap"
+                    android:layout_below="@id/ll_attention"
+                    android:background="@color/whiteColors"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/dimen20"
+                    android:paddingLeft="@dimen/dimen15"
+                    android:paddingRight="@dimen/dimen15">
+
+                    <TextView
+                        android:id="@+id/tv_date"
+                        style="@style/WrapWrap"
+                        android:text="--"
+                        android:textColor="@color/hintColors"
+                        android:textSize="@dimen/textsize12" />
+
+                    <TextView
+                        android:id="@+id/tv_collect"
+                        style="@style/AutoWrap"
+                        android:gravity="right"
+                        android:text="--"
+                        android:textColor="@color/hintColors"
+                        android:textSize="@dimen/textsize12" />
+
+                    <TextView
+                        style="@style/WrapWrap"
+                        android:gravity="right"
+                        android:text="@string/collect"
+                        android:textColor="@color/hintColors"
+                        android:textSize="@dimen/textsize12" />
+
+                    <TextView
+                        android:id="@+id/tv_zan"
+                        style="@style/WrapWrap"
+                        android:layout_marginLeft="@dimen/dimen30"
+                        android:gravity="right"
+                        android:text="--"
+                        android:textColor="@color/hintColors"
+                        android:textSize="@dimen/textsize12" />
+
+                    <TextView
+                        style="@style/WrapWrap"
+                        android:gravity="right"
+                        android:text="@string/zan1"
+                        android:textColor="@color/hintColors"
+                        android:textSize="@dimen/textsize12" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_dynamicComments"
+                    style="@style/MatchWrap"
+                    android:layout_below="@id/ll_time"
+                    android:layout_marginTop="@dimen/dimen10"
+                    android:background="@color/whiteColors"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/dimen15"
+                    android:paddingRight="@dimen/dimen15">
+
+                    <TextView
+                        android:layout_width="@dimen/dimen2"
+                        android:layout_height="@dimen/dimen20"
+                        android:layout_marginBottom="@dimen/dimen12"
+                        android:layout_marginTop="@dimen/dimen12"
+                        android:background="@color/greenColors" />
+
+                    <TextView
+                        style="@style/WrapWrap"
+                        android:paddingLeft="@dimen/dimen15"
+                        android:text="@string/dynamicComments"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/textsize14" />
+
+                    <TextView style="@style/AutoWrap" />
+
+
+                    <TextView
+                        style="@style/WrapWrap"
+                        android:paddingLeft="@dimen/dimen15"
+                        android:text="@string/general"
+                        android:textColor="@color/hintColors"
+                        android:textSize="@dimen/textsize12" />
+
+                    <TextView
+                        android:id="@+id/tv_commentaries"
+                        style="@style/WrapWrap"
+                        android:text="--"
+                        android:textColor="@color/hintColors"
+                        android:textSize="@dimen/textsize12" />
+
+                    <TextView
+                        style="@style/WrapWrap"
+                        android:paddingRight="@dimen/dimen7"
+                        android:text="@string/comments1"
+                        android:textColor="@color/hintColors"
+                        android:textSize="@dimen/textsize12" />
+
+                    <ImageView
+                        style="@style/WrapWrap"
+                        android:src="@mipmap/arrow" />
+                </LinearLayout>
+
+
+                <com.common.cklibrary.utils.myview.ChildListView
+                    android:id="@+id/lv_dynamicsComments"
+                    style="@style/MatchWrap"
+                    android:layout_below="@id/ll_dynamicComments"
+                    android:divider="@android:color/transparent"
+                    android:overScrollMode="never"
+                    android:scrollbars="none"
+                    tools:listitem="@layout/item_dynamicsdetails" />
+
+                <!--<LinearLayout-->
+                <!--style="@style/MatchWrap"-->
+                <!--android:layout_below="@id/ll_dynamicComments"-->
+                <!--android:orientation="vertical">-->
+
+                <!--<include layout="@layout/item_dynamicsdetails" />-->
+
+                <!--<include layout="@layout/item_dynamicsdetails" />-->
+
+                <!--</LinearLayout>-->
+
+
+            </RelativeLayout>
+
+        </ScrollView>
+
+        <LinearLayout
+            style="@style/MatchWrap"
+            android:background="@android:color/transparent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/img_back"
+                style="@style/WrapWrap"
+                android:padding="@dimen/dimen15"
+                android:src="@mipmap/back1" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+
+    <TextView style="@style/DividerWidth" />
+
+    <include
+        android:id="@+id/ll_dynamicsdetailsbottom"
+        layout="@layout/activity_dynamicsdetailsbottom" />
+
+    <include
+        android:id="@+id/ll_dynamicsdetailscomment"
+        layout="@layout/activity_dynamicsdetailscomment"
+        android:visibility="gone" />
+
+</LinearLayout>

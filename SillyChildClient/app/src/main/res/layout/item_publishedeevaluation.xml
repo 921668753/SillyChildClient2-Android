@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchWrap"
+    android:background="@color/background"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:background="@color/whiteColors"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/dimen10"
+        android:paddingLeft="@dimen/dimen15"
+        android:paddingRight="@dimen/dimen15"
+        android:paddingTop="@dimen/dimen10">
+
+        <ImageView
+            android:id="@+id/img_good"
+            android:layout_width="@dimen/dimen105"
+            android:layout_height="@dimen/dimen90"
+            android:background="@drawable/shape_boutiqueline"
+            android:padding="@dimen/dimen1"
+            android:scaleType="fitXY"
+            android:src="@mipmap/placeholderfigure1" />
+
+        <LinearLayout
+            style="@style/MatchMatch"
+            android:layout_marginLeft="@dimen/dimen16"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_goodName"
+                style="@style/MatchWrap"
+                android:paddingTop="@dimen/dimen5"
+                android:singleLine="true"
+                android:text="Dior迪奥口红"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize14" />
+
+            <TextView
+                android:id="@+id/tv_goodDescribe"
+                style="@style/MatchAuto"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:text="520号"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize14" />
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/dimen5">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:text="@string/renminbi"
+                    android:textColor="@color/fF0000Colors"
+                    android:textSize="@dimen/textsize14" />
+
+                <TextView
+                    android:id="@+id/tv_money"
+                    style="@style/AutoWrap"
+                    android:layout_marginLeft="@dimen/dimen5"
+                    android:singleLine="true"
+                    android:text="285.00"
+                    android:textColor="@color/fF0000Colors"
+                    android:textSize="@dimen/textsize14" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <EditText
+        android:id="@+id/et_goodsSatisfactory"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen78"
+        android:layout_marginTop="@dimen/dimen10"
+        android:background="@color/whiteColors"
+        android:gravity="left"
+        android:hint="@string/goodsSatisfactory"
+        android:lineSpacingExtra="5dp"
+        android:paddingBottom="@dimen/dimen10"
+        android:paddingLeft="@dimen/dimen10"
+        android:paddingTop="@dimen/dimen10"
+        android:textColor="@color/textColor"
+        android:textColorHint="@color/dividercolors2"
+        android:textCursorDrawable="@drawable/shape_cursor"
+        android:textSize="@dimen/textsize13" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        style="@style/MatchWrap"
+        android:layout_marginBottom="@dimen/dimen5"
+        android:background="@color/whiteColors"
+        android:choiceMode="singleChoice"
+        android:divider="@null"
+        android:fadingEdge="none"
+        android:listSelector="@android:color/transparent"
+        android:padding="@dimen/dimen8"
+        android:scrollbarStyle="outsideOverlay"
+        app:layoutManager="android.support.v7.widget.GridLayoutManager"
+        app:spanCount="5"
+        tools:listitem="@layout/item_chooseimage2" />
+
+</LinearLayout>

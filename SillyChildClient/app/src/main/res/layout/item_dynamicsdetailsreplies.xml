@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_dynamicsdetailsreplies"
+    style="@style/MatchWrap"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/tv_replie"
+        style="@style/MatchWrap"
+        android:text=""
+        android:textColor="@color/tabColors"
+        android:textSize="@dimen/textsize12" />
+
+</LinearLayout>

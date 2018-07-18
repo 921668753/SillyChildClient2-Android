@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title1" />
+
+    <TextView style="@style/DividerWidth" />
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:background="@color/whiteColors"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/ll_modelCar"
+            style="@style/AutoWrap"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="@dimen/dimen15">
+
+            <TextView
+                android:id="@+id/tv_modelCar"
+                style="@style/WrapWrap"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="@string/modelCar"
+                android:textColor="@color/tabColors"
+                android:textSize="@dimen/textsize15" />
+
+            <ImageView
+                style="@style/WrapWrap"
+                android:layout_marginLeft="@dimen/dimen4"
+                android:layout_marginRight="@dimen/dimen15"
+                android:src="@mipmap/down" />
+        </LinearLayout>
+
+        <TextView style="@style/DividerHeight" />
+
+        <LinearLayout
+            android:id="@+id/ll_reservationNumber"
+            style="@style/AutoMatch"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_reservationNumber"
+                style="@style/WrapMatch"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="@string/reservationNumber"
+                android:textColor="@color/tabColors"
+                android:textSize="@dimen/textsize15" />
+
+            <ImageView
+                android:id="@+id/img_reservationNumber"
+                style="@style/WrapWrap"
+                android:layout_marginLeft="@dimen/dimen4"
+                android:layout_marginRight="@dimen/dimen15"
+                android:src="@mipmap/icon_down" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView style="@style/DividerWidth" />
+
+    <cn.bingoogolapple.refreshlayout.BGARefreshLayout xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/mRefreshLayout"
+        style="@style/MatchMatch">
+
+        <ListView
+            android:id="@+id/lv_allRoutes"
+            style="@style/MatchMatch"
+            android:divider="@color/background"
+            android:dividerHeight="@dimen/dimen1"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            tools:listitem="@layout/item_localguide" />
+
+    </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
+
+    <include layout="@layout/common_error" />
+
+</LinearLayout>

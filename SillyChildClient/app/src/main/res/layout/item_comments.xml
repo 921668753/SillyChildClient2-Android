@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchWrap"
+    android:background="@color/whiteColors"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/dimen15"
+    android:paddingLeft="@dimen/dimen15"
+    android:paddingTop="@dimen/dimen15">
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:layout_marginTop="@dimen/dimen8"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingRight="@dimen/dimen15">
+
+        <ImageView
+            android:id="@+id/img_head"
+            android:layout_width="@dimen/dimen35"
+            android:layout_height="@dimen/dimen35"
+            android:scaleType="fitXY"
+            android:src="@mipmap/placeholderfigure1" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            style="@style/AutoWrap"
+            android:layout_marginLeft="@dimen/dimen15"
+            android:singleLine="true"
+            android:text="小仙女"
+            android:textColor="@color/titletextcolors"
+            android:textSize="@dimen/textsize14" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_time"
+        style="@style/MatchWrap"
+        android:layout_marginTop="@dimen/dimen10"
+        android:text="2018-12-12"
+        android:textColor="@color/titletextcolors"
+        android:textSize="@dimen/textsize13" />
+
+
+    <TextView
+        android:id="@+id/tv_commentscContent"
+        style="@style/MatchWrap"
+        android:layout_marginBottom="@dimen/dimen10"
+        android:layout_marginTop="@dimen/dimen10"
+        android:paddingRight="@dimen/dimen15"
+        android:text="店家发货很速度，东西很不错，赞"
+        android:textColor="@color/titletextcolors"
+        android:textSize="@dimen/textsize15" />
+
+    <com.common.cklibrary.utils.myview.NoScrollGridView
+        android:id="@+id/gv_imgComments"
+        style="@style/MatchWrap"
+        android:layout_marginRight="@dimen/dimen15"
+        android:background="@android:color/white"
+        android:horizontalSpacing="15dp"
+        android:numColumns="3"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        android:verticalSpacing="10dp"
+        tools:listitem="@layout/item_imgcomment" />
+
+    <TextView
+        style="@style/DividerWidth"
+        android:visibility="gone" />
+
+    <TextView
+        style="@style/WrapWrap"
+        android:layout_marginBottom="@dimen/dimen10"
+        android:layout_marginTop="@dimen/dimen10"
+        android:text="@string/additionalReview"
+        android:textColor="@color/loginBackgroundColors"
+        android:textSize="@dimen/textsize13"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tv_additionalReviewContent"
+        style="@style/MatchWrap"
+        android:paddingRight="@dimen/dimen15"
+        android:text="很喜欢很喜欢很喜欢很喜欢很喜欢"
+        android:textColor="@color/titletextcolors"
+        android:textSize="@dimen/textsize15"
+        android:visibility="gone" />
+
+
+    <com.common.cklibrary.utils.myview.NoScrollGridView
+        android:id="@+id/gv_imgAddComments"
+        style="@style/MatchWrap"
+        android:background="@android:color/white"
+        android:horizontalSpacing="15dp"
+        android:numColumns="2"
+        android:overScrollMode="never"
+        android:paddingTop="@dimen/dimen15"
+        android:scrollbars="none"
+        android:verticalSpacing="0dp"
+        android:visibility="gone"
+        tools:listitem="@layout/item_imgcomment" />
+
+    <LinearLayout
+        android:id="@+id/ll_revert"
+        style="@style/WrapWrap"
+        android:layout_gravity="right"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/dimen10"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="@dimen/dimen15"
+            android:layout_height="@dimen/dimen15"
+            android:src="@mipmap/mallhuifuxxx" />
+
+        <TextView
+            style="@style/WrapWrap"
+            android:layout_marginLeft="@dimen/dimen8"
+            android:paddingRight="@dimen/dimen15"
+            android:text="@string/revert"
+            android:textColor="@color/hintColors"
+            android:textSize="@dimen/textsize12" />
+    </LinearLayout>
+
+</LinearLayout>

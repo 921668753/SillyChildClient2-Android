@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#000000</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#FF4081</color>
+
+
+    <!--标题栏-->
+    <color name="titletextcolors">#000000</color>
+    <color name="titlebackground">#fafafa</color>
+    <color name="background">#f0f0f0</color>
+    <color name="titledivider">#dbdbdb</color>
+
+    <color name="dividercolors">#cfcfcf</color>
+    <color name="dividercolors1">#cccccc</color>
+    <color name="dividercolors2">#DDDDDD</color>
+
+
+    <!--引导页-->
+    <color name="immediatelyColor">#40ffffff</color>
+    <color name="fFFFFFColors">#FFFFFF</color>
+
+
+    <!--登录-->
+    <color name="textColor">#333333</color>
+    <color name="grayColors">#888888</color>
+    <color name="hintColors">#999999</color>
+    <color name="loginBackgroundColors">#2CD052</color>
+    <color name="partTranslucent">#39000000</color>
+    <color name="longinotherdividerbg">#dddddd</color>
+    <color name="cs_evaluate_dialog_divider">#eceef3</color>
+    <color name="gray_two">#f2f2f2</color>
+    <color name="seal_bg">#f0f0f6</color>
+    <color name="a95989Colors">#95989A</color>
+
+    <!--主界面-->
+    <color name="greenColors">#2CD052</color>
+    <color name="tabColors">#666666</color>
+    <color name="whiteColors">#ffffff</color>
+    <color name="searchTextColors">#767676</color>
+    <color name="searchBackgroundColors">#eaebed</color>
+    <color name="guideShapeColors">#ff7f19</color>
+    <color name="lightYellowColor">#efcf82</color>
+    <color name="userShapeColors">#ff4551</color>
+    <color name="dFFDE6Colors">#DFFDE6</color>
+    <color name="fF4E00Colors">#FF4E00</color>
+    <color name="c9FFD2Colors">#C9FFD2</color>
+    <color name="fF7565Colors">#FF7565</color>
+    <color name="ea73Colors">#63ea73</color>
+    <color name="ffe206Colors">#ffe206</color>
+    <color name="f3516dColors">#f3516d</color>
+    <color name="e9e5Colors">#13e9e5</color>
+
+
+    <!--首页-->
+    <color name="translucent">#50000000</color>
+    <color name="c1C1C1Colors">#C1C1C1</color>
+    <color name="d3D3D3Colors">#D3D3D3</color>
+    <color name="fF0000Colors">#FF0000</color>
+
+    <!--搜索界面-->
+    <color name="f5F5F5Colors">#F5F5F5</color>
+
+    <!--商城-->
+    <color name="lightRedColors">#ff4e4e</color>
+    <color name="redColors">#ff2e29</color>
+    <color name="mallduanxian">#aaaaaa</color>
+    <color name="f1F4F6Colors">#F1F4F6</color>
+    <color name="fF3542Colors">#FF3542</color>
+
+
+
+
+
+    <!--购物车-->
+    <color name="bEBEBEColors">#BEBEBE</color>
+    <color name="cACACAColors">#CACACA</color>
+
+
+    <!--包车定制-->
+    <color name="designatedDriverColors">#868686</color>
+
+    <!--按天包车游-->
+    <color name="byTheDayHintColors">#C7C7CD</color>
+
+    <!--美食-->
+    <color name="gastronomyAddressColors">#7c7979</color>
+    <color name="blueColors">#3F96F3</color>
+    <color name="lightBlueColors">#E3EEFD</color>
+
+
+    <!--消息-->
+    <color name="messagetopbarColors">#666666</color>
+    <color name="itemmessageColors">#999999</color>
+    <color name="itemMessageNameColors">#000000</color>
+    <color name="itemMessageDividerColors">#e6e6e6</color>
+
+    <!--我的-->
+    <color name="whitemine">#ffffff</color>
+    <color name="textcolordeliveryaddress">#323237</color>
+    <color name="deliveryaddressaddress">#9c9c9e</color>
+    <color name="deliveryaddressdefault">#636370</color>
+    <color name="myWalletDriver">#ff7c7a</color>
+    <color name="darkGreen">#129130</color>
+    <color name="fF2626Colors">#FF2626</color>
+
+
+    <!--我的 意见反馈-->
+    <color name="red">#fb7979</color>
+    <color name="orange">#fbaa79</color>
+    <color name="blue">#79aafb</color>
+    <color name="blue1">#79c9fb</color>
+
+    <!--分享弹框-->
+    <color name="shareDialogColors">#f8f8f8</color>
+
+    <!--透明程度-->
+    <color name="black60">#66000000</color>
+    <color name="white20">#ccf8f8f8</color>
+    <color name="black20">#20000000</color>
+    <color name="black01">#01000000</color>
+    <!--拨打电话-->
+    <color name="phonestrcolor">#8e8e8e</color>
+    <color name="phonenumbercolor">#222222</color>
+
+
+    <!-- 扫码输入编号确定按钮灰色 -->
+    <color name="common_text_gray">#333333</color>
+    <color name="text_black_color">#333333</color>
+    <color name="ac_filter_string_color">#0099ff</color>
+    <color name="cs_evaluate_bottom_text_backgroud">#0e8cea</color>
+    <color name="cs_evaluate_text_color">#3c4d65</color>
+    <color name="cs_evaluate_text_border">#B4BDCB</color>
+    <color name="cs_evaluate_text_border_hover">#91BCFF</color>
+    <color name="cs_evaluate_text_selected">#4D8DF0</color>
+    <color name="cs_evaluate_text_unselected">#939DAB</color>
+    <color name="cs_evaluate_background_selected">#E3EEFF</color>
+    <color name="cs_evaluate_edittext_background">#f1f3f5</color>
+    <color name="cs_evaluate_edittext_textcolor">#939dab</color>
+</resources>

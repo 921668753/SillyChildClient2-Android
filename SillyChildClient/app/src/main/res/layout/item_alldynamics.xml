@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrap"
+    android:background="@color/whiteColors"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/dimen10"
+    android:paddingLeft="@dimen/dimen15"
+    android:paddingRight="@dimen/dimen15"
+    android:paddingTop="@dimen/dimen10">
+
+    <ImageView
+        android:id="@+id/img_dynamics"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen200"
+        android:scaleType="fitXY"
+        android:src="@mipmap/placeholderfigure" />
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            style="@style/AutoWrap"
+            android:orientation="vertical"
+            android:paddingRight="@dimen/dimen10">
+
+            <TextView
+                android:id="@+id/tv_title"
+                style="@style/MatchWrap"
+                android:paddingTop="@dimen/dimen15"
+                android:singleLine="true"
+                android:text="走马观花"
+                android:textColor="@color/titletextcolors"
+                android:textSize="@dimen/textsize16" />
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:layout_marginTop="@dimen/dimen10"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/img_avatar"
+                    android:layout_width="@dimen/dimen25"
+                    android:layout_height="@dimen/dimen25"
+                    android:src="@mipmap/placeholderfigure1" />
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    style="@style/MatchWrap"
+                    android:paddingLeft="@dimen/dimen10"
+                    android:singleLine="true"
+                    android:text="柳倾城"
+                    android:textColor="@color/hintColors"
+                    android:textSize="@dimen/textsize13" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/img_favor"
+            style="@style/WrapWrap"
+            android:padding="@dimen/dimen10"
+            android:src="@mipmap/btn_favor_normal" />
+
+        <TextView
+            android:id="@+id/tv_zanNumber"
+            style="@style/WrapWrap"
+            android:singleLine="true"
+            android:text="179"
+            android:textColor="@color/hintColors"
+            android:textSize="@dimen/textsize13" />
+
+    </LinearLayout>
+
+</LinearLayout>

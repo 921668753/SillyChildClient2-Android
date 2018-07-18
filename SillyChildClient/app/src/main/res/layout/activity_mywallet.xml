@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen294"
+        android:background="@mipmap/my_wallet_background">
+
+        <include
+            android:id="@+id/titlebar0"
+            layout="@layout/common_title" />
+
+        <TextView
+            android:id="@+id/tv_yue"
+            style="@style/WrapWrap"
+            android:layout_below="@id/titlebar0"
+            android:layout_centerHorizontal="true"
+            android:paddingLeft="@dimen/dimen20"
+            android:paddingRight="@dimen/dimen20"
+            android:paddingTop="@dimen/dimen40"
+            android:singleLine="true"
+            android:text="￥5201314.00"
+            android:textColor="@color/whiteColors"
+            android:textSize="@dimen/textsize40" />
+
+        <TextView
+            android:id="@+id/tv_yuestr"
+            style="@style/WrapWrap"
+            android:layout_below="@id/tv_yue"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dimen5"
+            android:singleLine="true"
+            android:text="@string/accountBalance"
+            android:textColor="@color/whiteColors"
+            android:textSize="@dimen/textsize14" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen35"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/dimen49"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/ll_withdraw"
+                style="@style/AutoMatch"
+                android:layout_marginLeft="@dimen/dimen40"
+                android:background="@drawable/shape_mywallet"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/dimen20"
+                    android:layout_height="@dimen/dimen20"
+                    android:src="@mipmap/my_wallet_withdrawals" />
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginLeft="@dimen/dimen10"
+                    android:text="@string/withdrawal"
+                    android:textColor="@color/darkGreen"
+                    android:textSize="@dimen/textsize14" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/ll_recharge"
+                style="@style/AutoMatch"
+                android:layout_marginLeft="@dimen/dimen25"
+                android:layout_marginRight="@dimen/dimen40"
+                android:background="@drawable/shape_mywallet"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/dimen20"
+                    android:layout_height="@dimen/dimen20"
+                    android:src="@mipmap/my_wallet_top_ups" />
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginLeft="@dimen/dimen10"
+                    android:text="@string/recharge"
+                    android:textColor="@color/darkGreen"
+                    android:textSize="@dimen/textsize14" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen67"
+        android:background="@color/whiteColors"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/ll_coupons"
+            style="@style/AutoMatch"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="@dimen/dimen20"
+                android:layout_height="@dimen/dimen14"
+                android:scaleType="fitXY"
+                android:src="@mipmap/my_wallet_coupon" />
+
+            <LinearLayout
+                style="@style/WrapWrap"
+                android:layout_marginLeft="@dimen/dimen15"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:text="@string/coupons"
+                    android:textColor="@color/titletextcolors"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    android:id="@+id/tv_coupons"
+                    style="@style/WrapWrap"
+                    android:layout_marginTop="@dimen/dimen5"
+                    android:text="3个"
+                    android:textColor="@color/hintColors"
+                    android:textSize="@dimen/textsize13" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <TextView style="@style/DividerHeight" />
+
+        <LinearLayout
+            android:id="@+id/ll_bankCard"
+            style="@style/AutoMatch"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="@dimen/dimen20"
+                android:layout_height="@dimen/dimen14"
+                android:scaleType="fitXY"
+                android:src="@mipmap/my_wallet_bank_card" />
+
+            <LinearLayout
+                style="@style/WrapWrap"
+                android:layout_marginLeft="@dimen/dimen15"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:text="@string/bankCard"
+                    android:textColor="@color/titletextcolors"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    android:id="@+id/tv_bankCard"
+                    style="@style/WrapWrap"
+                    android:layout_marginTop="@dimen/dimen5"
+                    android:text="3张"
+                    android:textColor="@color/hintColors"
+                    android:textSize="@dimen/textsize13" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:layout_marginLeft="@dimen/dimen8"
+        android:layout_marginRight="@dimen/dimen8"
+        android:layout_marginTop="@dimen/dimen10"
+        android:background="@drawable/shape_systemmessage"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/MatchWrap"
+            android:gravity="center"
+            android:paddingBottom="@dimen/dimen5"
+            android:paddingTop="@dimen/dimen15"
+            android:text="@string/withdrawalRuleDescription"
+            android:textColor="@color/titletextcolors"
+            android:textSize="@dimen/textsize14" />
+
+        <TextView
+            style="@style/MatchWrap"
+            android:paddingBottom="@dimen/dimen15"
+            android:paddingLeft="@dimen/dimen10"
+            android:paddingRight="@dimen/dimen10"
+            android:paddingTop="@dimen/dimen15"
+            android:text="@string/withdrawalRuleDescription1"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize12" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

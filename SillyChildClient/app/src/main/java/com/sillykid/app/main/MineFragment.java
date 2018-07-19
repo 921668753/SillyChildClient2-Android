@@ -25,7 +25,6 @@ import com.kymjs.common.PreferenceHelper;
 import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
 import com.sillykid.app.entity.main.UserInfoBean;
-import com.sillykid.app.homepage.BannerDetailsActivity;
 import com.sillykid.app.loginregister.LoginActivity;
 import com.sillykid.app.message.interactivemessage.imuitl.UserUtil;
 import com.sillykid.app.mine.deliveryaddress.DeliveryAddressActivity;
@@ -43,8 +42,6 @@ import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 
 import static android.app.Activity.RESULT_OK;
 import static com.sillykid.app.constant.NumericConstants.REQUEST_CODE;
-import static com.sillykid.app.constant.URLConstants.ABOUTUS;
-import static com.sillykid.app.constant.URLConstants.VIPEMERGENCYCALL;
 
 /**
  * 个人中心

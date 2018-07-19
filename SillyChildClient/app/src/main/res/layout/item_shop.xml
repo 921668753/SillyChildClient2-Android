@@ -1,60 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/dimen80"
+    android:layout_height="@dimen/dimen130"
+    android:background="@color/whiteColors"
     android:gravity="center_vertical"
-    android:paddingLeft="@dimen/dimen15"
-    android:paddingRight="@dimen/dimen15">
+    android:orientation="horizontal"
+    android:paddingLeft="@dimen/dimen12"
+    android:paddingRight="@dimen/dimen12">
 
     <ImageView
-        style="@style/WrapWrap"
-        android:src="@mipmap/default_image"/>
+        android:id="@+id/img_shop"
+        android:layout_width="@dimen/dimen83"
+        android:layout_height="@dimen/dimen97"
+        android:scaleType="fitXY"
+        android:src="@mipmap/placeholderfigure1" />
 
     <LinearLayout
         style="@style/AutoWrap"
-        android:orientation="vertical"
-        android:layout_marginLeft="@dimen/dimen15">
+        android:layout_marginLeft="@dimen/dimen13"
+        android:orientation="vertical">
+
         <TextView
-            style="@style/WrapWrap"
-            android:id="@+id/tv_goodname"
-            android:text="温碧泉旗舰店"
+            android:id="@+id/tv_shopName"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen31"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="2"
+            android:text="嘻嘻嘻哈哈哈哈哈美妆店美妆店"
             android:textColor="@color/textColor"
-            android:textSize="@dimen/textsize14"/>
-        <LinearLayout
+            android:textSize="@dimen/textsize13" />
+
+        <TextView
+            android:id="@+id/tv_collectionNum"
+            style="@style/WrapWrap"
+            android:paddingTop="@dimen/dimen8"
+            android:singleLine="true"
+            android:text="1130人收藏"
+            android:textColor="@color/hintColors"
+            android:textSize="@dimen/textsize12" />
+
+        <TextView
+            android:id="@+id/tv_score"
             style="@style/MatchWrap"
-            android:layout_marginTop="@dimen/dimen8"
-            android:orientation="horizontal">
-            <TextView
-                android:id="@+id/tv_goodcollectionnumber"
-                style="@style/WrapWrap"
-                android:text="180"
-                android:textSize="@dimen/textsize12"
-                android:textColor="@color/hintColors"/>
-            <TextView
-                style="@style/WrapWrap"
-                android:text="@string/personCollection"
-                android:textSize="@dimen/textsize12"
-                android:textColor="@color/hintColors"/>
-            <TextView
-                style="@style/WrapWrap"
-                android:text="@string/synthesiseScore"
-                android:textSize="@dimen/textsize12"
-                android:textColor="@color/hintColors"
-                android:layout_marginLeft="@dimen/dimen20"/>
-            <TextView
-                android:id="@+id/tv_goodscore"
-                style="@style/WrapWrap"
-                android:text="9.6"
-                android:textSize="@dimen/textsize12"
-                android:textColor="@color/guideShapeColors"/>
-        </LinearLayout>
+            android:layout_marginTop="@dimen/dimen15"
+            android:singleLine="true"
+            android:text="4.8分"
+            android:textColor="@color/fF5656Colors"
+            android:textSize="@dimen/textsize15" />
 
     </LinearLayout>
 
-    <ImageView
+    <LinearLayout
         style="@style/WrapWrap"
-        android:src="@mipmap/arrow"
-        android:layout_marginLeft="@dimen/dimen15"/>
+        android:layout_marginLeft="@dimen/dimen18"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_enterStore"
+            android:layout_width="@dimen/dimen69"
+            android:layout_height="@dimen/dimen25"
+            android:background="@drawable/shape_collection_shop"
+            android:gravity="center"
+            android:text="@string/enterStore"
+            android:textColor="@color/whiteColors"
+            android:textSize="@dimen/textsize10" />
+
+        <TextView
+            android:id="@+id/tv_cancelCollection"
+            android:layout_width="@dimen/dimen69"
+            android:layout_height="@dimen/dimen25"
+            android:layout_marginTop="@dimen/dimen40"
+            android:background="@drawable/shape_collection_shop1"
+            android:gravity="center"
+            android:text="@string/cancelCollection"
+            android:textColor="@color/hintColors"
+            android:textSize="@dimen/textsize10" />
+
+
+    </LinearLayout>
+
 
 </LinearLayout>

@@ -128,8 +128,8 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
     private HorizontalListView hlv_hotRegion;
 
 
-    @BindView(id = R.id.clv_boutiqueLine)
-    private ChildListView clv_boutiqueLine;
+    @BindView(id = R.id.clv_hpStrategy)
+    private ChildListView clv_hpStrategy;
 
     public LocationClient mLocationClient = null;
 
@@ -380,7 +380,7 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
             Intent intent = new Intent(aty, LocalTalentDetailsActivity.class);
             intent.putExtra("talent_id", hotRegionViewAdapter.getItem(i).getTalent_id());
             aty.showActivity(aty, intent);
-        } else if (adapterView.getId() == R.id.clv_boutiqueLine) {
+        } else if (adapterView.getId() == R.id.clv_hpStrategy) {
             Intent intent = new Intent(aty, StrategyDetailsActivity.class);
             intent.putExtra("guide_id", boutiqueLineViewAdapter.getItem(i).getGuide_id());
             aty.showActivity(aty, intent);

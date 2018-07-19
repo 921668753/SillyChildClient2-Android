@@ -29,16 +29,17 @@ import com.sillykid.app.loginregister.LoginActivity;
 
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 
-/**我的收藏中的路线
+/**
+ * 我的收藏中的路线
  * Created by Administrator on 2017/9/2.
  */
 
-public class RouteFragment extends BaseFragment implements BGARefreshLayout.BGARefreshLayoutDelegate,MyCollectionContract.View,AdapterView.OnItemClickListener{
+public class RouteFragment extends BaseFragment implements BGARefreshLayout.BGARefreshLayoutDelegate, MyCollectionContract.View, AdapterView.OnItemClickListener {
 
-    @BindView(id=R.id.mRefreshLayout)
+    @BindView(id = R.id.mRefreshLayout)
     private BGARefreshLayout mRefreshLayout;
 
-    @BindView(id=R.id.lv_companyGuideMassage)
+    @BindView(id = R.id.lv_companyGuideMassage)
     private ListView lv_companyGuideMassage;
 
     /**
@@ -51,26 +52,25 @@ public class RouteFragment extends BaseFragment implements BGARefreshLayout.BGAR
     @BindView(id = R.id.tv_hintText, click = true)
     private TextView tv_hintText;
 
-    private MyCollectionActivity1 aty;
+    private MyCollectionActivity aty;
     private AllLineViewAdapter mAdapter;
     private Intent jumpintent;
     private boolean isShowLoadingMore;
-    private int mMorePageNumber=1;
+    private int mMorePageNumber = 1;
     private int totalPageNumber;
-    private int currentitem=0;
+    private int currentitem = 0;
     private AllRoutesBean allRoutesBean;
-
 
     @Override
     protected View inflaterView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
-        aty = (MyCollectionActivity1) getActivity();
+        aty = (MyCollectionActivity) getActivity();
         return View.inflate(aty, R.layout.fragment_route, null);
     }
 
     @Override
     protected void initData() {
         super.initData();
-        mPresenter=new MyCollectionPresenter(this);
+        mPresenter = new MyCollectionPresenter(this);
         mAdapter = new AllLineViewAdapter(aty);
     }
 
@@ -86,7 +86,7 @@ public class RouteFragment extends BaseFragment implements BGARefreshLayout.BGAR
     @Override
     protected void widgetClick(View v) {
         super.widgetClick(v);
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.tv_hintText:
                 if (tv_hintText.getText().toString().equals(getString(R.string.login1))) {
                     PreferenceHelper.write(aty, StringConstants.FILENAME, "id", 0);
@@ -111,7 +111,7 @@ public class RouteFragment extends BaseFragment implements BGARefreshLayout.BGAR
         mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
         mRefreshLayout.endRefreshing();
         showLoadingDialog(getString(R.string.dataLoad));
-       // ((MyCollectionPresenter) mPresenter).getRouteCollection(0,mMorePageNumber);
+        // ((MyCollectionPresenter) mPresenter).getRouteCollection(0,mMorePageNumber);
     }
 
     @Override
@@ -126,18 +126,18 @@ public class RouteFragment extends BaseFragment implements BGARefreshLayout.BGAR
             return false;
         }
         showLoadingDialog(getString(R.string.dataLoad));
-   //     ((MyCollectionPresenter) mPresenter).getRouteCollection(0,mMorePageNumber);
+        //     ((MyCollectionPresenter) mPresenter).getRouteCollection(0,mMorePageNumber);
         return true;
     }
 
     @Override
     public void setPresenter(MyCollectionContract.Presenter presenter) {
-        mPresenter=presenter;
+        mPresenter = presenter;
     }
 
     @Override
     public void getSuccess(String success, int flag) {
-        Log.d("调试","收藏路线"+success);
+        Log.d("调试", "收藏路线" + success);
         isShowLoadingMore = true;
         ll_commonError.setVisibility(View.GONE);
         mRefreshLayout.setVisibility(View.VISIBLE);
@@ -189,7 +189,7 @@ public class RouteFragment extends BaseFragment implements BGARefreshLayout.BGAR
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        currentitem=i;
+        currentitem = i;
         jumpintent = new Intent(aty, RouteDetailsActivity.class);
         jumpintent.putExtra("line_id", mAdapter.getItem(i).getLine_id() + "");
         jumpintent.putExtra("line_title", mAdapter.getItem(i).getLine_title());
@@ -200,7 +200,7 @@ public class RouteFragment extends BaseFragment implements BGARefreshLayout.BGAR
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode==1&&resultCode==0&&data!=null){
+        if (requestCode == 1 && resultCode == 0 && data != null) {
             mAdapter.removeItem(currentitem);
         }
     }

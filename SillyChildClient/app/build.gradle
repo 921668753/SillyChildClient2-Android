@@ -155,6 +155,8 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile "com.android.support:support-annotations:$rootProject.supportLibraryVersion"
 
+    compile 'com.android.support:design:27.1.1'
+
     //让应用支持多DEX文件  65K
     compile 'com.android.support:multidex:1.0.3'
 

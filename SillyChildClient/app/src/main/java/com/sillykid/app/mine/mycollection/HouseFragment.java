@@ -14,11 +14,11 @@ import com.sillykid.app.R;
  */
 
 public class HouseFragment extends BaseFragment {
-    private MyCollectionActivity1 aty;
+    private MyCollectionActivity aty;
 
     @Override
     protected View inflaterView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
-        aty = (MyCollectionActivity1) getActivity();
+        aty = (MyCollectionActivity) getActivity();
         return View.inflate(aty, R.layout.fragment_house, null);
     }
 }

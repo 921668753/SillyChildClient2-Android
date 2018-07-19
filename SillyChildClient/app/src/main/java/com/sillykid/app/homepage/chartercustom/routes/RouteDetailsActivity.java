@@ -17,7 +17,7 @@ import com.sillykid.app.mine.sharingceremony.dialog.ShareBouncedDialog;
 import com.sillykid.app.entity.CollectLineBean;
 import com.sillykid.app.entity.RouteDetailsBean;
 import com.sillykid.app.loginregister.LoginActivity;
-import com.sillykid.app.mine.mycollection.MyCollectionActivity1;
+import com.sillykid.app.mine.mycollection.MyCollectionActivity;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.UMShareListener;
@@ -317,7 +317,7 @@ public class RouteDetailsActivity extends BaseActivity implements RouteDetailsCo
      */
     private void resultToCollectionRoute() {
         if (action.equals("collect")) {
-            intentresult = new Intent(this, MyCollectionActivity1.class);
+            intentresult = new Intent(this, MyCollectionActivity.class);
             setResult(0, intentresult);
         }
     }

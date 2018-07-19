@@ -82,7 +82,7 @@ public class CollectionStrateFragment extends BaseFragment implements Collection
         adapter=new MasonryAdapter(aty,listbean,this,false);
         pullLoadMoreRecyclerView.setAdapter(adapter);
         //设置item之间的间隔
-        pullLoadMoreRecyclerView.addItemDecoration(((MyReleaseActivity)getActivity()).getSpacesItemDecoration());
+      //  pullLoadMoreRecyclerView.addItemDecoration(((MyReleaseActivity)getActivity()).getSpacesItemDecoration());
         pullLoadMoreRecyclerView.setOnPullLoadMoreListener(this);
     }
 
@@ -228,9 +228,9 @@ public class CollectionStrateFragment extends BaseFragment implements Collection
     public void onResume() {
         super.onResume();
         isresume=true;
-        if (aty.getChageIcon()==3){
-            pullLoadMoreRecyclerView.refresh();
-        }
+//        if (aty.getChageIcon()==3){
+//            pullLoadMoreRecyclerView.refresh();
+//        }
     }
 
     @Override

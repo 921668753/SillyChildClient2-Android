@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/dimen118"
+    android:layout_height="@dimen/dimen89"
+    android:background="@color/whiteColors">
+
+    <ImageView
+        style="@style/MatchMatch"
+        android:scaleType="fitXY"
+        android:src="@mipmap/placeholderfigure" />
+
+    <ImageView
+        style="@style/MatchMatch"
+        android:scaleType="fitXY"
+        android:src="@mipmap/hp_mask" />
+
+    <ImageView
+        android:layout_width="@dimen/dimen28"
+        android:layout_height="@dimen/dimen28"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:scaleType="fitXY"
+        android:src="@mipmap/hp_play" />
+
+</RelativeLayout>

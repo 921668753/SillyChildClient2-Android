@@ -11,7 +11,7 @@
         android:id="@+id/mRefreshLayout"
         style="@style/MatchAuto"
         android:background="@color/background"
-        android:paddingTop="@dimen/dimen5">
+        android:paddingTop="@dimen/dimen6">
 
         <ListView
             android:id="@+id/lv_myFans"

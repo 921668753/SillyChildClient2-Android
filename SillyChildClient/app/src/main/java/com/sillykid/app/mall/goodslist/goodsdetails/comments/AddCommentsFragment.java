@@ -17,7 +17,7 @@ import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.RefreshLayoutUtil;
 import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
-import com.sillykid.app.adapter.homepage.goodslist.evaluation.CommentsViewAdapter;
+import com.sillykid.app.adapter.mall.goodslist.evaluation.CommentsViewAdapter;
 import com.sillykid.app.constant.NumericConstants;
 import com.sillykid.app.entity.homepage.goodslist.goodsdetails.comments.CommentsBean;
 import com.sillykid.app.loginregister.LoginActivity;

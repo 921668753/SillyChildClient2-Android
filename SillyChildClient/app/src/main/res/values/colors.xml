@@ -53,6 +53,9 @@
     <color name="d0a4fcColors">#d0a4fc</color>
     <color name="e9e5Colors">#13e9e5</color>
 
+    <color name="eBF1F6Colors">#EBF1F6</color>
+
+    <color name="fF4848Colors">#FF4848</color>
 
     <!--首页-->
     <color name="translucent">#50000000</color>
@@ -71,13 +74,12 @@
     <color name="fF3542Colors">#FF3542</color>
 
 
-
-
-
     <!--购物车-->
     <color name="bEBEBEColors">#BEBEBE</color>
     <color name="cACACAColors">#CACACA</color>
 
+    <!--我的收藏   商品-->
+    <color name="fF5656Colors">#FF5656</color>
 
     <!--包车定制-->
     <color name="designatedDriverColors">#868686</color>

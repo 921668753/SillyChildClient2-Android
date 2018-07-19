@@ -1,23 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/rl_region"
-    style="@style/WrapWrap">
+    android:layout_width="@dimen/dimen118"
+    android:layout_height="@dimen/dimen89">
 
     <ImageView
         android:id="@+id/img_region"
-        android:layout_width="@dimen/dimen130"
-        android:layout_height="@dimen/dimen105"
+        android:layout_width="@dimen/dimen118"
+        android:layout_height="@dimen/dimen89"
         android:scaleType="fitXY"
-        android:src="@mipmap/ic_launcher" />
+        android:src="@mipmap/placeholderfigure" />
 
 
     <TextView
         android:id="@+id/tv_region"
-        android:layout_width="@dimen/dimen86"
-        android:layout_height="@dimen/dimen37"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:background="@color/translucent"
+        style="@style/MatchMatch"
+        android:background="@mipmap/hp_mask"
         android:gravity="center"
         android:text="日本"
         android:textColor="@color/whiteColors"

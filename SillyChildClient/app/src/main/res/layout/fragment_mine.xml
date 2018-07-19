@@ -20,7 +20,7 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dimen206"
+                    android:layout_height="@dimen/dimen245"
                     android:background="@mipmap/mine_background">
 
                     <TextView
@@ -37,19 +37,19 @@
 
                     <TextView
                         android:id="@+id/tv_minetouxiang"
-                        android:layout_width="@dimen/dimen61"
-                        android:layout_height="@dimen/dimen61"
+                        android:layout_width="@dimen/dimen71"
+                        android:layout_height="@dimen/dimen71"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="@dimen/dimen36"
+                        android:layout_marginTop="@dimen/dimen29"
                         android:background="@drawable/shape_mine_dot"
                         android:visibility="gone" />
 
                     <ImageView
                         android:id="@+id/iv_minetouxiang"
-                        android:layout_width="@dimen/dimen59"
-                        android:layout_height="@dimen/dimen59"
+                        android:layout_width="@dimen/dimen69"
+                        android:layout_height="@dimen/dimen69"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="@dimen/dimen37"
+                        android:layout_marginTop="@dimen/dimen30"
                         android:src="@mipmap/avatar"
                         android:visibility="gone" />
 
@@ -58,10 +58,10 @@
                         style="@style/WrapWrap"
                         android:layout_below="@id/iv_minetouxiang"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="@dimen/dimen10"
+                        android:layout_marginTop="@dimen/dimen9"
                         android:text="@string/loginOrRegister"
                         android:textColor="@color/whiteColors"
-                        android:textSize="@dimen/textsize12"
+                        android:textSize="@dimen/textsize15"
                         android:visibility="gone" />
 
                     <TextView
@@ -69,10 +69,10 @@
                         style="@style/WrapWrap"
                         android:layout_below="@id/tv_nickname"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="@dimen/dimen5"
+                        android:layout_marginTop="@dimen/dimen7"
                         android:text="SHZ0427"
                         android:textColor="@color/whiteColors"
-                        android:textSize="@dimen/textsize8"
+                        android:textSize="@dimen/textsize10"
                         android:visibility="gone" />
 
                     <TextView
@@ -80,22 +80,22 @@
                         style="@style/MatchWrap"
                         android:layout_below="@id/tv_serialNumber"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="@dimen/dimen10"
+                        android:layout_marginTop="@dimen/dimen25"
                         android:gravity="center"
-                        android:maxLines="2"
                         android:paddingLeft="@dimen/dimen24"
                         android:paddingRight="@dimen/dimen24"
+                        android:singleLine="true"
                         android:text="简介:某年某月某日，下午某时，天气晴，我在某地，想念你。 "
                         android:textColor="@color/whiteColors"
-                        android:textSize="@dimen/textsize9"
+                        android:textSize="@dimen/textsize11"
                         android:visibility="gone" />
 
                     <LinearLayout
                         style="@style/MatchWrap"
                         android:layout_alignParentBottom="true"
-                        android:layout_marginBottom="@dimen/dimen8"
-                        android:layout_marginLeft="@dimen/dimen80"
-                        android:layout_marginRight="@dimen/dimen80"
+                        android:layout_marginBottom="@dimen/dimen13"
+                        android:layout_marginLeft="@dimen/dimen50"
+                        android:layout_marginRight="@dimen/dimen50"
                         android:gravity="center"
                         android:orientation="horizontal">
 
@@ -110,19 +110,19 @@
                                 style="@style/WrapWrap"
                                 android:text="0"
                                 android:textColor="@color/whiteColors"
-                                android:textSize="@dimen/textsize12" />
+                                android:textSize="@dimen/textsize14" />
 
                             <TextView
                                 style="@style/WrapWrap"
                                 android:text="@string/follow"
                                 android:textColor="@color/whiteColors"
-                                android:textSize="@dimen/textsize9" />
+                                android:textSize="@dimen/textsize12" />
 
                         </LinearLayout>
 
                         <TextView
                             android:layout_width="@dimen/dimen1"
-                            android:layout_height="@dimen/dimen15"
+                            android:layout_height="@dimen/dimen16"
                             android:background="@color/whiteColors" />
 
                         <LinearLayout
@@ -136,19 +136,19 @@
                                 style="@style/WrapWrap"
                                 android:text="0"
                                 android:textColor="@color/whiteColors"
-                                android:textSize="@dimen/textsize12" />
+                                android:textSize="@dimen/textsize14" />
 
                             <TextView
                                 style="@style/WrapWrap"
                                 android:text="@string/fans"
                                 android:textColor="@color/whiteColors"
-                                android:textSize="@dimen/textsize9" />
+                                android:textSize="@dimen/textsize12" />
 
                         </LinearLayout>
 
                         <TextView
                             android:layout_width="@dimen/dimen1"
-                            android:layout_height="@dimen/dimen15"
+                            android:layout_height="@dimen/dimen16"
                             android:background="@color/whiteColors" />
 
 
@@ -163,19 +163,19 @@
                                 style="@style/WrapWrap"
                                 android:text="0"
                                 android:textColor="@color/whiteColors"
-                                android:textSize="@dimen/textsize12" />
+                                android:textSize="@dimen/textsize14" />
 
                             <TextView
                                 style="@style/WrapWrap"
                                 android:text="@string/beCollected"
                                 android:textColor="@color/whiteColors"
-                                android:textSize="@dimen/textsize9" />
+                                android:textSize="@dimen/textsize12" />
 
                         </LinearLayout>
 
                         <TextView
                             android:layout_width="@dimen/dimen1"
-                            android:layout_height="@dimen/dimen15"
+                            android:layout_height="@dimen/dimen16"
                             android:background="@color/whiteColors" />
 
                         <LinearLayout
@@ -189,13 +189,13 @@
                                 style="@style/WrapWrap"
                                 android:text="0"
                                 android:textColor="@color/whiteColors"
-                                android:textSize="@dimen/textsize12" />
+                                android:textSize="@dimen/textsize14" />
 
                             <TextView
                                 style="@style/WrapWrap"
                                 android:text="@string/giveLike"
                                 android:textColor="@color/whiteColors"
-                                android:textSize="@dimen/textsize9" />
+                                android:textSize="@dimen/textsize12" />
 
                         </LinearLayout>
 
@@ -237,26 +237,24 @@
                 <!--我的钱包-->
                 <LinearLayout
                     android:id="@+id/ll_minewallet"
-                    style="@style/Match40"
-                    android:layout_marginTop="@dimen/dimen20"
+                    style="@style/Match45"
+                    android:layout_marginTop="@dimen/dimen16"
                     android:background="@color/whiteColors"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:paddingLeft="@dimen/dimen24"
-                    android:paddingRight="@dimen/dimen24">
+                    android:paddingLeft="@dimen/dimen22"
+                    android:paddingRight="@dimen/dimen22">
 
                     <ImageView
                         style="@style/Image20"
                         android:src="@mipmap/minewalletxxx" />
 
                     <TextView
-                        style="@style/WrapWrap"
-                        android:layout_marginLeft="@dimen/dimen15"
+                        style="@style/AutoWrap"
+                        android:layout_marginLeft="@dimen/dimen12"
                         android:text="@string/myWallet"
                         android:textColor="@color/textColor"
-                        android:textSize="@dimen/textsize12" />
-
-                    <TextView style="@style/AutoWrap" />
+                        android:textSize="@dimen/textsize13" />
 
                     <ImageView
                         style="@style/Image610"
@@ -267,25 +265,23 @@
                 <!--我的购物车-->
                 <LinearLayout
                     android:id="@+id/ll_mineshopping"
-                    style="@style/Match40"
-                    android:layout_marginTop="@dimen/dimen10"
+                    style="@style/Match45"
+                    android:layout_marginTop="@dimen/dimen16"
                     android:background="@color/whiteColors"
                     android:gravity="center_vertical"
-                    android:paddingLeft="@dimen/dimen24"
-                    android:paddingRight="@dimen/dimen24">
+                    android:paddingLeft="@dimen/dimen22"
+                    android:paddingRight="@dimen/dimen22">
 
                     <ImageView
                         style="@style/Image20"
                         android:src="@mipmap/mineshoppingxxx" />
 
                     <TextView
-                        style="@style/WrapWrap"
-                        android:layout_marginLeft="@dimen/dimen15"
+                        style="@style/AutoWrap"
+                        android:layout_marginLeft="@dimen/dimen12"
                         android:text="@string/shoppingCart"
                         android:textColor="@color/textColor"
-                        android:textSize="@dimen/textsize12" />
-
-                    <TextView style="@style/AutoWrap" />
+                        android:textSize="@dimen/textsize13" />
 
                     <ImageView
                         style="@style/Image610"
@@ -296,7 +292,7 @@
                 <!--我的订单-->
                 <LinearLayout
                     android:id="@+id/ll_mineorder"
-                    style="@style/Match40"
+                    style="@style/Match45"
                     android:layout_marginTop="@dimen/dimen1"
                     android:background="@color/whiteColors"
                     android:gravity="center_vertical"
@@ -308,13 +304,11 @@
                         android:src="@mipmap/mineorderxxx" />
 
                     <TextView
-                        style="@style/WrapWrap"
-                        android:layout_marginLeft="@dimen/dimen15"
+                        style="@style/AutoWrap"
+                        android:layout_marginLeft="@dimen/dimen12"
                         android:text="@string/myOrder"
                         android:textColor="@color/textColor"
-                        android:textSize="@dimen/textsize12" />
-
-                    <TextView style="@style/AutoWrap" />
+                        android:textSize="@dimen/textsize13" />
 
                     <ImageView
                         style="@style/Image610"
@@ -325,25 +319,24 @@
                 <!--我的购物车-->
                 <LinearLayout
                     android:id="@+id/ll_myRelease"
-                    style="@style/Match40"
-                    android:layout_marginTop="@dimen/dimen15"
+                    style="@style/Match45"
+                    android:layout_marginTop="@dimen/dimen16"
                     android:background="@color/whiteColors"
                     android:gravity="center_vertical"
-                    android:paddingLeft="@dimen/dimen24"
-                    android:paddingRight="@dimen/dimen24">
+                    android:paddingLeft="@dimen/dimen22"
+                    android:paddingRight="@dimen/dimen22">
 
                     <ImageView
                         style="@style/Image20"
                         android:src="@mipmap/minemyreleasexxx" />
 
                     <TextView
-                        style="@style/WrapWrap"
-                        android:layout_marginLeft="@dimen/dimen15"
+                        style="@style/AutoWrap"
+                        android:layout_marginLeft="@dimen/dimen12"
                         android:text="@string/myRelease"
                         android:textColor="@color/textColor"
-                        android:textSize="@dimen/textsize12" />
+                        android:textSize="@dimen/textsize13" />
 
-                    <TextView style="@style/AutoWrap" />
 
                     <ImageView
                         style="@style/Image610"
@@ -353,25 +346,24 @@
                 <!--我的收藏-->
                 <LinearLayout
                     android:id="@+id/ll_minecollection"
-                    style="@style/Match40"
+                    style="@style/Match45"
                     android:layout_marginTop="@dimen/dimen1"
                     android:background="@color/whiteColors"
                     android:gravity="center_vertical"
-                    android:paddingLeft="@dimen/dimen24"
-                    android:paddingRight="@dimen/dimen24">
+                    android:paddingLeft="@dimen/dimen22"
+                    android:paddingRight="@dimen/dimen22">
 
                     <ImageView
                         style="@style/Image20"
                         android:src="@mipmap/minecollectionxxx" />
 
                     <TextView
-                        style="@style/WrapWrap"
-                        android:layout_marginLeft="@dimen/dimen15"
+                        style="@style/AutoWrap"
+                        android:layout_marginLeft="@dimen/dimen12"
                         android:text="@string/myCollection"
                         android:textColor="@color/textColor"
-                        android:textSize="@dimen/textsize12" />
+                        android:textSize="@dimen/textsize13" />
 
-                    <TextView style="@style/AutoWrap" />
 
                     <ImageView
                         style="@style/Image610"
@@ -382,26 +374,25 @@
                 <!--分享有礼-->
                 <LinearLayout
                     android:id="@+id/ll_mineshare"
-                    style="@style/Match40"
+                    style="@style/Match45"
                     android:layout_marginTop="@dimen/dimen1"
                     android:background="@color/whiteColors"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:paddingLeft="@dimen/dimen24"
-                    android:paddingRight="@dimen/dimen24">
+                    android:paddingLeft="@dimen/dimen22"
+                    android:paddingRight="@dimen/dimen22">
 
                     <ImageView
                         style="@style/Image20"
                         android:src="@mipmap/minesharexxx" />
 
                     <TextView
-                        style="@style/WrapWrap"
-                        android:layout_marginLeft="@dimen/dimen15"
+                        style="@style/AutoWrap"
+                        android:layout_marginLeft="@dimen/dimen12"
                         android:text="@string/sharingCeremony"
                         android:textColor="@color/textColor"
-                        android:textSize="@dimen/textsize12" />
+                        android:textSize="@dimen/textsize13" />
 
-                    <TextView style="@style/AutoWrap" />
 
                     <ImageView
                         style="@style/Image610"
@@ -412,25 +403,24 @@
                 <!--收货地址-->
                 <LinearLayout
                     android:id="@+id/ll_mineaddress"
-                    style="@style/Match40"
+                    style="@style/Match45"
                     android:layout_marginTop="@dimen/dimen1"
                     android:background="@color/whiteColors"
                     android:gravity="center_vertical"
-                    android:paddingLeft="@dimen/dimen24"
-                    android:paddingRight="@dimen/dimen24">
+                    android:paddingLeft="@dimen/dimen22"
+                    android:paddingRight="@dimen/dimen22">
 
                     <ImageView
                         style="@style/Image20"
                         android:src="@mipmap/mineaddressxxx" />
 
                     <TextView
-                        style="@style/WrapWrap"
-                        android:layout_marginLeft="@dimen/dimen15"
+                        style="@style/AutoWrap"
+                        android:layout_marginLeft="@dimen/dimen12"
                         android:text="@string/deliveryAddress"
                         android:textColor="@color/textColor"
-                        android:textSize="@dimen/textsize12" />
+                        android:textSize="@dimen/textsize13" />
 
-                    <TextView style="@style/AutoWrap" />
 
                     <ImageView
                         style="@style/Image610"
@@ -442,25 +432,24 @@
                 <!--设置-->
                 <LinearLayout
                     android:id="@+id/ll_minesetup"
-                    style="@style/Match40"
+                    style="@style/Match45"
                     android:layout_marginTop="@dimen/dimen15"
                     android:background="@color/whiteColors"
                     android:gravity="center_vertical"
-                    android:paddingLeft="@dimen/dimen24"
-                    android:paddingRight="@dimen/dimen24">
+                    android:paddingLeft="@dimen/dimen22"
+                    android:paddingRight="@dimen/dimen22">
 
                     <ImageView
                         style="@style/Image20"
                         android:src="@mipmap/minesetxxx" />
 
                     <TextView
-                        style="@style/WrapWrap"
-                        android:layout_marginLeft="@dimen/dimen15"
+                        style="@style/AutoWrap"
+                        android:layout_marginLeft="@dimen/dimen12"
                         android:text="@string/setUp"
                         android:textColor="@color/textColor"
-                        android:textSize="@dimen/textsize12" />
+                        android:textSize="@dimen/textsize13" />
 
-                    <TextView style="@style/AutoWrap" />
 
                     <ImageView
                         style="@style/Image610"
@@ -472,25 +461,24 @@
                 <!--VIP紧急电话-->
                 <LinearLayout
                     android:id="@+id/ll_vipEmergencyCall"
-                    style="@style/Match40"
+                    style="@style/Match45"
                     android:layout_marginTop="@dimen/dimen1"
                     android:background="@color/whiteColors"
                     android:gravity="center_vertical"
-                    android:paddingLeft="@dimen/dimen24"
-                    android:paddingRight="@dimen/dimen24">
+                    android:paddingLeft="@dimen/dimen22"
+                    android:paddingRight="@dimen/dimen22">
 
                     <ImageView
                         style="@style/Image20"
                         android:src="@mipmap/minevipemergencycallxxx" />
 
                     <TextView
-                        style="@style/WrapWrap"
-                        android:layout_marginLeft="@dimen/dimen15"
+                        style="@style/AutoWrap"
+                        android:layout_marginLeft="@dimen/dimen12"
                         android:text="@string/vipEmergencyCall"
                         android:textColor="@color/textColor"
-                        android:textSize="@dimen/textsize12" />
+                        android:textSize="@dimen/textsize13" />
 
-                    <TextView style="@style/AutoWrap" />
 
                     <ImageView
                         style="@style/Image610"

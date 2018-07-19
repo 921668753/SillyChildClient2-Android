@@ -1,339 +1,277 @@
 package com.sillykid.app.mine.mycollection;
 
 import android.content.Intent;
+import android.os.SystemClock;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.common.cklibrary.common.BaseActivity;
+import com.common.cklibrary.common.BaseFragment;
 import com.common.cklibrary.common.BindView;
-import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.ActivityTitleUtils;
-import com.common.cklibrary.utils.JsonUtil;
-import com.common.cklibrary.utils.MathUtil;
-import com.common.cklibrary.utils.RefreshLayoutUtil;
-import com.common.cklibrary.utils.rx.MsgEvent;
-import com.kymjs.common.StringUtils;
+import com.kymjs.common.Log;
 import com.sillykid.app.R;
-import com.sillykid.app.adapter.mine.mycollection.MyCollectionViewAdapter;
-import com.sillykid.app.constant.NumericConstants;
-import com.sillykid.app.entity.mine.mycollection.MyCollectionBean;
-import com.sillykid.app.mall.goodslist.goodsdetails.GoodsDetailsActivity;
-import com.sillykid.app.mall.goodslist.goodsdetails.dialog.SpecificationsBouncedDialog;
-import com.sillykid.app.loginregister.LoginActivity;
-import com.sillykid.app.mine.mycollection.dialog.DeleteCollectionDialog;
-
-import cn.bingoogolapple.androidcommon.adapter.BGAOnItemChildClickListener;
-import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
-
-import static com.sillykid.app.constant.NumericConstants.REQUEST_CODE;
 
 /**
- * 我的收藏中的商品
+ * 我的收藏
  * Created by Administrator on 2017/9/2.
  */
 
-public class MyCollectionActivity extends BaseActivity implements MyCollectionContract.View, AdapterView.OnItemClickListener, BGAOnItemChildClickListener, BGARefreshLayout.BGARefreshLayoutDelegate {
+public class MyCollectionActivity extends BaseActivity {
 
-    @BindView(id = R.id.mRefreshLayout)
-    private BGARefreshLayout mRefreshLayout;
+    @BindView(id = R.id.ll_good, click = true)
+    private LinearLayout ll_good;
+    @BindView(id = R.id.tv_good)
+    private TextView tv_good;
+    @BindView(id = R.id.tv_good1)
+    private TextView tv_good1;
 
-    private MyCollectionViewAdapter mAdapter;
+    @BindView(id = R.id.ll_shop, click = true)
+    private LinearLayout ll_shop;
+    @BindView(id = R.id.tv_shop)
+    private TextView tv_shop;
+    @BindView(id = R.id.tv_shop1)
+    private TextView tv_shop1;
 
-    @BindView(id = R.id.lv_myCollection)
-    private ListView lv_myCollection;
+    @BindView(id = R.id.ll_route, click = true)
+    private LinearLayout ll_route;
+    @BindView(id = R.id.tv_route)
+    private TextView tv_route;
+    @BindView(id = R.id.tv_route1)
+    private TextView tv_route1;
 
-    /**
-     * 错误提示页
-     */
-    @BindView(id = R.id.ll_commonError)
-    private LinearLayout ll_commonError;
+    @BindView(id = R.id.ll_strategy, click = true)
+    private LinearLayout ll_strategy;
+    @BindView(id = R.id.tv_strategy)
+    private TextView tv_strategy;
+    @BindView(id = R.id.tv_strategy1)
+    private TextView tv_strategy1;
 
-    @BindView(id = R.id.img_err)
-    private ImageView img_err;
+    @BindView(id = R.id.ll_dynamicState, click = true)
+    private LinearLayout ll_dynamicState;
+    @BindView(id = R.id.tv_dynamicState)
+    private TextView tv_dynamicState;
+    @BindView(id = R.id.tv_dynamicState1)
+    private TextView tv_dynamicState1;
 
-    @BindView(id = R.id.tv_hintText)
-    private TextView tv_hintText;
+    @BindView(id = R.id.ll_house, click = true)
+    private LinearLayout ll_house;
+    @BindView(id = R.id.tv_house)
+    private TextView tv_house;
+    @BindView(id = R.id.tv_house1)
+    private TextView tv_house1;
 
-    @BindView(id = R.id.tv_button, click = true)
-    private TextView tv_button;
+    @BindView(id = R.id.ll_companyGuide, click = true)
+    private LinearLayout ll_companyGuide;
+    @BindView(id = R.id.tv_companyGuide)
+    private TextView tv_companyGuide;
+    @BindView(id = R.id.tv_companyGuide1)
+    private TextView tv_companyGuide1;
 
-    /**
-     * 当前页码
-     */
-    private int mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
+    private BaseFragment baseFragment;
+    private BaseFragment baseFragment1;
+    private BaseFragment baseFragment2;
+    private BaseFragment baseFragment3;
+    private BaseFragment baseFragment4;
+    private BaseFragment baseFragment5;
+    private BaseFragment baseFragment6;
 
-    /**
-     * 是否加载更多
-     */
-    private boolean isShowLoadingMore = false;
-
-
-    private DeleteCollectionDialog deleteCollectionDialog = null;
-
-    private SpecificationsBouncedDialog addCartGoodDialog = null;
-
-    private int positionItem = 0;
+    private int chageIcon;
 
     @Override
     public void setRootView() {
-        setContentView(R.layout.fragment_good);
+        setContentView(R.layout.activity_mycollection);
     }
 
     @Override
     public void initData() {
         super.initData();
-        mPresenter = new MyCollectionPresenter(this);
-        mAdapter = new MyCollectionViewAdapter(this);
-        initDeleteCollectionDialog();
-        initAddCartGoodDialog();
+        baseFragment = new GoodFragment();
+        baseFragment1 = new ShopFragment();
+        baseFragment2 = new RouteFragment();
+        baseFragment3 = new StrategyFragment();
+        baseFragment4 = new DynamicStateFragment();
+        baseFragment5 = new HouseFragment();
+        baseFragment6 = new CompanyGuideFragment();
+
+        chageIcon = getIntent().getIntExtra("chageIcon", 0);
     }
-
-
-    /**
-     * 弹框
-     */
-    public void initDeleteCollectionDialog() {
-        deleteCollectionDialog = new DeleteCollectionDialog(this, getString(R.string.determineDeleteCollection)) {
-            @Override
-            public void deleteCollectionDo(int addressId) {
-                showLoadingDialog(getString(R.string.deleteLoad));
-                ((MyCollectionContract.Presenter) mPresenter).postUnFavoriteGood(addressId);
-            }
-        };
-    }
-
-    public void initAddCartGoodDialog() {
-        addCartGoodDialog = new SpecificationsBouncedDialog(this) {
-            @Override
-            public void toDo(int goodId, int flag, int num1, int product_id) {
-                showLoadingDialog(getString(R.string.addLoad));
-                ((MyCollectionContract.Presenter) mPresenter).postAddCartGood(goodId, num1, product_id);
-            }
-        };
-    }
-
 
     @Override
     public void initWidget() {
         super.initWidget();
-        ActivityTitleUtils.initToolbar(aty, getString(R.string.myCollection), true, R.id.titlebar);
-        RefreshLayoutUtil.initRefreshLayout(mRefreshLayout, this, aty, true);
-        lv_myCollection.setAdapter(mAdapter);
-        lv_myCollection.setOnItemClickListener(this);
-        mAdapter.setOnItemChildClickListener(this);
-        mRefreshLayout.beginRefreshing();
+        initTitle();
+        cleanColors(chageIcon);
     }
 
-
-    /**
-     * 控件监听事件
-     */
     @Override
     public void widgetClick(View v) {
         super.widgetClick(v);
         switch (v.getId()) {
-            case R.id.tv_button:
-                if (tv_button.getText().toString().contains(getString(R.string.retry))) {
-                    mRefreshLayout.beginRefreshing();
-                    return;
-                }
-                showActivity(this, LoginActivity.class);
+            case R.id.ll_good:
+                chageIcon = 0;
+                cleanColors(chageIcon);
+                break;
+            case R.id.ll_shop:
+                chageIcon = 1;
+                cleanColors(chageIcon);
+                break;
+            case R.id.ll_route:
+                chageIcon = 2;
+                cleanColors(chageIcon);
+                break;
+            case R.id.ll_strategy:
+                chageIcon = 3;
+                cleanColors(chageIcon);
+                break;
+            case R.id.ll_dynamicState:
+                chageIcon = 4;
+                cleanColors(chageIcon);
+                break;
+            case R.id.ll_house:
+                chageIcon = 5;
+                cleanColors(chageIcon);
+                break;
+            case R.id.ll_companyGuide:
+                chageIcon = 6;
+                cleanColors(chageIcon);
                 break;
         }
     }
 
-    @Override
-    public void onBGARefreshLayoutBeginRefreshing(BGARefreshLayout refreshLayout) {
-        mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
-        mRefreshLayout.endRefreshing();
-        showLoadingDialog(getString(R.string.dataLoad));
-        ((MyCollectionContract.Presenter) mPresenter).getFavoriteGoodList(mMorePageNumber);
+    public void changeFragment(BaseFragment targetFragment) {
+        super.changeFragment(R.id.fl_mycollection, targetFragment);
     }
 
-    @Override
-    public boolean onBGARefreshLayoutBeginLoadingMore(BGARefreshLayout refreshLayout) {
-        mRefreshLayout.endLoadingMore();
-        if (!isShowLoadingMore) {
-            ViewInject.toast(getString(R.string.noMoreData));
-            return false;
-        }
-        mMorePageNumber++;
-        showLoadingDialog(getString(R.string.dataLoad));
-        ((MyCollectionContract.Presenter) mPresenter).getFavoriteGoodList(mMorePageNumber);
-        return true;
+    /**
+     * 设置标题
+     */
+    public void initTitle() {
+        ActivityTitleUtils.initToolbar(aty, getString(R.string.myCollection), true, R.id.titlebar);
     }
 
-
+    /**
+     * Activity的启动模式变为singleTask
+     * 调用onNewIntent(Intent intent)方法。
+     * Fragment调用的时候，一定要在onResume方法中。
+     *
+     * @param intent
+     */
     @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-        Intent intent = new Intent(aty, GoodsDetailsActivity.class);
-        intent.putExtra("goodName", mAdapter.getItem(position).getName());
-        intent.putExtra("goodsid", mAdapter.getItem(position).getGoods_id());
-        intent.putExtra("isRefresh", 1);
-        startActivityForResult(intent, REQUEST_CODE);
-    }
-
-    @Override
-    public void onItemChildClick(ViewGroup parent, View childView, int position) {
-        positionItem = position;
-        if (childView.getId() == R.id.img_delete) {
-            if (deleteCollectionDialog == null) {
-                initDeleteCollectionDialog();
-            }
-            if (deleteCollectionDialog != null && !deleteCollectionDialog.isShowing()) {
-                deleteCollectionDialog.show();
-                deleteCollectionDialog.setCollectionId(mAdapter.getItem(position).getGoods_id());
-            }
-        } else if (childView.getId() == R.id.img_shoppingCart) {
-            int store = StringUtils.toInt(mAdapter.getItem(position).getStore(), 0);
-            if (store <= 0) {
-                ViewInject.toast(getString(R.string.inventory) + getString(R.string.insufficient));
-                return;
-            }
-            if (addCartGoodDialog == null) {
-                initAddCartGoodDialog();
-            }
-            if (addCartGoodDialog != null && !addCartGoodDialog.isShowing()) {
-                addCartGoodDialog.show();
-                addCartGoodDialog.setFlag(0, mAdapter.getItem(position).getGoods_id(), mAdapter.getItem(position).getSmall(),
-                        MathUtil.keepTwo(StringUtils.toDouble(mAdapter.getItem(position).getPrice())), mAdapter.getItem(position).getHave_spec(),
-                        mAdapter.getItem(position).getProduct_id(), store);
-            }
-        }
-    }
-
-
-    @Override
-    public void setPresenter(MyCollectionContract.Presenter presenter) {
-        mPresenter = presenter;
-    }
-
-    @Override
-    public void getSuccess(String success, int flag) {
-        if (flag == 0) {
-            isShowLoadingMore = true;
-            mRefreshLayout.setPullDownRefreshEnable(true);
-            ll_commonError.setVisibility(View.GONE);
-            mRefreshLayout.setVisibility(View.VISIBLE);
-            MyCollectionBean myCollectionBean = (MyCollectionBean) JsonUtil.getInstance().json2Obj(success, MyCollectionBean.class);
-            if (myCollectionBean.getData() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
-                    myCollectionBean.getData().size() <= 0 && mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
-                errorMsg(getString(R.string.noCollectedGoods), 0);
-                return;
-            } else if (myCollectionBean.getData() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
-                    myCollectionBean.getData().size() <= 0 && mMorePageNumber > NumericConstants.START_PAGE_NUMBER) {
-                ViewInject.toast(getString(R.string.noMoreData));
-                isShowLoadingMore = false;
-                dismissLoadingDialog();
-                mRefreshLayout.endLoadingMore();
-                return;
-            }
-            if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
-                mRefreshLayout.endRefreshing();
-                mAdapter.clear();
-                mAdapter.addNewData(myCollectionBean.getData());
-            } else {
-                mRefreshLayout.endLoadingMore();
-                mAdapter.addMoreData(myCollectionBean.getData());
-            }
-            dismissLoadingDialog();
-        } else if (flag == 1) {
-            mAdapter.removeItem(positionItem);
-            mRefreshLayout.beginRefreshing();
-        } else if (flag == 2) {
-            addCartGoodDialog.dismissLoadingDialog();
-            ViewInject.toast(getString(R.string.addCartSuccess));
-            dismissLoadingDialog();
-        }
-    }
-
-    @Override
-    public void errorMsg(String msg, int flag) {
-        dismissLoadingDialog();
-        if (flag == 0) {
-            isShowLoadingMore = false;
-            if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
-                mRefreshLayout.endRefreshing();
-            } else {
-                mRefreshLayout.endLoadingMore();
-            }
-            mRefreshLayout.setPullDownRefreshEnable(false);
-            mRefreshLayout.setVisibility(View.GONE);
-            ll_commonError.setVisibility(View.VISIBLE);
-            tv_hintText.setVisibility(View.VISIBLE);
-            tv_button.setVisibility(View.VISIBLE);
-            if (isLogin(msg)) {
-                img_err.setImageResource(R.mipmap.no_login);
-                tv_hintText.setVisibility(View.GONE);
-                tv_button.setText(getString(R.string.login));
-                // ViewInject.toast(getString(R.string.reloginPrompting));
-                showActivity(this, LoginActivity.class);
-                return;
-            } else if (msg.contains(getString(R.string.checkNetwork))) {
-                img_err.setImageResource(R.mipmap.no_network);
-                tv_hintText.setText(msg);
-                tv_button.setText(getString(R.string.retry));
-            } else if (msg.contains(getString(R.string.noCollectedGoods))) {
-                img_err.setImageResource(R.mipmap.no_data);
-                tv_hintText.setText(msg);
-                tv_button.setVisibility(View.GONE);
-            } else {
-                img_err.setImageResource(R.mipmap.no_data);
-                tv_hintText.setText(msg);
-                tv_button.setText(getString(R.string.retry));
-            }
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        int newChageIcon = intent.getIntExtra("newChageIcon", 0);
+        Log.d("newChageIcon", newChageIcon + "");
+        if (newChageIcon == 0) {
+            setSimulateClick(ll_good, 160, 100);
+        } else if (newChageIcon == 1) {
+            setSimulateClick(ll_shop, 160, 100);
+        } else if (newChageIcon == 2) {
+            setSimulateClick(ll_route, 160, 100);
+        } else if (newChageIcon == 3) {
+            setSimulateClick(ll_strategy, 160, 100);
+        } else if (newChageIcon == 4) {
+            setSimulateClick(ll_dynamicState, 160, 100);
+        } else if (newChageIcon == 5) {
+            setSimulateClick(ll_house, 160, 100);
+        } else if (newChageIcon == 6) {
+            setSimulateClick(ll_companyGuide, 160, 100);
         } else {
-            mRefreshLayout.setPullDownRefreshEnable(true);
-            mRefreshLayout.setVisibility(View.VISIBLE);
-            ll_commonError.setVisibility(View.GONE);
-            ViewInject.toast(msg);
-            if (flag == 2) {
-                addCartGoodDialog.dismissLoadingDialog();
-            }
+            setSimulateClick(ll_good, 160, 100);
         }
+    }
+
+    /**
+     * 模拟点击
+     *
+     * @param view
+     * @param x
+     * @param y
+     */
+    private void setSimulateClick(View view, float x, float y) {
+        long downTime = SystemClock.uptimeMillis();
+        final MotionEvent downEvent = MotionEvent.obtain(downTime, downTime,
+                MotionEvent.ACTION_DOWN, x, y, 0);
+        downTime += 1000;
+        final MotionEvent upEvent = MotionEvent.obtain(downTime, downTime,
+                MotionEvent.ACTION_UP, x, y, 0);
+        view.onTouchEvent(downEvent);
+        view.onTouchEvent(upEvent);
+        downEvent.recycle();
+        upEvent.recycle();
     }
 
 
     /**
-     * 在接收消息的时候，选择性接收消息：
+     * 清除颜色，并添加颜色
      */
-    @Override
-    public void callMsgEvent(MsgEvent msgEvent) {
-        super.callMsgEvent(msgEvent);
-        if (((String) msgEvent.getData()).equals("RxBusLoginEvent") && mPresenter != null) {
-            mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
-            ((MyCollectionContract.Presenter) mPresenter).getFavoriteGoodList(mMorePageNumber);
+    @SuppressWarnings("deprecation")
+    public void cleanColors(int chageIcon) {
+        tv_good.setTextColor(getResources().getColor(R.color.textColor));
+        tv_good1.setBackgroundResource(R.color.whiteColors);
+
+        tv_shop.setTextColor(getResources().getColor(R.color.textColor));
+        tv_shop1.setBackgroundResource(R.color.whiteColors);
+
+        tv_route.setTextColor(getResources().getColor(R.color.textColor));
+        tv_route1.setBackgroundResource(R.color.whiteColors);
+
+        tv_strategy.setTextColor(getResources().getColor(R.color.textColor));
+        tv_strategy1.setBackgroundResource(R.color.whiteColors);
+
+        tv_dynamicState.setTextColor(getResources().getColor(R.color.textColor));
+        tv_dynamicState1.setBackgroundResource(R.color.whiteColors);
+
+        tv_house.setTextColor(getResources().getColor(R.color.textColor));
+        tv_house1.setBackgroundResource(R.color.whiteColors);
+
+        tv_companyGuide.setTextColor(getResources().getColor(R.color.textColor));
+        tv_companyGuide1.setBackgroundResource(R.color.whiteColors);
+
+        switch (chageIcon) {
+            case 0:
+                tv_good.setTextColor(getResources().getColor(R.color.greenColors));
+                tv_good.setBackgroundResource(R.color.greenColors);
+                changeFragment(baseFragment);
+                break;
+            case 1:
+                tv_shop.setTextColor(getResources().getColor(R.color.greenColors));
+                tv_shop1.setBackgroundResource(R.color.greenColors);
+                changeFragment(baseFragment1);
+                break;
+            case 2:
+                tv_route.setTextColor(getResources().getColor(R.color.greenColors));
+                tv_route1.setBackgroundResource(R.color.greenColors);
+                changeFragment(baseFragment2);
+                break;
+            case 3:
+                tv_strategy.setTextColor(getResources().getColor(R.color.greenColors));
+                tv_strategy1.setBackgroundResource(R.color.greenColors);
+                changeFragment(baseFragment3);
+                break;
+            case 4:
+                tv_dynamicState.setTextColor(getResources().getColor(R.color.greenColors));
+                tv_dynamicState1.setBackgroundResource(R.color.greenColors);
+                changeFragment(baseFragment4);
+                break;
+            case 5:
+                tv_house.setTextColor(getResources().getColor(R.color.greenColors));
+                tv_house1.setBackgroundResource(R.color.greenColors);
+                changeFragment(baseFragment5);
+                break;
+            case 6:
+                tv_companyGuide.setTextColor(getResources().getColor(R.color.greenColors));
+                tv_companyGuide1.setBackgroundResource(R.color.greenColors);
+                changeFragment(baseFragment6);
+                break;
         }
     }
 
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (data != null && requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
-            mRefreshLayout.beginRefreshing();
-        }
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (deleteCollectionDialog != null) {
-            deleteCollectionDialog.cancel();
-        }
-        deleteCollectionDialog = null;
-
-        if (addCartGoodDialog != null) {
-            addCartGoodDialog.cancel();
-        }
-        addCartGoodDialog = null;
-        mAdapter.clear();
-        mAdapter = null;
+    public int getChageIcon() {
+        return chageIcon;
     }
 
 }

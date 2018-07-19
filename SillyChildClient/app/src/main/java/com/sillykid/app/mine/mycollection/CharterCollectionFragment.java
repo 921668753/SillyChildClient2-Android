@@ -52,7 +52,7 @@ public class CharterCollectionFragment extends BaseFragment implements BGARefres
     @BindView(id = R.id.tv_hintText, click = true)
     private TextView tv_hintText;
 
-    private MyCollectionActivity1 aty;
+    private MyCollectionActivity aty;
     private CharterListViewAdapter mAdapter;
     private Intent jumpintent;
     private boolean isShowLoadingMore;
@@ -64,7 +64,7 @@ public class CharterCollectionFragment extends BaseFragment implements BGARefres
 
     @Override
     protected View inflaterView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
-        aty = (MyCollectionActivity1) getActivity();
+        aty = (MyCollectionActivity) getActivity();
         return View.inflate(aty, R.layout.fragment_route, null);
     }
 

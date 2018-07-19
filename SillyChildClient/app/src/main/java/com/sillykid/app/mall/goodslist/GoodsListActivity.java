@@ -16,7 +16,7 @@ import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.RefreshLayoutUtil;
 import com.sillykid.app.R;
-import com.sillykid.app.adapter.homepage.goodslist.GoodsListViewAdapter;
+import com.sillykid.app.adapter.mall.goodslist.GoodsListViewAdapter;
 import com.sillykid.app.constant.NumericConstants;
 import com.sillykid.app.entity.homepage.goodslist.GoodsListBean;
 import com.sillykid.app.mall.goodslist.goodsdetails.GoodsDetailsActivity;

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrap"
+    android:background="@color/whiteColors"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen197"
+        android:layout_marginLeft="@dimen/dimen2"
+        android:layout_marginRight="@dimen/dimen2"
+        android:layout_marginTop="@dimen/dimen11"
+        android:scaleType="fitXY"
+        android:src="@mipmap/placeholderfigure" />
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:background="@mipmap/hp_strategyrectangular"
+        android:orientation="vertical">
+
+        <LinearLayout
+            style="@style/MatchWrap"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/AutoWrap"
+                android:layout_marginBottom="@dimen/dimen15"
+                android:layout_marginTop="@dimen/dimen12"
+                android:paddingLeft="@dimen/dimen12"
+                android:paddingRight="@dimen/dimen12"
+                android:singleLine="true"
+                android:text="【芭提雅三天六晚自由行】"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize15" />
+
+            <LinearLayout
+                android:layout_width="@dimen/dimen37"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/dimen13"
+                    android:layout_height="@dimen/dimen12"
+                    android:layout_marginTop="@dimen/dimen3"
+                    android:src="@mipmap/hp_zan" />
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginTop="@dimen/dimen2"
+                    android:text="@string/giveLike"
+                    android:textColor="@color/hintColors"
+                    android:textSize="@dimen/textsize8" />
+
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="@dimen/dimen37"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/dimen13"
+                    android:layout_height="@dimen/dimen13"
+                    android:layout_marginTop="@dimen/dimen3"
+                    android:src="@mipmap/hp_collection" />
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginTop="@dimen/dimen2"
+                    android:text="@string/collection"
+                    android:textColor="@color/hintColors"
+                    android:textSize="@dimen/textsize8" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            style="@style/MatchWrap"
+            android:layout_marginBottom="@dimen/dimen15"
+            android:paddingLeft="@dimen/dimen12"
+            android:paddingRight="@dimen/dimen12"
+            android:singleLine="true"
+            android:text="美丽的东南亚海岛风情，给你带来不一样的体验。"
+            android:textColor="@color/hintColors"
+            android:textSize="@dimen/textsize12" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

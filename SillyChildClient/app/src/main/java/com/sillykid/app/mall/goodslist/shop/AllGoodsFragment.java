@@ -18,7 +18,7 @@ import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.RefreshLayoutUtil;
 import com.sillykid.app.R;
-import com.sillykid.app.adapter.homepage.goodslist.shop.AllGoodsViewAdapter;
+import com.sillykid.app.adapter.mall.goodslist.shop.AllGoodsViewAdapter;
 import com.sillykid.app.constant.NumericConstants;
 import com.sillykid.app.entity.homepage.goodslist.shop.AllGoodsBean;
 import com.sillykid.app.utils.GlideImageLoader;

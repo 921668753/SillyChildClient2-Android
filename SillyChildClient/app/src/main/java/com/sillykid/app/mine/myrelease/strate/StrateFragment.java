@@ -65,7 +65,7 @@ public class StrateFragment extends BaseFragment implements StrateContract.View,
         adapter=new MasonryAdapter(aty,listbean,this,true);
         pullLoadMoreRecyclerView.setAdapter(adapter);
         //设置item之间的间隔
-        pullLoadMoreRecyclerView.addItemDecoration(aty.getSpacesItemDecoration());
+       // pullLoadMoreRecyclerView.addItemDecoration(aty.getSpacesItemDecoration());
         pullLoadMoreRecyclerView.setOnPullLoadMoreListener(this);
         pullLoadMoreRecyclerView.setFooterViewText(getString(R.string.load_more_text));
         pullLoadMoreRecyclerView.setFooterViewTextColor(R.color.titletextcolors);
@@ -229,9 +229,9 @@ public class StrateFragment extends BaseFragment implements StrateContract.View,
     public void onResume() {
         super.onResume();
         isresume=true;
-        if (aty.getChageIcon()==1){
-            pullLoadMoreRecyclerView.refresh();
-        }
+//        if (aty.getChageIcon()==1){
+//            pullLoadMoreRecyclerView.refresh();
+//        }
 
     }
 }

@@ -17,7 +17,7 @@ import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.RefreshLayoutUtil;
 import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
-import com.sillykid.app.adapter.homepage.goodslist.shop.ShopHomePageViewAdapter;
+import com.sillykid.app.adapter.mall.goodslist.shop.ShopHomePageViewAdapter;
 import com.sillykid.app.entity.homepage.goodslist.shop.ShopHomePageBean;
 import com.sillykid.app.entity.homepage.goodslist.shop.StoreImageBean;
 import com.sillykid.app.homepage.BannerDetailsActivity;

@@ -31,34 +31,36 @@
             android:textSize="@dimen/textsize17" />
 
         <RelativeLayout
-            android:layout_width="@dimen/dimen105"
+            android:layout_width="@dimen/dimen70"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true">
 
             <ImageView
-                android:id="@+id/img_customerService"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/dimen25"
+                android:layout_width="@dimen/dimen57"
+                android:layout_height="@dimen/dimen18"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:paddingRight="@dimen/dimen15"
+                android:paddingRight="@dimen/dimen36"
                 android:scaleType="fitXY"
-                android:src="@mipmap/kefu" />
+                android:src="@mipmap/hp_message" />
 
             <TextView
                 android:id="@+id/tv_tag"
-                android:layout_width="@dimen/dimen10"
-                android:layout_height="@dimen/dimen10"
+                android:layout_width="@dimen/dimen40"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/dimen10"
-                android:layout_marginTop="@dimen/dimen5"
-                android:background="@drawable/shape_homepage_dot"
+                android:layout_marginTop="@dimen/dimen10"
+                android:paddingRight="@dimen/dimen18"
+                android:singleLine="true"
+                android:text="+99"
+                android:textColor="@color/fF4848Colors"
+                android:textSize="@dimen/textsize9"
                 android:visibility="visible" />
+            <!--android:background="@drawable/shape_homepage_dot"-->
         </RelativeLayout>
     </RelativeLayout>
 
-    <TextView style="@style/DividerWidth" />
 
     <cn.bingoogolapple.refreshlayout.BGARefreshLayout xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/mRefreshLayout"
@@ -67,19 +69,19 @@
         <ScrollView
             style="@style/MatchMatch"
             android:background="@color/background"
-            android:paddingTop="@dimen/dimen3"
+
             android:scrollbars="none">
 
             <LinearLayout
                 style="@style/MatchMatch"
-                android:orientation="vertical"
-                android:paddingBottom="@dimen/dimen6">
+                android:orientation="vertical">
 
                 <cn.bingoogolapple.bgabanner.BGABanner
                     android:id="@+id/banner_ad"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dimen160"
                     android:background="@mipmap/placeholderfigure2"
+                    android:layout_marginTop="@dimen/dimen3"
                     app:banner_isNeedShowIndicatorOnOnlyOnePage="true"
                     app:banner_pageChangeDuration="2000"
                     app:banner_pointAutoPlayAble="false"
@@ -91,7 +93,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dimen75"
+                    android:layout_height="@dimen/dimen93"
                     android:layout_marginTop="@dimen/dimen6"
                     android:background="@color/whiteColors"
                     android:orientation="horizontal">
@@ -103,15 +105,15 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            style="@style/Image33"
-                            android:src="@mipmap/ic_launcher" />
+                            style="@style/Image46"
+                            android:src="@mipmap/hp_visa" />
 
                         <TextView
                             style="@style/WrapWrap"
                             android:layout_marginTop="@dimen/dimen5"
                             android:text="@string/visa"
                             android:textColor="@color/textColor"
-                            android:textSize="@dimen/textsize9" />
+                            android:textSize="@dimen/textsize12" />
 
                     </LinearLayout>
 
@@ -122,15 +124,15 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            style="@style/Image33"
-                            android:src="@mipmap/ic_launcher" />
+                            style="@style/Image46"
+                            android:src="@mipmap/hp_strategy" />
 
                         <TextView
                             style="@style/WrapWrap"
                             android:layout_marginTop="@dimen/dimen5"
                             android:text="@string/strategy"
                             android:textColor="@color/textColor"
-                            android:textSize="@dimen/textsize9" />
+                            android:textSize="@dimen/textsize12" />
 
                     </LinearLayout>
 
@@ -141,15 +143,15 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            style="@style/Image33"
-                            android:src="@mipmap/ic_launcher" />
+                            style="@style/Image46"
+                            android:src="@mipmap/hp_route2" />
 
                         <TextView
                             style="@style/WrapWrap"
                             android:layout_marginTop="@dimen/dimen5"
                             android:text="@string/route2"
                             android:textColor="@color/textColor"
-                            android:textSize="@dimen/textsize9" />
+                            android:textSize="@dimen/textsize12" />
 
                     </LinearLayout>
 
@@ -160,15 +162,15 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            style="@style/Image33"
-                            android:src="@mipmap/ic_launcher" />
+                            style="@style/Image46"
+                            android:src="@mipmap/hp_activity" />
 
                         <TextView
                             style="@style/WrapWrap"
                             android:layout_marginTop="@dimen/dimen5"
                             android:text="@string/activity"
                             android:textColor="@color/textColor"
-                            android:textSize="@dimen/textsize9" />
+                            android:textSize="@dimen/textsize12" />
 
                     </LinearLayout>
 
@@ -214,7 +216,7 @@
                     style="@style/MatchWrap"
                     android:background="@color/whiteColors"
                     android:scrollbars="none"
-                    tools:listitem="@layout/item_hotregion" />
+                    tools:listitem="@layout/item_hotvideo" />
 
                 <LinearLayout
                     android:id="@+id/ll_hotRegion"
@@ -259,16 +261,16 @@
 
 
                 <com.common.cklibrary.utils.myview.ChildListView
-                    android:id="@+id/clv_boutiqueLine"
+                    android:id="@+id/clv_hpStrategy"
+                    android:background="@color/whiteColors"
                     style="@style/MatchWrap"
                     android:layout_marginTop="@dimen/dimen9"
-                    android:background="@color/whiteColors"
-                    android:divider="@color/whiteColors"
-                    android:dividerHeight="@dimen/dimen15"
-                    android:paddingLeft="@dimen/dimen15"
-                    android:paddingRight="@dimen/dimen15"
+                    android:divider="@color/background"
+                    android:dividerHeight="@dimen/dimen1"
+                    android:paddingLeft="@dimen/dimen25"
+                    android:paddingRight="@dimen/dimen25"
                     android:scrollbars="none"
-                    tools:listitem="@layout/item_boutiqueline" />
+                    tools:listitem="@layout/item_hpstrategy" />
 
                 <TextView
                     android:layout_width="match_parent"

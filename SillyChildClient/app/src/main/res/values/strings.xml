@@ -598,6 +598,12 @@
     <string name="noMessage">亲，您还没有消息哟~</string>
 
 
+    <!--社区   搜索-->
+    <string name="lookForSomeone">找人</string>
+    <string name="findArticle">找文章</string>
+
+
+
     <!--商城-->
     <string name="checkProduct">输入您正在找的商品</string>
     <string name="search">搜索</string>
@@ -806,7 +812,9 @@
     <string name="oneNight">/晚</string>
     <string name="noCollectedGoods">亲，您还没有收藏商品哟~</string>
     <string name="platformProprietary">平台自营</string>
-
+    <string name="enterStore">进入店铺</string>
+    <string name="cancelCollection">取消收藏</string>
+    <string name="noCollectedShop">亲，您还没有收藏店铺哟~</string>
 
     <!-- 个人中心 我的钱包-->
     <string name="instructions">使用说明</string>
@@ -1319,12 +1327,6 @@
     <!-- 个人中心  我的发布  动态-->
     <string name="myDynamic">我的动态</string>
     <string name="myStrategy">我的攻略</string>
-
-
-
-
-
-
     <string name="newTrends">发布新动态</string>
     <string name="newStrategy">发布新攻略</string>
     <string name="addTitle">添加标题</string>

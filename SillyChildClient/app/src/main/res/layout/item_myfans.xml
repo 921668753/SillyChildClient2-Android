@@ -6,26 +6,28 @@
     android:orientation="horizontal">
 
     <ImageView
-        android:layout_width="@dimen/dimen30"
-        android:layout_height="@dimen/dimen30"
-        android:layout_marginBottom="@dimen/dimen9"
-        android:layout_marginLeft="@dimen/dimen15"
-        android:layout_marginTop="@dimen/dimen9"
+        android:id="@+id/img_head"
+        android:layout_width="@dimen/dimen41"
+        android:layout_height="@dimen/dimen41"
+        android:layout_marginBottom="@dimen/dimen13"
+        android:layout_marginLeft="@dimen/dimen10"
+        android:layout_marginTop="@dimen/dimen13"
         android:src="@mipmap/avatar" />
 
     <LinearLayout
         style="@style/AutoMatch"
+        android:gravity="center_vertical"
         android:orientation="vertical"
-        android:paddingLeft="@dimen/dimen6"
-        android:paddingRight="@dimen/dimen6">
+        android:paddingLeft="@dimen/dimen10"
+        android:paddingRight="@dimen/dimen10">
 
         <TextView
+            android:id="@+id/tv_nickName"
             style="@style/MatchWrap"
-            android:layout_marginTop="@dimen/dimen11"
             android:singleLine="true"
             android:text="薄荷味的夏天"
             android:textColor="@color/textColor"
-            android:textSize="@dimen/textsize10"
+            android:textSize="@dimen/textsize14"
             android:textStyle="bold" />
 
 
@@ -35,43 +37,46 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/tv_diary"
                 style="@style/WrapWrap"
                 android:text="32"
                 android:textColor="@color/tabColors"
-                android:textSize="@dimen/textsize8" />
+                android:textSize="@dimen/textsize10" />
 
             <TextView
                 style="@style/WrapWrap"
                 android:text="@string/diary"
                 android:textColor="@color/tabColors"
-                android:textSize="@dimen/textsize8" />
+                android:textSize="@dimen/textsize10" />
 
 
             <TextView
+                android:id="@+id/tv_fan"
                 style="@style/WrapWrap"
                 android:layout_marginLeft="@dimen/dimen13"
                 android:text="32"
                 android:textColor="@color/tabColors"
-                android:textSize="@dimen/textsize8" />
+                android:textSize="@dimen/textsize10" />
 
             <TextView
                 style="@style/WrapWrap"
                 android:text="@string/fan"
                 android:textColor="@color/tabColors"
-                android:textSize="@dimen/textsize8" />
+                android:textSize="@dimen/textsize10" />
 
         </LinearLayout>
 
     </LinearLayout>
 
     <TextView
-        android:layout_width="@dimen/dimen50"
-        android:layout_height="@dimen/dimen19"
+        android:id="@+id/tv_follow"
+        android:layout_width="@dimen/dimen69"
+        android:layout_height="@dimen/dimen27"
         android:layout_marginRight="@dimen/dimen15"
         android:background="@drawable/shape_follow"
         android:gravity="center"
         android:text="@string/follow"
         android:textColor="@color/greenColors"
-        android:textSize="@dimen/textsize10" />
+        android:textSize="@dimen/textsize12" />
 
 </LinearLayout>

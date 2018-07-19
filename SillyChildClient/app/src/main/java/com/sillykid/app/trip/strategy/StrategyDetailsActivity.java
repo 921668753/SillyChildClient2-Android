@@ -18,7 +18,7 @@ import com.sillykid.app.R;
 import com.sillykid.app.mine.sharingceremony.dialog.ShareBouncedDialog;
 import com.sillykid.app.entity.StrategyDetailsBean;
 import com.sillykid.app.loginregister.LoginActivity;
-import com.sillykid.app.mine.mycollection.MyCollectionActivity1;
+import com.sillykid.app.mine.mycollection.MyCollectionActivity;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.UMShareListener;
@@ -222,7 +222,7 @@ public class StrategyDetailsActivity extends BaseActivity implements StrategyDet
      */
     private void resultToCollectionRoute() {
         if (isCollect == 0) {
-            if (intentresult == null) intentresult = new Intent(this, MyCollectionActivity1.class);
+            if (intentresult == null) intentresult = new Intent(this, MyCollectionActivity.class);
             setResult(0, intentresult);
         }
     }

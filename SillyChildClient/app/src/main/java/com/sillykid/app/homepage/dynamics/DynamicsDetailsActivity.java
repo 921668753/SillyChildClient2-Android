@@ -19,7 +19,7 @@ import com.sillykid.app.adapter.dynamics.DynamicsDetailsCommentarieViewAdapter;
 import com.sillykid.app.entity.DynamicsDetailsBean;
 import com.sillykid.app.entity.DynamicsDetailsBean.ResultBean.CommentsBean;
 import com.sillykid.app.loginregister.LoginActivity;
-import com.sillykid.app.mine.mycollection.MyCollectionActivity1;
+import com.sillykid.app.mine.mycollection.MyCollectionActivity;
 import com.sillykid.app.utils.GlideImageLoader;
 import com.sillykid.app.utils.SoftKeyboardUtils;
 
@@ -444,7 +444,7 @@ public class DynamicsDetailsActivity extends BaseActivity implements DynamicsDet
      */
     private void resultToCollectionRoute() {
         if (isCollectDynamic == 0) {
-            if (intentresult == null) intentresult = new Intent(this, MyCollectionActivity1.class);
+            if (intentresult == null) intentresult = new Intent(this, MyCollectionActivity.class);
             setResult(0, intentresult);
         }
     }

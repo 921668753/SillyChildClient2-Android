@@ -1,6 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/Match44"
+        android:background="@color/whiteColors"
+        android:gravity="center"
+        android:text="@string/community"
+        android:textColor="@color/textColor"
+        android:textSize="@dimen/textsize17" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen54"
+        android:layout_marginTop="@dimen/dimen3"
+        android:background="@color/whiteColors"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen36"
+            android:layout_marginLeft="@dimen/dimen19"
+            android:layout_marginRight="@dimen/dimen19"
+            android:background="@drawable/shape_communitysearch"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/dimen16"
+                android:layout_height="@dimen/dimen14"
+                android:layout_marginLeft="@dimen/dimen14"
+                android:src="@mipmap/community_search" />
+
+            <TextView
+                style="@style/WrapWrap"
+                android:layout_marginLeft="@dimen/dimen5"
+                android:text="@string/search"
+                android:textColor="@color/hintColors"
+                android:textSize="@dimen/textsize13" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <!--<com.common.cklibrary.utils.myview.HorizontalListView-->
+    <!--android:id="@+id/hlv_hotRegion"-->
+    <!--style="@style/MatchWrap"-->
+    <!--android:layout_height="@dimen/dimen35"-->
+    <!--android:layout_marginTop="@dimen/dimen5"-->
+    <!--android:background="@color/whiteColors"-->
+    <!--android:scrollbars="none"-->
+    <!--tools:listitem="@layout/item_hotregion" />-->
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen35"
+        android:layout_marginTop="@dimen/dimen5"
+        android:background="@color/whiteColors"
+        android:gravity="center_vertical"
+        app:tabIndicatorColor="@color/greenColors"
+        app:tabIndicatorHeight="@dimen/dimen1"
+        app:tabMode="scrollable"
+        app:tabPaddingEnd="6dp"
+        app:tabPaddingStart="12dp" />
+
+    <cn.bingoogolapple.refreshlayout.BGARefreshLayout
+        android:id="@+id/mRefreshLayout"
+        style="@style/MatchAuto"
+        android:paddingTop="@dimen/dimen10">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv"
+            style="@style/MatchMatch"
+            android:layout_marginTop="@dimen/dimen5"
+            android:overScrollMode="never"
+            android:paddingLeft="@dimen/dimen2"
+            android:paddingRight="@dimen/dimen2"
+            android:scrollbars="none"
+            tools:listitem="@layout/item_mystrategy" />
+
+    </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
+
+    <include layout="@layout/common_error" />
 
 </LinearLayout>

@@ -2,21 +2,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/MatchMatch"
-    android:orientation="vertical"
-    android:background="@color/background">
+    android:background="@color/whiteColors"
+    android:orientation="vertical">
+
     <cn.bingoogolapple.refreshlayout.BGARefreshLayout
         android:id="@+id/mRefreshLayout"
         style="@style/MatchAuto"
-        android:background="@color/background">
-        <!-- item_companyguidemassage -->
+        android:background="@color/background"
+        android:paddingTop="@dimen/dimen6">
+
         <ListView
-            android:id="@+id/lv_companyGuideMassage"
+            android:id="@+id/lv_shopCollection"
             style="@style/MatchMatch"
-            android:divider="@color/longinotherdividerbg"
+            android:divider="@color/background"
             android:dividerHeight="@dimen/dimen1"
             android:overScrollMode="never"
             android:scrollbars="none"
             tools:listitem="@layout/item_shop" />
 
     </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
+
+
+    <include layout="@layout/common_error" />
+
 </LinearLayout>

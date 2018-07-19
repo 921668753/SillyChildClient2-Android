@@ -5,20 +5,17 @@
     android:background="@color/background"
     android:orientation="vertical">
 
-    <include layout="@layout/common_title" />
-
     <cn.bingoogolapple.refreshlayout.BGARefreshLayout
         android:id="@+id/mRefreshLayout"
         style="@style/MatchAuto"
         android:background="@color/background"
-        android:paddingTop="@dimen/dimen10">
+        android:paddingTop="@dimen/dimen6">
 
-        <!-- item_companyguidemassage -->
         <ListView
-            android:id="@+id/lv_myCollection"
+            android:id="@+id/lv_goodCollection"
             style="@style/MatchMatch"
             android:divider="@color/background"
-            android:dividerHeight="@dimen/dimen10"
+            android:dividerHeight="@dimen/dimen1"
             android:overScrollMode="never"
             android:scrollbars="none"
             tools:listitem="@layout/item_good" />

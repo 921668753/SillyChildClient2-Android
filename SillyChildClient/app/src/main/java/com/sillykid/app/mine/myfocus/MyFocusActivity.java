@@ -61,7 +61,6 @@ public class MyFocusActivity extends BaseActivity {
         setContentView(R.layout.activity_myfocus);
     }
 
-
     @Override
     public void initData() {
         super.initData();

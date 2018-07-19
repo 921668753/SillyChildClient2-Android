@@ -18,7 +18,7 @@ import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.RefreshLayoutUtil;
 import com.common.cklibrary.utils.rx.MsgEvent;
 import com.sillykid.app.R;
-import com.sillykid.app.adapter.message.SystemMessageViewAdapter;
+import com.sillykid.app.adapter.homepage.message.SystemMessageViewAdapter;
 import com.sillykid.app.constant.NumericConstants;
 import com.sillykid.app.constant.StringNewConstants;
 import com.sillykid.app.entity.message.SystemMessageBean;

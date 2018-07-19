@@ -4,7 +4,7 @@
     android:layout_height="@dimen/dimen37"
     android:layout_marginTop="@dimen/dimen6"
     android:background="@color/whiteColors"
-    android:layout_marginBottom="@dimen/dimen6"
+    android:layout_marginBottom="@dimen/dimen4"
     android:orientation="horizontal">
 
     <LinearLayout

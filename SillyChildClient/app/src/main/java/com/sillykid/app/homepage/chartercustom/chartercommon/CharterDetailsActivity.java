@@ -20,7 +20,7 @@ import com.sillykid.app.entity.CharterDetailsBean;
 import com.sillykid.app.homepage.chartercustom.bytheday.ByTheDayActivity;
 import com.sillykid.app.homepage.chartercustom.transfer.TransferActivity;
 import com.sillykid.app.loginregister.LoginActivity;
-import com.sillykid.app.mine.mycollection.MyCollectionActivity1;
+import com.sillykid.app.mine.mycollection.MyCollectionActivity;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.UMShareListener;
@@ -357,7 +357,7 @@ public class CharterDetailsActivity extends BaseActivity implements CharterDetai
      */
     private void resultToCollectionRoute() {
         if (isCollect == 0) {
-            intentresult = new Intent(this, MyCollectionActivity1.class);
+            intentresult = new Intent(this, MyCollectionActivity.class);
             setResult(0, intentresult);
         }
     }

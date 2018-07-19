@@ -110,6 +110,12 @@
         <item name="android:layout_height">@dimen/dimen33</item>
     </style>
 
+
+    <style name="Image46">
+        <item name="android:layout_width">@dimen/dimen46</item>
+        <item name="android:layout_height">@dimen/dimen46</item>
+    </style>
+
     <style name="Image610">
         <item name="android:layout_width">@dimen/dimen6</item>
         <item name="android:layout_height">@dimen/dimen10</item>

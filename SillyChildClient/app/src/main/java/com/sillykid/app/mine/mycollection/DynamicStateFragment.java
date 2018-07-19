@@ -47,7 +47,7 @@ public class DynamicStateFragment extends BaseFragment implements MyCollectionCo
 
     private GoodViewAdapter mAdapter;
 
-    @BindView(id = R.id.lv_myCollection)
+    @BindView(id = R.id.lv_goodCollection)
     private ListView lv_myCollection;
 
     /**
@@ -193,7 +193,7 @@ public class DynamicStateFragment extends BaseFragment implements MyCollectionCo
                 deleteCollectionDialog.show();
                 deleteCollectionDialog.setCollectionId(mAdapter.getItem(position).getGoods_id());
             }
-        } else if (childView.getId() == R.id.img_shoppingCart) {
+        } else if (childView.getId() == R.id.tv_shoppingCart) {
             int store = StringUtils.toInt(mAdapter.getItem(position).getStore(), 0);
             if (store <= 0) {
                 ViewInject.toast(getString(R.string.inventory) + getString(R.string.insufficient));

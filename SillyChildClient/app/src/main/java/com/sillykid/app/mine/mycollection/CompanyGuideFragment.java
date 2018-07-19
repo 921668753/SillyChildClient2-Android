@@ -47,8 +47,8 @@ public class CompanyGuideFragment extends BaseFragment implements MyCollectionCo
 
     private GoodViewAdapter mAdapter;
 
-    @BindView(id = R.id.lv_myCollection)
-    private ListView lv_myCollection;
+    @BindView(id = R.id.lv_goodCollection)
+    private ListView lv_goodCollection;
 
     /**
      * 错误提示页
@@ -126,10 +126,9 @@ public class CompanyGuideFragment extends BaseFragment implements MyCollectionCo
     @Override
     protected void initWidget(View parentView) {
         super.initWidget(parentView);
-        ActivityTitleUtils.initToolbar(aty, getString(R.string.myCollection), true, R.id.titlebar);
         RefreshLayoutUtil.initRefreshLayout(mRefreshLayout, this, aty, true);
-        lv_myCollection.setAdapter(mAdapter);
-        lv_myCollection.setOnItemClickListener(this);
+        lv_goodCollection.setAdapter(mAdapter);
+        lv_goodCollection.setOnItemClickListener(this);
         mAdapter.setOnItemChildClickListener(this);
         mRefreshLayout.beginRefreshing();
     }
@@ -193,7 +192,7 @@ public class CompanyGuideFragment extends BaseFragment implements MyCollectionCo
                 deleteCollectionDialog.show();
                 deleteCollectionDialog.setCollectionId(mAdapter.getItem(position).getGoods_id());
             }
-        } else if (childView.getId() == R.id.img_shoppingCart) {
+        } else if (childView.getId() == R.id.tv_shoppingCart) {
             int store = StringUtils.toInt(mAdapter.getItem(position).getStore(), 0);
             if (store <= 0) {
                 ViewInject.toast(getString(R.string.inventory) + getString(R.string.insufficient));

@@ -145,6 +145,15 @@ public class URLConstants {
 
     public static String GETPRIVATEDETAIL1 = APIURL + "m=web&c=route&a=detail&air_id=";
 
+    /**
+     * 社区----分类信息列表
+     */
+    public static String CLASSIFITCATIONLIST = APIURL + "post/get_post_list.do";
+
+    /**
+     * 社区----帖子列表
+     */
+    public static String POSTLIST = APIURL + "classification/get_classification_list.do";
 
     /**
      * 置换Token  get请求

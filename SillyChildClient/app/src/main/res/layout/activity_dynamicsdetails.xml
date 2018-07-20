@@ -32,7 +32,6 @@
                     app:banner_pointTopBottomMargin="2dp"
                     app:banner_transitionEffect="alpha" />
 
-
                 <LinearLayout
                     android:id="@+id/ll_attention"
                     style="@style/MatchWrap"

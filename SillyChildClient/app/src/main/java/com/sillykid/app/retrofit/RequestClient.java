@@ -575,6 +575,21 @@ public class RequestClient {
 
 
     /**
+     * 社区----分类信息列表
+     */
+    public static void getClassificationList(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        HttpRequest.requestGetHttp(context, URLConstants.CLASSIFITCATIONLIST, httpParams, false, listener);
+    }
+
+    /**
+     * 社区----帖子列表
+     */
+    public static void getPostList(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        HttpRequest.requestGetHttp(context, URLConstants.POSTLIST, httpParams, false, listener);
+    }
+
+
+    /**
      * 首页----热门攻略
      */
     public static void getHotStrategy(HttpParams httpParams, String city, int page, final ResponseListener<String> listener) {

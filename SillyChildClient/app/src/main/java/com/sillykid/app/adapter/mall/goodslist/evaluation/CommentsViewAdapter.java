@@ -15,7 +15,7 @@ import com.lzy.imagepicker.bean.ImageItem;
 import com.sillykid.app.R;
 import com.sillykid.app.utils.DataUtil;
 import com.sillykid.app.utils.GlideImageLoader;
-import com.sillykid.app.entity.homepage.goodslist.goodsdetails.comments.CommentsBean.DataBean.CommentListBean;
+import com.sillykid.app.entity.mall.goodslist.goodsdetails.comments.CommentsBean.DataBean.CommentListBean;
 
 import java.util.ArrayList;
 import java.util.List;

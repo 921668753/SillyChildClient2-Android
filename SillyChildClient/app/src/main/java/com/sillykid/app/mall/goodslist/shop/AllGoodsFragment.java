@@ -20,7 +20,7 @@ import com.common.cklibrary.utils.RefreshLayoutUtil;
 import com.sillykid.app.R;
 import com.sillykid.app.adapter.mall.goodslist.shop.AllGoodsViewAdapter;
 import com.sillykid.app.constant.NumericConstants;
-import com.sillykid.app.entity.homepage.goodslist.shop.AllGoodsBean;
+import com.sillykid.app.entity.mall.goodslist.shop.AllGoodsBean;
 import com.sillykid.app.utils.GlideImageLoader;
 import com.sillykid.app.utils.SpacesItemDecoration;
 import com.sillykid.app.mall.goodslist.goodsdetails.GoodsDetailsActivity;

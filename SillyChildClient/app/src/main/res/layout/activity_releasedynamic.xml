@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title" />
+
+    <ScrollView
+        style="@style/MatchMatch"
+        android:scrollbars="none">
+
+        <RelativeLayout style="@style/MatchMatch">
+
+
+            <LinearLayout
+                android:id="@+id/ll_category"
+                android:layout_width="@dimen/dimen76"
+                android:layout_height="@dimen/dimen23"
+                android:layout_marginBottom="@dimen/dimen10"
+                android:layout_marginLeft="@dimen/dimen17"
+                android:layout_marginTop="@dimen/dimen10"
+                android:background="@drawable/shape_category"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:text="@string/category"
+                    android:textColor="@color/greenColors"
+                    android:textSize="@dimen/textsize11" />
+
+                <ImageView
+                    android:layout_width="@dimen/dimen9"
+                    android:layout_height="@dimen/dimen8"
+                    android:layout_marginLeft="@dimen/dimen5"
+                    android:src="@mipmap/category_arrow" />
+
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen36"
+                android:layout_below="@id/ll_category"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:hint="@string/addTitle"
+                android:paddingLeft="@dimen/dimen20"
+                android:paddingRight="@dimen/dimen20"
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/hintColors"
+                android:textSize="@dimen/textsize12" />
+
+            <TextView
+                android:id="@+id/tv_addDescription"
+                style="@style/MatchWrap"
+                android:layout_below="@id/tv_title"
+                android:layout_marginTop="@dimen/dimen1"
+                android:background="@color/whiteColors"
+                android:hint="@string/addDescription"
+                android:minHeight="@dimen/dimen171"
+                android:paddingBottom="@dimen/dimen15"
+                android:paddingLeft="@dimen/dimen20"
+                android:paddingRight="@dimen/dimen20"
+                android:paddingTop="@dimen/dimen15"
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/hintColors"
+                android:textSize="@dimen/textsize13" />
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                style="@style/MatchWrap"
+                android:layout_below="@id/tv_addDescription"
+                android:layout_marginBottom="@dimen/dimen5"
+                android:layout_marginTop="@dimen/dimen1"
+                android:background="@color/whiteColors"
+                android:choiceMode="singleChoice"
+                android:divider="@null"
+                android:fadingEdge="none"
+                android:listSelector="@android:color/transparent"
+                android:paddingBottom="@dimen/dimen5"
+                android:paddingLeft="@dimen/dimen8"
+                android:paddingRight="@dimen/dimen8"
+                android:paddingTop="@dimen/dimen5"
+                android:scrollbarStyle="outsideOverlay"
+                app:layoutManager="android.support.v7.widget.GridLayoutManager"
+                app:spanCount="4"
+                tools:listitem="@layout/item_chooseimage" />
+
+
+            <TextView
+                style="@style/Match40"
+                android:layout_below="@id/recyclerView"
+                android:layout_marginBottom="@dimen/dimen40"
+                android:layout_marginLeft="@dimen/dimen79"
+                android:layout_marginRight="@dimen/dimen79"
+                android:layout_marginTop="@dimen/dimen36"
+                android:background="@drawable/shape_charter1"
+                android:gravity="center"
+                android:text="@string/release"
+                android:textColor="@color/whiteColors"
+                android:textSize="@dimen/textsize16" />
+
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</LinearLayout>

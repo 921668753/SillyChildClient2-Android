@@ -67,6 +67,6 @@ public class VIPServicePhoneDialog extends Dialog implements View.OnClickListene
 
     public void setPhone(String phoneNum) {
         this.phoneNum = phoneNum;
-        tv_phone.setText(phoneNum);
+        tv_phone.setText(phoneNum.substring(3));
     }
 }

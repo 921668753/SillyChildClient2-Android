@@ -5,7 +5,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.sillykid.app.R;
-import com.sillykid.app.entity.homepage.moreclassification.MoreClassificationBean.DataBean;
+import com.sillykid.app.entity.mall.moreclassification.MoreClassificationBean.DataBean;
 
 import cn.bingoogolapple.androidcommon.adapter.BGAAdapterViewAdapter;
 import cn.bingoogolapple.androidcommon.adapter.BGAViewHolderHelper;

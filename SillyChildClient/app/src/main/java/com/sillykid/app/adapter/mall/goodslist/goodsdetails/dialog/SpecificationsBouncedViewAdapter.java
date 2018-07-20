@@ -9,7 +9,7 @@ import android.widget.AdapterView;
 import com.common.cklibrary.utils.myview.NoScrollGridView;
 import com.kymjs.common.Log;
 import com.sillykid.app.R;
-import com.sillykid.app.entity.homepage.goodslist.goodsdetails.dialog.SpecificationsBouncedBean.DataBean;
+import com.sillykid.app.entity.mall.goodslist.goodsdetails.dialog.SpecificationsBouncedBean.DataBean;
 
 import cn.bingoogolapple.androidcommon.adapter.BGAAdapterViewAdapter;
 import cn.bingoogolapple.androidcommon.adapter.BGAViewHolderHelper;

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title" />
+
+    <ScrollView
+        style="@style/MatchMatch"
+        android:scrollbars="none">
+
+        <LinearLayout
+            style="@style/MatchWrap"
+            android:layout_marginTop="@dimen/dimen6"
+            android:background="@color/whiteColors"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/dimen17"
+            android:paddingRight="@dimen/dimen29">
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/img_avatar"
+                    android:layout_width="@dimen/dimen25"
+                    android:layout_height="@dimen/dimen25"
+                    android:layout_marginBottom="@dimen/dimen12"
+                    android:layout_marginTop="@dimen/dimen12"
+                    android:src="@mipmap/avatar" />
+
+                <TextView
+                    style="@style/AutoWrap"
+                    android:layout_marginLeft="@dimen/dimen6"
+                    android:text="用户昵称"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize11" />
+
+
+                <LinearLayout
+                    style="@style/WrapMatch"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/dimen10">
+
+                    <ImageView
+                        android:layout_width="@dimen/dimen15"
+                        android:layout_height="@dimen/dimen15"
+                        android:src="@mipmap/dynamic_zan" />
+
+
+                    <TextView
+                        style="@style/WrapWrap"
+                        android:layout_marginLeft="@dimen/dimen3"
+                        android:text="@string/giveLike"
+                        android:textColor="@color/tabColors"
+                        android:textSize="@dimen/textsize11" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/MatchWrap"
+                android:paddingLeft="@dimen/dimen13"
+                android:paddingRight="@dimen/dimen1"
+                android:text="如果你无法表达的你的想法，那么说明你还不够了解它，如果你无法表达的你的想法。"
+                android:textColor="@color/tabColors"
+                android:textSize="@dimen/textsize12" />
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_time"
+                    style="@style/AutoWrap"
+                    android:paddingLeft="@dimen/dimen13"
+                    android:paddingTop="@dimen/dimen6"
+                    android:text="2018.03.06"
+                    android:textColor="@color/hintColors"
+                    android:textSize="@dimen/textsize9" />
+
+                <TextView
+                    android:id="@+id/tv_revert1"
+                    style="@style/WrapWrap"
+                    android:paddingBottom="@dimen/dimen3"
+                    android:paddingLeft="@dimen/dimen10"
+                    android:paddingRight="@dimen/dimen1"
+                    android:paddingTop="@dimen/dimen7"
+                    android:text="@string/revert"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize12" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:layout_marginLeft="@dimen/dimen13"
+                android:layout_marginRight="@dimen/dimen1"
+                android:background="@color/eCF2F6Colors"
+                android:orientation="vertical">
+
+                <com.common.cklibrary.utils.myview.ChildListView
+                    android:id="@+id/lv_replies"
+                    style="@style/MatchWrap"
+                    android:divider="@android:color/transparent"
+                    android:listSelector="@android:color/transparent"
+                    android:overScrollMode="never"
+                    android:scrollbars="none"
+                    android:visibility="visible"
+                    tools:listitem="@layout/item_dynamicsdetailsreplie" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

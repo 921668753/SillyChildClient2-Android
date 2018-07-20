@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.sillykid.app.R;
-import com.sillykid.app.entity.homepage.search.RecentSearchBean;
+import com.sillykid.app.entity.mall.search.RecentSearchBean;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagFlowLayout;
 

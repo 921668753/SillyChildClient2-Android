@@ -24,7 +24,7 @@ import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.UMShareListener;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.sillykid.app.R;
-import com.sillykid.app.entity.homepage.goodslist.goodsdetails.GoodsDetailsBean;
+import com.sillykid.app.entity.mall.goodslist.goodsdetails.GoodsDetailsBean;
 import com.sillykid.app.mall.goodslist.goodsdetails.comments.CommentsActivity;
 import com.sillykid.app.mall.goodslist.goodsdetails.dialog.SpecificationsBouncedDialog;
 import com.sillykid.app.mall.goodslist.shop.ShopActivity;

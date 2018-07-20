@@ -149,7 +149,7 @@
 
         <!--首页   更多分类-->
         <activity
-            android:name=".homepage.moreclassification.MoreClassificationActivity"
+            android:name=".mall.moreclassification.MoreClassificationActivity"
             android:screenOrientation="portrait" />
 
         <!--首页   商品列表-->

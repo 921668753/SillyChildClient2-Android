@@ -9,7 +9,7 @@ import com.common.cklibrary.utils.MathUtil;
 import com.kymjs.common.DensityUtils;
 import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
-import com.sillykid.app.entity.homepage.goodslist.shop.ShopHomePageBean.DataBean;
+import com.sillykid.app.entity.mall.goodslist.shop.ShopHomePageBean.DataBean;
 import com.sillykid.app.utils.GlideImageLoader;
 
 import cn.bingoogolapple.androidcommon.adapter.BGARecyclerViewAdapter;

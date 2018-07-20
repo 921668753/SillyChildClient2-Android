@@ -20,7 +20,7 @@ import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
 import com.sillykid.app.adapter.mall.search.RecentSearchTagAdapter;
 import com.sillykid.app.community.search.dialog.ClearSearchDialog;
-import com.sillykid.app.entity.homepage.search.RecentSearchBean;
+import com.sillykid.app.entity.mall.search.RecentSearchBean;
 import com.sillykid.app.mall.goodslist.GoodsListActivity;
 import com.sillykid.app.utils.SoftKeyboardUtils;
 import com.zhy.view.flowlayout.FlowLayout;

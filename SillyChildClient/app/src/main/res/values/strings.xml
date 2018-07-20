@@ -886,7 +886,6 @@
     <string name="rechargeConfine">充值失败！充值金额的上限为10000，下限为0.01，请修改后重试</string>
     <string name="installUnionpayControl">完成购买需要安装银联支付控件，是否安装</string>
 
-
     <!--提现-->
     <string name="withdrawalRecord1">请输入提现金额</string>
     <string name="withdrawalAmount1">提现金额</string>
@@ -1330,6 +1329,8 @@
     <string name="newTrends">发布新动态</string>
     <string name="newStrategy">发布新攻略</string>
     <string name="addTitle">添加标题</string>
+    <string name="addDescription">添加描述</string>
+
     <string name="whatTrends">您要发表什么动态</string>
     <string name="release">发布</string>
     <string name="have">！有</string>
@@ -1341,6 +1342,13 @@
     <string name="addToMax">增加失败！已达图片添加的极限</string>
     <string name="deleteFinish">删除成功</string>
     <string name="trendsLongPressDelete">长按图片可删除相应图片</string>
+    <string name="category">所属分类</string>
+
+
+
+
+
+
 
     <!-- 个人中心 我的发布 攻略 -->
     <string name="fillTitle">请填写攻略标题</string>
@@ -1357,6 +1365,13 @@
     <!-- 个人中心 我的订单  我的发布  动态详情-->
     <string name="zan1">次赞</string>
     <string name="collect">次收藏</string>
+    <string name="report">举报</string>
+
+
+
+
+
+
 
     <!--融云start-->
     <string name="server_exception">服务器异常</string>

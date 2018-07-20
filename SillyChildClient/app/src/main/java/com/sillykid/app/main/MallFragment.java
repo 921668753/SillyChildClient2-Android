@@ -40,7 +40,7 @@ import com.sillykid.app.entity.main.MallHomePageBean.DataBean.ApiCatTreeBean;
 import com.sillykid.app.entity.main.MallHomePageBean.DataBean.HomePageBean;
 import com.sillykid.app.homepage.BannerDetailsActivity;
 import com.sillykid.app.mall.goodslist.GoodsListActivity;
-import com.sillykid.app.homepage.moreclassification.MoreClassificationActivity;
+import com.sillykid.app.mall.moreclassification.MoreClassificationActivity;
 import com.sillykid.app.mall.search.SearchGoodsActivity;
 import com.sillykid.app.utils.SpacesItemDecoration;
 import com.sillykid.app.mall.goodslist.goodsdetails.GoodsDetailsActivity;

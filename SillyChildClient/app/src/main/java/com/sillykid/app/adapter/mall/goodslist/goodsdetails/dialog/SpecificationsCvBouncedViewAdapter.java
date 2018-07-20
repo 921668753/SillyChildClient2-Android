@@ -4,7 +4,7 @@ package com.sillykid.app.adapter.mall.goodslist.goodsdetails.dialog;
 import android.content.Context;
 
 import com.sillykid.app.R;
-import com.sillykid.app.entity.homepage.goodslist.goodsdetails.dialog.SpecificationsBouncedBean.DataBean.SpecValueIdsBean;
+import com.sillykid.app.entity.mall.goodslist.goodsdetails.dialog.SpecificationsBouncedBean.DataBean.SpecValueIdsBean;
 
 import cn.bingoogolapple.androidcommon.adapter.BGAAdapterViewAdapter;
 import cn.bingoogolapple.androidcommon.adapter.BGAViewHolderHelper;

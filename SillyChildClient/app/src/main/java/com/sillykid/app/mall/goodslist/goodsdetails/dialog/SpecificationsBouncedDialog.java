@@ -18,9 +18,9 @@ import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
 import com.sillykid.app.adapter.mall.goodslist.goodsdetails.dialog.SpecificationsBouncedViewAdapter;
 import com.sillykid.app.adapter.mall.goodslist.goodsdetails.dialog.SpecificationsCvBouncedViewAdapter;
-import com.sillykid.app.entity.homepage.goodslist.goodsdetails.dialog.SpecificationsBean;
-import com.sillykid.app.entity.homepage.goodslist.goodsdetails.dialog.SpecificationsBouncedBean.DataBean.SpecValueIdsBean;
-import com.sillykid.app.entity.homepage.goodslist.goodsdetails.dialog.SpecificationsBouncedBean;
+import com.sillykid.app.entity.mall.goodslist.goodsdetails.dialog.SpecificationsBean;
+import com.sillykid.app.entity.mall.goodslist.goodsdetails.dialog.SpecificationsBouncedBean.DataBean.SpecValueIdsBean;
+import com.sillykid.app.entity.mall.goodslist.goodsdetails.dialog.SpecificationsBouncedBean;
 import com.sillykid.app.utils.GlideImageLoader;
 
 import java.util.List;

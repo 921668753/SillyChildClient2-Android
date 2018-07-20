@@ -21,7 +21,7 @@
             style="@style/AutoMatch"
             android:background="@color/whiteColors"
             android:hint="@string/nicknamehint"
-            android:maxLength="20"
+            android:maxLength="10"
             android:paddingLeft="@dimen/dimen15"
             android:paddingRight="@dimen/dimen15"
             android:textColor="@color/titletextcolors"

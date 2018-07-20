@@ -19,7 +19,7 @@ import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
 import com.sillykid.app.adapter.mall.goodslist.evaluation.CommentsViewAdapter;
 import com.sillykid.app.constant.NumericConstants;
-import com.sillykid.app.entity.homepage.goodslist.goodsdetails.comments.CommentsBean;
+import com.sillykid.app.entity.mall.goodslist.goodsdetails.comments.CommentsBean;
 import com.sillykid.app.loginregister.LoginActivity;
 
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;

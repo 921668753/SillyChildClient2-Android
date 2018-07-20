@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrap"
+    android:background="@color/whiteColors"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/MatchWrap"
+        android:layout_marginBottom="@dimen/dimen10"
+        android:layout_marginTop="@dimen/dimen11"
+        android:paddingLeft="@dimen/dimen21"
+        android:paddingRight="@dimen/dimen21"
+        android:text="震惊！上海闵行区天空出现疑似UFO"
+        android:textColor="@color/textColor"
+        android:textSize="@dimen/textsize15" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen182">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@mipmap/placeholderfigure" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/translucent" />
+
+        <ImageView
+            android:layout_width="@dimen/dimen37"
+            android:layout_height="@dimen/dimen37"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:scaleType="fitXY"
+            android:src="@mipmap/hp_play" />
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/dimen5">
+
+        <ImageView
+            android:layout_width="@dimen/dimen13"
+            android:layout_height="@dimen/dimen12"
+            android:layout_marginBottom="@dimen/dimen12"
+            android:layout_marginLeft="@dimen/dimen31"
+            android:layout_marginTop="@dimen/dimen12"
+            android:src="@mipmap/dynamic_zan1" />
+
+        <TextView
+            style="@style/WrapWrap"
+            android:layout_marginLeft="@dimen/dimen4"
+            android:text="100人"
+            android:textColor="@color/greenColors"
+            android:textSize="@dimen/textsize10" />
+
+        <ImageView
+            android:layout_width="@dimen/dimen13"
+            android:layout_height="@dimen/dimen12"
+            android:layout_marginLeft="@dimen/dimen23"
+            android:src="@mipmap/dynamicdetails_collection1" />
+
+        <TextView
+            style="@style/AutoWrap"
+            android:layout_marginLeft="@dimen/dimen4"
+            android:text="20人"
+            android:textColor="@color/greenColors"
+            android:textSize="@dimen/textsize11" />
+
+
+        <ImageView
+            android:layout_width="@dimen/dimen12"
+            android:layout_height="@dimen/dimen8"
+            android:src="@mipmap/yanjing1" />
+
+        <TextView
+            style="@style/WrapWrap"
+            android:layout_marginLeft="@dimen/dimen8"
+            android:layout_marginRight="@dimen/dimen13"
+            android:text="20人"
+            android:textColor="@color/hintColors"
+            android:textSize="@dimen/textsize7" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

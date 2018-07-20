@@ -18,7 +18,7 @@ import com.common.cklibrary.utils.RefreshLayoutUtil;
 import com.sillykid.app.R;
 import com.sillykid.app.adapter.mall.goodslist.GoodsListViewAdapter;
 import com.sillykid.app.constant.NumericConstants;
-import com.sillykid.app.entity.homepage.goodslist.GoodsListBean;
+import com.sillykid.app.entity.mall.goodslist.GoodsListBean;
 import com.sillykid.app.mall.goodslist.goodsdetails.GoodsDetailsActivity;
 import com.sillykid.app.mall.search.SearchGoodsActivity;
 import com.sillykid.app.loginregister.LoginActivity;
@@ -264,7 +264,6 @@ public class GoodsListActivity extends BaseActivity implements GoodsListContract
 
     @Override
     public void errorMsg(String msg, int flag) {
-        dismissLoadingDialog();
         isShowLoadingMore = false;
         if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
             mRefreshLayout.endRefreshing();

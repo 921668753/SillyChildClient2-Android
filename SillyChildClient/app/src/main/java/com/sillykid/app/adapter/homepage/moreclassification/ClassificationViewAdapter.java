@@ -5,7 +5,7 @@ import android.util.Log;
 import android.widget.ImageView;
 
 import com.sillykid.app.R;
-import com.sillykid.app.entity.homepage.moreclassification.ClassificationBean.DataBean;
+import com.sillykid.app.entity.mall.moreclassification.ClassificationBean.DataBean;
 import com.sillykid.app.utils.GlideImageLoader;
 
 import cn.bingoogolapple.androidcommon.adapter.BGAAdapterViewAdapter;

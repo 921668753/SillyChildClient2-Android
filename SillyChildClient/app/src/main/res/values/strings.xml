@@ -803,6 +803,7 @@
     <string name="moneySign1">-￥</string>
     <string name="oneNight">/晚</string>
     <string name="noCollectedGoods">亲，您还没有收藏商品哟~</string>
+    <string name="noCollectDynamic">亲，您还没有收藏动态哟~</string>
     <string name="platformProprietary">平台自营</string>
     <string name="enterStore">进入店铺</string>
     <string name="cancelCollection">取消收藏</string>

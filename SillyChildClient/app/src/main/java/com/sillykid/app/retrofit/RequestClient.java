@@ -659,6 +659,31 @@ public class RequestClient {
     }
 
 
+
+    /**
+     * 社区----获取帖子评论列表
+     */
+    public static void getPostComment(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        Log.d("tag", "getPostComment");
+        doServer(context, new TokenCallback() {
+            @Override
+            public void execute() {
+                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                if (StringUtils.isEmpty(cookies)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("Cookie", cookies);
+                HttpRequest.requestPostFORMHttp(context,URLConstants.POSTCOMMENT , httpParams, listener);
+            }
+        }, listener);
+    }
+
+
+
+
+
+
     /**
      * 首页----热门攻略
      */
@@ -2029,6 +2054,27 @@ public class RequestClient {
             }
         }, listener);
     }
+
+
+    /**
+     * 获取我的粉丝列表
+     */
+    public static void getMyFansList(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        Log.d("tag", "getMyFansList");
+        doServer(context, new TokenCallback() {
+            @Override
+            public void execute() {
+                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                if (StringUtils.isEmpty(cookies)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("Cookie", cookies);
+                HttpRequest.requestGetHttp(context, URLConstants.MYFANSLIST, httpParams, listener);
+            }
+        }, listener);
+    }
+
 
     /**
      * 包车订单确认结束

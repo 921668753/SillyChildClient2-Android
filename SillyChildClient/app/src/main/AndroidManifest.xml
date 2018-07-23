@@ -369,12 +369,12 @@
 
         <!--社区   单条动态评论详情-->
         <activity
-            android:name=".community.dynamic.CommentDetailsActivity"
+            android:name=".community.dynamic.dynamiccomments.CommentDetailsActivity"
             android:screenOrientation="portrait" />
 
         <!--社区   动态评论-->
         <activity
-            android:name=".community.dynamic.DynamicCommentsActivity"
+            android:name=".community.dynamic.dynamiccomments.DynamicCommentsActivity"
             android:screenOrientation="portrait" />
 
         <!--社区   个人发布展示页面-->

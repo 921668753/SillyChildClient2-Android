@@ -11,19 +11,15 @@ public interface MyFansContract {
     interface Presenter extends BasePresenter {
 
         /**
-         * 获取收藏商品列表
+         * 获取我的粉丝列表
          */
-        void getFavoriteGoodList(int page);
+        void getMyFansList(int page);
 
         /**
-         * 取消收藏
+         * 关注或取消关注
          */
-        void postUnFavoriteGood(int goodsid);
+        void postAddConcern(int user_id, int type_id);
 
-        /**
-         * 加入购物车
-         */
-        void postAddCartGood(int goodsid, int num, int product_id);
     }
 
     interface View extends BaseView<Presenter, String> {

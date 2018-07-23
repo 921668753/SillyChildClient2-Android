@@ -1,4 +1,4 @@
-package com.sillykid.app.community.dynamic;
+package com.sillykid.app.community.dynamic.dynamiccomments;
 
 
 import com.common.cklibrary.common.BaseActivity;

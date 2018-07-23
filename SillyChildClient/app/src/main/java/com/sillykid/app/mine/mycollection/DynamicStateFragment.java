@@ -39,7 +39,6 @@ import static com.sillykid.app.constant.NumericConstants.REQUEST_CODE;
  * 我的收藏中的动态
  * Created by Administrator on 2018/9/2.
  */
-
 public class DynamicStateFragment extends BaseFragment implements CollectionContract.View, BGAOnRVItemClickListener, BGARefreshLayout.BGARefreshLayoutDelegate {
 
     @BindView(id = R.id.mRefreshLayout)
@@ -69,6 +68,11 @@ public class DynamicStateFragment extends BaseFragment implements CollectionCont
     private int mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
 
     /**
+     * 总页码
+     */
+    private int totalPageNumber = NumericConstants.START_PAGE_NUMBER;
+
+    /**
      * 是否加载更多
      */
     private boolean isShowLoadingMore = false;
@@ -78,6 +82,8 @@ public class DynamicStateFragment extends BaseFragment implements CollectionCont
     private MyCollectionActivity aty;
     private SpacesItemDecoration spacesItemDecoration;
     private StaggeredGridLayoutManager layoutManager;
+
+    private int type_id = 3;
 
     private Thread thread = null;
 
@@ -148,7 +154,7 @@ public class DynamicStateFragment extends BaseFragment implements CollectionCont
         mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
         mRefreshLayout.endRefreshing();
         showLoadingDialog(getString(R.string.dataLoad));
-      //  ((CollectionContract.Presenter) mPresenter).getFavoriteGoodList(mMorePageNumber);
+        ((CollectionContract.Presenter) mPresenter).getFavoriteList(mMorePageNumber, type_id);
     }
 
     @Override
@@ -159,24 +165,22 @@ public class DynamicStateFragment extends BaseFragment implements CollectionCont
             return false;
         }
         mMorePageNumber++;
+        if (mMorePageNumber > totalPageNumber) {
+            ViewInject.toast(getString(R.string.noMoreData));
+            return false;
+        }
         showLoadingDialog(getString(R.string.dataLoad));
-       // ((CollectionContract.Presenter) mPresenter).getFavoriteGoodList(mMorePageNumber);
+        ((CollectionContract.Presenter) mPresenter).getFavoriteList(mMorePageNumber, type_id);
         return true;
     }
 
-
-//    @Override
-//    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+    @Override
+    public void onRVItemClick(ViewGroup parent, View itemView, int position) {
 //        Intent intent = new Intent(aty, GoodsDetailsActivity.class);
 //        intent.putExtra("goodName", mAdapter.getItem(position).getName());
 //        intent.putExtra("goodsid", mAdapter.getItem(position).getGoods_id());
 //        intent.putExtra("isRefresh", 1);
 //        startActivityForResult(intent, REQUEST_CODE);
-//    }
-
-    @Override
-    public void onRVItemClick(ViewGroup parent, View itemView, int position) {
-
     }
 
     @Override
@@ -194,7 +198,7 @@ public class DynamicStateFragment extends BaseFragment implements CollectionCont
             MyCollectionBean myCollectionBean = (MyCollectionBean) JsonUtil.getInstance().json2Obj(success, MyCollectionBean.class);
             if (myCollectionBean.getData() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
                     myCollectionBean.getData().size() <= 0 && mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
-                errorMsg(getString(R.string.noCollectedGoods), 0);
+                errorMsg(getString(R.string.noCollectDynamic), 0);
                 return;
             } else if (myCollectionBean.getData() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
                     myCollectionBean.getData().size() <= 0 && mMorePageNumber > NumericConstants.START_PAGE_NUMBER) {
@@ -220,6 +224,8 @@ public class DynamicStateFragment extends BaseFragment implements CollectionCont
                         }
                         list.add(myCollectionBean.getData().get(i));
                     }
+                    //  mMorePageNumber = myCollectionBean.getData().getCurrentPageNo();
+                    //    totalPageNumber = myCollectionBean.getData().getTotalPageCount();
                     aty.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -267,7 +273,7 @@ public class DynamicStateFragment extends BaseFragment implements CollectionCont
                 img_err.setImageResource(R.mipmap.no_network);
                 tv_hintText.setText(msg);
                 tv_button.setText(getString(R.string.retry));
-            } else if (msg.contains(getString(R.string.noCollectedGoods))) {
+            } else if (msg.contains(getString(R.string.noCollectDynamic))) {
                 img_err.setImageResource(R.mipmap.no_data);
                 tv_hintText.setText(msg);
                 tv_button.setVisibility(View.GONE);
@@ -293,7 +299,7 @@ public class DynamicStateFragment extends BaseFragment implements CollectionCont
         super.callMsgEvent(msgEvent);
         if (((String) msgEvent.getData()).equals("RxBusLoginEvent") && mPresenter != null) {
             mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
-        //    ((CollectionContract.Presenter) mPresenter).getFavoriteGoodList(mMorePageNumber);
+            ((CollectionContract.Presenter) mPresenter).getFavoriteList(mMorePageNumber, type_id);
         }
     }
 

@@ -275,7 +275,6 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
     /**
      * 初始化轮播图
      */
-
     public void initBanner() {
         mForegroundBanner.setAutoPlayAble(true);
         mForegroundBanner.setOverScrollMode(View.OVER_SCROLL_NEVER);

@@ -170,11 +170,15 @@ public class URLConstants {
      */
     public static String ADDLIKE = APIURL + "like/add_like.do";
 
-
     /**
      * 社区----添加评论
      */
     public static String ADDCOMMENT = APIURL + "comment/add_comment.do";
+
+    /**
+     * 社区----获取帖子评论列表
+     */
+    public static String POSTCOMMENT = APIURL + "comment/get_post_comment.do";
 
     /**
      * 置换Token  get请求
@@ -360,6 +364,11 @@ public class URLConstants {
      * 添加到购物车
      */
     public static String AGGCARTGOOD = APIURL + "cart/add.do";
+
+    /**
+     * 获取我的粉丝列表
+     */
+    public static String MYFANSLIST = APIURL + "concern/get_my_fans_list.do";
 
     /**
      * 获取购物车商品列表

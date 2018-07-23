@@ -58,6 +58,21 @@ public class HomePagePresenter implements HomePageContract.Presenter {
     }
 
     @Override
+    public void isLogin(int flag) {
+//        RequestClient.isLogin(new ResponseListener<String>() {
+//            @Override
+//            public void onSuccess(String response) {
+//                mView.getSuccess(response, flag);
+//            }
+//
+//            @Override
+//            public void onFailure(String msg) {
+//                mView.errorMsg(msg, 1);
+//            }
+//        });
+    }
+
+    @Override
     public void initLocation(Activity activity, LocationClient mLocationClient) {
         LocationClientOption option = new LocationClientOption();
         option.setLocationMode(LocationClientOption.LocationMode.Hight_Accuracy);
@@ -100,22 +115,6 @@ public class HomePagePresenter implements HomePageContract.Presenter {
     }
 
 
-    @Override
-    public void isLogin(int flag) {
-//        RequestClient.isLogin(new ResponseListener<String>() {
-//            @Override
-//            public void onSuccess(String response) {
-//                mView.getSuccess(response, flag);
-//            }
-//
-//            @Override
-//            public void onFailure(String msg) {
-//                mView.errorMsg(msg, 1);
-//            }
-//        });
-    }
-
-
     @AfterPermissionGranted(NumericConstants.LOCATION_CODE)
     private void choiceLocationWrapper(Activity activity, LocationClient mLocationClient) {
         String[] perms = {Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_NETWORK_STATE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE, Manifest.permission.ACCESS_WIFI_STATE, Manifest.permission.ACCESS_LOCATION_EXTRA_COMMANDS, Manifest.permission.CHANGE_WIFI_STATE};
@@ -133,7 +132,7 @@ public class HomePagePresenter implements HomePageContract.Presenter {
             }
             mLocationClient.start();
         } else {
-            EasyPermissions.requestPermissions(activity, "定位选择需要以下权限:\n\n1.访问设备上的gps\n\n2.读写权限", NumericConstants.REQUEST_CODE_PERMISSION_PHOTO_PICKER, perms);
+            EasyPermissions.requestPermissions(activity, activity.getString(R.string.openPositionSwitch), NumericConstants.REQUEST_CODE_PERMISSION_PHOTO_PICKER, perms);
         }
     }
 }

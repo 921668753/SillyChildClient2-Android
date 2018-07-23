@@ -51,6 +51,7 @@ public class GoodsDetailsPresenter implements GoodsDetailsContract.Presenter {
     public void postFavoriteAdd(int goodsid) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
         httpParams.put("goodsid", goodsid);
+        httpParams.put("type_id", 1);
         RequestClient.postFavoriteAdd(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
@@ -68,6 +69,7 @@ public class GoodsDetailsPresenter implements GoodsDetailsContract.Presenter {
     public void postUnfavorite(int goodsid) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
         httpParams.put("goodsid", goodsid);
+        httpParams.put("type_id", 1);
         RequestClient.postUnfavorite(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {

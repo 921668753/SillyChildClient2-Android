@@ -8,7 +8,7 @@ import java.util.List;
  * Created by Admin on 2017/9/29.
  */
 
-public class MallHomePageBean extends BaseResult<MallHomePageBean.DataBean> {
+public class MallBean extends BaseResult<MallBean.DataBean> {
 
 
     public class DataBean {

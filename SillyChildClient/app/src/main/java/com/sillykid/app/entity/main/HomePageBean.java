@@ -1,4 +1,4 @@
-package com.sillykid.app.entity;
+package com.sillykid.app.entity.main;
 
 import com.common.cklibrary.entity.BaseResult;
 import com.google.gson.annotations.SerializedName;
@@ -8,7 +8,6 @@ import java.util.List;
 /**
  * Created by Administrator on 2017/9/7.
  */
-
 public class HomePageBean extends BaseResult<HomePageBean.ResultBean> {
 
 

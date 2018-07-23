@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchMatch"
+    android:orientation="vertical">
+
+    <cn.bingoogolapple.refreshlayout.BGARefreshLayout
+        android:id="@+id/mRefreshLayout"
+        style="@style/MatchAuto"
+        android:paddingTop="@dimen/dimen10">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv"
+            style="@style/MatchMatch"
+            android:layout_marginTop="@dimen/dimen5"
+            android:overScrollMode="never"
+            android:paddingLeft="@dimen/dimen2"
+            android:paddingRight="@dimen/dimen2"
+            android:scrollbars="none"
+            tools:listitem="@layout/item_mystrategy" />
+
+    </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
+
+    <include layout="@layout/common_error" />
+
+</LinearLayout>

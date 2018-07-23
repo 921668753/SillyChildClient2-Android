@@ -22,12 +22,13 @@ import com.sillykid.app.R;
 import com.sillykid.app.adapter.community.CommunityViewAdapter;
 import com.sillykid.app.community.dynamic.DynamicDetailsActivity;
 import com.sillykid.app.constant.NumericConstants;
-import com.sillykid.app.entity.community.ClassificationListBean;
-import com.sillykid.app.entity.mall.goodslist.GoodsListBean;
+import com.sillykid.app.entity.main.community.ClassificationListBean;
+import com.sillykid.app.entity.main.community.CommunityBean;
 import com.sillykid.app.loginregister.LoginActivity;
 import com.sillykid.app.utils.GlideImageLoader;
 import com.sillykid.app.utils.SpacesItemDecoration;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import cn.bingoogolapple.androidcommon.adapter.BGAOnRVItemClickListener;
@@ -73,6 +74,11 @@ public class CommunityFragment extends BaseFragment implements CommunityContract
     private int mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
 
     /**
+     * 总页码
+     */
+    private int totalPageNumber = NumericConstants.START_PAGE_NUMBER;
+
+    /**
      * 是否加载更多
      */
     private boolean isShowLoadingMore = false;
@@ -89,7 +95,7 @@ public class CommunityFragment extends BaseFragment implements CommunityContract
 
     private Thread thread = null;
 
-    private List<GoodsListBean.DataBean> list = null;
+    private List<CommunityBean.DataBean.ResultBean> list = null;
 
     /**
      * 标记选择位置
@@ -107,13 +113,12 @@ public class CommunityFragment extends BaseFragment implements CommunityContract
     @Override
     protected void initData() {
         super.initData();
+        list = new ArrayList<CommunityBean.DataBean.ResultBean>();
         mPresenter = new CommunityPresenter(this);
         spacesItemDecoration = new SpacesItemDecoration(7, 14);
         mAdapter = new CommunityViewAdapter(recyclerview);
         layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         layoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);//不设置的话，图片闪烁错位，有可能有整列错位的情况。
-        showLoadingDialog(getString(R.string.dataLoad));
-        ((CommunityContract.Presenter) mPresenter).getClassificationList();
     }
 
     @Override
@@ -121,23 +126,8 @@ public class CommunityFragment extends BaseFragment implements CommunityContract
         super.initWidget(parentView);
         RefreshLayoutUtil.initRefreshLayout(mRefreshLayout, this, aty, true);
         initRecyclerView();
-        mRefreshLayout.beginRefreshing();
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
+        showLoadingDialog(getString(R.string.dataLoad));
+        ((CommunityContract.Presenter) mPresenter).getClassificationList();
     }
 
     /**
@@ -175,8 +165,8 @@ public class CommunityFragment extends BaseFragment implements CommunityContract
     @Override
     public void onRVItemClick(ViewGroup parent, View itemView, int position) {
         Intent intent = new Intent(aty, DynamicDetailsActivity.class);
-        // intent.putExtra("goodName", goodsListAdapter.getItem(position).getName());
-        //  intent.putExtra("goodsid", goodsListAdapter.getItem(position).getGoods_id());
+        intent.putExtra("id", mAdapter.getItem(position).getId());
+        intent.putExtra("title", mAdapter.getItem(position).getPost_title());
         aty.showActivity(aty, intent);
     }
 
@@ -197,17 +187,25 @@ public class CommunityFragment extends BaseFragment implements CommunityContract
             for (int i = 0; i < classificationListBean.getData().size(); i++) {
                 tabLayout.addTab(tabLayout.newTab());
                 TabLayout.Tab tab = tabLayout.getTabAt(i);
-                if (tab != null) {
-                    tab.setCustomView(R.layout.item_tabcommunityclass);
-                    View view = tab.getCustomView();
-                    TextView textView = (TextView) view.findViewById(R.id.tv_title);
-                    textView.setText(classificationListBean.getData().get(i).getName());
+                if (tab == null) {
+                    continue;
+                }
+                tab.setCustomView(R.layout.item_tabcommunityclass);
+                View view = tab.getCustomView();
+                TextView textView = (TextView) view.findViewById(R.id.tv_title);
+                textView.setText(classificationListBean.getData().get(i).getName());
+                if (i == itemSelected) {
+                    textView.setTextColor(getResources().getColor(R.color.greenColors));
+                    TextView textView1 = (TextView) view.findViewById(R.id.tv_title1);
+                    textView1.setVisibility(View.VISIBLE);
+                    classification_id = classificationListBean.getData().get(itemSelected).getId();
+                    mRefreshLayout.beginRefreshing();
+                } else {
+                    textView.setTextColor(getResources().getColor(R.color.hintColors));
+                    TextView textView1 = (TextView) view.findViewById(R.id.tv_title1);
+                    textView1.setVisibility(View.GONE);
                 }
             }
-            /**默认选择第一项itemSelected = 0 **/
-            TabLayout.Tab tab = tabLayout.getTabAt(itemSelected);
-            tab.select();
-
             /**计算滑动的偏移量**/
             final int width = (int) (getOffsetWidth(classificationListBean.getData(), itemSelected) * getResources().getDisplayMetrics().density);
             tabLayout.post(new Runnable() {
@@ -219,6 +217,11 @@ public class CommunityFragment extends BaseFragment implements CommunityContract
             tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
                 @Override
                 public void onTabSelected(TabLayout.Tab tab) {
+                    View view = tab.getCustomView();
+                    TextView textView = (TextView) view.findViewById(R.id.tv_title);
+                    textView.setTextColor(getResources().getColor(R.color.greenColors));
+                    TextView textView1 = (TextView) view.findViewById(R.id.tv_title1);
+                    textView1.setVisibility(View.VISIBLE);
                     itemSelected = tab.getPosition();
                     classification_id = classificationListBean.getData().get(itemSelected).getId();
                     mRefreshLayout.beginRefreshing();
@@ -226,22 +229,31 @@ public class CommunityFragment extends BaseFragment implements CommunityContract
 
                 @Override
                 public void onTabUnselected(TabLayout.Tab tab) {
+                    View view = tab.getCustomView();
+                    TextView textView = (TextView) view.findViewById(R.id.tv_title);
+                    textView.setTextColor(getResources().getColor(R.color.hintColors));
+                    TextView textView1 = (TextView) view.findViewById(R.id.tv_title1);
+                    textView1.setVisibility(View.GONE);
                 }
+
                 @Override
                 public void onTabReselected(TabLayout.Tab tab) {
                 }
             });
+            /**默认选择第一项itemSelected = 0 **/
+//            TabLayout.Tab tab = tabLayout.getTabAt(itemSelected);
+//            tab.select();
         } else if (flag == 1) {
             isShowLoadingMore = true;
             ll_commonError.setVisibility(View.GONE);
             mRefreshLayout.setVisibility(View.VISIBLE);
-            GoodsListBean goodsListBean = (GoodsListBean) JsonUtil.getInstance().json2Obj(success, GoodsListBean.class);
-            if (goodsListBean.getData() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER || goodsListBean.getData().size() <= 0 &&
+            CommunityBean communityBean = (CommunityBean) JsonUtil.getInstance().json2Obj(success, CommunityBean.class);
+            if (communityBean.getData() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER || communityBean.getData().getTotalCount() <= 0 &&
                     mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
-                errorMsg(getString(R.string.noale), 1);
+                errorMsg(getString(R.string.noMovement), 1);
                 return;
-            } else if (goodsListBean.getData() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
-                    goodsListBean.getData().size() <= 0 && mMorePageNumber > NumericConstants.START_PAGE_NUMBER) {
+            } else if (communityBean.getData() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
+                    communityBean.getData().getTotalCount() <= 0 && mMorePageNumber > NumericConstants.START_PAGE_NUMBER) {
                 ViewInject.toast(getString(R.string.noMoreData));
                 isShowLoadingMore = false;
                 dismissLoadingDialog();
@@ -256,14 +268,16 @@ public class CommunityFragment extends BaseFragment implements CommunityContract
                 @Override
                 public void run() {
                     list.clear();
-                    for (int i = 0; i < goodsListBean.getData().size(); i++) {
-                        Bitmap bitmap = GlideImageLoader.load(aty, goodsListBean.getData().get(i).getThumbnail());
+                    for (int i = 0; i < communityBean.getData().getResultX().size(); i++) {
+                        Bitmap bitmap = GlideImageLoader.load(aty, communityBean.getData().getResultX().get(i).getPicture());
                         if (bitmap != null) {
-                            goodsListBean.getData().get(i).setHeight(bitmap.getHeight());
-                            goodsListBean.getData().get(i).setWidth(bitmap.getWidth());
+                            communityBean.getData().getResultX().get(i).setHeight(bitmap.getHeight());
+                            communityBean.getData().getResultX().get(i).setWidth(bitmap.getWidth());
                         }
-                        list.add(goodsListBean.getData().get(i));
+                        list.add(communityBean.getData().getResultX().get(i));
                     }
+                    mMorePageNumber = communityBean.getData().getCurrentPageNo();
+                    totalPageNumber = communityBean.getData().getTotalPageCount();
                     aty.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -295,7 +309,6 @@ public class CommunityFragment extends BaseFragment implements CommunityContract
         return str.length() * 14 + index * 12;
     }
 
-
     @Override
     public void errorMsg(String msg, int flag) {
         dismissLoadingDialog();
@@ -320,7 +333,7 @@ public class CommunityFragment extends BaseFragment implements CommunityContract
             img_err.setImageResource(R.mipmap.no_network);
             tv_hintText.setText(msg);
             tv_button.setText(getString(R.string.retry));
-        } else if (msg.contains(getString(R.string.noale))) {
+        } else if (msg.contains(getString(R.string.noMovement))) {
             img_err.setImageResource(R.mipmap.no_data);
             tv_hintText.setText(msg);
             tv_button.setVisibility(View.GONE);
@@ -348,6 +361,10 @@ public class CommunityFragment extends BaseFragment implements CommunityContract
             return false;
         }
         mMorePageNumber++;
+        if (mMorePageNumber > totalPageNumber) {
+            ViewInject.toast(getString(R.string.noMoreData));
+            return false;
+        }
         showLoadingDialog(getString(R.string.dataLoad));
         ((CommunityContract.Presenter) mPresenter).getPostList(post_title, nickname, classification_id, mMorePageNumber);
         return true;

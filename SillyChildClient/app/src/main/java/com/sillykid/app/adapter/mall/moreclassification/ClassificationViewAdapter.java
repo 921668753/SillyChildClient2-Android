@@ -1,4 +1,4 @@
-package com.sillykid.app.adapter.homepage.moreclassification;
+package com.sillykid.app.adapter.mall.moreclassification;
 
 import android.content.Context;
 import android.util.Log;

@@ -35,7 +35,7 @@ import static com.sillykid.app.constant.NumericConstants.REQUEST_CODE_PREVIEW;
  * 我的收藏中的店铺
  * Created by Administrator on 2017/9/2.
  */
-public class ShopFragment extends BaseFragment implements MyCollectionContract.View, AdapterView.OnItemClickListener, BGAOnItemChildClickListener, BGARefreshLayout.BGARefreshLayoutDelegate {
+public class ShopFragment extends BaseFragment implements CollectionContract.View, AdapterView.OnItemClickListener, BGAOnItemChildClickListener, BGARefreshLayout.BGARefreshLayoutDelegate {
 
     @BindView(id = R.id.mRefreshLayout)
     private BGARefreshLayout mRefreshLayout;
@@ -73,6 +73,7 @@ public class ShopFragment extends BaseFragment implements MyCollectionContract.V
 
     private DeleteCollectionDialog deleteCollectionDialog = null;
 
+    private int type_id = 2;
 
     private int positionItem = 0;
 
@@ -87,7 +88,7 @@ public class ShopFragment extends BaseFragment implements MyCollectionContract.V
     @Override
     public void initData() {
         super.initData();
-        mPresenter = new MyCollectionPresenter(this);
+        mPresenter = new CollectionPresenter(this);
         mAdapter = new ShopViewAdapter(aty);
         initDeleteCollectionDialog();
     }
@@ -101,7 +102,7 @@ public class ShopFragment extends BaseFragment implements MyCollectionContract.V
             @Override
             public void deleteCollectionDo(int addressId) {
                 showLoadingDialog(getString(R.string.deleteLoad));
-                ((MyCollectionContract.Presenter) mPresenter).postUnFavoriteGood(addressId);
+                ((CollectionContract.Presenter) mPresenter).postUnFavorite(addressId, type_id);
             }
         };
     }
@@ -139,7 +140,7 @@ public class ShopFragment extends BaseFragment implements MyCollectionContract.V
         mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
         mRefreshLayout.endRefreshing();
         showLoadingDialog(getString(R.string.dataLoad));
-        ((MyCollectionContract.Presenter) mPresenter).getFavoriteGoodList(mMorePageNumber);
+        ((CollectionContract.Presenter) mPresenter).getFavoriteList(mMorePageNumber, type_id);
     }
 
     @Override
@@ -151,7 +152,7 @@ public class ShopFragment extends BaseFragment implements MyCollectionContract.V
         }
         mMorePageNumber++;
         showLoadingDialog(getString(R.string.dataLoad));
-        ((MyCollectionContract.Presenter) mPresenter).getFavoriteGoodList(mMorePageNumber);
+        ((CollectionContract.Presenter) mPresenter).getFavoriteList(mMorePageNumber, type_id);
         return true;
     }
 
@@ -187,7 +188,7 @@ public class ShopFragment extends BaseFragment implements MyCollectionContract.V
 
 
     @Override
-    public void setPresenter(MyCollectionContract.Presenter presenter) {
+    public void setPresenter(CollectionContract.Presenter presenter) {
         mPresenter = presenter;
     }
 
@@ -278,7 +279,7 @@ public class ShopFragment extends BaseFragment implements MyCollectionContract.V
         super.callMsgEvent(msgEvent);
         if (((String) msgEvent.getData()).equals("RxBusLoginEvent") && mPresenter != null) {
             mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
-            ((MyCollectionContract.Presenter) mPresenter).getFavoriteGoodList(mMorePageNumber);
+            ((CollectionContract.Presenter) mPresenter).getFavoriteList(mMorePageNumber, type_id);
         }
     }
 

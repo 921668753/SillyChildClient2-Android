@@ -1,35 +1,35 @@
 package com.sillykid.app.mine.mycollection;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.common.cklibrary.common.BaseFragment;
 import com.common.cklibrary.common.BindView;
 import com.common.cklibrary.common.ViewInject;
-import com.common.cklibrary.utils.ActivityTitleUtils;
 import com.common.cklibrary.utils.JsonUtil;
-import com.common.cklibrary.utils.MathUtil;
 import com.common.cklibrary.utils.RefreshLayoutUtil;
 import com.common.cklibrary.utils.rx.MsgEvent;
-import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
-import com.sillykid.app.adapter.mine.mycollection.GoodViewAdapter;
+import com.sillykid.app.adapter.mine.mycollection.DynamicStateRVViewAdapter;
 import com.sillykid.app.constant.NumericConstants;
 import com.sillykid.app.entity.mine.mycollection.MyCollectionBean;
 import com.sillykid.app.loginregister.LoginActivity;
-import com.sillykid.app.mall.goodslist.goodsdetails.GoodsDetailsActivity;
-import com.sillykid.app.mall.goodslist.goodsdetails.dialog.SpecificationsBouncedDialog;
-import com.sillykid.app.mine.mycollection.dialog.DeleteCollectionDialog;
+import com.sillykid.app.utils.GlideImageLoader;
+import com.sillykid.app.utils.SpacesItemDecoration;
 
-import cn.bingoogolapple.androidcommon.adapter.BGAOnItemChildClickListener;
+import java.util.ArrayList;
+import java.util.List;
+
+import cn.bingoogolapple.androidcommon.adapter.BGAOnRVItemClickListener;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 
 import static android.app.Activity.RESULT_OK;
@@ -37,18 +37,16 @@ import static com.sillykid.app.constant.NumericConstants.REQUEST_CODE;
 
 /**
  * 我的收藏中的动态
- * Created by Administrator on 2017/9/2.
+ * Created by Administrator on 2018/9/2.
  */
 
-public class DynamicStateFragment extends BaseFragment implements MyCollectionContract.View, AdapterView.OnItemClickListener, BGAOnItemChildClickListener, BGARefreshLayout.BGARefreshLayoutDelegate {
+public class DynamicStateFragment extends BaseFragment implements CollectionContract.View, BGAOnRVItemClickListener, BGARefreshLayout.BGARefreshLayoutDelegate {
 
     @BindView(id = R.id.mRefreshLayout)
     private BGARefreshLayout mRefreshLayout;
 
-    private GoodViewAdapter mAdapter;
-
-    @BindView(id = R.id.lv_goodCollection)
-    private ListView lv_myCollection;
+    @BindView(id = R.id.rv)
+    private RecyclerView recyclerView;
 
     /**
      * 错误提示页
@@ -75,63 +73,57 @@ public class DynamicStateFragment extends BaseFragment implements MyCollectionCo
      */
     private boolean isShowLoadingMore = false;
 
-
-    private DeleteCollectionDialog deleteCollectionDialog = null;
-
-    private SpecificationsBouncedDialog addCartGoodDialog = null;
-
-    private int positionItem = 0;
+    private DynamicStateRVViewAdapter mAdapter;
 
     private MyCollectionActivity aty;
+    private SpacesItemDecoration spacesItemDecoration;
+    private StaggeredGridLayoutManager layoutManager;
+
+    private Thread thread = null;
+
+    private List<MyCollectionBean.DataBean> list = null;
 
     @Override
     protected View inflaterView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
         aty = (MyCollectionActivity) getActivity();
-        return View.inflate(aty, R.layout.fragment_good, null);
+        return View.inflate(aty, R.layout.fragment_dynamicstate, null);
     }
 
     @Override
     public void initData() {
         super.initData();
-        mPresenter = new MyCollectionPresenter(this);
-        mAdapter = new GoodViewAdapter(aty);
-        initDeleteCollectionDialog();
-        initAddCartGoodDialog();
-    }
-
-
-    /**
-     * 弹框
-     */
-    public void initDeleteCollectionDialog() {
-        deleteCollectionDialog = new DeleteCollectionDialog(aty, getString(R.string.determineDeleteCollection)) {
-            @Override
-            public void deleteCollectionDo(int addressId) {
-                showLoadingDialog(getString(R.string.deleteLoad));
-                ((MyCollectionContract.Presenter) mPresenter).postUnFavoriteGood(addressId);
-            }
-        };
-    }
-
-    public void initAddCartGoodDialog() {
-        addCartGoodDialog = new SpecificationsBouncedDialog(aty) {
-            @Override
-            public void toDo(int goodId, int flag, int num1, int product_id) {
-                showLoadingDialog(getString(R.string.addLoad));
-                ((MyCollectionContract.Presenter) mPresenter).postAddCartGood(goodId, num1, product_id);
-            }
-        };
+        list = new ArrayList<MyCollectionBean.DataBean>();
+        mPresenter = new CollectionPresenter(this);
+        mAdapter = new DynamicStateRVViewAdapter(recyclerView);
+        spacesItemDecoration = new SpacesItemDecoration(7, 14);
+        layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        layoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);//不设置的话，图片闪烁错位，有可能有整列错位的情况。
     }
 
     @Override
     protected void initWidget(View parentView) {
         super.initWidget(parentView);
-        ActivityTitleUtils.initToolbar(aty, getString(R.string.myCollection), true, R.id.titlebar);
         RefreshLayoutUtil.initRefreshLayout(mRefreshLayout, this, aty, true);
-        lv_myCollection.setAdapter(mAdapter);
-        lv_myCollection.setOnItemClickListener(this);
-        mAdapter.setOnItemChildClickListener(this);
+        initRecyclerView();
         mRefreshLayout.beginRefreshing();
+    }
+
+    /**
+     * 设置RecyclerView控件部分属性
+     */
+    private void initRecyclerView() {
+        recyclerView.setLayoutManager(layoutManager);
+        //设置item之间的间隔
+        recyclerView.addItemDecoration(spacesItemDecoration);
+        recyclerView.setAdapter(mAdapter);
+        mAdapter.setOnRVItemClickListener(this);
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                layoutManager.invalidateSpanAssignments();
+            }
+        });
     }
 
     /**
@@ -156,7 +148,7 @@ public class DynamicStateFragment extends BaseFragment implements MyCollectionCo
         mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
         mRefreshLayout.endRefreshing();
         showLoadingDialog(getString(R.string.dataLoad));
-        ((MyCollectionContract.Presenter) mPresenter).getFavoriteGoodList(mMorePageNumber);
+      //  ((CollectionContract.Presenter) mPresenter).getFavoriteGoodList(mMorePageNumber);
     }
 
     @Override
@@ -168,52 +160,27 @@ public class DynamicStateFragment extends BaseFragment implements MyCollectionCo
         }
         mMorePageNumber++;
         showLoadingDialog(getString(R.string.dataLoad));
-        ((MyCollectionContract.Presenter) mPresenter).getFavoriteGoodList(mMorePageNumber);
+       // ((CollectionContract.Presenter) mPresenter).getFavoriteGoodList(mMorePageNumber);
         return true;
     }
 
 
+//    @Override
+//    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+//        Intent intent = new Intent(aty, GoodsDetailsActivity.class);
+//        intent.putExtra("goodName", mAdapter.getItem(position).getName());
+//        intent.putExtra("goodsid", mAdapter.getItem(position).getGoods_id());
+//        intent.putExtra("isRefresh", 1);
+//        startActivityForResult(intent, REQUEST_CODE);
+//    }
+
     @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-        Intent intent = new Intent(aty, GoodsDetailsActivity.class);
-        intent.putExtra("goodName", mAdapter.getItem(position).getName());
-        intent.putExtra("goodsid", mAdapter.getItem(position).getGoods_id());
-        intent.putExtra("isRefresh", 1);
-        startActivityForResult(intent, REQUEST_CODE);
+    public void onRVItemClick(ViewGroup parent, View itemView, int position) {
+
     }
 
     @Override
-    public void onItemChildClick(ViewGroup parent, View childView, int position) {
-        positionItem = position;
-        if (childView.getId() == R.id.img_delete) {
-            if (deleteCollectionDialog == null) {
-                initDeleteCollectionDialog();
-            }
-            if (deleteCollectionDialog != null && !deleteCollectionDialog.isShowing()) {
-                deleteCollectionDialog.show();
-                deleteCollectionDialog.setCollectionId(mAdapter.getItem(position).getGoods_id());
-            }
-        } else if (childView.getId() == R.id.tv_shoppingCart) {
-            int store = StringUtils.toInt(mAdapter.getItem(position).getStore(), 0);
-            if (store <= 0) {
-                ViewInject.toast(getString(R.string.inventory) + getString(R.string.insufficient));
-                return;
-            }
-            if (addCartGoodDialog == null) {
-                initAddCartGoodDialog();
-            }
-            if (addCartGoodDialog != null && !addCartGoodDialog.isShowing()) {
-                addCartGoodDialog.show();
-                addCartGoodDialog.setFlag(0, mAdapter.getItem(position).getGoods_id(), mAdapter.getItem(position).getSmall(),
-                        MathUtil.keepTwo(StringUtils.toDouble(mAdapter.getItem(position).getPrice())), mAdapter.getItem(position).getHave_spec(),
-                        mAdapter.getItem(position).getProduct_id(), store);
-            }
-        }
-    }
-
-
-    @Override
-    public void setPresenter(MyCollectionContract.Presenter presenter) {
+    public void setPresenter(CollectionContract.Presenter presenter) {
         mPresenter = presenter;
     }
 
@@ -237,21 +204,39 @@ public class DynamicStateFragment extends BaseFragment implements MyCollectionCo
                 mRefreshLayout.endLoadingMore();
                 return;
             }
-            if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
-                mRefreshLayout.endRefreshing();
-                mAdapter.clear();
-                mAdapter.addNewData(myCollectionBean.getData());
-            } else {
-                mRefreshLayout.endLoadingMore();
-                mAdapter.addMoreData(myCollectionBean.getData());
+            if (thread != null && !thread.isAlive()) {
+                thread.run();
+                return;
             }
-            dismissLoadingDialog();
-        } else if (flag == 1) {
-            mAdapter.removeItem(positionItem);
-            mRefreshLayout.beginRefreshing();
-        } else if (flag == 2) {
-            addCartGoodDialog.dismissLoadingDialog();
-            ViewInject.toast(getString(R.string.addCartSuccess));
+            thread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    list.clear();
+                    for (int i = 0; i < myCollectionBean.getData().size(); i++) {
+                        Bitmap bitmap = GlideImageLoader.load(aty, myCollectionBean.getData().get(i).getThumbnail());
+                        if (bitmap != null) {
+//                            myCollectionBean.getData().get(i).setHeight(bitmap.getHeight());
+//                            myCollectionBean.getData().get(i).setWidth(bitmap.getWidth());
+                        }
+                        list.add(myCollectionBean.getData().get(i));
+                    }
+                    aty.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
+                                mRefreshLayout.endRefreshing();
+                                mAdapter.clear();
+                                mAdapter.addNewData(list);
+                            } else {
+                                mRefreshLayout.endLoadingMore();
+                                mAdapter.addMoreData(list);
+                            }
+                            dismissLoadingDialog();
+                        }
+                    });
+                }
+            });
+            thread.start();
             dismissLoadingDialog();
         }
     }
@@ -296,9 +281,6 @@ public class DynamicStateFragment extends BaseFragment implements MyCollectionCo
             mRefreshLayout.setVisibility(View.VISIBLE);
             ll_commonError.setVisibility(View.GONE);
             ViewInject.toast(msg);
-            if (flag == 2) {
-                addCartGoodDialog.dismissLoadingDialog();
-            }
         }
     }
 
@@ -311,7 +293,7 @@ public class DynamicStateFragment extends BaseFragment implements MyCollectionCo
         super.callMsgEvent(msgEvent);
         if (((String) msgEvent.getData()).equals("RxBusLoginEvent") && mPresenter != null) {
             mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
-            ((MyCollectionContract.Presenter) mPresenter).getFavoriteGoodList(mMorePageNumber);
+        //    ((CollectionContract.Presenter) mPresenter).getFavoriteGoodList(mMorePageNumber);
         }
     }
 
@@ -327,17 +309,15 @@ public class DynamicStateFragment extends BaseFragment implements MyCollectionCo
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (deleteCollectionDialog != null) {
-            deleteCollectionDialog.cancel();
+        list.clear();
+        list = null;
+        if (thread != null) {
+            thread.interrupted();
         }
-        deleteCollectionDialog = null;
-
-        if (addCartGoodDialog != null) {
-            addCartGoodDialog.cancel();
-        }
-        addCartGoodDialog = null;
+        thread = null;
         mAdapter.clear();
         mAdapter = null;
     }
+
 
 }

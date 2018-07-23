@@ -3,6 +3,8 @@ package com.sillykid.app.main;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +12,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.LinearLayout.LayoutParams;
-import android.widget.TextView;
+import android.widget.RelativeLayout;
 
 import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
@@ -22,53 +23,51 @@ import com.common.cklibrary.common.StringConstants;
 import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.RefreshLayoutUtil;
-import com.common.cklibrary.utils.myview.ChildListView;
 import com.common.cklibrary.utils.myview.HorizontalListView;
 import com.kymjs.common.PreferenceHelper;
 import com.kymjs.common.StringUtils;
-import com.sillykid.app.BuildConfig;
 import com.sillykid.app.R;
-import com.sillykid.app.adapter.homepage.HotRegionViewAdapter;
-import com.sillykid.app.adapter.homepage.BoutiqueLineViewAdapter;
+import com.sillykid.app.adapter.main.homepage.BoutiqueLineViewAdapter;
+import com.sillykid.app.adapter.main.homepage.HotVideoViewAdapter;
 import com.sillykid.app.constant.NumericConstants;
-import com.sillykid.app.entity.HomePageBean;
-import com.sillykid.app.entity.HomePageBean.ResultBean.AdBean;
+import com.sillykid.app.entity.main.HomePageBean;
+import com.sillykid.app.entity.main.HomePageBean.ResultBean.AdBean;
 import com.sillykid.app.homepage.BannerDetailsActivity;
-import com.sillykid.app.homepage.addressselection.newoverseas.NewOverseasCityActivity;
-import com.sillykid.app.homepage.airportpickup.AirportPickupActivity;
-import com.sillykid.app.homepage.boutiqueline.BoutiqueLineActivity;
-import com.sillykid.app.homepage.localtalent.LocalTalentActivity;
-import com.sillykid.app.homepage.localtalent.LocalTalentDetailsActivity;
-import com.sillykid.app.homepage.popularstrategy.HotStrategyActivity;
+import com.sillykid.app.homepage.hotvideo.HotVideoActivity;
+import com.sillykid.app.homepage.hotvideo.VideoDetailsActivity;
+import com.sillykid.app.homepage.privatecustom.PrivateCustomActivity;
 import com.sillykid.app.loginregister.LoginActivity;
-import com.sillykid.app.trip.strategy.StrategyDetailsActivity;
-import com.sillykid.app.utils.DisplayUtil;
 import com.sillykid.app.utils.GlideImageLoader;
 
 import java.util.List;
 
+import cn.bingoogolapple.androidcommon.adapter.BGAOnRVItemClickListener;
 import cn.bingoogolapple.bgabanner.BGABanner;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 import pub.devrel.easypermissions.EasyPermissions;
 
-import static com.sillykid.app.constant.NumericConstants.STATUS;
-
 /**
  * 首页
- * Created by Admin on 2017/8/10.
+ * Created by Admin on 2018/8/10.
  */
-public class HomePageFragment extends BaseFragment implements EasyPermissions.PermissionCallbacks, HomePageContract.View, BGABanner.Delegate<ImageView, AdBean>, BGABanner.Adapter<ImageView, AdBean>, AdapterView.OnItemClickListener, BGARefreshLayout.BGARefreshLayoutDelegate {
+public class HomePageFragment extends BaseFragment implements EasyPermissions.PermissionCallbacks, HomePageContract.View, BGABanner.Delegate<ImageView, AdBean>, BGABanner.Adapter<ImageView, AdBean>, AdapterView.OnItemClickListener, BGAOnRVItemClickListener, BGARefreshLayout.BGARefreshLayoutDelegate {
 
     private MainActivity aty;
 
     /**
      * 客服
      */
-    @BindView(id = R.id.tv_tag)
-    private TextView tv_tag;
-
     @BindView(id = R.id.img_customerService, click = true)
     private ImageView img_customerService;
+
+    /**
+     * 消息
+     */
+    @BindView(id = R.id.rl_message, click = true)
+    private RelativeLayout rl_message;
+
+    @BindView(id = R.id.tv_tag)
+    private ImageView tv_tag;
 
     @BindView(id = R.id.mRefreshLayout)
     private BGARefreshLayout mRefreshLayout;
@@ -80,56 +79,56 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
     private BGABanner mForegroundBanner;
 
     /**
-     * 签证
+     * 接机
      */
-    @BindView(id = R.id.ll_visa, click = true)
-    private LinearLayout ll_visa;
+    @BindView(id = R.id.ll_airportPickup, click = true)
+    private LinearLayout ll_airportPickup;
 
     /**
-     * 攻略
+     * 按天包车
      */
-    @BindView(id = R.id.ll_strategy, click = true)
-    private LinearLayout ll_strategy;
+    @BindView(id = R.id.ll_byTheDay, click = true)
+    private LinearLayout ll_byTheDay;
 
     /**
-     * 线路
+     * 私人定制
      */
-    @BindView(id = R.id.ll_route, click = true)
-    private LinearLayout ll_route;
+    @BindView(id = R.id.ll_privateOrdering, click = true)
+    private LinearLayout ll_privateOrdering;
 
     /**
-     * 活动
+     * 精品线路
      */
-    @BindView(id = R.id.ll_activity, click = true)
-    private LinearLayout ll_activity;
+    @BindView(id = R.id.ll_boutiqueLine, click = true)
+    private LinearLayout ll_boutiqueLine;
+
+    /**
+     * 送机
+     */
+    @BindView(id = R.id.ll_airportDropOff, click = true)
+    private LinearLayout ll_airportDropOff;
 
     /**
      * 热门视频  更多视频
      */
-    @BindView(id = R.id.ll_hotVideo)
+    @BindView(id = R.id.ll_hotVideo, click = true)
     private LinearLayout ll_hotVideo;
-
-    @BindView(id = R.id.tv_moreVideo, click = true)
-    private TextView tv_moreVideo;
 
     @BindView(id = R.id.hlv_hotVideo)
     private HorizontalListView hlv_hotVideo;
 
+    private HotVideoViewAdapter hotVideoViewAdapter;
+
     /**
-     * 热门地区  更多城市
+     * 精品线路  更多线路
      */
-    @BindView(id = R.id.ll_hotRegion)
-    private LinearLayout ll_hotRegion;
+    @BindView(id = R.id.ll_boutiqueLine1, click = true)
+    private LinearLayout ll_boutiqueLine1;
 
-    @BindView(id = R.id.tv_moreCities, click = true)
-    private TextView tv_moreCities;
+    @BindView(id = R.id.rv)
+    private RecyclerView recyclerView;
 
-    @BindView(id = R.id.hlv_hotRegion)
-    private HorizontalListView hlv_hotRegion;
-
-
-    @BindView(id = R.id.clv_hpStrategy)
-    private ChildListView clv_hpStrategy;
+    private BoutiqueLineViewAdapter boutiqueLineViewAdapter;
 
     public LocationClient mLocationClient = null;
 
@@ -137,9 +136,6 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
 //BDAbstractLocationListener为7.2版本新增的Abstract类型的监听接口，原有BDLocationListener接口暂时同步保留。具体介绍请参考后文中的说明
 
     private boolean isFirst = true;
-
-    private HotRegionViewAdapter hotRegionViewAdapter;
-    private BoutiqueLineViewAdapter boutiqueLineViewAdapter;
 
     @Override
     protected View inflaterView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -150,39 +146,30 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
     @Override
     protected void initData() {
         super.initData();
-//        screenAdaptation();
-//        mPresenter = new HomePagePresenter(this);
-//        RefreshLayoutUtil.initRefreshLayout(mRefreshLayout, this, aty, false);
-//        hotRegionViewAdapter = new HotRegionViewAdapter(aty, hlv_hotRegion);
-//        boutiqueLineViewAdapter = new BoutiqueLineViewAdapter(aty);
-//        mLocationClient = new LocationClient(aty.getApplicationContext());
-//        myListener = new MyLocationListener();
+        mPresenter = new HomePagePresenter(this);
+        RefreshLayoutUtil.initRefreshLayout(mRefreshLayout, this, aty, false);
+        hotVideoViewAdapter = new HotVideoViewAdapter(aty, hlv_hotVideo);
+        boutiqueLineViewAdapter = new BoutiqueLineViewAdapter(recyclerView);
+        mLocationClient = new LocationClient(aty.getApplicationContext());
+        myListener = new MyLocationListener();
     }
 
     @Override
     protected void initWidget(View parentView) {
         super.initWidget(parentView);
-//        initBanner();
-//        hlv_hotRegion.setAdapter(hotRegionViewAdapter);
-//        hlv_hotRegion.setOnItemClickListener(this);
-//        clv_boutiqueLine.setAdapter(boutiqueLineViewAdapter);
-//        clv_boutiqueLine.setOnItemClickListener(this);
-//        //声明LocationClient类
-//        mLocationClient.registerLocationListener(myListener);
-//        //注册监听函数
-//        ((HomePagePresenter) mPresenter).initLocation(aty, mLocationClient);
-//        showLoadingDialog(aty.getString(R.string.dataLoad));
-//        ((HomePagePresenter) mPresenter).getHomePage("");
-//        EMConversation conversation = EMClient.getInstance().chatManager().getConversation(BuildConfig.HUANXIN_IM);
-//        try {
-//            if (conversation.getUnreadMsgCount() > 0) {
-//                tv_tag.setVisibility(View.GONE);
-//            } else {
-//                tv_tag.setVisibility(View.GONE);
-//            }
-//        } catch (Exception e) {
-//            tv_tag.setVisibility(View.GONE);
-//        }
+        initBanner();
+        hlv_hotVideo.setAdapter(hotVideoViewAdapter);
+        hlv_hotVideo.setOnItemClickListener(this);
+        //声明LocationClient类
+        mLocationClient.registerLocationListener(myListener);
+        //注册监听函数
+        ((HomePagePresenter) mPresenter).initLocation(aty, mLocationClient);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(aty);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setNestedScrollingEnabled(false);
+        mRefreshLayout.beginRefreshing();
     }
 
     /**
@@ -192,44 +179,38 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
     protected void widgetClick(View v) {
         super.widgetClick(v);
         switch (v.getId()) {
-            case R.id.tv_address:
-                Intent intent = new Intent();
-                intent.setClass(aty, NewOverseasCityActivity.class);
-                startActivityForResult(intent, STATUS);
-                //  aty.showActivityForResult(aty, AddressSelectionActivity.class, STATUS);
-                break;
             case R.id.img_customerService:
-                ((HomePagePresenter) mPresenter).isLogin(1);
+                // ((HomePagePresenter) mPresenter).isLogin(1);
                 break;
             case R.id.ll_airportPickup:
-                aty.showActivity(aty, AirportPickupActivity.class);
+                //   aty.showActivity(aty, AirportPickupActivity.class);
                 break;
-//            case R.id.ll_boutiqueLine:
-//                aty.showActivity(aty, BoutiqueLineActivity.class);
-//                break;
-//            case R.id.ll_privateOrdering:
+            case R.id.ll_byTheDay:
+                //  aty.showActivity(aty, BoutiqueLineActivity.class);
+                break;
+            case R.id.ll_privateOrdering:
+                Intent intent1 = new Intent(aty, PrivateCustomActivity.class);
+                // intent1.putExtra("newChageIcon", 2);
+                aty.showActivity(aty, intent1);
+                break;
+            case R.id.ll_boutiqueLine:
 //                Intent intent1 = new Intent(aty, MainActivity.class);
 //                intent1.putExtra("newChageIcon", 2);
 //                aty.showActivity(aty, intent1);
-//                break;
-//            case R.id.ll_byTheDay:
-////                Intent intent1 = new Intent(aty, MainActivity.class);
-////                intent1.putExtra("newChageIcon", 2);
-////                aty.showActivity(aty, intent1);
-//                break;
+                break;
             case R.id.ll_airportDropOff:
 //                Intent intent1 = new Intent(aty, MainActivity.class);
 //                intent1.putExtra("newChageIcon", 2);
 //                aty.showActivity(aty, intent1);
                 break;
-            case R.id.tv_moreCities:
-                aty.showActivity(aty, LocalTalentActivity.class);
+            case R.id.ll_hotVideo:
+                aty.showActivity(aty, HotVideoActivity.class);
                 break;
-//            case R.id.tv_moreLines:
+            case R.id.ll_boutiqueLine1:
 //                Intent intent2 = new Intent(aty, HotStrategyActivity.class);
 //                //    intent2.putExtra("city", tv_address.getText().toString());
 //                aty.showActivity(aty, intent2);
-//                break;
+                break;
             default:
                 break;
         }
@@ -249,16 +230,16 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
                 dismissLoadingDialog();
                 return;
             }
-            if (homePageBean.getData().getAction().getLocal() == null || homePageBean.getData().getAction().getLocal().size() == 0 || homePageBean.getData().getAction().getLocal().isEmpty()) {
-                ll_hotRegion.setVisibility(View.GONE);
-                hlv_hotRegion.setVisibility(View.GONE);
-            } else {
-                ll_hotRegion.setVisibility(View.VISIBLE);
-                hlv_hotRegion.setVisibility(View.VISIBLE);
-                hotRegionViewAdapter.clear();
-                homePageBean.getData().getAction().getLocal().get(homePageBean.getData().getAction().getLocal().size() - 1).setStatusL("last");
-                hotRegionViewAdapter.addNewData(homePageBean.getData().getAction().getLocal());
-            }
+//            if (homePageBean.getData().getAction().getLocal() == null || homePageBean.getData().getAction().getLocal().size() == 0 || homePageBean.getData().getAction().getLocal().isEmpty()) {
+//                ll_hotRegion.setVisibility(View.GONE);
+//                hlv_hotRegion.setVisibility(View.GONE);
+//            } else {
+//                ll_hotRegion.setVisibility(View.VISIBLE);
+//                hlv_hotRegion.setVisibility(View.VISIBLE);
+//                hotRegionViewAdapter.clear();
+//                homePageBean.getData().getAction().getLocal().get(homePageBean.getData().getAction().getLocal().size() - 1).setStatusL("last");
+//                hotRegionViewAdapter.addNewData(homePageBean.getData().getAction().getLocal());
+//            }
 //            if (homePageBean.getData().getAction().getHot() == null || homePageBean.getData().getAction().getHot().size() == 0 || homePageBean.getData().getAction().getHot().isEmpty()) {
 //                ll_boutiqueLine1.setVisibility(View.GONE);
 //                clv_boutiqueLine.setVisibility(View.GONE);
@@ -271,7 +252,7 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
         } else if (flag == 1) {
             dismissLoadingDialog();
             tv_tag.setVisibility(View.GONE);
-           // aty.showActivity(aty, OverleafActivity.class);
+            // aty.showActivity(aty, OverleafActivity.class);
         }
         dismissLoadingDialog();
 
@@ -335,17 +316,6 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
     @Override
     public void onChange() {
         super.onChange();
-//        boolean isRefreshingChangeHomePageFragment = PreferenceHelper.readBoolean(aty, StringConstants.FILENAME, "isRefreshingChangeHomePageFragment", false);
-//        if (isRefreshingChangeHomePageFragment) {
-//            String locationCity = PreferenceHelper.readString(aty, StringConstants.FILENAME, "selectCity", getString(R.string.allAeservationNumber));
-//            tv_address.setText(locationCity);
-//            showLoadingDialog(getString(R.string.dataLoad));
-//            if (tv_address.getText().toString().equals(getString(R.string.allAeservationNumber))) {
-//                ((HomePageContract.Presenter) mPresenter).getHomePage("");
-//            } else {
-//                ((HomePageContract.Presenter) mPresenter).getHomePage(tv_address.getText().toString());
-//            }
-//        }
     }
 
     @Override
@@ -359,7 +329,6 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
 
     @Override
     public void fillBannerItem(BGABanner banner, ImageView itemView, AdBean model, int position) {
-        //   GlideImageLoader.glideOrdinaryLoader(aty, model.getAd_code(), itemView);
         GlideImageLoader.glideOrdinaryLoader(aty, model.getAd_code(), itemView, R.mipmap.placeholderfigure2);
     }
 
@@ -376,13 +345,9 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        if (adapterView.getId() == R.id.hlv_hotRegion) {
-            Intent intent = new Intent(aty, LocalTalentDetailsActivity.class);
-            intent.putExtra("talent_id", hotRegionViewAdapter.getItem(i).getTalent_id());
-            aty.showActivity(aty, intent);
-        } else if (adapterView.getId() == R.id.clv_hpStrategy) {
-            Intent intent = new Intent(aty, StrategyDetailsActivity.class);
-            intent.putExtra("guide_id", boutiqueLineViewAdapter.getItem(i).getGuide_id());
+        if (adapterView.getId() == R.id.hlv_hotVideo) {
+            Intent intent = new Intent(aty, VideoDetailsActivity.class);
+            intent.putExtra("talent_id", hotVideoViewAdapter.getItem(i).getTalent_id());
             aty.showActivity(aty, intent);
         }
     }
@@ -409,18 +374,22 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
     @Override
     public void onBGARefreshLayoutBeginRefreshing(BGARefreshLayout refreshLayout) {
         mRefreshLayout.endRefreshing();
-        String locationCity = PreferenceHelper.readString(aty, StringConstants.FILENAME, "selectCity", getString(R.string.allAeservationNumber));
         showLoadingDialog(getString(R.string.dataLoad));
-        //   if (tv_address.getText().toString().equals(getString(R.string.allAeservationNumber))) {
         ((HomePageContract.Presenter) mPresenter).getHomePage("");
-//        } else {
-//            ((HomePageContract.Presenter) mPresenter).getHomePage(tv_address.getText().toString());
-//        }
     }
 
     @Override
     public boolean onBGARefreshLayoutBeginLoadingMore(BGARefreshLayout refreshLayout) {
         return false;
+    }
+
+    @Override
+    public void onRVItemClick(ViewGroup parent, View itemView, int position) {
+
+
+
+
+
     }
 
 
@@ -452,6 +421,9 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
                 PreferenceHelper.write(aty, StringConstants.FILENAME, "locationCountry", location.getCountry());
                 PreferenceHelper.write(aty, StringConstants.FILENAME, "locationCity", location.getCity());
                 PreferenceHelper.write(aty, StringConstants.FILENAME, "location", location.getLongitude() + "," + location.getLatitude());
+                PreferenceHelper.write(aty, StringConstants.FILENAME, "latitude", location.getLatitude() + "");
+                PreferenceHelper.write(aty, StringConstants.FILENAME, "longitude", location.getLongitude() + "");
+                PreferenceHelper.write(aty, StringConstants.FILENAME, "locationAddress", location.getAddrStr());
                 Log.d("tag111", location.getCity());
                 if (isFirst) {
                     if (StringUtils.isEmpty(location.getCity())) {
@@ -504,6 +476,10 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
     @Override
     public void onDestroy() {
         super.onDestroy();
+        hotVideoViewAdapter.clear();
+        hotVideoViewAdapter = null;
+        boutiqueLineViewAdapter.clear();
+        hotVideoViewAdapter = null;
         mLocationClient.unRegisterLocationListener(myListener); //注销掉监听
         mLocationClient.stop(); //停止定位服务
     }
@@ -520,13 +496,4 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
 //            Log.d("tag888", selectCity);
 //        }
     }
-
-    private void screenAdaptation() {
-        int width = DisplayUtil.getWidthForScreen(aty, 0, 0, 0);
-        LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, (int) (width / 750f * 260));
-        mForegroundBanner.setLayoutParams(layoutParams);
-        layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, (int) (width / 750f * 210));
-        layoutParams.setMargins(0, DisplayUtil.dip2px(aty, 5), 0, 0);
-    }
-
 }

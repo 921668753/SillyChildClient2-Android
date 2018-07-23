@@ -59,7 +59,7 @@ public class MallPresenter implements MallContract.Presenter {
 //    }
 
     @Override
-    public void getHomePage() {
+    public void getMall() {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
         RequestClient.getHomePage(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
             @Override
@@ -74,45 +74,45 @@ public class MallPresenter implements MallContract.Presenter {
         });
     }
 
-    @Override
-    public void postBaiDuUpdateInfo() {
-        HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        String baiDuId = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "baiDuId", "");
-        if (StringUtils.isEmpty(baiDuId)) {
-            return;
-        }
-        httpParams.put("id", baiDuId);
-        String mobile = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "mobile", "");
-        httpParams.put("title", mobile);
-        String latitude = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "latitude", "");
-        String longitude = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "longitude", "");
-        String locationAddress = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "locationAddress", "");
-        httpParams.put("latitude", latitude);
-        httpParams.put("longitude", longitude);
-        httpParams.put("locationAddress", locationAddress);
-        httpParams.put("tags", "0");
-        httpParams.put("coord_type", 3);
-        httpParams.put("geotable_id", BAIDUTABID);
-        httpParams.put("ak", BuildConfig.BAIDU_APPKEY);
-        RequestClient.postBaiDuUpdateInfo(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
-            @Override
-            public void onSuccess(String response) {
-                BaiDuInfo baiDuInfo = (BaiDuInfo) JsonUtil.getInstance().json2Obj(response, BaiDuInfo.class);
-                PreferenceHelper.write(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "baiDuId", baiDuInfo.getId());
-                //  mView.getSuccess("", 1);
-            }
+//    @Override
+//    public void postBaiDuUpdateInfo() {
+//        HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
+//        String baiDuId = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "baiDuId", "");
+//        if (StringUtils.isEmpty(baiDuId)) {
+//            return;
+//        }
+//        httpParams.put("id", baiDuId);
+//        String mobile = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "mobile", "");
+//        httpParams.put("title", mobile);
+//        String latitude = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "latitude", "");
+//        String longitude = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "longitude", "");
+//        String locationAddress = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "locationAddress", "");
+//        httpParams.put("latitude", latitude);
+//        httpParams.put("longitude", longitude);
+//        httpParams.put("locationAddress", locationAddress);
+//        httpParams.put("tags", "0");
+//        httpParams.put("coord_type", 3);
+//        httpParams.put("geotable_id", BAIDUTABID);
+//        httpParams.put("ak", BuildConfig.BAIDU_APPKEY);
+//        RequestClient.postBaiDuUpdateInfo(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
+//            @Override
+//            public void onSuccess(String response) {
+//                BaiDuInfo baiDuInfo = (BaiDuInfo) JsonUtil.getInstance().json2Obj(response, BaiDuInfo.class);
+//                PreferenceHelper.write(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "baiDuId", baiDuInfo.getId());
+//                //  mView.getSuccess("", 1);
+//            }
+//
+//            @Override
+//            public void onFailure(String msg) {
+//                Log.d("BaiDuYun", "onFailure");
+//                //  mView.getSuccess("", 1);
+//                //  mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.failedCloudInformation1), 1);
+//            }
+//        });
+//
+//    }
 
-            @Override
-            public void onFailure(String msg) {
-                Log.d("BaiDuYun", "onFailure");
-                //  mView.getSuccess("", 1);
-                //  mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.failedCloudInformation1), 1);
-            }
-        });
 
-    }
-
-    @Override
     public void initLocation(Activity activity, LocationClient mLocationClient) {
         LocationClientOption option = new LocationClientOption();
         option.setLocationMode(LocationClientOption.LocationMode.Hight_Accuracy);

@@ -14,7 +14,6 @@ import android.widget.TextView;
 import com.common.cklibrary.common.BaseFragment;
 import com.common.cklibrary.common.BindView;
 import com.common.cklibrary.common.ViewInject;
-import com.common.cklibrary.utils.ActivityTitleUtils;
 import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.MathUtil;
 import com.common.cklibrary.utils.RefreshLayoutUtil;
@@ -40,7 +39,7 @@ import static com.sillykid.app.constant.NumericConstants.REQUEST_CODE;
  * Created by Administrator on 2017/9/2.
  */
 
-public class StrategyFragment extends BaseFragment implements MyCollectionContract.View, AdapterView.OnItemClickListener, BGAOnItemChildClickListener, BGARefreshLayout.BGARefreshLayoutDelegate {
+public class StrategyFragment extends BaseFragment implements CollectionContract.View, AdapterView.OnItemClickListener, BGAOnItemChildClickListener, BGARefreshLayout.BGARefreshLayoutDelegate {
 
     @BindView(id = R.id.mRefreshLayout)
     private BGARefreshLayout mRefreshLayout;
@@ -93,7 +92,7 @@ public class StrategyFragment extends BaseFragment implements MyCollectionContra
     @Override
     public void initData() {
         super.initData();
-        mPresenter = new MyCollectionPresenter(this);
+        mPresenter = new CollectionPresenter(this);
         mAdapter = new GoodViewAdapter(aty);
         initDeleteCollectionDialog();
         initAddCartGoodDialog();
@@ -108,7 +107,7 @@ public class StrategyFragment extends BaseFragment implements MyCollectionContra
             @Override
             public void deleteCollectionDo(int addressId) {
                 showLoadingDialog(getString(R.string.deleteLoad));
-                ((MyCollectionContract.Presenter) mPresenter).postUnFavoriteGood(addressId);
+              //  ((CollectionContract.Presenter) mPresenter).postUnFavoriteGood(addressId);
             }
         };
     }
@@ -118,7 +117,7 @@ public class StrategyFragment extends BaseFragment implements MyCollectionContra
             @Override
             public void toDo(int goodId, int flag, int num1, int product_id) {
                 showLoadingDialog(getString(R.string.addLoad));
-                ((MyCollectionContract.Presenter) mPresenter).postAddCartGood(goodId, num1, product_id);
+                ((CollectionContract.Presenter) mPresenter).postAddCartGood(goodId, num1, product_id);
             }
         };
     }
@@ -155,7 +154,7 @@ public class StrategyFragment extends BaseFragment implements MyCollectionContra
         mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
         mRefreshLayout.endRefreshing();
         showLoadingDialog(getString(R.string.dataLoad));
-        ((MyCollectionContract.Presenter) mPresenter).getFavoriteGoodList(mMorePageNumber);
+        //  ((CollectionContract.Presenter) mPresenter).getFavoriteGoodList(mMorePageNumber);
     }
 
     @Override
@@ -167,7 +166,7 @@ public class StrategyFragment extends BaseFragment implements MyCollectionContra
         }
         mMorePageNumber++;
         showLoadingDialog(getString(R.string.dataLoad));
-        ((MyCollectionContract.Presenter) mPresenter).getFavoriteGoodList(mMorePageNumber);
+        //  ((CollectionContract.Presenter) mPresenter).getFavoriteGoodList(mMorePageNumber);
         return true;
     }
 
@@ -212,7 +211,7 @@ public class StrategyFragment extends BaseFragment implements MyCollectionContra
 
 
     @Override
-    public void setPresenter(MyCollectionContract.Presenter presenter) {
+    public void setPresenter(CollectionContract.Presenter presenter) {
         mPresenter = presenter;
     }
 
@@ -310,7 +309,7 @@ public class StrategyFragment extends BaseFragment implements MyCollectionContra
         super.callMsgEvent(msgEvent);
         if (((String) msgEvent.getData()).equals("RxBusLoginEvent") && mPresenter != null) {
             mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
-            ((MyCollectionContract.Presenter) mPresenter).getFavoriteGoodList(mMorePageNumber);
+            // ((CollectionContract.Presenter) mPresenter).getFavoriteGoodList(mMorePageNumber);
         }
     }
 

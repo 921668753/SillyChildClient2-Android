@@ -5,11 +5,12 @@
     android:orientation="vertical">
 
     <ImageView
+        android:id="@+id/img_boutiQueLine"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen197"
+        android:layout_height="@dimen/dimen147"
         android:layout_marginLeft="@dimen/dimen2"
         android:layout_marginRight="@dimen/dimen2"
-        android:layout_marginTop="@dimen/dimen11"
+        android:layout_marginTop="@dimen/dimen14"
         android:scaleType="fitXY"
         android:src="@mipmap/placeholderfigure" />
 
@@ -23,6 +24,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/tv_boutiQueLine"
                 style="@style/AutoWrap"
                 android:layout_marginBottom="@dimen/dimen15"
                 android:layout_marginTop="@dimen/dimen12"
@@ -43,17 +45,19 @@
                     android:layout_width="@dimen/dimen13"
                     android:layout_height="@dimen/dimen12"
                     android:layout_marginTop="@dimen/dimen3"
-                    android:src="@mipmap/hp_zan" />
+                    android:src="@mipmap/hp_attention" />
 
                 <TextView
+                    android:id="@+id/tv_attentionNum"
                     style="@style/WrapWrap"
                     android:layout_marginTop="@dimen/dimen2"
-                    android:text="@string/giveLike"
-                    android:textColor="@color/hintColors"
+                    android:singleLine="true"
+                    android:text="200"
+                    android:textColor="@color/fF5656Colors"
                     android:textSize="@dimen/textsize8" />
 
             </LinearLayout>
-            
+
             <LinearLayout
                 android:layout_width="@dimen/dimen37"
                 android:layout_height="match_parent"
@@ -67,10 +71,12 @@
                     android:src="@mipmap/hp_collection" />
 
                 <TextView
+                    android:id="@+id/tv_collectionNum"
                     style="@style/WrapWrap"
                     android:layout_marginTop="@dimen/dimen2"
-                    android:text="@string/collection"
-                    android:textColor="@color/hintColors"
+                    android:singleLine="true"
+                    android:text="200"
+                    android:textColor="@color/fF5656Colors"
                     android:textSize="@dimen/textsize8" />
 
             </LinearLayout>
@@ -78,6 +84,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/tv_synopsis"
             style="@style/MatchWrap"
             android:layout_marginBottom="@dimen/dimen15"
             android:paddingLeft="@dimen/dimen12"

@@ -362,6 +362,30 @@
             android:name=".message.systemmessage.SystemMessageDetailsActivity"
             android:screenOrientation="portrait" />
 
+        <!--社区   动态详情-->
+        <activity
+            android:name=".community.dynamic.DynamicDetailsActivity"
+            android:screenOrientation="portrait" />
+
+        <!--社区   单条动态评论详情-->
+        <activity
+            android:name=".community.dynamic.CommentDetailsActivity"
+            android:screenOrientation="portrait" />
+
+        <!--社区   动态评论-->
+        <activity
+            android:name=".community.dynamic.DynamicCommentsActivity"
+            android:screenOrientation="portrait" />
+
+        <!--社区   个人发布展示页面-->
+        <activity
+            android:name=".community.DisplayPageActivity"
+            android:screenOrientation="portrait" />
+
+        <!--社区   社区搜索-->
+        <activity
+            android:name=".community.search.CommunitySearchActivity"
+            android:screenOrientation="portrait" />
 
         <!--消息   司导信息-->
         <!--<activity-->
@@ -412,7 +436,7 @@
 
         <!--我的   我的收藏-->
         <activity
-            android:name=".mine.mycollection.GoodFragment"
+            android:name=".mine.mycollection.MyCollectionActivity"
             android:screenOrientation="portrait" />
 
         <!--我的   我的订单-->
@@ -483,12 +507,12 @@
         <!--我的   我的发布 发布攻略-->
         <activity
             android:name=".mine.myrelease.strate.ReleaseStrateActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"/>
 
         <!--我的   我的发布 发布动态-->
         <activity
             android:name=".mine.myrelease.dynamicstate.ReleaseDynamicStateActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"/>
 
         <!--我的   我的购物车-->
         <activity

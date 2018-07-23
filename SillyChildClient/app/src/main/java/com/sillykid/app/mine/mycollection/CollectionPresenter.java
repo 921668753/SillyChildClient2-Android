@@ -10,19 +10,20 @@ import com.sillykid.app.retrofit.RequestClient;
  * Created by ruitu on 2016/9/24.
  */
 
-public class MyCollectionPresenter implements MyCollectionContract.Presenter {
+public class CollectionPresenter implements CollectionContract.Presenter {
 
-    private MyCollectionContract.View mView;
+    private CollectionContract.View mView;
 
-    public MyCollectionPresenter(MyCollectionContract.View view) {
+    public CollectionPresenter(CollectionContract.View view) {
         mView = view;
         mView.setPresenter(this);
     }
 
     @Override
-    public void getFavoriteGoodList(int page) {
+    public void getFavoriteList(int page, int type_id) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
         httpParams.put("page", page);
+        httpParams.put("type_id", type_id);
         httpParams.put("pageSize", 10);
         RequestClient.getFavoriteGoodList(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
             @Override
@@ -38,9 +39,10 @@ public class MyCollectionPresenter implements MyCollectionContract.Presenter {
     }
 
     @Override
-    public void postUnFavoriteGood(int goodsid) {
+    public void postUnFavorite(int goodsid, int type_id) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
         httpParams.put("goodsid", goodsid);
+        httpParams.put("type_id", type_id);
         RequestClient.postUnFavoriteGood(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {

@@ -1,4 +1,4 @@
-package com.sillykid.app.entity.community;
+package com.sillykid.app.entity.main.community;
 
 import com.common.cklibrary.entity.BaseResult;
 

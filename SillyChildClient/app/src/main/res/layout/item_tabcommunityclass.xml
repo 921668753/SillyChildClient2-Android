@@ -11,13 +11,15 @@
         android:layout_marginRight="@dimen/dimen11"
         android:gravity="center"
         android:text="111"
-        android:textColor="@color/greenColors"
+        android:textColor="@color/hintColors"
         android:textSize="@dimen/textsize12" />
 
     <TextView
         android:id="@+id/tv_title1"
-        android:layout_width="@dimen/dimen22"
+        android:layout_width="match_parent"
         android:layout_height="@dimen/dimen1"
+        android:layout_marginLeft="@dimen/dimen11"
+        android:layout_marginRight="@dimen/dimen11"
         android:background="@color/greenColors"
         android:visibility="gone" />
 

@@ -14,6 +14,7 @@
         android:src="@mipmap/placeholderfigure" />
 
     <TextView
+        android:id="@+id/tv_strategy"
         style="@style/MatchWrap"
         android:layout_marginTop="@dimen/dimen12"
         android:maxLines="3"
@@ -31,6 +32,7 @@
         android:paddingRight="@dimen/dimen7">
 
         <ImageView
+            android:id="@+id/img_head"
             android:layout_width="@dimen/dimen18"
             android:layout_height="@dimen/dimen38"
             android:paddingBottom="@dimen/dimen10"
@@ -38,6 +40,7 @@
             android:src="@mipmap/avatar" />
 
         <TextView
+            android:id="@+id/tv_nickName"
             style="@style/AutoWrap"
             android:layout_marginLeft="@dimen/dimen5"
             android:singleLine="true"
@@ -55,13 +58,16 @@
                 android:layout_height="@dimen/dimen11"
                 android:paddingLeft="@dimen/dimen4"
                 android:paddingRight="@dimen/dimen4"
-                android:src="@mipmap/community_zan" />
+                android:src="@mipmap/hp_attention" />
 
             <TextView
+                android:id="@+id/tv_attentionNum"
                 style="@style/WrapWrap"
                 android:layout_marginRight="@dimen/dimen11"
-                android:text="@string/giveLike"
-                android:textColor="@color/hintColors"
+                android:maxWidth="@dimen/dimen20"
+                android:singleLine="true"
+                android:text="1111111"
+                android:textColor="@color/fF5656Colors"
                 android:textSize="@dimen/textsize9" />
         </LinearLayout>
     </LinearLayout>

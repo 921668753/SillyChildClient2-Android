@@ -590,6 +590,76 @@ public class RequestClient {
 
 
     /**
+     * 社区----获取帖子详情
+     */
+    public static void getDynamicDetails(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+        if (!StringUtils.isEmpty(cookies)) {
+            httpParams.putHeaders("Cookie", cookies);
+        }
+        HttpRequest.requestGetHttp(context, URLConstants.POSTDETAIL, httpParams, listener);
+    }
+
+    /**
+     * 社区----关注或取消关注
+     */
+    public static void postAddConcern(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        Log.d("tag", "postAddConcern");
+        doServer(context, new TokenCallback() {
+            @Override
+            public void execute() {
+                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                if (StringUtils.isEmpty(cookies)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("Cookie", cookies);
+                HttpRequest.requestPostFORMHttp(context,URLConstants.ADDCONCERN , httpParams, listener);
+            }
+        }, listener);
+    }
+
+
+    /**
+     * 社区----点赞和取消
+     */
+    public static void postAddLike(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        Log.d("tag", "postAddConcern");
+        doServer(context, new TokenCallback() {
+            @Override
+            public void execute() {
+                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                if (StringUtils.isEmpty(cookies)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("Cookie", cookies);
+                HttpRequest.requestPostFORMHttp(context,URLConstants.ADDLIKE , httpParams, listener);
+            }
+        }, listener);
+    }
+
+    /**
+     * 社区----添加评论
+     */
+    public static void postAddComment(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        Log.d("tag", "postAddConcern");
+        doServer(context, new TokenCallback() {
+            @Override
+            public void execute() {
+                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                if (StringUtils.isEmpty(cookies)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("Cookie", cookies);
+                HttpRequest.requestPostFORMHttp(context,URLConstants.ADDCOMMENT , httpParams, listener);
+            }
+        }, listener);
+    }
+
+
+    /**
      * 首页----热门攻略
      */
     public static void getHotStrategy(HttpParams httpParams, String city, int page, final ResponseListener<String> listener) {

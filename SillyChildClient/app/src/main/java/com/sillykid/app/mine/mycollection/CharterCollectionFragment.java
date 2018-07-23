@@ -34,7 +34,7 @@ import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
  * Created by Administrator on 2017/9/2.
  */
 
-public class CharterCollectionFragment extends BaseFragment implements BGARefreshLayout.BGARefreshLayoutDelegate,MyCollectionContract.View,AdapterView.OnItemClickListener{
+public class CharterCollectionFragment extends BaseFragment implements BGARefreshLayout.BGARefreshLayoutDelegate,CollectionContract.View,AdapterView.OnItemClickListener{
 
     @BindView(id=R.id.mRefreshLayout)
     private BGARefreshLayout mRefreshLayout;
@@ -71,7 +71,7 @@ public class CharterCollectionFragment extends BaseFragment implements BGARefres
     @Override
     protected void initData() {
         super.initData();
-        mPresenter=new MyCollectionPresenter(this);
+        mPresenter=new CollectionPresenter(this);
         mAdapter = new CharterListViewAdapter(aty);
     }
 
@@ -132,7 +132,7 @@ public class CharterCollectionFragment extends BaseFragment implements BGARefres
     }
 
     @Override
-    public void setPresenter(MyCollectionContract.Presenter presenter) {
+    public void setPresenter(CollectionContract.Presenter presenter) {
         mPresenter=presenter;
     }
 

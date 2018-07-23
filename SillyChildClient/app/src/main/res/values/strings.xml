@@ -518,11 +518,11 @@
     <string name="touristNumber">游客人数</string>
     <string name="touristNumber1">请选择游客人数</string>
     <string name="travelPreferences">出行偏好</string>
-    <string name="recommendRestaurant">推荐餐馆</string>
-    <string name="recommendedAccommodation">推荐住宿</string>
+    <string name="recommendRestaurant">餐馆偏好</string>
+    <string name="recommendedAccommodation">住宿偏好</string>
     <string name="addNotes">添加备注</string>
     <string name="strokeModels">行程车型</string>
-
+    <string name="customizedItinerary">定制行程</string>
 
     <!--首页   民宿预约-->
     <string name="homestaySubscribe">民宿预约</string>
@@ -601,8 +601,7 @@
     <!--社区   搜索-->
     <string name="lookForSomeone">找人</string>
     <string name="findArticle">找文章</string>
-
-
+    <string name="noMovement">亲，还没有任何动态哟~</string>
 
     <!--商城-->
     <string name="checkProduct">输入您正在找的商品</string>
@@ -629,8 +628,6 @@
     <string name="noale">亲，您来的太早了，还没有商品出售哟~</string>
 
 
-
-
     <!--商城  店铺首页  全部商品 商品详情-->
     <string name="GoodsDetails">商品详情</string>
     <string name="color">颜色</string>
@@ -652,9 +649,6 @@
     <string name="free_shipping">免运费</string>
     <string name="instructions2">说明</string>
     <string name="productEvaluation">商品评价</string>
-
-
-
 
 
     <!--商城  店铺首页  全部商品 评论-->
@@ -771,8 +765,6 @@
     <string name="inviteFriends">邀请好友</string>
     <string name="helpCustomerService">帮助与客服</string>
     <string name="giveLike">点赞</string>
-
-
 
 
     <!--个人中心  收货地址-->
@@ -993,11 +985,6 @@
     <string name="myFans">我的粉丝</string>
 
 
-
-
-
-
-
     <!-- 个人中心 我的购物车-->
     <string name="subtract">-</string>
     <string name="add">+</string>
@@ -1213,6 +1200,7 @@
 
     <!-- 个人中心 我的订单  服务详情-->
     <string name="remark">备注：</string>
+    <string name="remark1">备注</string>
     <string name="merchantsApplyRefund">商家通过</string>
     <string name="merchantsApplyRefund1">商家拒绝</string>
     <string name="noRemarks">未填写备注</string>
@@ -1345,11 +1333,6 @@
     <string name="category">所属分类</string>
 
 
-
-
-
-
-
     <!-- 个人中心 我的发布 攻略 -->
     <string name="fillTitle">请填写攻略标题</string>
     <string name="selectDistrict">请选择地区</string>
@@ -1366,11 +1349,6 @@
     <string name="zan1">次赞</string>
     <string name="collect">次收藏</string>
     <string name="report">举报</string>
-
-
-
-
-
 
 
     <!--融云start-->

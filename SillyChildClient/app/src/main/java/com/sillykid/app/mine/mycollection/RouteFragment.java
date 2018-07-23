@@ -34,7 +34,7 @@ import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
  * Created by Administrator on 2017/9/2.
  */
 
-public class RouteFragment extends BaseFragment implements BGARefreshLayout.BGARefreshLayoutDelegate, MyCollectionContract.View, AdapterView.OnItemClickListener {
+public class RouteFragment extends BaseFragment implements BGARefreshLayout.BGARefreshLayoutDelegate, CollectionContract.View, AdapterView.OnItemClickListener {
 
     @BindView(id = R.id.mRefreshLayout)
     private BGARefreshLayout mRefreshLayout;
@@ -70,7 +70,7 @@ public class RouteFragment extends BaseFragment implements BGARefreshLayout.BGAR
     @Override
     protected void initData() {
         super.initData();
-        mPresenter = new MyCollectionPresenter(this);
+        mPresenter = new CollectionPresenter(this);
         mAdapter = new AllLineViewAdapter(aty);
     }
 
@@ -131,7 +131,7 @@ public class RouteFragment extends BaseFragment implements BGARefreshLayout.BGAR
     }
 
     @Override
-    public void setPresenter(MyCollectionContract.Presenter presenter) {
+    public void setPresenter(CollectionContract.Presenter presenter) {
         mPresenter = presenter;
     }
 

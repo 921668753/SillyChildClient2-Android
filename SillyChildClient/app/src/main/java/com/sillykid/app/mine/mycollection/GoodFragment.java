@@ -38,7 +38,7 @@ import static com.sillykid.app.constant.NumericConstants.REQUEST_CODE;
  * 我的收藏中的商品
  * Created by Administrator on 2017/9/2.
  */
-public class GoodFragment extends BaseFragment implements MyCollectionContract.View, AdapterView.OnItemClickListener, BGAOnItemChildClickListener, BGARefreshLayout.BGARefreshLayoutDelegate {
+public class GoodFragment extends BaseFragment implements CollectionContract.View, AdapterView.OnItemClickListener, BGAOnItemChildClickListener, BGARefreshLayout.BGARefreshLayoutDelegate {
 
     @BindView(id = R.id.mRefreshLayout)
     private BGARefreshLayout mRefreshLayout;
@@ -80,6 +80,8 @@ public class GoodFragment extends BaseFragment implements MyCollectionContract.V
 
     private int positionItem = 0;
 
+    private int type_id = 1;
+
     private MyCollectionActivity aty;
 
     @Override
@@ -91,7 +93,7 @@ public class GoodFragment extends BaseFragment implements MyCollectionContract.V
     @Override
     public void initData() {
         super.initData();
-        mPresenter = new MyCollectionPresenter(this);
+        mPresenter = new CollectionPresenter(this);
         mAdapter = new GoodViewAdapter(aty);
         initDeleteCollectionDialog();
         initAddCartGoodDialog();
@@ -106,7 +108,7 @@ public class GoodFragment extends BaseFragment implements MyCollectionContract.V
             @Override
             public void deleteCollectionDo(int addressId) {
                 showLoadingDialog(getString(R.string.deleteLoad));
-                ((MyCollectionContract.Presenter) mPresenter).postUnFavoriteGood(addressId);
+                ((CollectionContract.Presenter) mPresenter).postUnFavorite(addressId, type_id);
             }
         };
     }
@@ -116,7 +118,7 @@ public class GoodFragment extends BaseFragment implements MyCollectionContract.V
             @Override
             public void toDo(int goodId, int flag, int num1, int product_id) {
                 showLoadingDialog(getString(R.string.addLoad));
-                ((MyCollectionContract.Presenter) mPresenter).postAddCartGood(goodId, num1, product_id);
+                ((CollectionContract.Presenter) mPresenter).postAddCartGood(goodId, num1, product_id);
             }
         };
     }
@@ -153,7 +155,7 @@ public class GoodFragment extends BaseFragment implements MyCollectionContract.V
         mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
         mRefreshLayout.endRefreshing();
         showLoadingDialog(getString(R.string.dataLoad));
-        ((MyCollectionContract.Presenter) mPresenter).getFavoriteGoodList(mMorePageNumber);
+        ((CollectionContract.Presenter) mPresenter).getFavoriteList(mMorePageNumber, type_id);
     }
 
     @Override
@@ -165,7 +167,7 @@ public class GoodFragment extends BaseFragment implements MyCollectionContract.V
         }
         mMorePageNumber++;
         showLoadingDialog(getString(R.string.dataLoad));
-        ((MyCollectionContract.Presenter) mPresenter).getFavoriteGoodList(mMorePageNumber);
+        ((CollectionContract.Presenter) mPresenter).getFavoriteList(mMorePageNumber, type_id);
         return true;
     }
 
@@ -210,7 +212,7 @@ public class GoodFragment extends BaseFragment implements MyCollectionContract.V
 
 
     @Override
-    public void setPresenter(MyCollectionContract.Presenter presenter) {
+    public void setPresenter(CollectionContract.Presenter presenter) {
         mPresenter = presenter;
     }
 
@@ -308,7 +310,7 @@ public class GoodFragment extends BaseFragment implements MyCollectionContract.V
         super.callMsgEvent(msgEvent);
         if (((String) msgEvent.getData()).equals("RxBusLoginEvent") && mPresenter != null) {
             mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
-            ((MyCollectionContract.Presenter) mPresenter).getFavoriteGoodList(mMorePageNumber);
+            ((CollectionContract.Presenter) mPresenter).getFavoriteList(mMorePageNumber, type_id);
         }
     }
 

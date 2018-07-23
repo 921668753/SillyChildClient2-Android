@@ -22,17 +22,17 @@ public interface MallContract {
         /**
          * 获取首页信息
          */
-        void getHomePage();
+        void getMall();
 
-        /**
-         * 获取商品分类
-         */
-        void postBaiDuUpdateInfo();
+//        /**
+//         * 获取商品分类
+//         */
+//        void postBaiDuUpdateInfo();
 
-        /**
-         * 设置定位信息
-         */
-        void initLocation(Activity activity, LocationClient mLocationClient);
+//        /**
+//         * 设置定位信息
+//         */
+//        void initLocation(Activity activity, LocationClient mLocationClient);
 
 
     }

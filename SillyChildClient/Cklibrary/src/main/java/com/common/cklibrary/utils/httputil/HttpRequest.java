@@ -163,7 +163,7 @@ public class HttpRequest {
             return false;
         }
         if (baseResult.getResult() != SUCCESS) {
-            if (baseResult.getResult() == -100 || baseResult.getResult() == -101) {
+            if (baseResult.getResult() == -100 || baseResult.getResult() == -101 || baseResult.getResult() == 401) {
                 listener.onFailure(TOLINGIN + "");
                 return false;
             }

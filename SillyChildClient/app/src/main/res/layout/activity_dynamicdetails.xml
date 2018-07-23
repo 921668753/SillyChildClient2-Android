@@ -27,16 +27,18 @@
                 app:banner_pointAutoPlayAble="false"
                 app:banner_pointContainerBackground="@android:color/transparent"
                 app:banner_pointDrawable="@drawable/bga_banner_selector_point"
-                app:banner_pointTopBottomMargin="2dp"
+                app:banner_pointTopBottomMargin="@dimen/dimen2"
                 app:banner_transitionEffect="alpha" />
 
             <LinearLayout
+                android:id="@+id/ll_author"
                 style="@style/MatchWrap"
                 android:background="@color/whiteColors"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <ImageView
+                    android:id="@+id/img_head"
                     android:layout_width="@dimen/dimen33"
                     android:layout_height="@dimen/dimen33"
                     android:layout_marginBottom="@dimen/dimen13"
@@ -45,6 +47,7 @@
                     android:src="@mipmap/avatar" />
 
                 <TextView
+                    android:id="@+id/tv_nickName"
                     style="@style/AutoWrap"
                     android:layout_marginLeft="@dimen/dimen7"
                     android:text="薄荷色的夏天"
@@ -52,6 +55,7 @@
                     android:textSize="@dimen/textsize13" />
 
                 <TextView
+                    android:id="@+id/tv_follow"
                     android:layout_width="@dimen/dimen64"
                     android:layout_height="@dimen/dimen25"
                     android:layout_marginLeft="@dimen/dimen7"

@@ -8,7 +8,7 @@ import android.widget.RelativeLayout;
 
 import com.common.cklibrary.utils.myview.HorizontalListView;
 import com.sillykid.app.R;
-import com.sillykid.app.entity.HomePageBean.ResultBean.ActionBean.LocalBean;
+import com.sillykid.app.entity.main.HomePageBean.ResultBean.ActionBean.LocalBean;
 import com.sillykid.app.utils.DisplayUtil;
 import com.sillykid.app.utils.GlideImageLoader;
 

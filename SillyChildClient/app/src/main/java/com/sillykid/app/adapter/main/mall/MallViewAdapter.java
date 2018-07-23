@@ -1,24 +1,19 @@
-package com.sillykid.app.adapter.main.homepage;
+package com.sillykid.app.adapter.main.mall;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.bumptech.glide.Glide;
 import com.common.cklibrary.utils.MathUtil;
-import com.common.cklibrary.utils.myview.ScaleImageView;
 import com.kymjs.common.DensityUtils;
 import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
-import com.sillykid.app.entity.main.MallHomePageBean.DataBean.HomePageBean;
+import com.sillykid.app.entity.main.MallBean.DataBean.HomePageBean;
 import com.sillykid.app.utils.GlideImageLoader;
 
 import java.io.IOException;
@@ -35,9 +30,9 @@ import cn.bingoogolapple.androidcommon.adapter.BGAViewHolderHelper;
  * Created by Administrator on 2017/9/6.
  */
 
-public class MallHomePageViewAdapter extends BGARecyclerViewAdapter<HomePageBean> {
+public class MallViewAdapter extends BGARecyclerViewAdapter<HomePageBean> {
 
-    public MallHomePageViewAdapter(RecyclerView recyclerView) {
+    public MallViewAdapter(RecyclerView recyclerView) {
         super(recyclerView, R.layout.item_mallhomepage);
     }
 

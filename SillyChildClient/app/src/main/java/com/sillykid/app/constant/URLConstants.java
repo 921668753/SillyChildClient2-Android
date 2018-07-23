@@ -19,8 +19,8 @@ public class URLConstants {
      */
     // public static String SERVERURL = "http://xiaowei.local.keiousoft.com/";
 
-//    public static String SERVERURL = "http://api.shahaizi.keiousoft.com/";
-    public static String SERVERURL = "http://user.api.shahaizhi.com/";
+    public static String SERVERURL = "http://192.168.1.247:8080/";
+    //    public static String SERVERURL = "http://user.api.shahaizhi.com/";
     public static String SERVERURL1 = "http://www.shahaizhi.com/";
 
     /**
@@ -148,12 +148,33 @@ public class URLConstants {
     /**
      * 社区----分类信息列表
      */
-    public static String CLASSIFITCATIONLIST = APIURL + "post/get_post_list.do";
+    public static String CLASSIFITCATIONLIST = APIURL + "classification/get_classification_list.do";
 
     /**
      * 社区----帖子列表
      */
-    public static String POSTLIST = APIURL + "classification/get_classification_list.do";
+    public static String POSTLIST = APIURL + "post/get_post_list.do";
+
+    /**
+     * 社区----获取帖子详情
+     */
+    public static String POSTDETAIL = APIURL + "post/get_post_detail.do";
+
+    /**
+     * 社区----关注或取消关注
+     */
+    public static String ADDCONCERN = APIURL + "concern/add_concern.do";
+
+    /**
+     * 社区----点赞和取消
+     */
+    public static String ADDLIKE = APIURL + "like/add_like.do";
+
+
+    /**
+     * 社区----添加评论
+     */
+    public static String ADDCOMMENT = APIURL + "comment/add_comment.do";
 
     /**
      * 置换Token  get请求

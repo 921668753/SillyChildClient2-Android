@@ -82,7 +82,7 @@ public class MyReleaseActivity extends BaseActivity {
      * 设置标题
      */
     public void initTitle() {
-        ActivityTitleUtils.initToolbar(aty, getString(R.string.myFocus), true, R.id.titlebar);
+        ActivityTitleUtils.initToolbar(aty, getString(R.string.myRelease), true, R.id.titlebar);
     }
 
     /**

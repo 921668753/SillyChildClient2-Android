@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrap"
+    android:background="@color/whiteColors"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/img_boutiQueLine"
+        android:layout_width="@dimen/dimen117"
+        android:layout_height="@dimen/dimen97"
+        android:layout_marginBottom="@dimen/dimen16"
+        android:layout_marginTop="@dimen/dimen16"
+        android:src="@mipmap/placeholderfigure" />
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_boutiQueLine"
+            style="@style/MatchWrap"
+            android:paddingLeft="@dimen/dimen12"
+            android:singleLine="true"
+            android:text="【芭提雅三天六晚自由行】"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize15" />
+
+        <TextView
+            android:id="@+id/tv_synopsis"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen30"
+            android:maxLines="2"
+            android:paddingLeft="@dimen/dimen12"
+            android:text="美丽的东南亚海岛风情，给你带来不一样的体验。"
+            android:textColor="@color/hintColors"
+            android:textSize="@dimen/textsize12" />
+
+
+        <LinearLayout
+            style="@style/MatchWrap"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="@dimen/dimen37"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/dimen13"
+                    android:layout_height="@dimen/dimen12"
+                    android:layout_marginTop="@dimen/dimen3"
+                    android:src="@mipmap/hp_attention" />
+
+                <TextView
+                    android:id="@+id/tv_attentionNum"
+                    style="@style/WrapWrap"
+                    android:layout_marginTop="@dimen/dimen2"
+                    android:singleLine="true"
+                    android:text="200"
+                    android:textColor="@color/fF5656Colors"
+                    android:textSize="@dimen/textsize8" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="@dimen/dimen27"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/dimen13"
+                    android:layout_height="@dimen/dimen13"
+                    android:layout_marginTop="@dimen/dimen3"
+                    android:src="@mipmap/hp_collection" />
+
+                <TextView
+                    android:id="@+id/tv_collectionNum"
+                    style="@style/WrapWrap"
+                    android:layout_marginTop="@dimen/dimen2"
+                    android:singleLine="true"
+                    android:text="189"
+                    android:textColor="@color/fF5656Colors"
+                    android:textSize="@dimen/textsize8" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

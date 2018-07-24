@@ -621,6 +621,26 @@ public class RequestClient {
 
 
     /**
+     * 获取我关注的用户列表
+     */
+    public static void getMyConcernList(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        Log.d("tag", "getMyConcernList");
+        doServer(context, new TokenCallback() {
+            @Override
+            public void execute() {
+                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                if (StringUtils.isEmpty(cookies)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("Cookie", cookies);
+                HttpRequest.requestGetHttp(context,URLConstants.MYCONCERNLIST , httpParams, listener);
+            }
+        }, listener);
+    }
+
+
+    /**
      * 社区----点赞和取消
      */
     public static void postAddLike(Context context, HttpParams httpParams, ResponseListener<String> listener) {

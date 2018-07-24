@@ -100,13 +100,13 @@
                         android:orientation="horizontal">
 
                         <LinearLayout
-                            android:id="@+id/ll_dynamicCollection"
+                            android:id="@+id/ll_follow"
                             style="@style/AutoWrap"
                             android:gravity="center"
                             android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/tv_dynamicCollection"
+                                android:id="@+id/tv_follow"
                                 style="@style/WrapWrap"
                                 android:text="0"
                                 android:textColor="@color/whiteColors"
@@ -126,13 +126,13 @@
                             android:background="@color/whiteColors" />
 
                         <LinearLayout
-                            android:id="@+id/ll_follow"
+                            android:id="@+id/ll_fans"
                             style="@style/AutoWrap"
                             android:gravity="center"
                             android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/tv_follow"
+                                android:id="@+id/tv_fans"
                                 style="@style/WrapWrap"
                                 android:text="0"
                                 android:textColor="@color/whiteColors"
@@ -153,13 +153,12 @@
 
 
                         <LinearLayout
-                            android:id="@+id/ll_footprint"
                             style="@style/AutoWrap"
                             android:gravity="center"
                             android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/tv_footprint"
+                                android:id="@+id/tv_beCollected"
                                 style="@style/WrapWrap"
                                 android:text="0"
                                 android:textColor="@color/whiteColors"
@@ -179,13 +178,12 @@
                             android:background="@color/whiteColors" />
 
                         <LinearLayout
-                            android:id="@+id/ll_tips"
                             style="@style/AutoWrap"
                             android:gravity="center"
                             android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/tv_tips"
+                                android:id="@+id/tv_giveLike"
                                 style="@style/WrapWrap"
                                 android:text="0"
                                 android:textColor="@color/whiteColors"

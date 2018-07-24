@@ -11,19 +11,14 @@ public interface FocusContract {
     interface Presenter extends BasePresenter {
 
         /**
-         * 获取收藏商品列表
+         * 获取我关注的用户列表
          */
-        void getFavoriteGoodList(int page);
+        void getMyConcernList(int page, int type_id);
 
         /**
-         * 取消收藏
+         * 关注或取消关注
          */
-        void postUnFavoriteGood(int goodsid);
-
-        /**
-         * 加入购物车
-         */
-        void postAddCartGood(int goodsid, int num, int product_id);
+        void postAddConcern(int user_id, int type_id);
     }
 
     interface View extends BaseView<Presenter, String> {

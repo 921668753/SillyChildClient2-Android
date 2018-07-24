@@ -100,6 +100,7 @@ public class CommunityBean extends BaseResult<CommunityBean.DataBean> {
             private int height;
             private int width;
             private String concern_number;
+            private int type;
 
             public int getId() {
                 return id;
@@ -195,6 +196,14 @@ public class CommunityBean extends BaseResult<CommunityBean.DataBean> {
 
             public void setConcern_number(String concern_number) {
                 this.concern_number = concern_number;
+            }
+
+            public int getType() {
+                return type;
+            }
+
+            public void setType(int type) {
+                this.type = type;
             }
         }
     }

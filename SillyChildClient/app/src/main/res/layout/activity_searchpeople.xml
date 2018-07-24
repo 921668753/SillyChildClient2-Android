@@ -1,19 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/MatchMatch"
     android:background="@color/background"
+    android:fitsSystemWindows="true"
     android:orientation="vertical">
 
-    <TextView
-        style="@style/Match44"
-        android:background="@color/whiteColors"
-        android:gravity="center"
-        android:text="@string/community"
-        android:textColor="@color/textColor"
-        android:textSize="@dimen/textsize17" />
-
+    <include layout="@layout/common_title" />
 
     <LinearLayout
         android:id="@+id/ll_search"
@@ -51,27 +44,12 @@
 
     </LinearLayout>
 
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tabLayout"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen35"
-        android:layout_marginTop="@dimen/dimen5"
-        android:background="@color/whiteColors"
-        android:gravity="center_vertical"
-        app:tabBackground="@color/whiteColors"
-        app:tabIndicatorHeight="0dp"
-        app:tabMode="scrollable"
-        app:tabPaddingEnd="@dimen/dimen6"
-        app:tabPaddingStart="@dimen/dimen6"
-        app:tabSelectedTextColor="@color/greenColors"
-        app:tabTextColor="@color/hintColors" />
-
     <cn.bingoogolapple.refreshlayout.BGARefreshLayout
         android:id="@+id/mRefreshLayout"
         style="@style/MatchAuto">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv"
+        <ListView
+            android:id="@+id/lv"
             style="@style/MatchMatch"
             android:layout_marginTop="@dimen/dimen5"
             android:overScrollMode="never"

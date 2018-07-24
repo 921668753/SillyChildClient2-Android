@@ -234,7 +234,7 @@ public class MyCollectionActivity extends BaseActivity {
         switch (chageIcon) {
             case 0:
                 tv_good.setTextColor(getResources().getColor(R.color.greenColors));
-                tv_good.setBackgroundResource(R.color.greenColors);
+                tv_good1.setBackgroundResource(R.color.greenColors);
                 changeFragment(baseFragment);
                 break;
             case 1:

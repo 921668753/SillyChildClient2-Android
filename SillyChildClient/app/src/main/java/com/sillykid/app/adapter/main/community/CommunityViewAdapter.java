@@ -1,4 +1,4 @@
-package com.sillykid.app.adapter.community;
+package com.sillykid.app.adapter.main.community;
 
 import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
@@ -17,7 +17,6 @@ import cn.bingoogolapple.androidcommon.adapter.BGAViewHolderHelper;
  * 社区——帖子列表  适配器
  * Created by Administrator on 2017/9/6.
  */
-
 public class CommunityViewAdapter extends BGARecyclerViewAdapter<ResultBean> {
 
     public CommunityViewAdapter(RecyclerView recyclerView) {

@@ -16,19 +16,20 @@ import com.common.cklibrary.utils.ActivityTitleUtils;
 import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.RefreshLayoutUtil;
 import com.common.cklibrary.utils.rx.MsgEvent;
+import com.common.cklibrary.utils.rx.RxBus;
+import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
 import com.sillykid.app.adapter.mine.myfans.MyFansViewAdapter;
+import com.sillykid.app.community.DisplayPageActivity;
 import com.sillykid.app.constant.NumericConstants;
-import com.sillykid.app.entity.mine.mycollection.MyCollectionBean;
+import com.sillykid.app.entity.mine.myfans.MyFansBean;
 import com.sillykid.app.loginregister.LoginActivity;
 import com.sillykid.app.mall.goodslist.goodsdetails.GoodsDetailsActivity;
-import com.sillykid.app.mine.myfocus.FocusContract;
 
 import cn.bingoogolapple.androidcommon.adapter.BGAOnItemChildClickListener;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 
 import static com.sillykid.app.constant.NumericConstants.REQUEST_CODE;
-
 
 /**
  * 我的粉丝
@@ -64,6 +65,11 @@ public class MyFansActivity extends BaseActivity implements MyFansContract.View,
     private int mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
 
     /**
+     * 总页码
+     */
+    private int totalPageNumber = NumericConstants.START_PAGE_NUMBER;
+
+    /**
      * 是否加载更多
      */
     private boolean isShowLoadingMore = false;
@@ -74,7 +80,6 @@ public class MyFansActivity extends BaseActivity implements MyFansContract.View,
     public void setRootView() {
         setContentView(R.layout.activity_myfans);
     }
-
 
     @Override
     public void initData() {
@@ -124,7 +129,7 @@ public class MyFansActivity extends BaseActivity implements MyFansContract.View,
         mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
         mRefreshLayout.endRefreshing();
         showLoadingDialog(getString(R.string.dataLoad));
-        ((FocusContract.Presenter) mPresenter).getFavoriteGoodList(mMorePageNumber);
+        ((MyFansContract.Presenter) mPresenter).getMyFansList(mMorePageNumber);
     }
 
     @Override
@@ -135,17 +140,20 @@ public class MyFansActivity extends BaseActivity implements MyFansContract.View,
             return false;
         }
         mMorePageNumber++;
+        if (mMorePageNumber > totalPageNumber) {
+            ViewInject.toast(getString(R.string.noMoreData));
+            return false;
+        }
         showLoadingDialog(getString(R.string.dataLoad));
-        ((FocusContract.Presenter) mPresenter).getFavoriteGoodList(mMorePageNumber);
+        ((MyFansContract.Presenter) mPresenter).getMyFansList(mMorePageNumber);
         return true;
     }
 
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-        Intent intent = new Intent(aty, GoodsDetailsActivity.class);
-        intent.putExtra("goodName", mAdapter.getItem(position).getName());
-        intent.putExtra("goodsid", mAdapter.getItem(position).getGoods_id());
+        Intent intent = new Intent(aty, DisplayPageActivity.class);
+        intent.putExtra("user_id", mAdapter.getItem(position).getMember_id());
         intent.putExtra("isRefresh", 1);
         startActivityForResult(intent, REQUEST_CODE);
     }
@@ -153,8 +161,15 @@ public class MyFansActivity extends BaseActivity implements MyFansContract.View,
     @Override
     public void onItemChildClick(ViewGroup parent, View childView, int position) {
         positionItem = position;
-        if (childView.getId() == R.id.tv_followed) {
-
+        if (childView.getId() == R.id.tv_follow) {
+            String title = getString(R.string.attentionLoad);
+            if (StringUtils.toInt(mAdapter.getItem(positionItem).getIs_concern(), 0) == 0) {
+                title = getString(R.string.attentionLoad);
+            } else {
+                title = getString(R.string.cancelCttentionLoad);
+            }
+            showLoadingDialog(title);
+            ((MyFansContract.Presenter) mPresenter).postAddConcern(mAdapter.getItem(position).getMember_id(), 1);
         }
     }
 
@@ -171,31 +186,47 @@ public class MyFansActivity extends BaseActivity implements MyFansContract.View,
             mRefreshLayout.setPullDownRefreshEnable(true);
             ll_commonError.setVisibility(View.GONE);
             mRefreshLayout.setVisibility(View.VISIBLE);
-            MyCollectionBean myCollectionBean = (MyCollectionBean) JsonUtil.getInstance().json2Obj(success, MyCollectionBean.class);
-            if (myCollectionBean.getData() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
-                    myCollectionBean.getData().size() <= 0 && mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
-                errorMsg(getString(R.string.noCollectedGoods), 0);
+            MyFansBean myFansBean = (MyFansBean) JsonUtil.getInstance().json2Obj(success, MyFansBean.class);
+            if (myFansBean.getData() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
+                    myFansBean.getData().getTotalCount() <= 0 && mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
+                errorMsg(getString(R.string.noFans), 0);
                 return;
-            } else if (myCollectionBean.getData() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
-                    myCollectionBean.getData().size() <= 0 && mMorePageNumber > NumericConstants.START_PAGE_NUMBER) {
+            } else if (myFansBean.getData() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
+                    myFansBean.getData().getTotalCount() <= 0 && mMorePageNumber > NumericConstants.START_PAGE_NUMBER) {
                 ViewInject.toast(getString(R.string.noMoreData));
                 isShowLoadingMore = false;
                 dismissLoadingDialog();
                 mRefreshLayout.endLoadingMore();
                 return;
             }
+            mMorePageNumber = myFansBean.getData().getCurrentPageNo();
+            totalPageNumber = myFansBean.getData().getTotalPageCount();
             if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
                 mRefreshLayout.endRefreshing();
                 mAdapter.clear();
-                mAdapter.addNewData(myCollectionBean.getData());
+                mAdapter.addNewData(myFansBean.getData().getResult());
             } else {
                 mRefreshLayout.endLoadingMore();
-                mAdapter.addMoreData(myCollectionBean.getData());
+                mAdapter.addMoreData(myFansBean.getData().getResult());
             }
             dismissLoadingDialog();
         } else if (flag == 1) {
-            mAdapter.removeItem(positionItem);
-            mRefreshLayout.beginRefreshing();
+            if (StringUtils.toInt(mAdapter.getItem(positionItem).getIs_concern(), 0) == 0) {
+                mAdapter.getItem(positionItem).setIs_concern("1");
+                mAdapter.getItem(positionItem).setFans_number(StringUtils.toInt(mAdapter.getItem(positionItem).getFans_number(), 0) + 1 + "");
+                mAdapter.notifyDataSetChanged();
+                ViewInject.toast(getString(R.string.attentionSuccess));
+            } else {
+                mAdapter.getItem(positionItem).setIs_concern(null);
+                mAdapter.getItem(positionItem).setFans_number(StringUtils.toInt(mAdapter.getItem(positionItem).getFans_number(), 0) - 1 + "");
+                mAdapter.notifyDataSetChanged();
+                ViewInject.toast(getString(R.string.focusSuccess));
+            }
+            /**
+             * 发送消息
+             */
+            RxBus.getInstance().post(new MsgEvent<String>("RxBusMineFragmentEvent"));
+            dismissLoadingDialog();
         }
     }
 
@@ -225,7 +256,7 @@ public class MyFansActivity extends BaseActivity implements MyFansContract.View,
                 img_err.setImageResource(R.mipmap.no_network);
                 tv_hintText.setText(msg);
                 tv_button.setText(getString(R.string.retry));
-            } else if (msg.contains(getString(R.string.noCollectedGoods))) {
+            } else if (msg.contains(getString(R.string.noFans))) {
                 img_err.setImageResource(R.mipmap.no_data);
                 tv_hintText.setText(msg);
                 tv_button.setVisibility(View.GONE);
@@ -234,10 +265,9 @@ public class MyFansActivity extends BaseActivity implements MyFansContract.View,
                 tv_hintText.setText(msg);
                 tv_button.setText(getString(R.string.retry));
             }
+        } else if (isLogin(msg)) {
+            showActivity(aty, LoginActivity.class);
         } else {
-            mRefreshLayout.setPullDownRefreshEnable(true);
-            mRefreshLayout.setVisibility(View.VISIBLE);
-            ll_commonError.setVisibility(View.GONE);
             ViewInject.toast(msg);
         }
     }
@@ -251,7 +281,7 @@ public class MyFansActivity extends BaseActivity implements MyFansContract.View,
         super.callMsgEvent(msgEvent);
         if (((String) msgEvent.getData()).equals("RxBusLoginEvent") && mPresenter != null) {
             mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
-            ((FocusContract.Presenter) mPresenter).getFavoriteGoodList(mMorePageNumber);
+            ((MyFansContract.Presenter) mPresenter).getMyFansList(mMorePageNumber);
         }
     }
 

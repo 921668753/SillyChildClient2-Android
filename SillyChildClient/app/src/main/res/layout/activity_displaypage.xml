@@ -217,13 +217,25 @@
                     android:scrollbars="none"
                     tools:listitem="@layout/item_mystrategy" />
 
+                <include
+                    layout="@layout/common_title"
+                    android:layout_below="@id/tv_followN"
+                    android:visibility="gone"
+                    tools:ignore="IncludeLayoutParam" />
             </RelativeLayout>
         </ScrollView>
 
     </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
 
-    <include
-        layout="@layout/common_title"
-        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/img_back"
+        android:layout_width="@dimen/dimen52"
+        android:layout_height="@dimen/dimen44"
+        android:paddingBottom="@dimen/dimen15"
+        android:paddingLeft="@dimen/dimen22"
+        android:paddingRight="@dimen/dimen22"
+        android:paddingTop="@dimen/dimen15"
+        android:src="@mipmap/back3" />
 
 </RelativeLayout>

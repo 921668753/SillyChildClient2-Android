@@ -76,6 +76,11 @@ public class UserInfoBean extends BaseResult<UserInfoBean.DataBean> implements S
         private String username;
         private int city_id;
         private int favoriteCount;
+        private String collected_number;
+        private String concern_number;
+        private String fans_number;
+        private String like_number;
+
 
         public String getBirthday() {
             return birthday;
@@ -315,6 +320,38 @@ public class UserInfoBean extends BaseResult<UserInfoBean.DataBean> implements S
 
         public void setFavoriteCount(int favoriteCount) {
             this.favoriteCount = favoriteCount;
+        }
+
+        public String getCollected_number() {
+            return collected_number;
+        }
+
+        public void setCollected_number(String collected_number) {
+            this.collected_number = collected_number;
+        }
+
+        public String getConcern_number() {
+            return concern_number;
+        }
+
+        public void setConcern_number(String concern_number) {
+            this.concern_number = concern_number;
+        }
+
+        public String getFans_number() {
+            return fans_number;
+        }
+
+        public void setFans_number(String fans_number) {
+            this.fans_number = fans_number;
+        }
+
+        public String getLike_number() {
+            return like_number;
+        }
+
+        public void setLike_number(String like_number) {
+            this.like_number = like_number;
         }
     }
 }

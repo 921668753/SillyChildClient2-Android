@@ -9,6 +9,7 @@
         android:orientation="horizontal">
 
         <ImageView
+            android:id="@+id/img_head"
             android:layout_width="@dimen/dimen20"
             android:layout_height="@dimen/dimen20"
             android:layout_marginBottom="@dimen/dimen7"
@@ -18,9 +19,9 @@
 
 
         <TextView
+            android:id="@+id/tv_nickName1"
             style="@style/WrapWrap"
             android:layout_marginLeft="@dimen/dimen6"
-            android:maxWidth="@dimen/dimen70"
             android:text="用户昵称用户昵称用户"
             android:textColor="@color/greenColors"
             android:textSize="@dimen/textsize9" />
@@ -29,17 +30,20 @@
             style="@style/WrapWrap"
             android:text="@string/revert"
             android:textColor="@color/textColor"
+            android:visibility="gone"
             android:textSize="@dimen/textsize9" />
 
         <TextView
             style="@style/WrapWrap"
             android:maxWidth="@dimen/dimen70"
+            android:visibility="gone"
             android:text="昵称用户昵称用户昵称"
             android:textColor="@color/greenColors"
             android:textSize="@dimen/textsize9" />
 
 
         <TextView
+            android:id="@+id/tv_time1"
             style="@style/AutoWrap"
             android:gravity="right"
             android:paddingLeft="@dimen/dimen10"
@@ -51,6 +55,7 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/tv_content1"
         style="@style/MatchWrap"
         android:paddingLeft="@dimen/dimen10"
         android:paddingRight="@dimen/dimen10"

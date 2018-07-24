@@ -29,6 +29,8 @@ import com.sillykid.app.loginregister.LoginActivity;
 import com.sillykid.app.message.interactivemessage.imuitl.UserUtil;
 import com.sillykid.app.mine.deliveryaddress.DeliveryAddressActivity;
 import com.sillykid.app.mine.mycollection.MyCollectionActivity;
+import com.sillykid.app.mine.myfans.MyFansActivity;
+import com.sillykid.app.mine.myfocus.MyFocusActivity;
 import com.sillykid.app.mine.myorder.MyOrderActivity;
 import com.sillykid.app.mine.myshoppingcart.MyShoppingCartActivity;
 import com.sillykid.app.mine.mywallet.MyWalletActivity;
@@ -90,6 +92,24 @@ public class MineFragment extends BaseFragment implements MineContract.View, Vie
 
     @BindView(id = R.id.tv_synopsis)
     private TextView tv_synopsis;
+
+    @BindView(id = R.id.ll_follow, click = true)
+    private LinearLayout ll_follow;
+
+    @BindView(id = R.id.tv_follow)
+    private TextView tv_follow;
+
+    @BindView(id = R.id.ll_fans, click = true)
+    private LinearLayout ll_fans;
+
+    @BindView(id = R.id.tv_fans)
+    private TextView tv_fans;
+
+    @BindView(id = R.id.tv_beCollected)
+    private TextView tv_beCollected;
+
+    @BindView(id = R.id.tv_giveLike)
+    private TextView tv_giveLike;
 
     @BindView(id = R.id.ll_mineshopping, click = true)
     private LinearLayout ll_mineshopping;
@@ -170,6 +190,12 @@ public class MineFragment extends BaseFragment implements MineContract.View, Vie
             case R.id.ll_mineaddress:
                 ((MineContract.Presenter) mPresenter).getIsLogin(aty, 7);
                 break;
+            case R.id.ll_follow:
+                ((MineContract.Presenter) mPresenter).getIsLogin(aty, 8);
+                break;
+            case R.id.ll_fans:
+                ((MineContract.Presenter) mPresenter).getIsLogin(aty, 9);
+                break;
             case R.id.ll_minesetup:
                 aty.showActivity(aty, SetUpActivity.class);
                 break;
@@ -215,6 +241,10 @@ public class MineFragment extends BaseFragment implements MineContract.View, Vie
                     tv_synopsis.setVisibility(View.VISIBLE);
                     tv_synopsis.setText(userInfoBean.getData().getSignature());
                 }
+                tv_follow.setText(userInfoBean.getData().getConcern_number());
+                tv_fans.setText(userInfoBean.getData().getFans_number());
+                tv_beCollected.setText(userInfoBean.getData().getCollected_number());
+                tv_giveLike.setText(userInfoBean.getData().getLike_number());
             }
         } else if (flag == 1) {
             Intent personalDataIntent = new Intent(aty, PersonalDataActivity.class);
@@ -233,6 +263,10 @@ public class MineFragment extends BaseFragment implements MineContract.View, Vie
             aty.showActivity(aty, SharingCeremonyActivity.class);
         } else if (flag == 7) {
             aty.showActivity(aty, DeliveryAddressActivity.class);
+        } else if (flag == 8) {
+            aty.showActivity(aty, MyFocusActivity.class);
+        } else if (flag == 9) {
+            aty.showActivity(aty, MyFansActivity.class);
         }
         dismissLoadingDialog();
     }
@@ -344,7 +378,7 @@ public class MineFragment extends BaseFragment implements MineContract.View, Vie
     @Override
     public void callMsgEvent(MsgEvent msgEvent) {
         super.callMsgEvent(msgEvent);
-        if (((String) msgEvent.getData()).equals("RxBusLoginEvent") && mPresenter != null || ((String) msgEvent.getData()).equals("RxBusLogOutEvent") && mPresenter != null) {
+        if (((String) msgEvent.getData()).equals("RxBusLoginEvent") && mPresenter != null || ((String) msgEvent.getData()).equals("RxBusLogOutEvent") && mPresenter != null || ((String) msgEvent.getData()).equals("RxBusMineFragmentEvent") && mPresenter != null) {
             ((MinePresenter) mPresenter).getInfo(aty);
         } else if (((String) msgEvent.getData()).equals("RxBusAvatarEvent")) {
             String avatar = PreferenceHelper.readString(aty, StringConstants.FILENAME, "avatar", "");

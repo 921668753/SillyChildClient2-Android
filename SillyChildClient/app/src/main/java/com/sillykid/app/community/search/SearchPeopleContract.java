@@ -7,7 +7,7 @@ import com.common.cklibrary.common.BaseView;
  * Created by ruitu on 2016/9/24.
  */
 
-public interface CommunitySearchContract {
+public interface SearchPeopleContract {
 
     interface Presenter extends BasePresenter {
 

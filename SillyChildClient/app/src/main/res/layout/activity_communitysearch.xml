@@ -41,7 +41,6 @@
                 style="@style/AutoMatch"
                 android:background="@android:color/transparent"
                 android:gravity="center_vertical"
-                android:imeOptions="actionSearch"
                 android:paddingLeft="@dimen/dimen12"
                 android:paddingRight="@dimen/dimen12"
                 android:singleLine="true"
@@ -71,6 +70,7 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/tv_lookForSomeone"
             style="@style/WrapWrap"
             android:layout_marginLeft="@dimen/dimen12"
             android:background="@color/whiteColors"
@@ -83,6 +83,7 @@
             android:textSize="@dimen/textsize13" />
 
         <TextView
+            android:id="@+id/tv_findArticl"
             style="@style/WrapWrap"
             android:layout_marginLeft="@dimen/dimen10"
             android:background="@color/whiteColors"
@@ -106,7 +107,6 @@
         android:paddingLeft="@dimen/dimen30">
 
         <TextView
-            android:id="@+id/tv_recentSearch"
             style="@style/AutoWrap"
             android:paddingBottom="@dimen/dimen10"
             android:paddingTop="@dimen/dimen10"

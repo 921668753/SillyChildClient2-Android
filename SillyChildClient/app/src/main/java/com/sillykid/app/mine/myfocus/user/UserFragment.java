@@ -17,12 +17,13 @@ import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.RefreshLayoutUtil;
 import com.common.cklibrary.utils.rx.MsgEvent;
+import com.common.cklibrary.utils.rx.RxBus;
 import com.sillykid.app.R;
 import com.sillykid.app.adapter.mine.myfocus.UserViewAdapter;
+import com.sillykid.app.community.DisplayPageActivity;
 import com.sillykid.app.constant.NumericConstants;
-import com.sillykid.app.entity.mine.mycollection.MyCollectionBean;
+import com.sillykid.app.entity.mine.myfocus.UserFocusBean;
 import com.sillykid.app.loginregister.LoginActivity;
-import com.sillykid.app.mall.goodslist.goodsdetails.GoodsDetailsActivity;
 import com.sillykid.app.mine.myfocus.FocusContract;
 import com.sillykid.app.mine.myfocus.FocusPresenter;
 import com.sillykid.app.mine.myfocus.MyFocusActivity;
@@ -67,6 +68,11 @@ public class UserFragment extends BaseFragment implements FocusContract.View, Ad
     private int mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
 
     /**
+     * 总页码
+     */
+    private int totalPageNumber = NumericConstants.START_PAGE_NUMBER;
+
+    /**
      * 是否加载更多
      */
     private boolean isShowLoadingMore = false;
@@ -74,6 +80,8 @@ public class UserFragment extends BaseFragment implements FocusContract.View, Ad
     private int positionItem = 0;
 
     private MyFocusActivity aty;
+
+    private int type_id = 1;
 
     @Override
     protected View inflaterView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -87,7 +95,6 @@ public class UserFragment extends BaseFragment implements FocusContract.View, Ad
         mPresenter = new FocusPresenter(this);
         mAdapter = new UserViewAdapter(aty);
     }
-
 
     @Override
     protected void initWidget(View parentView) {
@@ -121,7 +128,7 @@ public class UserFragment extends BaseFragment implements FocusContract.View, Ad
         mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
         mRefreshLayout.endRefreshing();
         showLoadingDialog(getString(R.string.dataLoad));
-        ((FocusContract.Presenter) mPresenter).getFavoriteGoodList(mMorePageNumber);
+        ((FocusContract.Presenter) mPresenter).getMyConcernList(mMorePageNumber, type_id);
     }
 
     @Override
@@ -132,17 +139,20 @@ public class UserFragment extends BaseFragment implements FocusContract.View, Ad
             return false;
         }
         mMorePageNumber++;
+        if (mMorePageNumber > totalPageNumber) {
+            ViewInject.toast(getString(R.string.noMoreData));
+            return false;
+        }
         showLoadingDialog(getString(R.string.dataLoad));
-        ((FocusContract.Presenter) mPresenter).getFavoriteGoodList(mMorePageNumber);
+        ((FocusContract.Presenter) mPresenter).getMyConcernList(mMorePageNumber, type_id);
         return true;
     }
 
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-        Intent intent = new Intent(aty, GoodsDetailsActivity.class);
-        intent.putExtra("goodName", mAdapter.getItem(position).getName());
-        intent.putExtra("goodsid", mAdapter.getItem(position).getGoods_id());
+        Intent intent = new Intent(aty, DisplayPageActivity.class);
+        // intent.putExtra("user_id", mAdapter.getItem(position).getMember_id());
         intent.putExtra("isRefresh", 1);
         startActivityForResult(intent, REQUEST_CODE);
     }
@@ -151,7 +161,8 @@ public class UserFragment extends BaseFragment implements FocusContract.View, Ad
     public void onItemChildClick(ViewGroup parent, View childView, int position) {
         positionItem = position;
         if (childView.getId() == R.id.tv_followed) {
-
+            showLoadingDialog(getString(R.string.cancelCttentionLoad));
+            ((FocusContract.Presenter) mPresenter).postAddConcern(mAdapter.getItem(position).getUser_id(), type_id);
         }
     }
 
@@ -168,31 +179,38 @@ public class UserFragment extends BaseFragment implements FocusContract.View, Ad
             mRefreshLayout.setPullDownRefreshEnable(true);
             ll_commonError.setVisibility(View.GONE);
             mRefreshLayout.setVisibility(View.VISIBLE);
-            MyCollectionBean myCollectionBean = (MyCollectionBean) JsonUtil.getInstance().json2Obj(success, MyCollectionBean.class);
-            if (myCollectionBean.getData() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
-                    myCollectionBean.getData().size() <= 0 && mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
-                errorMsg(getString(R.string.noCollectedGoods), 0);
+            UserFocusBean userFocusBean = (UserFocusBean) JsonUtil.getInstance().json2Obj(success, UserFocusBean.class);
+            if (userFocusBean.getData() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
+                    userFocusBean.getData().getTotalCount() <= 0 && mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
+                errorMsg(getString(R.string.noFollow), 0);
                 return;
-            } else if (myCollectionBean.getData() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
-                    myCollectionBean.getData().size() <= 0 && mMorePageNumber > NumericConstants.START_PAGE_NUMBER) {
+            } else if (userFocusBean.getData() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
+                    userFocusBean.getData().getTotalCount() <= 0 && mMorePageNumber > NumericConstants.START_PAGE_NUMBER) {
                 ViewInject.toast(getString(R.string.noMoreData));
                 isShowLoadingMore = false;
                 dismissLoadingDialog();
                 mRefreshLayout.endLoadingMore();
                 return;
             }
+            mMorePageNumber = userFocusBean.getData().getCurrentPageNo();
+            totalPageNumber = userFocusBean.getData().getTotalPageCount();
             if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
                 mRefreshLayout.endRefreshing();
                 mAdapter.clear();
-                mAdapter.addNewData(myCollectionBean.getData());
+                mAdapter.addNewData(userFocusBean.getData().getResultX());
             } else {
                 mRefreshLayout.endLoadingMore();
-                mAdapter.addMoreData(myCollectionBean.getData());
+                mAdapter.addMoreData(userFocusBean.getData().getResultX());
             }
             dismissLoadingDialog();
         } else if (flag == 1) {
             mAdapter.removeItem(positionItem);
-            mRefreshLayout.beginRefreshing();
+            ViewInject.toast(getString(R.string.focusSuccess));
+            /**
+             * 发送消息
+             */
+            RxBus.getInstance().post(new MsgEvent<String>("RxBusMineFragmentEvent"));
+            dismissLoadingDialog();
         }
     }
 
@@ -222,7 +240,7 @@ public class UserFragment extends BaseFragment implements FocusContract.View, Ad
                 img_err.setImageResource(R.mipmap.no_network);
                 tv_hintText.setText(msg);
                 tv_button.setText(getString(R.string.retry));
-            } else if (msg.contains(getString(R.string.noCollectedGoods))) {
+            } else if (msg.contains(getString(R.string.noFollow))) {
                 img_err.setImageResource(R.mipmap.no_data);
                 tv_hintText.setText(msg);
                 tv_button.setVisibility(View.GONE);
@@ -231,14 +249,12 @@ public class UserFragment extends BaseFragment implements FocusContract.View, Ad
                 tv_hintText.setText(msg);
                 tv_button.setText(getString(R.string.retry));
             }
+        } else if (isLogin(msg)) {
+            aty.showActivity(aty, LoginActivity.class);
         } else {
-            mRefreshLayout.setPullDownRefreshEnable(true);
-            mRefreshLayout.setVisibility(View.VISIBLE);
-            ll_commonError.setVisibility(View.GONE);
             ViewInject.toast(msg);
         }
     }
-
 
     /**
      * 在接收消息的时候，选择性接收消息：
@@ -248,7 +264,7 @@ public class UserFragment extends BaseFragment implements FocusContract.View, Ad
         super.callMsgEvent(msgEvent);
         if (((String) msgEvent.getData()).equals("RxBusLoginEvent") && mPresenter != null) {
             mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
-            ((FocusContract.Presenter) mPresenter).getFavoriteGoodList(mMorePageNumber);
+            ((FocusContract.Presenter) mPresenter).getMyConcernList(mMorePageNumber, type_id);
         }
     }
 

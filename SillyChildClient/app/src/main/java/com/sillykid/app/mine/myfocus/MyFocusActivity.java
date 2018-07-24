@@ -17,7 +17,6 @@ import com.sillykid.app.mine.myfocus.companyguide.CompanyGuideFragment;
 import com.sillykid.app.mine.myfocus.merchants.MerchantsFragment;
 import com.sillykid.app.mine.myfocus.user.UserFragment;
 
-
 /**
  * 我的关注
  */

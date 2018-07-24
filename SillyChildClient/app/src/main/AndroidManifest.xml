@@ -387,6 +387,16 @@
             android:name=".community.search.CommunitySearchActivity"
             android:screenOrientation="portrait" />
 
+        <!--社区   社区搜索   找人-->
+        <activity
+            android:name=".community.search.SearchPeopleActivity"
+            android:screenOrientation="portrait" />
+
+        <!--社区   社区搜索   找文章-->
+        <activity
+            android:name=".community.search.SearchArticleActivity"
+            android:screenOrientation="portrait" />
+
         <!--消息   司导信息-->
         <!--<activity-->
         <!--android:name=".message.ChatMessageActivity"-->
@@ -502,17 +512,27 @@
         <!--我的   我的发布-->
         <activity
             android:name=".mine.myrelease.MyReleaseActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
 
         <!--我的   我的发布 发布攻略-->
         <activity
             android:name=".mine.myrelease.strate.ReleaseStrateActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <!--我的   我的发布 发布动态-->
         <activity
             android:name=".mine.myrelease.dynamicstate.ReleaseDynamicStateActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
+
+        <!--我的   我的粉丝-->
+        <activity
+            android:name=".mine.myfans.MyFansActivity"
+            android:screenOrientation="portrait" />
+
+        <!--我的   我的关注-->
+        <activity
+            android:name=".mine.myfocus.MyFocusActivity"
+            android:screenOrientation="portrait" />
 
         <!--我的   我的购物车-->
         <activity

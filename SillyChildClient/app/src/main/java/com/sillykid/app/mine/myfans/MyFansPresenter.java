@@ -7,7 +7,7 @@ import com.kymjs.rxvolley.client.HttpParams;
 import com.sillykid.app.retrofit.RequestClient;
 
 /**
- * Created by ruitu on 2016/9/24.
+ * Created by ruitu on 2018/9/24.
  */
 
 public class MyFansPresenter implements MyFansContract.Presenter {
@@ -22,8 +22,9 @@ public class MyFansPresenter implements MyFansContract.Presenter {
     @Override
     public void getMyFansList(int page) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        httpParams.put("page", page);
-        httpParams.put("pageSize", 10);
+        httpParams.put("pageno", page);
+        httpParams.put("pagesize", 10);
+        httpParams.put("type_id", 1);
         RequestClient.getMyFansList(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
@@ -40,7 +41,7 @@ public class MyFansPresenter implements MyFansContract.Presenter {
     @Override
     public void postAddConcern(int user_id, int type_id) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        httpParams.put("user_id", user_id);
+        httpParams.put("member_id", user_id);
         httpParams.put("type_id", type_id);
         RequestClient.postAddConcern(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
             @Override

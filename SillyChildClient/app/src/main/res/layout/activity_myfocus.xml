@@ -7,7 +7,8 @@
 
     <include layout="@layout/common_title" />
 
-    <include layout="@layout/focus_topbar" />
+    <include layout="@layout/focus_topbar"
+        android:visibility="gone"/>
 
     <FrameLayout
         android:id="@+id/focus_content"

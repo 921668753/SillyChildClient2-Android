@@ -1,5 +1,7 @@
 package com.sillykid.app.community.dynamic;
 
+import android.content.Context;
+
 import com.common.cklibrary.common.KJActivityStack;
 import com.common.cklibrary.utils.httputil.HttpUtilParams;
 import com.common.cklibrary.utils.httputil.ResponseListener;
@@ -39,7 +41,7 @@ public class DynamicDetailsPresenter implements DynamicDetailsContract.Presenter
     @Override
     public void postAddConcern(int user_id, int type_id) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        httpParams.put("user_id", user_id);
+        httpParams.put("member_id", user_id);
         httpParams.put("type_id", type_id);
         RequestClient.postAddConcern(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
             @Override
@@ -57,7 +59,8 @@ public class DynamicDetailsPresenter implements DynamicDetailsContract.Presenter
     @Override
     public void postUnfavorite(int id) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        httpParams.put("id", id);
+        httpParams.put("goodsid", id);
+        httpParams.put("type_id", 3);
         RequestClient.postUnfavorite(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
@@ -74,7 +77,8 @@ public class DynamicDetailsPresenter implements DynamicDetailsContract.Presenter
     @Override
     public void postAddFavorite(int id) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        httpParams.put("id", id);
+        httpParams.put("goodsid", id);
+        httpParams.put("type_id", 3);
         RequestClient.postFavoriteAdd(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
@@ -91,7 +95,8 @@ public class DynamicDetailsPresenter implements DynamicDetailsContract.Presenter
     @Override
     public void postAddLike(int id) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        httpParams.put("id", id);
+        httpParams.put("post_id", id);
+        httpParams.put("type", 1);
         RequestClient.postAddLike(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
@@ -129,6 +134,22 @@ public class DynamicDetailsPresenter implements DynamicDetailsContract.Presenter
             }
         });
 
+    }
+
+    @Override
+    public void getIsLogin(Context context, int flag) {
+        HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
+        RequestClient.getIsLogin(context, httpParams, new ResponseListener<String>() {
+            @Override
+            public void onSuccess(String response) {
+                mView.getSuccess(response, flag);
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                mView.errorMsg(msg, flag);
+            }
+        });
     }
 
 

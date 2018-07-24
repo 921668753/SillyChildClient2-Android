@@ -70,6 +70,7 @@
 
 
             <TextView
+                android:id="@+id/tv_content"
                 style="@style/MatchWrap"
                 android:background="@color/whiteColors"
                 android:paddingLeft="@dimen/dimen17"
@@ -86,6 +87,7 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
+                    android:id="@+id/ll_report"
                     style="@style/WrapWrap"
                     android:gravity="center"
                     android:orientation="vertical"
@@ -112,6 +114,7 @@
 
 
             <LinearLayout
+                android:id="@+id/ll_userEvaluation"
                 style="@style/MatchWrap"
                 android:layout_marginTop="@dimen/dimen6"
                 android:background="@color/whiteColors"
@@ -132,6 +135,7 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/tv_userEvaluationNum"
                         style="@style/AutoMatch"
                         android:gravity="right|center_vertical"
                         android:paddingRight="@dimen/dimen3"
@@ -151,6 +155,7 @@
                 android:id="@+id/clv_dynamicDetails"
                 style="@style/MatchWrap"
                 android:layout_marginTop="@dimen/dimen6"
+                android:layout_marginBottom="@dimen/dimen20"
                 android:divider="@android:color/transparent"
                 android:overScrollMode="never"
                 android:scrollbars="none"
@@ -168,16 +173,19 @@
         android:background="@color/whiteColors">
 
         <LinearLayout
+            android:id="@+id/ll_zan"
             style="@style/AutoMatch"
             android:gravity="center"
             android:orientation="horizontal">
 
             <ImageView
+                android:id="@+id/img_zan"
                 android:layout_width="@dimen/dimen20"
                 android:layout_height="@dimen/dimen20"
                 android:src="@mipmap/dynamicdetails_zan" />
 
             <TextView
+                android:id="@+id/tv_zan"
                 style="@style/WrapWrap"
                 android:layout_marginLeft="@dimen/dimen8"
                 android:text="@string/zan"
@@ -185,6 +193,7 @@
                 android:textSize="@dimen/textsize12" />
 
             <TextView
+                android:id="@+id/tv_zanNum"
                 style="@style/WrapWrap"
                 android:layout_marginLeft="@dimen/dimen8"
                 android:text="1111"
@@ -194,16 +203,19 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_collection"
             style="@style/AutoMatch"
             android:gravity="center"
             android:orientation="horizontal">
 
             <ImageView
+                android:id="@+id/img_collection"
                 android:layout_width="@dimen/dimen20"
                 android:layout_height="@dimen/dimen20"
                 android:src="@mipmap/dynamicdetails_collection1" />
 
             <TextView
+                android:id="@+id/tv_collection"
                 style="@style/WrapWrap"
                 android:layout_marginLeft="@dimen/dimen8"
                 android:text="@string/collection"
@@ -211,6 +223,7 @@
                 android:textSize="@dimen/textsize12" />
 
             <TextView
+                android:id="@+id/tv_collectionNum"
                 style="@style/WrapWrap"
                 android:layout_marginLeft="@dimen/dimen8"
                 android:text="1111"
@@ -220,16 +233,19 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_comment"
             style="@style/AutoMatch"
             android:gravity="center"
             android:orientation="horizontal">
 
             <ImageView
+                android:id="@+id/img_comment"
                 android:layout_width="@dimen/dimen20"
                 android:layout_height="@dimen/dimen20"
                 android:src="@mipmap/dynamicdetails_comments1" />
 
             <TextView
+                android:id="@+id/tv_comment"
                 style="@style/WrapWrap"
                 android:layout_marginLeft="@dimen/dimen8"
                 android:text="@string/comment"
@@ -237,6 +253,7 @@
                 android:textSize="@dimen/textsize12" />
 
             <TextView
+                android:id="@+id/tv_commentNum"
                 style="@style/WrapWrap"
                 android:layout_marginLeft="@dimen/dimen8"
                 android:text="1111"

@@ -1,5 +1,7 @@
 package com.sillykid.app.community.dynamic;
 
+import android.content.Context;
+
 import com.common.cklibrary.common.BasePresenter;
 import com.common.cklibrary.common.BaseView;
 
@@ -40,6 +42,11 @@ public interface DynamicDetailsContract {
          * 添加评论
          */
         void postAddComment(String body, int post_id, int reply_comment_id, int reply_member_id, int type);
+
+        /**
+         * 获取会员登录状态
+         */
+        void getIsLogin(Context context, int flag);
 
     }
 

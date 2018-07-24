@@ -351,6 +351,11 @@ public class URLConstants {
 
 
     /**
+     * 获取我关注的用户列表
+     */
+    public static String MYCONCERNLIST = APIURL + "concern/get_my_concern_list.do";
+
+    /**
      * 获取收藏商品列表
      */
     public static String FAVORITEGOODLIST = APIURL + "favorite/list.do";

@@ -1,22 +1,22 @@
-package com.sillykid.app.adapter.community.dynamic;
+package com.sillykid.app.adapter.community.dynamic.dynamiccomments;
 
 
 import android.content.Context;
 import android.view.View;
 
 import com.sillykid.app.R;
-import com.sillykid.app.entity.community.dynamic.DynamicDetailsBean.DataBean.CommentBean;
+import com.sillykid.app.entity.community.dynamic.dynamiccomments.DynamicCommentsBean.DataBean.ListBean;
 import com.sillykid.app.utils.GlideImageLoader;
 
 import cn.bingoogolapple.androidcommon.adapter.BGAAdapterViewAdapter;
 import cn.bingoogolapple.androidcommon.adapter.BGAViewHolderHelper;
 
 /**
- * 动态详情   用户评价
+ * 动态评论
  */
-public class UserEvaluationViewAdapter extends BGAAdapterViewAdapter<CommentBean> {
+public class DynamicCommentsViewAdapter extends BGAAdapterViewAdapter<ListBean> {
 
-    public UserEvaluationViewAdapter(Context context) {
+    public DynamicCommentsViewAdapter(Context context) {
         super(context, R.layout.item_dynamicdetails);
     }
 
@@ -30,7 +30,7 @@ public class UserEvaluationViewAdapter extends BGAAdapterViewAdapter<CommentBean
     }
 
     @Override
-    protected void fillData(BGAViewHolderHelper helper, int position, CommentBean model) {
+    protected void fillData(BGAViewHolderHelper helper, int position, ListBean model) {
 
         GlideImageLoader.glideLoader(mContext, model.getFace(), helper.getImageView(R.id.img_avatar), 0, R.mipmap.placeholderfigure);
 

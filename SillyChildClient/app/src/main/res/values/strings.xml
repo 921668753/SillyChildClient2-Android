@@ -20,6 +20,7 @@
     <string name="addLoad">加入中&#8230;</string>
     <string name="attentionLoad">关注中&#8230;</string>
     <string name="cancelCttentionLoad">取消关注中&#8230;</string>
+    <string name="reportLoad">举报中&#8230;</string>
     <!--Dialog-->
 
     <!--公共的-->
@@ -561,6 +562,7 @@
     <string name="comments1">条评论</string>
     <string name="reply">条回复</string>
     <string name="notFillEvaluation">此用户没有填写评价。</string>
+    <string name="thankReport">感谢您的举报，我们将更加努力净化社区，给大家带来良好的环境</string>
 
     <!--首页   当地达人详情-->
     <string name="shopkeepers">店主</string>
@@ -661,7 +663,8 @@
     <string name="noImages">无图</string>
     <string name="afterReview">追评</string>
     <string name="goodsNotCommented">亲，该商品还没有评论哟~</string>
-
+    <string name="commentDetails">评论详情</string>
+    <string name="commentList">评论列表</string>
 
     <!--商城  店铺首页  全部商品-->
     <string name="shopHomepage">店铺首页</string>
@@ -1357,8 +1360,6 @@
     <string name="collect">次收藏</string>
     <string name="report">举报</string>
     <string name="evaluation1">条评价</string>
-
-
 
 
     <!--融云start-->

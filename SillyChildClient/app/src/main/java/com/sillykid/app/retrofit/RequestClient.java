@@ -614,11 +614,41 @@ public class RequestClient {
                     return;
                 }
                 httpParams.putHeaders("Cookie", cookies);
-                HttpRequest.requestPostFORMHttp(context,URLConstants.ADDCONCERN , httpParams, listener);
+                HttpRequest.requestPostFORMHttp(context, URLConstants.ADDCONCERN, httpParams, listener);
             }
         }, listener);
     }
 
+    /**
+     * 社区----获取其他用户信息
+     */
+    public static void getOtherUserInfo(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        Log.d("tag", "getOtherUserInfo");
+        String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+        if (StringUtils.isEmpty(cookies)) {
+            listener.onFailure(NumericConstants.TOLINGIN + "");
+            return;
+        }
+        httpParams.putHeaders("Cookie", cookies);
+        HttpRequest.requestGetHttp(context, URLConstants.OTHERUSERINFO, httpParams, listener);
+    }
+
+    /**
+     * 社区----获取用户帖子列表
+     */
+    public static void getOtherUserPost(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        Log.d("tag", "getOtherUserPost");
+        HttpRequest.requestGetHttp(context, URLConstants.OTHERUSERPOST, httpParams, listener);
+
+    }
+
+    /**
+     * 获取某一个评论的详细信息
+     */
+    public static void getCommentDetails(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        Log.d("tag", "getCommentDetails");
+        HttpRequest.requestGetHttp(context, URLConstants.CINMENTDETAIL, httpParams, listener);
+    }
 
     /**
      * 获取我关注的用户列表
@@ -634,7 +664,7 @@ public class RequestClient {
                     return;
                 }
                 httpParams.putHeaders("Cookie", cookies);
-                HttpRequest.requestGetHttp(context,URLConstants.MYCONCERNLIST , httpParams, listener);
+                HttpRequest.requestGetHttp(context, URLConstants.MYCONCERNLIST, httpParams, listener);
             }
         }, listener);
     }
@@ -654,7 +684,7 @@ public class RequestClient {
                     return;
                 }
                 httpParams.putHeaders("Cookie", cookies);
-                HttpRequest.requestPostFORMHttp(context,URLConstants.ADDLIKE , httpParams, listener);
+                HttpRequest.requestPostFORMHttp(context, URLConstants.ADDLIKE, httpParams, listener);
             }
         }, listener);
     }
@@ -673,11 +703,10 @@ public class RequestClient {
                     return;
                 }
                 httpParams.putHeaders("Cookie", cookies);
-                HttpRequest.requestPostFORMHttp(context,URLConstants.ADDCOMMENT , httpParams, listener);
+                HttpRequest.requestPostFORMHttp(context, URLConstants.ADDCOMMENT, httpParams, listener);
             }
         }, listener);
     }
-
 
 
     /**
@@ -694,14 +723,10 @@ public class RequestClient {
                     return;
                 }
                 httpParams.putHeaders("Cookie", cookies);
-                HttpRequest.requestPostFORMHttp(context,URLConstants.POSTCOMMENT , httpParams, listener);
+                HttpRequest.requestPostFORMHttp(context, URLConstants.POSTCOMMENT, httpParams, listener);
             }
         }, listener);
     }
-
-
-
-
 
 
     /**

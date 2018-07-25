@@ -2,12 +2,13 @@ package com.sillykid.app.entity.community.dynamic;
 
 import com.common.cklibrary.entity.BaseResult;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class DynamicDetailsBean extends BaseResult<DynamicDetailsBean.DataBean> {
 
 
-    public class DataBean {
+    public class DataBean implements Serializable {
         /**
          * attention_number : 8
          * classification_id : 1000000
@@ -210,7 +211,7 @@ public class DynamicDetailsBean extends BaseResult<DynamicDetailsBean.DataBean> 
             this.nickname = nickname;
         }
 
-        public class CommentBean {
+        public class CommentBean implements Serializable {
             /**
              * body : 这是一条主评论
              * create_time : 2018-07-23 09:02:30
@@ -325,7 +326,7 @@ public class DynamicDetailsBean extends BaseResult<DynamicDetailsBean.DataBean> 
                 this.replyList = replyList;
             }
 
-            public class ReplyListBean {
+            public class ReplyListBean implements Serializable {
                 /**
                  * id : 3
                  * member_id : 14

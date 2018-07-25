@@ -19,6 +19,8 @@ import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
 import com.sillykid.app.adapter.community.dynamic.UserEvaluationViewAdapter;
 import com.sillykid.app.community.DisplayPageActivity;
+import com.sillykid.app.community.dynamic.dialog.ReportBouncedDialog;
+import com.sillykid.app.community.dynamic.dialog.RevertBouncedDialog;
 import com.sillykid.app.community.dynamic.dynamiccomments.CommentDetailsActivity;
 import com.sillykid.app.community.dynamic.dynamiccomments.DynamicCommentsActivity;
 import com.sillykid.app.entity.community.dynamic.DynamicDetailsBean;
@@ -29,6 +31,8 @@ import java.util.List;
 
 import cn.bingoogolapple.androidcommon.adapter.BGAOnItemChildClickListener;
 import cn.bingoogolapple.bgabanner.BGABanner;
+
+import static com.sillykid.app.constant.NumericConstants.REQUEST_CODE;
 
 /**
  * 动态详情
@@ -119,6 +123,10 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
 
     private UserEvaluationViewAdapter mAdapter = null;
 
+    private ReportBouncedDialog reportBouncedDialog = null;
+
+    private RevertBouncedDialog revertBouncedDialog = null;
+
     @Override
     public void setRootView() {
         setContentView(R.layout.activity_dynamicdetails);
@@ -131,9 +139,22 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
         title = getIntent().getStringExtra("title");
         mPresenter = new DynamicDetailsPresenter(this);
         mAdapter = new UserEvaluationViewAdapter(this);
+        initBouncedDialog();
         showLoadingDialog(getString(R.string.dataLoad));
         ((DynamicDetailsContract.Presenter) mPresenter).getDynamicDetails(id);
     }
+
+    private void initBouncedDialog() {
+        reportBouncedDialog = new ReportBouncedDialog(this);
+        revertBouncedDialog = new RevertBouncedDialog(this) {
+            @Override
+            public void toSuccess() {
+                tv_userEvaluationNum.setText(StringUtils.toInt(tv_commentNum.getText().toString(), 0) + 1 + getString(R.string.evaluation1));
+                tv_commentNum.setText(StringUtils.toInt(tv_commentNum.getText().toString(), 0) + 1);
+            }
+        };
+    }
+
 
     @Override
     public void initWidget() {
@@ -180,8 +201,12 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
                 break;
 
             case R.id.ll_report:
-                showLoadingDialog(getString(R.string.dataLoad));
-                //((DynamicDetailsContract.Presenter)mPresenter).postAddConcern();
+                if (reportBouncedDialog == null) {
+                    reportBouncedDialog = new ReportBouncedDialog(this);
+                }
+                if (reportBouncedDialog != null && !reportBouncedDialog.isShowing()) {
+                    reportBouncedDialog.show();
+                }
                 break;
             case R.id.ll_userEvaluation:
                 Intent intent1 = new Intent(aty, DynamicCommentsActivity.class);
@@ -201,10 +226,19 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
                 }
                 break;
             case R.id.ll_comment:
-                showLoadingDialog(getString(R.string.dataLoad));
-                //((DynamicDetailsContract.Presenter)mPresenter).postAddConcern();
-
-
+                if (revertBouncedDialog == null) {
+                    revertBouncedDialog = new RevertBouncedDialog(this) {
+                        @Override
+                        public void toSuccess() {
+                            tv_userEvaluationNum.setText(StringUtils.toInt(tv_commentNum.getText().toString(), 0) + 1 + getString(R.string.evaluation1));
+                            tv_commentNum.setText(StringUtils.toInt(tv_commentNum.getText().toString(), 0) + 1);
+                        }
+                    };
+                }
+                if (revertBouncedDialog != null && !revertBouncedDialog.isShowing()) {
+                    revertBouncedDialog.show();
+                    revertBouncedDialog.setHintText(getString(R.string.writeComment), id, 0, 0, 1);
+                }
                 break;
         }
     }
@@ -226,8 +260,9 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent intent = new Intent(aty, CommentDetailsActivity.class);
-        // intent.putExtra("");
-        showActivity(aty, intent);
+        intent.putExtra("id", mAdapter.getItem(position).getId());
+        intent.putExtra("type", 0);
+        startActivityForResult(intent, REQUEST_CODE);
     }
 
     @Override
@@ -236,8 +271,15 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
 
 
         } else if (childView.getId() == R.id.tv_revert) {
-
-
+            Intent intent = new Intent(aty, CommentDetailsActivity.class);
+            intent.putExtra("id", mAdapter.getItem(position).getId());
+            intent.putExtra("type", 1);
+            startActivityForResult(intent, REQUEST_CODE);
+        } else if (childView.getId() == R.id.ll_revertNum) {
+            Intent intent = new Intent(aty, CommentDetailsActivity.class);
+            intent.putExtra("id", mAdapter.getItem(position).getId());
+            intent.putExtra("type", 0);
+            startActivityForResult(intent, REQUEST_CODE);
         }
     }
 
@@ -387,7 +429,16 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
     @Override
     public void callMsgEvent(MsgEvent msgEvent) {
         super.callMsgEvent(msgEvent);
-        if (((String) msgEvent.getData()).equals("RxBusLoginEvent") && mPresenter != null) {
+        if (((String) msgEvent.getData()).equals("RxBusLoginEvent") && mPresenter != null || ((String) msgEvent.getData()).equals("RxBusDynamicDetailsEvent") && mPresenter != null) {
+            ((DynamicDetailsContract.Presenter) mPresenter).getDynamicDetails(id);
+        }
+    }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (data != null && requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
             ((DynamicDetailsContract.Presenter) mPresenter).getDynamicDetails(id);
         }
     }
@@ -406,8 +457,17 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        if (reportBouncedDialog != null) {
+            reportBouncedDialog.cancel();
+        }
+        reportBouncedDialog = null;
 
-
+        if (revertBouncedDialog != null) {
+            revertBouncedDialog.cancel();
+        }
+        revertBouncedDialog = null;
+        mAdapter.clear();
+        mAdapter = null;
     }
 
 

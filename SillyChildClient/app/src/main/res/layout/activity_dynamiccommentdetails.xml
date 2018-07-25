@@ -34,6 +34,7 @@
                     android:src="@mipmap/avatar" />
 
                 <TextView
+                    android:id="@+id/tv_nickName"
                     style="@style/AutoWrap"
                     android:layout_marginLeft="@dimen/dimen6"
                     android:text="用户昵称"
@@ -42,18 +43,20 @@
 
 
                 <LinearLayout
+                    android:id="@+id/ll_zan"
                     style="@style/WrapMatch"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:paddingLeft="@dimen/dimen10">
 
                     <ImageView
+                        android:id="@+id/img_zan"
                         android:layout_width="@dimen/dimen15"
                         android:layout_height="@dimen/dimen15"
                         android:src="@mipmap/dynamic_zan" />
 
-
                     <TextView
+                        android:id="@+id/tv_giveLike"
                         style="@style/WrapWrap"
                         android:layout_marginLeft="@dimen/dimen3"
                         android:text="@string/giveLike"
@@ -65,6 +68,7 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/tv_content"
                 style="@style/MatchWrap"
                 android:paddingLeft="@dimen/dimen13"
                 android:paddingRight="@dimen/dimen1"
@@ -87,7 +91,7 @@
                     android:textSize="@dimen/textsize9" />
 
                 <TextView
-                    android:id="@+id/tv_revert1"
+                    android:id="@+id/tv_revert"
                     style="@style/WrapWrap"
                     android:paddingBottom="@dimen/dimen3"
                     android:paddingLeft="@dimen/dimen10"
@@ -100,16 +104,19 @@
 
 
             <LinearLayout
+                android:id="@+id/ll_revert"
                 style="@style/MatchWrap"
                 android:layout_marginLeft="@dimen/dimen13"
                 android:layout_marginRight="@dimen/dimen1"
+                android:layout_marginBottom="@dimen/dimen15"
                 android:background="@color/eCF2F6Colors"
                 android:orientation="vertical">
 
                 <com.common.cklibrary.utils.myview.ChildListView
-                    android:id="@+id/lv_replies"
+                    android:id="@+id/clv_revert"
                     style="@style/MatchWrap"
                     android:divider="@android:color/transparent"
+                    android:layout_marginBottom="@dimen/dimen10"
                     android:listSelector="@android:color/transparent"
                     android:overScrollMode="never"
                     android:scrollbars="none"

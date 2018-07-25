@@ -16,7 +16,8 @@
         <ListView
             android:id="@+id/lv_dynamicDetails"
             style="@style/MatchMatch"
-            android:divider="@android:color/transparent"
+            android:divider="@color/background"
+            android:dividerHeight="@dimen/dimen1"
             android:overScrollMode="never"
             android:scrollbars="none"
             tools:listitem="@layout/item_dynamicdetails" />

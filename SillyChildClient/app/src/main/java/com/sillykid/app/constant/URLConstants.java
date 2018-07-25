@@ -166,6 +166,16 @@ public class URLConstants {
     public static String ADDCONCERN = APIURL + "concern/add_concern.do";
 
     /**
+     * 社区----获取其他用户信息
+     */
+    public static String OTHERUSERINFO = APIURL + "post/get_other_user_info.do";
+
+    /**
+     * 社区----获取用户帖子列表
+     */
+    public static String OTHERUSERPOST = APIURL + "post/get_other_user_post.do";
+
+    /**
      * 社区----点赞和取消
      */
     public static String ADDLIKE = APIURL + "like/add_like.do";
@@ -349,6 +359,10 @@ public class URLConstants {
      */
     public static String ONLINEREC = APIURL + "online/rec.do";
 
+    /**
+     * 获取某一个评论的详细信息
+     */
+    public static String CINMENTDETAIL = APIURL + "comment/get_comment_detail.do";
 
     /**
      * 获取我关注的用户列表

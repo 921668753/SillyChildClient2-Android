@@ -23,20 +23,24 @@
             style="@style/WrapWrap"
             android:layout_marginLeft="@dimen/dimen6"
             android:text="用户昵称用户昵称用户"
+            android:singleLine="true"
             android:textColor="@color/greenColors"
             android:textSize="@dimen/textsize9" />
 
         <TextView
             style="@style/WrapWrap"
             android:text="@string/revert"
+            android:paddingLeft="@dimen/dimen2"
+            android:paddingRight="@dimen/dimen2"
             android:textColor="@color/textColor"
-            android:visibility="gone"
+            android:visibility="visible"
             android:textSize="@dimen/textsize9" />
 
         <TextView
+            android:id="@+id/tv_nickName2"
             style="@style/WrapWrap"
-            android:maxWidth="@dimen/dimen70"
-            android:visibility="gone"
+            android:visibility="visible"
+            android:singleLine="true"
             android:text="昵称用户昵称用户昵称"
             android:textColor="@color/greenColors"
             android:textSize="@dimen/textsize9" />

@@ -25,6 +25,16 @@ public class SoftKeyboardUtils {
     }
 
     /**
+     * 显示软键盘，Dialog使用
+     *
+     * @param activity 当前Activity
+     */
+    public static void ejectKeyboard(Activity activity) {
+        InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+    }
+
+    /**
      * 弹出软键盘
      *
      * @param editText

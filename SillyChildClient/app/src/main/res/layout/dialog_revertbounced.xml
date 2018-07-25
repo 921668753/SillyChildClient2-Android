@@ -1,56 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_cancel"
     style="@style/MatchMatch"
+    android:background="@android:color/transparent"
     android:fitsSystemWindows="true">
 
     <LinearLayout
         style="@style/MatchWrap"
+        android:layout_alignParentBottom="true"
         android:background="@color/whiteColors"
         android:orientation="vertical"
-        android:layout_alignParentBottom="true">
+        android:paddingBottom="@dimen/dimen5"
+        android:paddingLeft="@dimen/dimen10"
+        android:paddingRight="@dimen/dimen10"
+        android:paddingTop="@dimen/dimen5">
 
-        <LinearLayout
+        <com.common.cklibrary.utils.myview.TextEditTextView
+            android:id="@+id/tetv_revert"
             style="@style/MatchWrap"
-            android:orientation="horizontal">
-
-            <TextView
-                style="@style/WrapWrap"
-                android:text="@string/cancel"
-                android:textColor="@color/hintColors"
-                android:textSize="@dimen/textsize16"
-                android:paddingLeft="@dimen/dimen15"
-                android:paddingTop="@dimen/dimen14"
-                android:paddingRight="@dimen/dimen15"
-                android:paddingBottom="@dimen/dimen14"/>
-
-            <View
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="@dimen/dimen1"/>
-
-            <TextView
-                style="@style/WrapWrap"
-                android:paddingBottom="@dimen/dimen14"
-                android:paddingLeft="@dimen/dimen15"
-                android:paddingRight="@dimen/dimen15"
-                android:paddingTop="@dimen/dimen14"
-                android:text="@string/send"
-                android:textColor="@color/greenColors"
-                android:textSize="@dimen/textsize16" />
-
-        </LinearLayout>
-
-        <View style="@style/DividerWidth" />
-
-        <EditText
-            style="@style/MatchWrap"
-            android:background="@android:color/transparent"
-            android:padding="@dimen/dimen15"
-            android:textColor="@color/textColor"
-            android:textSize="@dimen/textsize14"
+            android:background="@drawable/shape_followed"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:imeOptions="actionSend"
+            android:maxHeight="@dimen/dimen100"
+            android:paddingBottom="@dimen/dimen7"
+            android:paddingLeft="@dimen/dimen10"
+            android:paddingRight="@dimen/dimen10"
+            android:paddingTop="@dimen/dimen7"
+            android:singleLine="true"
             android:textColorHint="@color/hintColors"
-            android:minHeight="@dimen/dimen140"/>
-
+            android:textCursorDrawable="@drawable/shape_cursor"
+            android:textSize="@dimen/textsize13" />
 
     </LinearLayout>
 

@@ -253,4 +253,5 @@ dependencies {
     implementation files('libs/UPPayAssistEx.jar')
     implementation files('libs/UPPayPluginExPro.jar')
     implementation files('libs/alipaySdk-20180316.jar')
+    compile project(path: ':CallKit')
 }

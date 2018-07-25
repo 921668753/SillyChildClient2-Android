@@ -189,20 +189,27 @@
 
         <ScrollView style="@style/MatchMatch">
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv"
-                style="@style/MatchMatch"
-                android:layout_marginBottom="@dimen/dimen20"
-                android:layout_marginTop="@dimen/dimen20"
-                android:overScrollMode="never"
-                android:paddingLeft="@dimen/dimen2"
-                android:paddingRight="@dimen/dimen2"
-                android:scrollbars="none"
-                tools:listitem="@layout/item_mystrategy" />
+            <RelativeLayout style="@style/MatchMatch">
 
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv"
+                    style="@style/MatchMatch"
+                    android:layout_marginBottom="@dimen/dimen20"
+                    android:layout_marginTop="@dimen/dimen20"
+                    android:overScrollMode="never"
+                    android:paddingLeft="@dimen/dimen2"
+                    android:paddingRight="@dimen/dimen2"
+                    android:scrollbars="none"
+                    tools:listitem="@layout/item_mystrategy" />
+            </RelativeLayout>
         </ScrollView>
 
     </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
+
+    <include
+        layout="@layout/common_error"
+        android:layout_below="@id/rl_top"
+        tools:ignore="IncludeLayoutParam" />
 
     <TextView
         android:id="@+id/tv_followN"

@@ -2122,6 +2122,25 @@ public class RequestClient {
 
 
     /**
+     * 获取用户发布的帖子
+     */
+    public static void getUserPost(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        Log.d("tag", "getUserPost");
+        doServer(context, new TokenCallback() {
+            @Override
+            public void execute() {
+                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                if (StringUtils.isEmpty(cookies)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("Cookie", cookies);
+                HttpRequest.requestGetHttp(context, URLConstants.USERPOST, httpParams, listener);
+            }
+        }, listener);
+    }
+
+    /**
      * 包车订单确认结束
      */
     public static void finishOrder(HttpParams httpParams, final ResponseListener<String> listener) {

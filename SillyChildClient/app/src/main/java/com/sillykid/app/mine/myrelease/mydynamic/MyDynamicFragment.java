@@ -38,7 +38,7 @@ import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 /**
  * 我的动态
  */
-public class MyDynamicFragment extends BaseFragment implements ReleaseContract.View, BGARefreshLayout.BGARefreshLayoutDelegate, BGAOnRVItemClickListener {
+public class MyDynamicFragment extends BaseFragment implements MyDynamicContract.View, BGARefreshLayout.BGARefreshLayoutDelegate, BGAOnRVItemClickListener {
 
     private MyReleaseActivity aty;
 
@@ -94,7 +94,7 @@ public class MyDynamicFragment extends BaseFragment implements ReleaseContract.V
     @Override
     protected void initData() {
         super.initData();
-        mPresenter = new ReleasePresenter(this);
+        mPresenter = new MyDynamicPresenter(this);
         spacesItemDecoration = new SpacesItemDecoration(7, 14);
         mAdapter = new MyStrategyViewAdapter(recyclerview);
         layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
@@ -143,7 +143,7 @@ public class MyDynamicFragment extends BaseFragment implements ReleaseContract.V
     }
 
     @Override
-    public void setPresenter(ReleaseContract.Presenter presenter) {
+    public void setPresenter(MyDynamicContract.Presenter presenter) {
         mPresenter = presenter;
     }
 
@@ -152,6 +152,7 @@ public class MyDynamicFragment extends BaseFragment implements ReleaseContract.V
         isShowLoadingMore = true;
         ll_commonError.setVisibility(View.GONE);
         mRefreshLayout.setVisibility(View.VISIBLE);
+        mRefreshLayout.setPullDownRefreshEnable(true);
         GoodsListBean goodsListBean = (GoodsListBean) JsonUtil.getInstance().json2Obj(success, GoodsListBean.class);
         if (goodsListBean.getData() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER || goodsListBean.getData().size() <= 0 &&
                 mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {

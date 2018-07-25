@@ -32,6 +32,7 @@ import com.sillykid.app.mine.mycollection.MyCollectionActivity;
 import com.sillykid.app.mine.myfans.MyFansActivity;
 import com.sillykid.app.mine.myfocus.MyFocusActivity;
 import com.sillykid.app.mine.myorder.MyOrderActivity;
+import com.sillykid.app.mine.myrelease.MyReleaseActivity;
 import com.sillykid.app.mine.myshoppingcart.MyShoppingCartActivity;
 import com.sillykid.app.mine.mywallet.MyWalletActivity;
 import com.sillykid.app.mine.personaldata.PersonalDataActivity;
@@ -135,6 +136,10 @@ public class MineFragment extends BaseFragment implements MineContract.View, Vie
     @BindView(id = R.id.ll_vipEmergencyCall, click = true)
     private LinearLayout ll_vipEmergencyCall;
 
+    @BindView(id = R.id.ll_myRelease, click = true)
+    private LinearLayout ll_myRelease;
+
+
     @Override
     protected View inflaterView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
         aty = (MainActivity) getActivity();
@@ -195,6 +200,9 @@ public class MineFragment extends BaseFragment implements MineContract.View, Vie
                 break;
             case R.id.ll_fans:
                 ((MineContract.Presenter) mPresenter).getIsLogin(aty, 9);
+                break;
+            case R.id.ll_myRelease:
+                ((MineContract.Presenter) mPresenter).getIsLogin(aty, 10);
                 break;
             case R.id.ll_minesetup:
                 aty.showActivity(aty, SetUpActivity.class);
@@ -267,6 +275,8 @@ public class MineFragment extends BaseFragment implements MineContract.View, Vie
             aty.showActivity(aty, MyFocusActivity.class);
         } else if (flag == 9) {
             aty.showActivity(aty, MyFansActivity.class);
+        }else if (flag == 9) {
+            aty.showActivity(aty, MyReleaseActivity.class);
         }
         dismissLoadingDialog();
     }

@@ -651,15 +651,6 @@
             android:name=".mine.personaldata.changepassword.ChangePassWordEndActivity"
             android:screenOrientation="portrait"></activity>
 
-        <!--我的   粉丝和关注列表-->
-        <activity
-            android:name=".mine.fansattention.FansAttentionActivity"
-            android:screenOrientation="portrait"></activity>
-
-        <!--我的   粉丝和关注的对象的动态，攻略以及相应收藏的信息-->
-        <activity
-            android:name=".mine.fansattention.FansInfoActivity"
-            android:screenOrientation="portrait"></activity>
 
         <!--我的   设置-->
         <activity
@@ -837,7 +828,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="tencent1106946302" />
+                <data android:scheme="tencent1106980891" />
             </intent-filter>
         </activity>
         <activity

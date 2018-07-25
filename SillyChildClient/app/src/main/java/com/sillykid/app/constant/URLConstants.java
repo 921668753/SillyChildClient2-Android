@@ -390,6 +390,11 @@ public class URLConstants {
     public static String MYFANSLIST = APIURL + "concern/get_my_fans_list.do";
 
     /**
+     * 获取用户发布的帖子
+     */
+    public static String USERPOST = APIURL + "post/get_user_post.do";
+
+    /**
      * 获取购物车商品列表
      */
     public static String CARTLIST = APIURL + "cart/list.do";

@@ -24,8 +24,6 @@ import com.sillykid.app.entity.mall.goodslist.GoodsListBean;
 import com.sillykid.app.loginregister.LoginActivity;
 import com.sillykid.app.mall.goodslist.goodsdetails.GoodsDetailsActivity;
 import com.sillykid.app.mine.myrelease.MyReleaseActivity;
-import com.sillykid.app.mine.myrelease.ReleaseContract;
-import com.sillykid.app.mine.myrelease.ReleasePresenter;
 import com.sillykid.app.utils.GlideImageLoader;
 import com.sillykid.app.utils.SpacesItemDecoration;
 
@@ -254,7 +252,7 @@ public class MyDynamicFragment extends BaseFragment implements MyDynamicContract
         mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
         mRefreshLayout.endRefreshing();
         showLoadingDialog(getString(R.string.dataLoad));
-        ((ReleaseContract.Presenter) mPresenter).getFavoriteGoodList(mMorePageNumber);
+        ((MyDynamicContract.Presenter) mPresenter).getUserPost(mMorePageNumber);
     }
 
     @Override
@@ -266,7 +264,7 @@ public class MyDynamicFragment extends BaseFragment implements MyDynamicContract
         }
         mMorePageNumber++;
         showLoadingDialog(getString(R.string.dataLoad));
-        ((ReleaseContract.Presenter) mPresenter).getFavoriteGoodList(mMorePageNumber);
+        ((MyDynamicContract.Presenter) mPresenter).getUserPost(mMorePageNumber);
         return true;
     }
 

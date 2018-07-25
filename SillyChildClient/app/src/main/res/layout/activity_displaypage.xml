@@ -187,9 +187,9 @@
         android:layout_below="@id/rl_top"
         android:background="@color/background">
 
-        <ScrollView style="@style/MatchMatch">
+        <!--<ScrollView style="@style/MatchMatch">-->
 
-            <RelativeLayout style="@style/MatchMatch">
+            <!--<RelativeLayout style="@style/MatchMatch">-->
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/rv"
@@ -201,15 +201,15 @@
                     android:paddingRight="@dimen/dimen2"
                     android:scrollbars="none"
                     tools:listitem="@layout/item_mystrategy" />
-            </RelativeLayout>
-        </ScrollView>
+            <!--</RelativeLayout>-->
+        <!--</ScrollView>-->
 
     </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
 
-    <include
-        layout="@layout/common_error"
-        android:layout_below="@id/rl_top"
-        tools:ignore="IncludeLayoutParam" />
+    <!--<include-->
+        <!--layout="@layout/common_error"-->
+        <!--android:layout_below="@id/rl_top"-->
+        <!--tools:ignore="IncludeLayoutParam" />-->
 
     <TextView
         android:id="@+id/tv_followN"

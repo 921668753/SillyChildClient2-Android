@@ -22,8 +22,8 @@ public class MyDynamicPresenter implements MyDynamicContract.Presenter {
     @Override
     public void getUserPost(int page) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        httpParams.put("page", page);
-        httpParams.put("pageSize", 10);
+        httpParams.put("pageno", page);
+        httpParams.put("pagesize", 10);
         RequestClient.getUserPost(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {

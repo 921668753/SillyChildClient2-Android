@@ -275,7 +275,7 @@ public class MineFragment extends BaseFragment implements MineContract.View, Vie
             aty.showActivity(aty, MyFocusActivity.class);
         } else if (flag == 9) {
             aty.showActivity(aty, MyFansActivity.class);
-        }else if (flag == 9) {
+        }else if (flag == 10) {
             aty.showActivity(aty, MyReleaseActivity.class);
         }
         dismissLoadingDialog();

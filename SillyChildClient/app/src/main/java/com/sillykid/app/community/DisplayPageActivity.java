@@ -85,17 +85,17 @@ public class DisplayPageActivity extends BaseActivity implements DisplayPageCont
     /**
      * 错误提示页
      */
-    @BindView(id = R.id.ll_commonError)
-    private LinearLayout ll_commonError;
-
-    @BindView(id = R.id.img_err)
-    private ImageView img_err;
-
-    @BindView(id = R.id.tv_hintText)
-    private TextView tv_hintText;
-
-    @BindView(id = R.id.tv_button, click = true)
-    private TextView tv_button;
+//    @BindView(id = R.id.ll_commonError)
+//    private LinearLayout ll_commonError;
+//
+//    @BindView(id = R.id.img_err)
+//    private ImageView img_err;
+//
+//    @BindView(id = R.id.tv_hintText)
+//    private TextView tv_hintText;
+//
+//    @BindView(id = R.id.tv_button, click = true)
+//    private TextView tv_button;
 
     /**
      * 当前页码
@@ -192,13 +192,13 @@ public class DisplayPageActivity extends BaseActivity implements DisplayPageCont
                 showLoadingDialog(title);
                 ((DisplayPageContract.Presenter) mPresenter).postAddConcern(user_id, 1);
                 break;
-            case R.id.tv_button:
-                if (tv_button.getText().toString().contains(getString(R.string.retry))) {
-                    mRefreshLayout.beginRefreshing();
-                    return;
-                }
-                showActivity(aty, LoginActivity.class);
-                break;
+//            case R.id.tv_button:
+//                if (tv_button.getText().toString().contains(getString(R.string.retry))) {
+//                    mRefreshLayout.beginRefreshing();
+//                    return;
+//                }
+//                showActivity(aty, LoginActivity.class);
+//                break;
         }
 
     }
@@ -278,7 +278,7 @@ public class DisplayPageActivity extends BaseActivity implements DisplayPageCont
             mRefreshLayout.beginRefreshing();
         } else if (flag == 1) {
             isShowLoadingMore = true;
-            ll_commonError.setVisibility(View.GONE);
+         //   ll_commonError.setVisibility(View.GONE);
             mRefreshLayout.setVisibility(View.VISIBLE);
             mRefreshLayout.setPullDownRefreshEnable(true);
             OtherUserPostBean otherUserPostBean = (OtherUserPostBean) JsonUtil.getInstance().json2Obj(success, OtherUserPostBean.class);
@@ -359,28 +359,28 @@ public class DisplayPageActivity extends BaseActivity implements DisplayPageCont
             }
             mRefreshLayout.setPullDownRefreshEnable(false);
             mRefreshLayout.setVisibility(View.GONE);
-            ll_commonError.setVisibility(View.VISIBLE);
-            tv_hintText.setVisibility(View.VISIBLE);
-            tv_button.setVisibility(View.VISIBLE);
-            if (isLogin(msg)) {
-                img_err.setImageResource(R.mipmap.no_login);
-                tv_hintText.setVisibility(View.GONE);
-                tv_button.setText(getString(R.string.login));
-                showActivity(aty, LoginActivity.class);
-                return;
-            } else if (msg.contains(getString(R.string.checkNetwork))) {
-                img_err.setImageResource(R.mipmap.no_network);
-                tv_hintText.setText(msg);
-                tv_button.setText(getString(R.string.retry));
-            } else if (msg.contains(getString(R.string.noMovement))) {
-                img_err.setImageResource(R.mipmap.no_data);
-                tv_hintText.setText(msg);
-                tv_button.setVisibility(View.GONE);
-            } else {
-                img_err.setImageResource(R.mipmap.no_data);
-                tv_hintText.setText(msg);
-                tv_button.setText(getString(R.string.retry));
-            }
+//            ll_commonError.setVisibility(View.VISIBLE);
+//            tv_hintText.setVisibility(View.VISIBLE);
+//            tv_button.setVisibility(View.VISIBLE);
+//            if (isLogin(msg)) {
+//                img_err.setImageResource(R.mipmap.no_login);
+//                tv_hintText.setVisibility(View.GONE);
+//                tv_button.setText(getString(R.string.login));
+//                showActivity(aty, LoginActivity.class);
+//                return;
+//            } else if (msg.contains(getString(R.string.checkNetwork))) {
+//                img_err.setImageResource(R.mipmap.no_network);
+//                tv_hintText.setText(msg);
+//                tv_button.setText(getString(R.string.retry));
+//            } else if (msg.contains(getString(R.string.noMovement))) {
+//                img_err.setImageResource(R.mipmap.no_data);
+//                tv_hintText.setText(msg);
+//                tv_button.setVisibility(View.GONE);
+//            } else {
+//                img_err.setImageResource(R.mipmap.no_data);
+//                tv_hintText.setText(msg);
+//                tv_button.setText(getString(R.string.retry));
+//            }
             return;
         }
         if (isLogin(msg)) {

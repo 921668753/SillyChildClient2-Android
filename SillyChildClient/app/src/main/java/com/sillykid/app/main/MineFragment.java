@@ -275,7 +275,7 @@ public class MineFragment extends BaseFragment implements MineContract.View, Vie
             aty.showActivity(aty, MyFocusActivity.class);
         } else if (flag == 9) {
             aty.showActivity(aty, MyFansActivity.class);
-        }else if (flag == 10) {
+        } else if (flag == 10) {
             aty.showActivity(aty, MyReleaseActivity.class);
         }
         dismissLoadingDialog();
@@ -330,6 +330,10 @@ public class MineFragment extends BaseFragment implements MineContract.View, Vie
         tv_synopsis.setVisibility(View.GONE);
         tv_serialNumber.setVisibility(View.GONE);
         ll_notLogin.setVisibility(View.VISIBLE);
+        tv_follow.setText("0");
+        tv_fans.setText("0");
+        tv_beCollected.setText("0");
+        tv_giveLike.setText("0");
     }
 
     @Override
@@ -358,7 +362,7 @@ public class MineFragment extends BaseFragment implements MineContract.View, Vie
             float alpha = (255 * scale);
             // 只是layout背景透明(仿知乎滑动效果)白色透明
             rl_title.setBackgroundColor(Color.argb((int) alpha, 255, 255, 255));
-            //                          设置文字颜色，黑色，加透明度
+            //    设置文字颜色，黑色，加透明度
             tv_title.setTextColor(Color.argb((int) alpha, 0, 0, 0));
             tv_editData1.setTextColor(Color.argb((int) alpha, 0, 0, 0));
             tv_divider.setBackgroundColor(Color.argb((int) alpha, 0, 0, 0));

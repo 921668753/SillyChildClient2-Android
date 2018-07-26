@@ -4,7 +4,7 @@ import com.common.cklibrary.entity.BaseResult;
 
 import java.util.List;
 
-public class MyCollectionBean extends BaseResult<List<MyCollectionBean.DataBean>> {
+public class GoodBean extends BaseResult<List<GoodBean.DataBean>> {
 
 
     public class DataBean {

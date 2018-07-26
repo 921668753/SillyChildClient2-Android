@@ -83,8 +83,8 @@ public class CommunitySearchActivity extends BaseActivity implements AdapterView
     public void initData() {
         super.initData();
         recentSearchList = new ArrayList<RecentSearchBean.DataBean>();
-        recentSearchAdapter = new RecentSearchViewAdapter(this);
         type = getIntent().getIntExtra("type", -1);
+        recentSearchAdapter = new RecentSearchViewAdapter(this, type);
         initClearSearchDialog();
     }
 
@@ -95,7 +95,27 @@ public class CommunitySearchActivity extends BaseActivity implements AdapterView
         clearSearchDialog = new ClearSearchDialog(this, getString(R.string.clearSearch)) {
             @Override
             public void deleteCollectionDo(int addressId) {
-                PreferenceHelper.write(aty, StringConstants.FILENAME, "recentSearchCommunityHistory", null);
+                if (type == 0 || type == 1) {
+                    if (recentSearchList.size() > 0) {
+                        for (int i = 0; i < recentSearchList.size(); i++) {
+                            if (recentSearchList.get(i).getType() == type) {
+                                recentSearchList.remove(i);
+                            }
+                        }
+                    }
+                    if (recentSearchList.size() <= 0) {
+                        PreferenceHelper.write(aty, StringConstants.FILENAME, "recentSearchCommunityHistory", null);
+                    } else {
+                        BaseResult<List<RecentSearchBean.DataBean>> baseResult = new BaseResult<>();
+                        baseResult.setMessage("");
+                        baseResult.setResult(1);
+                        Collections.reverse(recentSearchList);
+                        baseResult.setData(recentSearchList);
+                        PreferenceHelper.write(aty, StringConstants.FILENAME, "recentSearchCommunityHistory", JsonUtil.getInstance().obj2JsonString(baseResult));
+                    }
+                } else {
+                    PreferenceHelper.write(aty, StringConstants.FILENAME, "recentSearchCommunityHistory", null);
+                }
                 ll_recentSearch.setVisibility(View.GONE);
                 lv_recentSearch.setVisibility(View.GONE);
             }
@@ -127,7 +147,7 @@ public class CommunitySearchActivity extends BaseActivity implements AdapterView
     private void saveRecentSearchHistory(String name, int type) {
         if (recentSearchList.size() > 0) {
             for (int i = 0; i < recentSearchList.size(); i++) {
-                if (recentSearchList.get(i).getName().equals(name)) {
+                if (recentSearchList.get(i).getName().equals(name) && recentSearchList.get(i).getType() == type) {
                     recentSearchList.remove(i);
                 }
             }

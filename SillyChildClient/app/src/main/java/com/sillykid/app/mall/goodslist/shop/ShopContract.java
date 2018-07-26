@@ -13,17 +13,17 @@ public interface ShopContract {
     interface Presenter extends BasePresenter {
 
         /**
-         * 获取店铺详情
+         * 检测用户是否收藏店铺
          */
-        void getShopDetail(int storeid);
+        void getCheckFavorited(int store_id);
 
         /**
-         * 收藏商品
+         * 收藏收藏店铺
          */
         void postFavoriteAdd(int storeid);
 
         /**
-         * 取消商品
+         * 取消收藏店铺
          */
         void postUnfavorite(int storeid);
 

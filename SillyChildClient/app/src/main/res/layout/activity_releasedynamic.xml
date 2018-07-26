@@ -15,7 +15,6 @@
 
         <RelativeLayout style="@style/MatchMatch">
 
-
             <LinearLayout
                 android:id="@+id/ll_category"
                 android:layout_width="@dimen/dimen76"
@@ -28,6 +27,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/tv_category"
                     style="@style/WrapWrap"
                     android:text="@string/category"
                     android:textColor="@color/greenColors"
@@ -41,9 +41,8 @@
 
             </LinearLayout>
 
-
-            <TextView
-                android:id="@+id/tv_title"
+            <EditText
+                android:id="@+id/et_title"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimen36"
                 android:layout_below="@id/ll_category"
@@ -54,14 +53,16 @@
                 android:paddingRight="@dimen/dimen20"
                 android:textColor="@color/textColor"
                 android:textColorHint="@color/hintColors"
+                android:textCursorDrawable="@drawable/shape_cursor"
                 android:textSize="@dimen/textsize12" />
 
-            <TextView
-                android:id="@+id/tv_addDescription"
+            <EditText
+                android:id="@+id/et_addDescription"
                 style="@style/MatchWrap"
-                android:layout_below="@id/tv_title"
+                android:layout_below="@id/et_title"
                 android:layout_marginTop="@dimen/dimen1"
                 android:background="@color/whiteColors"
+                android:gravity="top"
                 android:hint="@string/addDescription"
                 android:minHeight="@dimen/dimen171"
                 android:paddingBottom="@dimen/dimen15"
@@ -70,13 +71,14 @@
                 android:paddingTop="@dimen/dimen15"
                 android:textColor="@color/textColor"
                 android:textColorHint="@color/hintColors"
+                android:textCursorDrawable="@drawable/shape_cursor"
                 android:textSize="@dimen/textsize13" />
 
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 style="@style/MatchWrap"
-                android:layout_below="@id/tv_addDescription"
+                android:layout_below="@id/et_addDescription"
                 android:layout_marginBottom="@dimen/dimen5"
                 android:layout_marginTop="@dimen/dimen1"
                 android:background="@color/whiteColors"
@@ -95,6 +97,7 @@
 
 
             <TextView
+                android:id="@+id/tv_release"
                 style="@style/Match40"
                 android:layout_below="@id/recyclerView"
                 android:layout_marginBottom="@dimen/dimen40"

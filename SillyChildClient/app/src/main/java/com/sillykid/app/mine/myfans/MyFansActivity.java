@@ -24,7 +24,6 @@ import com.sillykid.app.community.DisplayPageActivity;
 import com.sillykid.app.constant.NumericConstants;
 import com.sillykid.app.entity.mine.myfans.MyFansBean;
 import com.sillykid.app.loginregister.LoginActivity;
-import com.sillykid.app.mall.goodslist.goodsdetails.GoodsDetailsActivity;
 
 import cn.bingoogolapple.androidcommon.adapter.BGAOnItemChildClickListener;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
@@ -188,11 +187,13 @@ public class MyFansActivity extends BaseActivity implements MyFansContract.View,
             mRefreshLayout.setVisibility(View.VISIBLE);
             MyFansBean myFansBean = (MyFansBean) JsonUtil.getInstance().json2Obj(success, MyFansBean.class);
             if (myFansBean.getData() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
-                    myFansBean.getData().getTotalCount() <= 0 && mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
+                    myFansBean.getData().getResult() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
+                    myFansBean.getData().getResult().size() <= 0 && mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
                 errorMsg(getString(R.string.noFans), 0);
                 return;
             } else if (myFansBean.getData() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
-                    myFansBean.getData().getTotalCount() <= 0 && mMorePageNumber > NumericConstants.START_PAGE_NUMBER) {
+                    myFansBean.getData().getResult() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
+                    myFansBean.getData().getResult().size() <= 0 && mMorePageNumber > NumericConstants.START_PAGE_NUMBER) {
                 ViewInject.toast(getString(R.string.noMoreData));
                 isShowLoadingMore = false;
                 dismissLoadingDialog();

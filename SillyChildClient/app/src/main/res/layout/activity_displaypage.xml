@@ -6,232 +6,283 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
-    <RelativeLayout
-        android:id="@+id/rl_top"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen262"
-        android:background="@mipmap/mine_background">
-
-        <TextView
-            android:id="@+id/tv_hminetouxiang"
-            android:layout_width="@dimen/dimen71"
-            android:layout_height="@dimen/dimen71"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/dimen29"
-            android:background="@drawable/shape_mine_dot"
-            android:visibility="visible" />
-
-        <ImageView
-            android:id="@+id/iv_minetouxiang"
-            android:layout_width="@dimen/dimen69"
-            android:layout_height="@dimen/dimen69"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/dimen30"
-            android:src="@mipmap/avatar"
-            android:visibility="visible" />
-
-        <TextView
-            android:id="@+id/tv_nickname"
-            style="@style/WrapWrap"
-            android:layout_below="@id/iv_minetouxiang"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/dimen9"
-            android:text="@string/loginOrRegister"
-            android:textColor="@color/whiteColors"
-            android:textSize="@dimen/textsize15"
-            android:visibility="visible" />
-
-        <TextView
-            android:id="@+id/tv_serialNumber"
-            style="@style/WrapWrap"
-            android:layout_below="@id/tv_nickname"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/dimen7"
-            android:text="SHZ0427"
-            android:textColor="@color/whiteColors"
-            android:textSize="@dimen/textsize10"
-            android:visibility="visible" />
-
-        <TextView
-            android:id="@+id/tv_synopsis"
-            style="@style/MatchWrap"
-            android:layout_below="@id/tv_serialNumber"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/dimen23"
-            android:gravity="center"
-            android:maxLines="2"
-            android:paddingLeft="@dimen/dimen24"
-            android:paddingRight="@dimen/dimen24"
-            android:text="简介:某年某月某日，下午某时，天气晴，我在某地我在某地我在某地我在某地我在某地我在某地，想念你。 "
-            android:textColor="@color/whiteColors"
-            android:textSize="@dimen/textsize11"
-            android:visibility="visible" />
-
-        <LinearLayout
-            android:id="@+id/ll_gfbz"
-            style="@style/MatchWrap"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="@dimen/dimen25"
-            android:layout_marginLeft="@dimen/dimen50"
-            android:layout_marginRight="@dimen/dimen50"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:id="@+id/ll_dynamicCollection"
-                style="@style/AutoWrap"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/tv_follow"
-                    style="@style/WrapWrap"
-                    android:text="0"
-                    android:textColor="@color/whiteColors"
-                    android:textSize="@dimen/textsize14" />
-
-                <TextView
-                    style="@style/WrapWrap"
-                    android:text="@string/follow"
-                    android:textColor="@color/whiteColors"
-                    android:textSize="@dimen/textsize12" />
-
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="@dimen/dimen1"
-                android:layout_height="@dimen/dimen16"
-                android:background="@color/whiteColors" />
-
-            <LinearLayout
-                android:id="@+id/ll_follow"
-                style="@style/AutoWrap"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/tv_fans"
-                    style="@style/WrapWrap"
-                    android:text="0"
-                    android:textColor="@color/whiteColors"
-                    android:textSize="@dimen/textsize14" />
-
-                <TextView
-                    style="@style/WrapWrap"
-                    android:text="@string/fans"
-                    android:textColor="@color/whiteColors"
-                    android:textSize="@dimen/textsize12" />
-
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="@dimen/dimen1"
-                android:layout_height="@dimen/dimen16"
-                android:background="@color/whiteColors" />
-
-
-            <LinearLayout
-                android:id="@+id/ll_footprint"
-                style="@style/AutoWrap"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/tv_beCollected"
-                    style="@style/WrapWrap"
-                    android:text="0"
-                    android:textColor="@color/whiteColors"
-                    android:textSize="@dimen/textsize14" />
-
-                <TextView
-                    style="@style/WrapWrap"
-                    android:text="@string/beCollected"
-                    android:textColor="@color/whiteColors"
-                    android:textSize="@dimen/textsize12" />
-
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="@dimen/dimen1"
-                android:layout_height="@dimen/dimen16"
-                android:background="@color/whiteColors" />
-
-            <LinearLayout
-                android:id="@+id/ll_tips"
-                style="@style/AutoWrap"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/tv_giveLike"
-                    style="@style/WrapWrap"
-                    android:text="0"
-                    android:textColor="@color/whiteColors"
-                    android:textSize="@dimen/textsize14" />
-
-                <TextView
-                    style="@style/WrapWrap"
-                    android:text="@string/giveLike"
-                    android:textColor="@color/whiteColors"
-                    android:textSize="@dimen/textsize12" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </RelativeLayout>
-
     <cn.bingoogolapple.refreshlayout.BGARefreshLayout
         android:id="@+id/mRefreshLayout"
         style="@style/MatchMatch"
-        android:layout_below="@id/rl_top"
         android:background="@color/background">
 
-        <!--<ScrollView style="@style/MatchMatch">-->
+        <com.common.cklibrary.utils.myview.ScrollInterceptScrollView
+            android:id="@+id/sv_displayPage"
+            style="@style/MatchMatch"
+            android:background="@color/background"
+            android:fillViewport="true"
+            android:scrollbars="none">
 
-            <!--<RelativeLayout style="@style/MatchMatch">-->
+            <RelativeLayout
+                style="@style/MatchMatch"
+                android:descendantFocusability="blocksDescendants">
+
+                <RelativeLayout
+                    android:id="@+id/rl_top"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen262"
+                    android:background="@mipmap/mine_background">
+
+                    <TextView
+                        android:id="@+id/tv_hminetouxiang"
+                        android:layout_width="@dimen/dimen71"
+                        android:layout_height="@dimen/dimen71"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/dimen29"
+                        android:background="@drawable/shape_mine_dot"
+                        android:visibility="visible" />
+
+                    <ImageView
+                        android:id="@+id/iv_minetouxiang"
+                        android:layout_width="@dimen/dimen69"
+                        android:layout_height="@dimen/dimen69"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/dimen30"
+                        android:src="@mipmap/avatar"
+                        android:visibility="visible" />
+
+                    <TextView
+                        android:id="@+id/tv_nickname"
+                        style="@style/WrapWrap"
+                        android:layout_below="@id/iv_minetouxiang"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/dimen9"
+                        android:text="@string/loginOrRegister"
+                        android:textColor="@color/whiteColors"
+                        android:textSize="@dimen/textsize15"
+                        android:visibility="visible" />
+
+                    <TextView
+                        android:id="@+id/tv_serialNumber"
+                        style="@style/WrapWrap"
+                        android:layout_below="@id/tv_nickname"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/dimen7"
+                        android:text="SHZ0427"
+                        android:textColor="@color/whiteColors"
+                        android:textSize="@dimen/textsize10"
+                        android:visibility="visible" />
+
+                    <TextView
+                        android:id="@+id/tv_synopsis"
+                        style="@style/MatchWrap"
+                        android:layout_below="@id/tv_serialNumber"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/dimen23"
+                        android:gravity="center"
+                        android:maxLines="2"
+                        android:paddingLeft="@dimen/dimen24"
+                        android:paddingRight="@dimen/dimen24"
+                        android:text="简介:某年某月某日，下午某时，天气晴，我在某地我在某地我在某地我在某地我在某地我在某地，想念你。 "
+                        android:textColor="@color/whiteColors"
+                        android:textSize="@dimen/textsize11"
+                        android:visibility="visible" />
+
+                    <LinearLayout
+                        android:id="@+id/ll_gfbz"
+                        style="@style/MatchWrap"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="@dimen/dimen25"
+                        android:layout_marginLeft="@dimen/dimen50"
+                        android:layout_marginRight="@dimen/dimen50"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:id="@+id/ll_dynamicCollection"
+                            style="@style/AutoWrap"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tv_follow"
+                                style="@style/WrapWrap"
+                                android:text="0"
+                                android:textColor="@color/whiteColors"
+                                android:textSize="@dimen/textsize14" />
+
+                            <TextView
+                                style="@style/WrapWrap"
+                                android:text="@string/follow"
+                                android:textColor="@color/whiteColors"
+                                android:textSize="@dimen/textsize12" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="@dimen/dimen1"
+                            android:layout_height="@dimen/dimen16"
+                            android:background="@color/whiteColors" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_follow"
+                            style="@style/AutoWrap"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tv_fans"
+                                style="@style/WrapWrap"
+                                android:text="0"
+                                android:textColor="@color/whiteColors"
+                                android:textSize="@dimen/textsize14" />
+
+                            <TextView
+                                style="@style/WrapWrap"
+                                android:text="@string/fans"
+                                android:textColor="@color/whiteColors"
+                                android:textSize="@dimen/textsize12" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="@dimen/dimen1"
+                            android:layout_height="@dimen/dimen16"
+                            android:background="@color/whiteColors" />
+
+
+                        <LinearLayout
+                            android:id="@+id/ll_footprint"
+                            style="@style/AutoWrap"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tv_beCollected"
+                                style="@style/WrapWrap"
+                                android:text="0"
+                                android:textColor="@color/whiteColors"
+                                android:textSize="@dimen/textsize14" />
+
+                            <TextView
+                                style="@style/WrapWrap"
+                                android:text="@string/beCollected"
+                                android:textColor="@color/whiteColors"
+                                android:textSize="@dimen/textsize12" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="@dimen/dimen1"
+                            android:layout_height="@dimen/dimen16"
+                            android:background="@color/whiteColors" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_tips"
+                            style="@style/AutoWrap"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tv_giveLike"
+                                style="@style/WrapWrap"
+                                android:text="0"
+                                android:textColor="@color/whiteColors"
+                                android:textSize="@dimen/textsize14" />
+
+                            <TextView
+                                style="@style/WrapWrap"
+                                android:text="@string/giveLike"
+                                android:textColor="@color/whiteColors"
+                                android:textSize="@dimen/textsize12" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/rv"
-                    style="@style/MatchMatch"
+                    style="@style/MatchWrap"
+                    android:layout_below="@id/rl_top"
                     android:layout_marginBottom="@dimen/dimen20"
-                    android:layout_marginTop="@dimen/dimen20"
-                    android:overScrollMode="never"
+                    android:layout_marginTop="@dimen/dimen30"
                     android:paddingLeft="@dimen/dimen2"
                     android:paddingRight="@dimen/dimen2"
-                    android:scrollbars="none"
                     tools:listitem="@layout/item_mystrategy" />
-            <!--</RelativeLayout>-->
-        <!--</ScrollView>-->
+
+                <TextView
+                    android:id="@+id/tv_hintText"
+                    style="@style/WrapWrap"
+                    android:layout_below="@id/rl_top"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/dimen100"
+                    android:gravity="center"
+                    android:text="---"
+                    android:visibility="gone"
+                    android:textColor="@color/titletextcolors"
+                    android:textSize="@dimen/textsize13" />
+
+
+                <!--<include-->
+                <!--layout="@layout/common_error"-->
+                <!--android:layout_below="@id/rl_top"-->
+                <!--tools:ignore="IncludeLayoutParam" />-->
+
+                <TextView
+                    android:id="@+id/tv_followN"
+                    android:layout_width="@dimen/dimen118"
+                    android:layout_height="@dimen/dimen33"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/dimen246"
+                    android:background="@drawable/shape_displaypage"
+                    android:gravity="center"
+                    android:text="@string/follow"
+                    android:textColor="@color/whiteColors"
+                    android:textSize="@dimen/textsize16" />
+
+                <ImageView
+                    android:id="@+id/img_back1"
+                    android:layout_width="@dimen/dimen52"
+                    android:layout_height="@dimen/dimen45"
+                    android:paddingBottom="@dimen/dimen15"
+                    android:paddingLeft="@dimen/dimen22"
+                    android:paddingRight="@dimen/dimen22"
+                    android:paddingTop="@dimen/dimen15"
+                    android:src="@mipmap/back3" />
+
+
+            </RelativeLayout>
+
+        </com.common.cklibrary.utils.myview.ScrollInterceptScrollView>
 
     </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
 
-    <!--<include-->
-        <!--layout="@layout/common_error"-->
-        <!--android:layout_below="@id/rl_top"-->
-        <!--tools:ignore="IncludeLayoutParam" />-->
 
-    <TextView
-        android:id="@+id/tv_followN"
-        android:layout_width="@dimen/dimen118"
-        android:layout_height="@dimen/dimen33"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/dimen246"
-        android:background="@drawable/shape_displaypage"
-        android:gravity="center"
-        android:text="@string/follow"
-        android:textColor="@color/whiteColors"
-        android:textSize="@dimen/textsize16" />
+    <RelativeLayout
+        android:id="@+id/rl_title"
+        style="@style/Match45"
+        android:background="@android:color/transparent"
+        android:visibility="visible">
 
-    <ImageView
-        android:id="@+id/img_back"
-        android:layout_width="@dimen/dimen52"
-        android:layout_height="@dimen/dimen44"
-        android:paddingBottom="@dimen/dimen15"
-        android:paddingLeft="@dimen/dimen22"
-        android:paddingRight="@dimen/dimen22"
-        android:paddingTop="@dimen/dimen15"
-        android:src="@mipmap/back3" />
+        <ImageView
+            android:id="@+id/img_back"
+            android:layout_width="@dimen/dimen52"
+            android:layout_height="match_parent"
+            android:paddingBottom="@dimen/dimen15"
+            android:paddingLeft="@dimen/dimen22"
+            android:paddingRight="@dimen/dimen22"
+            android:paddingTop="@dimen/dimen15"
+            android:src="@mipmap/back3" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/WrapWrap"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="@string/mine"
+            android:textColor="@android:color/transparent"
+            android:textSize="@dimen/textsize17" />
+
+    </RelativeLayout>
+
 
 </RelativeLayout>
 

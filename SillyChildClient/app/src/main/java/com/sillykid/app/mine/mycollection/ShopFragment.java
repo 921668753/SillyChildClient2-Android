@@ -20,7 +20,8 @@ import com.common.cklibrary.utils.rx.MsgEvent;
 import com.sillykid.app.R;
 import com.sillykid.app.adapter.mine.mycollection.ShopViewAdapter;
 import com.sillykid.app.constant.NumericConstants;
-import com.sillykid.app.entity.mine.mycollection.MyCollectionBean;
+import com.sillykid.app.entity.mine.mycollection.GoodBean;
+import com.sillykid.app.entity.mine.mycollection.ShopBean;
 import com.sillykid.app.loginregister.LoginActivity;
 import com.sillykid.app.mall.goodslist.shop.ShopActivity;
 import com.sillykid.app.mine.mycollection.dialog.DeleteCollectionDialog;
@@ -98,7 +99,7 @@ public class ShopFragment extends BaseFragment implements CollectionContract.Vie
      * 弹框
      */
     public void initDeleteCollectionDialog() {
-        deleteCollectionDialog = new DeleteCollectionDialog(aty, getString(R.string.determineDeleteCollection)) {
+        deleteCollectionDialog = new DeleteCollectionDialog(aty, getString(R.string.determineDeleteShopCollection)) {
             @Override
             public void deleteCollectionDo(int addressId) {
                 showLoadingDialog(getString(R.string.deleteLoad));
@@ -175,13 +176,12 @@ public class ShopFragment extends BaseFragment implements CollectionContract.Vie
             }
             if (deleteCollectionDialog != null && !deleteCollectionDialog.isShowing()) {
                 deleteCollectionDialog.show();
-                deleteCollectionDialog.setCollectionId(mAdapter.getItem(position).getGoods_id());
+                deleteCollectionDialog.setCollectionId(mAdapter.getItem(position).getStore_id());
             }
         } else if (childView.getId() == R.id.tv_enterStore) {
             Intent intent = new Intent(aty, ShopActivity.class);
-            intent.putExtra("goodName", mAdapter.getItem(position).getName());
-            intent.putExtra("goodsid", mAdapter.getItem(position).getGoods_id());
-            intent.putExtra("isRefresh", 1);
+            intent.putExtra("storeid", mAdapter.getItem(position).getStore_id());
+            intent.putExtra("isRefresh", 0);
             startActivityForResult(intent, REQUEST_CODE_PREVIEW);
         }
     }
@@ -199,13 +199,13 @@ public class ShopFragment extends BaseFragment implements CollectionContract.Vie
             mRefreshLayout.setPullDownRefreshEnable(true);
             ll_commonError.setVisibility(View.GONE);
             mRefreshLayout.setVisibility(View.VISIBLE);
-            MyCollectionBean myCollectionBean = (MyCollectionBean) JsonUtil.getInstance().json2Obj(success, MyCollectionBean.class);
-            if (myCollectionBean.getData() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
-                    myCollectionBean.getData().size() <= 0 && mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
+            ShopBean shopBean = (ShopBean) JsonUtil.getInstance().json2Obj(success, ShopBean.class);
+            if (shopBean.getData() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
+                    shopBean.getData().size() <= 0 && mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
                 errorMsg(getString(R.string.noCollectedShop), 0);
                 return;
-            } else if (myCollectionBean.getData() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
-                    myCollectionBean.getData().size() <= 0 && mMorePageNumber > NumericConstants.START_PAGE_NUMBER) {
+            } else if (shopBean.getData() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
+                    shopBean.getData().size() <= 0 && mMorePageNumber > NumericConstants.START_PAGE_NUMBER) {
                 ViewInject.toast(getString(R.string.noMoreData));
                 isShowLoadingMore = false;
                 dismissLoadingDialog();
@@ -215,10 +215,10 @@ public class ShopFragment extends BaseFragment implements CollectionContract.Vie
             if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
                 mRefreshLayout.endRefreshing();
                 mAdapter.clear();
-                mAdapter.addNewData(myCollectionBean.getData());
+                mAdapter.addNewData(shopBean.getData());
             } else {
                 mRefreshLayout.endLoadingMore();
-                mAdapter.addMoreData(myCollectionBean.getData());
+                mAdapter.addMoreData(shopBean.getData());
             }
             dismissLoadingDialog();
         } else if (flag == 1) {

@@ -103,6 +103,11 @@ public class URLConstants {
     public static String FAVORITADD = APIURL + "favorite/add.do";
 
     /**
+     * 检测用户是否收藏店铺
+     */
+    public static String CHECKFAVORITED = APIURL + "goods/check_favorited.do";
+
+    /**
      * 首页---更多分类----商品列表----商品详情----取消收藏商品
      */
     public static String UNFAVORIT = APIURL + "favorite/unfavorite.do";
@@ -154,6 +159,11 @@ public class URLConstants {
      * 社区----帖子列表
      */
     public static String POSTLIST = APIURL + "post/get_post_list.do";
+
+    /**
+     * 社区----检索会员的信息
+     */
+    public static String MEMBERLIST = APIURL + "post/get_member_list.do";
 
     /**
      * 社区----获取帖子详情
@@ -393,6 +403,11 @@ public class URLConstants {
      * 获取用户发布的帖子
      */
     public static String USERPOST = APIURL + "post/get_user_post.do";
+
+    /**
+     * 用户发布帖子
+     */
+    public static String ADDPOST = APIURL + "post/add_post.do";
 
     /**
      * 获取购物车商品列表

@@ -14,7 +14,7 @@ public interface SearchPeopleContract {
         /**
          * 搜索发现
          */
-        void getStrategy();
+        void getMemberList(String name,int pageno);
 
     }
 

@@ -1,7 +1,11 @@
 package com.sillykid.app.community.search;
 
+import com.common.cklibrary.common.KJActivityStack;
 import com.common.cklibrary.utils.httputil.HttpUtilParams;
+import com.common.cklibrary.utils.httputil.ResponseListener;
+import com.kymjs.common.StringUtils;
 import com.kymjs.rxvolley.client.HttpParams;
+import com.sillykid.app.retrofit.RequestClient;
 
 /**
  * Created by ruitu on 2016/9/24.
@@ -17,18 +21,24 @@ public class SearchPeoplePresenter implements SearchPeopleContract.Presenter {
 
 
     @Override
-    public void getStrategy() {
+    public void getMemberList(String name, int pageno) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-//        RequestClient.getHotStrategy(httpParams, new ResponseListener<String>() {
-//            @Override
-//            public void onSuccess(String response) {
-//                mView.getSuccess(response, 1);
-//            }
-//
-//            @Override
-//            public void onFailure(String msg) {
-//                mView.errorMsg(msg, 0);
-//            }
-//        });
+        if (!StringUtils.isEmpty(name)) {
+            httpParams.put("name", name);
+        }
+        httpParams.put("pageno", pageno);
+        httpParams.put("pagesize", 10);
+        RequestClient.getMemberList(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
+            @Override
+            public void onSuccess(String response) {
+                mView.getSuccess(response, 0);
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                mView.errorMsg(msg, 0);
+            }
+        });
     }
+
 }

@@ -175,12 +175,14 @@ public class SearchArticleActivity extends BaseActivity implements SearchArticle
             mRefreshLayout.setVisibility(View.VISIBLE);
             mRefreshLayout.setPullDownRefreshEnable(true);
             CommunityBean communityBean = (CommunityBean) JsonUtil.getInstance().json2Obj(success, CommunityBean.class);
-            if (communityBean.getData() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER || communityBean.getData().getTotalCount() <= 0 &&
-                    mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
-                errorMsg(getString(R.string.noMovement), 1);
+            if (communityBean.getData() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
+                    communityBean.getData().getResultX() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
+                    communityBean.getData().getResultX().size() <= 0 && mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
+                errorMsg(getString(R.string.noSearchArticle), 1);
                 return;
             } else if (communityBean.getData() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
-                    communityBean.getData().getTotalCount() <= 0 && mMorePageNumber > NumericConstants.START_PAGE_NUMBER) {
+                    communityBean.getData().getResultX() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
+                    communityBean.getData().getResultX().size() <= 0 && mMorePageNumber > NumericConstants.START_PAGE_NUMBER) {
                 ViewInject.toast(getString(R.string.noMoreData));
                 isShowLoadingMore = false;
                 dismissLoadingDialog();
@@ -188,9 +190,9 @@ public class SearchArticleActivity extends BaseActivity implements SearchArticle
                 return;
             }
             if (thread != null && !thread.isAlive()) {
-                thread.run();
-                return;
+                thread.interrupted();
             }
+            thread = null;
             thread = new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -250,7 +252,7 @@ public class SearchArticleActivity extends BaseActivity implements SearchArticle
             img_err.setImageResource(R.mipmap.no_network);
             tv_hintText.setText(msg);
             tv_button.setText(getString(R.string.retry));
-        } else if (msg.contains(getString(R.string.noMovement))) {
+        } else if (msg.contains(getString(R.string.noSearchArticle))) {
             img_err.setImageResource(R.mipmap.no_data);
             tv_hintText.setText(msg);
             tv_button.setVisibility(View.GONE);
@@ -267,7 +269,7 @@ public class SearchArticleActivity extends BaseActivity implements SearchArticle
         mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
         mRefreshLayout.endRefreshing();
         showLoadingDialog(getString(R.string.dataLoad));
-        //   ((SearchArticleContract.Presenter) mPresenter).getPostList(post_title, nickname, classification_id, mMorePageNumber);
+        ((SearchArticleContract.Presenter) mPresenter).getPostList(name, mMorePageNumber);
     }
 
     @Override
@@ -283,7 +285,7 @@ public class SearchArticleActivity extends BaseActivity implements SearchArticle
             return false;
         }
         showLoadingDialog(getString(R.string.dataLoad));
-        //  ((SearchArticleContract.Presenter) mPresenter).getPostList(post_title, nickname, classification_id, mMorePageNumber);
+        ((SearchArticleContract.Presenter) mPresenter).getPostList(name, mMorePageNumber);
         return true;
     }
 
@@ -292,10 +294,10 @@ public class SearchArticleActivity extends BaseActivity implements SearchArticle
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {// 如果等于1
             name = data.getStringExtra("name");
-////            mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
+            mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
 ////            showLoadingDialog(getString(R.string.dataLoad));
 ////            ((SearchArticleContract.Presenter) mPresenter).getGoodsList(mMorePageNumber, cat, sort, keyword, mark);
-//            mRefreshLayout.beginRefreshing();
+            mRefreshLayout.beginRefreshing();
         }
     }
 

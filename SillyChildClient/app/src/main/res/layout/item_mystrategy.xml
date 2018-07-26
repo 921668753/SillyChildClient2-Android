@@ -49,6 +49,7 @@
             android:textSize="@dimen/textsize9" />
 
         <LinearLayout
+            android:id="@+id/ll_attention"
             style="@style/WrapMatch"
             android:gravity="center_vertical"
             android:orientation="horizontal">

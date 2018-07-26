@@ -6,8 +6,7 @@
 
     <cn.bingoogolapple.refreshlayout.BGARefreshLayout
         android:id="@+id/mRefreshLayout"
-        style="@style/MatchAuto"
-        android:paddingTop="@dimen/dimen10">
+        style="@style/MatchAuto">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv"

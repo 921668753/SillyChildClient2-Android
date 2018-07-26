@@ -9,8 +9,13 @@ import com.common.cklibrary.common.BaseFragment;
 import com.common.cklibrary.common.BindView;
 import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.ActivityTitleUtils;
+import com.common.cklibrary.utils.JsonUtil;
+import com.common.cklibrary.utils.rx.MsgEvent;
 import com.sillykid.app.R;
+import com.sillykid.app.constant.NumericConstants;
+import com.sillykid.app.entity.mall.goodslist.shop.ShopBean;
 import com.sillykid.app.loginregister.LoginActivity;
+import com.sillykid.app.mine.mycollection.CollectionContract;
 
 import cn.bingoogolapple.titlebar.BGATitleBar;
 
@@ -58,7 +63,8 @@ public class ShopActivity extends BaseActivity implements ShopContract.View {
     @Override
     public void initWidget() {
         super.initWidget();
-        titlebar.setRightDrawable(getResources().getDrawable(R.mipmap.hp_collection));
+        titlebar.setTitleText(R.string.shop);
+        titlebar.setRightDrawable(getResources().getDrawable(R.mipmap.store_collection1));
         BGATitleBar.SimpleDelegate simpleDelegate = new BGATitleBar.SimpleDelegate() {
             @Override
             public void onClickLeftCtv() {
@@ -81,7 +87,7 @@ public class ShopActivity extends BaseActivity implements ShopContract.View {
                 }
             }
         };
-        ActivityTitleUtils.initToolbar(aty, getString(R.string.shop), null, true, R.id.titlebar, simpleDelegate);
+        titlebar.setDelegate(simpleDelegate);
         if (chageIcon == 0) {
             cleanColors(0);
             changeFragment(contentFragment);
@@ -91,6 +97,7 @@ public class ShopActivity extends BaseActivity implements ShopContract.View {
             changeFragment(contentFragment1);
             chageIcon = 1;
         }
+        ((ShopContract.Presenter) mPresenter).getCheckFavorited(storeid);
     }
 
     public void changeFragment(BaseFragment targetFragment) {
@@ -145,22 +152,40 @@ public class ShopActivity extends BaseActivity implements ShopContract.View {
     @Override
     public void getSuccess(String success, int flag) {
         if (flag == 0) {
-
-            if (favorited) {
-                titlebar.setRightDrawable(getResources().getDrawable(R.mipmap.hp_collection1));
+            ShopBean shopBean = (ShopBean) JsonUtil.getInstance().json2Obj(success, ShopBean.class);
+            if (shopBean.getData().getResult() == 1) {
+                favorited = true;
             } else {
-                titlebar.setRightDrawable(getResources().getDrawable(R.mipmap.hp_collection));
+                favorited = false;
+            }
+            if (favorited) {
+                titlebar.setRightDrawable(getResources().getDrawable(R.mipmap.store_collection));
+            } else {
+                titlebar.setRightDrawable(getResources().getDrawable(R.mipmap.store_collection1));
             }
         } else if (flag == 1) {
             favorited = true;
             isRefresh = 1;
-            titlebar.setRightDrawable(getResources().getDrawable(R.mipmap.hp_collection1));
+            titlebar.setRightDrawable(getResources().getDrawable(R.mipmap.store_collection));
+            dismissLoadingDialog();
             ViewInject.toast(getString(R.string.collectionSuccess));
         } else if (flag == 2) {
             favorited = false;
             isRefresh = 1;
-            titlebar.setRightDrawable(getResources().getDrawable(R.mipmap.hp_collection));
+            titlebar.setRightDrawable(getResources().getDrawable(R.mipmap.store_collection1));
             ViewInject.toast(getString(R.string.uncollectible));
+            dismissLoadingDialog();
+        }
+    }
+
+    /**
+     * 在接收消息的时候，选择性接收消息：
+     */
+    @Override
+    public void callMsgEvent(MsgEvent msgEvent) {
+        super.callMsgEvent(msgEvent);
+        if (((String) msgEvent.getData()).equals("RxBusLoginEvent") && mPresenter != null) {
+            ((ShopContract.Presenter) mPresenter).getCheckFavorited(storeid);
         }
     }
 

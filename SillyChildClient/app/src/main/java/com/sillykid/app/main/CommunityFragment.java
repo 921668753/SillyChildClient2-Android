@@ -270,12 +270,14 @@ public class CommunityFragment extends BaseFragment implements CommunityContract
             mRefreshLayout.setVisibility(View.VISIBLE);
             mRefreshLayout.setPullDownRefreshEnable(true);
             CommunityBean communityBean = (CommunityBean) JsonUtil.getInstance().json2Obj(success, CommunityBean.class);
-            if (communityBean.getData() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER || communityBean.getData().getTotalCount() <= 0 &&
-                    mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
+            if (communityBean.getData() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
+                    communityBean.getData().getResultX() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
+                    communityBean.getData().getResultX().size() <= 0 && mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
                 errorMsg(getString(R.string.noMovement), 1);
                 return;
             } else if (communityBean.getData() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
-                    communityBean.getData().getTotalCount() <= 0 && mMorePageNumber > NumericConstants.START_PAGE_NUMBER) {
+                    communityBean.getData().getResultX() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
+                    communityBean.getData().getResultX().size() <= 0 && mMorePageNumber > NumericConstants.START_PAGE_NUMBER) {
                 ViewInject.toast(getString(R.string.noMoreData));
                 isShowLoadingMore = false;
                 dismissLoadingDialog();
@@ -283,9 +285,9 @@ public class CommunityFragment extends BaseFragment implements CommunityContract
                 return;
             }
             if (thread != null && !thread.isAlive()) {
-                thread.run();
-                return;
+                thread.interrupted();
             }
+            thread = null;
             thread = new Thread(new Runnable() {
                 @Override
                 public void run() {

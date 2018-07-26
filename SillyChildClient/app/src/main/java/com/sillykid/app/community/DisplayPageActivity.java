@@ -1,13 +1,18 @@
 package com.sillykid.app.community;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.common.cklibrary.common.BaseActivity;
@@ -35,10 +40,14 @@ import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 /**
  * 个人发布展示页面
  */
-public class DisplayPageActivity extends BaseActivity implements DisplayPageContract.View, BGARefreshLayout.BGARefreshLayoutDelegate, BGAOnRVItemClickListener {
+@SuppressLint("NewApi")
+public class DisplayPageActivity extends BaseActivity implements DisplayPageContract.View, View.OnScrollChangeListener, BGARefreshLayout.BGARefreshLayoutDelegate, BGAOnRVItemClickListener {
 
     @BindView(id = R.id.img_back, click = true)
     private ImageView img_back;
+
+    @BindView(id = R.id.img_back1, click = true)
+    private ImageView img_back1;
 
     @BindView(id = R.id.iv_minetouxiang)
     private ImageView iv_minetouxiang;
@@ -75,9 +84,19 @@ public class DisplayPageActivity extends BaseActivity implements DisplayPageCont
 
     private int is_concern = 0;
 
-
     @BindView(id = R.id.mRefreshLayout)
     private BGARefreshLayout mRefreshLayout;
+
+    @BindView(id = R.id.sv_displayPage)
+    private ScrollView sv_displayPage;
+
+
+    @BindView(id = R.id.rl_title)
+    private RelativeLayout rl_title;
+
+    @BindView(id = R.id.tv_title)
+    private TextView tv_title;
+
 
     @BindView(id = R.id.rv)
     private RecyclerView recyclerview;
@@ -91,8 +110,8 @@ public class DisplayPageActivity extends BaseActivity implements DisplayPageCont
 //    @BindView(id = R.id.img_err)
 //    private ImageView img_err;
 //
-//    @BindView(id = R.id.tv_hintText)
-//    private TextView tv_hintText;
+    @BindView(id = R.id.tv_hintText)
+    private TextView tv_hintText;
 //
 //    @BindView(id = R.id.tv_button, click = true)
 //    private TextView tv_button;
@@ -114,13 +133,12 @@ public class DisplayPageActivity extends BaseActivity implements DisplayPageCont
 
     private SpacesItemDecoration spacesItemDecoration = null;
 
-    private StaggeredGridLayoutManager layoutManager;
-
     private Thread thread = null;
 
     private List<OtherUserPostBean.DataBean.ListBean> list = null;
 
     private DisplayPageViewAdapter mAdapter;
+    private ArrayList<OtherUserPostBean.DataBean.ListBean> list1;
 
     @Override
 
@@ -134,11 +152,10 @@ public class DisplayPageActivity extends BaseActivity implements DisplayPageCont
         user_id = getIntent().getIntExtra("user_id", 0);
         isRefresh = getIntent().getIntExtra("isRefresh", 0);
         list = new ArrayList<OtherUserPostBean.DataBean.ListBean>();
+        list1 = new ArrayList<OtherUserPostBean.DataBean.ListBean>();
         mPresenter = new DisplayPagePresenter(this);
         mAdapter = new DisplayPageViewAdapter(recyclerview);
         spacesItemDecoration = new SpacesItemDecoration(7, 14);
-        layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
-        layoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);//不设置的话，图片闪烁错位，有可能有整列错位的情况。
     }
 
     @Override
@@ -146,6 +163,7 @@ public class DisplayPageActivity extends BaseActivity implements DisplayPageCont
         super.initWidget();
         RefreshLayoutUtil.initRefreshLayout(mRefreshLayout, this, aty, true);
         initRecyclerView();
+        sv_displayPage.setOnScrollChangeListener(this);
         showLoadingDialog(getString(R.string.dataLoad));
         ((DisplayPageContract.Presenter) mPresenter).getOtherUserInfo(user_id);
     }
@@ -154,12 +172,14 @@ public class DisplayPageActivity extends BaseActivity implements DisplayPageCont
      * 设置RecyclerView控件部分属性
      */
     private void initRecyclerView() {
+        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        //   layoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);//不设置的话，图片闪烁错位，有可能有整列错位的情况。
         layoutManager.setAutoMeasureEnabled(true);
         recyclerview.setLayoutManager(layoutManager);
-        //设置item之间的间隔
-        recyclerview.addItemDecoration(spacesItemDecoration);
         recyclerview.setHasFixedSize(true);
         recyclerview.setNestedScrollingEnabled(false);
+        //设置item之间的间隔
+        recyclerview.addItemDecoration(spacesItemDecoration);
         recyclerview.setAdapter(mAdapter);
         mAdapter.setOnRVItemClickListener(this);
         recyclerview.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -176,6 +196,13 @@ public class DisplayPageActivity extends BaseActivity implements DisplayPageCont
         super.widgetClick(v);
         switch (v.getId()) {
             case R.id.img_back:
+                if (isRefresh == 1) {
+                    Intent intent = getIntent();
+                    setResult(RESULT_OK, intent);
+                }
+                finish();
+                break;
+            case R.id.img_back1:
                 if (isRefresh == 1) {
                     Intent intent = getIntent();
                     setResult(RESULT_OK, intent);
@@ -228,7 +255,7 @@ public class DisplayPageActivity extends BaseActivity implements DisplayPageCont
         mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
         mRefreshLayout.endRefreshing();
         showLoadingDialog(getString(R.string.dataLoad));
-        ((DisplayPageContract.Presenter) mPresenter).getOtherUserPost(user_id,  mMorePageNumber);
+        ((DisplayPageContract.Presenter) mPresenter).getOtherUserInfo(user_id);
     }
 
     @Override
@@ -244,7 +271,7 @@ public class DisplayPageActivity extends BaseActivity implements DisplayPageCont
             return false;
         }
         showLoadingDialog(getString(R.string.dataLoad));
-        ((DisplayPageContract.Presenter) mPresenter).getOtherUserPost(user_id,  mMorePageNumber);
+        ((DisplayPageContract.Presenter) mPresenter).getOtherUserPost(user_id, mMorePageNumber);
         return true;
     }
 
@@ -259,6 +286,7 @@ public class DisplayPageActivity extends BaseActivity implements DisplayPageCont
             OtherUserInfoBean otherUserInfoBean = (OtherUserInfoBean) JsonUtil.getInstance().json2Obj(success, OtherUserInfoBean.class);
             GlideImageLoader.glideLoader(this, otherUserInfoBean.getData().getFace(), iv_minetouxiang, 0, R.mipmap.avatar);
             tv_nickname.setText(otherUserInfoBean.getData().getNickname());
+            tv_title.setText(otherUserInfoBean.getData().getNickname());
             tv_serialNumber.setText(otherUserInfoBean.getData().getShz());
             tv_synopsis.setText(otherUserInfoBean.getData().getSignature());
             tv_follow.setText(otherUserInfoBean.getData().getConcern_number());
@@ -268,26 +296,28 @@ public class DisplayPageActivity extends BaseActivity implements DisplayPageCont
             is_concern = otherUserInfoBean.getData().getIs_concern();
             if (is_concern == 1) {
                 tv_followN.setText(getString(R.string.followed));
-                tv_followN.setBackgroundResource(R.drawable.shape_code1);
-                tv_followN.setTextColor(getResources().getColor(R.color.tabColors));
+//                tv_followN.setBackgroundResource(R.drawable.shape_code1);
+//                tv_followN.setTextColor(getResources().getColor(R.color.tabColors));
             } else {
                 tv_followN.setText(getString(R.string.follow));
-                tv_followN.setBackgroundResource(R.drawable.shape_displaypage);
-                tv_followN.setTextColor(getResources().getColor(R.color.whiteColors));
+//                tv_followN.setBackgroundResource(R.drawable.shape_displaypage);
+//                tv_followN.setTextColor(getResources().getColor(R.color.whiteColors));
             }
-            mRefreshLayout.beginRefreshing();
+            ((DisplayPageContract.Presenter) mPresenter).getOtherUserPost(user_id, mMorePageNumber);
         } else if (flag == 1) {
             isShowLoadingMore = true;
-         //   ll_commonError.setVisibility(View.GONE);
+            tv_hintText.setVisibility(View.GONE);
             mRefreshLayout.setVisibility(View.VISIBLE);
             mRefreshLayout.setPullDownRefreshEnable(true);
             OtherUserPostBean otherUserPostBean = (OtherUserPostBean) JsonUtil.getInstance().json2Obj(success, OtherUserPostBean.class);
-            if (otherUserPostBean.getData() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER || otherUserPostBean.getData().getTotalCount() <= 0 &&
-                    mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
+            if (otherUserPostBean.getData() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
+                    otherUserPostBean.getData().getList() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
+                    otherUserPostBean.getData().getList().size() <= 0 && mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
                 errorMsg(getString(R.string.noMovement), 1);
                 return;
             } else if (otherUserPostBean.getData() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
-                    otherUserPostBean.getData().getTotalCount() <= 0 && mMorePageNumber > NumericConstants.START_PAGE_NUMBER) {
+                    otherUserPostBean.getData().getList() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
+                    otherUserPostBean.getData().getList().size() <= 0 && mMorePageNumber > NumericConstants.START_PAGE_NUMBER) {
                 ViewInject.toast(getString(R.string.noMoreData));
                 isShowLoadingMore = false;
                 dismissLoadingDialog();
@@ -295,9 +325,9 @@ public class DisplayPageActivity extends BaseActivity implements DisplayPageCont
                 return;
             }
             if (thread != null && !thread.isAlive()) {
-                thread.run();
-                return;
+                thread.interrupted();
             }
+            thread = null;
             thread = new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -310,18 +340,22 @@ public class DisplayPageActivity extends BaseActivity implements DisplayPageCont
                         }
                         list.add(otherUserPostBean.getData().getList().get(i));
                     }
-                    mMorePageNumber = otherUserPostBean.getData().getCurrentPageNo();
-                    totalPageNumber = otherUserPostBean.getData().getTotalPageCount();
                     aty.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
+                            mMorePageNumber = otherUserPostBean.getData().getCurrentPageNo();
+                            totalPageNumber = otherUserPostBean.getData().getTotalPageCount();
                             if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
                                 mRefreshLayout.endRefreshing();
                                 mAdapter.clear();
                                 mAdapter.addNewData(list);
                             } else {
+                                list1.clear();
+                                list1.addAll(mAdapter.getData());
+                                list1.addAll(list);
+                                mAdapter.clear();
                                 mRefreshLayout.endLoadingMore();
-                                mAdapter.addMoreData(list);
+                                mAdapter.addNewData(list1);
                             }
                             dismissLoadingDialog();
                         }
@@ -333,14 +367,14 @@ public class DisplayPageActivity extends BaseActivity implements DisplayPageCont
             if (is_concern == 1) {
                 is_concern = 0;
                 tv_follow.setText(getString(R.string.follow));
-                tv_follow.setBackgroundResource(R.drawable.shape_follow);
-                tv_follow.setTextColor(getResources().getColor(R.color.greenColors));
+//                tv_follow.setBackgroundResource(R.drawable.shape_follow);
+//                tv_follow.setTextColor(getResources().getColor(R.color.greenColors));
                 ViewInject.toast(getString(R.string.focusSuccess));
             } else {
                 is_concern = 1;
                 tv_follow.setText(getString(R.string.followed));
-                tv_follow.setBackgroundResource(R.drawable.shape_followed);
-                tv_follow.setTextColor(getResources().getColor(R.color.tabColors));
+//                tv_follow.setBackgroundResource(R.drawable.shape_followed);
+//                tv_follow.setTextColor(getResources().getColor(R.color.tabColors));
                 ViewInject.toast(getString(R.string.attentionSuccess));
             }
             dismissLoadingDialog();
@@ -357,10 +391,10 @@ public class DisplayPageActivity extends BaseActivity implements DisplayPageCont
             } else {
                 mRefreshLayout.endLoadingMore();
             }
-            mRefreshLayout.setPullDownRefreshEnable(false);
-            mRefreshLayout.setVisibility(View.GONE);
+//            mRefreshLayout.setPullDownRefreshEnable(false);
+//            mRefreshLayout.setVisibility(View.GONE);
 //            ll_commonError.setVisibility(View.VISIBLE);
-//            tv_hintText.setVisibility(View.VISIBLE);
+            tv_hintText.setVisibility(View.VISIBLE);
 //            tv_button.setVisibility(View.VISIBLE);
 //            if (isLogin(msg)) {
 //                img_err.setImageResource(R.mipmap.no_login);
@@ -372,15 +406,12 @@ public class DisplayPageActivity extends BaseActivity implements DisplayPageCont
 //                img_err.setImageResource(R.mipmap.no_network);
 //                tv_hintText.setText(msg);
 //                tv_button.setText(getString(R.string.retry));
-//            } else if (msg.contains(getString(R.string.noMovement))) {
-//                img_err.setImageResource(R.mipmap.no_data);
-//                tv_hintText.setText(msg);
-//                tv_button.setVisibility(View.GONE);
-//            } else {
-//                img_err.setImageResource(R.mipmap.no_data);
-//                tv_hintText.setText(msg);
-//                tv_button.setText(getString(R.string.retry));
-//            }
+//            } else
+            if (msg.contains(getString(R.string.noMovement))) {
+                tv_hintText.setText(msg);
+            } else {
+                tv_hintText.setText(msg);
+            }
             return;
         }
         if (isLogin(msg)) {
@@ -395,11 +426,41 @@ public class DisplayPageActivity extends BaseActivity implements DisplayPageCont
         super.onDestroy();
         list.clear();
         list = null;
+        list1.clear();
+        list1 = null;
         if (thread != null) {
             thread.interrupted();
         }
         thread = null;
         mAdapter.clear();
         mAdapter = null;
+    }
+
+    @Override
+    public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+        if (scrollY <= 0) {
+            img_back.setImageDrawable(null);
+            rl_title.setBackgroundColor(Color.TRANSPARENT);
+            //                          设置文字颜色，黑色，加透明度
+            tv_title.setTextColor(Color.TRANSPARENT);
+            Log.e("111", "y <= 0");
+        } else if (scrollY > 0 && scrollY <= 200) {
+            float scale = (float) scrollY / 200;
+            float alpha = (255 * scale);
+            // 只是layout背景透明(仿知乎滑动效果)白色透明
+            rl_title.setBackgroundColor(Color.argb((int) alpha, 255, 255, 255));
+            //    设置文字颜色，黑色，加透明度
+            tv_title.setTextColor(Color.argb((int) alpha, 0, 0, 0));
+            img_back.setImageResource(R.mipmap.back3);
+            Log.e("111", "y > 0 && y <= imageHeight");
+        } else {
+//                          白色不透明
+            rl_title.setBackgroundColor(Color.argb((int) 255, 255, 255, 255));
+            //                          设置文字颜色
+            //黑色
+            tv_title.setTextColor(Color.argb((int) 255, 0, 0, 0));
+            img_back.setImageResource(R.mipmap.back);
+        }
+
     }
 }

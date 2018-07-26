@@ -95,13 +95,13 @@
         <ImageView
             android:id="@+id/img_trip"
             style="@style/Image20"
-            android:src="@mipmap/tab_trip" />
+            android:src="@mipmap/tab_activity" />
 
         <TextView
             android:id="@+id/tv_trip"
             style="@style/WrapWrap"
             android:layout_marginTop="@dimen/dimen4"
-            android:text="@string/trip"
+            android:text="@string/activity"
             android:textColor="@color/textColor"
             android:textSize="@dimen/textsize9" />
     </LinearLayout>

@@ -181,11 +181,13 @@ public class UserFragment extends BaseFragment implements FocusContract.View, Ad
             mRefreshLayout.setVisibility(View.VISIBLE);
             UserFocusBean userFocusBean = (UserFocusBean) JsonUtil.getInstance().json2Obj(success, UserFocusBean.class);
             if (userFocusBean.getData() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
-                    userFocusBean.getData().getTotalCount() <= 0 && mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
+                    userFocusBean.getData().getResultX() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
+                    userFocusBean.getData().getResultX().size() <= 0 && mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
                 errorMsg(getString(R.string.noFollow), 0);
                 return;
             } else if (userFocusBean.getData() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
-                    userFocusBean.getData().getTotalCount() <= 0 && mMorePageNumber > NumericConstants.START_PAGE_NUMBER) {
+                    userFocusBean.getData().getResultX() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
+                    userFocusBean.getData().getResultX().size() <= 0 && mMorePageNumber > NumericConstants.START_PAGE_NUMBER) {
                 ViewInject.toast(getString(R.string.noMoreData));
                 isShowLoadingMore = false;
                 dismissLoadingDialog();

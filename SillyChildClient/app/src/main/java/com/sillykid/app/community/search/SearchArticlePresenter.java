@@ -22,28 +22,22 @@ public class SearchArticlePresenter implements SearchArticleContract.Presenter {
 
 
     @Override
-    public void getPostList(String post_title, String nickname, int classification_id, int pageno) {
+    public void getPostList(String name, int pageno) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        if (!StringUtils.isEmpty(post_title)) {
-            httpParams.put("post_title", post_title);
-        }
-        if (!StringUtils.isEmpty(nickname)) {
-            httpParams.put("nickname", nickname);
-        }
-        if (classification_id > 0) {
-            httpParams.put("classification_id", classification_id);
+        if (!StringUtils.isEmpty(name)) {
+            httpParams.put("name", name);
         }
         httpParams.put("pageno", pageno);
         httpParams.put("pagesize", 10);
         RequestClient.getPostList(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
-                mView.getSuccess(response, 1);
+                mView.getSuccess(response, 0);
             }
 
             @Override
             public void onFailure(String msg) {
-                mView.errorMsg(msg, 1);
+                mView.errorMsg(msg, 0);
             }
         });
     }

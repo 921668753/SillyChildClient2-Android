@@ -53,10 +53,10 @@
             style="@style/MatchMatch"
             android:layout_marginTop="@dimen/dimen5"
             android:overScrollMode="never"
-            android:paddingLeft="@dimen/dimen2"
-            android:paddingRight="@dimen/dimen2"
             android:scrollbars="none"
-            tools:listitem="@layout/item_mystrategy" />
+            android:divider="@color/background"
+            android:dividerHeight="@dimen/dimen1"
+            tools:listitem="@layout/item_myfans" />
 
     </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
 

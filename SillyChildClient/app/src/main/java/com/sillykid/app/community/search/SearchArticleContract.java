@@ -4,7 +4,7 @@ import com.common.cklibrary.common.BasePresenter;
 import com.common.cklibrary.common.BaseView;
 
 /**
- * Created by ruitu on 2016/9/24.
+ * Created by ruitu on 2018/9/24.
  */
 
 public interface SearchArticleContract {
@@ -14,7 +14,7 @@ public interface SearchArticleContract {
         /**
          * 获取帖子列表
          */
-        void getPostList(String post_title, String nickname, int classification_id, int pageno);
+        void getPostList(String name, int pageno);
 
 
     }

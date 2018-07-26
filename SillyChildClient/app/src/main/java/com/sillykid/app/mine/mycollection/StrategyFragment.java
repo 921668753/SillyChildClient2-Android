@@ -22,7 +22,7 @@ import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
 import com.sillykid.app.adapter.mine.mycollection.GoodViewAdapter;
 import com.sillykid.app.constant.NumericConstants;
-import com.sillykid.app.entity.mine.mycollection.MyCollectionBean;
+import com.sillykid.app.entity.mine.mycollection.GoodBean;
 import com.sillykid.app.loginregister.LoginActivity;
 import com.sillykid.app.mall.goodslist.goodsdetails.GoodsDetailsActivity;
 import com.sillykid.app.mall.goodslist.goodsdetails.dialog.SpecificationsBouncedDialog;
@@ -222,7 +222,7 @@ public class StrategyFragment extends BaseFragment implements CollectionContract
             mRefreshLayout.setPullDownRefreshEnable(true);
             ll_commonError.setVisibility(View.GONE);
             mRefreshLayout.setVisibility(View.VISIBLE);
-            MyCollectionBean myCollectionBean = (MyCollectionBean) JsonUtil.getInstance().json2Obj(success, MyCollectionBean.class);
+            GoodBean myCollectionBean = (GoodBean) JsonUtil.getInstance().json2Obj(success, GoodBean.class);
             if (myCollectionBean.getData() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
                     myCollectionBean.getData().size() <= 0 && mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
                 errorMsg(getString(R.string.noCollectedGoods), 0);

@@ -18,11 +18,12 @@ import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.RefreshLayoutUtil;
 import com.sillykid.app.R;
-import com.sillykid.app.adapter.mine.myrelease.MyStrategyViewAdapter;
+import com.sillykid.app.adapter.mine.myrelease.MyDynamicViewAdapter;
+import com.sillykid.app.community.dynamic.DynamicDetailsActivity;
 import com.sillykid.app.constant.NumericConstants;
-import com.sillykid.app.entity.mall.goodslist.GoodsListBean;
+import com.sillykid.app.entity.mine.myrelease.mydynamic.MyDynamicBean;
+import com.sillykid.app.homepage.hotvideo.VideoDetailsActivity;
 import com.sillykid.app.loginregister.LoginActivity;
-import com.sillykid.app.mall.goodslist.goodsdetails.GoodsDetailsActivity;
 import com.sillykid.app.mine.myrelease.MyReleaseActivity;
 import com.sillykid.app.utils.GlideImageLoader;
 import com.sillykid.app.utils.SpacesItemDecoration;
@@ -46,7 +47,14 @@ public class MyDynamicFragment extends BaseFragment implements MyDynamicContract
     @BindView(id = R.id.rv)
     private RecyclerView recyclerview;
 
-    private MyStrategyViewAdapter mAdapter = null;
+    private MyDynamicViewAdapter mAdapter = null;
+
+    /**
+     * 发布新动态
+     */
+    @BindView(id = R.id.tv_newTrends, click = true)
+    private TextView tv_newTrends;
+
 
     /**
      * 错误提示页
@@ -69,6 +77,11 @@ public class MyDynamicFragment extends BaseFragment implements MyDynamicContract
     private int mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
 
     /**
+     * 总页码
+     */
+    private int totalPageNumber = NumericConstants.START_PAGE_NUMBER;
+
+    /**
      * 是否加载更多
      */
     private boolean isShowLoadingMore = false;
@@ -79,8 +92,7 @@ public class MyDynamicFragment extends BaseFragment implements MyDynamicContract
 
     private Thread thread = null;
 
-
-    private List<GoodsListBean.DataBean> list = null;
+    private List<MyDynamicBean.DataBean.ResultBean> list = null;
 
     @Override
     protected View inflaterView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -94,10 +106,10 @@ public class MyDynamicFragment extends BaseFragment implements MyDynamicContract
         super.initData();
         mPresenter = new MyDynamicPresenter(this);
         spacesItemDecoration = new SpacesItemDecoration(7, 14);
-        mAdapter = new MyStrategyViewAdapter(recyclerview);
+        mAdapter = new MyDynamicViewAdapter(recyclerview);
         layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         layoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);//不设置的话，图片闪烁错位，有可能有整列错位的情况。
-        list = new ArrayList<GoodsListBean.DataBean>();
+        list = new ArrayList<MyDynamicBean.DataBean.ResultBean>();
     }
 
     @Override
@@ -130,6 +142,9 @@ public class MyDynamicFragment extends BaseFragment implements MyDynamicContract
     public void widgetClick(View v) {
         super.widgetClick(v);
         switch (v.getId()) {
+            case R.id.tv_newTrends:
+                aty.showActivity(aty, ReleaseDynamicActivity.class);
+                break;
             case R.id.tv_button:
                 if (tv_button.getText().toString().contains(getString(R.string.retry))) {
                     mRefreshLayout.beginRefreshing();
@@ -151,13 +166,14 @@ public class MyDynamicFragment extends BaseFragment implements MyDynamicContract
         ll_commonError.setVisibility(View.GONE);
         mRefreshLayout.setVisibility(View.VISIBLE);
         mRefreshLayout.setPullDownRefreshEnable(true);
-        GoodsListBean goodsListBean = (GoodsListBean) JsonUtil.getInstance().json2Obj(success, GoodsListBean.class);
-        if (goodsListBean.getData() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER || goodsListBean.getData().size() <= 0 &&
-                mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
-            errorMsg(getString(R.string.noale), 1);
+        MyDynamicBean myDynamicBean = (MyDynamicBean) JsonUtil.getInstance().json2Obj(success, MyDynamicBean.class);
+        if (myDynamicBean.getData() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER || myDynamicBean.getData().getResult() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
+                myDynamicBean.getData().getResult().size() <= 0 && mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
+            errorMsg(getString(R.string.noDynamicState), 1);
             return;
-        } else if (goodsListBean.getData() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
-                goodsListBean.getData().size() <= 0 && mMorePageNumber > NumericConstants.START_PAGE_NUMBER) {
+        } else if (myDynamicBean.getData() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
+                myDynamicBean.getData().getResult() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
+                myDynamicBean.getData().getResult().size() <= 0 && mMorePageNumber > NumericConstants.START_PAGE_NUMBER) {
             ViewInject.toast(getString(R.string.noMoreData));
             isShowLoadingMore = false;
             dismissLoadingDialog();
@@ -165,21 +181,23 @@ public class MyDynamicFragment extends BaseFragment implements MyDynamicContract
             return;
         }
         if (thread != null && !thread.isAlive()) {
-            thread.run();
-            return;
+            thread.interrupted();
         }
+        thread = null;
         thread = new Thread(new Runnable() {
             @Override
             public void run() {
                 list.clear();
-                for (int i = 0; i < goodsListBean.getData().size(); i++) {
-                    Bitmap bitmap = GlideImageLoader.load(aty, goodsListBean.getData().get(i).getThumbnail());
+                for (int i = 0; i < myDynamicBean.getData().getResult().size(); i++) {
+                    Bitmap bitmap = GlideImageLoader.load(aty, myDynamicBean.getData().getResult().get(i).getPicture());
                     if (bitmap != null) {
-                        goodsListBean.getData().get(i).setHeight(bitmap.getHeight());
-                        goodsListBean.getData().get(i).setWidth(bitmap.getWidth());
+                        myDynamicBean.getData().getResult().get(i).setHeight(bitmap.getHeight());
+                        myDynamicBean.getData().getResult().get(i).setWidth(bitmap.getWidth());
                     }
-                    list.add(goodsListBean.getData().get(i));
+                    list.add(myDynamicBean.getData().getResult().get(i));
                 }
+                mMorePageNumber = myDynamicBean.getData().getCurrentPageNo();
+                totalPageNumber = myDynamicBean.getData().getTotalPageCount();
                 aty.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -202,10 +220,22 @@ public class MyDynamicFragment extends BaseFragment implements MyDynamicContract
 
     @Override
     public void onRVItemClick(ViewGroup parent, View itemView, int position) {
-        Intent intent = new Intent(aty, GoodsDetailsActivity.class);
-        intent.putExtra("goodName", mAdapter.getItem(position).getName());
-        intent.putExtra("goodsid", mAdapter.getItem(position).getGoods_id());
-        aty.showActivity(aty, intent);
+        if (mAdapter.getItem(position).getType() == 1) {//动态
+            Intent intent = new Intent(aty, DynamicDetailsActivity.class);
+            intent.putExtra("id", mAdapter.getItem(position).getId());
+            intent.putExtra("title", mAdapter.getItem(position).getPost_title());
+            aty.showActivity(aty, intent);
+        } else if (mAdapter.getItem(position).getType() == 2) {//视频
+            Intent intent = new Intent(aty, VideoDetailsActivity.class);
+            intent.putExtra("id", mAdapter.getItem(position).getId());
+            intent.putExtra("title", mAdapter.getItem(position).getPost_title());
+            aty.showActivity(aty, intent);
+        } else if (mAdapter.getItem(position).getType() == 3) {//攻略
+            Intent intent = new Intent(aty, DynamicDetailsActivity.class);
+            intent.putExtra("id", mAdapter.getItem(position).getId());
+            intent.putExtra("title", mAdapter.getItem(position).getPost_title());
+            aty.showActivity(aty, intent);
+        }
     }
 
     @Override
@@ -233,7 +263,7 @@ public class MyDynamicFragment extends BaseFragment implements MyDynamicContract
             img_err.setImageResource(R.mipmap.no_network);
             tv_hintText.setText(msg);
             tv_button.setText(getString(R.string.retry));
-        } else if (msg.contains(getString(R.string.noale))) {
+        } else if (msg.contains(getString(R.string.noDynamicState))) {
             img_err.setImageResource(R.mipmap.no_data);
             tv_hintText.setText(msg);
             tv_button.setVisibility(View.GONE);
@@ -263,6 +293,10 @@ public class MyDynamicFragment extends BaseFragment implements MyDynamicContract
             return false;
         }
         mMorePageNumber++;
+        if (mMorePageNumber > totalPageNumber) {
+            ViewInject.toast(getString(R.string.noMoreData));
+            return false;
+        }
         showLoadingDialog(getString(R.string.dataLoad));
         ((MyDynamicContract.Presenter) mPresenter).getUserPost(mMorePageNumber);
         return true;

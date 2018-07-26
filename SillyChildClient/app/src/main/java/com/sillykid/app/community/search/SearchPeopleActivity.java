@@ -16,8 +16,9 @@ import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.RefreshLayoutUtil;
 import com.sillykid.app.R;
 import com.sillykid.app.adapter.community.search.SearchPeopleViewAdapter;
+import com.sillykid.app.community.DisplayPageActivity;
 import com.sillykid.app.constant.NumericConstants;
-import com.sillykid.app.entity.main.community.CommunityBean;
+import com.sillykid.app.entity.community.search.SearchPeopleBean;
 import com.sillykid.app.loginregister.LoginActivity;
 
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
@@ -93,6 +94,7 @@ public class SearchPeopleActivity extends BaseActivity implements SearchPeopleCo
         RefreshLayoutUtil.initRefreshLayout(mRefreshLayout, this, aty, true);
         lv.setAdapter(mAdapter);
         lv.setOnItemClickListener(this);
+        mRefreshLayout.beginRefreshing();
     }
 
 
@@ -117,10 +119,10 @@ public class SearchPeopleActivity extends BaseActivity implements SearchPeopleCo
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//        Intent intent = new Intent(aty, DynamicDetailsActivity.class);
-//        intent.putExtra("id", mAdapter.getItem(position).getId());
-//        intent.putExtra("title", mAdapter.getItem(position).getPost_title());
-//        showActivity(aty, intent);
+        Intent intent = new Intent(aty, DisplayPageActivity.class);
+        //   intent.putExtra("user_id", mAdapter.getItem(position).getMember_id());
+        intent.putExtra("isRefresh", 0);
+        startActivityForResult(intent, REQUEST_CODE);
     }
 
     @Override
@@ -128,7 +130,7 @@ public class SearchPeopleActivity extends BaseActivity implements SearchPeopleCo
         mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
         mRefreshLayout.endRefreshing();
         showLoadingDialog(getString(R.string.dataLoad));
-        //   ((SearchArticleContract.Presenter) mPresenter).getPostList(post_title, nickname, classification_id, mMorePageNumber);
+        ((SearchPeopleContract.Presenter) mPresenter).getMemberList(name, mMorePageNumber);
     }
 
     @Override
@@ -144,7 +146,7 @@ public class SearchPeopleActivity extends BaseActivity implements SearchPeopleCo
             return false;
         }
         showLoadingDialog(getString(R.string.dataLoad));
-        //  ((SearchArticleContract.Presenter) mPresenter).getPostList(post_title, nickname, classification_id, mMorePageNumber);
+        ((SearchPeopleContract.Presenter) mPresenter).getMemberList(name, mMorePageNumber);
         return true;
     }
 
@@ -153,10 +155,10 @@ public class SearchPeopleActivity extends BaseActivity implements SearchPeopleCo
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {// 如果等于1
             name = data.getStringExtra("name");
-////            mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
+            mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
 ////            showLoadingDialog(getString(R.string.dataLoad));
 ////            ((SearchArticleContract.Presenter) mPresenter).getGoodsList(mMorePageNumber, cat, sort, keyword, mark);
-//            mRefreshLayout.beginRefreshing();
+            mRefreshLayout.beginRefreshing();
         }
     }
 
@@ -173,28 +175,30 @@ public class SearchPeopleActivity extends BaseActivity implements SearchPeopleCo
             ll_commonError.setVisibility(View.GONE);
             mRefreshLayout.setVisibility(View.VISIBLE);
             mRefreshLayout.setPullDownRefreshEnable(true);
-            CommunityBean communityBean = (CommunityBean) JsonUtil.getInstance().json2Obj(success, CommunityBean.class);
-            if (communityBean.getData() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER || communityBean.getData().getTotalCount() <= 0 &&
-                    mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
-                errorMsg(getString(R.string.noMovement), 1);
+            SearchPeopleBean searchPeopleBean = (SearchPeopleBean) JsonUtil.getInstance().json2Obj(success, SearchPeopleBean.class);
+            if (searchPeopleBean.getData() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
+                    searchPeopleBean.getData().getList() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
+                    searchPeopleBean.getData().getList().size() <= 0 && mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
+                errorMsg(getString(R.string.noSearchPeople), 0);
                 return;
-            } else if (communityBean.getData() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
-                    communityBean.getData().getTotalCount() <= 0 && mMorePageNumber > NumericConstants.START_PAGE_NUMBER) {
+            } else if (searchPeopleBean.getData() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
+                    searchPeopleBean.getData().getList() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
+                    searchPeopleBean.getData().getList().size() <= 0 && mMorePageNumber > NumericConstants.START_PAGE_NUMBER) {
                 ViewInject.toast(getString(R.string.noMoreData));
                 isShowLoadingMore = false;
                 dismissLoadingDialog();
                 mRefreshLayout.endLoadingMore();
                 return;
             }
-            mMorePageNumber = communityBean.getData().getCurrentPageNo();
-            totalPageNumber = communityBean.getData().getTotalPageCount();
+            mMorePageNumber = searchPeopleBean.getData().getCurrentPageNo();
+            totalPageNumber = searchPeopleBean.getData().getTotalPageCount();
             if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
                 mRefreshLayout.endRefreshing();
                 mAdapter.clear();
-                //   mAdapter.addNewData(communityBean.getData());
+                mAdapter.addNewData(searchPeopleBean.getData().getList());
             } else {
                 mRefreshLayout.endLoadingMore();
-                //  mAdapter.addMoreData(communityBean.getData());
+                mAdapter.addMoreData(searchPeopleBean.getData().getList());
             }
             dismissLoadingDialog();
         }
@@ -225,7 +229,7 @@ public class SearchPeopleActivity extends BaseActivity implements SearchPeopleCo
             img_err.setImageResource(R.mipmap.no_network);
             tv_hintText.setText(msg);
             tv_button.setText(getString(R.string.retry));
-        } else if (msg.contains(getString(R.string.noMovement))) {
+        } else if (msg.contains(getString(R.string.noSearchPeople))) {
             img_err.setImageResource(R.mipmap.no_data);
             tv_hintText.setText(msg);
             tv_button.setVisibility(View.GONE);

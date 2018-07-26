@@ -31,6 +31,7 @@ import java.util.List;
 
 import cn.bingoogolapple.androidcommon.adapter.BGAOnItemChildClickListener;
 import cn.bingoogolapple.bgabanner.BGABanner;
+import cn.bingoogolapple.titlebar.BGATitleBar;
 
 import static com.sillykid.app.constant.NumericConstants.REQUEST_CODE;
 
@@ -121,6 +122,8 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
 
     private int is_collect = 0;
 
+    private int isRefresh = 0;
+
     private UserEvaluationViewAdapter mAdapter = null;
 
     private ReportBouncedDialog reportBouncedDialog = null;
@@ -162,7 +165,23 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
         clv_dynamicDetails.setAdapter(mAdapter);
         clv_dynamicDetails.setOnItemClickListener(this);
         mAdapter.setOnItemChildClickListener(this);
-        ActivityTitleUtils.initToolbar(aty, title, true, R.id.titlebar);
+        BGATitleBar.SimpleDelegate simpleDelegate = new BGATitleBar.SimpleDelegate() {
+            @Override
+            public void onClickLeftCtv() {
+                super.onClickLeftCtv();
+                if (isRefresh == 1) {
+                    Intent intent = getIntent();
+                    setResult(RESULT_OK, intent);
+                }
+                aty.finish();
+            }
+
+            @Override
+            public void onClickRightCtv() {
+                super.onClickRightCtv();
+            }
+        };
+        ActivityTitleUtils.initToolbar(aty, title, null, R.id.titlebar, simpleDelegate);
         initBanner();
     }
 
@@ -367,21 +386,26 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
                 tv_follow.setTextColor(getResources().getColor(R.color.tabColors));
                 ViewInject.toast(getString(R.string.attentionSuccess));
             }
+            isRefresh = 1;
             dismissLoadingDialog();
         } else if (flag == 2) {
+            dismissLoadingDialog();
             img_collection.setImageResource(R.mipmap.dynamicdetails_collection);
             tv_collection.setTextColor(getResources().getColor(R.color.textColor));
             tv_collectionNum.setTextColor(getResources().getColor(R.color.textColor));
             is_collect = 0;
             tv_collectionNum.setText(StringUtils.toInt(tv_collectionNum.getText().toString(), 0) - 1 + "");
             ViewInject.toast(getString(R.string.uncollectible));
+            isRefresh = 1;
         } else if (flag == 3) {
+            dismissLoadingDialog();
             is_collect = 1;
             img_collection.setImageResource(R.mipmap.dynamicdetails_collection1);
             tv_collection.setTextColor(getResources().getColor(R.color.greenColors));
             tv_collectionNum.setText(StringUtils.toInt(tv_collectionNum.getText().toString(), 0) + 1 + "");
             tv_collectionNum.setTextColor(getResources().getColor(R.color.greenColors));
             ViewInject.toast(getString(R.string.collectionSuccess));
+            isRefresh = 1;
         } else if (flag == 4) {
             if (is_like == 1) {
                 is_like = 0;
@@ -469,6 +493,5 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
         mAdapter.clear();
         mAdapter = null;
     }
-
 
 }

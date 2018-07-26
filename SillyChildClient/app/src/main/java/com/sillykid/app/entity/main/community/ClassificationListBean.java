@@ -1,12 +1,13 @@
 package com.sillykid.app.entity.main.community;
 
 import com.common.cklibrary.entity.BaseResult;
+import com.contrarywind.interfaces.IPickerViewData;
 
 import java.util.List;
 
 public class ClassificationListBean extends BaseResult<List<ClassificationListBean.DataBean>> {
 
-    public class DataBean {
+    public class DataBean implements IPickerViewData {
         /**
          * id : 1000000
          * name : 旅行
@@ -29,6 +30,11 @@ public class ClassificationListBean extends BaseResult<List<ClassificationListBe
 
         public void setName(String name) {
             this.name = name;
+        }
+
+        @Override
+        public String getPickerViewText() {
+            return name;
         }
     }
 

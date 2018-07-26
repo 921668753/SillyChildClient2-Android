@@ -20,8 +20,10 @@ import com.common.cklibrary.utils.RefreshLayoutUtil;
 import com.common.cklibrary.utils.rx.MsgEvent;
 import com.sillykid.app.R;
 import com.sillykid.app.adapter.mine.mycollection.DynamicStateRVViewAdapter;
+import com.sillykid.app.community.dynamic.DynamicDetailsActivity;
 import com.sillykid.app.constant.NumericConstants;
-import com.sillykid.app.entity.mine.mycollection.MyCollectionBean;
+import com.sillykid.app.entity.mine.mycollection.DynamicStateBean;
+import com.sillykid.app.homepage.hotvideo.VideoDetailsActivity;
 import com.sillykid.app.loginregister.LoginActivity;
 import com.sillykid.app.utils.GlideImageLoader;
 import com.sillykid.app.utils.SpacesItemDecoration;
@@ -33,7 +35,7 @@ import cn.bingoogolapple.androidcommon.adapter.BGAOnRVItemClickListener;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 
 import static android.app.Activity.RESULT_OK;
-import static com.sillykid.app.constant.NumericConstants.REQUEST_CODE;
+import static com.sillykid.app.constant.NumericConstants.REQUEST_CODE_PREVIEW1;
 
 /**
  * 我的收藏中的动态
@@ -87,7 +89,7 @@ public class DynamicStateFragment extends BaseFragment implements CollectionCont
 
     private Thread thread = null;
 
-    private List<MyCollectionBean.DataBean> list = null;
+    private List<DynamicStateBean.DataBean> list = null;
 
     @Override
     protected View inflaterView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -98,7 +100,7 @@ public class DynamicStateFragment extends BaseFragment implements CollectionCont
     @Override
     public void initData() {
         super.initData();
-        list = new ArrayList<MyCollectionBean.DataBean>();
+        list = new ArrayList<DynamicStateBean.DataBean>();
         mPresenter = new CollectionPresenter(this);
         mAdapter = new DynamicStateRVViewAdapter(recyclerView);
         spacesItemDecoration = new SpacesItemDecoration(7, 14);
@@ -176,11 +178,22 @@ public class DynamicStateFragment extends BaseFragment implements CollectionCont
 
     @Override
     public void onRVItemClick(ViewGroup parent, View itemView, int position) {
-//        Intent intent = new Intent(aty, GoodsDetailsActivity.class);
-//        intent.putExtra("goodName", mAdapter.getItem(position).getName());
-//        intent.putExtra("goodsid", mAdapter.getItem(position).getGoods_id());
-//        intent.putExtra("isRefresh", 1);
-//        startActivityForResult(intent, REQUEST_CODE);
+        if (mAdapter.getItem(position).getType_id() == 1) {//动态
+            Intent intent = new Intent(aty, DynamicDetailsActivity.class);
+            intent.putExtra("id", mAdapter.getItem(position).getId());
+            intent.putExtra("title", mAdapter.getItem(position).getPost_title());
+            startActivityForResult(intent, REQUEST_CODE_PREVIEW1);
+        } else if (mAdapter.getItem(position).getType_id() == 2) {//视频
+            Intent intent = new Intent(aty, VideoDetailsActivity.class);
+            intent.putExtra("id", mAdapter.getItem(position).getId());
+            intent.putExtra("title", mAdapter.getItem(position).getPost_title());
+            startActivityForResult(intent, REQUEST_CODE_PREVIEW1);
+        } else if (mAdapter.getItem(position).getType_id() == 3) {//攻略
+            Intent intent = new Intent(aty, DynamicDetailsActivity.class);
+            intent.putExtra("id", mAdapter.getItem(position).getId());
+            intent.putExtra("title", mAdapter.getItem(position).getPost_title());
+            startActivityForResult(intent, REQUEST_CODE_PREVIEW1);
+        }
     }
 
     @Override
@@ -195,13 +208,13 @@ public class DynamicStateFragment extends BaseFragment implements CollectionCont
             mRefreshLayout.setPullDownRefreshEnable(true);
             ll_commonError.setVisibility(View.GONE);
             mRefreshLayout.setVisibility(View.VISIBLE);
-            MyCollectionBean myCollectionBean = (MyCollectionBean) JsonUtil.getInstance().json2Obj(success, MyCollectionBean.class);
-            if (myCollectionBean.getData() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
-                    myCollectionBean.getData().size() <= 0 && mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
+            DynamicStateBean dynamicStateBean = (DynamicStateBean) JsonUtil.getInstance().json2Obj(success, DynamicStateBean.class);
+            if (dynamicStateBean.getData() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
+                    dynamicStateBean.getData().size() <= 0 && mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
                 errorMsg(getString(R.string.noCollectDynamic), 0);
                 return;
-            } else if (myCollectionBean.getData() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
-                    myCollectionBean.getData().size() <= 0 && mMorePageNumber > NumericConstants.START_PAGE_NUMBER) {
+            } else if (dynamicStateBean.getData() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
+                    dynamicStateBean.getData().size() <= 0 && mMorePageNumber > NumericConstants.START_PAGE_NUMBER) {
                 ViewInject.toast(getString(R.string.noMoreData));
                 isShowLoadingMore = false;
                 dismissLoadingDialog();
@@ -209,20 +222,20 @@ public class DynamicStateFragment extends BaseFragment implements CollectionCont
                 return;
             }
             if (thread != null && !thread.isAlive()) {
-                thread.run();
-                return;
+                thread.interrupted();
             }
+            thread = null;
             thread = new Thread(new Runnable() {
                 @Override
                 public void run() {
                     list.clear();
-                    for (int i = 0; i < myCollectionBean.getData().size(); i++) {
-                        Bitmap bitmap = GlideImageLoader.load(aty, myCollectionBean.getData().get(i).getThumbnail());
+                    for (int i = 0; i < dynamicStateBean.getData().size(); i++) {
+                        Bitmap bitmap = GlideImageLoader.load(aty, dynamicStateBean.getData().get(i).getPicture());
                         if (bitmap != null) {
-//                            myCollectionBean.getData().get(i).setHeight(bitmap.getHeight());
-//                            myCollectionBean.getData().get(i).setWidth(bitmap.getWidth());
+                            dynamicStateBean.getData().get(i).setHeight(bitmap.getHeight());
+                            dynamicStateBean.getData().get(i).setWidth(bitmap.getWidth());
                         }
-                        list.add(myCollectionBean.getData().get(i));
+                        list.add(dynamicStateBean.getData().get(i));
                     }
                     //  mMorePageNumber = myCollectionBean.getData().getCurrentPageNo();
                     //    totalPageNumber = myCollectionBean.getData().getTotalPageCount();
@@ -307,7 +320,7 @@ public class DynamicStateFragment extends BaseFragment implements CollectionCont
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (data != null && requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
+        if (data != null && requestCode == REQUEST_CODE_PREVIEW1 && resultCode == RESULT_OK) {
             mRefreshLayout.beginRefreshing();
         }
     }

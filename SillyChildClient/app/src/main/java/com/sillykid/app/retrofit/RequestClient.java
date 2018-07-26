@@ -402,6 +402,24 @@ public class RequestClient {
     }
 
     /**
+     * 检测用户是否收藏店铺
+     */
+    public static void getCheckFavorited(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        doServer(context, new TokenCallback() {
+            @Override
+            public void execute() {
+                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                if (StringUtils.isEmpty(cookies)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("Cookie", cookies);
+                HttpRequest.requestGetHttp(context, URLConstants.CHECKFAVORITED, httpParams, listener);
+            }
+        }, listener);
+    }
+
+    /**
      * 首页---更多分类----商品列表----商品详情----取消收藏商品
      */
     public static void postUnfavorite(Context context, HttpParams httpParams, ResponseListener<String> listener) {
@@ -585,9 +603,15 @@ public class RequestClient {
      * 社区----帖子列表
      */
     public static void getPostList(Context context, HttpParams httpParams, ResponseListener<String> listener) {
-        HttpRequest.requestGetHttp(context, URLConstants.POSTLIST, httpParams, false, listener);
+        HttpRequest.requestPostFORMHttp(context, URLConstants.POSTLIST, httpParams, listener);
     }
 
+    /**
+     * 社区----检索会员的信息
+     */
+    public static void getMemberList(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        HttpRequest.requestPostFORMHttp(context, URLConstants.MEMBERLIST, httpParams, listener);
+    }
 
     /**
      * 社区----获取帖子详情
@@ -2136,6 +2160,25 @@ public class RequestClient {
                 }
                 httpParams.putHeaders("Cookie", cookies);
                 HttpRequest.requestGetHttp(context, URLConstants.USERPOST, httpParams, listener);
+            }
+        }, listener);
+    }
+
+    /**
+     * 用户发布帖子
+     */
+    public static void postAddPost(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        Log.d("tag", "postAddPost");
+        doServer(context, new TokenCallback() {
+            @Override
+            public void execute() {
+                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                if (StringUtils.isEmpty(cookies)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("Cookie", cookies);
+                HttpRequest.requestPostFORMHttp(context, URLConstants.ADDPOST, httpParams, listener);
             }
         }, listener);
     }

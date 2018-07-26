@@ -1,13 +1,11 @@
 package com.sillykid.app.adapter.mine.mycollection;
 
 import android.content.Context;
-import android.view.View;
-import android.widget.ImageView;
 
 import com.common.cklibrary.utils.MathUtil;
 import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
-import com.sillykid.app.entity.mine.mycollection.MyCollectionBean.DataBean;
+import com.sillykid.app.entity.mine.mycollection.GoodBean.DataBean;
 import com.sillykid.app.utils.GlideImageLoader;
 
 import cn.bingoogolapple.androidcommon.adapter.BGAAdapterViewAdapter;

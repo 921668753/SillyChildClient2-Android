@@ -609,6 +609,9 @@
     <string name="lookForSomeone">找人</string>
     <string name="findArticle">找文章</string>
     <string name="noMovement">亲，还没有任何动态哟~</string>
+    <string name="noSearchArticle">亲，还没有搜索到任何动态哟~</string>
+    <string name="noSearchPeople">亲，还没有搜索到任何人哟~</string>
+
 
     <!--商城-->
     <string name="checkProduct">输入您正在找的商品</string>
@@ -766,6 +769,7 @@
     <string name="self">自己</string>
     <string name="makeSureAddShoppingCart">确定加入购物车</string>
     <string name="determineDeleteCollection">确定删除该商品收藏</string>
+    <string name="determineDeleteShopCollection">确定取消该店铺收藏</string>
     <string name="addCartSuccess">加入购物车成功</string>
     <string name="clickPrivilege">点击查看特权</string>
     <string name="myService">我的服务</string>
@@ -1125,6 +1129,8 @@
     <string name="collectionDynamics">收藏的动态</string>
     <string name="collectionStrategy">收藏的攻略</string>
     <string name="fillPrompt">失败！请完整填写所有项</string>
+    <string name="noDynamicState">亲，您还没有发布动态哟~</string>
+
 
     <!-- 个人中心 我的订单-->
     <string name="goodOrder">商品订单</string>
@@ -1328,6 +1334,11 @@
     <string name="newStrategy">发布新攻略</string>
     <string name="addTitle">添加标题</string>
     <string name="addDescription">添加描述</string>
+    <string name="addDescription1">请添加描述</string>
+    <string name="addTitle1">请添加标题</string>
+    <string name="addImages1">至少要有一张图片，请添加图片</string>
+    <string name="addVideo">请添加视频</string>
+
 
     <string name="whatTrends">您要发表什么动态</string>
     <string name="release">发布</string>

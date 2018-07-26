@@ -120,7 +120,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Mai
         contentFragment = new HomePageFragment();
         contentFragment1 = new CommunityFragment();
         contentFragment2 = new MallFragment();
-        contentFragment3 = new TripFragment();
+        contentFragment3 = new ActivitiesFragment();
         contentFragment4 = new MineFragment();
         chageIcon = getIntent().getIntExtra("chageIcon", 0);
         registerMessageReceiver();  //   极光推送 used for receive msg
@@ -310,7 +310,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Mai
                     tv_mall.setTextColor(getResources().getColor(R.color.textColor));
                     break;
                 case 3:
-                    img_trip.setImageResource(R.mipmap.tab_trip);
+                    img_trip.setImageResource(R.mipmap.tab_activity);
                     tv_trip.setTextColor(getResources().getColor(R.color.textColor));
                     break;
                 case 4:
@@ -332,12 +332,12 @@ public class MainActivity extends BaseActivity implements MainContract.View, Mai
                     break;
                 case 2:
                     img_mall.setImageResource(R.mipmap.tab_mall_selected);
-                    tv_mall.setTextColor(getResources().getColor(R.color.f3516dColors));
+                    tv_mall.setTextColor(getResources().getColor(R.color.d0a4fcColors));
                     changeFragment(contentFragment2);
                     break;
                 case 3:
-                    img_trip.setImageResource(R.mipmap.tab_trip_selected);
-                    tv_trip.setTextColor(getResources().getColor(R.color.d0a4fcColors));
+                    img_trip.setImageResource(R.mipmap.tab_activity_selected);
+                    tv_trip.setTextColor(getResources().getColor(R.color.fF5656Colors));
                     changeFragment(contentFragment3);
                     break;
                 case 4:

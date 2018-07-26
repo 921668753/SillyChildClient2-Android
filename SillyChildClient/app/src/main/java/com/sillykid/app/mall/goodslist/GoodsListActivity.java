@@ -219,9 +219,9 @@ public class GoodsListActivity extends BaseActivity implements GoodsListContract
             return;
         }
         if (thread != null && !thread.isAlive()) {
-            thread.run();
-            return;
+            thread.interrupted();
         }
+        thread = null;
         thread = new Thread(new Runnable() {
             @Override
             public void run() {

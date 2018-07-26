@@ -22,7 +22,7 @@ import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
 import com.sillykid.app.adapter.mine.mycollection.GoodViewAdapter;
 import com.sillykid.app.constant.NumericConstants;
-import com.sillykid.app.entity.mine.mycollection.MyCollectionBean;
+import com.sillykid.app.entity.mine.mycollection.GoodBean;
 import com.sillykid.app.mall.goodslist.goodsdetails.GoodsDetailsActivity;
 import com.sillykid.app.mall.goodslist.goodsdetails.dialog.SpecificationsBouncedDialog;
 import com.sillykid.app.loginregister.LoginActivity;
@@ -177,7 +177,7 @@ public class GoodFragment extends BaseFragment implements CollectionContract.Vie
         Intent intent = new Intent(aty, GoodsDetailsActivity.class);
         intent.putExtra("goodName", mAdapter.getItem(position).getName());
         intent.putExtra("goodsid", mAdapter.getItem(position).getGoods_id());
-        intent.putExtra("isRefresh", 1);
+        intent.putExtra("isRefresh", 0);
         startActivityForResult(intent, REQUEST_CODE);
     }
 
@@ -223,7 +223,7 @@ public class GoodFragment extends BaseFragment implements CollectionContract.Vie
             mRefreshLayout.setPullDownRefreshEnable(true);
             ll_commonError.setVisibility(View.GONE);
             mRefreshLayout.setVisibility(View.VISIBLE);
-            MyCollectionBean myCollectionBean = (MyCollectionBean) JsonUtil.getInstance().json2Obj(success, MyCollectionBean.class);
+            GoodBean myCollectionBean = (GoodBean) JsonUtil.getInstance().json2Obj(success, GoodBean.class);
             if (myCollectionBean.getData() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
                     myCollectionBean.getData().size() <= 0 && mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
                 errorMsg(getString(R.string.noCollectedGoods), 0);

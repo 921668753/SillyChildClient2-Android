@@ -7,7 +7,7 @@ import com.kymjs.rxvolley.client.HttpParams;
 import com.sillykid.app.retrofit.RequestClient;
 
 /**
- * Created by ruitu on 2016/9/24.
+ * Created by ruitu on 2018/9/24.
  */
 
 public class CollectionPresenter implements CollectionContract.Presenter {
@@ -22,9 +22,9 @@ public class CollectionPresenter implements CollectionContract.Presenter {
     @Override
     public void getFavoriteList(int page, int type_id) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        httpParams.put("page", page);
+        httpParams.put("pageno", page);
         httpParams.put("type_id", type_id);
-        httpParams.put("pageSize", 10);
+        httpParams.put("pagesize", 10);
         RequestClient.getFavoriteGoodList(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {

@@ -121,7 +121,7 @@ public class DynamicCommentsActivity extends BaseActivity implements DynamicComm
         mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
         mRefreshLayout.endRefreshing();
         showLoadingDialog(getString(R.string.dataLoad));
-        ((DynamicCommentsContract.Presenter) mPresenter).getPostComment(id,mMorePageNumber,1);
+        ((DynamicCommentsContract.Presenter) mPresenter).getPostComment(id, mMorePageNumber, 1);
     }
 
     @Override
@@ -137,7 +137,7 @@ public class DynamicCommentsActivity extends BaseActivity implements DynamicComm
             return false;
         }
         showLoadingDialog(getString(R.string.dataLoad));
-        ((DynamicCommentsContract.Presenter) mPresenter).getPostComment(id,mMorePageNumber,1);
+        ((DynamicCommentsContract.Presenter) mPresenter).getPostComment(id, mMorePageNumber, 1);
         return true;
     }
 
@@ -182,11 +182,13 @@ public class DynamicCommentsActivity extends BaseActivity implements DynamicComm
             mRefreshLayout.setVisibility(View.VISIBLE);
             DynamicCommentsBean dynamicCommentsBean = (DynamicCommentsBean) JsonUtil.getInstance().json2Obj(success, DynamicCommentsBean.class);
             if (dynamicCommentsBean.getData() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
-                    dynamicCommentsBean.getData().getTotalCount() <= 0 && mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
+                    dynamicCommentsBean.getData().getList() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
+                    dynamicCommentsBean.getData().getList().size() <= 0 && mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
                 errorMsg(getString(R.string.noFans), 0);
                 return;
             } else if (dynamicCommentsBean.getData() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
-                    dynamicCommentsBean.getData().getTotalCount() <= 0 && mMorePageNumber > NumericConstants.START_PAGE_NUMBER) {
+                    dynamicCommentsBean.getData().getList() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
+                    dynamicCommentsBean.getData().getList().size() <= 0 && mMorePageNumber > NumericConstants.START_PAGE_NUMBER) {
                 ViewInject.toast(getString(R.string.noMoreData));
                 isShowLoadingMore = false;
                 dismissLoadingDialog();
@@ -258,7 +260,7 @@ public class DynamicCommentsActivity extends BaseActivity implements DynamicComm
         super.callMsgEvent(msgEvent);
         if (((String) msgEvent.getData()).equals("RxBusLoginEvent") && mPresenter != null) {
             mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
-            ((DynamicCommentsContract.Presenter) mPresenter).getPostComment(id,mMorePageNumber,1);
+            ((DynamicCommentsContract.Presenter) mPresenter).getPostComment(id, mMorePageNumber, 1);
         }
     }
 

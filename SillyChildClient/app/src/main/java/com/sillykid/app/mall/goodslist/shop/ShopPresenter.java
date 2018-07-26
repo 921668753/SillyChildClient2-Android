@@ -20,11 +20,21 @@ public class ShopPresenter implements ShopContract.Presenter {
     }
 
     @Override
-    public void getShopDetail(int shopId) {
+    public void getCheckFavorited(int store_id) {
+        HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
+        httpParams.put("store_id", store_id);
+        httpParams.put("type_id", 2);
+        RequestClient.getCheckFavorited(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
+            @Override
+            public void onSuccess(String response) {
+                mView.getSuccess(response, 0);
+            }
 
-
-
-
+            @Override
+            public void onFailure(String msg) {
+                mView.errorMsg(msg, 0);
+            }
+        });
     }
 
     @Override
@@ -40,7 +50,7 @@ public class ShopPresenter implements ShopContract.Presenter {
 
             @Override
             public void onFailure(String msg) {
-                mView.errorMsg(msg, 0);
+                mView.errorMsg(msg, 1);
             }
         });
     }
@@ -58,7 +68,7 @@ public class ShopPresenter implements ShopContract.Presenter {
 
             @Override
             public void onFailure(String msg) {
-                mView.errorMsg(msg, 0);
+                mView.errorMsg(msg, 2);
             }
         });
     }
@@ -74,7 +84,7 @@ public class ShopPresenter implements ShopContract.Presenter {
 
             @Override
             public void onFailure(String msg) {
-                mView.errorMsg(msg, 1);
+                mView.errorMsg(msg, flag);
             }
         });
 

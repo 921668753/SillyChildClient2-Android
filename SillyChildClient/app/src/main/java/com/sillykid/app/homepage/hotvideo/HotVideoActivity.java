@@ -1,5 +1,6 @@
 package com.sillykid.app.homepage.hotvideo;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -14,10 +15,13 @@ import com.common.cklibrary.utils.ActivityTitleUtils;
 import com.common.cklibrary.utils.RefreshLayoutUtil;
 import com.sillykid.app.R;
 import com.sillykid.app.adapter.LocalTalentViewAdapter;
+import com.sillykid.app.adapter.homepage.hotvideo.HotVideoViewAdapter;
 import com.sillykid.app.constant.NumericConstants;
 import com.sillykid.app.loginregister.LoginActivity;
 
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
+
+import static com.sillykid.app.constant.NumericConstants.REQUEST_CODE;
 
 
 /**
@@ -29,7 +33,7 @@ public class HotVideoActivity extends BaseActivity implements HotVideoContract.V
     @BindView(id = R.id.mRefreshLayout)
     private BGARefreshLayout mRefreshLayout;
 
-    private LocalTalentViewAdapter mAdapter;
+    private HotVideoViewAdapter mAdapter;
 
     @BindView(id = R.id.lv_localtalent1)
     private ListView lv_localtalent1;
@@ -77,7 +81,7 @@ public class HotVideoActivity extends BaseActivity implements HotVideoContract.V
     public void initData() {
         super.initData();
         mPresenter = new HotVideoPresenter(this);
-        mAdapter = new LocalTalentViewAdapter(this);
+        mAdapter = new HotVideoViewAdapter(this);
     }
 
 
@@ -104,7 +108,7 @@ public class HotVideoActivity extends BaseActivity implements HotVideoContract.V
         mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
         mRefreshLayout.endRefreshing();
         showLoadingDialog(getString(R.string.dataLoad));
-        ((HotVideoContract.Presenter) mPresenter).getLocalTalent(mMorePageNumber, "");
+        ((HotVideoContract.Presenter) mPresenter).getVideoList(mMorePageNumber);
     }
 
     /**
@@ -122,7 +126,7 @@ public class HotVideoActivity extends BaseActivity implements HotVideoContract.V
             return false;
         }
         showLoadingDialog(getString(R.string.dataLoad));
-        ((HotVideoContract.Presenter) mPresenter).getLocalTalent(mMorePageNumber, "");
+        ((HotVideoContract.Presenter) mPresenter).getVideoList(mMorePageNumber);
         return true;
     }
 
@@ -143,11 +147,11 @@ public class HotVideoActivity extends BaseActivity implements HotVideoContract.V
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-//        Intent intent = new Intent(aty, GoodsDetailsActivity.class);
+        Intent intent = new Intent(aty, VideoDetailsActivity.class);
 //        intent.putExtra("goodName", mAdapter.getItem(position).getName());
 //        intent.putExtra("goodsid", mAdapter.getItem(position).getGoods_id());
 //        intent.putExtra("isRefresh", 1);
-//        startActivityForResult(intent, REQUEST_CODE);
+        startActivityForResult(intent, REQUEST_CODE);
     }
 
 
@@ -214,7 +218,7 @@ public class HotVideoActivity extends BaseActivity implements HotVideoContract.V
                 img_err.setImageResource(R.mipmap.no_network);
                 tv_hintText.setText(msg);
                 tv_button.setText(getString(R.string.retry));
-            } else if (msg.contains(getString(R.string.noCollectedGoods))) {
+            } else if (msg.contains(getString(R.string.noHotVideo))) {
                 img_err.setImageResource(R.mipmap.no_data);
                 tv_hintText.setText(msg);
                 tv_button.setVisibility(View.GONE);

@@ -177,19 +177,22 @@
             android:name=".homepage.BannerDetailsActivity"
             android:screenOrientation="portrait" />
 
-        <!--首页   地址选择-->
-        <activity
-            android:name=".homepage.addressselection.AddressSelectionActivity"
-            android:screenOrientation="portrait"></activity>
 
-        <!--首页   国外地址选择-->
+        <!--首页   热门视频-->
         <activity
-            android:name=".homepage.addressselection.overseas.OverseasCityActivity"
-            android:screenOrientation="portrait"></activity>
+            android:name=".homepage.hotvideo.HotVideoActivity"
+            android:screenOrientation="portrait" />
 
+        <!--首页   视频详情-->
         <activity
-            android:name=".homepage.addressselection.newoverseas.NewOverseasCityActivity"
-            android:screenOrientation="portrait"></activity>
+            android:name=".homepage.hotvideo.VideoDetailsActivity"
+            android:screenOrientation="portrait" />
+
+        <!--首页   私人定制-->
+        <activity
+            android:name=".homepage.privatecustom.PrivateCustomActivity"
+            android:screenOrientation="portrait" />
+
 
         <!--&lt;!&ndash;首页   客服过渡页&ndash;&gt;-->
         <!--<activity-->
@@ -938,9 +941,9 @@
 
         <!-- 配置glide缓存 -->
         <!-- 配置glide缓存 -->
-        <meta-data
-            android:name="com.sillykid.app.MyGlideModule"
-            android:value="AppGlideModule" />
+        <!--<meta-data-->
+        <!--android:name="com.common.cklibrary.common.MyGlideModule"-->
+        <!--android:value="AppGlideModule" />-->
         <!-- 配置glide缓存 -->
         <!-- 配置glide缓存 -->
 

@@ -49,10 +49,31 @@ public class URLConstants {
     public static String BAIDUYUN = "http://api.map.baidu.com/geodata/v4/poi/create";
     public static String BAIDUUPDATE = "http://api.map.baidu.com/geodata/v4/poi/update";
     public static String BAIDUGETDATE = "http://api.map.baidu.com/geodata/v4/poi/list";
+
     /**
      * 获取首页信息
      */
-    public static String HOMEPAGE = APIURL + "page/home-list.do";
+    public static String HOMEPAGE = APIURL + "home/get_home_data.do";
+
+    /**
+     * 获取视频列表
+     */
+    public static String VIDEOLIST = APIURL + "video/get_video_list.do";
+
+    /**
+     * 获取视频详细信息
+     */
+    public static String VIDEODETAIL = APIURL + "video/get_video_detail.do";
+
+    /**
+     * 用户填写定制要求
+     */
+    public static String ADDCUSTOMIZED = APIURL + "travel/add_customized.do";
+
+    /**
+     * 商城
+     */
+    public static String MALLPAGE = APIURL + "page/home-list.do";
 
     /**
      * 首页  活动

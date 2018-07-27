@@ -3,7 +3,6 @@ package com.sillykid.app.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.PixelFormat;
@@ -11,18 +10,15 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.text.TextUtils;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bm.library.PhotoView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.load.resource.bitmap.CenterCrop;
-import com.bumptech.glide.load.resource.bitmap.FitCenter;
 import com.bumptech.glide.request.RequestOptions;
-import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.Target;
 import com.common.cklibrary.R;
+import com.common.cklibrary.common.GlideApp;
 import com.common.cklibrary.utils.GlideCatchUtil;
 import com.common.cklibrary.utils.GlideCircleTransform;
 import com.common.cklibrary.utils.GlideRoundTransform;
@@ -239,14 +235,13 @@ public class GlideImageLoader implements ImageLoader {
      * @return
      */
     public static Bitmap load(Context context, String url) {
-        RequestOptions options = new RequestOptions();
-        options.diskCacheStrategy(DiskCacheStrategy.ALL);//缓存全尺寸
         try {
-            return drawableToBitmap(Glide.with(context)
+            return GlideApp.with(context)
+                    .asBitmap()
                     .load(url)
-                    .apply(options)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
-                    .get());
+                    .get();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -263,16 +258,12 @@ public class GlideImageLoader implements ImageLoader {
      */
     public static Bitmap load(Context context, int url) {
         try {
-            RequestOptions options = new RequestOptions();
-//        options.asBitmap();
-            options.diskCacheStrategy(DiskCacheStrategy.ALL);//缓存全尺寸
-//        options.transform(new GlideRoundTransform(context, raudio));
-//        options.dontAnimate();//没有任何淡入淡出效果
-            return drawableToBitmap(Glide.with(context)
+            return GlideApp.with(context)
+                    .asBitmap()
                     .load(url)
-                    .apply(options)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
-                    .get());
+                    .get();
         } catch (Exception e) {
             e.printStackTrace();
         }

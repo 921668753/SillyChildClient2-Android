@@ -6,7 +6,7 @@ import com.sillykid.app.R;
 /**
  * 视频详情
  */
-public class VideoDetailsActivity extends BaseActivity {
+public class VideoDetailsActivity extends BaseActivity implements VideoDetailsContract.View{
 
 
     @Override
@@ -15,4 +15,19 @@ public class VideoDetailsActivity extends BaseActivity {
     }
 
 
+    @Override
+    public void setPresenter(VideoDetailsContract.Presenter presenter) {
+
+
+    }
+
+    @Override
+    public void getSuccess(String success, int flag) {
+
+    }
+
+    @Override
+    public void errorMsg(String msg, int flag) {
+
+    }
 }

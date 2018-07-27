@@ -5,6 +5,7 @@
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/tv_title"
         style="@style/MatchWrap"
         android:layout_marginBottom="@dimen/dimen10"
         android:layout_marginTop="@dimen/dimen11"
@@ -19,6 +20,7 @@
         android:layout_height="@dimen/dimen182">
 
         <ImageView
+            android:id="@+id/img_hotVideo"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@mipmap/placeholderfigure" />
@@ -51,35 +53,40 @@
             android:layout_marginBottom="@dimen/dimen12"
             android:layout_marginLeft="@dimen/dimen31"
             android:layout_marginTop="@dimen/dimen12"
-            android:src="@mipmap/dynamic_zan1" />
+            android:src="@mipmap/hp_attention" />
 
         <TextView
+            android:id="@+id/tv_attention"
             style="@style/WrapWrap"
+            android:layout_width="@dimen/dimen53"
             android:layout_marginLeft="@dimen/dimen4"
+            android:paddingRight="@dimen/dimen3"
+            android:singleLine="true"
             android:text="100人"
-            android:textColor="@color/greenColors"
+            android:textColor="@color/fF5656Colors"
             android:textSize="@dimen/textsize10" />
 
         <ImageView
             android:layout_width="@dimen/dimen13"
             android:layout_height="@dimen/dimen12"
-            android:layout_marginLeft="@dimen/dimen23"
-            android:src="@mipmap/dynamicdetails_collection1" />
+            android:src="@mipmap/hotvideo_collection" />
 
         <TextView
+            android:id="@+id/tv_collection"
             style="@style/AutoWrap"
             android:layout_marginLeft="@dimen/dimen4"
             android:text="20人"
-            android:textColor="@color/greenColors"
+            android:textColor="@color/fF5656Colors"
             android:textSize="@dimen/textsize11" />
 
 
         <ImageView
             android:layout_width="@dimen/dimen12"
             android:layout_height="@dimen/dimen8"
-            android:src="@mipmap/yanjing1" />
+            android:src="@mipmap/guankan" />
 
         <TextView
+            android:id="@+id/tv_watch"
             style="@style/WrapWrap"
             android:layout_marginLeft="@dimen/dimen8"
             android:layout_marginRight="@dimen/dimen13"

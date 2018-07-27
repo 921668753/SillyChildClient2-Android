@@ -1,4 +1,4 @@
-package com.sillykid.app;
+package com.common.cklibrary.common;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -79,6 +79,6 @@ public class MyGlideModule extends AppGlideModule {
 
     @Override
     public boolean isManifestParsingEnabled() {
-        return true;
+        return false;
     }
 }

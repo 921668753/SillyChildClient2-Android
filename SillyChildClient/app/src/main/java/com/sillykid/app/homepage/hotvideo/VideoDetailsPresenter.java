@@ -10,19 +10,18 @@ import com.sillykid.app.retrofit.RequestClient;
  * Created by ruitu on 2018/9/24.
  */
 
-public class HotVideoPresenter implements HotVideoContract.Presenter {
+public class VideoDetailsPresenter implements VideoDetailsContract.Presenter {
 
-    private HotVideoContract.View mView;
+    private VideoDetailsContract.View mView;
 
-    public HotVideoPresenter(HotVideoContract.View view) {
+    public VideoDetailsPresenter(VideoDetailsContract.View view) {
         mView = view;
         mView.setPresenter(this);
     }
 
     @Override
-    public void getVideoList(int page) {
+    public void getVideoDetails(int id) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        httpParams.put("pageno", page);
         httpParams.put("pagesize", 10);
         RequestClient.getVideoList(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
             @Override

@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -25,9 +24,8 @@ import com.common.cklibrary.utils.myview.NoScrollGridView;
 import com.common.cklibrary.utils.myview.ScrollInterceptScrollView;
 import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
-import com.sillykid.app.adapter.homepage.HomePageClassificationViewAdapter;
+import com.sillykid.app.adapter.main.mall.MallClassificationViewAdapter;
 import com.sillykid.app.adapter.main.mall.MallViewAdapter;
-import com.sillykid.app.constant.NumericConstants;
 import com.sillykid.app.entity.main.MallBean;
 import com.sillykid.app.entity.main.MallBean.DataBean.AdvcatBean;
 import com.sillykid.app.entity.main.MallBean.DataBean.ApiCatTreeBean;
@@ -47,7 +45,6 @@ import java.util.List;
 import cn.bingoogolapple.androidcommon.adapter.BGAOnRVItemClickListener;
 import cn.bingoogolapple.bgabanner.BGABanner;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
-import pub.devrel.easypermissions.EasyPermissions;
 
 /**
  * 商城首页
@@ -105,7 +102,7 @@ public class MallFragment extends BaseFragment implements View.OnScrollChangeLis
 
     private MallViewAdapter mallHomePageViewAdapter = null;
 
-    private HomePageClassificationViewAdapter homePageClassificationViewAdapter = null;
+    private MallClassificationViewAdapter homePageClassificationViewAdapter = null;
 
     private Thread thread = null;
 
@@ -122,7 +119,7 @@ public class MallFragment extends BaseFragment implements View.OnScrollChangeLis
     protected void initData() {
         super.initData();
         mPresenter = new MallPresenter(this);
-        homePageClassificationViewAdapter = new HomePageClassificationViewAdapter(aty);
+        homePageClassificationViewAdapter = new MallClassificationViewAdapter(aty);
         RefreshLayoutUtil.initRefreshLayout(mRefreshLayout, this, aty, false);
         spacesItemDecoration = new SpacesItemDecoration(7, 14);
         mallHomePageViewAdapter = new MallViewAdapter(recyclerview);

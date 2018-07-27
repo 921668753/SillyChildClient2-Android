@@ -37,6 +37,8 @@ import com.sillykid.app.homepage.hotvideo.HotVideoActivity;
 import com.sillykid.app.homepage.hotvideo.VideoDetailsActivity;
 import com.sillykid.app.homepage.privatecustom.PrivateCustomActivity;
 import com.sillykid.app.loginregister.LoginActivity;
+import com.sillykid.app.mall.goodslist.GoodsListActivity;
+import com.sillykid.app.mall.goodslist.goodsdetails.GoodsDetailsActivity;
 import com.sillykid.app.utils.GlideImageLoader;
 
 import java.util.List;
@@ -169,7 +171,8 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
         recyclerView.setNestedScrollingEnabled(false);
-        mRefreshLayout.beginRefreshing();
+        boutiqueLineViewAdapter.setOnRVItemClickListener(this);
+        //  mRefreshLayout.beginRefreshing();
     }
 
     /**
@@ -181,35 +184,37 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
         switch (v.getId()) {
             case R.id.img_customerService:
                 // ((HomePagePresenter) mPresenter).isLogin(1);
+
+
                 break;
             case R.id.ll_airportPickup:
-                //   aty.showActivity(aty, AirportPickupActivity.class);
+                Intent intent = new Intent(aty, GoodsListActivity.class);
+                intent.putExtra("cat", 480);
+                aty.showActivity(aty, intent);
                 break;
             case R.id.ll_byTheDay:
-                //  aty.showActivity(aty, BoutiqueLineActivity.class);
-                break;
-            case R.id.ll_privateOrdering:
-                Intent intent1 = new Intent(aty, PrivateCustomActivity.class);
-                // intent1.putExtra("newChageIcon", 2);
+                Intent intent1 = new Intent(aty, GoodsListActivity.class);
+                intent1.putExtra("cat", 483);
                 aty.showActivity(aty, intent1);
                 break;
-            case R.id.ll_boutiqueLine:
-//                Intent intent1 = new Intent(aty, MainActivity.class);
-//                intent1.putExtra("newChageIcon", 2);
-//                aty.showActivity(aty, intent1);
+            case R.id.ll_privateOrdering:
+                Intent intent2 = new Intent(aty, PrivateCustomActivity.class);
+                // intent1.putExtra("newChageIcon", 2);
+                aty.showActivity(aty, intent2);
                 break;
             case R.id.ll_airportDropOff:
-//                Intent intent1 = new Intent(aty, MainActivity.class);
-//                intent1.putExtra("newChageIcon", 2);
-//                aty.showActivity(aty, intent1);
+                Intent intent3 = new Intent(aty, GoodsListActivity.class);
+                intent3.putExtra("cat", 482);
+                aty.showActivity(aty, intent3);
                 break;
             case R.id.ll_hotVideo:
                 aty.showActivity(aty, HotVideoActivity.class);
                 break;
+            case R.id.ll_boutiqueLine:
             case R.id.ll_boutiqueLine1:
-//                Intent intent2 = new Intent(aty, HotStrategyActivity.class);
-//                //    intent2.putExtra("city", tv_address.getText().toString());
-//                aty.showActivity(aty, intent2);
+                Intent intent4 = new Intent(aty, GoodsListActivity.class);
+                intent4.putExtra("cat", 484);
+                aty.showActivity(aty, intent4);
                 break;
             default:
                 break;
@@ -263,9 +268,7 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
         dismissLoadingDialog();
         if (flag == 1) {
             if (isLogin(msg)) {
-                Intent intent = new Intent(aty, LoginActivity.class);
-                // intent.putExtra("name", "GetOrderFragment");
-                aty.showActivity(aty, intent);
+                aty.showActivity(aty, LoginActivity.class);
                 return;
             }
         }
@@ -374,7 +377,7 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
     public void onBGARefreshLayoutBeginRefreshing(BGARefreshLayout refreshLayout) {
         mRefreshLayout.endRefreshing();
         showLoadingDialog(getString(R.string.dataLoad));
-        ((HomePageContract.Presenter) mPresenter).getHomePage("");
+        ((HomePageContract.Presenter) mPresenter).getHomePageData();
     }
 
     @Override
@@ -384,11 +387,10 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
 
     @Override
     public void onRVItemClick(ViewGroup parent, View itemView, int position) {
-
-
-
-
-
+        Intent intent = new Intent(aty, GoodsDetailsActivity.class);
+//        intent.putExtra("goodName", goodsListAdapter.getItem(position).getName());
+//        intent.putExtra("goodsid", goodsListAdapter.getItem(position).getGoods_id());
+        aty.showActivity(aty, intent);
     }
 
 

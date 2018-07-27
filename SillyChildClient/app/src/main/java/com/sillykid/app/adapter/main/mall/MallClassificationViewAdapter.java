@@ -1,4 +1,4 @@
-package com.sillykid.app.adapter.homepage;
+package com.sillykid.app.adapter.main.mall;
 
 import android.content.Context;
 import android.util.Log;
@@ -16,9 +16,9 @@ import cn.bingoogolapple.androidcommon.adapter.BGAViewHolderHelper;
  * Created by Admin on 2017/8/15.
  */
 
-public class HomePageClassificationViewAdapter extends BGAAdapterViewAdapter<ApiCatTreeBean> {
+public class MallClassificationViewAdapter extends BGAAdapterViewAdapter<ApiCatTreeBean> {
 
-    public HomePageClassificationViewAdapter(Context context) {
+    public MallClassificationViewAdapter(Context context) {
         super(context, R.layout.item_homeclassification);
     }
 

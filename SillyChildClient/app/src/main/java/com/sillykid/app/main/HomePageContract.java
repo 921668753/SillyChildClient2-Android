@@ -15,7 +15,7 @@ public interface HomePageContract {
         /**
          * 获取首页信息
          */
-        void getHomePage(String city);
+        void getHomePageData();
 
         /**
          * 设置定位信息

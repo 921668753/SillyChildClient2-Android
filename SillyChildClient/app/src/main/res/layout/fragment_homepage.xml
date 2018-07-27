@@ -246,51 +246,6 @@
                     android:scrollbars="none"
                     tools:listitem="@layout/item_hotvideo" />
 
-                <!--<LinearLayout-->
-                <!--android:id="@+id/ll_hotRegion"-->
-                <!--style="@style/MatchWrap"-->
-                <!--android:layout_below="@id/hlv_hotVideo"-->
-                <!--android:layout_marginTop="@dimen/dimen9"-->
-                <!--android:background="@color/whiteColors"-->
-                <!--android:gravity="center_vertical"-->
-                <!--android:orientation="horizontal"-->
-                <!--android:paddingLeft="@dimen/dimen30"-->
-                <!--android:paddingRight="@dimen/dimen18"-->
-                <!--android:paddingTop="@dimen/dimen3"-->
-                <!--android:visibility="gone">-->
-
-                <!--<TextView-->
-                <!--style="@style/AutoWrap"-->
-                <!--android:paddingBottom="@dimen/dimen10"-->
-                <!--android:paddingTop="@dimen/dimen10"-->
-                <!--android:text="@string/hotRegion"-->
-                <!--android:textColor="@color/textColor"-->
-                <!--android:textSize="@dimen/textsize15" />-->
-
-                <!--<TextView-->
-                <!--android:id="@+id/tv_moreCities"-->
-                <!--style="@style/WrapMatch"-->
-                <!--android:gravity="center"-->
-                <!--android:paddingRight="@dimen/dimen5"-->
-                <!--android:text="@string/moreCities"-->
-                <!--android:textColor="@color/hintColors"-->
-                <!--android:textSize="@dimen/textsize11" />-->
-
-                <!--<ImageView-->
-                <!--android:layout_width="@dimen/dimen6"-->
-                <!--android:layout_height="@dimen/dimen10"-->
-                <!--android:src="@mipmap/arrow" />-->
-                <!--</LinearLayout>-->
-
-                <!--<com.common.cklibrary.utils.myview.HorizontalListView-->
-                <!--android:id="@+id/hlv_hotRegion"-->
-                <!--style="@style/MatchWrap"-->
-                <!--android:background="@color/whiteColors"-->
-                <!--android:scrollbars="none"-->
-                <!--android:visibility="gone"-->
-                <!--tools:listitem="@layout/item_hotregion" />-->
-
-
                 <LinearLayout
                     android:id="@+id/ll_boutiqueLine1"
                     style="@style/MatchWrap"
@@ -323,18 +278,6 @@
                         android:src="@mipmap/arrow" />
 
                 </LinearLayout>
-
-
-                <!--<com.common.cklibrary.utils.myview.ChildListView-->
-                <!--android:id="@+id/clv_hpBoutiqueLine"-->
-                <!--style="@style/MatchWrap"-->
-                <!--android:background="@color/whiteColors"-->
-                <!--android:divider="@color/background"-->
-                <!--android:dividerHeight="@dimen/dimen1"-->
-                <!--android:paddingLeft="@dimen/dimen25"-->
-                <!--android:paddingRight="@dimen/dimen25"-->
-                <!--android:scrollbars="none"-->
-                <!--tools:listitem="@layout/item_hpboutiqueline" />-->
 
 
                 <android.support.v7.widget.RecyclerView

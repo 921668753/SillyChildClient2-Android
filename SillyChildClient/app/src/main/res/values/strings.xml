@@ -152,7 +152,6 @@
     <string name="hotVideo">热门视频</string>
     <string name="moreVideo">更多视频</string>
 
-
     <string name="airportPickup">接机</string>
     <string name="boutiqueLine">精品线路</string>
     <string name="privateOrdering">私人订制</string>
@@ -180,6 +179,11 @@
     <string name="notOpenPositionSwitch">未打开位置开关，可能导致定位失败或定位不准，请打开GPS</string>
     <string name="openPositionSwitch">定位需要以下权限:\n\n1.访问设备上的gps\n\n2.读写权限</string>
     <string name="moreClassification">更多分类</string>
+
+    <!--首页   热门视频-->
+    <string name="noHotVideo">亲，还没有任何视频哟~</string>
+
+
 
 
     <!--搜索界面-->
@@ -524,6 +528,7 @@
     <string name="travelPreferences">出行偏好</string>
     <string name="recommendRestaurant">餐馆偏好</string>
     <string name="recommendedAccommodation">住宿偏好</string>
+
     <string name="addNotes">添加备注</string>
     <string name="strokeModels">行程车型</string>
     <string name="customizedItinerary">定制行程</string>

@@ -4,32 +4,23 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.location.LocationManager;
-import android.util.Log;
 
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.common.cklibrary.common.KJActivityStack;
-import com.common.cklibrary.common.StringConstants;
 import com.common.cklibrary.common.ViewInject;
-import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.httputil.HttpUtilParams;
 import com.common.cklibrary.utils.httputil.ResponseListener;
-import com.kymjs.common.PreferenceHelper;
-import com.kymjs.common.StringUtils;
 import com.kymjs.rxvolley.client.HttpParams;
-import com.sillykid.app.BuildConfig;
 import com.sillykid.app.R;
 import com.sillykid.app.constant.NumericConstants;
-import com.sillykid.app.entity.BaiDuInfo;
 import com.sillykid.app.retrofit.RequestClient;
 
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 
-import static com.sillykid.app.constant.StringNewConstants.BAIDUTABID;
-
 /**
- * Created by ruitu on 2016/9/24.
+ * Created by ruitu on 2018/9/24.
  */
 
 public class MallPresenter implements MallContract.Presenter {
@@ -61,7 +52,7 @@ public class MallPresenter implements MallContract.Presenter {
     @Override
     public void getMall() {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        RequestClient.getHomePage(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
+        RequestClient.getMall(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
                 mView.getSuccess(response, 0);

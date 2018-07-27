@@ -7,12 +7,13 @@ import com.common.cklibrary.common.BaseView;
  * Created by ruitu on 2016/9/24.
  */
 
-public interface HotVideoContract {
+public interface VideoDetailsContract {
+
     interface Presenter extends BasePresenter {
         /**
-         * 获取视频列表
+         * 获取视频详情
          */
-        void getVideoList(int page);
+        void getVideoDetails(int id);
     }
 
     interface View extends BaseView<Presenter, String> {

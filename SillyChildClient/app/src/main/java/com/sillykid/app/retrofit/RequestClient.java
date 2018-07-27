@@ -317,8 +317,49 @@ public class RequestClient {
     /**
      * 获取首页信息
      */
-    public static void getHomePage(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+    public static void getHomePageData(Context context, HttpParams httpParams, ResponseListener<String> listener) {
         HttpRequest.requestGetHttp(context, URLConstants.HOMEPAGE, httpParams, false, listener);
+    }
+
+
+    /**
+     * 获取视频列表
+     */
+    public static void getVideoList(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        HttpRequest.requestGetHttp(context, URLConstants.VIDEOLIST, httpParams, false, listener);
+    }
+
+    /**
+     * 获取视频详细信息
+     */
+    public static void getVideoDetail(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        HttpRequest.requestGetHttp(context, URLConstants.VIDEODETAIL, httpParams, false, listener);
+    }
+
+    /**
+     * 用户填写定制要求
+     */
+    public static void postAddCustomized(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        doServer(context, new TokenCallback() {
+            @Override
+            public void execute() {
+                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                if (StringUtils.isEmpty(cookies)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("Cookie", cookies);
+                HttpRequest.requestPostFORMHttp(context, URLConstants.ADDCUSTOMIZED, httpParams, listener);
+            }
+        }, listener);
+    }
+
+
+    /**
+     * 获取商城信息
+     */
+    public static void getMall(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        HttpRequest.requestGetHttp(context, URLConstants.MALLPAGE, httpParams, false, listener);
     }
 
     /**

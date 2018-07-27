@@ -20,7 +20,7 @@ import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 
 /**
- * Created by ruitu on 2016/9/24.
+ * Created by ruitu on 2018/9/24.
  */
 
 public class HomePagePresenter implements HomePageContract.Presenter {
@@ -32,29 +32,19 @@ public class HomePagePresenter implements HomePageContract.Presenter {
     }
 
     @Override
-    public void getHomePage(String city) {
+    public void getHomePageData() {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-//        RequestClient.getHome(httpParams, city, new ResponseListener<String>() {
-//            @Override
-//            public void onSuccess(String response) {
-//                KJActivityStack.create().topActivity().runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        mView.getSuccess(response, 0);
-//                    }
-//                });
-//            }
-//
-//            @Override
-//            public void onFailure(String msg) {
-//                KJActivityStack.create().topActivity().runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        mView.errorMsg(msg, 0);
-//                    }
-//                });
-//            }
-//        });
+        RequestClient.getHomePageData(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
+            @Override
+            public void onSuccess(String response) {
+                mView.getSuccess(response, 0);
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                mView.errorMsg(msg, 0);
+            }
+        });
     }
 
     @Override

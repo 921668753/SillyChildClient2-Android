@@ -734,6 +734,26 @@ public class RequestClient {
 
 
     /**
+     * 社区----举报用户帖子
+     */
+    public static void postReport(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        Log.d("tag", "postReport");
+        doServer(context, new TokenCallback() {
+            @Override
+            public void execute() {
+                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                if (StringUtils.isEmpty(cookies)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("Cookie", cookies);
+                HttpRequest.requestPostFORMHttp(context, URLConstants.REPORT, httpParams, listener);
+            }
+        }, listener);
+    }
+
+
+    /**
      * 社区----获取帖子评论列表
      */
     public static void getPostComment(Context context, HttpParams httpParams, ResponseListener<String> listener) {

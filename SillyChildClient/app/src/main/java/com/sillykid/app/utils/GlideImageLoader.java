@@ -3,6 +3,12 @@ package com.sillykid.app.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.graphics.PixelFormat;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.text.TextUtils;
 import android.view.ViewGroup;
@@ -13,7 +19,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.FitCenter;
-import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.Target;
 import com.common.cklibrary.R;
@@ -35,14 +41,16 @@ public class GlideImageLoader implements ImageLoader {
 
     @Override
     public void displayImage(Activity activity, String path, ImageView imageView, int width, int height) {
+        RequestOptions options = new RequestOptions();
+        options.error(R.mipmap.placeholderfigure);
+        options.fallback(R.mipmap.placeholderfigure);//当url为空时，显示图片
+        options.diskCacheStrategy(DiskCacheStrategy.ALL);//缓存全尺寸
         if (path.startsWith("http")) {
             Glide.with(activity)
                     //      .asBitmap()//配置上下文
                     .load(path)//设置图片路径(fix #8,文件名包含%符号 无法识别和显示)
-                    .error(R.mipmap.placeholderfigure)           //设置错误图片
                     //  .placeholder(R.mipmap.load)     //设置占位图片
-                    .fallback(R.mipmap.placeholderfigure)//当url为空时，显示图片
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)//缓存全尺寸
+                    .apply(options)
                     //     .centerInside()
                     //  .transition(withCrossFade().crossFade())//应用在淡入淡出
                     //  .skipMemoryCache(true)//设置跳过内存缓存
@@ -62,10 +70,7 @@ public class GlideImageLoader implements ImageLoader {
             Glide.with(activity)
                     //    .asBitmap()//配置上下文
                     .load(contentUri)//设置图片路径(fix #8,文件名包含%符号 无法识别和显示)
-                    .error(R.mipmap.placeholderfigure)           //设置错误图片
-                    //  .placeholder(R.mipmap.load)     //设置占位图片
-                    .fallback(R.mipmap.placeholderfigure)//当url为空时，显示图片
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)//缓存全尺寸
+                    .apply(options)
                     //        .centerInside()
                     //  .transition(withCrossFade().crossFade())//应用在淡入淡出
                     //  .skipMemoryCache(true)//设置跳过内存缓存
@@ -75,14 +80,15 @@ public class GlideImageLoader implements ImageLoader {
 
     @Override
     public void displayImagePreview(Activity activity, String path, ImageView imageView, int width, int height) {
+        RequestOptions options = new RequestOptions();
+        options.error(R.mipmap.placeholderfigure);
+        options.fallback(R.mipmap.placeholderfigure);//当url为空时，显示图片
+        options.diskCacheStrategy(DiskCacheStrategy.ALL);//缓存全尺寸
         if (path.startsWith("http")) {
             Glide.with(activity)
                     //      .asBitmap()//配置上下文
                     .load(path)//设置图片路径(fix #8,文件名包含%符号 无法识别和显示)
-                    .error(R.mipmap.placeholderfigure)           //设置错误图片
-                    //  .placeholder(R.mipmap.load)     //设置占位图片
-                    .fallback(R.mipmap.placeholderfigure)//当url为空时，显示图片
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)//缓存全尺寸
+                    .apply(options)
                     //     .centerInside()
                     //  .transition(withCrossFade().crossFade())//应用在淡入淡出
                     //  .skipMemoryCache(true)//设置跳过内存缓存
@@ -90,7 +96,7 @@ public class GlideImageLoader implements ImageLoader {
         } else {
             Glide.with(activity)                             //配置上下文
                     .load(Uri.fromFile(new File(path)))      //设置图片路径(fix #8,文件名包含%符号 无法识别和显示)
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)//缓存全尺寸
+                    .apply(options)
                     .into(imageView);
         }
     }
@@ -114,27 +120,30 @@ public class GlideImageLoader implements ImageLoader {
     public static void glideLoader(Context context, Object url, ImageView imageView, int tag) {
 
         if (0 == tag) {
+            RequestOptions options = new RequestOptions();
+            options.error(R.mipmap.placeholderfigure);
+            options.fallback(R.mipmap.placeholderfigure);//当url为空时，显示图片
+            options.diskCacheStrategy(DiskCacheStrategy.ALL);//缓存全尺寸
+            options.transform(new GlideCircleTransform(context));
+            options.dontAnimate();//没有任何淡入淡出效果
             Glide.with(context)
                     .load(url)
                     //  .skipMemoryCache(true)//设置跳过内存缓存
 //                    .placeholder(R.mipmap.loading)
-                    .error(R.mipmap.avatar)
-                    .fallback(R.mipmap.avatar)
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .transform(new GlideCircleTransform(context))
-                    .dontAnimate()//没有任何淡入淡出效果
+                    .apply(options)
                     //    .transition(withCrossFade().crossFade())//应用在淡入淡出
                     .into(imageView);
         } else if (1 == tag) {
+            RequestOptions options = new RequestOptions();
+            options.error(R.mipmap.placeholderfigure)
+                    .fallback(R.mipmap.placeholderfigure)//当url为空时，显示图片
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)//缓存全尺寸
+                    .transform(new GlideRoundTransform(context, 10))
+                    .dontAnimate();//没有任何淡入淡出效果
             Glide.with(context)
                     .load(url)
                     //  .placeholder(R.mipmap.loading)
-                    .error(R.mipmap.placeholderfigure)
-                    .fallback(R.mipmap.placeholderfigure)
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .transform(new GlideRoundTransform(context, 10))
-                    //   .skipMemoryCache(true)//设置跳过内存缓存
-                    .dontAnimate()//没有任何淡入淡出效果
+                    .apply(options)
                     //   .transition(withCrossFade().crossFade())//应用在淡入淡出
                     .into(imageView);
         }
@@ -149,27 +158,30 @@ public class GlideImageLoader implements ImageLoader {
     public static void glideLoader(Context context, Object url, ImageView imageView, int tag, int defaultimage) {
 
         if (0 == tag) {
+            RequestOptions options = new RequestOptions();
+            options.error(defaultimage)
+                    .fallback(defaultimage)//当url为空时，显示图片
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)//缓存全尺寸
+                    .transform(new GlideCircleTransform(context))
+                    .dontAnimate();//没有任何淡入淡出效果
             Glide.with(context)
                     .load(url)
                     //  .skipMemoryCache(true)//设置跳过内存缓存
-                    .placeholder(defaultimage)
-                    .error(defaultimage)
-                    .fallback(defaultimage)
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .transform(new GlideCircleTransform(context))
-                    .dontAnimate()//没有任何淡入淡出效果
+//                    .placeholder(R.mipmap.loading)
+                    .apply(options)
                     //    .transition(withCrossFade().crossFade())//应用在淡入淡出
                     .into(imageView);
         } else if (1 == tag) {
+            RequestOptions options = new RequestOptions();
+            options.error(defaultimage)
+                    .fallback(defaultimage)//当url为空时，显示图片
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)//缓存全尺寸
+                    .transform(new GlideRoundTransform(context, 10))
+                    .dontAnimate();//没有任何淡入淡出效果
             Glide.with(context)
                     .load(url)
-                    .placeholder(defaultimage)
-                    .error(R.mipmap.placeholderfigure)
-                    .fallback(R.mipmap.placeholderfigure)
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .transform(new GlideRoundTransform(context, 10))
-                    //   .skipMemoryCache(true)//设置跳过内存缓存
-                    .dontAnimate()//没有任何淡入淡出效果
+                    //  .placeholder(R.mipmap.loading)
+                    .apply(options)
                     //   .transition(withCrossFade().crossFade())//应用在淡入淡出
                     .into(imageView);
         }
@@ -181,54 +193,18 @@ public class GlideImageLoader implements ImageLoader {
      * @param imageView raudio   圆角大小
      */
     public static void glideLoaderRaudio(Context context, Object url, ImageView imageView, int raudio, int defaultimage) {
-//            Glide.with(context)
-//                    .load(url)
-//                    //  .placeholder(R.mipmap.loading)
-//                    .error(defaultimage)
-//                    .fallback(defaultimage)
-//                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-//                    .transform(new GlideRoundTransform(context, raudio))
-//                    //   .skipMemoryCache(true)//设置跳过内存缓存
-//                    .dontAnimate()//没有任何淡入淡出效果
-//                    //   .transition(withCrossFade().crossFade())//应用在淡入淡出
-//                    .into(imageView);
-
-
+        RequestOptions options = new RequestOptions();
+        options.error(defaultimage)
+                .fallback(defaultimage)//当url为空时，显示图片
+                .diskCacheStrategy(DiskCacheStrategy.ALL)//缓存全尺寸
+                .transform(new GlideRoundTransform(context, raudio))
+                .dontAnimate();//没有任何淡入淡出效果
         Glide.with(context)
                 .load(url)
                 //  .placeholder(R.mipmap.loading)
-                .error(defaultimage)
-                .fallback(defaultimage)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-//                .transform(new FitCenter(context)
-//                ,new GlideRoundTransform(context, 5))
-                .bitmapTransform(new GlideRoundTransform(context, raudio))
-                //   .skipMemoryCache(true)//设置跳过内存缓存
-                .dontAnimate()//没有任何淡入淡出效果
+                .apply(options)
                 //   .transition(withCrossFade().crossFade())//应用在淡入淡出
                 .into(imageView);
-
-
-//        Glide.with(context)
-//                .load(url)
-//                .asBitmap()
-//                .diskCacheStrategy(DiskCacheStrategy.ALL)
-//                .error(defaultimage)
-//                .fallback(defaultimage)
-//                .into(new SimpleTarget<Bitmap>() {
-//                    @Override
-//                    public void onResourceReady(Bitmap bitmap,
-//                                                GlideAnimation<? super Bitmap> glideAnimation) {
-//                        int width = bitmap.getWidth();
-//                        int height = bitmap.getHeight();
-//                        ViewGroup.LayoutParams lp = imageView.getLayoutParams();
-//                        lp.width = imageView.getWidth();
-//                        float tempHeight = height * ((float) lp.width / width);
-//                        lp.height = (int) tempHeight;
-//                        imageView.setLayoutParams(lp);
-//                        imageView.setImageBitmap(bitmap);
-//                    }
-//                });
 
     }
 
@@ -239,19 +215,17 @@ public class GlideImageLoader implements ImageLoader {
      * @param imageView raudio   圆角大小
      */
     public static void glideLoaderRaudio(Context context, Object url, ImageView imageView, int raudio, int width, int height, int defaultimage) {
-
+        RequestOptions options = new RequestOptions();
+        options.error(defaultimage)
+                .fallback(defaultimage)//当url为空时，显示图片
+                .override(width, height)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)//缓存全尺寸
+                .transform(new GlideRoundTransform(context, raudio))
+                .dontAnimate();//没有任何淡入淡出效果
         Glide.with(context)
                 .load(url)
                 //  .placeholder(R.mipmap.loading)
-                .error(defaultimage)
-                .fallback(defaultimage)
-                .override(width, height)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-//                .transform(new FitCenter(context)
-//                ,new GlideRoundTransform(context, 5))
-                .bitmapTransform(new GlideRoundTransform(context, raudio))
-                //   .skipMemoryCache(true)//设置跳过内存缓存
-                .dontAnimate()//没有任何淡入淡出效果
+                .apply(options)
                 //   .transition(withCrossFade().crossFade())//应用在淡入淡出
                 .into(imageView);
     }
@@ -265,13 +239,14 @@ public class GlideImageLoader implements ImageLoader {
      * @return
      */
     public static Bitmap load(Context context, String url) {
+        RequestOptions options = new RequestOptions();
+        options.diskCacheStrategy(DiskCacheStrategy.ALL);//缓存全尺寸
         try {
-            return Glide.with(context)
+            return drawableToBitmap(Glide.with(context)
                     .load(url)
-                    .asBitmap()
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .apply(options)
                     .into(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
-                    .get();
+                    .get());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -288,32 +263,62 @@ public class GlideImageLoader implements ImageLoader {
      */
     public static Bitmap load(Context context, int url) {
         try {
-            return Glide.with(context)
+            RequestOptions options = new RequestOptions();
+//        options.asBitmap();
+            options.diskCacheStrategy(DiskCacheStrategy.ALL);//缓存全尺寸
+//        options.transform(new GlideRoundTransform(context, raudio));
+//        options.dontAnimate();//没有任何淡入淡出效果
+            return drawableToBitmap(Glide.with(context)
                     .load(url)
-                    .asBitmap()
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .apply(options)
                     .into(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
-                    .get();
+                    .get());
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
 
+    public static Drawable zoomDrawable(Drawable drawable, int w, int h) {
+        int width = drawable.getIntrinsicWidth();
+        int height = drawable.getIntrinsicHeight();
+        Bitmap oldbmp = drawableToBitmap(drawable);
+        Matrix matrix = new Matrix();
+        float scaleWidth = ((float) w / width);
+        float scaleHeight = ((float) h / height);
+        matrix.postScale(scaleWidth, scaleHeight);
+        Bitmap newbmp = Bitmap.createBitmap(oldbmp, 0, 0, width, height,
+                matrix, true);
+        return new BitmapDrawable(null, newbmp);
+    }
+
+    public static Bitmap drawableToBitmap(Drawable drawable) {
+        int width = drawable.getIntrinsicWidth();
+        int height = drawable.getIntrinsicHeight();
+        Bitmap.Config config = drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888
+                : Bitmap.Config.RGB_565;
+        Bitmap bitmap = Bitmap.createBitmap(width, height, config);
+        Canvas canvas = new Canvas(bitmap);
+        drawable.setBounds(0, 0, width, height);
+        drawable.draw(canvas);
+        return bitmap;
+    }
 
     /**
      * 图片上边圆角，下边直角
      */
     public static void glideLoader(Context context, Object url, ImageView imageView, int radius, int bottom, int defaultimage) {
-        Glide.with(context)
-                .load(url)
-                //  .placeholder(R.mipmap.loading)
-                .error(R.mipmap.default_image)
+        RequestOptions options = new RequestOptions();
+        options.error(R.mipmap.default_image)
                 .fallback(R.mipmap.default_image)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .bitmapTransform(new RoundedCornersTransformation(context, radius, bottom, RoundedCornersTransformation.CornerType.TOP))
                 //   .skipMemoryCache(true)//设置跳过内存缓存
-                .dontAnimate()//没有任何淡入淡出效果
+                .dontAnimate();//没有任何淡入淡出效果
+        Glide.with(context)
+                .load(url)
+                //  .placeholder(R.mipmap.loading)
+                .apply(options)
                 //   .transition(withCrossFade().crossFade())//应用在淡入淡出
                 .into(imageView);
     }
@@ -323,14 +328,18 @@ public class GlideImageLoader implements ImageLoader {
      * 加载网络图片，并可配置默认图片，加载失败图片，占位图片
      */
     public static void glideOrdinaryLoader(Context context, Object url, ImageView imageView, int defaultimage) {
-        Glide.with(context)
-                .load(url)
-                //  .skipMemoryCache(true)//设置跳过内存缓存
-                .placeholder(defaultimage)
+
+        RequestOptions options = new RequestOptions();
+        options.placeholder(defaultimage)
                 .error(defaultimage)
                 .fallback(defaultimage)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .dontAnimate()
+                .dontAnimate();
+
+        Glide.with(context)
+                .load(url)
+                //  .skipMemoryCache(true)//设置跳过内存缓存
+                .apply(options)
 //                .transition(withCrossFade())//应用在淡入淡出
                 .into(imageView);
     }
@@ -339,41 +348,47 @@ public class GlideImageLoader implements ImageLoader {
      * 加载网络图片，并可配置默认图片，加载失败图片，占位图片
      */
     public static void glideOrdinaryLoader(Context context, Object url, PhotoView photoView, int defaultimage) {
+        RequestOptions options = new RequestOptions();
+        options.error(defaultimage)
+                .fallback(defaultimage)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .dontAnimate();
         Glide.with(context)
                 .load(url)
                 //  .skipMemoryCache(true)//设置跳过内存缓存
                 //  .placeholder(R.mipmap.loading)
-                .error(defaultimage)
-                .fallback(defaultimage)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .dontAnimate()
+                .apply(options)
 //                .transition(withCrossFade())//应用在淡入淡出
                 .into(photoView);
     }
 
     public static void glideOrdinaryLoader(Context context, Object url, ImageView imageView) {
+        RequestOptions options = new RequestOptions();
+        options.error(R.mipmap.placeholderfigure)
+                .fallback(R.mipmap.placeholderfigure)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .dontAnimate();
         Glide.with(context)
                 .load(url)
                 //  .skipMemoryCache(true)//设置跳过内存缓存
                 //  .placeholder(R.mipmap.loading)
-                .error(R.mipmap.placeholderfigure)
-                .fallback(R.mipmap.placeholderfigure)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .dontAnimate()
+                .apply(options)
 //                .transition(withCrossFade())//应用在淡入淡出
                 .into(imageView);
     }
 
     //心形图片
     public static void heartIconLoader(Context context, Object url, ImageView imageView) {
+        RequestOptions options = new RequestOptions();
+        options.diskCacheStrategy(DiskCacheStrategy.ALL)
+                .dontAnimate();
         Glide.with(context)
                 .load(url)
                 //  .skipMemoryCache(true)//设置跳过内存缓存
                 //  .placeholder(R.mipmap.loading)
 //                .error(null)
 //                .fallback(null)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .dontAnimate()
+                .apply(options)
 //                .transition(withCrossFade())//应用在淡入淡出
                 .into(imageView);
     }
@@ -386,14 +401,16 @@ public class GlideImageLoader implements ImageLoader {
         if (TextUtils.isEmpty(url)) {
             imageView.setImageResource(defaultiamge);
         } else {
+            RequestOptions options = new RequestOptions();
+            options.error(defaultiamge)
+                    .fallback(defaultiamge)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .dontAnimate();
             Glide.with(context)
                     .load(url)
                     //  .skipMemoryCache(true)//设置跳过内存缓存
                     //  .placeholder(R.mipmap.loading)
-                    .error(defaultiamge)
-                    .fallback(defaultiamge)
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .dontAnimate()
+                    .apply(options)
 //                .transition(withCrossFade())//应用在淡入淡出
                     .into(imageView);
         }

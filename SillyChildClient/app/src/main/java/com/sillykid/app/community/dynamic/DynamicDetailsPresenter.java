@@ -136,6 +136,7 @@ public class DynamicDetailsPresenter implements DynamicDetailsContract.Presenter
 
     }
 
+
     @Override
     public void getIsLogin(Context context, int flag) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();

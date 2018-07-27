@@ -306,4 +306,14 @@ public class FeedbackActivity extends BaseActivity implements TextWatcher, Image
         }
         ViewInject.toast(msg);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        urllist.clear();
+        urllist = null;
+        selImageList.clear();
+        selImageList = null;
+        adapter = null;
+    }
 }

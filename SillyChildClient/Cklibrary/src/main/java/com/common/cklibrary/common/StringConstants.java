@@ -33,7 +33,7 @@ public class StringConstants {
      */
     public static String ERRORLOG = "SHZY/PhoneLog";
 
-    // 图片缓存最大容量，150M，根据自己的需求进行修改
+    // 图片缓存最大容量，150M，根据自己的需求进行修改 自定义内置磁盘缓存大小.
     public static final int GLIDE_CATCH_SIZE = 1000 * 1000 * 1000;
     // 图片内存缓存最大容量，150M，根据自己的需求进行修改
     public static final int MEMORY_CATCH_SIZE = 150 * 1000 * 1000;

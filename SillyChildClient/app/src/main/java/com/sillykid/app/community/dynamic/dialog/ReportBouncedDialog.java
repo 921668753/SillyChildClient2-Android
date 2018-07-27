@@ -19,8 +19,11 @@ import com.sillykid.app.loginregister.LoginActivity;
  */
 public class ReportBouncedDialog extends BaseDialog implements View.OnClickListener, ReportBouncedContract.View {
 
-    public ReportBouncedDialog(Context context) {
+    private int post_id = 0;
+
+    public ReportBouncedDialog(Context context, int post_id) {
         super(context, R.style.MyDialog);
+        this.post_id = post_id;
     }
 
 
@@ -49,7 +52,7 @@ public class ReportBouncedDialog extends BaseDialog implements View.OnClickListe
         switch (v.getId()) {
             case R.id.tv_report:
                 showLoadingDialog(mContext.getString(R.string.reportLoad));
-                //  ((ReportBouncedContract.Presenter)mPresenter).postAddConcern();
+                ((ReportBouncedContract.Presenter) mPresenter).postReport(post_id);
                 break;
             case R.id.tv_cancel:
                 dismiss();

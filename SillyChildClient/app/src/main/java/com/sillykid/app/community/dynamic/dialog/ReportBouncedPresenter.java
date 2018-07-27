@@ -1,14 +1,9 @@
 package com.sillykid.app.community.dynamic.dialog;
 
-import android.content.Context;
-
 import com.common.cklibrary.common.KJActivityStack;
 import com.common.cklibrary.utils.httputil.HttpUtilParams;
 import com.common.cklibrary.utils.httputil.ResponseListener;
-import com.kymjs.common.StringUtils;
 import com.kymjs.rxvolley.client.HttpParams;
-import com.sillykid.app.R;
-import com.sillykid.app.community.dynamic.DynamicDetailsContract;
 import com.sillykid.app.retrofit.RequestClient;
 
 /**
@@ -23,11 +18,10 @@ public class ReportBouncedPresenter implements ReportBouncedContract.Presenter {
     }
 
     @Override
-    public void postAddConcern(Context context, int user_id, int type_id) {
+    public void postReport(int post_id) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        httpParams.put("member_id", user_id);
-        httpParams.put("type_id", type_id);
-        RequestClient.postAddConcern(context, httpParams, new ResponseListener<String>() {
+        httpParams.put("post_id", post_id);
+        RequestClient.postReport(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
                 mView.getSuccess(response, 0);

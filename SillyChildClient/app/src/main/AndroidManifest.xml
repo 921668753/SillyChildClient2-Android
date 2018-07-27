@@ -939,8 +939,8 @@
         <!-- 配置glide缓存 -->
         <!-- 配置glide缓存 -->
         <meta-data
-            android:name="com.sillykid.app.utils.MyGlideModule"
-            android:value="GlideModule" />
+            android:name="com.sillykid.app.MyGlideModule"
+            android:value="AppGlideModule" />
         <!-- 配置glide缓存 -->
         <!-- 配置glide缓存 -->
 

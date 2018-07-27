@@ -196,6 +196,11 @@ public class URLConstants {
     public static String ADDCOMMENT = APIURL + "comment/add_comment.do";
 
     /**
+     * 社区----举报用户帖子
+     */
+    public static String REPORT = APIURL + "post/report.do";
+
+    /**
      * 社区----获取帖子评论列表
      */
     public static String POSTCOMMENT = APIURL + "comment/get_post_comment.do";

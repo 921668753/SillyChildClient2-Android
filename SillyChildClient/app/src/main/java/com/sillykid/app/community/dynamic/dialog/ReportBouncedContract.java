@@ -1,7 +1,5 @@
 package com.sillykid.app.community.dynamic.dialog;
 
-import android.content.Context;
-
 import com.common.cklibrary.common.BasePresenter;
 import com.common.cklibrary.common.BaseView;
 
@@ -14,9 +12,9 @@ public interface ReportBouncedContract {
     interface Presenter extends BasePresenter {
 
         /**
-         * 举报
+         * 举报用户帖子
          */
-        void postAddConcern(Context context, int user_id, int type_id);
+        void postReport(int post_id);
 
     }
 

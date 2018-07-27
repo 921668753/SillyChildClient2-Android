@@ -108,7 +108,7 @@ public class ViewInject {
     @SuppressLint("ShowToast")
     public static void toast(Context context, String message, int duration) {
         if (mToast == null) {
-            mToast = Toast.makeText(context, null, duration);
+            mToast = Toast.makeText(context, "", duration);
         }
         mToast.setText(message);
         mToast.show();
@@ -120,7 +120,7 @@ public class ViewInject {
     @SuppressLint("ShowToast")
     public static void showImg(Context context, String message, int duration, int img) {
         if (mToast == null) {
-            mToast = Toast.makeText(context, null, duration);
+            mToast = Toast.makeText(context, "", duration);
         }
         mToast.setText(message);
         mToast.setGravity(Gravity.CENTER, 0, 0);

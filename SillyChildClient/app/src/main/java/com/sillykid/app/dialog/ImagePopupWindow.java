@@ -15,6 +15,8 @@ import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
+import com.common.cklibrary.utils.GlideCircleTransform;
 import com.sillykid.app.R;
 
 /**
@@ -48,15 +50,16 @@ public class ImagePopupWindow extends PopupWindow {
 
         image = (ImageView) myView.findViewById(R.id.image);
         rl_btn = (RelativeLayout) myView.findViewById(R.id.rl_btn);
+        RequestOptions options = new RequestOptions();
+        options .fitCenter()
+                .error(R.mipmap.placeholderfigure1)
+//                .placeholder(R.mipmap.ic_stub)
+                .diskCacheStrategy(DiskCacheStrategy.ALL);
 
         //缺少头像字段
         Glide.with(context)
                 .load(url)
-                .fitCenter()
-                .error(R.mipmap.placeholderfigure1)
-//                .placeholder(R.mipmap.ic_stub)
-                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                .crossFade()
+                .apply(options)
                 .into(image);
 
         rl_btn.setOnClickListener(new View.OnClickListener() {

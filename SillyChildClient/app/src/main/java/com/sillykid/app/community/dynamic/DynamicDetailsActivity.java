@@ -148,7 +148,7 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
     }
 
     private void initBouncedDialog() {
-        reportBouncedDialog = new ReportBouncedDialog(this);
+        reportBouncedDialog = new ReportBouncedDialog(this, id);
         revertBouncedDialog = new RevertBouncedDialog(this) {
             @Override
             public void toSuccess() {
@@ -221,7 +221,7 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
 
             case R.id.ll_report:
                 if (reportBouncedDialog == null) {
-                    reportBouncedDialog = new ReportBouncedDialog(this);
+                    reportBouncedDialog = new ReportBouncedDialog(this, id);
                 }
                 if (reportBouncedDialog != null && !reportBouncedDialog.isShowing()) {
                     reportBouncedDialog.show();
@@ -423,9 +423,6 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
                 ViewInject.toast(getString(R.string.zanSuccess));
             }
             dismissLoadingDialog();
-        } else if (flag == 5) {
-
-
         }
     }
 

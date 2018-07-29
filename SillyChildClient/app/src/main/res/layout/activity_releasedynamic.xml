@@ -73,7 +73,12 @@
                 android:textColorHint="@color/hintColors"
                 android:textCursorDrawable="@drawable/shape_cursor"
                 android:textSize="@dimen/textsize13" />
-
+            <!--<android.support.v7.widget.RecyclerView-->
+                <!--android:id="@+id/recyclerView"-->
+                <!--style="@style/MatchWrap"-->
+                <!--android:layout_marginLeft="5dp"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:overScrollMode="never" />-->
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerView"
@@ -85,6 +90,7 @@
                 android:choiceMode="singleChoice"
                 android:divider="@null"
                 android:fadingEdge="none"
+                android:overScrollMode="never"
                 android:listSelector="@android:color/transparent"
                 android:paddingBottom="@dimen/dimen5"
                 android:paddingLeft="@dimen/dimen8"

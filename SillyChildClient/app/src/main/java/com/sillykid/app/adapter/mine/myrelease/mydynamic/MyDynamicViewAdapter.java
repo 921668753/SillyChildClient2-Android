@@ -1,4 +1,4 @@
-package com.sillykid.app.adapter.mine.myrelease;
+package com.sillykid.app.adapter.mine.myrelease.mydynamic;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;

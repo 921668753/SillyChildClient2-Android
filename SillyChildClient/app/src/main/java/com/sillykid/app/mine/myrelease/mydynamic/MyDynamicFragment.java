@@ -18,7 +18,7 @@ import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.RefreshLayoutUtil;
 import com.sillykid.app.R;
-import com.sillykid.app.adapter.mine.myrelease.MyDynamicViewAdapter;
+import com.sillykid.app.adapter.mine.myrelease.mydynamic.MyDynamicViewAdapter;
 import com.sillykid.app.community.dynamic.DynamicDetailsActivity;
 import com.sillykid.app.constant.NumericConstants;
 import com.sillykid.app.entity.mine.myrelease.mydynamic.MyDynamicBean;

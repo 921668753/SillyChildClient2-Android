@@ -13,7 +13,6 @@ import com.bumptech.glide.load.engine.cache.DiskLruCacheFactory;
 import com.bumptech.glide.load.engine.cache.LruResourceCache;
 import com.bumptech.glide.load.engine.cache.MemorySizeCalculator;
 import com.bumptech.glide.module.AppGlideModule;
-import com.common.cklibrary.common.StringConstants;
 import com.kymjs.common.FileUtils;
 import com.kymjs.common.Log;
 

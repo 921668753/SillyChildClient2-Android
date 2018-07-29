@@ -53,14 +53,16 @@ dependencies {
     compile 'com.github.f0ris.sweetalert:library:1.5.3'
 
     //图片选择器  https://github.com/jeasonlzy/ImagePicker
-   // compile 'com.lzy.widget:imagepicker:0.6.1'
+    // compile 'com.lzy.widget:imagepicker:0.6.1'
     api project(path: ':imagepicker')
+    api project(':picture_library')
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.5.0'
 
     //图片压缩  https://github.com/nanchen2251/CompressHelper
     compile 'com.github.nanchen2251:CompressHelper:1.0.5'
 
     //图片加载框架 https://github.com/bumptech/glide
-  //  compile "com.android.support:support-v4:$rootProject.supportLibraryVersion"
+    //  compile "com.android.support:support-v4:$rootProject.supportLibraryVersion"
 
     //    compile 'com.android.support:support-fragment:26.+'
 
@@ -100,7 +102,7 @@ dependencies {
      * Android流式布局
      */
     compile 'com.hyman:flowlayout-lib:1.1.2'
- //   compile 'cn.bingoogolapple:bga-flowlayout:1.0.0@aar'
+    //   compile 'cn.bingoogolapple:bga-flowlayout:1.0.0@aar'
 
     /**
      * https://github.com/Bigkoo/Android-PickerView
@@ -140,6 +142,6 @@ dependencies {
 
     compile 'com.google.code.gson:gson:2.8.4'
 
-    compile 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.3'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.5.0'
+//    compile 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.3'
+//    annotationProcessor 'com.github.bumptech.glide:compiler:4.5.0'
 }

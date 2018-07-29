@@ -178,19 +178,19 @@ public static final ** CREATOR;
 -dontwarn com.nostra13.universalimageloader.**
 -dontwarn cn.bingoogolapple.photopicker.imageloader.**
 
-## ----------------------------------
-##      Glide相关
-## ----------------------------------
--keep public class * extends com.bumptech.glide.module.AppGlideModule
--keep public class * implements com.bumptech.glide.module.AppGlideModule
--keep public class * implements com.bumptech.glide.module.GlideModule
--keep public enum com.bumptech.glide.load.resource.bitmap.ImageHeaderParser$** {
-  **[] $VALUES;
-  public *;
-}
-
-# for DexGuard only
-#-keepresourcexmlelements manifest/application/meta-data@value=GlideModule
+### ----------------------------------
+###      Glide相关
+### ----------------------------------
+#-keep public class * extends com.bumptech.glide.module.AppGlideModule
+#-keep public class * implements com.bumptech.glide.module.AppGlideModule
+#-keep public class * implements com.bumptech.glide.module.GlideModule
+#-keep public enum com.bumptech.glide.load.resource.bitmap.ImageHeaderParser$** {
+#  **[] $VALUES;
+#  public *;
+#}
+#
+## for DexGuard only
+##-keepresourcexmlelements manifest/application/meta-data@value=GlideModule
 
 # For retrolambda
 -dontwarn java.lang.invoke.*
@@ -239,7 +239,7 @@ public static final ** CREATOR;
 }
 
 # for DexGuard only
--keepresourcexmlelements manifest/application/meta-data@value=GlideModule
+#-keepresourcexmlelements manifest/application/meta-data@value=GlideModule
 
 
 #==================融云即时消息=====================

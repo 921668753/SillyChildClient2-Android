@@ -1,1 +1,1 @@
-include ':app', ':Cklibrary', ':IMKit', ':IMLib', ':CallKit', ':CallLib', ':imagepicker'
+include ':app', ':Cklibrary', ':IMKit', ':IMLib', ':CallKit', ':CallLib', ':imagepicker', ':picture_library', ':ucrop'

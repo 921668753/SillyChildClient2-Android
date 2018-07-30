@@ -64,7 +64,7 @@
     </RelativeLayout>
 
 
-    <cn.bingoogolapple.refreshlayout.BGARefreshLayout xmlns:tools="http://schemas.android.com/tools"
+    <cn.bingoogolapple.refreshlayout.BGARefreshLayout
         android:id="@+id/mRefreshLayout"
         style="@style/MatchMatch">
 
@@ -73,7 +73,9 @@
             android:background="@color/background"
             android:scrollbars="none">
 
-            <RelativeLayout style="@style/MatchMatch">
+            <RelativeLayout
+                style="@style/MatchMatch"
+                android:descendantFocusability="blocksDescendants">
 
                 <LinearLayout
                     android:id="@+id/ll_top"

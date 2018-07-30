@@ -15,6 +15,7 @@ import android.support.v4.content.FileProvider;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SimpleItemAnimator;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -795,6 +796,15 @@ public class PictureSelectorActivity extends PictureBaseActivity implements View
         Bundle bundle = new Bundle();
         List<LocalMedia> result = new ArrayList<>();
         int mediaType = PictureMimeType.isPictureType(pictureType);
+        List<LocalMedia> selectedImages1 = adapter.getSelectedImages();
+        String pictureType1 = selectedImages1.size() > 0 ? selectedImages1.get(0).getPictureType() : "";
+        if (!TextUtils.isEmpty(pictureType1)) {
+            boolean toEqual = PictureMimeType.mimeToEqual(pictureType1, pictureType);
+            if (!toEqual) {
+                ToastManage.s(this, getString(R.string.picture_rule));
+                return;
+            }
+        }
         switch (mediaType) {
             case PictureConfig.TYPE_IMAGE:
                 // image

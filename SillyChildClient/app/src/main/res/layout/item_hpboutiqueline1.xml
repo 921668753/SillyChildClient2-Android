@@ -3,7 +3,9 @@
     style="@style/MatchWrap"
     android:background="@color/whiteColors"
     android:gravity="center_vertical"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:paddingLeft="@dimen/dimen15"
+    android:paddingRight="@dimen/dimen15">
 
     <ImageView
         android:id="@+id/img_boutiQueLine"
@@ -46,7 +48,8 @@
                 android:layout_width="@dimen/dimen37"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <ImageView
                     android:layout_width="@dimen/dimen13"

@@ -6,14 +6,22 @@ import com.sillykid.app.R;
 /**
  * 视频详情
  */
-public class VideoDetailsActivity extends BaseActivity implements VideoDetailsContract.View{
+public class VideoDetailsActivity extends BaseActivity implements VideoDetailsContract.View {
 
+    private int id = 0;
 
     @Override
     public void setRootView() {
         setContentView(R.layout.activity_videodetails);
     }
 
+    @Override
+    public void initData() {
+        super.initData();
+        id = getIntent().getIntExtra("id", 0);
+        mPresenter = new VideoDetailsPresenter(this);
+        ((VideoDetailsContract.Presenter) mPresenter).getVideoDetails(id);
+    }
 
     @Override
     public void setPresenter(VideoDetailsContract.Presenter presenter) {

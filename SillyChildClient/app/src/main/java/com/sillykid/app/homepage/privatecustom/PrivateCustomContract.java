@@ -11,9 +11,9 @@ public interface PrivateCustomContract {
     interface Presenter extends BasePresenter {
 
         /**
-         * 获取分类列表
+         * 获取偏好列表
          */
-        void getVideoList();
+        void getCategoryList();
 
         /**
          * 用户填写定制要求

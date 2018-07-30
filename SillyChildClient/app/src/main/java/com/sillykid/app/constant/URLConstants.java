@@ -66,6 +66,11 @@ public class URLConstants {
     public static String VIDEODETAIL = APIURL + "video/get_video_detail.do";
 
     /**
+     * 获取偏好列表
+     */
+    public static String CATEGORYLIST = APIURL + "travel/get_category_list.do";
+
+    /**
      * 用户填写定制要求
      */
     public static String ADDCUSTOMIZED = APIURL + "travel/add_customized.do";
@@ -434,6 +439,16 @@ public class URLConstants {
      * 用户发布帖子
      */
     public static String ADDPOST = APIURL + "post/add_post.do";
+
+    /**
+     * 编辑帖子
+     */
+    public static String EDITPOST = APIURL + "post/edit_post.do";
+
+    /**
+     * 用户删除帖子
+     */
+    public static String DELETEPOST = APIURL + "post/delete_post.do";
 
     /**
      * 获取购物车商品列表

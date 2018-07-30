@@ -2,9 +2,11 @@ package com.sillykid.app.adapter.main.homepage;
 
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 
+import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
-import com.sillykid.app.entity.main.HomePageBean.ResultBean.ActionBean.HotBean;
+import com.sillykid.app.entity.main.HomePageBean.DataBean.GoodsListBean;
 import com.sillykid.app.utils.GlideImageLoader;
 
 import cn.bingoogolapple.androidcommon.adapter.BGARecyclerViewAdapter;
@@ -16,7 +18,7 @@ import cn.bingoogolapple.androidcommon.adapter.BGAViewHolderHelper;
  * Created by Admin on 2018/8/15.
  */
 
-public class BoutiqueLineViewAdapter extends BGARecyclerViewAdapter<HotBean> {
+public class BoutiqueLineViewAdapter extends BGARecyclerViewAdapter<GoodsListBean> {
 
     public BoutiqueLineViewAdapter(RecyclerView recyclerView) {
         super(recyclerView);
@@ -24,7 +26,7 @@ public class BoutiqueLineViewAdapter extends BGARecyclerViewAdapter<HotBean> {
 
     @Override
     public int getItemViewType(int position) {
-        if (position % 2 == 1) {
+        if (getItem(position).getIs_size() == 1) {
             return R.layout.item_hpboutiqueline1;
         } else {
             return R.layout.item_hpboutiqueline;
@@ -32,34 +34,40 @@ public class BoutiqueLineViewAdapter extends BGARecyclerViewAdapter<HotBean> {
     }
 
     @Override
-    public void fillData(BGAViewHolderHelper viewHolderHelper, int position, HotBean listBean) {
+    public void fillData(BGAViewHolderHelper viewHolderHelper, int position, GoodsListBean listBean) {
         Log.d("position", position + "");
 
         /**
          * 图片
          */
-        GlideImageLoader.glideOrdinaryLoader(mContext, listBean.getCover_img(), viewHolderHelper.getImageView(R.id.img_boutiQueLine), R.mipmap.placeholderfigure);
-
+        GlideImageLoader.glideOrdinaryLoader(mContext, listBean.getThumbnail(), viewHolderHelper.getImageView(R.id.img_boutiQueLine), R.mipmap.placeholderfigure);
 
         /**
          * 标题
          */
-        viewHolderHelper.setText(R.id.tv_boutiQueLine, listBean.getCity());
+        viewHolderHelper.setText(R.id.tv_boutiQueLine, listBean.getName());
 
         /**
          * 简介
          */
-        viewHolderHelper.setText(R.id.tv_synopsis, listBean.getCity());
+        if (listBean.getIs_size() == 0 && StringUtils.isEmpty(listBean.getBrief())) {
+            viewHolderHelper.setVisibility(R.id.tv_synopsis, View.GONE);
+        } else {
+            viewHolderHelper.setVisibility(R.id.tv_synopsis, View.VISIBLE);
+            viewHolderHelper.setText(R.id.tv_synopsis, listBean.getBrief());
+        }
+
 
         /**
          * 收藏数
          */
-        viewHolderHelper.setText(R.id.tv_collectionNum, listBean.getPraiseNum());
+        viewHolderHelper.setText(R.id.tv_collectionNum, listBean.getCollect_number());
 
         /**
-         * 赞数
+         * 关注数
          */
-        viewHolderHelper.setText(R.id.tv_attentionNum, listBean.getPraiseNum());
+        viewHolderHelper.setVisibility(R.id.tv_attentionNum, View.GONE);
+//        viewHolderHelper.setText(R.id.tv_attentionNum, listBean.getPraiseNum());
 
     }
 

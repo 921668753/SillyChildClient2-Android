@@ -24,6 +24,7 @@
     <!--Dialog-->
 
     <!--公共的-->
+    <string name="videoPathError">视频路径错误</string>
     <string name="imagePathError">图片路径错误</string>
     <string name="noData">没有数据</string>
     <string name="failedUploadPicture">上传图片失败，请重试</string>
@@ -154,7 +155,7 @@
 
     <string name="airportPickup">接机</string>
     <string name="boutiqueLine">精品线路</string>
-    <string name="privateOrdering">私人订制</string>
+    <string name="privateOrdering">私人定制</string>
     <string name="byTheDay">按天包车</string>
     <string name="airportDropOff">送机</string>
 
@@ -182,8 +183,8 @@
 
     <!--首页   热门视频-->
     <string name="noHotVideo">亲，还没有任何视频哟~</string>
-
-
+    <string name="people">人</string>
+    <string name="peopleWatch">人观看</string>
 
 
     <!--搜索界面-->
@@ -532,6 +533,8 @@
     <string name="addNotes">添加备注</string>
     <string name="strokeModels">行程车型</string>
     <string name="customizedItinerary">定制行程</string>
+    <string name="customizedItineraryS">定制行程成功</string>
+
 
     <!--首页   民宿预约-->
     <string name="homestaySubscribe">民宿预约</string>
@@ -1135,7 +1138,7 @@
     <string name="collectionStrategy">收藏的攻略</string>
     <string name="fillPrompt">失败！请完整填写所有项</string>
     <string name="noDynamicState">亲，您还没有发布动态哟~</string>
-
+    <string name="videoOnlyAddOne">视频只能添加一个</string>
 
     <!-- 个人中心 我的订单-->
     <string name="goodOrder">商品订单</string>
@@ -1336,11 +1339,17 @@
     <string name="myDynamic">我的动态</string>
     <string name="myStrategy">我的攻略</string>
     <string name="newTrends">发布新动态</string>
+    <string name="editDynamic">编辑动态</string>
     <string name="newStrategy">发布新攻略</string>
     <string name="addTitle">添加标题</string>
     <string name="addDescription">添加描述</string>
     <string name="addDescription1">请添加描述</string>
     <string name="addTitle1">请添加标题</string>
+    <string name="releaseSuccessful">发布新动态成功</string>
+    <string name="editDynamicSuccess">编辑动态成功</string>
+    <string name="determineDeleteDynamic">确定删除该动态</string>
+    <string name="deleteDynamicSuccess">删除动态成功</string>
+    <string name="addPicturesOrVideo">请添加图片或视频</string>
     <string name="addImages1">至少要有一张图片，请添加图片</string>
     <string name="addVideo">请添加视频</string>
 

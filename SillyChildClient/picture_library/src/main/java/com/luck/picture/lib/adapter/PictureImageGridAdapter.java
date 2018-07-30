@@ -227,9 +227,7 @@ public class PictureImageGridAdapter extends RecyclerView.Adapter<RecyclerView.V
                     }
                     int index = showCamera ? position - 1 : position;
                     boolean eqResult =
-                            mediaMimeType == PictureConfig.TYPE_IMAGE && enablePreview
-                                    || mediaMimeType == PictureConfig.TYPE_VIDEO && (enablePreviewVideo
-                                    || selectMode == PictureConfig.SINGLE)
+                            mediaMimeType == PictureConfig.TYPE_IMAGE && (enablePreview || selectMode == PictureConfig.SINGLE) || mediaMimeType == PictureConfig.TYPE_VIDEO && (enablePreviewVideo || selectMode == PictureConfig.SINGLE)
                                     || mediaMimeType == PictureConfig.TYPE_AUDIO && (enablePreviewAudio
                                     || selectMode == PictureConfig.SINGLE);
                     if (eqResult) {

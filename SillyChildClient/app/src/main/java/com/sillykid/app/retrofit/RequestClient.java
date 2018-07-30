@@ -337,6 +337,13 @@ public class RequestClient {
     }
 
     /**
+     * 获取偏好列表
+     */
+    public static void getCategoryList(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        HttpRequest.requestGetHttp(context, URLConstants.CATEGORYLIST, httpParams, false, listener);
+    }
+
+    /**
      * 用户填写定制要求
      */
     public static void postAddCustomized(Context context, HttpParams httpParams, ResponseListener<String> listener) {
@@ -2240,6 +2247,44 @@ public class RequestClient {
                 }
                 httpParams.putHeaders("Cookie", cookies);
                 HttpRequest.requestPostFORMHttp(context, URLConstants.ADDPOST, httpParams, listener);
+            }
+        }, listener);
+    }
+
+    /**
+     * 编辑帖子
+     */
+    public static void postEditPost(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        Log.d("tag", "postEditPost");
+        doServer(context, new TokenCallback() {
+            @Override
+            public void execute() {
+                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                if (StringUtils.isEmpty(cookies)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("Cookie", cookies);
+                HttpRequest.requestPostFORMHttp(context, URLConstants.EDITPOST, httpParams, listener);
+            }
+        }, listener);
+    }
+
+    /**
+     * 用户删除帖子
+     */
+    public static void postDeletePost(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        Log.d("tag", "postDeletePost");
+        doServer(context, new TokenCallback() {
+            @Override
+            public void execute() {
+                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                if (StringUtils.isEmpty(cookies)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("Cookie", cookies);
+                HttpRequest.requestPostFORMHttp(context, URLConstants.DELETEPOST, httpParams, listener);
             }
         }, listener);
     }

@@ -13,6 +13,7 @@
             android:layout_width="@dimen/dimen80"
             android:layout_height="@dimen/dimen80"
             android:scaleType="centerCrop"
+            android:padding="@dimen/dimen5"
             android:src="@color/whiteColors" />
 
         <LinearLayout
@@ -27,7 +28,6 @@
                 android:id="@+id/iv_del"
                 android:layout_width="@dimen/dimen14"
                 android:layout_height="@dimen/dimen14"
-                android:scaleType="center"
                 android:src="@mipmap/mine_dislodge" />
         </LinearLayout>
 

@@ -75,182 +75,185 @@
 
             <RelativeLayout style="@style/MatchMatch">
 
-                <cn.bingoogolapple.bgabanner.BGABanner
-                    android:id="@+id/banner_ad"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dimen195"
-                    android:layout_marginTop="@dimen/dimen3"
-                    android:background="@mipmap/placeholderfigure2"
-                    app:banner_isNeedShowIndicatorOnOnlyOnePage="true"
-                    app:banner_pageChangeDuration="2000"
-                    app:banner_pointAutoPlayAble="false"
-                    app:banner_pointContainerBackground="@android:color/transparent"
-                    app:banner_pointDrawable="@drawable/bga_banner_selector_point"
-                    app:banner_pointTopBottomMargin="@dimen/dimen6"
-                    app:banner_transitionEffect="alpha" />
-
-
                 <LinearLayout
                     android:id="@+id/ll_top"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dimen93"
-                    android:layout_below="@id/banner_ad"
-                    android:layout_marginTop="@dimen/dimen6"
-                    android:background="@color/whiteColors"
-                    android:orientation="horizontal">
+                    style="@style/MatchWrap"
+                    android:orientation="vertical">
+
+                    <cn.bingoogolapple.bgabanner.BGABanner
+                        android:id="@+id/banner_ad"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dimen195"
+                        android:layout_marginTop="@dimen/dimen3"
+                        android:background="@mipmap/placeholderfigure2"
+                        app:banner_isNeedShowIndicatorOnOnlyOnePage="true"
+                        app:banner_pageChangeDuration="2000"
+                        app:banner_pointAutoPlayAble="false"
+                        app:banner_pointContainerBackground="@android:color/transparent"
+                        app:banner_pointDrawable="@drawable/bga_banner_selector_point"
+                        app:banner_pointTopBottomMargin="@dimen/dimen6"
+                        app:banner_transitionEffect="alpha" />
+
 
                     <LinearLayout
-                        android:id="@+id/ll_airportPickup"
-                        style="@style/AutoMatch"
-                        android:gravity="center"
-                        android:orientation="vertical">
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dimen93"
+                        android:layout_marginTop="@dimen/dimen6"
+                        android:background="@color/whiteColors"
+                        android:orientation="horizontal">
 
-                        <ImageView
-                            android:layout_width="@dimen/dimen34"
-                            android:layout_height="@dimen/dimen48"
-                            android:src="@mipmap/hp_pickup" />
+                        <LinearLayout
+                            android:id="@+id/ll_airportPickup"
+                            style="@style/AutoMatch"
+                            android:gravity="center"
+                            android:orientation="vertical">
 
-                        <TextView
-                            style="@style/WrapWrap"
-                            android:layout_marginTop="@dimen/dimen9"
-                            android:text="@string/airportPickup"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/textsize12" />
+                            <ImageView
+                                android:layout_width="@dimen/dimen34"
+                                android:layout_height="@dimen/dimen48"
+                                android:src="@mipmap/hp_pickup" />
+
+                            <TextView
+                                style="@style/WrapWrap"
+                                android:layout_marginTop="@dimen/dimen9"
+                                android:text="@string/airportPickup"
+                                android:textColor="@color/textColor"
+                                android:textSize="@dimen/textsize12" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ll_byTheDay"
+                            style="@style/AutoMatch"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="@dimen/dimen34"
+                                android:layout_height="@dimen/dimen48"
+                                android:src="@mipmap/hp_ccording_special" />
+
+                            <TextView
+                                style="@style/WrapWrap"
+                                android:layout_marginTop="@dimen/dimen9"
+                                android:text="@string/byTheDay"
+                                android:textColor="@color/textColor"
+                                android:textSize="@dimen/textsize12" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ll_privateOrdering"
+                            style="@style/AutoMatch"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+
+                            <ImageView
+                                android:layout_width="@dimen/dimen34"
+                                android:layout_height="@dimen/dimen48"
+                                android:src="@mipmap/hp_private_ordering" />
+
+                            <TextView
+                                style="@style/WrapWrap"
+                                android:layout_marginTop="@dimen/dimen9"
+                                android:text="@string/privateOrdering"
+                                android:textColor="@color/textColor"
+                                android:textSize="@dimen/textsize12" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ll_boutiqueLine"
+                            style="@style/AutoMatch"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="@dimen/dimen34"
+                                android:layout_height="@dimen/dimen48"
+                                android:src="@mipmap/hp_fine_lines" />
+
+                            <TextView
+                                style="@style/WrapWrap"
+                                android:layout_marginTop="@dimen/dimen9"
+                                android:text="@string/boutiqueLine"
+                                android:textColor="@color/textColor"
+                                android:textSize="@dimen/textsize12" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ll_airportDropOff"
+                            style="@style/AutoMatch"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="@dimen/dimen34"
+                                android:layout_height="@dimen/dimen48"
+                                android:src="@mipmap/hp_airport_drop_off" />
+
+                            <TextView
+                                style="@style/WrapWrap"
+                                android:layout_marginTop="@dimen/dimen9"
+                                android:text="@string/airportDropOff"
+                                android:textColor="@color/textColor"
+                                android:textSize="@dimen/textsize12" />
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:id="@+id/ll_byTheDay"
-                        style="@style/AutoMatch"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="@dimen/dimen34"
-                            android:layout_height="@dimen/dimen48"
-                            android:src="@mipmap/hp_ccording_special" />
-
-                        <TextView
-                            style="@style/WrapWrap"
-                            android:layout_marginTop="@dimen/dimen9"
-                            android:text="@string/byTheDay"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/textsize12" />
-
-                    </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/ll_privateOrdering"
-                        style="@style/AutoMatch"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-
-                        <ImageView
-                            android:layout_width="@dimen/dimen34"
-                            android:layout_height="@dimen/dimen48"
-                            android:src="@mipmap/hp_private_ordering" />
-
-                        <TextView
-                            style="@style/WrapWrap"
-                            android:layout_marginTop="@dimen/dimen9"
-                            android:text="@string/privateOrdering"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/textsize12" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/ll_boutiqueLine"
-                        style="@style/AutoMatch"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="@dimen/dimen34"
-                            android:layout_height="@dimen/dimen48"
-                            android:src="@mipmap/hp_fine_lines" />
+                        android:id="@+id/ll_hotVideo"
+                        style="@style/MatchWrap"
+                        android:layout_marginTop="@dimen/dimen6"
+                        android:background="@color/whiteColors"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingLeft="@dimen/dimen13"
+                        android:paddingRight="@dimen/dimen13"
+                        android:paddingTop="@dimen/dimen3">
 
                         <TextView
-                            style="@style/WrapWrap"
-                            android:layout_marginTop="@dimen/dimen9"
-                            android:text="@string/boutiqueLine"
+                            style="@style/AutoWrap"
+                            android:paddingBottom="@dimen/dimen10"
+                            android:paddingTop="@dimen/dimen10"
+                            android:text="@string/hotVideo"
                             android:textColor="@color/textColor"
-                            android:textSize="@dimen/textsize12" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/ll_airportDropOff"
-                        style="@style/AutoMatch"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="@dimen/dimen34"
-                            android:layout_height="@dimen/dimen48"
-                            android:src="@mipmap/hp_airport_drop_off" />
+                            android:textSize="@dimen/textsize15" />
 
                         <TextView
-                            style="@style/WrapWrap"
-                            android:layout_marginTop="@dimen/dimen9"
-                            android:text="@string/airportDropOff"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/textsize12" />
+                            android:id="@+id/tv_moreVideo"
+                            style="@style/WrapMatch"
+                            android:gravity="center"
+                            android:paddingRight="@dimen/dimen5"
+                            android:text="@string/moreVideo"
+                            android:textColor="@color/hintColors"
+                            android:textSize="@dimen/textsize11" />
 
+                        <ImageView
+                            android:layout_width="@dimen/dimen6"
+                            android:layout_height="@dimen/dimen10"
+                            android:src="@mipmap/arrow" />
                     </LinearLayout>
+
+                    <com.common.cklibrary.utils.myview.HorizontalListView
+                        android:id="@+id/hlv_hotVideo"
+                        style="@style/MatchWrap"
+                        android:background="@color/whiteColors"
+                        android:scrollbars="none"
+                        tools:listitem="@layout/item_hotvideo" />
 
                 </LinearLayout>
-
-
-                <LinearLayout
-                    android:id="@+id/ll_hotVideo"
-                    style="@style/MatchWrap"
-                    android:layout_below="@id/ll_top"
-                    android:layout_marginTop="@dimen/dimen6"
-                    android:background="@color/whiteColors"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingLeft="@dimen/dimen13"
-                    android:paddingRight="@dimen/dimen13"
-                    android:paddingTop="@dimen/dimen3">
-
-                    <TextView
-                        style="@style/AutoWrap"
-                        android:paddingBottom="@dimen/dimen10"
-                        android:paddingTop="@dimen/dimen10"
-                        android:text="@string/hotVideo"
-                        android:textColor="@color/textColor"
-                        android:textSize="@dimen/textsize15" />
-
-                    <TextView
-                        android:id="@+id/tv_moreVideo"
-                        style="@style/WrapMatch"
-                        android:gravity="center"
-                        android:paddingRight="@dimen/dimen5"
-                        android:text="@string/moreVideo"
-                        android:textColor="@color/hintColors"
-                        android:textSize="@dimen/textsize11" />
-
-                    <ImageView
-                        android:layout_width="@dimen/dimen6"
-                        android:layout_height="@dimen/dimen10"
-                        android:src="@mipmap/arrow" />
-                </LinearLayout>
-
-                <com.common.cklibrary.utils.myview.HorizontalListView
-                    android:id="@+id/hlv_hotVideo"
-                    style="@style/MatchWrap"
-                    android:layout_below="@id/ll_hotVideo"
-                    android:background="@color/whiteColors"
-                    android:scrollbars="none"
-                    tools:listitem="@layout/item_hotvideo" />
 
                 <LinearLayout
                     android:id="@+id/ll_boutiqueLine1"
                     style="@style/MatchWrap"
-                    android:layout_below="@id/hlv_hotVideo"
-                    android:layout_marginTop="@dimen/dimen14"
+                    android:layout_below="@id/ll_top"
+                    android:layout_marginTop="@dimen/dimen6"
                     android:background="@color/whiteColors"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
@@ -279,7 +282,6 @@
 
                 </LinearLayout>
 
-
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/rv"
                     style="@style/MatchWrap"
@@ -289,8 +291,6 @@
                     android:divider="@color/background"
                     android:dividerHeight="@dimen/dimen1"
                     android:overScrollMode="never"
-                    android:paddingLeft="@dimen/dimen25"
-                    android:paddingRight="@dimen/dimen25"
                     android:scrollbars="none"
                     tools:listitem="@layout/item_hpboutiqueline" />
 

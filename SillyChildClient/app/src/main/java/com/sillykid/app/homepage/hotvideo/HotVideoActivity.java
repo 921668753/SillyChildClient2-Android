@@ -12,11 +12,12 @@ import com.common.cklibrary.common.BaseActivity;
 import com.common.cklibrary.common.BindView;
 import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.ActivityTitleUtils;
+import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.RefreshLayoutUtil;
 import com.sillykid.app.R;
-import com.sillykid.app.adapter.LocalTalentViewAdapter;
 import com.sillykid.app.adapter.homepage.hotvideo.HotVideoViewAdapter;
 import com.sillykid.app.constant.NumericConstants;
+import com.sillykid.app.entity.homepage.hotvideo.HotVideoBean;
 import com.sillykid.app.loginregister.LoginActivity;
 
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
@@ -35,8 +36,8 @@ public class HotVideoActivity extends BaseActivity implements HotVideoContract.V
 
     private HotVideoViewAdapter mAdapter;
 
-    @BindView(id = R.id.lv_localtalent1)
-    private ListView lv_localtalent1;
+    @BindView(id = R.id.lv_hotVideo)
+    private ListView lv_hotVideo;
 
     /**
      * 错误提示页
@@ -94,8 +95,8 @@ public class HotVideoActivity extends BaseActivity implements HotVideoContract.V
         super.initWidget();
         ActivityTitleUtils.initToolbar(aty, getString(R.string.hotVideo), true, R.id.titlebar);
         RefreshLayoutUtil.initRefreshLayout(mRefreshLayout, this, aty, true);
-        lv_localtalent1.setAdapter(mAdapter);
-        lv_localtalent1.setOnItemClickListener(this);
+        lv_hotVideo.setAdapter(mAdapter);
+        lv_hotVideo.setOnItemClickListener(this);
         mRefreshLayout.beginRefreshing();
     }
 
@@ -148,9 +149,7 @@ public class HotVideoActivity extends BaseActivity implements HotVideoContract.V
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
         Intent intent = new Intent(aty, VideoDetailsActivity.class);
-//        intent.putExtra("goodName", mAdapter.getItem(position).getName());
-//        intent.putExtra("goodsid", mAdapter.getItem(position).getGoods_id());
-//        intent.putExtra("isRefresh", 1);
+        intent.putExtra("id", mAdapter.getItem(position).getId());
         startActivityForResult(intent, REQUEST_CODE);
     }
 
@@ -167,27 +166,29 @@ public class HotVideoActivity extends BaseActivity implements HotVideoContract.V
             mRefreshLayout.setPullDownRefreshEnable(true);
             ll_commonError.setVisibility(View.GONE);
             mRefreshLayout.setVisibility(View.VISIBLE);
-//            MyCollectionBean myCollectionBean = (MyCollectionBean) JsonUtil.getInstance().json2Obj(success, MyCollectionBean.class);
-//            if (myCollectionBean.getData() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
-//                    myCollectionBean.getData().size() <= 0 && mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
-//                errorMsg(getString(R.string.noCollectedGoods), 0);
-//                return;
-//            } else if (myCollectionBean.getData() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
-//                    myCollectionBean.getData().size() <= 0 && mMorePageNumber > NumericConstants.START_PAGE_NUMBER) {
-//                ViewInject.toast(getString(R.string.noMoreData));
-//                isShowLoadingMore = false;
-//                dismissLoadingDialog();
-//                mRefreshLayout.endLoadingMore();
-//                return;
-//            }
-//            if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
-//                mRefreshLayout.endRefreshing();
-//                mAdapter.clear();
-//                mAdapter.addNewData(myCollectionBean.getData());
-//            } else {
-//                mRefreshLayout.endLoadingMore();
-//                mAdapter.addMoreData(myCollectionBean.getData());
-//            }
+            HotVideoBean hotVideoBean = (HotVideoBean) JsonUtil.getInstance().json2Obj(success, HotVideoBean.class);
+            if (hotVideoBean.getData() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
+                    hotVideoBean.getData().getResult() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
+                    hotVideoBean.getData().getResult().size() <= 0 && mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
+                errorMsg(getString(R.string.noCollectedGoods), 0);
+                return;
+            } else if (hotVideoBean.getData() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
+                    hotVideoBean.getData().getResult() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
+                    hotVideoBean.getData().getResult().size() <= 0 && mMorePageNumber > NumericConstants.START_PAGE_NUMBER) {
+                ViewInject.toast(getString(R.string.noMoreData));
+                isShowLoadingMore = false;
+                dismissLoadingDialog();
+                mRefreshLayout.endLoadingMore();
+                return;
+            }
+            if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
+                mRefreshLayout.endRefreshing();
+                mAdapter.clear();
+                mAdapter.addNewData(hotVideoBean.getData().getResult());
+            } else {
+                mRefreshLayout.endLoadingMore();
+                mAdapter.addMoreData(hotVideoBean.getData().getResult());
+            }
             dismissLoadingDialog();
         }
     }

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/MatchMatch"
     android:background="@color/background"
     android:fitsSystemWindows="true"
@@ -16,21 +15,16 @@
             style="@style/MatchMatch"
             android:orientation="vertical">
 
-            <cn.bingoogolapple.bgabanner.BGABanner
-                android:id="@+id/banner_ad"
+            <ImageView
+                android:id="@+id/img_picture"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimen166"
                 android:layout_marginTop="@dimen/dimen6"
-                android:background="@mipmap/home_banner"
-                app:banner_pageChangeDuration="2000"
-                app:banner_pointAutoPlayAble="false"
-                app:banner_pointContainerBackground="@android:color/transparent"
-                app:banner_pointDrawable="@drawable/bga_banner_selector_point"
-                app:banner_pointTopBottomMargin="@dimen/dimen2"
-                app:banner_transitionEffect="alpha" />
-
+                android:scaleType="fitXY"
+                android:src="@mipmap/mine_background" />
 
             <TextView
+                android:id="@+id/tv_content"
                 style="@style/MatchWrap"
                 android:background="@color/whiteColors"
                 android:paddingBottom="@dimen/dimen20"
@@ -42,6 +36,7 @@
                 android:textSize="@dimen/textsize11" />
 
             <LinearLayout
+                android:id="@+id/ll_travelTime"
                 style="@style/Match45"
                 android:layout_marginTop="@dimen/dimen6"
                 android:background="@color/whiteColors"
@@ -60,6 +55,7 @@
                         android:textSize="@dimen/textsize12" />
 
                     <TextView
+                        android:id="@+id/tv_travelTime"
                         style="@style/WrapWrap"
                         android:layout_marginTop="@dimen/dimen4"
                         android:text="@string/selectTravelTime"
@@ -95,8 +91,8 @@
 
 
                 <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:id="@+id/et_destination"
+                    style="@style/MatchMatch"
                     android:background="@color/whiteColors"
                     android:gravity="center_vertical"
                     android:hint="@string/pleaseFillDestination"
@@ -127,8 +123,8 @@
 
 
                 <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:id="@+id/et_playNumberDays"
+                    style="@style/MatchMatch"
                     android:background="@color/whiteColors"
                     android:gravity="center_vertical"
                     android:hint="@string/playNumberDays1"
@@ -144,6 +140,7 @@
 
 
             <LinearLayout
+                android:id="@+id/ll_travelPreferences"
                 style="@style/Match45"
                 android:layout_marginTop="@dimen/dimen1"
                 android:background="@color/whiteColors"
@@ -159,6 +156,7 @@
                     android:textSize="@dimen/textsize12" />
 
                 <TextView
+                    android:id="@+id/tv_travelPreferences"
                     style="@style/AutoWrap"
                     android:paddingLeft="@dimen/dimen10"
                     android:paddingRight="@dimen/dimen10"
@@ -176,6 +174,7 @@
 
 
             <LinearLayout
+                android:id="@+id/ll_recommendRestaurant"
                 style="@style/Match45"
                 android:layout_marginTop="@dimen/dimen1"
                 android:background="@color/whiteColors"
@@ -191,6 +190,7 @@
                     android:textSize="@dimen/textsize12" />
 
                 <TextView
+                    android:id="@+id/tv_recommendRestaurant"
                     style="@style/AutoWrap"
                     android:paddingLeft="@dimen/dimen10"
                     android:paddingRight="@dimen/dimen10"
@@ -203,11 +203,11 @@
                     android:layout_marginRight="@dimen/dimen33"
                     android:src="@mipmap/arrow1" />
 
-
             </LinearLayout>
 
 
             <LinearLayout
+                android:id="@+id/ll_recommendedAccommodation"
                 style="@style/Match45"
                 android:layout_marginTop="@dimen/dimen1"
                 android:background="@color/whiteColors"
@@ -223,6 +223,7 @@
                     android:textSize="@dimen/textsize12" />
 
                 <TextView
+                    android:id="@+id/tv_recommendedAccommodation"
                     style="@style/AutoWrap"
                     android:paddingLeft="@dimen/dimen10"
                     android:paddingRight="@dimen/dimen10"
@@ -239,7 +240,9 @@
             </LinearLayout>
 
             <EditText
+                android:id="@+id/et_remark"
                 style="@style/MatchWrap"
+                android:layout_marginTop="@dimen/dimen1"
                 android:background="@color/whiteColors"
                 android:gravity="left"
                 android:hint="@string/remark1"
@@ -250,16 +253,18 @@
                 android:paddingTop="@dimen/dimen12"
                 android:textColor="@color/textColor"
                 android:textColorHint="@color/hintColors"
+                android:textCursorDrawable="@drawable/shape_cursor"
                 android:textSize="@dimen/textsize12" />
 
             <TextView
+                android:id="@+id/tv_customizedItinerary"
                 android:layout_width="@dimen/dimen151"
-                android:layout_height="@dimen/dimen31"
+                android:layout_height="@dimen/dimen40"
                 android:layout_gravity="center"
-                android:gravity="center"
-                android:background="@drawable/shape_displaypage"
                 android:layout_marginBottom="@dimen/dimen19"
                 android:layout_marginTop="@dimen/dimen30"
+                android:background="@drawable/shape_displaypage"
+                android:gravity="center"
                 android:text="@string/customizedItinerary"
                 android:textColor="@color/whiteColors"
                 android:textSize="@dimen/textsize14" />

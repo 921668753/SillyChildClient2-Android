@@ -2,6 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/MatchWrap"
     android:background="@color/whiteColors"
+    android:paddingLeft="@dimen/dimen15"
+    android:paddingRight="@dimen/dimen15"
     android:orientation="vertical">
 
     <ImageView
@@ -16,7 +18,6 @@
 
     <LinearLayout
         style="@style/MatchWrap"
-        android:background="@mipmap/hp_strategyrectangular"
         android:orientation="vertical">
 
         <LinearLayout
@@ -28,7 +29,7 @@
                 style="@style/AutoWrap"
                 android:layout_marginBottom="@dimen/dimen15"
                 android:layout_marginTop="@dimen/dimen12"
-                android:paddingLeft="@dimen/dimen12"
+                android:paddingLeft="@dimen/dimen8"
                 android:paddingRight="@dimen/dimen12"
                 android:singleLine="true"
                 android:text="【芭提雅三天六晚自由行】"
@@ -39,7 +40,8 @@
                 android:layout_width="@dimen/dimen37"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <ImageView
                     android:layout_width="@dimen/dimen13"
@@ -87,8 +89,8 @@
             android:id="@+id/tv_synopsis"
             style="@style/MatchWrap"
             android:layout_marginBottom="@dimen/dimen15"
-            android:paddingLeft="@dimen/dimen12"
-            android:paddingRight="@dimen/dimen12"
+            android:paddingLeft="@dimen/dimen10"
+            android:paddingRight="@dimen/dimen10"
             android:singleLine="true"
             android:text="美丽的东南亚海岛风情，给你带来不一样的体验。"
             android:textColor="@color/hintColors"

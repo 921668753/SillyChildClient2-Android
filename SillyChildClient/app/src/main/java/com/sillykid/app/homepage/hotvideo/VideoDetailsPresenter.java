@@ -22,8 +22,8 @@ public class VideoDetailsPresenter implements VideoDetailsContract.Presenter {
     @Override
     public void getVideoDetails(int id) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        httpParams.put("pagesize", 10);
-        RequestClient.getVideoList(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
+        httpParams.put("video_id", id);
+        RequestClient.getVideoDetail(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
                 mView.getSuccess(response, 0);

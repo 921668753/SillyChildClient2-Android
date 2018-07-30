@@ -2,6 +2,7 @@ package com.sillykid.app.mine.myrelease.mydynamic;
 
 import com.common.cklibrary.common.BasePresenter;
 import com.common.cklibrary.common.BaseView;
+import com.luck.picture.lib.entity.LocalMedia;
 
 import java.util.List;
 
@@ -11,6 +12,11 @@ import java.util.List;
 public interface ReleaseDynamicContract {
 
     interface Presenter extends BasePresenter {
+
+        /**
+         * 获取帖子详情
+         */
+        void getPostDetail(int id);
 
         /**
          * 获取分类信息列表
@@ -34,7 +40,17 @@ public interface ReleaseDynamicContract {
         /**
          * 用户发布帖子
          */
-        void postAddPost(String post_title, List<String> imgs, String content, String classification_id, int type);
+        void postAddPost(String post_title, List<LocalMedia> selectList, String content, int classification_id);
+
+        /**
+         * 编辑帖子
+         */
+        void postEditPost(String post_title, List<LocalMedia> selectList, String content, int classification_id, int post_id);
+
+        /**
+         * 用户删除帖子
+         */
+        void postDeletePost(int id);
 
     }
 

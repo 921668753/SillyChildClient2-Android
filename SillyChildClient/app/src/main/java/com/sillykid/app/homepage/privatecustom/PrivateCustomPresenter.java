@@ -22,10 +22,9 @@ public class PrivateCustomPresenter implements PrivateCustomContract.Presenter {
     }
 
     @Override
-    public void getVideoList() {
+    public void getCategoryList() {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        httpParams.put("pagesize", 10);
-        RequestClient.getVideoList(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
+        RequestClient.getCategoryList(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
                 mView.getSuccess(response, 0);
@@ -55,18 +54,18 @@ public class PrivateCustomPresenter implements PrivateCustomContract.Presenter {
             mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.playNumberDays1), 1);
             return;
         }
-        if (travel_preference <= 0) {
-            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.pleaseSelect) + KJActivityStack.create().topActivity().getString(R.string.travelPreferences), 1);
-            return;
-        }
-        if (repast_preference <= 0) {
-            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.pleaseSelect) + KJActivityStack.create().topActivity().getString(R.string.recommendRestaurant), 1);
-            return;
-        }
-        if (stay_preference <= 0) {
-            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.pleaseSelect) + KJActivityStack.create().topActivity().getString(R.string.recommendedAccommodation), 1);
-            return;
-        }
+//        if (travel_preference <= 0) {
+//            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.pleaseSelect) + KJActivityStack.create().topActivity().getString(R.string.travelPreferences), 1);
+//            return;
+//        }
+//        if (repast_preference <= 0) {
+//            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.pleaseSelect) + KJActivityStack.create().topActivity().getString(R.string.recommendRestaurant), 1);
+//            return;
+//        }
+//        if (stay_preference <= 0) {
+//            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.pleaseSelect) + KJActivityStack.create().topActivity().getString(R.string.recommendedAccommodation), 1);
+//            return;
+//        }
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
         httpParams.put("travel_time", String.valueOf(travel_time));
         httpParams.put("destination", destination);

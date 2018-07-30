@@ -31,7 +31,7 @@ import com.sillykid.app.adapter.main.homepage.BoutiqueLineViewAdapter;
 import com.sillykid.app.adapter.main.homepage.HotVideoViewAdapter;
 import com.sillykid.app.constant.NumericConstants;
 import com.sillykid.app.entity.main.HomePageBean;
-import com.sillykid.app.entity.main.HomePageBean.ResultBean.AdBean;
+import com.sillykid.app.entity.main.HomePageBean.DataBean.BannerListBean;
 import com.sillykid.app.homepage.BannerDetailsActivity;
 import com.sillykid.app.homepage.hotvideo.HotVideoActivity;
 import com.sillykid.app.homepage.hotvideo.VideoDetailsActivity;
@@ -40,9 +40,11 @@ import com.sillykid.app.loginregister.LoginActivity;
 import com.sillykid.app.mall.goodslist.GoodsListActivity;
 import com.sillykid.app.mall.goodslist.goodsdetails.GoodsDetailsActivity;
 import com.sillykid.app.utils.GlideImageLoader;
+import com.sillykid.app.utils.SpacesItemDecoration;
 
 import java.util.List;
 
+import cn.bingoogolapple.androidcommon.adapter.BGADivider;
 import cn.bingoogolapple.androidcommon.adapter.BGAOnRVItemClickListener;
 import cn.bingoogolapple.bgabanner.BGABanner;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
@@ -52,7 +54,7 @@ import pub.devrel.easypermissions.EasyPermissions;
  * 首页
  * Created by Admin on 2018/8/10.
  */
-public class HomePageFragment extends BaseFragment implements EasyPermissions.PermissionCallbacks, HomePageContract.View, BGABanner.Delegate<ImageView, AdBean>, BGABanner.Adapter<ImageView, AdBean>, AdapterView.OnItemClickListener, BGAOnRVItemClickListener, BGARefreshLayout.BGARefreshLayoutDelegate {
+public class HomePageFragment extends BaseFragment implements EasyPermissions.PermissionCallbacks, HomePageContract.View, BGABanner.Delegate<ImageView, BannerListBean>, BGABanner.Adapter<ImageView, BannerListBean>, AdapterView.OnItemClickListener, BGAOnRVItemClickListener, BGARefreshLayout.BGARefreshLayoutDelegate {
 
     private MainActivity aty;
 
@@ -169,10 +171,14 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
         LinearLayoutManager layoutManager = new LinearLayoutManager(aty);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setNestedScrollingEnabled(false);
+        //设置item之间的间隔
+        recyclerView.addItemDecoration(BGADivider.newShapeDivider()
+                .setStartSkipCount(1)
+                .setSizeDp(1)
+                .setColorResource(R.color.background, false));
+        recyclerView.setAdapter(boutiqueLineViewAdapter);
         boutiqueLineViewAdapter.setOnRVItemClickListener(this);
-        //  mRefreshLayout.beginRefreshing();
+        mRefreshLayout.beginRefreshing();
     }
 
     /**
@@ -230,30 +236,26 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
     public void getSuccess(String success, int flag) {
         if (flag == 0) {
             HomePageBean homePageBean = (HomePageBean) JsonUtil.getInstance().json2Obj(success, HomePageBean.class);
-            processLogic(homePageBean.getData().getAd());
-            if (homePageBean.getData().getAction() == null) {
-                dismissLoadingDialog();
-                return;
+            processLogic(homePageBean.getData().getBanner_list());
+            if (homePageBean.getData().getVideo_list() != null && homePageBean.getData().getVideo_list().size() > 0) {
+                ll_hotVideo.setVisibility(View.VISIBLE);
+                hlv_hotVideo.setVisibility(View.VISIBLE);
+                hotVideoViewAdapter.clear();
+                homePageBean.getData().getVideo_list().get(homePageBean.getData().getVideo_list().size() - 1).setStatusL("last");
+                hotVideoViewAdapter.addNewData(homePageBean.getData().getVideo_list());
+            } else {
+                ll_hotVideo.setVisibility(View.GONE);
+                hlv_hotVideo.setVisibility(View.GONE);
             }
-//            if (homePageBean.getData().getAction().getLocal() == null || homePageBean.getData().getAction().getLocal().size() == 0 || homePageBean.getData().getAction().getLocal().isEmpty()) {
-//                ll_hotRegion.setVisibility(View.GONE);
-//                hlv_hotRegion.setVisibility(View.GONE);
-//            } else {
-//                ll_hotRegion.setVisibility(View.VISIBLE);
-//                hlv_hotRegion.setVisibility(View.VISIBLE);
-//                hotRegionViewAdapter.clear();
-//                homePageBean.getData().getAction().getLocal().get(homePageBean.getData().getAction().getLocal().size() - 1).setStatusL("last");
-//                hotRegionViewAdapter.addNewData(homePageBean.getData().getAction().getLocal());
-//            }
-//            if (homePageBean.getData().getAction().getHot() == null || homePageBean.getData().getAction().getHot().size() == 0 || homePageBean.getData().getAction().getHot().isEmpty()) {
-//                ll_boutiqueLine1.setVisibility(View.GONE);
-//                clv_boutiqueLine.setVisibility(View.GONE);
-//            } else {
-//                ll_boutiqueLine1.setVisibility(View.VISIBLE);
-//                clv_boutiqueLine.setVisibility(View.VISIBLE);
-//                boutiqueLineViewAdapter.clear();
-//                boutiqueLineViewAdapter.addNewData(homePageBean.getData().getAction().getHot());
-//            }
+            if (homePageBean.getData().getGoods_list() == null || homePageBean.getData().getGoods_list().size() <= 0 || homePageBean.getData().getGoods_list().isEmpty()) {
+                ll_boutiqueLine1.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.GONE);
+            } else {
+                ll_boutiqueLine1.setVisibility(View.VISIBLE);
+                recyclerView.setVisibility(View.VISIBLE);
+                boutiqueLineViewAdapter.clear();
+                boutiqueLineViewAdapter.addNewData(homePageBean.getData().getGoods_list());
+            }
         } else if (flag == 1) {
             dismissLoadingDialog();
             tv_tag.setVisibility(View.GONE);
@@ -292,7 +294,7 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
      * 广告轮播图
      */
     @SuppressWarnings("unchecked")
-    private void processLogic(List<AdBean> list) {
+    private void processLogic(List<BannerListBean> list) {
         if (list != null && list.size() > 0) {
             if (list.size() == 1) {
                 mForegroundBanner.setAutoPlayAble(false);
@@ -330,18 +332,18 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
 
 
     @Override
-    public void fillBannerItem(BGABanner banner, ImageView itemView, AdBean model, int position) {
-        GlideImageLoader.glideOrdinaryLoader(aty, model.getAd_code(), itemView, R.mipmap.placeholderfigure2);
+    public void fillBannerItem(BGABanner banner, ImageView itemView, BannerListBean model, int position) {
+        GlideImageLoader.glideOrdinaryLoader(aty, model.getImage_url(), itemView, R.mipmap.placeholderfigure2);
     }
 
     @Override
-    public void onBannerItemClick(BGABanner banner, ImageView itemView, AdBean model, int position) {
-        if (StringUtils.isEmpty(model.getAd_link())) {
+    public void onBannerItemClick(BGABanner banner, ImageView itemView, BannerListBean model, int position) {
+        if (StringUtils.isEmpty(model.getImage_link_url())) {
             return;
         }
         Intent bannerDetails = new Intent(aty, BannerDetailsActivity.class);
-        bannerDetails.putExtra("url", model.getAd_link());
-        bannerDetails.putExtra("title", model.getAd_name());
+        bannerDetails.putExtra("url", model.getImage_link_url());
+        //bannerDetails.putExtra("title", model.get());
         aty.showActivity(aty, bannerDetails);
     }
 
@@ -349,11 +351,10 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         if (adapterView.getId() == R.id.hlv_hotVideo) {
             Intent intent = new Intent(aty, VideoDetailsActivity.class);
-            intent.putExtra("talent_id", hotVideoViewAdapter.getItem(i).getTalent_id());
+            intent.putExtra("id", hotVideoViewAdapter.getItem(i).getId());
             aty.showActivity(aty, intent);
         }
     }
-
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
@@ -388,8 +389,8 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
     @Override
     public void onRVItemClick(ViewGroup parent, View itemView, int position) {
         Intent intent = new Intent(aty, GoodsDetailsActivity.class);
-//        intent.putExtra("goodName", goodsListAdapter.getItem(position).getName());
-//        intent.putExtra("goodsid", goodsListAdapter.getItem(position).getGoods_id());
+        intent.putExtra("goodName", boutiqueLineViewAdapter.getItem(position).getName());
+        intent.putExtra("goodsid", boutiqueLineViewAdapter.getItem(position).getGoods_id());
         aty.showActivity(aty, intent);
     }
 

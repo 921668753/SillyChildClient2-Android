@@ -34,6 +34,9 @@ import java.util.List;
 import cn.bingoogolapple.androidcommon.adapter.BGAOnRVItemClickListener;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 
+import static android.app.Activity.RESULT_OK;
+import static com.sillykid.app.constant.NumericConstants.RESULT_CODE_GET;
+
 /**
  * 我的动态
  */
@@ -143,7 +146,8 @@ public class MyDynamicFragment extends BaseFragment implements MyDynamicContract
         super.widgetClick(v);
         switch (v.getId()) {
             case R.id.tv_newTrends:
-                aty.showActivity(aty, ReleaseDynamicActivity.class);
+                Intent intent = new Intent(aty, ReleaseDynamicActivity.class);
+                startActivityForResult(intent, RESULT_CODE_GET);
                 break;
             case R.id.tv_button:
                 if (tv_button.getText().toString().contains(getString(R.string.retry))) {
@@ -220,22 +224,22 @@ public class MyDynamicFragment extends BaseFragment implements MyDynamicContract
 
     @Override
     public void onRVItemClick(ViewGroup parent, View itemView, int position) {
-        if (mAdapter.getItem(position).getType() == 1) {//动态
-            Intent intent = new Intent(aty, DynamicDetailsActivity.class);
-            intent.putExtra("id", mAdapter.getItem(position).getId());
-            intent.putExtra("title", mAdapter.getItem(position).getPost_title());
-            aty.showActivity(aty, intent);
-        } else if (mAdapter.getItem(position).getType() == 2) {//视频
-            Intent intent = new Intent(aty, VideoDetailsActivity.class);
-            intent.putExtra("id", mAdapter.getItem(position).getId());
-            intent.putExtra("title", mAdapter.getItem(position).getPost_title());
-            aty.showActivity(aty, intent);
-        } else if (mAdapter.getItem(position).getType() == 3) {//攻略
-            Intent intent = new Intent(aty, DynamicDetailsActivity.class);
-            intent.putExtra("id", mAdapter.getItem(position).getId());
-            intent.putExtra("title", mAdapter.getItem(position).getPost_title());
-            aty.showActivity(aty, intent);
-        }
+        //   if (mAdapter.getItem(position).getType() == 1) {//动态
+        Intent intent = new Intent(aty, ReleaseDynamicActivity.class);
+        intent.putExtra("id", mAdapter.getItem(position).getId());
+        intent.putExtra("type", mAdapter.getItem(position).getType());
+        startActivityForResult(intent, RESULT_CODE_GET);
+//        } else if (mAdapter.getItem(position).getType() == 2) {//视频
+//            Intent intent = new Intent(aty, VideoDetailsActivity.class);
+//            intent.putExtra("id", mAdapter.getItem(position).getId());
+//            intent.putExtra("title", mAdapter.getItem(position).getPost_title());
+//            aty.showActivity(aty, intent);
+//        } else if (mAdapter.getItem(position).getType() == 3) {//攻略
+//            Intent intent = new Intent(aty, DynamicDetailsActivity.class);
+//            intent.putExtra("id", mAdapter.getItem(position).getId());
+//            intent.putExtra("title", mAdapter.getItem(position).getPost_title());
+//            aty.showActivity(aty, intent);
+//        }
     }
 
     @Override
@@ -300,6 +304,14 @@ public class MyDynamicFragment extends BaseFragment implements MyDynamicContract
         showLoadingDialog(getString(R.string.dataLoad));
         ((MyDynamicContract.Presenter) mPresenter).getUserPost(mMorePageNumber);
         return true;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (data != null && requestCode == RESULT_CODE_GET && resultCode == RESULT_OK) {
+            mRefreshLayout.beginRefreshing();
+        }
     }
 
     @Override

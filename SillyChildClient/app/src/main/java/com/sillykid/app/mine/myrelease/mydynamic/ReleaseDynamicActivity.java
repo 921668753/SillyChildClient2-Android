@@ -16,34 +16,31 @@ import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.common.cklibrary.common.BaseActivity;
 import com.common.cklibrary.common.BindView;
-import com.common.cklibrary.common.ImagePreviewNoDelActivity;
 import com.common.cklibrary.common.StringConstants;
 import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.common.pictureselector.FullyGridLayoutManager;
 import com.common.cklibrary.utils.ActivityTitleUtils;
 import com.common.cklibrary.utils.JsonUtil;
 import com.kymjs.common.FileUtils;
-import com.kymjs.common.Log;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
 import com.luck.picture.lib.permissions.RxPermissions;
 import com.luck.picture.lib.tools.PictureFileUtils;
-import com.lzy.imagepicker.ImagePicker;
-import com.lzy.imagepicker.bean.ImageItem;
-import com.lzy.imagepicker.ui.ImageGridActivity;
-import com.lzy.imagepicker.view.CropImageView;
 import com.sillykid.app.R;
 import com.sillykid.app.adapter.mine.myrelease.mydynamic.GridImageAdapter;
-import com.sillykid.app.constant.NumericConstants;
+import com.sillykid.app.entity.community.dynamic.DynamicDetailsBean;
 import com.sillykid.app.entity.main.community.ClassificationListBean;
 import com.sillykid.app.loginregister.LoginActivity;
+import com.sillykid.app.mine.mycollection.CollectionContract;
+import com.sillykid.app.mine.mycollection.dialog.DeleteCollectionDialog;
 import com.sillykid.app.utils.SoftKeyboardUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.bingoogolapple.titlebar.BGATitleBar;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
@@ -76,19 +73,17 @@ public class ReleaseDynamicActivity extends BaseActivity implements ReleaseDynam
 
     private int classification_id = 0;
 
-    private int type = 0;
-
-    private List<ImageItem> selImageList;
-
-    private List<ImageItem> images;
-
-    private List<String> urllist;
-    private List<LocalMedia> selectList = new ArrayList<>();
+    private List<LocalMedia> selectList = null;
     private GridImageAdapter adapter;
     private int themeId;
     private int chooseMode = PictureMimeType.ofAll();
     private int aspect_ratio_x = 16, aspect_ratio_y = 9;
     private int maxSelectNum = 9;
+    private List<LocalMedia> selectList1;
+    private int id = 0;
+    private int type = 0;
+
+    private DeleteCollectionDialog deleteCollectionDialog = null;
 
     @Override
     public void setRootView() {
@@ -98,10 +93,12 @@ public class ReleaseDynamicActivity extends BaseActivity implements ReleaseDynam
     @Override
     public void initData() {
         super.initData();
+        id = getIntent().getIntExtra("id", 0);
+        type = getIntent().getIntExtra("type", 0);
         themeId = R.style.picture_default_style;
         mPresenter = new ReleaseDynamicPresenter(this);
-        selImageList = new ArrayList<>();
-        urllist = new ArrayList<String>();
+        selectList1 = new ArrayList<>();
+        selectList = new ArrayList<>();
         FullyGridLayoutManager manager = new FullyGridLayoutManager(ReleaseDynamicActivity.this, 4, GridLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(manager);
         adapter = new GridImageAdapter(ReleaseDynamicActivity.this, onAddPicClickListener);
@@ -159,6 +156,7 @@ public class ReleaseDynamicActivity extends BaseActivity implements ReleaseDynam
             }
         });
         selectClassification();
+        initDeleteCollectionDialog();
         showLoadingDialog(getString(R.string.dataLoad));
         ((ReleaseDynamicContract.Presenter) mPresenter).getClassificationList();
     }
@@ -166,6 +164,14 @@ public class ReleaseDynamicActivity extends BaseActivity implements ReleaseDynam
     private GridImageAdapter.onAddPicClickListener onAddPicClickListener = new GridImageAdapter.onAddPicClickListener() {
         @Override
         public void onAddPicClick() {
+            if (selectList.size() > 0) {
+                String pictureType = selectList.get(selectList.size() - 1).getPictureType();
+                int mediaType = PictureMimeType.pictureToVideo(pictureType);
+                if (mediaType == 2 || mediaType == 3) {
+                    ViewInject.toast(getString(R.string.videoOnlyAddOne));
+                    return;
+                }
+            }
             // 进入相册 以下是例子：不需要的api可以不写
             PictureSelector.create(ReleaseDynamicActivity.this)
                     .openGallery(chooseMode)// 全部.PictureMimeType.ofAll()、图片.ofImage()、视频.ofVideo()、音频.ofAudio()
@@ -181,9 +187,9 @@ public class ReleaseDynamicActivity extends BaseActivity implements ReleaseDynam
                     .isZoomAnim(true)// 图片列表点击 缩放效果 默认true
                     //.imageFormat(PictureMimeType.PNG)// 拍照保存图片格式后缀,默认jpeg
                     .setOutputCameraPath(FileUtils.getSaveFolder(StringConstants.PHOTOPATH).getAbsolutePath())// 自定义拍照保存路径
-                    .enableCrop(true)// 是否裁剪
-                    .compress(false)// 是否压缩
-                    .synOrAsy(true)//同步true或异步false 压缩 默认同步
+//                    .enableCrop(true)// 是否裁剪
+//                    .compress(false)// 是否压缩
+                    //              .synOrAsy(true)//同步true或异步false 压缩 默认同步
                     //.compressSavePath(getPath())//压缩图片保存地址
                     //.sizeMultiplier(0.5f)// glide 加载图片大小 0~1之间 如设置 .glideOverride()无效
                     .glideOverride(160, 160)// glide 加载宽高，越小图片列表越流畅，但会影响列表图片浏览的清晰度
@@ -234,8 +240,6 @@ public class ReleaseDynamicActivity extends BaseActivity implements ReleaseDynam
     public void initWidget() {
         super.initWidget();
         initTitle();
-
-
     }
 
 
@@ -243,8 +247,46 @@ public class ReleaseDynamicActivity extends BaseActivity implements ReleaseDynam
      * 设置标题
      */
     public void initTitle() {
-        ActivityTitleUtils.initToolbar(aty, getString(R.string.newTrends), true, R.id.titlebar);
+        if (type == 0) {
+            ActivityTitleUtils.initToolbar(aty, getString(R.string.newTrends), true, R.id.titlebar);
+        } else {
+            BGATitleBar.SimpleDelegate simpleDelegate = new BGATitleBar.SimpleDelegate() {
+                @Override
+                public void onClickLeftCtv() {
+                    super.onClickLeftCtv();
+                    aty.finish();
+                }
+
+                @Override
+                public void onClickRightCtv() {
+                    super.onClickRightCtv();
+                    if (deleteCollectionDialog == null) {
+                        initDeleteCollectionDialog();
+                    }
+                    if (deleteCollectionDialog != null && !deleteCollectionDialog.isShowing()) {
+                        deleteCollectionDialog.show();
+                        deleteCollectionDialog.setCollectionId(id);
+                    }
+
+                }
+            };
+            ActivityTitleUtils.initToolbar(aty, getString(R.string.editDynamic), getString(R.string.delete), R.id.titlebar, simpleDelegate);
+        }
     }
+
+    /**
+     * 弹框
+     */
+    public void initDeleteCollectionDialog() {
+        deleteCollectionDialog = new DeleteCollectionDialog(aty, getString(R.string.determineDeleteDynamic)) {
+            @Override
+            public void deleteCollectionDo(int addressId) {
+                showLoadingDialog(getString(R.string.deleteLoad));
+                ((ReleaseDynamicContract.Presenter) mPresenter).postDeletePost(addressId);
+            }
+        };
+    }
+
 
     @Override
     public void widgetClick(View v) {
@@ -256,8 +298,11 @@ public class ReleaseDynamicActivity extends BaseActivity implements ReleaseDynam
                 break;
             case R.id.tv_release:
                 showLoadingDialog(getString(R.string.submissionLoad));
-//                ((ReleaseDynamicContract.Presenter) mPresenter).postAddPost(et_title.getText().toString().trim(), imgs,
-//                        et_addDescription.getText().toString().trim(), classification_id, type);
+                if (type == 0) {
+                    ((ReleaseDynamicContract.Presenter) mPresenter).postAddPost(et_title.getText().toString().trim(), selectList, et_addDescription.getText().toString().trim(), classification_id);
+                    break;
+                }
+                ((ReleaseDynamicContract.Presenter) mPresenter).postEditPost(et_title.getText().toString().trim(), selectList, et_addDescription.getText().toString().trim(), classification_id, id);
                 break;
         }
     }
@@ -276,20 +321,60 @@ public class ReleaseDynamicActivity extends BaseActivity implements ReleaseDynam
             if (classificationList != null && classificationList.size() > 0) {
                 pvOptions.setPicker(classificationList);
             }
+            if (type != 0) {
+                ((ReleaseDynamicContract.Presenter) mPresenter).getPostDetail(id);
+                return;
+            }
             dismissLoadingDialog();
-        } else if (flag == 1) {
-
-
+        } else if (flag == 1 || flag == 2) {
+            selectList.addAll(selectList1);
+            selectList.get(selectList.size() - 1).setPath(success);
+            adapter.setList(selectList);
+            adapter.notifyDataSetChanged();
             dismissLoadingDialog();
-        } else if (flag == 2) {
-
-
         } else if (flag == 3) {
-
-
+            dismissLoadingDialog();
+            ViewInject.toast(getString(R.string.releaseSuccessful));
+            Intent intent = getIntent();
+            setResult(RESULT_OK, intent);
+            finish();
+        } else if (flag == 4) {
+            dismissLoadingDialog();
+            ViewInject.toast(getString(R.string.editDynamicSuccess));
+            Intent intent = getIntent();
+            setResult(RESULT_OK, intent);
+            finish();
+        } else if (flag == 5) {
+            DynamicDetailsBean dynamicDetailsBean = (DynamicDetailsBean) JsonUtil.getInstance().json2Obj(success, DynamicDetailsBean.class);
+            classification_id = dynamicDetailsBean.getData().getClassification_id();
+            for (int i = 0; i < classificationList.size(); i++) {
+                if (classificationList.get(i).getId() == classification_id) {
+                    pvOptions.setSelectOptions(i);
+                    tv_category.setText(classificationList.get(i).getName());
+                    break;
+                }
+            }
+            et_title.setText(dynamicDetailsBean.getData().getPost_title());
+            et_title.setSelection(dynamicDetailsBean.getData().getPost_title().length());
+            et_addDescription.setText(dynamicDetailsBean.getData().getContent());
+            et_addDescription.setSelection(dynamicDetailsBean.getData().getContent().length());
+            for (int i = 0; i < dynamicDetailsBean.getData().getList().size(); i++) {
+                LocalMedia localMedia = new LocalMedia();
+                localMedia.setPath(dynamicDetailsBean.getData().getList().get(i));
+                localMedia.setPictureType(String.valueOf(type));
+                localMedia.setPosition(i);
+                selectList.add(localMedia);
+            }
+            adapter.setList(selectList);
+            adapter.notifyDataSetChanged();
+            dismissLoadingDialog();
+        } else if (flag == 6) {
+            dismissLoadingDialog();
+            ViewInject.toast(getString(R.string.deleteDynamicSuccess));
+            Intent intent = getIntent();
+            setResult(RESULT_OK, intent);
+            finish();
         }
-
-
     }
 
     @Override
@@ -309,25 +394,42 @@ public class ReleaseDynamicActivity extends BaseActivity implements ReleaseDynam
             switch (requestCode) {
                 case PictureConfig.CHOOSE_REQUEST:
                     // 图片选择结果回调
-                    selectList = PictureSelector.obtainMultipleResult(data);
+                    selectList1 = PictureSelector.obtainMultipleResult(data);
                     // 例如 LocalMedia 里面返回三种path
                     // 1.media.getPath(); 为原图path
                     // 2.media.getCutPath();为裁剪后path，需判断media.isCut();是否为true
                     // 3.media.getCompressPath();为压缩后path，需判断media.isCompressed();是否为true
                     // 如果裁剪并压缩了，已取压缩路径为准，因为是先裁剪后压缩的
 
-                    for (LocalMedia media : selectList) {
-                        Log.i("图片-----》", media.getPath());
-//                        String pictureType = media.getPictureType();
-//                        int mediaType = PictureMimeType.pictureToVideo(pictureType);
+//                    for (LocalMedia media : selectList) {
+//                        Log.i("图片-----》", media.getPath());
+////                        String pictureType = media.getPictureType();
+////                        int mediaType = PictureMimeType.pictureToVideo(pictureType);
+//                    }
+                    LocalMedia media = selectList1.get(selectList1.size() - 1);
+                    String pictureType = media.getPictureType();
+                    int mediaType = PictureMimeType.pictureToVideo(pictureType);
+                    showLoadingDialog(getString(R.string.crossLoad));
+                    if (mediaType == 1) {
+                        ((ReleaseDynamicContract.Presenter) mPresenter).upPictures(media.getPath());
+                        break;
                     }
-                    adapter.setList(selectList);
-                    adapter.notifyDataSetChanged();
+                    ((ReleaseDynamicContract.Presenter) mPresenter).uploadVideo(media.getPath());
                     break;
             }
         }
 
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        selectList.clear();
+        selectList = null;
+        selectList1.clear();
+        selectList1 = null;
+        classificationList.clear();
+        classificationList = null;
+        adapter = null;
+    }
 }

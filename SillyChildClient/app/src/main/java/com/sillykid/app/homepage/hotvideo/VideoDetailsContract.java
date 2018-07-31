@@ -35,7 +35,7 @@ public interface VideoDetailsContract {
         /**
          * 点赞和取消
          */
-        void postAddLike(int id, int type);
+        void postAddLike(int id, int type, int flag);
 
         /**
          * 添加评论

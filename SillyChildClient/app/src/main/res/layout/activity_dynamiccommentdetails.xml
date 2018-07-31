@@ -17,6 +17,7 @@
             android:layout_marginTop="@dimen/dimen6"
             android:background="@color/whiteColors"
             android:orientation="vertical"
+            android:paddingBottom="@dimen/dimen12"
             android:paddingLeft="@dimen/dimen17"
             android:paddingRight="@dimen/dimen29">
 

@@ -20,7 +20,7 @@ import com.common.cklibrary.utils.rx.MsgEvent;
 import com.sillykid.app.R;
 import com.sillykid.app.adapter.mine.mycollection.VideoViewAdapter;
 import com.sillykid.app.constant.NumericConstants;
-import com.sillykid.app.entity.mine.mycollection.ShopBean;
+import com.sillykid.app.entity.mine.mycollection.VideoBean;
 import com.sillykid.app.homepage.hotvideo.VideoDetailsActivity;
 import com.sillykid.app.loginregister.LoginActivity;
 import com.sillykid.app.mine.mycollection.dialog.DeleteCollectionDialog;
@@ -28,7 +28,7 @@ import com.sillykid.app.mine.mycollection.dialog.DeleteCollectionDialog;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 
 import static android.app.Activity.RESULT_OK;
-import static com.sillykid.app.constant.NumericConstants.REQUEST_CODE_PREVIEW;
+import static com.sillykid.app.constant.NumericConstants.REQUEST_CODE_PREVIEW2;
 
 /**
  * 我的收藏中的视频
@@ -87,21 +87,6 @@ public class VideoFragment extends BaseFragment implements CollectionContract.Vi
         super.initData();
         mPresenter = new CollectionPresenter(this);
         mAdapter = new VideoViewAdapter(aty);
-        initDeleteCollectionDialog();
-    }
-
-
-    /**
-     * 弹框
-     */
-    public void initDeleteCollectionDialog() {
-        deleteCollectionDialog = new DeleteCollectionDialog(aty, getString(R.string.determineDeleteShopCollection)) {
-            @Override
-            public void deleteCollectionDo(int addressId) {
-                showLoadingDialog(getString(R.string.deleteLoad));
-                ((CollectionContract.Presenter) mPresenter).postUnFavorite(addressId, type_id);
-            }
-        };
     }
 
 
@@ -158,7 +143,7 @@ public class VideoFragment extends BaseFragment implements CollectionContract.Vi
         Intent intent = new Intent(aty, VideoDetailsActivity.class);
         intent.putExtra("id", mAdapter.getItem(position).getId());
         intent.putExtra("title", mAdapter.getItem(position).getVideo_title());
-        startActivityForResult(intent, REQUEST_CODE_PREVIEW);
+        startActivityForResult(intent, REQUEST_CODE_PREVIEW2);
     }
 
 
@@ -174,27 +159,27 @@ public class VideoFragment extends BaseFragment implements CollectionContract.Vi
             mRefreshLayout.setPullDownRefreshEnable(true);
             ll_commonError.setVisibility(View.GONE);
             mRefreshLayout.setVisibility(View.VISIBLE);
-            ShopBean shopBean = (ShopBean) JsonUtil.getInstance().json2Obj(success, ShopBean.class);
-            if (shopBean.getData() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
-                    shopBean.getData().size() <= 0 && mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
+            VideoBean videoBean = (VideoBean) JsonUtil.getInstance().json2Obj(success, VideoBean.class);
+            if (videoBean.getData() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
+                    videoBean.getData().size() <= 0 && mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
                 errorMsg(getString(R.string.noCollectedVideo), 0);
                 return;
-            } else if (shopBean.getData() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
-                    shopBean.getData().size() <= 0 && mMorePageNumber > NumericConstants.START_PAGE_NUMBER) {
+            } else if (videoBean.getData() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
+                    videoBean.getData().size() <= 0 && mMorePageNumber > NumericConstants.START_PAGE_NUMBER) {
                 ViewInject.toast(getString(R.string.noMoreData));
                 isShowLoadingMore = false;
                 dismissLoadingDialog();
                 mRefreshLayout.endLoadingMore();
                 return;
             }
-//            if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
-//                mRefreshLayout.endRefreshing();
-//                mAdapter.clear();
-//                mAdapter.addNewData(shopBean.getData());
-//            } else {
-//                mRefreshLayout.endLoadingMore();
-//                mAdapter.addMoreData(shopBean.getData());
-//            }
+            if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
+                mRefreshLayout.endRefreshing();
+                mAdapter.clear();
+                mAdapter.addNewData(videoBean.getData());
+            } else {
+                mRefreshLayout.endLoadingMore();
+                mAdapter.addMoreData(videoBean.getData());
+            }
             dismissLoadingDialog();
 //        } else if (flag == 1) {
 ////            mAdapter.removeItem(positionItem);
@@ -262,7 +247,7 @@ public class VideoFragment extends BaseFragment implements CollectionContract.Vi
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (data != null && requestCode == REQUEST_CODE_PREVIEW && resultCode == RESULT_OK) {
+        if (data != null && requestCode == REQUEST_CODE_PREVIEW2 && resultCode == RESULT_OK) {
             mRefreshLayout.beginRefreshing();
         }
     }

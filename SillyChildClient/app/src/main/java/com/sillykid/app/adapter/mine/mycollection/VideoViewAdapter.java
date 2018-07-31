@@ -4,20 +4,20 @@ import android.content.Context;
 import android.util.Log;
 
 import com.sillykid.app.R;
-import com.sillykid.app.entity.homepage.hotvideo.HotVideoBean;
+import com.sillykid.app.entity.mine.mycollection.VideoBean.DataBean;
 import com.sillykid.app.utils.GlideImageLoader;
 
 import cn.bingoogolapple.androidcommon.adapter.BGAAdapterViewAdapter;
 import cn.bingoogolapple.androidcommon.adapter.BGAViewHolderHelper;
 
-public class VideoViewAdapter extends BGAAdapterViewAdapter<HotVideoBean.DataBean.ResultBean> {
+public class VideoViewAdapter extends BGAAdapterViewAdapter<DataBean> {
 
     public VideoViewAdapter(Context context) {
         super(context, R.layout.item_hotvideolist);
     }
 
     @Override
-    public void fillData(BGAViewHolderHelper viewHolderHelper, int position, HotVideoBean.DataBean.ResultBean listBean) {
+    public void fillData(BGAViewHolderHelper viewHolderHelper, int position, DataBean listBean) {
         Log.d("position", position + "");
 
         /**

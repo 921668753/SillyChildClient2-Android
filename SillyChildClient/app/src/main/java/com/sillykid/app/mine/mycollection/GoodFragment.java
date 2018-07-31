@@ -32,7 +32,7 @@ import cn.bingoogolapple.androidcommon.adapter.BGAOnItemChildClickListener;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 
 import static android.app.Activity.RESULT_OK;
-import static com.sillykid.app.constant.NumericConstants.REQUEST_CODE;
+import static com.sillykid.app.constant.NumericConstants.READ_AND_WRITE_CODE;
 
 /**
  * 我的收藏中的商品
@@ -178,7 +178,7 @@ public class GoodFragment extends BaseFragment implements CollectionContract.Vie
         intent.putExtra("goodName", mAdapter.getItem(position).getName());
         intent.putExtra("goodsid", mAdapter.getItem(position).getGoods_id());
         intent.putExtra("isRefresh", 0);
-        startActivityForResult(intent, REQUEST_CODE);
+        startActivityForResult(intent, READ_AND_WRITE_CODE);
     }
 
     @Override
@@ -318,7 +318,7 @@ public class GoodFragment extends BaseFragment implements CollectionContract.Vie
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (data != null && requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
+        if (data != null && requestCode == READ_AND_WRITE_CODE && resultCode == RESULT_OK) {
             mRefreshLayout.beginRefreshing();
         }
     }

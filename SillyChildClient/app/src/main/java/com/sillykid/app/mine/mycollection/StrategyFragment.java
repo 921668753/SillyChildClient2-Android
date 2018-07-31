@@ -32,7 +32,7 @@ import cn.bingoogolapple.androidcommon.adapter.BGAOnItemChildClickListener;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 
 import static android.app.Activity.RESULT_OK;
-import static com.sillykid.app.constant.NumericConstants.REQUEST_CODE;
+import static com.sillykid.app.constant.NumericConstants.REQUEST_CODE_PREVIEW1;
 
 /**
  * 我的收藏中的攻略
@@ -176,8 +176,7 @@ public class StrategyFragment extends BaseFragment implements CollectionContract
         Intent intent = new Intent(aty, GoodsDetailsActivity.class);
         intent.putExtra("goodName", mAdapter.getItem(position).getName());
         intent.putExtra("goodsid", mAdapter.getItem(position).getGoods_id());
-        intent.putExtra("isRefresh", 1);
-        startActivityForResult(intent, REQUEST_CODE);
+        startActivityForResult(intent, REQUEST_CODE_PREVIEW1);
     }
 
     @Override
@@ -225,7 +224,7 @@ public class StrategyFragment extends BaseFragment implements CollectionContract
             GoodBean myCollectionBean = (GoodBean) JsonUtil.getInstance().json2Obj(success, GoodBean.class);
             if (myCollectionBean.getData() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
                     myCollectionBean.getData().size() <= 0 && mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
-                errorMsg(getString(R.string.noCollectedGoods), 0);
+                errorMsg(getString(R.string.noCollectDynamic), 0);
                 return;
             } else if (myCollectionBean.getData() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
                     myCollectionBean.getData().size() <= 0 && mMorePageNumber > NumericConstants.START_PAGE_NUMBER) {
@@ -280,7 +279,7 @@ public class StrategyFragment extends BaseFragment implements CollectionContract
                 img_err.setImageResource(R.mipmap.no_network);
                 tv_hintText.setText(msg);
                 tv_button.setText(getString(R.string.retry));
-            } else if (msg.contains(getString(R.string.noCollectedGoods))) {
+            } else if (msg.contains(getString(R.string.noCollectDynamic))) {
                 img_err.setImageResource(R.mipmap.no_data);
                 tv_hintText.setText(msg);
                 tv_button.setVisibility(View.GONE);
@@ -317,7 +316,7 @@ public class StrategyFragment extends BaseFragment implements CollectionContract
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (data != null && requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
+        if (data != null && requestCode == REQUEST_CODE_PREVIEW1 && resultCode == RESULT_OK) {
             mRefreshLayout.beginRefreshing();
         }
     }

@@ -1,7 +1,6 @@
 package com.sillykid.app.homepage.hotvideo;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -24,13 +23,9 @@ import com.sillykid.app.community.dynamic.dialog.ReportBouncedDialog;
 import com.sillykid.app.community.dynamic.dialog.RevertBouncedDialog;
 import com.sillykid.app.community.dynamic.dynamiccomments.CommentDetailsActivity;
 import com.sillykid.app.community.dynamic.dynamiccomments.DynamicCommentsActivity;
-import com.sillykid.app.entity.community.dynamic.DynamicDetailsBean;
 import com.sillykid.app.entity.homepage.hotvideo.VideoDetailsBean;
 import com.sillykid.app.loginregister.LoginActivity;
 import com.sillykid.app.utils.GlideImageLoader;
-
-import java.io.IOException;
-import java.util.LinkedHashMap;
 
 import cn.bingoogolapple.androidcommon.adapter.BGAOnItemChildClickListener;
 import cn.bingoogolapple.titlebar.BGATitleBar;
@@ -126,6 +121,7 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
     private RevertBouncedDialog revertBouncedDialog = null;
 
     private int type = 2;
+    private int positionItem = 0;
 
     @Override
     public void setRootView() {
@@ -206,6 +202,17 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
                 intent.putExtra("isRefresh", 0);
                 showActivity(aty, intent);
                 break;
+            case R.id.tv_follow:
+                String title = getString(R.string.attentionLoad);
+                if (is_concern == 1) {
+                    title = getString(R.string.cancelCttentionLoad);
+                } else {
+                    title = getString(R.string.attentionLoad);
+                }
+                showLoadingDialog(title);
+                ((VideoDetailsContract.Presenter) mPresenter).postAddConcern(user_id, type);
+                break;
+
             case R.id.ll_report:
                 if (reportBouncedDialog == null) {
                     reportBouncedDialog = new ReportBouncedDialog(this, id);
@@ -222,7 +229,7 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
                 break;
             case R.id.ll_zan:
                 showLoadingDialog(getString(R.string.dataLoad));
-                ((VideoDetailsContract.Presenter) mPresenter).postAddLike(id, type);
+                ((VideoDetailsContract.Presenter) mPresenter).postAddLike(id, type, 0);
                 break;
             case R.id.ll_collection:
                 showLoadingDialog(getString(R.string.dataLoad));
@@ -250,30 +257,33 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
         }
     }
 
+
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent intent = new Intent(aty, CommentDetailsActivity.class);
         intent.putExtra("id", mAdapter.getItem(position).getId());
-        intent.putExtra("type", 0);
+        intent.putExtra("type", type);
         startActivityForResult(intent, REQUEST_CODE);
     }
 
     @Override
     public void onItemChildClick(ViewGroup parent, View childView, int position) {
+        positionItem = position;
         if (childView.getId() == R.id.ll_giveLike) {
-
-
+            showLoadingDialog(getString(R.string.dataLoad));
+            ((VideoDetailsContract.Presenter) mPresenter).postAddLike(mAdapter.getItem(positionItem).getId(), type, 1);
         } else if (childView.getId() == R.id.tv_revert) {
             Intent intent = new Intent(aty, CommentDetailsActivity.class);
             intent.putExtra("id", mAdapter.getItem(position).getId());
-            intent.putExtra("type", 1);
+            intent.putExtra("type", type);
+            intent.putExtra("type1", 1);
             startActivityForResult(intent, REQUEST_CODE);
         } else if (childView.getId() == R.id.ll_revertNum) {
             Intent intent = new Intent(aty, CommentDetailsActivity.class);
             intent.putExtra("id", mAdapter.getItem(position).getId());
-            intent.putExtra("type", 0);
+            intent.putExtra("type", type);
             startActivityForResult(intent, REQUEST_CODE);
-        }else if (childView.getId() == R.id.tv_nickName) {
+        } else if (childView.getId() == R.id.tv_nickName) {
             Intent intent = new Intent(aty, DisplayPageActivity.class);
             intent.putExtra("user_id", mAdapter.getItem(position).getMember_id());
             intent.putExtra("isRefresh", 0);
@@ -383,6 +393,19 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
                 img_zan.setImageResource(R.mipmap.dynamicdetails_zan1);
                 tv_zan.setTextColor(getResources().getColor(R.color.greenColors));
                 tv_zanNum.setTextColor(getResources().getColor(R.color.greenColors));
+                ViewInject.toast(getString(R.string.zanSuccess));
+            }
+            dismissLoadingDialog();
+        } else if (flag == 5) {
+            if (mAdapter.getItem(positionItem).getIs_comment_like() == 1) {
+                mAdapter.getItem(positionItem).setComment_like_number(StringUtils.toInt(mAdapter.getItem(positionItem).getComment_like_number(), 0) - 1 + "");
+                mAdapter.getItem(positionItem).setIs_comment_like(0);
+                mAdapter.notifyDataSetChanged();
+                ViewInject.toast(getString(R.string.cancelZanSuccess));
+            } else {
+                mAdapter.getItem(positionItem).setComment_like_number(StringUtils.toInt(mAdapter.getItem(positionItem).getComment_like_number(), 0) + 1 + "");
+                mAdapter.getItem(positionItem).setIs_comment_like(1);
+                mAdapter.notifyDataSetChanged();
                 ViewInject.toast(getString(R.string.zanSuccess));
             }
             dismissLoadingDialog();

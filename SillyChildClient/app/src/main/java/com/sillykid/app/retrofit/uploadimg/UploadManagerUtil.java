@@ -1,5 +1,8 @@
 package com.sillykid.app.retrofit.uploadimg;
 
+import com.qiniu.android.storage.Configuration;
+import com.qiniu.android.storage.KeyGenerator;
+import com.qiniu.android.storage.Recorder;
 import com.qiniu.android.storage.UploadManager;
 
 public class UploadManagerUtil {
@@ -19,11 +22,20 @@ public class UploadManagerUtil {
         uploadManager = new UploadManager();
     }
 
+    private UploadManagerUtil(Configuration config) {
+        uploadManager = new UploadManager(config);
+    }
+
+    private UploadManagerUtil(Recorder recorder, KeyGenerator keyGen) {
+        uploadManager = new UploadManager(recorder, keyGen);
+    }
+
     /**
      * 不是很好，待改进
      *
      * @return
      */
+
     public static UploadManagerUtil getInstance() {
         dstroyInstance();
         //第一次判断是否为空
@@ -38,6 +50,38 @@ public class UploadManagerUtil {
 
         return uploadManagerUtil;
     }
+
+    public static UploadManagerUtil getInstance(Configuration config) {
+        dstroyInstance();
+        //第一次判断是否为空
+        if (uploadManagerUtil == null) {
+            synchronized (UploadManagerUtil.class) {//锁
+                //第二次判断是否为空 多线程同时走到这里的时候，需要这样优化处理
+                if (uploadManagerUtil == null) {
+                    uploadManagerUtil = new UploadManagerUtil(config);
+                }
+            }
+        }
+
+        return uploadManagerUtil;
+    }
+
+
+    public static UploadManagerUtil getInstance(Recorder recorder, KeyGenerator keyGen) {
+        dstroyInstance();
+        //第一次判断是否为空
+        if (uploadManagerUtil == null) {
+            synchronized (UploadManagerUtil.class) {//锁
+                //第二次判断是否为空 多线程同时走到这里的时候，需要这样优化处理
+                if (uploadManagerUtil == null) {
+                    uploadManagerUtil = new UploadManagerUtil(recorder, keyGen);
+                }
+            }
+        }
+
+        return uploadManagerUtil;
+    }
+
 
     public UploadManager getUploadManager() {
         return uploadManager;

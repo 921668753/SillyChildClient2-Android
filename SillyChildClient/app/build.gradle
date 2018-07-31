@@ -219,7 +219,7 @@ dependencies {
     /**
      * 七牛云
      */
-    api 'com.qiniu:qiniu-android-sdk:7.2.3'
+    api 'com.qiniu:qiniu-android-sdk:7.3.12'
 
     /**
      * 友盟

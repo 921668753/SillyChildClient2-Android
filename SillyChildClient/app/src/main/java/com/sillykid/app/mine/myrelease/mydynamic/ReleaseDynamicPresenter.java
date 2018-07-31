@@ -109,7 +109,7 @@ public class ReleaseDynamicPresenter implements ReleaseDynamicContract.Presenter
             mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.videoPathError), 2);
             return;
         }
-        RequestClient.upLoadImg(KJActivityStack.create().topActivity(), oldFile, 0, new ResponseListener<String>() {
+        RequestClient.upLoadImg(KJActivityStack.create().topActivity(), oldFile, 1, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
                 mView.getSuccess(response, 2);
@@ -117,7 +117,12 @@ public class ReleaseDynamicPresenter implements ReleaseDynamicContract.Presenter
 
             @Override
             public void onFailure(String msg) {
-                mView.errorMsg(msg, 2);
+                KJActivityStack.create().topActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mView.errorMsg(msg, 2);
+                    }
+                });
             }
         });
     }

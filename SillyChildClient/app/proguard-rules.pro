@@ -277,6 +277,12 @@ public static final ** CREATOR;
 
 -keep class io.rong.app.DemoNotificationReceiver {*;}
 
+## ----------------------------------
+##       七牛云
+## ----------------------------------
+-keep class com.qiniu.**{*;}
+-keep class com.qiniu.**{public <init>();}
+-ignorewarnings
 
 #==================腾讯bugly=====================
 -dontwarn com.tencent.bugly.**
@@ -470,6 +476,7 @@ public static final ** CREATOR;
 #==================Cklibrary=====================
 #==================Cklibrary=====================
 #==================Cklibrary=====================
+
 
 
 

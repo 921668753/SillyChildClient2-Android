@@ -76,6 +76,25 @@ public class DynamicCommentsBean extends BaseResult<DynamicCommentsBean.DataBean
             private int reply_comment_id;
             private int reply_member_id;
             private int type;
+            private String comment_like_number;
+            private int is_comment_like;
+
+            public String getComment_like_number() {
+                return comment_like_number;
+            }
+
+            public void setComment_like_number(String comment_like_number) {
+                this.comment_like_number = comment_like_number;
+            }
+
+            public int getIs_comment_like() {
+                return is_comment_like;
+            }
+
+            public void setIs_comment_like(int is_comment_like) {
+                this.is_comment_like = is_comment_like;
+            }
+
             private List<ReplyListBean> replyList;
 
             public String getBody() {

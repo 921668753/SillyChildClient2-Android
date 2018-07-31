@@ -19,14 +19,9 @@ public interface CommentDetailsContract {
         void getCommentDetails(int id);
 
         /**
-         * 关注或取消关注
-         */
-        void postAddConcern(int user_id, int type_id);
-
-        /**
          * 点赞和取消
          */
-        void postAddLike(int id);
+        void postAddLike(int id, int type);
 
         /**
          * 添加评论

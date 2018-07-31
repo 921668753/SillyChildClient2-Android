@@ -19,6 +19,15 @@ public class CommentDetailsViewAdapter extends BGAAdapterViewAdapter<ReplyListBe
         super(context, R.layout.item_dynamicsdetailsreplie);
     }
 
+
+    @Override
+    protected void setItemChildListener(BGAViewHolderHelper helper) {
+        super.setItemChildListener(helper);
+        helper.setItemChildClickListener(R.id.tv_nickName1);
+        helper.setItemChildClickListener(R.id.tv_nickName2);
+    }
+
+
     @Override
     protected void fillData(BGAViewHolderHelper helper, int position, ReplyListBean model) {
 

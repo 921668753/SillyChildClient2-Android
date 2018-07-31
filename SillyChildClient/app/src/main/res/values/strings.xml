@@ -185,6 +185,7 @@
     <string name="noHotVideo">亲，还没有任何视频哟~</string>
     <string name="people">人</string>
     <string name="peopleWatch">人观看</string>
+    <string name="video">视频</string>
 
 
     <!--搜索界面-->
@@ -676,6 +677,7 @@
     <string name="goodsNotCommented">亲，该商品还没有评论哟~</string>
     <string name="commentDetails">评论详情</string>
     <string name="commentList">评论列表</string>
+    <string name="dynamicNotCommented">亲，该动态还没有评论哟~</string>
 
     <!--商城  店铺首页  全部商品-->
     <string name="shopHomepage">店铺首页</string>
@@ -828,6 +830,7 @@
     <string name="enterStore">进入店铺</string>
     <string name="cancelCollection">取消收藏</string>
     <string name="noCollectedShop">亲，您还没有收藏店铺哟~</string>
+    <string name="noCollectedVideo">亲，您还没有收藏热门视频哟~</string>
 
     <!-- 个人中心 我的钱包-->
     <string name="instructions">使用说明</string>

@@ -20,13 +20,15 @@ public class UserEvaluationViewAdapter extends BGAAdapterViewAdapter<CommentBean
         super(context, R.layout.item_dynamicdetails);
     }
 
-
     @Override
     protected void setItemChildListener(BGAViewHolderHelper helper) {
         super.setItemChildListener(helper);
         helper.setItemChildClickListener(R.id.ll_giveLike);
         helper.setItemChildClickListener(R.id.tv_revert);
         helper.setItemChildClickListener(R.id.ll_revertNum);
+        helper.setItemChildClickListener(R.id.tv_nickName);
+        helper.setItemChildClickListener(R.id.tv_nickName1);
+        helper.setItemChildClickListener(R.id.tv_nickName2);
     }
 
     @Override
@@ -39,6 +41,16 @@ public class UserEvaluationViewAdapter extends BGAAdapterViewAdapter<CommentBean
         helper.setText(R.id.tv_content, model.getBody());
 
         helper.setText(R.id.tv_time, model.getCreate_time());
+
+        if (model.getIs_comment_like() == 1) {
+            helper.setImageResource(R.id.img_giveLike, R.mipmap.dynamic_zan1);
+            helper.setText(R.id.tv_zanNum, model.getComment_like_number());
+            helper.setTextColorRes(R.id.tv_zanNum, R.color.greenColors);
+        } else {
+            helper.setImageResource(R.id.img_giveLike, R.mipmap.dynamic_zan);
+            helper.setText(R.id.tv_zanNum, mContext.getString(R.string.giveLike));
+            helper.setTextColorRes(R.id.tv_zanNum, R.color.tabColors);
+        }
 
         if (model.getReplyList() == null || model.getReplyList().size() <= 0) {
             helper.setVisibility(R.id.ll_revert, View.GONE);

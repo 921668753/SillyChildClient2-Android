@@ -352,6 +352,7 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
         if (adapterView.getId() == R.id.hlv_hotVideo) {
             Intent intent = new Intent(aty, VideoDetailsActivity.class);
             intent.putExtra("id", hotVideoViewAdapter.getItem(i).getId());
+            intent.putExtra("title", hotVideoViewAdapter.getItem(i).getVideo_title());
             aty.showActivity(aty, intent);
         }
     }

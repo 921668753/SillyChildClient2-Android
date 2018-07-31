@@ -127,7 +127,7 @@ dependencies {
      *   https://github.com/lipangit/JiaoZiVideoPlayer
      * 视频播放器
      */
-    compile 'cn.jzvd:jiaozivideoplayer:6.1.2'
+    compile 'cn.jzvd:jiaozivideoplayer:6.2.12'
 
     /**
      * https://github.com/Othershe/CalendarView

@@ -35,8 +35,9 @@
 
                 <TextView
                     android:id="@+id/tv_nickName"
-                    style="@style/AutoWrap"
+                    style="@style/AutoMatch"
                     android:layout_marginLeft="@dimen/dimen6"
+                    android:gravity="center_vertical"
                     android:text="用户昵称"
                     android:textColor="@color/textColor"
                     android:textSize="@dimen/textsize11" />
@@ -106,17 +107,17 @@
             <LinearLayout
                 android:id="@+id/ll_revert"
                 style="@style/MatchWrap"
+                android:layout_marginBottom="@dimen/dimen15"
                 android:layout_marginLeft="@dimen/dimen13"
                 android:layout_marginRight="@dimen/dimen1"
-                android:layout_marginBottom="@dimen/dimen15"
                 android:background="@color/eCF2F6Colors"
                 android:orientation="vertical">
 
                 <com.common.cklibrary.utils.myview.ChildListView
                     android:id="@+id/clv_revert"
                     style="@style/MatchWrap"
-                    android:divider="@android:color/transparent"
                     android:layout_marginBottom="@dimen/dimen10"
+                    android:divider="@android:color/transparent"
                     android:listSelector="@android:color/transparent"
                     android:overScrollMode="never"
                     android:scrollbars="none"

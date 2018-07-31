@@ -179,7 +179,7 @@ public class CommunityFragment extends BaseFragment implements CommunityContract
             intent.putExtra("title", mAdapter.getItem(position).getPost_title());
             aty.showActivity(aty, intent);
         } else if (mAdapter.getItem(position).getType() == 2) {//视频
-            Intent intent = new Intent(aty, VideoDetailsActivity.class);
+            Intent intent = new Intent(aty, DynamicDetailsActivity.class);
             intent.putExtra("id", mAdapter.getItem(position).getId());
             intent.putExtra("title", mAdapter.getItem(position).getPost_title());
             aty.showActivity(aty, intent);

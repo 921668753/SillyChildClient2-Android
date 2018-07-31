@@ -333,6 +333,10 @@ public class RequestClient {
      * 获取视频详细信息
      */
     public static void getVideoDetail(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+        if (!StringUtils.isEmpty(cookies)) {
+            httpParams.putHeaders("Cookie", cookies);
+        }
         HttpRequest.requestGetHttp(context, URLConstants.VIDEODETAIL, httpParams, false, listener);
     }
 
@@ -697,11 +701,9 @@ public class RequestClient {
     public static void getOtherUserInfo(Context context, HttpParams httpParams, ResponseListener<String> listener) {
         Log.d("tag", "getOtherUserInfo");
         String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
-        if (StringUtils.isEmpty(cookies)) {
-            listener.onFailure(NumericConstants.TOLINGIN + "");
-            return;
+        if (!StringUtils.isEmpty(cookies)) {
+            httpParams.putHeaders("Cookie", cookies);
         }
-        httpParams.putHeaders("Cookie", cookies);
         HttpRequest.requestGetHttp(context, URLConstants.OTHERUSERINFO, httpParams, listener);
     }
 
@@ -711,7 +713,6 @@ public class RequestClient {
     public static void getOtherUserPost(Context context, HttpParams httpParams, ResponseListener<String> listener) {
         Log.d("tag", "getOtherUserPost");
         HttpRequest.requestGetHttp(context, URLConstants.OTHERUSERPOST, httpParams, listener);
-
     }
 
     /**
@@ -806,18 +807,11 @@ public class RequestClient {
      */
     public static void getPostComment(Context context, HttpParams httpParams, ResponseListener<String> listener) {
         Log.d("tag", "getPostComment");
-        doServer(context, new TokenCallback() {
-            @Override
-            public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
-                if (StringUtils.isEmpty(cookies)) {
-                    listener.onFailure(NumericConstants.TOLINGIN + "");
-                    return;
-                }
-                httpParams.putHeaders("Cookie", cookies);
-                HttpRequest.requestPostFORMHttp(context, URLConstants.POSTCOMMENT, httpParams, listener);
-            }
-        }, listener);
+        String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+        if (!StringUtils.isEmpty(cookies)) {
+            httpParams.putHeaders("Cookie", cookies);
+        }
+        HttpRequest.requestPostFORMHttp(context, URLConstants.POSTCOMMENT, httpParams, listener);
     }
 
 

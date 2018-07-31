@@ -56,6 +56,13 @@ public class MyCollectionActivity extends BaseActivity {
     @BindView(id = R.id.tv_dynamicState1)
     private TextView tv_dynamicState1;
 
+    @BindView(id = R.id.ll_video, click = true)
+    private LinearLayout ll_video;
+    @BindView(id = R.id.tv_video)
+    private TextView tv_video;
+    @BindView(id = R.id.tv_video1)
+    private TextView tv_video1;
+
     @BindView(id = R.id.ll_house, click = true)
     private LinearLayout ll_house;
     @BindView(id = R.id.tv_house)
@@ -77,6 +84,7 @@ public class MyCollectionActivity extends BaseActivity {
     private BaseFragment baseFragment4;
     private BaseFragment baseFragment5;
     private BaseFragment baseFragment6;
+    private BaseFragment baseFragment7;
 
     private int chageIcon;
 
@@ -93,9 +101,9 @@ public class MyCollectionActivity extends BaseActivity {
         baseFragment2 = new RouteFragment();
         baseFragment3 = new StrategyFragment();
         baseFragment4 = new DynamicStateFragment();
-        baseFragment5 = new HouseFragment();
-        baseFragment6 = new CompanyGuideFragment();
-
+        baseFragment5 = new VideoFragment();
+        baseFragment6 = new HouseFragment();
+        baseFragment7 = new CompanyGuideFragment();
         chageIcon = getIntent().getIntExtra("chageIcon", 0);
     }
 
@@ -130,12 +138,16 @@ public class MyCollectionActivity extends BaseActivity {
                 chageIcon = 4;
                 cleanColors(chageIcon);
                 break;
-            case R.id.ll_house:
+            case R.id.ll_video:
                 chageIcon = 5;
                 cleanColors(chageIcon);
                 break;
-            case R.id.ll_companyGuide:
+            case R.id.ll_house:
                 chageIcon = 6;
+                cleanColors(chageIcon);
+                break;
+            case R.id.ll_companyGuide:
+                chageIcon = 7;
                 cleanColors(chageIcon);
                 break;
         }
@@ -176,8 +188,10 @@ public class MyCollectionActivity extends BaseActivity {
         } else if (newChageIcon == 4) {
             setSimulateClick(ll_dynamicState, 160, 100);
         } else if (newChageIcon == 5) {
-            setSimulateClick(ll_house, 160, 100);
+            setSimulateClick(ll_video, 160, 100);
         } else if (newChageIcon == 6) {
+            setSimulateClick(ll_house, 160, 100);
+        } else if (newChageIcon == 7) {
             setSimulateClick(ll_companyGuide, 160, 100);
         } else {
             setSimulateClick(ll_good, 160, 100);
@@ -225,6 +239,9 @@ public class MyCollectionActivity extends BaseActivity {
         tv_dynamicState.setTextColor(getResources().getColor(R.color.textColor));
         tv_dynamicState1.setBackgroundResource(R.color.whiteColors);
 
+        tv_video.setTextColor(getResources().getColor(R.color.textColor));
+        tv_video1.setBackgroundResource(R.color.whiteColors);
+
         tv_house.setTextColor(getResources().getColor(R.color.textColor));
         tv_house1.setBackgroundResource(R.color.whiteColors);
 
@@ -258,14 +275,19 @@ public class MyCollectionActivity extends BaseActivity {
                 changeFragment(baseFragment4);
                 break;
             case 5:
-                tv_house.setTextColor(getResources().getColor(R.color.greenColors));
-                tv_house1.setBackgroundResource(R.color.greenColors);
+                tv_video.setTextColor(getResources().getColor(R.color.greenColors));
+                tv_video1.setBackgroundResource(R.color.greenColors);
                 changeFragment(baseFragment5);
                 break;
             case 6:
+                tv_house.setTextColor(getResources().getColor(R.color.greenColors));
+                tv_house1.setBackgroundResource(R.color.greenColors);
+                changeFragment(baseFragment6);
+                break;
+            case 7:
                 tv_companyGuide.setTextColor(getResources().getColor(R.color.greenColors));
                 tv_companyGuide1.setBackgroundResource(R.color.greenColors);
-                changeFragment(baseFragment6);
+                changeFragment(baseFragment7);
                 break;
         }
     }

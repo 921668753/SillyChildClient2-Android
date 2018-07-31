@@ -1,6 +1,9 @@
 package com.sillykid.app.community.dynamic;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.media.MediaMetadataRetriever;
+import android.net.Uri;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -27,11 +30,13 @@ import com.sillykid.app.entity.community.dynamic.DynamicDetailsBean;
 import com.sillykid.app.loginregister.LoginActivity;
 import com.sillykid.app.utils.GlideImageLoader;
 
+import java.util.HashMap;
 import java.util.List;
 
 import cn.bingoogolapple.androidcommon.adapter.BGAOnItemChildClickListener;
 import cn.bingoogolapple.bgabanner.BGABanner;
 import cn.bingoogolapple.titlebar.BGATitleBar;
+import cn.jzvd.JZVideoPlayerStandard;
 
 import static com.sillykid.app.constant.NumericConstants.REQUEST_CODE;
 
@@ -39,6 +44,9 @@ import static com.sillykid.app.constant.NumericConstants.REQUEST_CODE;
  * 动态详情
  */
 public class DynamicDetailsActivity extends BaseActivity implements DynamicDetailsContract.View, AdapterView.OnItemClickListener, BGAOnItemChildClickListener, BGABanner.Delegate<ImageView, String>, BGABanner.Adapter<ImageView, String> {
+
+    @BindView(id = R.id.videoplayer)
+    private JZVideoPlayerStandard jzVideoPlayerStandard;
 
     /**
      * 轮播图
@@ -130,6 +138,10 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
 
     private RevertBouncedDialog revertBouncedDialog = null;
 
+    private int type = 1;
+
+    private int positionItem = 0;
+
     @Override
     public void setRootView() {
         setContentView(R.layout.activity_dynamicdetails);
@@ -153,7 +165,7 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
             @Override
             public void toSuccess() {
                 tv_userEvaluationNum.setText(StringUtils.toInt(tv_commentNum.getText().toString(), 0) + 1 + getString(R.string.evaluation1));
-                tv_commentNum.setText(StringUtils.toInt(tv_commentNum.getText().toString(), 0) + 1);
+                tv_commentNum.setText(StringUtils.toInt(tv_commentNum.getText().toString(), 0) + 1 + "");
             }
         };
     }
@@ -216,7 +228,7 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
                     title = getString(R.string.attentionLoad);
                 }
                 showLoadingDialog(title);
-                ((DynamicDetailsContract.Presenter) mPresenter).postAddConcern(user_id, 1);
+                ((DynamicDetailsContract.Presenter) mPresenter).postAddConcern(user_id, type);
                 break;
 
             case R.id.ll_report:
@@ -230,11 +242,12 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
             case R.id.ll_userEvaluation:
                 Intent intent1 = new Intent(aty, DynamicCommentsActivity.class);
                 intent1.putExtra("id", id);
+                intent1.putExtra("type", type);
                 showActivity(aty, intent1);
                 break;
             case R.id.ll_zan:
                 showLoadingDialog(getString(R.string.dataLoad));
-                ((DynamicDetailsContract.Presenter) mPresenter).postAddLike(id);
+                ((DynamicDetailsContract.Presenter) mPresenter).postAddLike(id, type, 0);
                 break;
             case R.id.ll_collection:
                 showLoadingDialog(getString(R.string.dataLoad));
@@ -250,13 +263,13 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
                         @Override
                         public void toSuccess() {
                             tv_userEvaluationNum.setText(StringUtils.toInt(tv_commentNum.getText().toString(), 0) + 1 + getString(R.string.evaluation1));
-                            tv_commentNum.setText(StringUtils.toInt(tv_commentNum.getText().toString(), 0) + 1);
+                            tv_commentNum.setText(StringUtils.toInt(tv_commentNum.getText().toString(), 0) + 1 + "");
                         }
                     };
                 }
                 if (revertBouncedDialog != null && !revertBouncedDialog.isShowing()) {
                     revertBouncedDialog.show();
-                    revertBouncedDialog.setHintText(getString(R.string.writeComment), id, 0, 0, 1);
+                    revertBouncedDialog.setHintText(getString(R.string.writeComment), id, 0, 0, type);
                 }
                 break;
         }
@@ -280,25 +293,42 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent intent = new Intent(aty, CommentDetailsActivity.class);
         intent.putExtra("id", mAdapter.getItem(position).getId());
-        intent.putExtra("type", 0);
+        intent.putExtra("type", type);
         startActivityForResult(intent, REQUEST_CODE);
     }
 
     @Override
     public void onItemChildClick(ViewGroup parent, View childView, int position) {
+        positionItem = position;
         if (childView.getId() == R.id.ll_giveLike) {
-
-
+            showLoadingDialog(getString(R.string.dataLoad));
+            ((DynamicDetailsContract.Presenter) mPresenter).postAddLike(mAdapter.getItem(positionItem).getId(), type, 1);
         } else if (childView.getId() == R.id.tv_revert) {
             Intent intent = new Intent(aty, CommentDetailsActivity.class);
             intent.putExtra("id", mAdapter.getItem(position).getId());
-            intent.putExtra("type", 1);
+            intent.putExtra("type", type);
+            intent.putExtra("type1", 1);
             startActivityForResult(intent, REQUEST_CODE);
         } else if (childView.getId() == R.id.ll_revertNum) {
             Intent intent = new Intent(aty, CommentDetailsActivity.class);
             intent.putExtra("id", mAdapter.getItem(position).getId());
-            intent.putExtra("type", 0);
+            intent.putExtra("type", type);
             startActivityForResult(intent, REQUEST_CODE);
+        } else if (childView.getId() == R.id.tv_nickName) {
+            Intent intent = new Intent(aty, DisplayPageActivity.class);
+            intent.putExtra("user_id", mAdapter.getItem(position).getMember_id());
+            intent.putExtra("isRefresh", 0);
+            showActivity(aty, intent);
+        } else if (childView.getId() == R.id.tv_nickName1) {
+            Intent intent = new Intent(aty, DisplayPageActivity.class);
+            intent.putExtra("user_id", mAdapter.getItem(position).getReplyList().get(0).getMember_id());
+            intent.putExtra("isRefresh", 0);
+            showActivity(aty, intent);
+        } else if (childView.getId() == R.id.tv_nickName2) {
+            Intent intent = new Intent(aty, DisplayPageActivity.class);
+            intent.putExtra("user_id", mAdapter.getItem(position).getReplyList().get(0).getReply_member_id());
+            intent.putExtra("isRefresh", 0);
+            showActivity(aty, intent);
         }
     }
 
@@ -328,7 +358,30 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
     public void getSuccess(String success, int flag) {
         if (flag == 0) {
             DynamicDetailsBean dynamicDetailsBean = (DynamicDetailsBean) JsonUtil.getInstance().json2Obj(success, DynamicDetailsBean.class);
-            processLogic(dynamicDetailsBean.getData().getList());
+            int type1 = dynamicDetailsBean.getData().getType();
+            if (type1 == 1) {
+                mForegroundBanner.setVisibility(View.VISIBLE);
+                jzVideoPlayerStandard.setVisibility(View.GONE);
+                processLogic(dynamicDetailsBean.getData().getList());
+            } else {
+                mForegroundBanner.setVisibility(View.GONE);
+                jzVideoPlayerStandard.setVisibility(View.VISIBLE);
+                jzVideoPlayerStandard.setUp(dynamicDetailsBean.getData().getList().get(0), JZVideoPlayerStandard.SCREEN_WINDOW_NORMAL, "");
+                GlideImageLoader.glideOrdinaryLoader(this, dynamicDetailsBean.getData().getList().get(0), jzVideoPlayerStandard.thumbImageView, R.mipmap.placeholderfigure);
+//                Bitmap bitmap = null;
+//                //MediaMetadataRetriever 是android中定义好的一个类，提供了统一
+//                //的接口，用于从输入的媒体文件中取得帧和元数据；
+//                MediaMetadataRetriever retriever = new MediaMetadataRetriever();
+//                try {
+//                    retriever.setDataSource(dynamicDetailsBean.getData().getList().get(0),new HashMap<String, String>());// videoPath 本地视频的路径
+//                    bitmap = retriever.getFrameAtTime();
+//                } catch (IllegalArgumentException e) {
+//                    e.printStackTrace();
+//                } finally {
+//                    retriever.release();
+//                }
+                //  jzVideoPlayerStandard.thumbImageView.setImageBitmap(bitmap);
+            }
             user_id = dynamicDetailsBean.getData().getMember_id();
             GlideImageLoader.glideLoader(this, dynamicDetailsBean.getData().getFace(), img_head, 0, R.mipmap.avatar);
             tv_nickName.setText(dynamicDetailsBean.getData().getNickname());
@@ -420,6 +473,19 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
                 img_zan.setImageResource(R.mipmap.dynamicdetails_zan1);
                 tv_zan.setTextColor(getResources().getColor(R.color.greenColors));
                 tv_zanNum.setTextColor(getResources().getColor(R.color.greenColors));
+                ViewInject.toast(getString(R.string.zanSuccess));
+            }
+            dismissLoadingDialog();
+        } else if (flag == 5) {
+            if (mAdapter.getItem(positionItem).getIs_comment_like() == 1) {
+                mAdapter.getItem(positionItem).setComment_like_number(StringUtils.toInt(mAdapter.getItem(positionItem).getComment_like_number(), 0) - 1 + "");
+                mAdapter.getItem(positionItem).setIs_comment_like(0);
+                mAdapter.notifyDataSetChanged();
+                ViewInject.toast(getString(R.string.cancelZanSuccess));
+            } else {
+                mAdapter.getItem(positionItem).setComment_like_number(StringUtils.toInt(mAdapter.getItem(positionItem).getComment_like_number(), 0) + 1 + "");
+                mAdapter.getItem(positionItem).setIs_comment_like(1);
+                mAdapter.notifyDataSetChanged();
                 ViewInject.toast(getString(R.string.zanSuccess));
             }
             dismissLoadingDialog();

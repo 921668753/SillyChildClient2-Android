@@ -40,18 +40,19 @@ public class DynamicCommentsPresenter implements DynamicCommentsContract.Present
     }
 
     @Override
-    public void postAddLike(int id) {
+    public void postAddLike(int id, int type) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        httpParams.put("id", id);
+        httpParams.put("post_id", id);
+        httpParams.put("type", type);
         RequestClient.postAddLike(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
-                mView.getSuccess(response, 4);
+                mView.getSuccess(response, 1);
             }
 
             @Override
             public void onFailure(String msg) {
-                mView.errorMsg(msg, 4);
+                mView.errorMsg(msg, 1);
             }
         });
     }
@@ -59,7 +60,7 @@ public class DynamicCommentsPresenter implements DynamicCommentsContract.Present
     @Override
     public void postAddComment(String body, int post_id, int reply_comment_id, int reply_member_id, int type) {
         if (StringUtils.isEmpty(body)) {
-            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.writeComment1), 5);
+            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.writeComment1), 2);
             return;
         }
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
@@ -71,12 +72,12 @@ public class DynamicCommentsPresenter implements DynamicCommentsContract.Present
         RequestClient.postAddComment(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
-                mView.getSuccess(response, 5);
+                mView.getSuccess(response, 2);
             }
 
             @Override
             public void onFailure(String msg) {
-                mView.errorMsg(msg, 5);
+                mView.errorMsg(msg, 2);
             }
         });
 

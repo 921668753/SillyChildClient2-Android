@@ -230,6 +230,8 @@ public class DynamicDetailsBean extends BaseResult<DynamicDetailsBean.DataBean> 
             private String create_time;
             private String face;
             private int id;
+            private String comment_like_number;
+            private int is_comment_like;
             private int member_id;
             private String nickname;
             private int post_id;
@@ -316,6 +318,22 @@ public class DynamicDetailsBean extends BaseResult<DynamicDetailsBean.DataBean> 
 
             public void setType(int type) {
                 this.type = type;
+            }
+
+            public String getComment_like_number() {
+                return comment_like_number;
+            }
+
+            public void setComment_like_number(String comment_like_number) {
+                this.comment_like_number = comment_like_number;
+            }
+
+            public int getIs_comment_like() {
+                return is_comment_like;
+            }
+
+            public void setIs_comment_like(int is_comment_like) {
+                this.is_comment_like = is_comment_like;
             }
 
             public List<ReplyListBean> getReplyList() {

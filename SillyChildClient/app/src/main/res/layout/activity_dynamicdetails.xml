@@ -17,6 +17,13 @@
             style="@style/MatchMatch"
             android:orientation="vertical">
 
+            <cn.jzvd.JZVideoPlayerStandard
+                android:id="@+id/videoplayer"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen166"
+                android:layout_marginTop="@dimen/dimen6"
+                android:visibility="gone" />
+
             <cn.bingoogolapple.bgabanner.BGABanner
                 android:id="@+id/banner_ad"
                 android:layout_width="match_parent"
@@ -154,8 +161,8 @@
             <com.common.cklibrary.utils.myview.ChildListView
                 android:id="@+id/clv_dynamicDetails"
                 style="@style/MatchWrap"
-                android:layout_marginTop="@dimen/dimen6"
                 android:layout_marginBottom="@dimen/dimen20"
+                android:layout_marginTop="@dimen/dimen6"
                 android:divider="@android:color/transparent"
                 android:overScrollMode="never"
                 android:scrollbars="none"

@@ -93,14 +93,18 @@ public class DynamicDetailsPresenter implements DynamicDetailsContract.Presenter
     }
 
     @Override
-    public void postAddLike(int id) {
+    public void postAddLike(int id, int type, int flag) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
         httpParams.put("post_id", id);
-        httpParams.put("type", 1);
+        httpParams.put("type", type);
         RequestClient.postAddLike(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
-                mView.getSuccess(response, 4);
+                if (flag == 0) {
+                    mView.getSuccess(response, 4);
+                } else {
+                    mView.getSuccess(response, 5);
+                }
             }
 
             @Override
@@ -125,12 +129,12 @@ public class DynamicDetailsPresenter implements DynamicDetailsContract.Presenter
         RequestClient.postAddComment(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
-                mView.getSuccess(response, 5);
+                mView.getSuccess(response, 6);
             }
 
             @Override
             public void onFailure(String msg) {
-                mView.errorMsg(msg, 5);
+                mView.errorMsg(msg, 6);
             }
         });
 

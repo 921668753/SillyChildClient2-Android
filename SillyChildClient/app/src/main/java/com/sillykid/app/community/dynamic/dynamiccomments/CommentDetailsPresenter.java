@@ -40,11 +40,11 @@ public class CommentDetailsPresenter implements CommentDetailsContract.Presenter
     }
 
     @Override
-    public void postAddConcern(int user_id, int type_id) {
+    public void postAddLike(int id, int type) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        httpParams.put("member_id", user_id);
-        httpParams.put("type_id", type_id);
-        RequestClient.postAddConcern(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
+        httpParams.put("post_id", id);
+        httpParams.put("type", type);
+        RequestClient.postAddLike(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
                 mView.getSuccess(response, 1);
@@ -58,27 +58,9 @@ public class CommentDetailsPresenter implements CommentDetailsContract.Presenter
     }
 
     @Override
-    public void postAddLike(int id) {
-        HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        httpParams.put("post_id", id);
-        httpParams.put("type", 1);
-        RequestClient.postAddLike(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
-            @Override
-            public void onSuccess(String response) {
-                mView.getSuccess(response, 4);
-            }
-
-            @Override
-            public void onFailure(String msg) {
-                mView.errorMsg(msg, 4);
-            }
-        });
-    }
-
-    @Override
     public void postAddComment(String body, int post_id, int reply_comment_id, int reply_member_id, int type) {
         if (StringUtils.isEmpty(body)) {
-            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.writeComment1), 5);
+            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.writeComment1), 2);
             return;
         }
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
@@ -90,12 +72,12 @@ public class CommentDetailsPresenter implements CommentDetailsContract.Presenter
         RequestClient.postAddComment(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
-                mView.getSuccess(response, 5);
+                mView.getSuccess(response, 2);
             }
 
             @Override
             public void onFailure(String msg) {
-                mView.errorMsg(msg, 5);
+                mView.errorMsg(msg, 2);
             }
         });
 

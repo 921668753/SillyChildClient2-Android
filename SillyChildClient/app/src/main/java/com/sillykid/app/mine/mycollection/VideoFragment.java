@@ -1,40 +1,45 @@
-package com.sillykid.app.homepage.hotvideo;
+package com.sillykid.app.mine.mycollection;
 
 import android.content.Intent;
+import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.common.cklibrary.common.BaseActivity;
+import com.common.cklibrary.common.BaseFragment;
 import com.common.cklibrary.common.BindView;
 import com.common.cklibrary.common.ViewInject;
-import com.common.cklibrary.utils.ActivityTitleUtils;
 import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.RefreshLayoutUtil;
+import com.common.cklibrary.utils.rx.MsgEvent;
 import com.sillykid.app.R;
-import com.sillykid.app.adapter.homepage.hotvideo.HotVideoViewAdapter;
+import com.sillykid.app.adapter.mine.mycollection.VideoViewAdapter;
 import com.sillykid.app.constant.NumericConstants;
-import com.sillykid.app.entity.homepage.hotvideo.HotVideoBean;
+import com.sillykid.app.entity.mine.mycollection.ShopBean;
+import com.sillykid.app.homepage.hotvideo.VideoDetailsActivity;
 import com.sillykid.app.loginregister.LoginActivity;
+import com.sillykid.app.mine.mycollection.dialog.DeleteCollectionDialog;
 
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 
-import static com.sillykid.app.constant.NumericConstants.REQUEST_CODE;
-
+import static android.app.Activity.RESULT_OK;
+import static com.sillykid.app.constant.NumericConstants.REQUEST_CODE_PREVIEW;
 
 /**
- * 热门视频
+ * 我的收藏中的视频
+ * Created by Administrator on 2017/9/2.
  */
-public class HotVideoActivity extends BaseActivity implements HotVideoContract.View, AdapterView.OnItemClickListener, BGARefreshLayout.BGARefreshLayoutDelegate {
-
+public class VideoFragment extends BaseFragment implements CollectionContract.View, AdapterView.OnItemClickListener, BGARefreshLayout.BGARefreshLayoutDelegate {
 
     @BindView(id = R.id.mRefreshLayout)
     private BGARefreshLayout mRefreshLayout;
 
-    private HotVideoViewAdapter mAdapter;
+    private VideoViewAdapter mAdapter;
 
     @BindView(id = R.id.lv_hotVideo)
     private ListView lv_hotVideo;
@@ -60,77 +65,58 @@ public class HotVideoActivity extends BaseActivity implements HotVideoContract.V
     private int mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
 
     /**
-     * 总页码
-     */
-    private int totalPageNumber = NumericConstants.START_PAGE_NUMBER;
-    /**
      * 是否加载更多
      */
     private boolean isShowLoadingMore = false;
 
 
+    private DeleteCollectionDialog deleteCollectionDialog = null;
+
+    private int type_id = 4;
+
+    private MyCollectionActivity aty;
+
     @Override
-    public void setRootView() {
-        setContentView(R.layout.activity_hotvideo);
+    protected View inflaterView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
+        aty = (MyCollectionActivity) getActivity();
+        return View.inflate(aty, R.layout.fragment_video, null);
     }
 
-
-    /**
-     * 初始化数据
-     */
     @Override
     public void initData() {
         super.initData();
-        mPresenter = new HotVideoPresenter(this);
-        mAdapter = new HotVideoViewAdapter(this);
+        mPresenter = new CollectionPresenter(this);
+        mAdapter = new VideoViewAdapter(aty);
+        initDeleteCollectionDialog();
     }
 
 
     /**
-     * 初始化控件
+     * 弹框
      */
-    @SuppressWarnings("deprecation")
+    public void initDeleteCollectionDialog() {
+        deleteCollectionDialog = new DeleteCollectionDialog(aty, getString(R.string.determineDeleteShopCollection)) {
+            @Override
+            public void deleteCollectionDo(int addressId) {
+                showLoadingDialog(getString(R.string.deleteLoad));
+                ((CollectionContract.Presenter) mPresenter).postUnFavorite(addressId, type_id);
+            }
+        };
+    }
+
+
     @Override
-    public void initWidget() {
-        super.initWidget();
-        ActivityTitleUtils.initToolbar(aty, getString(R.string.hotVideo), true, R.id.titlebar);
+    protected void initWidget(View parentView) {
+        super.initWidget(parentView);
         RefreshLayoutUtil.initRefreshLayout(mRefreshLayout, this, aty, true);
         lv_hotVideo.setAdapter(mAdapter);
         lv_hotVideo.setOnItemClickListener(this);
         mRefreshLayout.beginRefreshing();
     }
 
-
     /**
-     * @param refreshLayout 刷新
+     * 控件监听事件
      */
-    @Override
-    public void onBGARefreshLayoutBeginRefreshing(BGARefreshLayout refreshLayout) {
-        mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
-        mRefreshLayout.endRefreshing();
-        showLoadingDialog(getString(R.string.dataLoad));
-        ((HotVideoContract.Presenter) mPresenter).getVideoList(mMorePageNumber);
-    }
-
-    /**
-     * @param refreshLayout 加载
-     */
-    @Override
-    public boolean onBGARefreshLayoutBeginLoadingMore(BGARefreshLayout refreshLayout) {
-        mRefreshLayout.endLoadingMore();
-        if (!isShowLoadingMore) {
-            return false;
-        }
-        mMorePageNumber++;
-        if (mMorePageNumber > totalPageNumber) {
-            ViewInject.toast(getString(R.string.noMoreData));
-            return false;
-        }
-        showLoadingDialog(getString(R.string.dataLoad));
-        ((HotVideoContract.Presenter) mPresenter).getVideoList(mMorePageNumber);
-        return true;
-    }
-
     @Override
     public void widgetClick(View v) {
         super.widgetClick(v);
@@ -140,9 +126,30 @@ public class HotVideoActivity extends BaseActivity implements HotVideoContract.V
                     mRefreshLayout.beginRefreshing();
                     return;
                 }
-                showActivity(this, LoginActivity.class);
+                aty.showActivity(aty, LoginActivity.class);
                 break;
         }
+    }
+
+    @Override
+    public void onBGARefreshLayoutBeginRefreshing(BGARefreshLayout refreshLayout) {
+        mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
+        mRefreshLayout.endRefreshing();
+        showLoadingDialog(getString(R.string.dataLoad));
+        ((CollectionContract.Presenter) mPresenter).getFavoriteList(mMorePageNumber, type_id);
+    }
+
+    @Override
+    public boolean onBGARefreshLayoutBeginLoadingMore(BGARefreshLayout refreshLayout) {
+        mRefreshLayout.endLoadingMore();
+        if (!isShowLoadingMore) {
+            ViewInject.toast(getString(R.string.noMoreData));
+            return false;
+        }
+        mMorePageNumber++;
+        showLoadingDialog(getString(R.string.dataLoad));
+        ((CollectionContract.Presenter) mPresenter).getFavoriteList(mMorePageNumber, type_id);
+        return true;
     }
 
 
@@ -151,12 +158,12 @@ public class HotVideoActivity extends BaseActivity implements HotVideoContract.V
         Intent intent = new Intent(aty, VideoDetailsActivity.class);
         intent.putExtra("id", mAdapter.getItem(position).getId());
         intent.putExtra("title", mAdapter.getItem(position).getVideo_title());
-        startActivityForResult(intent, REQUEST_CODE);
+        startActivityForResult(intent, REQUEST_CODE_PREVIEW);
     }
 
 
     @Override
-    public void setPresenter(HotVideoContract.Presenter presenter) {
+    public void setPresenter(CollectionContract.Presenter presenter) {
         mPresenter = presenter;
     }
 
@@ -167,30 +174,31 @@ public class HotVideoActivity extends BaseActivity implements HotVideoContract.V
             mRefreshLayout.setPullDownRefreshEnable(true);
             ll_commonError.setVisibility(View.GONE);
             mRefreshLayout.setVisibility(View.VISIBLE);
-            HotVideoBean hotVideoBean = (HotVideoBean) JsonUtil.getInstance().json2Obj(success, HotVideoBean.class);
-            if (hotVideoBean.getData() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
-                    hotVideoBean.getData().getResult() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
-                    hotVideoBean.getData().getResult().size() <= 0 && mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
-                errorMsg(getString(R.string.noCollectedGoods), 0);
+            ShopBean shopBean = (ShopBean) JsonUtil.getInstance().json2Obj(success, ShopBean.class);
+            if (shopBean.getData() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
+                    shopBean.getData().size() <= 0 && mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
+                errorMsg(getString(R.string.noCollectedVideo), 0);
                 return;
-            } else if (hotVideoBean.getData() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
-                    hotVideoBean.getData().getResult() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
-                    hotVideoBean.getData().getResult().size() <= 0 && mMorePageNumber > NumericConstants.START_PAGE_NUMBER) {
+            } else if (shopBean.getData() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
+                    shopBean.getData().size() <= 0 && mMorePageNumber > NumericConstants.START_PAGE_NUMBER) {
                 ViewInject.toast(getString(R.string.noMoreData));
                 isShowLoadingMore = false;
                 dismissLoadingDialog();
                 mRefreshLayout.endLoadingMore();
                 return;
             }
-            if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
-                mRefreshLayout.endRefreshing();
-                mAdapter.clear();
-                mAdapter.addNewData(hotVideoBean.getData().getResult());
-            } else {
-                mRefreshLayout.endLoadingMore();
-                mAdapter.addMoreData(hotVideoBean.getData().getResult());
-            }
+//            if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
+//                mRefreshLayout.endRefreshing();
+//                mAdapter.clear();
+//                mAdapter.addNewData(shopBean.getData());
+//            } else {
+//                mRefreshLayout.endLoadingMore();
+//                mAdapter.addMoreData(shopBean.getData());
+//            }
             dismissLoadingDialog();
+//        } else if (flag == 1) {
+////            mAdapter.removeItem(positionItem);
+////            mRefreshLayout.beginRefreshing();
         }
     }
 
@@ -214,13 +222,13 @@ public class HotVideoActivity extends BaseActivity implements HotVideoContract.V
                 tv_hintText.setVisibility(View.GONE);
                 tv_button.setText(getString(R.string.login));
                 // ViewInject.toast(getString(R.string.reloginPrompting));
-                showActivity(aty, LoginActivity.class);
+                aty.showActivity(aty, LoginActivity.class);
                 return;
             } else if (msg.contains(getString(R.string.checkNetwork))) {
                 img_err.setImageResource(R.mipmap.no_network);
                 tv_hintText.setText(msg);
                 tv_button.setText(getString(R.string.retry));
-            } else if (msg.contains(getString(R.string.noHotVideo))) {
+            } else if (msg.contains(getString(R.string.noCollectedVideo))) {
                 img_err.setImageResource(R.mipmap.no_data);
                 tv_hintText.setText(msg);
                 tv_button.setVisibility(View.GONE);
@@ -237,9 +245,35 @@ public class HotVideoActivity extends BaseActivity implements HotVideoContract.V
         }
     }
 
+
+    /**
+     * 在接收消息的时候，选择性接收消息：
+     */
+    @Override
+    public void callMsgEvent(MsgEvent msgEvent) {
+        super.callMsgEvent(msgEvent);
+        if (((String) msgEvent.getData()).equals("RxBusLoginEvent") && mPresenter != null) {
+            mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
+            ((CollectionContract.Presenter) mPresenter).getFavoriteList(mMorePageNumber, type_id);
+        }
+    }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (data != null && requestCode == REQUEST_CODE_PREVIEW && resultCode == RESULT_OK) {
+            mRefreshLayout.beginRefreshing();
+        }
+    }
+
     @Override
     public void onDestroy() {
         super.onDestroy();
+        if (deleteCollectionDialog != null) {
+            deleteCollectionDialog.cancel();
+        }
+        deleteCollectionDialog = null;
         mAdapter.clear();
         mAdapter = null;
     }

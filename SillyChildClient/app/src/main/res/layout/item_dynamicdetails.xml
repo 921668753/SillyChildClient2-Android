@@ -4,8 +4,8 @@
     style="@style/MatchWrap"
     android:background="@color/whiteColors"
     android:orientation="vertical"
-    android:paddingLeft="@dimen/dimen17"
     android:paddingBottom="@dimen/dimen12"
+    android:paddingLeft="@dimen/dimen17"
     android:paddingRight="@dimen/dimen29">
 
     <LinearLayout
@@ -23,8 +23,9 @@
 
         <TextView
             android:id="@+id/tv_nickName"
-            style="@style/AutoWrap"
+            style="@style/AutoMatch"
             android:layout_marginLeft="@dimen/dimen6"
+            android:gravity="center_vertical"
             android:text="用户昵称"
             android:textColor="@color/textColor"
             android:textSize="@dimen/textsize11" />
@@ -44,6 +45,7 @@
 
 
             <TextView
+                android:id="@+id/tv_zanNum"
                 style="@style/WrapWrap"
                 android:layout_marginLeft="@dimen/dimen3"
                 android:text="@string/giveLike"
@@ -113,11 +115,10 @@
         <LinearLayout
             android:id="@+id/ll_revertNum"
             style="@style/MatchWrap"
-            android:paddingBottom="@dimen/dimen5"
-            android:paddingLeft="@dimen/dimen10"
-            android:paddingTop="@dimen/dimen8"
             android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/dimen5"
+            android:paddingLeft="@dimen/dimen10">
 
             <TextView
                 style="@style/WrapWrap"

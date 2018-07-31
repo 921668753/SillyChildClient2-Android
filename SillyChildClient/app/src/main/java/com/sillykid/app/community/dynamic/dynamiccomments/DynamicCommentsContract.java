@@ -19,7 +19,7 @@ public interface DynamicCommentsContract {
         /**
          * 点赞和取消
          */
-        void postAddLike(int id);
+        void postAddLike(int id, int type);
 
         /**
          * 添加评论

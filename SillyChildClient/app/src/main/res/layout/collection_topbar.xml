@@ -114,6 +114,30 @@
 
     </LinearLayout>
 
+
+    <LinearLayout
+        android:id="@+id/ll_video"
+        style="@style/AutoMatch"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_video"
+            style="@style/MatchAuto"
+            android:gravity="center"
+            android:text="@string/video"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize15" />
+
+        <TextView
+            android:id="@+id/tv_video1"
+            android:layout_width="@dimen/dimen30"
+            android:layout_height="@dimen/dimen1"
+            android:background="@color/whiteColors" />
+
+    </LinearLayout>
+
+
     <LinearLayout
         android:id="@+id/ll_house"
         style="@style/AutoMatch"

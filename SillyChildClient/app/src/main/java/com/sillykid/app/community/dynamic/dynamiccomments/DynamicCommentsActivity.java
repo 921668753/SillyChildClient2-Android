@@ -16,9 +16,10 @@ import com.common.cklibrary.utils.ActivityTitleUtils;
 import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.RefreshLayoutUtil;
 import com.common.cklibrary.utils.rx.MsgEvent;
+import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
 import com.sillykid.app.adapter.community.dynamic.dynamiccomments.DynamicCommentsViewAdapter;
-import com.sillykid.app.adapter.mine.myfans.MyFansViewAdapter;
+import com.sillykid.app.community.DisplayPageActivity;
 import com.sillykid.app.constant.NumericConstants;
 import com.sillykid.app.entity.community.dynamic.dynamiccomments.DynamicCommentsBean;
 import com.sillykid.app.loginregister.LoginActivity;
@@ -72,6 +73,8 @@ public class DynamicCommentsActivity extends BaseActivity implements DynamicComm
     private boolean isShowLoadingMore = false;
 
     private int id = 0;
+    private int type = 0;
+    private int positionItem = 0;
 
     @Override
     public void setRootView() {
@@ -82,6 +85,7 @@ public class DynamicCommentsActivity extends BaseActivity implements DynamicComm
     public void initData() {
         super.initData();
         id = getIntent().getIntExtra("id", 0);
+        type = getIntent().getIntExtra("type", 0);
         mPresenter = new DynamicCommentsPresenter(this);
         mAdapter = new DynamicCommentsViewAdapter(aty);
 
@@ -121,7 +125,7 @@ public class DynamicCommentsActivity extends BaseActivity implements DynamicComm
         mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
         mRefreshLayout.endRefreshing();
         showLoadingDialog(getString(R.string.dataLoad));
-        ((DynamicCommentsContract.Presenter) mPresenter).getPostComment(id, mMorePageNumber, 1);
+        ((DynamicCommentsContract.Presenter) mPresenter).getPostComment(id, mMorePageNumber, type);
     }
 
     @Override
@@ -137,7 +141,7 @@ public class DynamicCommentsActivity extends BaseActivity implements DynamicComm
             return false;
         }
         showLoadingDialog(getString(R.string.dataLoad));
-        ((DynamicCommentsContract.Presenter) mPresenter).getPostComment(id, mMorePageNumber, 1);
+        ((DynamicCommentsContract.Presenter) mPresenter).getPostComment(id, mMorePageNumber, type);
         return true;
     }
 
@@ -146,25 +150,42 @@ public class DynamicCommentsActivity extends BaseActivity implements DynamicComm
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
         Intent intent = new Intent(aty, CommentDetailsActivity.class);
         intent.putExtra("id", mAdapter.getItem(position).getId());
-        intent.putExtra("type", 0);
+        intent.putExtra("type", type);
         startActivityForResult(intent, REQUEST_CODE);
     }
 
     @Override
     public void onItemChildClick(ViewGroup parent, View childView, int position) {
+        positionItem = position;
         if (childView.getId() == R.id.ll_giveLike) {
-
-
+            showLoadingDialog(getString(R.string.dataLoad));
+            ((DynamicCommentsContract.Presenter) mPresenter).postAddLike(mAdapter.getItem(positionItem).getId(), type);
         } else if (childView.getId() == R.id.tv_revert) {
             Intent intent = new Intent(aty, CommentDetailsActivity.class);
             intent.putExtra("id", mAdapter.getItem(position).getId());
-            intent.putExtra("type", 1);
+            intent.putExtra("type", type);
+            intent.putExtra("type1", 1);
             startActivityForResult(intent, REQUEST_CODE);
         } else if (childView.getId() == R.id.ll_revertNum) {
             Intent intent = new Intent(aty, CommentDetailsActivity.class);
             intent.putExtra("id", mAdapter.getItem(position).getId());
-            intent.putExtra("type", 0);
+            intent.putExtra("type", type);
             startActivityForResult(intent, REQUEST_CODE);
+        } else if (childView.getId() == R.id.tv_nickName) {
+            Intent intent = new Intent(aty, DisplayPageActivity.class);
+            intent.putExtra("user_id", mAdapter.getItem(position).getMember_id());
+            intent.putExtra("isRefresh", 0);
+            showActivity(aty, intent);
+        } else if (childView.getId() == R.id.tv_nickName1) {
+            Intent intent = new Intent(aty, DisplayPageActivity.class);
+            intent.putExtra("user_id", mAdapter.getItem(position).getReplyList().get(0).getMember_id());
+            intent.putExtra("isRefresh", 0);
+            showActivity(aty, intent);
+        } else if (childView.getId() == R.id.tv_nickName2) {
+            Intent intent = new Intent(aty, DisplayPageActivity.class);
+            intent.putExtra("user_id", mAdapter.getItem(position).getReplyList().get(0).getReply_member_id());
+            intent.putExtra("isRefresh", 0);
+            showActivity(aty, intent);
         }
     }
 
@@ -184,7 +205,7 @@ public class DynamicCommentsActivity extends BaseActivity implements DynamicComm
             if (dynamicCommentsBean.getData() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
                     dynamicCommentsBean.getData().getList() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
                     dynamicCommentsBean.getData().getList().size() <= 0 && mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
-                errorMsg(getString(R.string.noFans), 0);
+                errorMsg(getString(R.string.dynamicNotCommented), 0);
                 return;
             } else if (dynamicCommentsBean.getData() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
                     dynamicCommentsBean.getData().getList() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
@@ -204,6 +225,19 @@ public class DynamicCommentsActivity extends BaseActivity implements DynamicComm
             } else {
                 mRefreshLayout.endLoadingMore();
                 mAdapter.addMoreData(dynamicCommentsBean.getData().getList());
+            }
+            dismissLoadingDialog();
+        } else if (flag == 1) {
+            if (mAdapter.getItem(positionItem).getIs_comment_like() == 1) {
+                mAdapter.getItem(positionItem).setComment_like_number(StringUtils.toInt(mAdapter.getItem(positionItem).getComment_like_number(), 0) - 1 + "");
+                mAdapter.getItem(positionItem).setIs_comment_like(0);
+                mAdapter.notifyDataSetChanged();
+                ViewInject.toast(getString(R.string.cancelZanSuccess));
+            } else {
+                mAdapter.getItem(positionItem).setComment_like_number(StringUtils.toInt(mAdapter.getItem(positionItem).getComment_like_number(), 0) + 1 + "");
+                mAdapter.getItem(positionItem).setIs_comment_like(1);
+                mAdapter.notifyDataSetChanged();
+                ViewInject.toast(getString(R.string.zanSuccess));
             }
             dismissLoadingDialog();
         }
@@ -230,12 +264,13 @@ public class DynamicCommentsActivity extends BaseActivity implements DynamicComm
                 tv_button.setText(getString(R.string.login));
                 // ViewInject.toast(getString(R.string.reloginPrompting));
                 showActivity(aty, LoginActivity.class);
+                finish();
                 return;
             } else if (msg.contains(getString(R.string.checkNetwork))) {
                 img_err.setImageResource(R.mipmap.no_network);
                 tv_hintText.setText(msg);
                 tv_button.setText(getString(R.string.retry));
-            } else if (msg.contains(getString(R.string.noFans))) {
+            } else if (msg.contains(getString(R.string.dynamicNotCommented))) {
                 img_err.setImageResource(R.mipmap.no_data);
                 tv_hintText.setText(msg);
                 tv_button.setVisibility(View.GONE);
@@ -260,7 +295,7 @@ public class DynamicCommentsActivity extends BaseActivity implements DynamicComm
         super.callMsgEvent(msgEvent);
         if (((String) msgEvent.getData()).equals("RxBusLoginEvent") && mPresenter != null) {
             mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
-            ((DynamicCommentsContract.Presenter) mPresenter).getPostComment(id, mMorePageNumber, 1);
+            ((DynamicCommentsContract.Presenter) mPresenter).getPostComment(id, mMorePageNumber, type);
         }
     }
 

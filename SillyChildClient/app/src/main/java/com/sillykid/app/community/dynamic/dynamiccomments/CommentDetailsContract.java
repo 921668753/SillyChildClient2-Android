@@ -19,9 +19,9 @@ public interface CommentDetailsContract {
         void getCommentDetails(int id);
 
         /**
-         * 点赞和取消
+         * 给评论点赞
          */
-        void postAddLike(int id, int type);
+        void postAddCommentLike(int id, int type);
 
         /**
          * 添加评论

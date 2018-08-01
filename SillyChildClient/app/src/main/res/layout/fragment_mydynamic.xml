@@ -10,12 +10,12 @@
 
         <cn.bingoogolapple.refreshlayout.BGARefreshLayout
             android:id="@+id/mRefreshLayout"
-            style="@style/MatchMatch">
+            style="@style/MatchMatch"
+            android:paddingTop="@dimen/dimen5">
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv"
                 style="@style/MatchMatch"
-                android:layout_marginTop="@dimen/dimen5"
                 android:overScrollMode="never"
                 android:paddingLeft="@dimen/dimen2"
                 android:paddingRight="@dimen/dimen2"
@@ -28,13 +28,14 @@
 
     </LinearLayout>
 
+
     <TextView
         android:id="@+id/tv_newTrends"
         android:layout_width="@dimen/dimen195"
         android:layout_height="@dimen/dimen40"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/dimen20"
+        android:layout_marginBottom="@dimen/dimen10"
         android:background="@drawable/shape_newstrategy"
         android:gravity="center"
         android:text="@string/newTrends"

@@ -93,18 +93,14 @@ public class DynamicDetailsPresenter implements DynamicDetailsContract.Presenter
     }
 
     @Override
-    public void postAddLike(int id, int type, int flag) {
+    public void postAddLike(int id, int type) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
         httpParams.put("post_id", id);
         httpParams.put("type", type);
         RequestClient.postAddLike(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
-                if (flag == 0) {
-                    mView.getSuccess(response, 4);
-                } else {
-                    mView.getSuccess(response, 5);
-                }
+                mView.getSuccess(response, 4);
             }
 
             @Override
@@ -115,9 +111,28 @@ public class DynamicDetailsPresenter implements DynamicDetailsContract.Presenter
     }
 
     @Override
+    public void postAddCommentLike(int id, int type) {
+        HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
+        httpParams.put("comment_id", id);
+        httpParams.put("type", type);
+        RequestClient.postAddCommentLike(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
+            @Override
+            public void onSuccess(String response) {
+                mView.getSuccess(response, 5);
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                mView.errorMsg(msg, 5);
+            }
+        });
+    }
+
+
+    @Override
     public void postAddComment(String body, int post_id, int reply_comment_id, int reply_member_id, int type) {
         if (StringUtils.isEmpty(body)) {
-            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.writeComment1), 5);
+            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.writeComment1), 6);
             return;
         }
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();

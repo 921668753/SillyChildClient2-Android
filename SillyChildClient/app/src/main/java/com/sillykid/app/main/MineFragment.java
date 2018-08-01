@@ -26,7 +26,7 @@ import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
 import com.sillykid.app.entity.main.UserInfoBean;
 import com.sillykid.app.loginregister.LoginActivity;
-import com.sillykid.app.message.interactivemessage.imuitl.UserUtil;
+import com.sillykid.app.homepage.message.interactivemessage.imuitl.UserUtil;
 import com.sillykid.app.mine.deliveryaddress.DeliveryAddressActivity;
 import com.sillykid.app.mine.mycollection.MyCollectionActivity;
 import com.sillykid.app.mine.myfans.MyFansActivity;

@@ -13,6 +13,7 @@ ext {
             androidSupportVersion: "27.1.1",
             glide                : "4.5.0",
             rxjava               : "2.0.5",
-            rxandroid            : "2.0.1"
+            rxandroid            : "2.0.1",
+            common               : "1.0.10"
     ]
 }

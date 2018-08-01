@@ -186,6 +186,7 @@
         <!--首页   视频详情-->
         <activity
             android:name=".homepage.hotvideo.VideoDetailsActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait" />
 
         <!--首页   私人定制-->
@@ -204,10 +205,10 @@
         <!--android:name=".homepage.customerservice.CustomerServiceActivity"-->
         <!--android:screenOrientation="portrait"></activity>-->
 
-        <!--首页   地址搜索-->
+        <!--首页   消息-->
         <activity
-            android:name=".homepage.addressselection.addresssearch.AddressSearchActivity"
-            android:screenOrientation="portrait"></activity>
+            android:name=".homepage.message.MessageActivity"
+            android:screenOrientation="portrait" />
 
         <!--首页   当地达人-->
         <activity
@@ -357,12 +358,12 @@
 
         <!--消息   消息列表-->
         <activity
-            android:name=".message.systemmessage.SystemMessageListActivity"
+            android:name=".homepage.message.systemmessage.SystemMessageListActivity"
             android:screenOrientation="portrait" />
 
         <!--消息   系统消息详情-->
         <activity
-            android:name=".message.systemmessage.SystemMessageDetailsActivity"
+            android:name=".homepage.message.systemmessage.SystemMessageDetailsActivity"
             android:screenOrientation="portrait" />
 
         <!--社区   动态详情-->
@@ -529,6 +530,7 @@
             android:name=".mine.myrelease.mydynamic.ReleaseDynamicActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|stateUnchanged" />
+
 
         <!--我的   我的粉丝-->
         <activity
@@ -727,7 +729,7 @@
 
         <!--融云聊天会话界面-->
         <activity
-            android:name=".message.interactivemessage.ConversationActivity"
+            android:name=".homepage.message.interactivemessage.ConversationActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize">
@@ -745,7 +747,7 @@
         </activity>
 
         <receiver
-            android:name=".message.interactivemessage.imuitl.RongIMPushMessageReceiver"
+            android:name=".homepage.message.interactivemessage.imuitl.RongIMPushMessageReceiver"
             android:exported="true">
             <intent-filter>
                 <action android:name="io.rong.push.intent.MESSAGE_ARRIVED" />
@@ -872,7 +874,7 @@
         <!--      极光推送      -->
         <!-- User defined. 用户自定义的广播接收器-->
         <receiver
-            android:name=".message.systemmessage.jpushmessagereceiver.JPushMessageReceiver"
+            android:name=".homepage.message.systemmessage.jpushmessagereceiver.JPushMessageReceiver"
             android:enabled="true">
             <intent-filter>
                 <!--Required 用户注册SDK的intent-->

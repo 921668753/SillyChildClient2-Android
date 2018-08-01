@@ -32,7 +32,7 @@ import com.sillykid.app.constant.StringNewConstants;
 import com.sillykid.app.constant.URLConstants;
 import com.sillykid.app.entity.loginregister.LoginBean;
 import com.sillykid.app.entity.startpage.QiNiuKeyBean;
-import com.sillykid.app.message.interactivemessage.imuitl.UserUtil;
+import com.sillykid.app.homepage.message.interactivemessage.imuitl.UserUtil;
 import com.sillykid.app.retrofit.uploadimg.UploadManagerUtil;
 
 
@@ -802,6 +802,26 @@ public class RequestClient {
             }
         }, listener);
     }
+
+    /**
+     * 社区----给评论点赞
+     */
+    public static void postAddCommentLike(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        Log.d("tag", "postAddCommentLike");
+        doServer(context, new TokenCallback() {
+            @Override
+            public void execute() {
+                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                if (StringUtils.isEmpty(cookies)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("Cookie", cookies);
+                HttpRequest.requestPostFORMHttp(context, URLConstants.ADDCOMMRENTLIKE, httpParams, listener);
+            }
+        }, listener);
+    }
+
 
     /**
      * 社区----添加评论

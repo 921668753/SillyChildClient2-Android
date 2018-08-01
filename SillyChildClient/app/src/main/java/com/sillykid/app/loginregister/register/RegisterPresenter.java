@@ -16,7 +16,7 @@ import com.sillykid.app.R;
 import com.sillykid.app.entity.BaiDuInfo;
 import com.sillykid.app.entity.application.RongCloudBean;
 import com.sillykid.app.entity.loginregister.LoginBean;
-import com.sillykid.app.message.interactivemessage.imuitl.UserUtil;
+import com.sillykid.app.homepage.message.interactivemessage.imuitl.UserUtil;
 import com.sillykid.app.retrofit.RequestClient;
 import com.sillykid.app.utils.AccountValidatorUtil;
 

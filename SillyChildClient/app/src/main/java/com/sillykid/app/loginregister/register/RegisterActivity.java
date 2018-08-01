@@ -22,7 +22,7 @@ import com.umeng.analytics.MobclickAgent;
 import com.sillykid.app.R;
 import com.sillykid.app.entity.loginregister.LoginBean;
 import com.sillykid.app.loginregister.LoginActivity;
-import com.sillykid.app.message.interactivemessage.imuitl.UserUtil;
+import com.sillykid.app.homepage.message.interactivemessage.imuitl.UserUtil;
 
 import static android.text.InputType.TYPE_CLASS_TEXT;
 import static android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD;

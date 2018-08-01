@@ -19,7 +19,7 @@ import com.kymjs.common.SystemTool;
 import com.lzy.imagepicker.ImagePicker;
 import com.sillykid.app.BuildConfig;
 import com.sillykid.app.R;
-import com.sillykid.app.message.interactivemessage.imuitl.RongCloudEvent;
+import com.sillykid.app.homepage.message.interactivemessage.imuitl.RongCloudEvent;
 import com.sillykid.app.utils.GlideImageLoader;
 import com.sillykid.app.utils.ProcessUtil;
 import com.sillykid.app.utils.abnormal.LocalCrashHandler;

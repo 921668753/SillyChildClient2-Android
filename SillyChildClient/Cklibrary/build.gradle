@@ -43,7 +43,7 @@ dependencies {
     compile 'com.kymjs.rxvolley:okhttp3:latest.release'
 
     //    compile 'com.kymjs.rxvolley:bitmapcore:latest.release'//图片加载框架
-    compile 'com.kymjs.core:common:latest.release'
+//    compile 'com.kymjs.core:common:latest.release'
 
     //工具类
 

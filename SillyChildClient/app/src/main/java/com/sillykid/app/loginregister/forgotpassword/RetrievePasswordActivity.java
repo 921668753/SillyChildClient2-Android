@@ -10,7 +10,7 @@ import com.common.cklibrary.common.BaseActivity;
 import com.common.cklibrary.common.BindView;
 import com.common.cklibrary.common.ViewInject;
 import com.sillykid.app.R;
-import com.sillykid.app.message.interactivemessage.imuitl.UserUtil;
+import com.sillykid.app.homepage.message.interactivemessage.imuitl.UserUtil;
 
 /**
  * 找回密码

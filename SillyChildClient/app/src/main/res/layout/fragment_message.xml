@@ -4,13 +4,18 @@
     android:background="@color/background"
     android:orientation="vertical">
 
-    <TextView
-        style="@style/Match44"
-        android:background="@color/whiteColors"
-        android:gravity="center"
-        android:text="@string/message"
-        android:textColor="@color/titletextcolors"
-        android:textSize="@dimen/textsize17" />
+    <!--<TextView-->
+    <!--style="@style/Match44"-->
+    <!--android:background="@color/whiteColors"-->
+    <!--android:gravity="center"-->
+    <!--android:text="@string/message"-->
+    <!--android:textColor="@color/titletextcolors"-->
+    <!--android:textSize="@dimen/textsize17" />-->
+
+    <!--<TextView style="@style/DividerWidth" />-->
+
+
+    <include layout="@layout/common_title" />
 
     <TextView style="@style/DividerWidth" />
 

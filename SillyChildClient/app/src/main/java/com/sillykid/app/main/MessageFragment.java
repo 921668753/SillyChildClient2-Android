@@ -9,9 +9,9 @@ import android.widget.TextView;
 import com.common.cklibrary.common.BaseFragment;
 import com.common.cklibrary.common.BindView;
 import com.sillykid.app.R;
-import com.sillykid.app.message.InteractiveMessageFragment;
-import com.sillykid.app.message.SystemMessageFragment;
-import com.sillykid.app.message.interactivemessage.imuitl.RongIMUtil;
+import com.sillykid.app.homepage.message.InteractiveMessageFragment;
+import com.sillykid.app.homepage.message.SystemMessageFragment;
+import com.sillykid.app.homepage.message.interactivemessage.imuitl.RongIMUtil;
 
 /**
  * 消息

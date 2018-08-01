@@ -361,7 +361,11 @@ public class ReleaseDynamicActivity extends BaseActivity implements ReleaseDynam
             for (int i = 0; i < dynamicDetailsBean.getData().getList().size(); i++) {
                 LocalMedia localMedia = new LocalMedia();
                 localMedia.setPath(dynamicDetailsBean.getData().getList().get(i));
-                localMedia.setPictureType(String.valueOf(type));
+                if (dynamicDetailsBean.getData().getType() == 1) {
+                    localMedia.setPictureType("image/jpeg");
+                } else {
+                    localMedia.setPictureType("video");
+                }
                 localMedia.setPosition(i);
                 selectList.add(localMedia);
             }

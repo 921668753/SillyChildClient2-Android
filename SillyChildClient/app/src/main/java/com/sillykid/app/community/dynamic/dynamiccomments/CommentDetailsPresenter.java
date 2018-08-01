@@ -40,11 +40,11 @@ public class CommentDetailsPresenter implements CommentDetailsContract.Presenter
     }
 
     @Override
-    public void postAddLike(int id, int type) {
+    public void postAddCommentLike(int id, int type) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        httpParams.put("post_id", id);
+        httpParams.put("comment_id", id);
         httpParams.put("type", type);
-        RequestClient.postAddLike(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
+        RequestClient.postAddCommentLike(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
                 mView.getSuccess(response, 1);

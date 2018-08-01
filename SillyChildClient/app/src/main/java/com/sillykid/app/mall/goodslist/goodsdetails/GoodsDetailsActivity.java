@@ -17,7 +17,7 @@ import com.common.cklibrary.utils.myview.WebViewLayout1;
 import com.kymjs.common.StringUtils;
 import com.sillykid.app.BuildConfig;
 import com.sillykid.app.constant.URLConstants;
-import com.sillykid.app.message.interactivemessage.imuitl.RongIMUtil;
+import com.sillykid.app.homepage.message.interactivemessage.imuitl.RongIMUtil;
 import com.sillykid.app.mine.sharingceremony.dialog.ShareBouncedDialog;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMShareAPI;

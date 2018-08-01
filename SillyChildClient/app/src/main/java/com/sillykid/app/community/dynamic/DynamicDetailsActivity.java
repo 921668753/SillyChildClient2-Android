@@ -1,9 +1,6 @@
 package com.sillykid.app.community.dynamic;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.media.MediaMetadataRetriever;
-import android.net.Uri;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -29,13 +26,14 @@ import com.sillykid.app.community.dynamic.dynamiccomments.DynamicCommentsActivit
 import com.sillykid.app.entity.community.dynamic.DynamicDetailsBean;
 import com.sillykid.app.loginregister.LoginActivity;
 import com.sillykid.app.utils.GlideImageLoader;
+import com.common.cklibrary.utils.custommediaplayer.JZPLMediaPlayer;
 
-import java.util.HashMap;
 import java.util.List;
 
 import cn.bingoogolapple.androidcommon.adapter.BGAOnItemChildClickListener;
 import cn.bingoogolapple.bgabanner.BGABanner;
 import cn.bingoogolapple.titlebar.BGATitleBar;
+import cn.jzvd.JZVideoPlayer;
 import cn.jzvd.JZVideoPlayerStandard;
 
 import static com.sillykid.app.constant.NumericConstants.REQUEST_CODE;
@@ -247,7 +245,7 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
                 break;
             case R.id.ll_zan:
                 showLoadingDialog(getString(R.string.dataLoad));
-                ((DynamicDetailsContract.Presenter) mPresenter).postAddLike(id, type, 0);
+                ((DynamicDetailsContract.Presenter) mPresenter).postAddLike(id, type);
                 break;
             case R.id.ll_collection:
                 showLoadingDialog(getString(R.string.dataLoad));
@@ -275,6 +273,14 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        if (JZVideoPlayer.backPress()) {
+            return;
+        }
+        super.onBackPressed();
+    }
+
 
     @Override
     public void onResume() {
@@ -287,6 +293,7 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
     public void onPause() {
         super.onPause();
         mForegroundBanner.stopAutoPlay();
+        JZVideoPlayer.releaseAllVideos();
     }
 
     @Override
@@ -302,7 +309,7 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
         positionItem = position;
         if (childView.getId() == R.id.ll_giveLike) {
             showLoadingDialog(getString(R.string.dataLoad));
-            ((DynamicDetailsContract.Presenter) mPresenter).postAddLike(mAdapter.getItem(positionItem).getId(), type, 1);
+            ((DynamicDetailsContract.Presenter) mPresenter).postAddCommentLike(mAdapter.getItem(positionItem).getId(), type);
         } else if (childView.getId() == R.id.tv_revert) {
             Intent intent = new Intent(aty, CommentDetailsActivity.class);
             intent.putExtra("id", mAdapter.getItem(position).getId());
@@ -368,19 +375,7 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
                 jzVideoPlayerStandard.setVisibility(View.VISIBLE);
                 jzVideoPlayerStandard.setUp(dynamicDetailsBean.getData().getList().get(0), JZVideoPlayerStandard.SCREEN_WINDOW_NORMAL, "");
                 GlideImageLoader.glideOrdinaryLoader(this, dynamicDetailsBean.getData().getList().get(0), jzVideoPlayerStandard.thumbImageView, R.mipmap.placeholderfigure);
-//                Bitmap bitmap = null;
-//                //MediaMetadataRetriever 是android中定义好的一个类，提供了统一
-//                //的接口，用于从输入的媒体文件中取得帧和元数据；
-//                MediaMetadataRetriever retriever = new MediaMetadataRetriever();
-//                try {
-//                    retriever.setDataSource(dynamicDetailsBean.getData().getList().get(0),new HashMap<String, String>());// videoPath 本地视频的路径
-//                    bitmap = retriever.getFrameAtTime();
-//                } catch (IllegalArgumentException e) {
-//                    e.printStackTrace();
-//                } finally {
-//                    retriever.release();
-//                }
-                //  jzVideoPlayerStandard.thumbImageView.setImageBitmap(bitmap);
+                JZVideoPlayer.setMediaInterface(new JZPLMediaPlayer());
             }
             user_id = dynamicDetailsBean.getData().getMember_id();
             GlideImageLoader.glideLoader(this, dynamicDetailsBean.getData().getFace(), img_head, 0, R.mipmap.avatar);

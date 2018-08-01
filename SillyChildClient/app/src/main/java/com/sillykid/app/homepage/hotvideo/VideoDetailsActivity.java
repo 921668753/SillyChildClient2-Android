@@ -26,6 +26,7 @@ import com.sillykid.app.community.dynamic.dynamiccomments.DynamicCommentsActivit
 import com.sillykid.app.entity.homepage.hotvideo.VideoDetailsBean;
 import com.sillykid.app.loginregister.LoginActivity;
 import com.sillykid.app.utils.GlideImageLoader;
+import com.common.cklibrary.utils.custommediaplayer.JZPLMediaPlayer;
 
 import cn.bingoogolapple.androidcommon.adapter.BGAOnItemChildClickListener;
 import cn.bingoogolapple.titlebar.BGATitleBar;
@@ -229,7 +230,7 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
                 break;
             case R.id.ll_zan:
                 showLoadingDialog(getString(R.string.dataLoad));
-                ((VideoDetailsContract.Presenter) mPresenter).postAddLike(id, type, 0);
+                ((VideoDetailsContract.Presenter) mPresenter).postAddLike(id, type);
                 break;
             case R.id.ll_collection:
                 showLoadingDialog(getString(R.string.dataLoad));
@@ -271,7 +272,7 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
         positionItem = position;
         if (childView.getId() == R.id.ll_giveLike) {
             showLoadingDialog(getString(R.string.dataLoad));
-            ((VideoDetailsContract.Presenter) mPresenter).postAddLike(mAdapter.getItem(positionItem).getId(), type, 1);
+            ((VideoDetailsContract.Presenter) mPresenter).postAddCommentLike(mAdapter.getItem(positionItem).getId(), type);
         } else if (childView.getId() == R.id.tv_revert) {
             Intent intent = new Intent(aty, CommentDetailsActivity.class);
             intent.putExtra("id", mAdapter.getItem(position).getId());
@@ -312,6 +313,7 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
             VideoDetailsBean dynamicDetailsBean = (VideoDetailsBean) JsonUtil.getInstance().json2Obj(success, VideoDetailsBean.class);
             jzVideoPlayerStandard.setUp(dynamicDetailsBean.getData().getVideo_url(), JZVideoPlayerStandard.SCREEN_WINDOW_NORMAL, "");
             GlideImageLoader.glideOrdinaryLoader(this, dynamicDetailsBean.getData().getVideo_image(), jzVideoPlayerStandard.thumbImageView, R.mipmap.placeholderfigure);
+            JZVideoPlayer.setMediaInterface(new JZPLMediaPlayer());
             user_id = dynamicDetailsBean.getData().getMember_id();
             GlideImageLoader.glideLoader(this, dynamicDetailsBean.getData().getFace(), img_head, 0, R.mipmap.avatar);
             tv_nickName.setText(dynamicDetailsBean.getData().getNickname());

@@ -47,19 +47,30 @@
                 android:scaleType="fitXY"
                 android:src="@mipmap/hp_message" />
 
-            <TextView
-                android:id="@+id/tv_tag"
-                android:layout_width="@dimen/dimen33"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="@dimen/dimen10"
-                android:paddingRight="@dimen/dimen15"
-                android:singleLine="true"
-                android:text="+996666"
-                android:textColor="@color/fF4848Colors"
-                android:textSize="@dimen/textsize9"
-                android:visibility="visible" />
+            <!--<TextView-->
+            <!--android:id="@+id/tv_tag"-->
+            <!--android:layout_width="@dimen/dimen33"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_marginTop="@dimen/dimen10"-->
+            <!--android:paddingRight="@dimen/dimen15"-->
+            <!--android:singleLine="true"-->
+            <!--android:text="+996666"-->
+            <!--android:textColor="@color/fF4848Colors"-->
+            <!--android:textSize="@dimen/textsize9"-->
+            <!--android:visibility="visible" />-->
             <!--android:background="@drawable/shape_homepage_dot"-->
+
+            <TextView
+                android:id="@+id/tv_messageTag"
+                android:layout_width="@dimen/dimen10"
+                android:layout_height="@dimen/dimen10"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/dimen20"
+                android:layout_marginTop="@dimen/dimen10"
+                android:background="@drawable/shape_homepage_dot"
+                android:visibility="gone" />
+
         </RelativeLayout>
     </RelativeLayout>
 

@@ -40,8 +40,11 @@ public class MyDynamicViewAdapter extends BGARecyclerViewAdapter<ResultBean> {
         }
         lp.height = (int) tempHeight;
         imageView.setLayoutParams(lp);
-        GlideImageLoader.glideLoaderRaudio(mContext, model.getPicture() + "?imageView2/0/w/" + lp.width + "/h/" + lp.height, imageView, 4, (int) lp.width, (int) lp.height, R.mipmap.placeholderfigure);
-
+        if (model.getType() == 1) {
+            GlideImageLoader.glideLoaderRaudio(mContext, model.getPicture() + "?imageView2/0/w/" + lp.width + "/h/" + lp.height, imageView, 4, (int) lp.width, (int) lp.height, R.mipmap.placeholderfigure);
+        } else {
+            GlideImageLoader.glideLoaderRaudio(mContext, model.getPicture(), imageView, 4, (int) lp.width, (int) lp.height, R.mipmap.placeholderfigure);
+        }
         helper.setText(R.id.tv_strategy, model.getPost_title());
 
         GlideImageLoader.glideLoader(mContext, model.getFace(), helper.getImageView(R.id.img_head), 0, R.mipmap.placeholderfigure);

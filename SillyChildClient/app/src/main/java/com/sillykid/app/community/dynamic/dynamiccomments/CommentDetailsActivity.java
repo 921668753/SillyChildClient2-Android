@@ -131,13 +131,13 @@ public class CommentDetailsActivity extends BaseActivity implements CommentDetai
         switch (v.getId()) {
             case R.id.tv_nickName:
                 Intent intent = new Intent(aty, DisplayPageActivity.class);
-                intent.putExtra("user_id", comment.getReply_member_id());
+                intent.putExtra("user_id", comment.getMember_id());
                 intent.putExtra("isRefresh", 0);
                 showActivity(aty, intent);
                 break;
             case R.id.ll_zan:
                 showLoadingDialog(getString(R.string.dataLoad));
-                ((CommentDetailsContract.Presenter) mPresenter).postAddLike(id, type);
+                ((CommentDetailsContract.Presenter) mPresenter).postAddCommentLike(id, type);
                 break;
             case R.id.tv_revert:
                 if (revertBouncedDialog == null) {

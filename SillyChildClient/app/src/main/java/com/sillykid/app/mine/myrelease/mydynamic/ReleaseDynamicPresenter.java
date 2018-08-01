@@ -93,7 +93,12 @@ public class ReleaseDynamicPresenter implements ReleaseDynamicContract.Presenter
 
             @Override
             public void onFailure(String msg) {
-                mView.errorMsg(msg, 1);
+                KJActivityStack.create().topActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mView.errorMsg(msg, 1);
+                    }
+                });
             }
         });
     }

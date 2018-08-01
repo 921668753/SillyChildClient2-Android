@@ -111,7 +111,7 @@ public class TransferActivity extends BaseActivity implements HomePageContract.V
 //                chageIcon = 1;
 //                break;
             case R.id.img_customerService:
-                ((HomePageContract.Presenter) mPresenter).isLogin(1);
+              //  ((HomePageContract.Presenter) mPresenter).isLogin(1);
                 break;
             default:
                 break;

@@ -217,6 +217,11 @@ public class URLConstants {
     public static String ADDLIKE = APIURL + "like/add_like.do";
 
     /**
+     * 社区----给评论点赞
+     */
+    public static String ADDCOMMRENTLIKE = APIURL + "comment/add_commentLike.do";
+
+    /**
      * 社区----添加评论
      */
     public static String ADDCOMMENT = APIURL + "comment/add_comment.do";

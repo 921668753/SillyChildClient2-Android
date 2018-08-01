@@ -21,6 +21,7 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':ucrop')
+    compile project(':QNPlayerLib')
     //noinspection GradleCompatible
     compile "com.android.support:appcompat-v7:${cfgs.androidSupportVersion}"
     //noinspection GradleCompatible
@@ -28,4 +29,6 @@ dependencies {
     compile "com.github.bumptech.glide:glide:${cfgs.glide}"
     compile "io.reactivex.rxjava2:rxjava:${cfgs.rxjava}"
     compile "io.reactivex.rxjava2:rxandroid:${cfgs.rxandroid}"
+    //    compile 'com.kymjs.rxvolley:bitmapcore:latest.release'//工具类
+    compile "com.kymjs.core:common:${cfgs.common}"
 }

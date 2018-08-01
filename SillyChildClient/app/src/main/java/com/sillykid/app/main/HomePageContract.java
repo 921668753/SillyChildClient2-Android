@@ -1,6 +1,7 @@
 package com.sillykid.app.main;
 
 import android.app.Activity;
+import android.content.Context;
 
 import com.baidu.location.LocationClient;
 import com.common.cklibrary.common.BasePresenter;
@@ -23,9 +24,9 @@ public interface HomePageContract {
         void initLocation(Activity activity, LocationClient mLocationClient);
 
         /**
-         * 判断是否登录
+         * 获取会员登录状态
          */
-        void isLogin(int flag);
+        void getIsLogin(Context context, int flag);
     }
 
     interface View extends BaseView<Presenter, String> {

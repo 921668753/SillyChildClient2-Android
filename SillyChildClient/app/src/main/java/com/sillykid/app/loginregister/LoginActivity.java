@@ -31,7 +31,7 @@ import com.sillykid.app.entity.loginregister.LoginBean;
 import com.sillykid.app.loginregister.bindingaccount.BindingPhoneActivity;
 import com.sillykid.app.loginregister.forgotpassword.RetrievePasswordActivity;
 import com.sillykid.app.loginregister.register.RegisterActivity;
-import com.sillykid.app.message.interactivemessage.imuitl.UserUtil;
+import com.sillykid.app.homepage.message.interactivemessage.imuitl.UserUtil;
 
 import java.util.Map;
 

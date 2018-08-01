@@ -69,7 +69,6 @@ public class VideoFragment extends BaseFragment implements CollectionContract.Vi
      */
     private boolean isShowLoadingMore = false;
 
-
     private DeleteCollectionDialog deleteCollectionDialog = null;
 
     private int type_id = 4;

@@ -159,7 +159,7 @@ public class DynamicCommentsActivity extends BaseActivity implements DynamicComm
         positionItem = position;
         if (childView.getId() == R.id.ll_giveLike) {
             showLoadingDialog(getString(R.string.dataLoad));
-            ((DynamicCommentsContract.Presenter) mPresenter).postAddLike(mAdapter.getItem(positionItem).getId(), type);
+            ((DynamicCommentsContract.Presenter) mPresenter).postAddCommentLike(mAdapter.getItem(positionItem).getId(), type);
         } else if (childView.getId() == R.id.tv_revert) {
             Intent intent = new Intent(aty, CommentDetailsActivity.class);
             intent.putExtra("id", mAdapter.getItem(position).getId());

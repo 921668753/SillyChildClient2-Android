@@ -52,5 +52,4 @@ public class MinePresenter implements MineContract.Presenter {
         });
     }
 
-
 }

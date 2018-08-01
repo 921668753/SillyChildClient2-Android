@@ -17,9 +17,9 @@ public interface DynamicCommentsContract {
         void getPostComment(int post_id, int pageno, int type);
 
         /**
-         * 点赞和取消
+         * 给评论点赞
          */
-        void postAddLike(int id, int type);
+        void postAddCommentLike(int id, int type);
 
         /**
          * 添加评论

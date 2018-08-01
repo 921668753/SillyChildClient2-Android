@@ -1,6 +1,7 @@
 package com.sillykid.app.main;
 
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
@@ -30,15 +32,21 @@ import com.sillykid.app.R;
 import com.sillykid.app.adapter.main.homepage.BoutiqueLineViewAdapter;
 import com.sillykid.app.adapter.main.homepage.HotVideoViewAdapter;
 import com.sillykid.app.constant.NumericConstants;
+import com.sillykid.app.constant.StringNewConstants;
 import com.sillykid.app.entity.main.HomePageBean;
 import com.sillykid.app.entity.main.HomePageBean.DataBean.BannerListBean;
 import com.sillykid.app.homepage.BannerDetailsActivity;
 import com.sillykid.app.homepage.hotvideo.HotVideoActivity;
 import com.sillykid.app.homepage.hotvideo.VideoDetailsActivity;
+import com.sillykid.app.homepage.message.MessageActivity;
 import com.sillykid.app.homepage.privatecustom.PrivateCustomActivity;
 import com.sillykid.app.loginregister.LoginActivity;
 import com.sillykid.app.mall.goodslist.GoodsListActivity;
 import com.sillykid.app.mall.goodslist.goodsdetails.GoodsDetailsActivity;
+import com.sillykid.app.mine.vipemergencycall.VipEmergencyCallActivity;
+import com.sillykid.app.receivers.MainCallBack;
+import com.sillykid.app.receivers.MainReceiver;
+import com.sillykid.app.services.MainService;
 import com.sillykid.app.utils.GlideImageLoader;
 import com.sillykid.app.utils.SpacesItemDecoration;
 
@@ -54,7 +62,7 @@ import pub.devrel.easypermissions.EasyPermissions;
  * 首页
  * Created by Admin on 2018/8/10.
  */
-public class HomePageFragment extends BaseFragment implements EasyPermissions.PermissionCallbacks, HomePageContract.View, BGABanner.Delegate<ImageView, BannerListBean>, BGABanner.Adapter<ImageView, BannerListBean>, AdapterView.OnItemClickListener, BGAOnRVItemClickListener, BGARefreshLayout.BGARefreshLayoutDelegate {
+public class HomePageFragment extends BaseFragment implements EasyPermissions.PermissionCallbacks, MainCallBack, HomePageContract.View, BGABanner.Delegate<ImageView, BannerListBean>, BGABanner.Adapter<ImageView, BannerListBean>, AdapterView.OnItemClickListener, BGAOnRVItemClickListener, BGARefreshLayout.BGARefreshLayoutDelegate {
 
     private MainActivity aty;
 
@@ -70,8 +78,8 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
     @BindView(id = R.id.rl_message, click = true)
     private RelativeLayout rl_message;
 
-    @BindView(id = R.id.tv_tag)
-    private ImageView tv_tag;
+    @BindView(id = R.id.tv_messageTag)
+    private TextView tv_messageTag;
 
     @BindView(id = R.id.mRefreshLayout)
     private BGARefreshLayout mRefreshLayout;
@@ -141,6 +149,9 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
 
     private boolean isFirst = true;
 
+    private Intent intentservice;
+    private MainReceiver mainReceiver;
+
     @Override
     protected View inflaterView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
         aty = (MainActivity) getActivity();
@@ -156,6 +167,9 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
         boutiqueLineViewAdapter = new BoutiqueLineViewAdapter(recyclerView);
         mLocationClient = new LocationClient(aty.getApplicationContext());
         myListener = new MyLocationListener();
+        mainReceiver = new MainReceiver(this);
+        IntentFilter intentFilter = new IntentFilter(StringNewConstants.MainServiceAction);
+        aty.registerReceiver(mainReceiver, intentFilter);
     }
 
     @Override
@@ -189,9 +203,10 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
         super.widgetClick(v);
         switch (v.getId()) {
             case R.id.img_customerService:
-                // ((HomePagePresenter) mPresenter).isLogin(1);
-
-
+                aty.showActivity(aty, VipEmergencyCallActivity.class);
+                break;
+            case R.id.rl_message:
+                ((HomePageContract.Presenter) mPresenter).getIsLogin(aty, 1);
                 break;
             case R.id.ll_airportPickup:
                 Intent intent = new Intent(aty, GoodsListActivity.class);
@@ -258,8 +273,8 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
             }
         } else if (flag == 1) {
             dismissLoadingDialog();
-            tv_tag.setVisibility(View.GONE);
-            // aty.showActivity(aty, OverleafActivity.class);
+            //  tv_tag.setVisibility(View.GONE);
+            aty.showActivity(aty, MessageActivity.class);
         }
         dismissLoadingDialog();
 
@@ -315,6 +330,8 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
         if (aty.getChageIcon() == 0) {
             mForegroundBanner.startAutoPlay();
         }
+        intentservice = new Intent(aty, MainService.class);
+        aty.startService(intentservice);
     }
 
     @Override
@@ -395,6 +412,14 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
         aty.showActivity(aty, intent);
     }
 
+    @Override
+    public void msgStyle(boolean havemsg) {
+        if (havemsg) {
+            tv_messageTag.setVisibility(View.VISIBLE);
+        } else {
+            tv_messageTag.setVisibility(View.GONE);
+        }
+    }
 
     public class MyLocationListener extends BDAbstractLocationListener {
         @Override
@@ -485,18 +510,26 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
         hotVideoViewAdapter = null;
         mLocationClient.unRegisterLocationListener(myListener); //注销掉监听
         mLocationClient.stop(); //停止定位服务
+        if (mainReceiver != null) {
+            aty.unregisterReceiver(mainReceiver);
+            mainReceiver = null;
+        }
+        if (intentservice != null) {
+            aty.stopService(intentservice);
+            intentservice = null;
+        }
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-//        if (requestCode == STATUS && resultCode == RESULT_OK) {// 如果等于1
-//            String selectCity = data.getStringExtra("selectCity");
-//            int selectCityId = data.getIntExtra("selectCityId", 0);
-//            PreferenceHelper.write(aty, StringConstants.FILENAME, "selectCity", selectCity);
-//            showLoadingDialog(aty.getString(R.string.dataLoad));
-//            ((HomePageContract.Presenter) mPresenter).getHomePage(selectCity);
-//            Log.d("tag888", selectCity);
-//        }
-    }
+//    @Override
+//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+////        if (requestCode == STATUS && resultCode == RESULT_OK) {// 如果等于1
+////            String selectCity = data.getStringExtra("selectCity");
+////            int selectCityId = data.getIntExtra("selectCityId", 0);
+////            PreferenceHelper.write(aty, StringConstants.FILENAME, "selectCity", selectCity);
+////            showLoadingDialog(aty.getString(R.string.dataLoad));
+////            ((HomePageContract.Presenter) mPresenter).getHomePage(selectCity);
+////            Log.d("tag888", selectCity);
+////        }
+//    }
 }

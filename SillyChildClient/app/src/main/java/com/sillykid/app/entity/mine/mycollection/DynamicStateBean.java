@@ -31,7 +31,7 @@ public class DynamicStateBean extends BaseResult<List<DynamicStateBean.DataBean>
         private String post_number;
         private int height;
         private int width;
-
+        private int type;
 
         public int getId() {
             return id;
@@ -119,6 +119,14 @@ public class DynamicStateBean extends BaseResult<List<DynamicStateBean.DataBean>
 
         public void setWidth(int width) {
             this.width = width;
+        }
+
+        public int getType() {
+            return type;
+        }
+
+        public void setType(int type) {
+            this.type = type;
         }
     }
 }

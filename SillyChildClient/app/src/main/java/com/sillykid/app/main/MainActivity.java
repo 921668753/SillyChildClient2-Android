@@ -23,8 +23,8 @@ import com.kymjs.common.Log;
 import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
 import com.sillykid.app.constant.StringNewConstants;
-import com.sillykid.app.message.interactivemessage.imuitl.RongCloudEvent;
-import com.sillykid.app.message.interactivemessage.imuitl.UserUtil;
+import com.sillykid.app.homepage.message.interactivemessage.imuitl.RongCloudEvent;
+import com.sillykid.app.homepage.message.interactivemessage.imuitl.UserUtil;
 import com.sillykid.app.receivers.MainCallBack;
 import com.sillykid.app.loginregister.LoginActivity;
 import com.sillykid.app.receivers.MainReceiver;
@@ -41,7 +41,7 @@ import static com.sillykid.app.constant.StringNewConstants.KEY_MESSAGE;
 import static com.sillykid.app.constant.StringNewConstants.MESSAGE_RECEIVED_ACTION;
 
 @SuppressWarnings("deprecation")
-public class MainActivity extends BaseActivity implements MainContract.View, MainCallBack {
+public class MainActivity extends BaseActivity implements MainContract.View {
 
     @BindView(id = R.id.bottombar_homePage, click = true)
     private LinearLayout bottombar_homePage;
@@ -104,8 +104,8 @@ public class MainActivity extends BaseActivity implements MainContract.View, Mai
      */
     private int chageIcon;
 
-    private Intent intentservice;
-    private MainReceiver mainReceiver;
+//    private Intent intentservice;
+//    private MainReceiver mainReceiver;
 
 
     @Override
@@ -126,9 +126,9 @@ public class MainActivity extends BaseActivity implements MainContract.View, Mai
         registerMessageReceiver();  //   极光推送 used for receive msg
         ((MainContract.Presenter) mPresenter).getChatManagerListener();
 
-        mainReceiver = new MainReceiver(this);
-        IntentFilter intentFilter = new IntentFilter(StringNewConstants.MainServiceAction);
-        registerReceiver(mainReceiver, intentFilter);
+//        mainReceiver = new MainReceiver(this);
+//        IntentFilter intentFilter = new IntentFilter(StringNewConstants.MainServiceAction);
+//        registerReceiver(mainReceiver, intentFilter);
     }
 
     @Override
@@ -398,12 +398,12 @@ public class MainActivity extends BaseActivity implements MainContract.View, Mai
     }
 
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        intentservice = new Intent(MainActivity.this, MainService.class);
-        startService(intentservice);
-    }
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+////        intentservice = new Intent(MainActivity.this, MainService.class);
+////        startService(intentservice);
+//    }
 
     @Override
     public void errorMsg(String msg, int flag) {
@@ -414,14 +414,14 @@ public class MainActivity extends BaseActivity implements MainContract.View, Mai
         }
     }
 
-    @Override
-    public void msgStyle(boolean havemsg) {
-//        if (havemsg) {
-//            tv_messageTag.setVisibility(View.VISIBLE);
-//        } else {
-//            tv_messageTag.setVisibility(View.GONE);
-//        }
-    }
+//    @Override
+//    public void msgStyle(boolean havemsg) {
+////        if (havemsg) {
+////            tv_messageTag.setVisibility(View.VISIBLE);
+////        } else {
+////            tv_messageTag.setVisibility(View.GONE);
+////        }
+//    }
 
     public int getChageIcon() {
         return chageIcon;
@@ -433,14 +433,14 @@ public class MainActivity extends BaseActivity implements MainContract.View, Mai
             unregisterReceiver(mMessageReceiver);
             mMessageReceiver = null;
         }
-        if (mainReceiver != null) {
-            unregisterReceiver(mainReceiver);
-            mainReceiver = null;
-        }
-        if (intentservice != null) {
-            stopService(intentservice);
-            intentservice = null;
-        }
+//        if (mainReceiver != null) {
+//            unregisterReceiver(mainReceiver);
+//            mainReceiver = null;
+//        }
+//        if (intentservice != null) {
+//            stopService(intentservice);
+//            intentservice = null;
+//        }
         super.onDestroy();
     }
 }

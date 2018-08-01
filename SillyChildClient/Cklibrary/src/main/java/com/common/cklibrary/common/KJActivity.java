@@ -53,7 +53,7 @@ public abstract class KJActivity extends AppCompatActivity implements
         @Override
         public void handleMessage(android.os.Message msg) {
             KJActivity aty = mOuterInstance.get();
-            if (msg.what == WHICH_MSG && aty != null) {
+            if (msg.what == WHICH_MSG && aty != null && aty.callback != null) {
                 aty.callback.onSuccess();
             }
         }
@@ -115,7 +115,6 @@ public abstract class KJActivity extends AppCompatActivity implements
     }
 
     /**
-     *
      * @param v 控件监听事件
      */
     @Override
@@ -126,7 +125,7 @@ public abstract class KJActivity extends AppCompatActivity implements
 
     /**
      * @param id  控件id
-     * @param <T>  注解的控件
+     * @param <T> 注解的控件
      * @return
      */
     @SuppressWarnings("unchecked")
@@ -135,10 +134,9 @@ public abstract class KJActivity extends AppCompatActivity implements
     }
 
     /**
-     *
-     * @param id  控件id
+     * @param id    控件id
      * @param click 控件监听事件
-     * @param <T>  注解的控件
+     * @param <T>   注解的控件
      * @return
      */
     @SuppressWarnings("unchecked")
@@ -276,14 +274,14 @@ public abstract class KJActivity extends AppCompatActivity implements
     public void showActivityForResult(Activity aty, Class<?> cls, int requestcode) {
         Intent intent = new Intent();
         intent.setClass(aty, cls);
-        aty.startActivityForResult(intent,requestcode);
+        aty.startActivityForResult(intent, requestcode);
     }
 
     /**
      * show to @param(cls)，but can't finish activity
      */
     public void showActivityForResult(Activity aty, Intent intent, int requestcode) {
-        aty.startActivityForResult(intent,requestcode);
+        aty.startActivityForResult(intent, requestcode);
     }
 
     /**

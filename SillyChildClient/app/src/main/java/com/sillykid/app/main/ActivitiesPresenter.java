@@ -49,7 +49,7 @@ public class ActivitiesPresenter implements ActivitiesContract.Presenter {
 
             @Override
             public void onFailure(String msg) {
-                mView.getSuccess(msg, 1);
+                mView.errorMsg(msg, 1);
             }
         });
     }

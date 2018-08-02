@@ -82,7 +82,7 @@ dependencies {
      * https://github.com/bingoogolapple/BGABanner-Android
      *     图片轮番最新版本依赖库
      */
-    compile 'cn.bingoogolapple:bga-banner:2.1.9@aar'
+    compile 'cn.bingoogolapple:bga-banner:2.2.4@aar'
 
     // adapter
     compile 'cn.bingoogolapple:bga-adapter:1.2.0@aar'
@@ -141,6 +141,12 @@ dependencies {
     compile 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.3.0'
 
     compile 'com.google.code.gson:gson:2.8.4'
+
+    /**
+     * https://github.com/AndroidKun/XTabLayout
+     * XTabLayout
+     */
+   // compile 'com.androidkun:XTabLayout:1.1.4'
 
 //    compile 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.3'
 //    annotationProcessor 'com.github.bumptech.glide:compiler:4.5.0'

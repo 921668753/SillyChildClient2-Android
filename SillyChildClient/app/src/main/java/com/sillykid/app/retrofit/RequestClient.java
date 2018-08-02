@@ -761,6 +761,10 @@ public class RequestClient {
      */
     public static void getCommentDetails(Context context, HttpParams httpParams, ResponseListener<String> listener) {
         Log.d("tag", "getCommentDetails");
+        String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+        if (!StringUtils.isEmpty(cookies)) {
+            httpParams.putHeaders("Cookie", cookies);
+        }
         HttpRequest.requestGetHttp(context, URLConstants.CINMENTDETAIL, httpParams, listener);
     }
 

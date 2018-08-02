@@ -46,7 +46,6 @@
                 android:textColor="@color/hintColors"
                 android:textSize="@dimen/textsize13" />
 
-
         </LinearLayout>
 
     </LinearLayout>
@@ -55,15 +54,13 @@
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen35"
-        android:layout_marginTop="@dimen/dimen5"
         android:background="@color/whiteColors"
-        android:gravity="center_vertical"
-        app:tabBackground="@color/whiteColors"
-        app:tabIndicatorHeight="0dp"
+        app:tabGravity="center"
+        app:tabBackground="@drawable/tab_backgroud"
+        app:tabIndicatorColor="@color/greenColors"
         app:tabMode="scrollable"
-        app:tabPaddingEnd="@dimen/dimen6"
-        app:tabPaddingStart="@dimen/dimen6"
         app:tabSelectedTextColor="@color/greenColors"
+        app:tabTextAppearance="@style/TabLayout.TabText"
         app:tabTextColor="@color/hintColors" />
 
     <cn.bingoogolapple.refreshlayout.BGARefreshLayout

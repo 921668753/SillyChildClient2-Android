@@ -9,22 +9,22 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.kymjs.common.FileUtils;
+import com.kymjs.common.Log;
 import com.luck.picture.lib.widget.MediaController;
 import com.pili.pldroid.player.AVOptions;
-import com.pili.pldroid.player.PLOnBufferingUpdateListener;
 import com.pili.pldroid.player.PLOnCompletionListener;
 import com.pili.pldroid.player.PLOnErrorListener;
+import com.pili.pldroid.player.PLOnInfoListener;
 import com.pili.pldroid.player.PLOnPreparedListener;
-import com.pili.pldroid.player.PLOnSeekCompleteListener;
 import com.pili.pldroid.player.widget.PLVideoView;
 
-public class PictureVideoPlayActivity extends PictureBaseActivity implements MediaController.OnClickSpeedAdjustListener, PLOnBufferingUpdateListener, PLOnSeekCompleteListener, PLOnErrorListener, PLOnPreparedListener, PLOnCompletionListener, View.OnClickListener {
+public class PictureVideoPlayActivity extends PictureBaseActivity implements PLOnInfoListener, PLOnErrorListener, PLOnPreparedListener, PLOnCompletionListener, View.OnClickListener {
+
     private String video_path = "";
     private ImageView picture_left_back;
     private MediaController mMediaController;
     private PLVideoView mVideoView;
     private ImageView iv_play;
-    private long mPositionWhenPaused = -1;
 
     /**
      * 视频文件缓存保存路径存放的文件名
@@ -56,30 +56,30 @@ public class PictureVideoPlayActivity extends PictureBaseActivity implements Med
         String downloadDirectoryPath = FileUtils.getSaveFolder(VIDEOCACHE).getAbsolutePath();
         options.setString(AVOptions.KEY_CACHE_DIR, downloadDirectoryPath);
         mVideoView.setAVOptions(options);
+        mMediaController = new MediaController(this);
+        mVideoView.setMediaController(mMediaController);
+        mMediaController.setMediaPlayer(mVideoView);
+        mMediaController.setAnchorView(mVideoView);
+
         mVideoView.setOnErrorListener(this);
         mVideoView.setOnCompletionListener(this);
-        mVideoView.setOnBufferingUpdateListener(this);
-        mVideoView.setOnSeekCompleteListener(this);
+
+        mVideoView.setOnInfoListener(this);
         mVideoView.setOnPreparedListener(this);
         mVideoView.setVideoPath(video_path);
-        mMediaController = new MediaController(this);
-        mMediaController.setOnClickSpeedAdjustListener(this);
-        mVideoView.setMediaController(mMediaController);
+
         picture_left_back.setOnClickListener(this);
         iv_play.setOnClickListener(this);
     }
 
     @Override
     public void onStart() {
-        // Play Video
         mVideoView.start();
         super.onStart();
     }
 
     @Override
     public void onPause() {
-        // Stop video when the activity is pause.
-        mPositionWhenPaused = mVideoView.getCurrentPosition();
         mVideoView.pause();
         super.onPause();
     }
@@ -92,22 +92,10 @@ public class PictureVideoPlayActivity extends PictureBaseActivity implements Med
         super.onDestroy();
     }
 
-    @Override
-    public void onResume() {
-        // Resume video player
-        if (mPositionWhenPaused >= 0) {
-            mVideoView.seekTo(mPositionWhenPaused);
-            mPositionWhenPaused = -1;
-        }
-        mVideoView.start();
-        super.onResume();
-    }
-
 
     @Override
     public void onCompletion() {
         iv_play.setVisibility(View.VISIBLE);
-        mMediaController.refreshProgress();
     }
 
 
@@ -135,60 +123,57 @@ public class PictureVideoPlayActivity extends PictureBaseActivity implements Med
         });
     }
 
-//    @Override
-//    public void onPrepared(MediaPlayer mp) {
-
-//    }
-
-
     @Override
     public void onPrepared(int i) {
-////        mp.setOnInfoListener(new MediaPlayer.OnInfoListener() {
-////            @Override
-////            public boolean onInfo(MediaPlayer mp, int what, int extra) {
-
-//                return false;
-////            }
-////        });
+        iv_play.setVisibility(View.GONE);
+        mVideoView.start();
     }
 
     @Override
     public boolean onError(int i) {
-
-
         return false;
     }
 
-    @Override
-    public void onClickNormal() {
-        // 0x0001/0x0001 = 2
-        mVideoView.setPlaySpeed(0X00010001);
-    }
 
     @Override
-    public void onClickFaster() {
-        // 0x0002/0x0001 = 2
-        iv_play.setVisibility(View.GONE);
-        mVideoView.setPlaySpeed(0X00020001);
-    }
-
-    @Override
-    public void onClickSlower() {
-        // 0x0001/0x0002 = 0.5
-        mVideoView.setPlaySpeed(0X00010002);
-    }
-
-    @Override
-    public void onSeekComplete() {
-        iv_play.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public void onBufferingUpdate(int i) {
-        if (i == 0) {
-            iv_play.setVisibility(View.VISIBLE);
-        } else {
-            iv_play.setVisibility(View.GONE);
+    public void onInfo(int what, int extra) {
+        Log.i("PictureVideoPlayActivity", "OnInfo, what = " + what + ", extra = " + extra);
+        switch (what) {
+            case PLOnInfoListener.MEDIA_INFO_BUFFERING_START:
+                break;
+            case PLOnInfoListener.MEDIA_INFO_BUFFERING_END:
+                break;
+            case PLOnInfoListener.MEDIA_INFO_VIDEO_RENDERING_START:
+                //    iv_play.setVisibility(View.GONE);
+                break;
+            case PLOnInfoListener.MEDIA_INFO_AUDIO_RENDERING_START:
+                break;
+            case PLOnInfoListener.MEDIA_INFO_VIDEO_FRAME_RENDERING:
+                Log.i("PictureVideoPlayActivity", "video frame rendering, ts = " + extra);
+                break;
+            case PLOnInfoListener.MEDIA_INFO_AUDIO_FRAME_RENDERING:
+                Log.i("PictureVideoPlayActivity", "audio frame rendering, ts = " + extra);
+                break;
+            case PLOnInfoListener.MEDIA_INFO_VIDEO_GOP_TIME:
+                Log.i("PictureVideoPlayActivity", "Gop Time: " + extra);
+                break;
+            case PLOnInfoListener.MEDIA_INFO_SWITCHING_SW_DECODE:
+                Log.i("PictureVideoPlayActivity", "Hardware decoding failure, switching software decoding!");
+                break;
+            case PLOnInfoListener.MEDIA_INFO_METADATA:
+                Log.i("PictureVideoPlayActivity", mVideoView.getMetadata().toString());
+                break;
+            case PLOnInfoListener.MEDIA_INFO_VIDEO_BITRATE:
+            case PLOnInfoListener.MEDIA_INFO_VIDEO_FPS:
+                //   updateStatInfo();
+                break;
+            case PLOnInfoListener.MEDIA_INFO_CONNECTED:
+                Log.i("PictureVideoPlayActivity", "Connected !");
+                break;
+            case PLOnInfoListener.MEDIA_INFO_VIDEO_ROTATION_CHANGED:
+                Log.i("PictureVideoPlayActivity", "Rotation changed: " + extra);
+            default:
+                break;
         }
     }
 }

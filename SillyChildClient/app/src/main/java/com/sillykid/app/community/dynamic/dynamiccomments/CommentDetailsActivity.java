@@ -192,13 +192,13 @@ public class CommentDetailsActivity extends BaseActivity implements CommentDetai
             is_like = comment.getIs_comment_like();
             if (is_like == 1) {
                 img_zan.setImageResource(R.mipmap.dynamicdetails_zan1);
-                tv_giveLike.setText(comment.getComment_like_number());
                 tv_giveLike.setTextColor(getResources().getColor(R.color.greenColors));
             } else {
                 img_zan.setImageResource(R.mipmap.dynamicdetails_zan);
-                tv_giveLike.setText(getString(R.string.giveLike));
+                //   tv_giveLike.setText(getString(R.string.giveLike));
                 tv_giveLike.setTextColor(getResources().getColor(R.color.tabColors));
             }
+            tv_giveLike.setText(comment.getComment_like_number());
             if (comment.getReplyList() == null || comment.getReplyList().size() <= 0) {
                 ll_revert.setVisibility(View.GONE);
             } else {
@@ -211,7 +211,8 @@ public class CommentDetailsActivity extends BaseActivity implements CommentDetai
             if (is_like == 1) {
                 is_like = 0;
                 img_zan.setImageResource(R.mipmap.dynamicdetails_zan);
-                tv_giveLike.setText(getString(R.string.giveLike));
+//                tv_giveLike.setText(getString(R.string.giveLike));
+                tv_giveLike.setText(StringUtils.toInt(comment.getComment_like_number(), 0) - 1 + "");
                 tv_giveLike.setTextColor(getResources().getColor(R.color.tabColors));
                 ViewInject.toast(getString(R.string.cancelZanSuccess));
             } else {

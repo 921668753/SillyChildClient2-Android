@@ -25,11 +25,11 @@ import com.sillykid.app.community.search.CommunitySearchActivity;
 import com.sillykid.app.constant.NumericConstants;
 import com.sillykid.app.entity.main.community.ClassificationListBean;
 import com.sillykid.app.entity.main.community.CommunityBean;
-import com.sillykid.app.homepage.hotvideo.VideoDetailsActivity;
 import com.sillykid.app.loginregister.LoginActivity;
 import com.sillykid.app.utils.GlideImageLoader;
 import com.sillykid.app.utils.SpacesItemDecoration;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,6 +38,7 @@ import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 
 import static android.app.Activity.RESULT_OK;
 import static com.sillykid.app.constant.NumericConstants.REQUEST_CODE;
+import static com.sillykid.app.utils.DisplayUtil.dip2px;
 
 /**
  * 社区
@@ -211,22 +212,13 @@ public class CommunityFragment extends BaseFragment implements CommunityContract
                 if (tab == null) {
                     continue;
                 }
-                tab.setCustomView(R.layout.item_tabcommunityclass);
-                View view = tab.getCustomView();
-                TextView textView = (TextView) view.findViewById(R.id.tv_title);
-                textView.setText(classificationListBean.getData().get(i).getName());
+                tab.setText(classificationListBean.getData().get(i).getName());
                 if (i == itemSelected) {
-                    textView.setTextColor(getResources().getColor(R.color.greenColors));
-                    TextView textView1 = (TextView) view.findViewById(R.id.tv_title1);
-                    textView1.setVisibility(View.VISIBLE);
                     classification_id = classificationListBean.getData().get(itemSelected).getId();
                     mRefreshLayout.beginRefreshing();
-                } else {
-                    textView.setTextColor(getResources().getColor(R.color.hintColors));
-                    TextView textView1 = (TextView) view.findViewById(R.id.tv_title1);
-                    textView1.setVisibility(View.GONE);
                 }
             }
+            reflex(tabLayout);
             /**计算滑动的偏移量**/
             final int width = (int) (getOffsetWidth(classificationListBean.getData(), itemSelected) * getResources().getDisplayMetrics().density);
             tabLayout.post(new Runnable() {
@@ -238,11 +230,6 @@ public class CommunityFragment extends BaseFragment implements CommunityContract
             tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
                 @Override
                 public void onTabSelected(TabLayout.Tab tab) {
-                    View view = tab.getCustomView();
-                    TextView textView = (TextView) view.findViewById(R.id.tv_title);
-                    textView.setTextColor(getResources().getColor(R.color.greenColors));
-                    TextView textView1 = (TextView) view.findViewById(R.id.tv_title1);
-                    textView1.setVisibility(View.VISIBLE);
                     itemSelected = tab.getPosition();
                     classification_id = classificationListBean.getData().get(itemSelected).getId();
                     mRefreshLayout.beginRefreshing();
@@ -250,20 +237,12 @@ public class CommunityFragment extends BaseFragment implements CommunityContract
 
                 @Override
                 public void onTabUnselected(TabLayout.Tab tab) {
-                    View view = tab.getCustomView();
-                    TextView textView = (TextView) view.findViewById(R.id.tv_title);
-                    textView.setTextColor(getResources().getColor(R.color.hintColors));
-                    TextView textView1 = (TextView) view.findViewById(R.id.tv_title1);
-                    textView1.setVisibility(View.GONE);
                 }
 
                 @Override
                 public void onTabReselected(TabLayout.Tab tab) {
                 }
             });
-            /**默认选择第一项itemSelected = 0 **/
-//            TabLayout.Tab tab = tabLayout.getTabAt(itemSelected);
-//            tab.select();
         } else if (flag == 1) {
             isShowLoadingMore = true;
             ll_commonError.setVisibility(View.GONE);
@@ -321,6 +300,54 @@ public class CommunityFragment extends BaseFragment implements CommunityContract
             thread.start();
         }
     }
+
+    public void reflex(final TabLayout tabLayout) {
+        tabLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    //了解源码得知 线的宽度是根据 tabView的宽度来设置的
+                    LinearLayout mTabStrip = (LinearLayout) tabLayout.getChildAt(0);
+                    int dp10 = dip2px(tabLayout.getContext(), 11);
+
+                    for (int i = 0; i < mTabStrip.getChildCount(); i++) {
+                        View tabView = mTabStrip.getChildAt(i);
+
+                        //拿到tabView的mTextView属性  tab的字数不固定一定用反射取mTextView
+                        Field mTextViewField =
+                                tabView.getClass().getDeclaredField("mTextView");
+                        mTextViewField.setAccessible(true);
+
+                        TextView mTextView = (TextView) mTextViewField.get(tabView);
+
+                        tabView.setPadding(0, 0, 0, 0);
+
+                        //因为我想要的效果是   字多宽线就多宽，所以测量mTextView的宽度
+                        int width = 0;
+                        width = mTextView.getWidth();
+                        if (width == 0) {
+                            mTextView.measure(0, 0);
+                            width = mTextView.getMeasuredWidth();
+                        }
+
+                        //设置tab左右间距为10dp  注意这里不能使用Padding
+                        // 因为源码中线的宽度是根据 tabView的宽度来设置的
+                        LinearLayout.LayoutParams params =
+                                (LinearLayout.LayoutParams) tabView.getLayoutParams();
+                        params.width = width;
+                        params.leftMargin = dp10;
+                        params.rightMargin = dp10;
+                        tabView.setLayoutParams(params);
+                        tabView.invalidate();
+                    }
+
+                } catch (Exception e) {
+
+                }
+            }
+        });
+    }
+
 
     /**
      * 根据字符个数计算偏移量

@@ -122,10 +122,10 @@ public class GoodsDetailsActivity extends BaseActivity implements GoodsDetailsCo
         goodName = getIntent().getStringExtra("goodName");
         goodsid = getIntent().getIntExtra("goodsid", 0);
         isRefresh = getIntent().getIntExtra("isRefresh", 0);
-        showLoadingDialog(getString(R.string.dataLoad));
-        ((GoodsDetailsContract.Presenter) mPresenter).getGoodDetail(goodsid);
         initDialog();
         initShareBouncedDialog();
+        showLoadingDialog(getString(R.string.dataLoad));
+        ((GoodsDetailsContract.Presenter) mPresenter).getGoodDetail(goodsid);
     }
 
     /**
@@ -343,7 +343,9 @@ public class GoodsDetailsActivity extends BaseActivity implements GoodsDetailsCo
 
     @Override
     public void errorMsg(String msg, int flag) {
-        specificationsBouncedDialog.dismissLoadingDialog();
+        if (specificationsBouncedDialog != null) {
+            specificationsBouncedDialog.dismissLoadingDialog();
+        }
         dismissLoadingDialog();
         if (isLogin(msg)) {
             showActivity(aty, LoginActivity.class);

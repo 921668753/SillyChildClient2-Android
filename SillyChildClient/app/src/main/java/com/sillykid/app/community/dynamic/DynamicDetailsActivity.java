@@ -1,6 +1,7 @@
 package com.sillykid.app.community.dynamic;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -15,6 +16,7 @@ import com.common.cklibrary.utils.ActivityTitleUtils;
 import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.myview.ChildListView;
 import com.common.cklibrary.utils.rx.MsgEvent;
+import com.kymjs.common.Log;
 import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
 import com.sillykid.app.adapter.community.dynamic.UserEvaluationViewAdapter;
@@ -23,10 +25,18 @@ import com.sillykid.app.community.dynamic.dialog.ReportBouncedDialog;
 import com.sillykid.app.community.dynamic.dialog.RevertBouncedDialog;
 import com.sillykid.app.community.dynamic.dynamiccomments.CommentDetailsActivity;
 import com.sillykid.app.community.dynamic.dynamiccomments.DynamicCommentsActivity;
+import com.sillykid.app.constant.URLConstants;
 import com.sillykid.app.entity.community.dynamic.DynamicDetailsBean;
 import com.sillykid.app.loginregister.LoginActivity;
+import com.sillykid.app.mine.sharingceremony.dialog.ShareBouncedDialog;
 import com.sillykid.app.utils.GlideImageLoader;
 import com.common.cklibrary.utils.custommediaplayer.JZPLMediaPlayer;
+import com.umeng.socialize.ShareAction;
+import com.umeng.socialize.UMShareAPI;
+import com.umeng.socialize.UMShareListener;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.umeng.socialize.media.UMImage;
+import com.umeng.socialize.media.UMWeb;
 
 import java.util.List;
 
@@ -42,6 +52,10 @@ import static com.sillykid.app.constant.NumericConstants.REQUEST_CODE;
  * 动态详情
  */
 public class DynamicDetailsActivity extends BaseActivity implements DynamicDetailsContract.View, AdapterView.OnItemClickListener, BGAOnItemChildClickListener, BGABanner.Delegate<ImageView, String>, BGABanner.Adapter<ImageView, String> {
+
+
+    @BindView(id = R.id.titlebar)
+    private BGATitleBar titlebar;
 
     @BindView(id = R.id.videoplayer)
     private JZVideoPlayerStandard jzVideoPlayerStandard;
@@ -140,6 +154,10 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
 
     private int positionItem = 0;
 
+    private ShareBouncedDialog shareBouncedDialog = null;
+
+    private String smallImg = "";
+
     @Override
     public void setRootView() {
         setContentView(R.layout.activity_dynamicdetails);
@@ -153,6 +171,7 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
         mPresenter = new DynamicDetailsPresenter(this);
         mAdapter = new UserEvaluationViewAdapter(this);
         initBouncedDialog();
+        initShareBouncedDialog();
         showLoadingDialog(getString(R.string.dataLoad));
         ((DynamicDetailsContract.Presenter) mPresenter).getDynamicDetails(id);
     }
@@ -168,6 +187,78 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
         };
     }
 
+    /**
+     * 分享
+     */
+    private void initShareBouncedDialog() {
+        shareBouncedDialog = new ShareBouncedDialog(this) {
+            @Override
+            public void share(SHARE_MEDIA platform) {
+                umShare(platform);
+            }
+        };
+    }
+
+    /**
+     * 直接分享
+     * SHARE_MEDIA.QQ
+     */
+    public void umShare(SHARE_MEDIA platform) {
+        UMImage thumb = new UMImage(this, smallImg);
+        String url = URLConstants.REGISTERHTML;
+        UMWeb web = new UMWeb(url);
+        web.setTitle(title);//标题
+        web.setThumb(thumb);  //缩略图
+        new ShareAction(aty).setPlatform(platform)
+//                .withText("hello")
+//                .withMedia(thumb)
+                .withMedia(web)
+                .setCallback(umShareListener)
+                .share();
+    }
+
+    private UMShareListener umShareListener = new UMShareListener() {
+        @Override
+        public void onStart(SHARE_MEDIA platform) {
+            //分享开始的回调
+            showLoadingDialog(getString(R.string.shareJumpLoad));
+        }
+
+        @Override
+        public void onResult(SHARE_MEDIA platform) {
+            dismissLoadingDialog();
+            Log.d("throw", "platform" + platform);
+            ViewInject.toast(getString(R.string.shareSuccess));
+        }
+
+        @Override
+        public void onError(SHARE_MEDIA platform, Throwable t) {
+            dismissLoadingDialog();
+            if (t.getMessage().contains(getString(R.string.authoriseErr3))) {
+                ViewInject.toast(getString(R.string.authoriseErr2));
+                return;
+            }
+            ViewInject.toast(getString(R.string.shareError));
+            //   ViewInject.toast(t.getMessage());
+            Log.d("throw", "throw:" + t.getMessage());
+            if (t != null) {
+                Log.d("throw", "throw:" + t.getMessage());
+            }
+        }
+
+        @Override
+        public void onCancel(SHARE_MEDIA share_media) {
+            Log.d("throw", "throw:" + "onCancel");
+        }
+    };
+
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        UMShareAPI.get(this).onSaveInstanceState(outState);
+    }
+
 
     @Override
     public void initWidget() {
@@ -175,6 +266,9 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
         clv_dynamicDetails.setAdapter(mAdapter);
         clv_dynamicDetails.setOnItemClickListener(this);
         mAdapter.setOnItemChildClickListener(this);
+
+        titlebar.setTitleText(title);
+        titlebar.setRightDrawable(getResources().getDrawable(R.mipmap.product_details_share));
         BGATitleBar.SimpleDelegate simpleDelegate = new BGATitleBar.SimpleDelegate() {
             @Override
             public void onClickLeftCtv() {
@@ -189,9 +283,16 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
             @Override
             public void onClickRightCtv() {
                 super.onClickRightCtv();
+                //分享
+                if (shareBouncedDialog == null) {
+                    initShareBouncedDialog();
+                }
+                if (shareBouncedDialog != null & !shareBouncedDialog.isShowing()) {
+                    shareBouncedDialog.show();
+                }
             }
         };
-        ActivityTitleUtils.initToolbar(aty, title, null, R.id.titlebar, simpleDelegate);
+        titlebar.setDelegate(simpleDelegate);
         initBanner();
     }
 
@@ -199,10 +300,7 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
      * 初始化轮播图
      */
     public void initBanner() {
-        mForegroundBanner.setAutoPlayAble(true);
         mForegroundBanner.setOverScrollMode(View.OVER_SCROLL_NEVER);
-        mForegroundBanner.setAllowUserScrollable(true);
-        mForegroundBanner.setAutoPlayInterval(3000);
         // 初始化方式1：配置数据源的方式1：通过传入数据模型并结合 Adapter 的方式配置数据源。这种方式主要用于加载网络图片，以及实现少于3页时的无限轮播
         mForegroundBanner.setAdapter(this);
         mForegroundBanner.setDelegate(this);
@@ -283,16 +381,8 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
 
 
     @Override
-    public void onResume() {
-        super.onResume();
-        mForegroundBanner.startAutoPlay();
-    }
-
-
-    @Override
     public void onPause() {
         super.onPause();
-        mForegroundBanner.stopAutoPlay();
         JZVideoPlayer.releaseAllVideos();
     }
 
@@ -339,22 +429,6 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
         }
     }
 
-    @Override
-    public void fillBannerItem(BGABanner banner, ImageView itemView, String model, int position) {
-        GlideImageLoader.glideOrdinaryLoader(aty, model, itemView, R.mipmap.placeholderfigure2);
-    }
-
-    @Override
-    public void onBannerItemClick(BGABanner banner, ImageView itemView, String model, int position) {
-//        if (StringUtils.isEmpty(model.getAd_link())) {
-//            return;
-//        }
-//        Intent bannerDetails = new Intent(aty, BannerDetailsActivity.class);
-//        bannerDetails.putExtra("url", model.getAd_link());
-//        bannerDetails.putExtra("title", model.getAd_name());
-//        showActivity(aty, bannerDetails);
-    }
-
 
     @Override
     public void setPresenter(DynamicDetailsContract.Presenter presenter) {
@@ -370,12 +444,14 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
                 mForegroundBanner.setVisibility(View.VISIBLE);
                 jzVideoPlayerStandard.setVisibility(View.GONE);
                 processLogic(dynamicDetailsBean.getData().getList());
+                smallImg = dynamicDetailsBean.getData().getList().get(0);
             } else {
                 mForegroundBanner.setVisibility(View.GONE);
                 jzVideoPlayerStandard.setVisibility(View.VISIBLE);
                 jzVideoPlayerStandard.setUp(dynamicDetailsBean.getData().getList().get(0), JZVideoPlayerStandard.SCREEN_WINDOW_NORMAL, "");
-                GlideImageLoader.glideOrdinaryLoader(this, dynamicDetailsBean.getData().getList().get(0), jzVideoPlayerStandard.thumbImageView, R.mipmap.placeholderfigure);
+                GlideImageLoader.glideOrdinaryLoader(this, dynamicDetailsBean.getData().getList().get(0) + "?vframe/jpg/offset/0", jzVideoPlayerStandard.thumbImageView, R.mipmap.placeholderfigure);
                 JZVideoPlayer.setMediaInterface(new JZPLMediaPlayer());
+                smallImg = dynamicDetailsBean.getData().getList().get(0) + "?vframe/jpg/offset/0";
             }
             user_id = dynamicDetailsBean.getData().getMember_id();
             GlideImageLoader.glideLoader(this, dynamicDetailsBean.getData().getFace(), img_head, 0, R.mipmap.avatar);
@@ -493,16 +569,27 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
     @SuppressWarnings("unchecked")
     private void processLogic(List<String> list) {
         if (list != null && list.size() > 0) {
-            if (list.size() == 1) {
-                mForegroundBanner.setAutoPlayAble(false);
-                mForegroundBanner.setAllowUserScrollable(false);
-            } else {
-                mForegroundBanner.setAutoPlayAble(true);
-                mForegroundBanner.setAllowUserScrollable(true);
-            }
+            mForegroundBanner.setAllowUserScrollable(true);
             mForegroundBanner.setBackground(null);
             mForegroundBanner.setData(list, null);
         }
+    }
+
+    @Override
+    public void fillBannerItem(BGABanner banner, ImageView itemView, String model, int position) {
+        itemView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        GlideImageLoader.glideOrdinaryLoader(aty, model, itemView, R.mipmap.placeholderfigure2);
+    }
+
+    @Override
+    public void onBannerItemClick(BGABanner banner, ImageView itemView, String model, int position) {
+//        if (StringUtils.isEmpty(model.getAd_link())) {
+//            return;
+//        }
+//        Intent bannerDetails = new Intent(aty, BannerDetailsActivity.class);
+//        bannerDetails.putExtra("url", model.getAd_link());
+//        bannerDetails.putExtra("title", model.getAd_name());
+//        showActivity(aty, bannerDetails);
     }
 
     /**
@@ -522,6 +609,8 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
         super.onActivityResult(requestCode, resultCode, data);
         if (data != null && requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
             ((DynamicDetailsContract.Presenter) mPresenter).getDynamicDetails(id);
+        } else {
+            UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
         }
     }
 
@@ -539,6 +628,11 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        UMShareAPI.get(this).release();
+        if (shareBouncedDialog != null) {
+            shareBouncedDialog.cancel();
+        }
+        shareBouncedDialog = null;
         if (reportBouncedDialog != null) {
             reportBouncedDialog.cancel();
         }

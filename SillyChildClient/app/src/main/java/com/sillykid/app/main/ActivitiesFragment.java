@@ -208,6 +208,10 @@ public class ActivitiesFragment extends BaseFragment implements ActivitiesContra
             ((ActivitiesContract.Presenter) mPresenter).getActivities();
         } else if (flag == 1) {
             ActivitiesBean activitiesBean = (ActivitiesBean) JsonUtil.json2Obj(success, ActivitiesBean.class);
+            if (activitiesBean.getData() == null) {
+                errorMsg(getString(R.string.serverReturnsDataError), 0);
+                return;
+            }
             if (activitiesBean.getData().getSpecial() == null || activitiesBean.getData().getSpecial().size() <= 0) {
                 ll_bargain.setVisibility(View.GONE);
                 hlv_bargain.setVisibility(View.GONE);

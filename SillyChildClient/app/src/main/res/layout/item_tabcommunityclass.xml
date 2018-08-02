@@ -7,8 +7,6 @@
     <TextView
         android:id="@+id/tv_title"
         style="@style/MatchAuto"
-        android:layout_marginLeft="@dimen/dimen11"
-        android:layout_marginRight="@dimen/dimen11"
         android:gravity="center"
         android:text="111"
         android:textColor="@color/hintColors"
@@ -18,8 +16,6 @@
         android:id="@+id/tv_title1"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen1"
-        android:layout_marginLeft="@dimen/dimen11"
-        android:layout_marginRight="@dimen/dimen11"
         android:background="@color/greenColors"
         android:visibility="gone" />
 

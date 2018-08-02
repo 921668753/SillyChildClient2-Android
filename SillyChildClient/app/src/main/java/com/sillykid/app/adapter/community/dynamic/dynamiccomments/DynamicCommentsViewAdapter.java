@@ -45,13 +45,13 @@ public class DynamicCommentsViewAdapter extends BGAAdapterViewAdapter<ListBean> 
 
         if (model.getIs_comment_like() == 1) {
             helper.setImageResource(R.id.img_giveLike, R.mipmap.dynamic_zan1);
-            helper.setText(R.id.tv_zanNum, model.getComment_like_number());
             helper.setTextColorRes(R.id.tv_zanNum, R.color.greenColors);
         } else {
             helper.setImageResource(R.id.img_giveLike, R.mipmap.dynamic_zan);
-            helper.setText(R.id.tv_zanNum, mContext.getString(R.string.giveLike));
+            //  helper.setText(R.id.tv_zanNum, mContext.getString(R.string.giveLike));
             helper.setTextColorRes(R.id.tv_zanNum, R.color.tabColors);
         }
+        helper.setText(R.id.tv_zanNum, model.getComment_like_number());
 
         if (model.getReplyList() == null || model.getReplyList().size() <= 0) {
             helper.setVisibility(R.id.ll_revert, View.GONE);

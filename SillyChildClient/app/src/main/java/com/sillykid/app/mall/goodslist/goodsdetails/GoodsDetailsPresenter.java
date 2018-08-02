@@ -14,7 +14,6 @@ import com.sillykid.app.retrofit.RequestClient;
 
 import io.rong.imkit.RongIM;
 import io.rong.imlib.RongIMClient;
-import io.rong.imlib.model.UserInfo;
 
 import static com.umeng.socialize.utils.DeviceConfig.context;
 
@@ -60,7 +59,7 @@ public class GoodsDetailsPresenter implements GoodsDetailsContract.Presenter {
 
             @Override
             public void onFailure(String msg) {
-                mView.errorMsg(msg, 0);
+                mView.errorMsg(msg, 1);
             }
         });
     }
@@ -78,7 +77,7 @@ public class GoodsDetailsPresenter implements GoodsDetailsContract.Presenter {
 
             @Override
             public void onFailure(String msg) {
-                mView.errorMsg(msg, 0);
+                mView.errorMsg(msg, 2);
             }
         });
     }

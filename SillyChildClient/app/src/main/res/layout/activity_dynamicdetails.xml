@@ -30,7 +30,7 @@
                 android:layout_height="@dimen/dimen166"
                 android:layout_marginTop="@dimen/dimen6"
                 android:background="@mipmap/home_banner"
-                app:banner_pageChangeDuration="2000"
+                android:scaleType="fitCenter"
                 app:banner_pointAutoPlayAble="false"
                 app:banner_pointContainerBackground="@android:color/transparent"
                 app:banner_pointDrawable="@drawable/bga_banner_selector_point"

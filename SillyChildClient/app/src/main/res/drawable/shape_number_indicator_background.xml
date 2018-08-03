@@ -7,5 +7,5 @@
         android:left="8dp"
         android:right="8dp"
         android:top="4dp" />
-    <solid android:color="@android:color/transparent" />
+    <solid android:color="@color/black20" />
 </shape>

@@ -87,8 +87,9 @@ android {
             buildConfigField "String", "WEIXIN_APPSECRET", "\"6378e75dd1f12ee6aec861ba39929494\""
             buildConfigField "String", "TENGXUNBUGLY_APPID", "\"783b064cfd\""
             buildConfigField "String", "TENGXUNBUGLY_APPKEY", "\"3a193db3-b0b5-4073-bc11-ccaf5bfff5b8\""
-//            buildConfigField "String", "SiNA_WEIBOKEY", "\"2695656281\""
-//            buildConfigField "String", "SiNA_WEIBOSECRET", "\"c45c1c7feb3bfc2c2b1da20cd3594a19\""
+            buildConfigField "String", "UMENG_APPKEY", "\"5b21fb46b27b0a67a00000af\""
+            buildConfigField "String", "SiNA_WEIBOKEY", "\"2695656281\""
+            buildConfigField "String", "SiNA_WEIBOSECRET", "\"c45c1c7feb3bfc2c2b1da20cd3594a19\""
             buildConfigField "String", "QQ_APPID", "\"1106980891\""
             buildConfigField "String", "QQ_APPKEY", "\"u7RkX4rG9XZxBbd9\""
             buildConfigField "String", "RONGYUN_APPKEY", "\"pkfcgjstpo5w8\""
@@ -113,8 +114,9 @@ android {
             buildConfigField "String", "WEIXIN_APPSECRET", "\"336027558d4d7274dd33a6d04f375de8\""
             buildConfigField "String", "TENGXUNBUGLY_APPID", "\"783b064cfd\""
             buildConfigField "String", "TENGXUNBUGLY_APPKEY", "\"3a193db3-b0b5-4073-bc11-ccaf5bfff5b8\""
-//            buildConfigField "String", "SiNA_WEIBOKEY", "\"2695656281\""
-//            buildConfigField "String", "SiNA_WEIBOSECRET", "\"c45c1c7feb3bfc2c2b1da20cd3594a19\""
+            buildConfigField "String", "UMENG_APPKEY", "\"5b21fb46b27b0a67a00000af\""
+            buildConfigField "String", "SiNA_WEIBOKEY", "\"2695656281\""
+            buildConfigField "String", "SiNA_WEIBOSECRET", "\"c45c1c7feb3bfc2c2b1da20cd3594a19\""
             buildConfigField "String", "QQ_APPID", "\"1106980891\""
             buildConfigField "String", "QQ_APPKEY", "\"u7RkX4rG9XZxBbd9\""
             buildConfigField "String", "RONGYUN_APPKEY", "\"pkfcgjstpo5w8\""
@@ -245,17 +247,21 @@ dependencies {
     compile 'com.tencent.bugly:nativecrashreport:3.3.1'
 
     // compile 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
-    implementation files('libs/open_sdk_r5788_lite.jar')
-    implementation files('libs/SocialSDK_QQ_Full.jar')
-    implementation files('libs/SocialSDK_WeiXin_Full.jar')
-    implementation files('libs/umeng_social_api.jar')
-    implementation files('libs/umeng_social_net.jar')
-    implementation files('libs/wechat-sdk-android-with-mta-1.1.6.jar')
-    implementation files('libs/SocialSDK_Sina_Full.jar')
-    implementation files('libs/weiboSDKCore.jar')
+    implementation files('libs/alipaySdk-20180316.jar')
     implementation files('libs/BaiduLBS_Android.jar')
+    implementation files('libs/open_sdk_r5990_lite.jar')
+    implementation files('libs/SecurityEnvSDK-release-1.1.0.jar')
+    implementation files('libs/umeng-share-core-6.9.3.jar')
+    implementation files('libs/umeng-share-QQ-full-6.9.3.jar')
+    implementation files('libs/umeng-share-sina-simplify-6.9.3.jar')
+    implementation files('libs/umeng-share-wechat-full-6.9.3.jar')
+    implementation files('libs/umeng-shareboard-widget-6.9.3.jar')
+    implementation files('libs/umeng-sharetool-6.9.3.jar')
+
     implementation files('libs/UPPayAssistEx.jar')
     implementation files('libs/UPPayPluginExPro.jar')
-    implementation files('libs/alipaySdk-20180316.jar')
+
+    implementation files('libs/wechat-sdk-android-without-mta-5.1.4.jar')
+
     compile project(path: ':CallKit')
 }

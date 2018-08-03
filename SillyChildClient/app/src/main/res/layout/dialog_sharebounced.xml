@@ -94,7 +94,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/ll_qzone"
+                android:id="@+id/ll_sina"
                 style="@style/AutoWrap"
                 android:gravity="center"
                 android:orientation="vertical"
@@ -104,13 +104,13 @@
                     android:layout_width="@dimen/dimen50"
                     android:layout_height="@dimen/dimen50"
                     android:scaleType="fitXY"
-                    android:src="@mipmap/qzonexxx" />
+                    android:src="@mipmap/umeng_socialize_sina" />
 
                 <TextView
                     style="@style/WrapWrap"
                     android:layout_marginBottom="@dimen/dimen21"
                     android:layout_marginTop="@dimen/dimen14"
-                    android:text="@string/qzone"
+                    android:text="@string/sina"
                     android:textColor="@color/textColor"
                     android:textSize="@dimen/textsize15" />
 

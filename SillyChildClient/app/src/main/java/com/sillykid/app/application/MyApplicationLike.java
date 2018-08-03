@@ -28,14 +28,13 @@ import com.tencent.bugly.beta.Beta;
 import com.tencent.bugly.beta.interfaces.BetaPatchListener;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.tencent.tinker.loader.app.DefaultApplicationLike;
-import com.umeng.socialize.Config;
+import com.umeng.commonsdk.UMConfigure;
 import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.UMShareAPI;
 
 import cn.jpush.android.api.JPushInterface;
 import io.rong.imkit.RongIM;
 
-import static com.umeng.socialize.utils.Log.LOGTAG;
 
 /**
  * 自定义ApplicationLike类.
@@ -62,10 +61,10 @@ public class MyApplicationLike extends DefaultApplicationLike {
         crashHandler.init(getApplication());
         initBugly();
         initJPushInterface();
-        initBaiDuSDK();
-        UMShareAPI.get(getApplication());//友盟分享
         initRongCloud();
         initImagePicker();
+        initPlatformConfig();
+        initBaiDuSDK();
         testMemoryInfo();
     }
 
@@ -103,14 +102,20 @@ public class MyApplicationLike extends DefaultApplicationLike {
     }
 
 
-    // 各个平台的配置，建议放在全局Application或者程序入口
-    {
+    /**
+     * 各个平台的配置，建议放在全局Application或者程序入口
+     */
+    private void initPlatformConfig() {
+        UMConfigure.init(getApplication(), UMConfigure.DEVICE_TYPE_PHONE, BuildConfig.UMENG_APPKEY);
+        UMConfigure.setLogEnabled(true);
+        UMConfigure.setEncryptEnabled(false);
+        UMShareAPI.get(getApplication());//友盟分享
         // 微信 wx12342956d1cab4f9,a5ae111de7d9ea137e88a5e02c07c94d
         PlatformConfig.setWeixin(BuildConfig.WEIXIN_APPKEY, BuildConfig.WEIXIN_APPSECRET);
         // QQ和Qzone appid appkey
         PlatformConfig.setQQZone(BuildConfig.QQ_APPID, BuildConfig.QQ_APPKEY);
-        // PlatformConfig.setSinaWeibo(BuildConfig.SiNA_WEIBOKEY, BuildConfig.SiNA_WEIBOSECRET, "http://sns.whalecloud.com");
-        Config.DEBUG = true;
+        // 新浪
+        PlatformConfig.setSinaWeibo(BuildConfig.SiNA_WEIBOKEY, BuildConfig.SiNA_WEIBOSECRET, "http://sns.whalecloud.com");
     }
 
 
@@ -156,17 +161,17 @@ public class MyApplicationLike extends DefaultApplicationLike {
         // 设置是否自动合成补丁，默认为true
         Beta.canAutoPatch = true;
         // 设置是否提示用户重启，默认为false
-     //   Beta.canNotifyUserRestart = true;
+        //   Beta.canNotifyUserRestart = true;
         // 补丁回调接口
         Beta.betaPatchListener = new BetaPatchListener() {
             @Override
             public void onPatchReceived(String patchFile) {
-             //   Toast.makeText(getApplication(), "补丁下载地址" + patchFile, Toast.LENGTH_SHORT).show();
+                //   Toast.makeText(getApplication(), "补丁下载地址" + patchFile, Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onDownloadReceived(long savedLength, long totalLength) {
-           //     Toast.makeText(getApplication(),
+                //     Toast.makeText(getApplication(),
 //                        String.format(Locale.getDefault(), "%s %d%%",
 //                                Beta.strNotificationDownloading,
 //                                (int) (totalLength == 0 ? 0 : savedLength * 100 / totalLength)),
@@ -175,23 +180,23 @@ public class MyApplicationLike extends DefaultApplicationLike {
 
             @Override
             public void onDownloadSuccess(String msg) {
-               // Toast.makeText(getApplication(), "补丁下载成功", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(getApplication(), "补丁下载成功", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onDownloadFailure(String msg) {
-           //     Toast.makeText(getApplication(), "补丁下载失败", Toast.LENGTH_SHORT).show();
+                //     Toast.makeText(getApplication(), "补丁下载失败", Toast.LENGTH_SHORT).show();
 
             }
 
             @Override
             public void onApplySuccess(String msg) {
-             //   Toast.makeText(getApplication(), "补丁应用成功", Toast.LENGTH_SHORT).show();
+                //   Toast.makeText(getApplication(), "补丁应用成功", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onApplyFailure(String msg) {
-              //  Toast.makeText(getApplication(), "补丁应用失败", Toast.LENGTH_SHORT).show();
+                //  Toast.makeText(getApplication(), "补丁应用失败", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -215,10 +220,10 @@ public class MyApplicationLike extends DefaultApplicationLike {
         Beta.initDelay = 4 * 1000;
         //设置sd卡的Download为更新资源存储目录
         Beta.storageDir = FileUtils.getSaveFolder(StringConstants.DOWNLOADPATH);
-       // 设置自定义tip弹窗UI布局
+        // 设置自定义tip弹窗UI布局
         Beta.upgradeDialogLayoutId = R.layout.dialog_upgrade;
         // 设置自定义升级对话框UI布局
-      //  Beta.tipsDialogLayoutId = R.layout.dialog_tips;
+        //  Beta.tipsDialogLayoutId = R.layout.dialog_tips;
         //设置点击过确认的弹窗在App下次启动自动检查更新时会再次显示。
         Beta.showInterruptedStrategy = true;
         //设置是否显示消息通知
@@ -262,10 +267,10 @@ public class MyApplicationLike extends DefaultApplicationLike {
         int memoryClass = activityManager.getMemoryClass();
         ActivityManager.MemoryInfo info = new ActivityManager.MemoryInfo();
         activityManager.getMemoryInfo(info);
-        Log.d(LOGTAG, "largeMemoryClass = " + largeMemoryClass);
-        Log.d(LOGTAG, "memoryClass = " + memoryClass);
-        Log.d(LOGTAG, "availMem = " + (info.availMem / 1024 / 1024) + "M");
-        Log.d(LOGTAG, "lowMemory = " + info.lowMemory);
+        Log.d("tag", "largeMemoryClass = " + largeMemoryClass);
+        Log.d("tag", "memoryClass = " + memoryClass);
+        Log.d("tag", "availMem = " + (info.availMem / 1024 / 1024) + "M");
+        Log.d("tag", "lowMemory = " + info.lowMemory);
         long size = GlideCatchUtil.getInstance().getCacheSize();
         if (size >= StringConstants.GLIDE_CATCH_SIZE) {
             // 必须在UI线程中调用

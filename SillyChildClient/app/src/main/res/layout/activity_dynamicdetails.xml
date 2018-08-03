@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/MatchMatch"
     android:background="@color/background"
@@ -11,10 +10,12 @@
 
     <ScrollView
         style="@style/MatchAuto"
+        android:fillViewport="true"
         android:scrollbars="none">
 
         <LinearLayout
             style="@style/MatchMatch"
+            android:fillViewport="true"
             android:orientation="vertical">
 
             <cn.jzvd.JZVideoPlayerStandard
@@ -24,18 +25,26 @@
                 android:layout_marginTop="@dimen/dimen6"
                 android:visibility="gone" />
 
-            <cn.bingoogolapple.bgabanner.BGABanner
-                android:id="@+id/banner_ad"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen166"
-                android:layout_marginTop="@dimen/dimen6"
-                android:background="@mipmap/home_banner"
-                android:scaleType="fitCenter"
-                app:banner_pointAutoPlayAble="false"
-                app:banner_pointContainerBackground="@android:color/transparent"
-                app:banner_pointDrawable="@drawable/bga_banner_selector_point"
-                app:banner_pointTopBottomMargin="@dimen/dimen2"
-                app:banner_transitionEffect="alpha" />
+            <RelativeLayout
+                android:id="@+id/rl_viewPager"
+                style="@style/MatchWrap">
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/viewPager"
+                    style="@style/MatchWrap" />
+
+                <TextView
+                    android:id="@+id/tv_viewPager"
+                    style="@style/WrapWrap"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/dimen15"
+                    android:layout_marginTop="@dimen/dimen8"
+                    android:background="@drawable/shape_number_indicator_background"
+                    android:gravity="right|center_vertical"
+                    android:textColor="@color/whiteColors"
+                    android:textSize="@dimen/textsize12" />
+            </RelativeLayout>
+
 
             <LinearLayout
                 android:id="@+id/ll_author"

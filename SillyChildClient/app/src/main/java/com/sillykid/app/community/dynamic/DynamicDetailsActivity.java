@@ -1,24 +1,36 @@
 package com.sillykid.app.community.dynamic;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.request.target.ImageViewTarget;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.common.cklibrary.common.BaseActivity;
 import com.common.cklibrary.common.BindView;
+import com.common.cklibrary.common.GlideApp;
 import com.common.cklibrary.common.ViewInject;
-import com.common.cklibrary.utils.ActivityTitleUtils;
 import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.myview.ChildListView;
 import com.common.cklibrary.utils.rx.MsgEvent;
+import com.kymjs.common.DensityUtils;
 import com.kymjs.common.Log;
 import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
+import com.sillykid.app.adapter.community.dynamic.DynamicImgPagerAdapter;
 import com.sillykid.app.adapter.community.dynamic.UserEvaluationViewAdapter;
 import com.sillykid.app.community.DisplayPageActivity;
 import com.sillykid.app.community.dynamic.dialog.ReportBouncedDialog;
@@ -27,6 +39,7 @@ import com.sillykid.app.community.dynamic.dynamiccomments.CommentDetailsActivity
 import com.sillykid.app.community.dynamic.dynamiccomments.DynamicCommentsActivity;
 import com.sillykid.app.constant.URLConstants;
 import com.sillykid.app.entity.community.dynamic.DynamicDetailsBean;
+import com.sillykid.app.entity.community.dynamic.DynamicDetailsImgBean;
 import com.sillykid.app.loginregister.LoginActivity;
 import com.sillykid.app.mine.sharingceremony.dialog.ShareBouncedDialog;
 import com.sillykid.app.utils.GlideImageLoader;
@@ -38,10 +51,10 @@ import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.media.UMImage;
 import com.umeng.socialize.media.UMWeb;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import cn.bingoogolapple.androidcommon.adapter.BGAOnItemChildClickListener;
-import cn.bingoogolapple.bgabanner.BGABanner;
 import cn.bingoogolapple.titlebar.BGATitleBar;
 import cn.jzvd.JZVideoPlayer;
 import cn.jzvd.JZVideoPlayerStandard;
@@ -51,7 +64,7 @@ import static com.sillykid.app.constant.NumericConstants.REQUEST_CODE;
 /**
  * 动态详情
  */
-public class DynamicDetailsActivity extends BaseActivity implements DynamicDetailsContract.View, AdapterView.OnItemClickListener, BGAOnItemChildClickListener, BGABanner.Delegate<ImageView, String>, BGABanner.Adapter<ImageView, String> {
+public class DynamicDetailsActivity extends BaseActivity implements DynamicDetailsContract.View, AdapterView.OnItemClickListener, BGAOnItemChildClickListener {
 
 
     @BindView(id = R.id.titlebar)
@@ -63,8 +76,14 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
     /**
      * 轮播图
      */
-    @BindView(id = R.id.banner_ad)
-    private BGABanner mForegroundBanner;
+    @BindView(id = R.id.rl_viewPager)
+    private RelativeLayout rl_viewPager;
+
+    @BindView(id = R.id.tv_viewPager)
+    private TextView tv_viewPager;
+
+    @BindView(id = R.id.viewPager)
+    private ViewPager mViewpager;
 
     @BindView(id = R.id.ll_author, click = true)
     private LinearLayout ll_author;
@@ -158,6 +177,13 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
 
     private String smallImg = "";
 
+    private int screenWidth;
+
+    private Thread thread = null;
+
+    private DynamicImgPagerAdapter dynamicImgPagerAdapter = null;
+
+
     @Override
     public void setRootView() {
         setContentView(R.layout.activity_dynamicdetails);
@@ -170,8 +196,11 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
         title = getIntent().getStringExtra("title");
         mPresenter = new DynamicDetailsPresenter(this);
         mAdapter = new UserEvaluationViewAdapter(this);
+        dynamicImgPagerAdapter = new DynamicImgPagerAdapter(this);
+        screenWidth = DensityUtils.getScreenW();
         initBouncedDialog();
         initShareBouncedDialog();
+        mViewpager.setAdapter(dynamicImgPagerAdapter);
         showLoadingDialog(getString(R.string.dataLoad));
         ((DynamicDetailsContract.Presenter) mPresenter).getDynamicDetails(id);
     }
@@ -266,7 +295,6 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
         clv_dynamicDetails.setAdapter(mAdapter);
         clv_dynamicDetails.setOnItemClickListener(this);
         mAdapter.setOnItemChildClickListener(this);
-
         titlebar.setTitleText(title);
         titlebar.setRightDrawable(getResources().getDrawable(R.mipmap.product_details_share));
         BGATitleBar.SimpleDelegate simpleDelegate = new BGATitleBar.SimpleDelegate() {
@@ -293,18 +321,8 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
             }
         };
         titlebar.setDelegate(simpleDelegate);
-        initBanner();
     }
 
-    /**
-     * 初始化轮播图
-     */
-    public void initBanner() {
-        mForegroundBanner.setOverScrollMode(View.OVER_SCROLL_NEVER);
-        // 初始化方式1：配置数据源的方式1：通过传入数据模型并结合 Adapter 的方式配置数据源。这种方式主要用于加载网络图片，以及实现少于3页时的无限轮播
-        mForegroundBanner.setAdapter(this);
-        mForegroundBanner.setDelegate(this);
-    }
 
     @Override
     public void widgetClick(View v) {
@@ -441,12 +459,12 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
             DynamicDetailsBean dynamicDetailsBean = (DynamicDetailsBean) JsonUtil.getInstance().json2Obj(success, DynamicDetailsBean.class);
             int type1 = dynamicDetailsBean.getData().getType();
             if (type1 == 1) {
-                mForegroundBanner.setVisibility(View.VISIBLE);
+                rl_viewPager.setVisibility(View.VISIBLE);
                 jzVideoPlayerStandard.setVisibility(View.GONE);
                 processLogic(dynamicDetailsBean.getData().getList());
                 smallImg = dynamicDetailsBean.getData().getList().get(0);
             } else {
-                mForegroundBanner.setVisibility(View.GONE);
+                rl_viewPager.setVisibility(View.GONE);
                 jzVideoPlayerStandard.setVisibility(View.VISIBLE);
                 jzVideoPlayerStandard.setUp(dynamicDetailsBean.getData().getList().get(0), JZVideoPlayerStandard.SCREEN_WINDOW_NORMAL, "");
                 GlideImageLoader.glideOrdinaryLoader(this, dynamicDetailsBean.getData().getList().get(0) + "?vframe/jpg/offset/0", jzVideoPlayerStandard.thumbImageView, R.mipmap.placeholderfigure);
@@ -564,32 +582,91 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
     }
 
     /**
-     * 广告轮播图
+     * 轮播图
      */
     @SuppressWarnings("unchecked")
     private void processLogic(List<String> list) {
-        if (list != null && list.size() > 0) {
-            mForegroundBanner.setAllowUserScrollable(true);
-            mForegroundBanner.setBackground(null);
-            mForegroundBanner.setData(list, null);
+        if (list == null || list.size() <= 0) {
+            return;
         }
+        if (thread != null && !thread.isAlive()) {
+            thread.run();
+        }
+        thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                List<DynamicDetailsImgBean> list1 = new ArrayList<DynamicDetailsImgBean>();
+                for (int i = 0; i < list.size(); i++) {
+                    Bitmap bitmap = GlideImageLoader.load(aty, list.get(i));
+                    DynamicDetailsImgBean dynamicDetailsImgBean = new DynamicDetailsImgBean();
+                    if (bitmap != null) {
+                        dynamicDetailsImgBean.setHeight(bitmap.getHeight());
+                        dynamicDetailsImgBean.setWidth(bitmap.getWidth());
+                        float scale = (float) bitmap.getHeight() / bitmap.getWidth();
+                        int height = (int) (scale * screenWidth);
+                        dynamicDetailsImgBean.setCalculateHeight(height);
+                    } else {
+                        dynamicDetailsImgBean.setCalculateHeight(screenWidth);
+                    }
+                    dynamicDetailsImgBean.setCalculateWidth(screenWidth);
+                    dynamicDetailsImgBean.setUrl(list.get(i));
+                    list1.add(dynamicDetailsImgBean);
+                }
+                aty.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        int defaultheight = list1.get(0).getCalculateHeight();
+                        initViewPager(defaultheight, list1);
+                    }
+                });
+            }
+        });
+        thread.start();
     }
 
-    @Override
-    public void fillBannerItem(BGABanner banner, ImageView itemView, String model, int position) {
-        itemView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-        GlideImageLoader.glideOrdinaryLoader(aty, model, itemView, R.mipmap.placeholderfigure2);
-    }
+    //获取第一张图片高度后，给viewpager设置adapter
+    private void initViewPager(int defaultheight, List<DynamicDetailsImgBean> list1) {
+        dynamicImgPagerAdapter.setData(list1);
+        //为ViewPager设置高度
+        ViewGroup.LayoutParams params = mViewpager.getLayoutParams();
+        params.height = defaultheight;
+        mViewpager.setLayoutParams(params);
+        tv_viewPager.setText(1 + "/" + list1.size());
+        mViewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                if (position == list1.size() - 1) {
+                    return;
+                }
+                //计算ViewPager现在应该的高度,heights[]表示页面高度的数组。
+                int height = (int) ((list1.get(position).getCalculateHeight() == 0 ? defaultheight : list1.get(position).getCalculateHeight()) * (1 - positionOffset)
+                        + (list1.get(position + 1).getCalculateHeight() == 0 ? defaultheight : list1.get(position + 1).getCalculateHeight()) * positionOffset);
+                //为ViewPager设置高度
+                ViewGroup.LayoutParams params = mViewpager.getLayoutParams();
+                params.height = height;
+                mViewpager.setLayoutParams(params);
+            }
 
-    @Override
-    public void onBannerItemClick(BGABanner banner, ImageView itemView, String model, int position) {
-//        if (StringUtils.isEmpty(model.getAd_link())) {
-//            return;
-//        }
-//        Intent bannerDetails = new Intent(aty, BannerDetailsActivity.class);
-//        bannerDetails.putExtra("url", model.getAd_link());
-//        bannerDetails.putExtra("title", model.getAd_name());
-//        showActivity(aty, bannerDetails);
+            @Override
+            public void onPageSelected(int position) {
+                tv_viewPager.setText(position + 1 + "/" + list1.size());
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+//        rl_viewPager.getViewTreeObserver().addOnDrawListener(new ViewTreeObserver.OnDrawListener() {
+//            @Override
+//            public void onDraw() {
+//                // TODO Auto-generated method stub
+//                Log.d("rl_viewPagerHeight(", rl_viewPager.getHeight() + "");
+////                RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) tv_viewPager.getLayoutParams();
+////                lp.setMargins(0, rl_viewPager.getHeight() - 34, 0, 0);
+////                tv_viewPager.setLayoutParams(lp);
+//            }
+//        });
     }
 
     /**
@@ -629,6 +706,10 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
     protected void onDestroy() {
         super.onDestroy();
         UMShareAPI.get(this).release();
+        if (thread != null) {
+            thread.interrupted();
+        }
+        thread = null;
         if (shareBouncedDialog != null) {
             shareBouncedDialog.cancel();
         }
@@ -642,6 +723,8 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
             revertBouncedDialog.cancel();
         }
         revertBouncedDialog = null;
+        dynamicImgPagerAdapter.clear();
+        dynamicImgPagerAdapter = null;
         mAdapter.clear();
         mAdapter = null;
     }

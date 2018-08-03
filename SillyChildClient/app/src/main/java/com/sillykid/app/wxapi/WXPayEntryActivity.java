@@ -22,9 +22,7 @@ import android.util.Log;
 
 import com.common.cklibrary.common.BaseActivity;
 import com.common.cklibrary.common.KJActivityStack;
-import com.common.cklibrary.common.ViewInject;
 import com.sillykid.app.BuildConfig;
-import com.sillykid.app.R;
 import com.sillykid.app.mine.myshoppingcart.makesureorder.PaymentOrderActivity;
 import com.sillykid.app.mine.myshoppingcart.makesureorder.payresult.PayCompleteActivity;
 import com.sillykid.app.mine.mywallet.recharge.RechargeActivity;

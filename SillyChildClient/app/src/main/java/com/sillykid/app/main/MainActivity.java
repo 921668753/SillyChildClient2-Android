@@ -22,13 +22,9 @@ import com.common.cklibrary.common.ViewInject;
 import com.kymjs.common.Log;
 import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
-import com.sillykid.app.constant.StringNewConstants;
 import com.sillykid.app.homepage.message.interactivemessage.imuitl.RongCloudEvent;
 import com.sillykid.app.homepage.message.interactivemessage.imuitl.UserUtil;
-import com.sillykid.app.receivers.MainCallBack;
 import com.sillykid.app.loginregister.LoginActivity;
-import com.sillykid.app.receivers.MainReceiver;
-import com.sillykid.app.services.MainService;
 import com.tencent.bugly.beta.Beta;
 import com.umeng.analytics.MobclickAgent;
 
@@ -327,7 +323,7 @@ public class MainActivity extends BaseActivity implements MainContract.View {
                     break;
                 case 1:
                     img_community.setImageResource(R.mipmap.tab_community_selected);
-                    tv_community.setTextColor(getResources().getColor(R.color.ffe206Colors));
+                    tv_community.setTextColor(getResources().getColor(R.color.fF9955Colors));
                     changeFragment(contentFragment1);
                     break;
                 case 2:
@@ -363,7 +359,7 @@ public class MainActivity extends BaseActivity implements MainContract.View {
                 break;
             case 1:
                 img_community.setImageResource(R.mipmap.tab_community_selected);
-                tv_community.setTextColor(getResources().getColor(R.color.ffe206Colors));
+                tv_community.setTextColor(getResources().getColor(R.color.fF9955Colors));
                 changeFragment(contentFragment1);
                 break;
             case 2:

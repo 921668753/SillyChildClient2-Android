@@ -167,7 +167,7 @@ public class CompanyGuideDetailsActivity extends BaseActivity implements Company
 
         @Override
         public void onResult(SHARE_MEDIA platform) {
-            com.umeng.socialize.utils.Log.d("plat", "platform" + platform);
+            Log.d("plat", "platform" + platform);
             dismissLoadingDialog();
             ViewInject.toast(getString(R.string.shareSuccess));
         }
@@ -181,7 +181,7 @@ public class CompanyGuideDetailsActivity extends BaseActivity implements Company
             }
             ViewInject.toast(getString(R.string.shareError));
             if (t != null) {
-                com.umeng.socialize.utils.Log.d("throw", "throw:" + t.getMessage());
+             Log.d("throw", "throw:" + t.getMessage());
             }
         }
 

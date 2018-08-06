@@ -26,6 +26,7 @@ import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.myview.ChildListView;
 import com.common.cklibrary.utils.rx.MsgEvent;
+import com.common.cklibrary.utils.rx.RxBus;
 import com.kymjs.common.DensityUtils;
 import com.kymjs.common.Log;
 import com.kymjs.common.StringUtils;
@@ -65,7 +66,6 @@ import static com.sillykid.app.constant.NumericConstants.REQUEST_CODE;
  * 动态详情
  */
 public class DynamicDetailsActivity extends BaseActivity implements DynamicDetailsContract.View, AdapterView.OnItemClickListener, BGAOnItemChildClickListener {
-
 
     @BindView(id = R.id.titlebar)
     private BGATitleBar titlebar;
@@ -210,8 +210,9 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
         revertBouncedDialog = new RevertBouncedDialog(this) {
             @Override
             public void toSuccess() {
-                tv_userEvaluationNum.setText(StringUtils.toInt(tv_commentNum.getText().toString(), 0) + 1 + getString(R.string.evaluation1));
-                tv_commentNum.setText(StringUtils.toInt(tv_commentNum.getText().toString(), 0) + 1 + "");
+                RxBus.getInstance().post(new MsgEvent<String>("RxBusDynamicDetailsEvent"));
+//                tv_userEvaluationNum.setText(StringUtils.toInt(tv_commentNum.getText().toString(), 0) + 1 + getString(R.string.evaluation1));
+//                tv_commentNum.setText(StringUtils.toInt(tv_commentNum.getText().toString(), 0) + 1 + "");
             }
         };
     }
@@ -234,10 +235,11 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
      */
     public void umShare(SHARE_MEDIA platform) {
         UMImage thumb = new UMImage(this, smallImg);
-        String url = URLConstants.REGISTERHTML;
+        String url = smallImg;
         UMWeb web = new UMWeb(url);
         web.setTitle(title);//标题
         web.setThumb(thumb);  //缩略图
+        web.setDescription(tv_content.getText().toString());
         new ShareAction(aty).setPlatform(platform)
 //                .withText("hello")
 //                .withMedia(thumb)
@@ -376,8 +378,9 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
                     revertBouncedDialog = new RevertBouncedDialog(this) {
                         @Override
                         public void toSuccess() {
-                            tv_userEvaluationNum.setText(StringUtils.toInt(tv_commentNum.getText().toString(), 0) + 1 + getString(R.string.evaluation1));
-                            tv_commentNum.setText(StringUtils.toInt(tv_commentNum.getText().toString(), 0) + 1 + "");
+                            RxBus.getInstance().post(new MsgEvent<String>("RxBusDynamicDetailsEvent"));
+//                            tv_userEvaluationNum.setText(StringUtils.toInt(tv_commentNum.getText().toString(), 0) + 1 + getString(R.string.evaluation1));
+//                            tv_commentNum.setText(StringUtils.toInt(tv_commentNum.getText().toString(), 0) + 1 + "");
                         }
                     };
                 }
@@ -471,6 +474,7 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
                 JZVideoPlayer.setMediaInterface(new JZPLMediaPlayer());
                 smallImg = dynamicDetailsBean.getData().getList().get(0) + "?vframe/jpg/offset/0";
             }
+
             user_id = dynamicDetailsBean.getData().getMember_id();
             GlideImageLoader.glideLoader(this, dynamicDetailsBean.getData().getFace(), img_head, 0, R.mipmap.avatar);
             tv_nickName.setText(dynamicDetailsBean.getData().getNickname());

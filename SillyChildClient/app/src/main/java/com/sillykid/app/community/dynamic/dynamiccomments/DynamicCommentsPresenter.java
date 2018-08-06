@@ -26,7 +26,7 @@ public class DynamicCommentsPresenter implements DynamicCommentsContract.Present
         httpParams.put("pageno", pageno);
         httpParams.put("type", type);
         httpParams.put("pagesize", 10);
-        RequestClient.getPostComment(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
+        RequestClient.getPostComment(KJActivityStack.create().topActivity(), httpParams, type, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
                 mView.getSuccess(response, 0);

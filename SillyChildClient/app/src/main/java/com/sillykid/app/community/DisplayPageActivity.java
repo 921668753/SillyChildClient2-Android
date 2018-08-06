@@ -10,7 +10,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -76,7 +75,6 @@ public class DisplayPageActivity extends BaseActivity implements DisplayPageCont
 
     @BindView(id = R.id.tv_followN, click = true)
     private TextView tv_followN;
-
 
     private int user_id = 0;
 
@@ -366,13 +364,13 @@ public class DisplayPageActivity extends BaseActivity implements DisplayPageCont
         } else if (flag == 2) {
             if (is_concern == 1) {
                 is_concern = 0;
-                tv_follow.setText(getString(R.string.follow));
+                tv_followN.setText(getString(R.string.follow));
 //                tv_follow.setBackgroundResource(R.drawable.shape_follow);
 //                tv_follow.setTextColor(getResources().getColor(R.color.greenColors));
                 ViewInject.toast(getString(R.string.focusSuccess));
             } else {
                 is_concern = 1;
-                tv_follow.setText(getString(R.string.followed));
+                tv_followN.setText(getString(R.string.followed));
 //                tv_follow.setBackgroundResource(R.drawable.shape_followed);
 //                tv_follow.setTextColor(getResources().getColor(R.color.tabColors));
                 ViewInject.toast(getString(R.string.attentionSuccess));

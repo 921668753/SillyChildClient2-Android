@@ -9,6 +9,7 @@ import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.httputil.HttpRequest;
 import com.common.cklibrary.utils.httputil.HttpUtilParams;
 import com.common.cklibrary.utils.httputil.ResponseListener;
+import com.common.cklibrary.utils.httputil.ResponseProgressbarListener;
 import com.common.cklibrary.utils.rx.MsgEvent;
 import com.common.cklibrary.utils.rx.RxBus;
 import com.kymjs.common.FileUtils;
@@ -24,7 +25,10 @@ import com.qiniu.android.http.ResponseInfo;
 import com.qiniu.android.storage.Configuration;
 import com.qiniu.android.storage.KeyGenerator;
 import com.qiniu.android.storage.Recorder;
+import com.qiniu.android.storage.UpCancellationSignal;
 import com.qiniu.android.storage.UpCompletionHandler;
+import com.qiniu.android.storage.UpProgressHandler;
+import com.qiniu.android.storage.UploadOptions;
 import com.qiniu.android.storage.persistent.FileRecorder;
 import com.sillykid.app.R;
 import com.sillykid.app.constant.NumericConstants;
@@ -40,6 +44,7 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import static com.common.cklibrary.utils.httputil.HttpRequest.doFailure;
@@ -124,7 +129,7 @@ public class RequestClient {
                 recorder = new FileRecorder(dirPath);
             } catch (Exception e) {
             }
-//避免记录文件冲突（特别是key指定为null时），也可自定义文件名(下方为默认实现)：
+            //避免记录文件冲突（特别是key指定为null时），也可自定义文件名(下方为默认实现)：
             KeyGenerator keyGen = new KeyGenerator() {
                 public String gen(String key, File file) {
                     // 不必使用url_safe_base64转换，uploadManager内部会处理
@@ -151,7 +156,18 @@ public class RequestClient {
                     }
                     listener.onFailure(context.getString(R.string.failedUploadVideo));
                 }
-            }, null);
+            }, new UploadOptions(new HashMap<>(), null, false, new UpProgressHandler() {
+                public void progress(String key, double percent) {
+                    Log.i("qiniu", key + ": " + percent);
+                    int progress = (int) (percent * 100);
+                    ((ResponseProgressbarListener) listener).onProgress(String.valueOf(progress));
+                }
+            }, new UpCancellationSignal() {
+                @Override
+                public boolean isCancelled() {
+                    return false;
+                }
+            }));
         }
     }
 
@@ -175,6 +191,111 @@ public class RequestClient {
         }, listener);
 
     }
+
+
+    /**
+     * 上传头像图片
+     */
+    public static void upLoadImg(Context context, File file, int type, UploadOptions options, ResponseListener<String> listener) {
+        long nowTime = System.currentTimeMillis();
+        String qiNiuImgTime = PreferenceHelper.readString(context, StringConstants.FILENAME, "qiNiuImgTime", "");
+        long qiNiuImgTime1 = 0;
+        if (StringUtils.isEmpty(qiNiuImgTime)) {
+            qiNiuImgTime1 = 0;
+        } else {
+            qiNiuImgTime1 = Long.decode(qiNiuImgTime);
+        }
+        long refreshTime = nowTime - qiNiuImgTime1 - (8 * 60 * 60 * 1000);
+        if (refreshTime <= 0) {
+            upLoadImgQiNiuYun(context, file, type, options, listener);
+            return;
+        }
+        HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
+        getQiNiuKey(context, httpParams, new ResponseListener<String>() {
+            @Override
+            public void onSuccess(String response) {
+                QiNiuKeyBean qiNiuKeyBean = (QiNiuKeyBean) JsonUtil.getInstance().json2Obj(response, QiNiuKeyBean.class);
+                if (qiNiuKeyBean == null && StringUtils.isEmpty(qiNiuKeyBean.getData().getAuthToken())) {
+                    listener.onFailure(context.getString(R.string.serverReturnsDataNullJsonError));
+                    return;
+                }
+                PreferenceHelper.write(context, StringConstants.FILENAME, "qiNiuToken", qiNiuKeyBean.getData().getAuthToken());
+                PreferenceHelper.write(context, StringConstants.FILENAME, "qiNiuImgHost", qiNiuKeyBean.getData().getHost());
+                PreferenceHelper.write(context, StringConstants.FILENAME, "qiNiuImgTime", String.valueOf(System.currentTimeMillis()));
+                upLoadImgQiNiuYun(context, file, type, options, listener);
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                listener.onFailure(msg);
+            }
+        });
+
+    }
+
+
+    /**
+     * 获取七牛云Token
+     */
+    private static void upLoadImgQiNiuYun(Context context, File file, int type, UploadOptions options, ResponseListener<String> listener) {
+        String token = PreferenceHelper.readString(context, StringConstants.FILENAME, "qiNiuToken");
+        //     if (type == 0) {
+        String key = "SHZS_" + UserUtil.getRcId(context) + "_" + file.getName();
+        Log.d("ReadFragment", "key" + key);
+        if (type == 0) {
+            //参数 图片路径,图片名,token,成功的回调
+            UploadManagerUtil.getInstance().getUploadManager().put(file.getPath(), key, token, new UpCompletionHandler() {
+                @Override
+                public void complete(String key, ResponseInfo responseInfo, JSONObject jsonObject) {
+                    Log.d("ReadFragment", "key" + key + "responseInfo" + JsonUtil.obj2JsonString(responseInfo) + "jsObj:" + String.valueOf(jsonObject));
+                    if (responseInfo.isOK()) {
+                        String host = PreferenceHelper.readString(context, StringConstants.FILENAME, "qiNiuImgHost");
+                        String headpicPath = host + key;
+                        Log.i("ReadFragment", "complete: " + headpicPath);
+                        listener.onSuccess(headpicPath);
+                        return;
+                    }
+                    listener.onFailure(context.getString(R.string.failedUploadPicture));
+                }
+            }, options);
+        } else if (type == 1) {
+            String dirPath = FileUtils.getSaveFolder(StringConstants.CACHEPATH).getAbsolutePath();
+            Recorder recorder = null;
+            try {
+                recorder = new FileRecorder(dirPath);
+            } catch (Exception e) {
+            }
+            //避免记录文件冲突（特别是key指定为null时），也可自定义文件名(下方为默认实现)：
+            KeyGenerator keyGen = new KeyGenerator() {
+                public String gen(String key, File file) {
+                    // 不必使用url_safe_base64转换，uploadManager内部会处理
+                    // 该返回值可替换为基于key、文件内容、上下文的其它信息生成的文件名
+                    return key + "_._" + new StringBuffer(file.getAbsolutePath()).reverse();
+                }
+            };
+            Configuration config = new Configuration.Builder()
+                    // recorder分片上传时，已上传片记录器
+                    // keyGen分片上传时，生成标识符，用于片记录器区分是哪个文件的上传记录
+                    .recorder(recorder, keyGen)
+                    .build();
+            //参数 图片路径,图片名,token,成功的回调
+            UploadManagerUtil.getInstance(config).getUploadManager().put(file.getPath(), key, token, new UpCompletionHandler() {
+                @Override
+                public void complete(String key, ResponseInfo responseInfo, JSONObject jsonObject) {
+                    Log.d("ReadFragment", "key" + key + "responseInfo" + JsonUtil.obj2JsonString(responseInfo) + "jsObj:" + String.valueOf(jsonObject));
+                    if (responseInfo.isOK()) {
+                        String host = PreferenceHelper.readString(context, StringConstants.FILENAME, "qiNiuImgHost");
+                        String headpicPath = host + key;
+                        Log.i("ReadFragment", "complete: " + headpicPath);
+                        listener.onSuccess(headpicPath);
+                        return;
+                    }
+                    listener.onFailure(context.getString(R.string.failedUploadVideo));
+                }
+            }, options);
+        }
+    }
+
 
     /**
      * 百度定位
@@ -870,13 +991,17 @@ public class RequestClient {
     /**
      * 社区----获取帖子评论列表
      */
-    public static void getPostComment(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+    public static void getPostComment(Context context, HttpParams httpParams, int type, ResponseListener<String> listener) {
         Log.d("tag", "getPostComment");
         String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
         if (!StringUtils.isEmpty(cookies)) {
             httpParams.putHeaders("Cookie", cookies);
         }
-        HttpRequest.requestPostFORMHttp(context, URLConstants.POSTCOMMENT, httpParams, listener);
+        if (type == 1) {
+            HttpRequest.requestPostFORMHttp(context, URLConstants.POSTCOMMENT, httpParams, listener);
+        } else if (type == 2) {
+            HttpRequest.requestPostFORMHttp(context, URLConstants.VIDEOCOMMENT, httpParams, listener);
+        }
     }
 
 

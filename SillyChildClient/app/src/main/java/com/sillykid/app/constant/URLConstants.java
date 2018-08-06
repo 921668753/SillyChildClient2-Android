@@ -237,6 +237,11 @@ public class URLConstants {
     public static String POSTCOMMENT = APIURL + "comment/get_post_comment.do";
 
     /**
+     * 社区----获取帖视频评论列表
+     */
+    public static String VIDEOCOMMENT = APIURL + "comment/get_video_comment.do";
+
+    /**
      * 置换Token  get请求
      */
     public static String REFRESHTOKEN = APIURL + "m=Api&c=User&a=flashToken";

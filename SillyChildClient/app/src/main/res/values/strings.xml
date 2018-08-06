@@ -568,6 +568,7 @@
     <string name="dynamicCollection">收藏</string>
     <string name="writeComment">写评论...</string>
     <string name="writeComment1">请填写评论</string>
+    <string name="notRespondYourComments">不能回复自己的评论</string>
     <string name="general">共</string>
     <string name="comments1">条评论</string>
     <string name="reply">条回复</string>

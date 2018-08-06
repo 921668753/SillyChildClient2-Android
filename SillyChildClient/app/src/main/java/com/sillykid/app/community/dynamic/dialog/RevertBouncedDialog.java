@@ -1,5 +1,6 @@
 package com.sillykid.app.community.dynamic.dialog;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -124,6 +125,8 @@ public abstract class RevertBouncedDialog extends BaseDialog implements View.OnC
     @Override
     public void getSuccess(String success, int flag) {
         dismissLoadingDialog();
+        tetv_revert.setText("");
+        SoftKeyboardUtils.packUpKeyboard((Activity) mContext);
         ViewInject.toast(mContext.getString(R.string.commentSuccess));
         dismiss();
         toSuccess();

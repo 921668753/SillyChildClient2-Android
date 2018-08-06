@@ -415,6 +415,7 @@ public class GoodsDetailsActivity extends BaseActivity implements GoodsDetailsCo
         UMWeb web = new UMWeb(url);
         web.setTitle(goodName);//标题
         web.setThumb(thumb);  //缩略图
+        web.setDescription(brief);
         new ShareAction(aty).setPlatform(platform)
 //                .withText("hello")
 //                .withMedia(thumb)

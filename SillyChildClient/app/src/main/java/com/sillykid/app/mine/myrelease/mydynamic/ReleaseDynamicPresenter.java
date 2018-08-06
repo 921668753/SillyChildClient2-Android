@@ -6,6 +6,7 @@ import com.common.cklibrary.utils.BitmapCoreUtil;
 import com.common.cklibrary.utils.DataCleanManager;
 import com.common.cklibrary.utils.httputil.HttpUtilParams;
 import com.common.cklibrary.utils.httputil.ResponseListener;
+import com.common.cklibrary.utils.httputil.ResponseProgressbarListener;
 import com.kymjs.common.StringUtils;
 import com.kymjs.rxvolley.client.HttpParams;
 import com.luck.picture.lib.config.PictureMimeType;
@@ -66,6 +67,7 @@ public class ReleaseDynamicPresenter implements ReleaseDynamicContract.Presenter
 
     @Override
     public void upPictures(String imgPath) {
+        mView.showLoadingDialog(KJActivityStack.create().topActivity().getString(R.string.crossLoad));
         if (StringUtils.isEmpty(imgPath)) {
             mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.noData), 1);
             return;
@@ -105,6 +107,7 @@ public class ReleaseDynamicPresenter implements ReleaseDynamicContract.Presenter
 
     @Override
     public void uploadVideo(String videoPath) {
+        mView.showLoadingDialog(KJActivityStack.create().topActivity().getString(R.string.crossLoad));
         if (StringUtils.isEmpty(videoPath)) {
             mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.noData), 2);
             return;
@@ -114,7 +117,12 @@ public class ReleaseDynamicPresenter implements ReleaseDynamicContract.Presenter
             mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.videoPathError), 2);
             return;
         }
-        RequestClient.upLoadImg(KJActivityStack.create().topActivity(), oldFile, 1, new ResponseListener<String>() {
+        RequestClient.upLoadImg(KJActivityStack.create().topActivity(), oldFile, 1, new ResponseProgressbarListener<String>() {
+            @Override
+            public void onProgress(String progress) {
+                mView.showLoadingDialog(KJActivityStack.create().topActivity().getString(R.string.crossLoad) + progress + "%");
+            }
+
             @Override
             public void onSuccess(String response) {
                 mView.getSuccess(response, 2);

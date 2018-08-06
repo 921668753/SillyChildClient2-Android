@@ -413,7 +413,6 @@ public class ReleaseDynamicActivity extends BaseActivity implements ReleaseDynam
                     LocalMedia media = selectList1.get(selectList1.size() - 1);
                     String pictureType = media.getPictureType();
                     int mediaType = PictureMimeType.pictureToVideo(pictureType);
-                    showLoadingDialog(getString(R.string.crossLoad));
                     if (mediaType == 1) {
                         ((ReleaseDynamicContract.Presenter) mPresenter).upPictures(media.getPath());
                         break;

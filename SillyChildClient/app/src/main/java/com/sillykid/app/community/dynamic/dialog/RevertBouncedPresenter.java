@@ -2,11 +2,13 @@ package com.sillykid.app.community.dynamic.dialog;
 
 import android.content.Context;
 
+import com.common.cklibrary.common.KJActivityStack;
 import com.common.cklibrary.utils.httputil.HttpUtilParams;
 import com.common.cklibrary.utils.httputil.ResponseListener;
 import com.kymjs.common.StringUtils;
 import com.kymjs.rxvolley.client.HttpParams;
 import com.sillykid.app.R;
+import com.sillykid.app.homepage.message.interactivemessage.imuitl.UserUtil;
 import com.sillykid.app.retrofit.RequestClient;
 
 /**
@@ -23,6 +25,10 @@ public class RevertBouncedPresenter implements RevertBouncedContract.Presenter {
 
     @Override
     public void postAddComment(Context context, String body, int post_id, int reply_comment_id, int reply_member_id, int type) {
+        if (!StringUtils.isEmpty(UserUtil.getRcId(KJActivityStack.create().topActivity())) && StringUtils.toInt(UserUtil.getRcId(KJActivityStack.create().topActivity()).substring(1), 0) == reply_member_id) {
+            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.notRespondYourComments), 2);
+            return;
+        }
         if (StringUtils.isEmpty(body)) {
             mView.errorMsg(context.getString(R.string.writeComment1), 5);
             return;

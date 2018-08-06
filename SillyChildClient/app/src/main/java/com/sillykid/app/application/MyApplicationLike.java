@@ -115,7 +115,7 @@ public class MyApplicationLike extends DefaultApplicationLike {
         // QQ和Qzone appid appkey
         PlatformConfig.setQQZone(BuildConfig.QQ_APPID, BuildConfig.QQ_APPKEY);
         // 新浪
-        PlatformConfig.setSinaWeibo(BuildConfig.SiNA_WEIBOKEY, BuildConfig.SiNA_WEIBOSECRET, "http://sns.whalecloud.com");
+        PlatformConfig.setSinaWeibo(BuildConfig.SiNA_WEIBOKEY, BuildConfig.SiNA_WEIBOSECRET, "https://sns.whalecloud.com/sina2/callback");
     }
 
 

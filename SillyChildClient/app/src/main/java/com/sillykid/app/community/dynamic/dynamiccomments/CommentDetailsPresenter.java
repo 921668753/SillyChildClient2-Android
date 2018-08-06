@@ -8,6 +8,7 @@ import com.common.cklibrary.utils.httputil.ResponseListener;
 import com.kymjs.common.StringUtils;
 import com.kymjs.rxvolley.client.HttpParams;
 import com.sillykid.app.R;
+import com.sillykid.app.homepage.message.interactivemessage.imuitl.UserUtil;
 import com.sillykid.app.retrofit.RequestClient;
 
 /**
@@ -59,6 +60,10 @@ public class CommentDetailsPresenter implements CommentDetailsContract.Presenter
 
     @Override
     public void postAddComment(String body, int post_id, int reply_comment_id, int reply_member_id, int type) {
+        if (StringUtils.toInt(UserUtil.getRcId(KJActivityStack.create().topActivity()).substring(1), 0) == reply_member_id) {
+            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.notRespondYourComments), 2);
+            return;
+        }
         if (StringUtils.isEmpty(body)) {
             mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.writeComment1), 2);
             return;

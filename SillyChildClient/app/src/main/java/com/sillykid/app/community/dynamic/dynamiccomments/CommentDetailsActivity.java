@@ -3,6 +3,7 @@ package com.sillykid.app.community.dynamic.dynamiccomments;
 import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -30,7 +31,7 @@ import cn.bingoogolapple.androidcommon.adapter.BGAOnItemChildClickListener;
 /**
  * 单条动态评论详情
  */
-public class CommentDetailsActivity extends BaseActivity implements CommentDetailsContract.View, BGAOnItemChildClickListener {
+public class CommentDetailsActivity extends BaseActivity implements CommentDetailsContract.View, AdapterView.OnItemClickListener, BGAOnItemChildClickListener {
 
     @BindView(id = R.id.img_avatar)
     private ImageView img_avatar;
@@ -69,29 +70,21 @@ public class CommentDetailsActivity extends BaseActivity implements CommentDetai
     private DataBean comment;
 
     private int is_like = 0;
+    private int type1 = 0;
 
     @Override
     public void setRootView() {
         setContentView(R.layout.activity_dynamiccommentdetails);
     }
 
-
     @Override
     public void initData() {
         super.initData();
         type = getIntent().getIntExtra("type", 0);
         id = getIntent().getIntExtra("id", 0);
+        type1 = getIntent().getIntExtra("type1", 0);
         mPresenter = new CommentDetailsPresenter(this);
         mAdapter = new CommentDetailsViewAdapter(this);
-        revertBouncedDialog = new RevertBouncedDialog(this) {
-            @Override
-            public void toSuccess() {
-                /**
-                 * 发送消息
-                 */
-                RxBus.getInstance().post(new MsgEvent<String>("RxBusDynamicDetailsEvent"));
-            }
-        };
         showLoadingDialog(getString(R.string.dataLoad));
         ((CommentDetailsContract.Presenter) mPresenter).getCommentDetails(id);
     }
@@ -102,25 +95,35 @@ public class CommentDetailsActivity extends BaseActivity implements CommentDetai
         super.initWidget();
         ActivityTitleUtils.initToolbar(aty, getString(R.string.commentDetails), true, R.id.titlebar);
         clv_revert.setAdapter(mAdapter);
+        clv_revert.setOnItemClickListener(this);
         mAdapter.setOnItemChildClickListener(this);
     }
 
-    private void initView() {
-        if (getIntent().getIntExtra("type1", 0) == 1) {
-            if (revertBouncedDialog == null) {
-                revertBouncedDialog = new RevertBouncedDialog(this) {
-                    @Override
-                    public void toSuccess() {
-                        /**
-                         * 发送消息
-                         */
-                        RxBus.getInstance().post(new MsgEvent<String>("RxBusDynamicDetailsEvent"));
+    private void initDialog(int type2, int position) {
+        if (revertBouncedDialog == null) {
+            revertBouncedDialog = new RevertBouncedDialog(this) {
+                @Override
+                public void toSuccess() {
+                    if (revertBouncedDialog != null && revertBouncedDialog.isShowing()) {
+                        this.dismiss();
                     }
-                };
-            }
+                    /**
+                     * 发送消息
+                     */
+                    RxBus.getInstance().post(new MsgEvent<String>("RxBusDynamicDetailsEvent"));
+                }
+            };
+        }
+        if (type2 == 1 && position == 0) {
             if (revertBouncedDialog != null && !revertBouncedDialog.isShowing()) {
+                type1 = 0;
                 revertBouncedDialog.show();
                 revertBouncedDialog.setHintText(getString(R.string.revert) + comment.getNickname(), comment.getPost_id(), comment.getId(), comment.getMember_id(), type);
+            }
+        } else if (type2 == 2) {
+            if (revertBouncedDialog != null && !revertBouncedDialog.isShowing()) {
+                revertBouncedDialog.show();
+                revertBouncedDialog.setHintText(getString(R.string.revert) + mAdapter.getItem(position).getNickname(), StringUtils.toInt(mAdapter.getItem(position).getPost_id()), comment.getId(), mAdapter.getItem(position).getMember_id(), type);
             }
         }
     }
@@ -140,23 +143,14 @@ public class CommentDetailsActivity extends BaseActivity implements CommentDetai
                 ((CommentDetailsContract.Presenter) mPresenter).postAddCommentLike(id, type);
                 break;
             case R.id.tv_revert:
-                if (revertBouncedDialog == null) {
-                    revertBouncedDialog = new RevertBouncedDialog(this) {
-                        @Override
-                        public void toSuccess() {
-                            /**
-                             * 发送消息
-                             */
-                            RxBus.getInstance().post(new MsgEvent<String>("RxBusDynamicDetailsEvent"));
-                        }
-                    };
-                }
-                if (revertBouncedDialog != null && !revertBouncedDialog.isShowing()) {
-                    revertBouncedDialog.show();
-                    revertBouncedDialog.setHintText(getString(R.string.revert) + comment.getNickname(), comment.getPost_id(), comment.getId(), comment.getMember_id(), 1);
-                }
+                initDialog(1, 0);
                 break;
         }
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        initDialog(2, position);
     }
 
     @Override
@@ -206,7 +200,7 @@ public class CommentDetailsActivity extends BaseActivity implements CommentDetai
                 mAdapter.clear();
                 mAdapter.addMoreData(comment.getReplyList());
             }
-            initView();
+            initDialog(type1, 0);
         } else if (flag == 1) {
             if (is_like == 1) {
                 is_like = 0;

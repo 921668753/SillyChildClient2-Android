@@ -15,6 +15,7 @@ import com.common.cklibrary.utils.ActivityTitleUtils;
 import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.myview.ChildListView;
 import com.common.cklibrary.utils.rx.MsgEvent;
+import com.common.cklibrary.utils.rx.RxBus;
 import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
 import com.sillykid.app.adapter.community.dynamic.UserEvaluationViewAdapter;
@@ -160,8 +161,9 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
         revertBouncedDialog = new RevertBouncedDialog(this) {
             @Override
             public void toSuccess() {
-                tv_userEvaluationNum.setText(StringUtils.toInt(tv_commentNum.getText().toString(), 0) + 1 + getString(R.string.evaluation1));
-                tv_commentNum.setText(StringUtils.toInt(tv_commentNum.getText().toString(), 0) + 1 + "");
+                RxBus.getInstance().post(new MsgEvent<String>("RxBusDynamicDetailsEvent"));
+//                tv_userEvaluationNum.setText(StringUtils.toInt(tv_commentNum.getText().toString(), 0) + 1 + getString(R.string.evaluation1));
+//                tv_commentNum.setText(StringUtils.toInt(tv_commentNum.getText().toString(), 0) + 1 + "");
             }
         };
     }
@@ -198,10 +200,10 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
         super.widgetClick(v);
         switch (v.getId()) {
             case R.id.ll_author:
-                Intent intent = new Intent(aty, DisplayPageActivity.class);
-                intent.putExtra("user_id", user_id);
-                intent.putExtra("isRefresh", 0);
-                showActivity(aty, intent);
+//                Intent intent = new Intent(aty, DisplayPageActivity.class);
+//                intent.putExtra("user_id", user_id);
+//                intent.putExtra("isRefresh", 0);
+//                showActivity(aty, intent);
                 break;
             case R.id.tv_follow:
                 String title = getString(R.string.attentionLoad);
@@ -245,8 +247,9 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
                     revertBouncedDialog = new RevertBouncedDialog(this) {
                         @Override
                         public void toSuccess() {
-                            tv_userEvaluationNum.setText(StringUtils.toInt(tv_commentNum.getText().toString(), 0) + 1 + getString(R.string.evaluation1));
-                            tv_commentNum.setText(StringUtils.toInt(tv_commentNum.getText().toString(), 0) + 1 + "");
+                            RxBus.getInstance().post(new MsgEvent<String>("RxBusDynamicDetailsEvent"));
+//                            tv_userEvaluationNum.setText(StringUtils.toInt(tv_commentNum.getText().toString(), 0) + 1 + getString(R.string.evaluation1));
+//                            tv_commentNum.setText(StringUtils.toInt(tv_commentNum.getText().toString(), 0) + 1 + "");
                         }
                     };
                 }

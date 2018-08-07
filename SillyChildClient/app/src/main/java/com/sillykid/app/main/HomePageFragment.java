@@ -191,6 +191,7 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
                 .setStartSkipCount(1)
                 .setSizeDp(1)
                 .setColorResource(R.color.background, false));
+        recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setAdapter(boutiqueLineViewAdapter);
         boutiqueLineViewAdapter.setOnRVItemClickListener(this);
         mRefreshLayout.beginRefreshing();

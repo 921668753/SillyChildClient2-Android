@@ -104,7 +104,7 @@
                     android:layout_width="@dimen/dimen50"
                     android:layout_height="@dimen/dimen50"
                     android:scaleType="fitXY"
-                    android:src="@mipmap/umeng_socialize_sina" />
+                    android:src="@drawable/umeng_socialize_sina" />
 
                 <TextView
                     style="@style/WrapWrap"

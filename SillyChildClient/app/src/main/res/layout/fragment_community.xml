@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     style="@style/MatchMatch"
     android:background="@color/background"
     android:orientation="vertical">
@@ -55,30 +54,19 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen35"
         android:background="@color/whiteColors"
-        app:tabGravity="center"
         app:tabBackground="@drawable/tab_backgroud"
+        app:tabGravity="center"
         app:tabIndicatorColor="@color/greenColors"
         app:tabMode="scrollable"
         app:tabSelectedTextColor="@color/greenColors"
         app:tabTextAppearance="@style/TabLayout.TabText"
         app:tabTextColor="@color/hintColors" />
 
-    <cn.bingoogolapple.refreshlayout.BGARefreshLayout
-        android:id="@+id/mRefreshLayout"
-        style="@style/MatchAuto">
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv"
-            style="@style/MatchMatch"
-            android:layout_marginTop="@dimen/dimen5"
-            android:overScrollMode="never"
-            android:paddingLeft="@dimen/dimen2"
-            android:paddingRight="@dimen/dimen2"
-            android:scrollbars="none"
-            tools:listitem="@layout/item_mystrategy" />
-
-    </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
+    <FrameLayout
+        android:id="@+id/main_content"
+        style="@style/MatchMatch" />
 
     <include layout="@layout/common_error" />
+
 
 </LinearLayout>

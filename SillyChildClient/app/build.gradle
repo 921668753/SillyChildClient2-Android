@@ -226,8 +226,15 @@ dependencies {
     /**
      * 友盟
      */
-    compile 'com.umeng.sdk:common:latest.integration'
-    compile 'com.umeng.sdk:analytics:latest.integration'
+//    compile 'com.umeng.sdk:common:latest.integration'
+    compile project(path: ':UMLibrary')
+    //友盟社会化分享
+//    compile 'com.umeng.sdk:share-core:latest.integration'
+//    compile 'com.umeng.sdk:share-qq:latest.integration'
+//    compile 'com.umeng.sdk:share-wechat:latest.integration'
+//    compile 'com.umeng.sdk:share-sina:latest.integration'
+//分享面板
+//    compile 'com.umeng.sdk:shareboard-widget:6.9.1'
 
     /**
      * 腾讯bugly
@@ -249,19 +256,9 @@ dependencies {
     // compile 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
     implementation files('libs/alipaySdk-20180316.jar')
     implementation files('libs/BaiduLBS_Android.jar')
-    implementation files('libs/open_sdk_r5990_lite.jar')
-    implementation files('libs/SecurityEnvSDK-release-1.1.0.jar')
-    implementation files('libs/umeng-share-core-6.9.3.jar')
-    implementation files('libs/umeng-share-QQ-full-6.9.3.jar')
-    implementation files('libs/umeng-share-sina-simplify-6.9.3.jar')
-    implementation files('libs/umeng-share-wechat-full-6.9.3.jar')
-    implementation files('libs/umeng-shareboard-widget-6.9.3.jar')
-    implementation files('libs/umeng-sharetool-6.9.3.jar')
 
     implementation files('libs/UPPayAssistEx.jar')
     implementation files('libs/UPPayPluginExPro.jar')
-
-    implementation files('libs/wechat-sdk-android-without-mta-5.1.4.jar')
 
     compile project(path: ':CallKit')
 }

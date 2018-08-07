@@ -9,6 +9,7 @@ import com.common.cklibrary.utils.httputil.HttpUtilParams;
 import com.common.cklibrary.utils.httputil.ResponseListener;
 import com.kymjs.common.StringUtils;
 import com.kymjs.rxvolley.client.HttpParams;
+import com.sillykid.app.R;
 import com.sillykid.app.entity.application.RongCloudBean;
 import com.sillykid.app.retrofit.RequestClient;
 
@@ -67,10 +68,18 @@ public class UserInfoEngine {
             public void onSuccess(String response) {
                 RongCloudBean rongCloudBean = (RongCloudBean) JsonUtil.json2Obj(response, RongCloudBean.class);
                 if (RongIM.getInstance() != null && rongCloudBean.getData() != null && !StringUtils.isEmpty(rongCloudBean.getData().getFace())) {
-                    if (userid.startsWith("S") && !StringUtils.isEmpty(rongCloudBean.getData().getStoreName())) {
+                    String path = "";
+                    if (StringUtils.isEmpty(rongCloudBean.getData().getStoreLog()) || StringUtils.isEmpty(rongCloudBean.getData().getFace())) {
+                        path = "android.resource://" + context.getApplicationContext().getPackageName() + "/" + R.mipmap.avatar;
+                    }
+                    if (userid.startsWith("S") && !StringUtils.isEmpty(rongCloudBean.getData().getStoreName()) && !StringUtils.isEmpty(rongCloudBean.getData().getStoreLog())) {
                         userInfo = new UserInfo(userid + "", rongCloudBean.getData().getStoreName(), Uri.parse(rongCloudBean.getData().getStoreLog()));
-                    } else {
+                    } else if (userid.startsWith("S") && !StringUtils.isEmpty(rongCloudBean.getData().getStoreName())) {
+                        userInfo = new UserInfo(userid + "", rongCloudBean.getData().getStoreName(), Uri.parse(path));
+                    } else if (!StringUtils.isEmpty(rongCloudBean.getData().getNickname()) && !StringUtils.isEmpty(rongCloudBean.getData().getFace())) {
                         userInfo = new UserInfo(userid + "", rongCloudBean.getData().getNickname(), Uri.parse(rongCloudBean.getData().getFace()));
+                    } else {
+                        userInfo = new UserInfo(userid + "", rongCloudBean.getData().getNickname(), Uri.parse(path));
                     }
                     if (mListener != null) {
                         mListener.onResult(userInfo);

@@ -180,7 +180,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -319,7 +319,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -438,7 +438,7 @@ public class RequestClient {
 //        doServer(new TokenCallback() {
 //            @Override
 //            public void execute() {
-//                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+//                String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //                if (StringUtils.isEmpty(accessToken)) {
 //                    listener.onFailure(NumericConstants.TOLINGIN + "");
 //                    return;
@@ -495,7 +495,7 @@ public class RequestClient {
      * 获取视频详细信息
      */
     public static void getVideoDetail(Context context, HttpParams httpParams, ResponseListener<String> listener) {
-        String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+        String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
         if (!StringUtils.isEmpty(cookies)) {
             httpParams.putHeaders("Cookie", cookies);
         }
@@ -516,7 +516,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -585,7 +585,7 @@ public class RequestClient {
      * 首页---更多分类----商品列表----商品详情
      */
     public static void getGoodDetail(Context context, HttpParams httpParams, ResponseListener<String> listener) {
-        String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+        String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
         httpParams.putHeaders("Cookie", cookies);
         HttpRequest.requestGetHttp(context, URLConstants.GOODDETAIL, httpParams, false, listener);
     }
@@ -604,7 +604,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -622,7 +622,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -640,7 +640,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -659,7 +659,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -779,7 +779,7 @@ public class RequestClient {
      * 首页----达人详情
      */
     public static void getLocalTalentDetails(HttpParams httpParams, String talent_id, final ResponseListener<String> listener) {
-//        String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+//        String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //        HttpRequest.requestGetHttp(URLConstants.TALENTDETAILS + "&talent_id=" + talent_id + "&token=" + accessToken, httpParams, listener);
     }
 
@@ -792,7 +792,7 @@ public class RequestClient {
 //        doServer(new TokenCallback() {
 //            @Override
 //            public void execute() {
-//                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+//                String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //                if (StringUtils.isEmpty(accessToken)) {
 //                    listener.onFailure(NumericConstants.TOLINGIN + "");
 //                    return;
@@ -831,7 +831,7 @@ public class RequestClient {
      * 社区----获取帖子详情
      */
     public static void getDynamicDetails(Context context, HttpParams httpParams, ResponseListener<String> listener) {
-        String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+        String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
         if (!StringUtils.isEmpty(cookies)) {
             httpParams.putHeaders("Cookie", cookies);
         }
@@ -846,7 +846,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -862,7 +862,7 @@ public class RequestClient {
      */
     public static void getOtherUserInfo(Context context, HttpParams httpParams, ResponseListener<String> listener) {
         Log.d("tag", "getOtherUserInfo");
-        String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+        String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
         if (!StringUtils.isEmpty(cookies)) {
             httpParams.putHeaders("Cookie", cookies);
         }
@@ -882,7 +882,7 @@ public class RequestClient {
      */
     public static void getCommentDetails(Context context, HttpParams httpParams, ResponseListener<String> listener) {
         Log.d("tag", "getCommentDetails");
-        String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+        String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
         if (!StringUtils.isEmpty(cookies)) {
             httpParams.putHeaders("Cookie", cookies);
         }
@@ -897,7 +897,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -917,7 +917,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -936,7 +936,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -956,7 +956,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -976,7 +976,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -993,7 +993,7 @@ public class RequestClient {
      */
     public static void getPostComment(Context context, HttpParams httpParams, int type, ResponseListener<String> listener) {
         Log.d("tag", "getPostComment");
-        String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+        String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
         if (!StringUtils.isEmpty(cookies)) {
             httpParams.putHeaders("Cookie", cookies);
         }
@@ -1040,7 +1040,7 @@ public class RequestClient {
      * 首页----攻略详情
      */
     public static void getStrategyDetails(HttpParams httpParams, int id, final ResponseListener<String> listener) {
-//        String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+//        String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //        HttpRequest.requestGetHttp(URLConstants.HOTGUIDEDETAIL + "&guide_id=" + id + "&token=" + accessToken, httpParams, listener);
     }
 
@@ -1052,7 +1052,7 @@ public class RequestClient {
 //        doServer(new TokenCallback() {
 //            @Override
 //            public void execute() {
-//                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+//                String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //                if (StringUtils.isEmpty(accessToken)) {
 //                    listener.onFailure(NumericConstants.TOLINGIN + "");
 //                    return;
@@ -1078,7 +1078,7 @@ public class RequestClient {
 //        doServer(new TokenCallback() {
 //            @Override
 //            public void execute() {
-//                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+//                String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //                if (StringUtils.isEmpty(accessToken)) {
 //                    listener.onFailure(NumericConstants.TOLINGIN + "");
 //                    return;
@@ -1151,8 +1151,8 @@ public class RequestClient {
      * 首页----包车定制---包车产品详情
      */
     public static void getCharterDetails(HttpParams httpParams, final ResponseListener<String> listener) {
-        String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
-        httpParams.put("token", accessToken);
+    //    String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
+    //    httpParams.put("token", accessToken);
         //   HttpRequest.requestGetHttp(URLConstants.PACKCARPRODUCT, httpParams, listener);
     }
 
@@ -1164,7 +1164,7 @@ public class RequestClient {
 //        doServer(new TokenCallback() {
 //            @Override
 //            public void execute() {
-//                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+//                String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //                if (StringUtils.isEmpty(accessToken)) {
 //                    listener.onFailure(NumericConstants.TOLINGIN + "");
 //                    return;
@@ -1203,7 +1203,7 @@ public class RequestClient {
 //        doServer(new TokenCallback() {
 //            @Override
 //            public void execute() {
-//                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+//                String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //                if (StringUtils.isEmpty(accessToken)) {
 //                    listener.onFailure(NumericConstants.TOLINGIN + "");
 //                    return;
@@ -1222,7 +1222,7 @@ public class RequestClient {
 //        doServer(new TokenCallback() {
 //            @Override
 //            public void execute() {
-//                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+//                String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //                if (StringUtils.isEmpty(accessToken)) {
 //                    listener.onFailure(NumericConstants.TOLINGIN + "");
 //                    return;
@@ -1242,7 +1242,7 @@ public class RequestClient {
 //        doServer(new TokenCallback() {
 //            @Override
 //            public void execute() {
-//                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+//                String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //                if (StringUtils.isEmpty(accessToken)) {
 //                    listener.onFailure(NumericConstants.TOLINGIN + "");
 //                    return;
@@ -1261,7 +1261,7 @@ public class RequestClient {
 //        doServer(new TokenCallback() {
 //            @Override
 //            public void execute() {
-//                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+//                String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //                if (StringUtils.isEmpty(accessToken)) {
 //                    listener.onFailure(NumericConstants.TOLINGIN + "");
 //                    return;
@@ -1280,7 +1280,7 @@ public class RequestClient {
 //        doServer(new TokenCallback() {
 //            @Override
 //            public void execute() {
-//                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+//                String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //                if (StringUtils.isEmpty(accessToken)) {
 //                    listener.onFailure(NumericConstants.TOLINGIN + "");
 //                    return;
@@ -1300,7 +1300,7 @@ public class RequestClient {
 //        doServer(new TokenCallback() {
 //            @Override
 //            public void execute() {
-//                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+//                String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //                if (StringUtils.isEmpty(accessToken)) {
 //                    listener.onFailure(NumericConstants.TOLINGIN + "");
 //                    return;
@@ -1318,7 +1318,7 @@ public class RequestClient {
 //        doServer(new TokenCallback() {
 //            @Override
 //            public void execute() {
-//                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+//                String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //                if (StringUtils.isEmpty(accessToken)) {
 //                    listener.onFailure(NumericConstants.TOLINGIN + "");
 //                    return;
@@ -1338,7 +1338,7 @@ public class RequestClient {
 //        doServer(new TokenCallback() {
 //            @Override
 //            public void execute() {
-//                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+//                String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //                if (StringUtils.isEmpty(accessToken)) {
 //                    listener.onFailure(NumericConstants.TOLINGIN + "");
 //                    return;
@@ -1365,7 +1365,7 @@ public class RequestClient {
      * 首页----包车定制----精品路线详情
      */
     public static void getRouteDetails(HttpParams httpParams, String id, final ResponseListener<String> listener) {
-        String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+    //    String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
         //    HttpRequest.requestGetHttp(URLConstants.ROUTEDETAILS1 + "&id=" + id + "&token=" + accessToken, httpParams, listener);
     }
 
@@ -1377,7 +1377,7 @@ public class RequestClient {
 //        doServer(new TokenCallback() {
 //            @Override
 //            public void execute() {
-//                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+//                String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //                if (StringUtils.isEmpty(accessToken)) {
 //                    listener.onFailure(NumericConstants.TOLINGIN + "");
 //                    return;
@@ -1414,7 +1414,7 @@ public class RequestClient {
 //        doServer(new TokenCallback() {
 //            @Override
 //            public void execute() {
-//                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+//                String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //                if (StringUtils.isEmpty(accessToken)) {
 //                    listener.onFailure(NumericConstants.TOLINGIN + "");
 //                    return;
@@ -1457,7 +1457,7 @@ public class RequestClient {
      * 首页-----动态详情
      */
     public static void getDynamicsDetails(HttpParams httpParams, String id, final ResponseListener<String> listener) {
-        String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+    //    String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //        HttpRequest.requestGetHttp(URLConstants.GETDYNAMICDETAIL + "&id=" + id + "&token=" + accessToken, httpParams, listener);
     }
 
@@ -1469,7 +1469,7 @@ public class RequestClient {
 //        doServer(new TokenCallback() {
 //            @Override
 //            public void execute() {
-//                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+//                String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //                if (StringUtils.isEmpty(accessToken)) {
 //                    listener.onFailure(NumericConstants.TOLINGIN + "");
 //                    return;
@@ -1492,7 +1492,7 @@ public class RequestClient {
 //        doServer(new TokenCallback() {
 //            @Override
 //            public void execute() {
-//                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+//                String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //                if (StringUtils.isEmpty(accessToken)) {
 //                    listener.onFailure(NumericConstants.TOLINGIN + "");
 //                    return;
@@ -1518,7 +1518,7 @@ public class RequestClient {
 //        doServer(new TokenCallback() {
 //            @Override
 //            public void execute() {
-//                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+//                String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //                if (StringUtils.isEmpty(accessToken)) {
 //                    listener.onFailure(NumericConstants.TOLINGIN + "");
 //                    return;
@@ -1541,7 +1541,7 @@ public class RequestClient {
 //        doServer(new TokenCallback() {
 //            @Override
 //            public void execute() {
-//                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+//                String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //                if (StringUtils.isEmpty(accessToken)) {
 //                    listener.onFailure(NumericConstants.TOLINGIN + "");
 //                    return;
@@ -1561,7 +1561,7 @@ public class RequestClient {
 //        doServer(new TokenCallback() {
 //            @Override
 //            public void execute() {
-//                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+//                String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //                if (StringUtils.isEmpty(accessToken)) {
 //                    listener.onFailure(NumericConstants.TOLINGIN + "");
 //                    return;
@@ -1582,8 +1582,8 @@ public class RequestClient {
      * 首页-----动态详情---- 得到动态评论
      */
     public static void getDynamicsCommentaries(HttpParams httpParams, final ResponseListener<String> listener) {
-        String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
-        httpParams.put("token", accessToken);
+   //     String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
+   //     httpParams.put("token", accessToken);
         //    HttpRequest.requestGetHttp(URLConstants.DYNAMICSCOMMENTARIES, httpParams, listener);
     }
 
@@ -1592,7 +1592,7 @@ public class RequestClient {
      * 获取系统消息列表
      */
     public static void getSystemMessage(HttpParams httpParams, int page, final ResponseListener<String> listener) {
-        String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+      //  String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //        httpParams.put("token", accessToken);
 //        HttpRequest.requestGetHttp(URLConstants.SYSTEMMESSAGELIST + "&p=" + page + "&token=" + accessToken, httpParams, listener);
     }
@@ -1614,7 +1614,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -1632,7 +1632,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -1651,7 +1651,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -1666,7 +1666,7 @@ public class RequestClient {
      * 设置系统消息已读
      */
     public static void getReadMessage(HttpParams httpParams, String id, final ResponseListener<String> listener) {
-//        String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+//        String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //        httpParams.put("token", accessToken);
         //    HttpRequest.requestGetHttp(URLConstants.READMESSAGE + "&id=" + id, httpParams, listener);
     }
@@ -1678,7 +1678,7 @@ public class RequestClient {
 //        doServer(new TokenCallback() {
 //            @Override
 //            public void execute() {
-//                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+//                String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //                if (StringUtils.isEmpty(accessToken)) {
 //                    listener.onFailure(NumericConstants.TOLINGIN + "");
 //                    return;
@@ -1723,7 +1723,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -1742,7 +1742,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -1762,7 +1762,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -1781,7 +1781,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -1801,7 +1801,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -1821,7 +1821,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -1858,7 +1858,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -1878,7 +1878,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -1899,7 +1899,7 @@ public class RequestClient {
 //        doServer(new TokenCallback() {
 //            @Override
 //            public void execute() {
-//                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+//                String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //                if (StringUtils.isEmpty(accessToken)) {
 //                    listener.onFailure(NumericConstants.TOLINGIN + "");
 //                    return;
@@ -1919,7 +1919,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -1939,7 +1939,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -1959,7 +1959,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -1979,7 +1979,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -1998,7 +1998,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -2017,7 +2017,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -2037,7 +2037,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -2057,7 +2057,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -2076,7 +2076,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -2095,7 +2095,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -2114,7 +2114,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -2133,7 +2133,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -2153,7 +2153,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -2172,7 +2172,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -2191,7 +2191,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -2210,7 +2210,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -2230,7 +2230,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -2249,7 +2249,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -2268,7 +2268,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -2288,7 +2288,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -2307,7 +2307,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -2326,7 +2326,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -2346,7 +2346,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -2365,7 +2365,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -2385,7 +2385,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -2405,7 +2405,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -2424,7 +2424,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -2443,7 +2443,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -2462,7 +2462,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -2481,7 +2481,7 @@ public class RequestClient {
 //        doServer(new TokenCallback() {
 //            @Override
 //            public void execute() {
-//                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+//                String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //                if (StringUtils.isEmpty(accessToken)) {
 //                    listener.onFailure(NumericConstants.TOLINGIN + "");
 //                    return;
@@ -2501,7 +2501,7 @@ public class RequestClient {
 //        doServer(new TokenCallback() {
 //            @Override
 //            public void execute() {
-//                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+//                String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //                if (StringUtils.isEmpty(accessToken)) {
 //                    listener.onFailure(NumericConstants.TOLINGIN + "");
 //                    return;
@@ -2521,7 +2521,7 @@ public class RequestClient {
 //        doServer(new TokenCallback() {
 //            @Override
 //            public void execute() {
-//                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+//                String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //                if (StringUtils.isEmpty(accessToken)) {
 //                    listener.onFailure(NumericConstants.TOLINGIN + "");
 //                    return;
@@ -2541,7 +2541,7 @@ public class RequestClient {
 //        doServer(new TokenCallback() {
 //            @Override
 //            public void execute() {
-//                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+//                String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //                if (StringUtils.isEmpty(accessToken)) {
 //                    listener.onFailure(NumericConstants.TOLINGIN + "");
 //                    return;
@@ -2561,7 +2561,7 @@ public class RequestClient {
 //        doServer(new TokenCallback() {
 //            @Override
 //            public void execute() {
-//                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+//                String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //                if (StringUtils.isEmpty(accessToken)) {
 //                    listener.onFailure(NumericConstants.TOLINGIN + "");
 //                    return;
@@ -2584,7 +2584,7 @@ public class RequestClient {
 //        doServer(new TokenCallback() {
 //            @Override
 //            public void execute() {
-//                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+//                String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //                if (StringUtils.isEmpty(accessToken)) {
 //                    listener.onFailure(NumericConstants.TOLINGIN + "");
 //                    return;
@@ -2605,7 +2605,7 @@ public class RequestClient {
 //        doServer(new TokenCallback() {
 //            @Override
 //            public void execute() {
-//                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+//                String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //                if (StringUtils.isEmpty(accessToken)) {
 //                    listener.onFailure(NumericConstants.TOLINGIN + "");
 //                    return;
@@ -2624,7 +2624,7 @@ public class RequestClient {
 //        doServer(new TokenCallback() {
 //            @Override
 //            public void execute() {
-//                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+//                String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //                if (StringUtils.isEmpty(accessToken)) {
 //                    listener.onFailure(NumericConstants.TOLINGIN + "");
 //                    return;
@@ -2643,7 +2643,7 @@ public class RequestClient {
 //        doServer(new TokenCallback() {
 //            @Override
 //            public void execute() {
-//                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+//                String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //                if (StringUtils.isEmpty(accessToken)) {
 //                    listener.onFailure(NumericConstants.TOLINGIN + "");
 //                    return;
@@ -2662,7 +2662,7 @@ public class RequestClient {
 //        doServer(new TokenCallback() {
 //            @Override
 //            public void execute() {
-//                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+//                String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //                if (StringUtils.isEmpty(accessToken)) {
 //                    listener.onFailure(NumericConstants.TOLINGIN + "");
 //                    return;
@@ -2681,7 +2681,7 @@ public class RequestClient {
 //        doServer(new TokenCallback() {
 //            @Override
 //            public void execute() {
-//                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+//                String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //                if (StringUtils.isEmpty(accessToken)) {
 //                    listener.onFailure(NumericConstants.TOLINGIN + "");
 //                    return;
@@ -2700,7 +2700,7 @@ public class RequestClient {
 //        doServer(new TokenCallback() {
 //            @Override
 //            public void execute() {
-//                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+//                String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //                if (StringUtils.isEmpty(accessToken)) {
 //                    listener.onFailure(NumericConstants.TOLINGIN + "");
 //                    return;
@@ -2720,7 +2720,7 @@ public class RequestClient {
 //        doServer(new TokenCallback() {
 //            @Override
 //            public void execute() {
-//                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+//                String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //                if (StringUtils.isEmpty(accessToken)) {
 //                    listener.onFailure(NumericConstants.TOLINGIN + "");
 //                    return;
@@ -2739,7 +2739,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -2758,7 +2758,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -2777,7 +2777,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -2797,7 +2797,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -2817,7 +2817,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -2837,7 +2837,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -2856,7 +2856,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -2875,7 +2875,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -2893,7 +2893,7 @@ public class RequestClient {
 //        doServer(new TokenCallback() {
 //            @Override
 //            public void execute() {
-//                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+//                String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //                if (StringUtils.isEmpty(accessToken)) {
 //                    listener.onFailure(NumericConstants.TOLINGIN + "");
 //                    return;
@@ -2912,7 +2912,7 @@ public class RequestClient {
 //        doServer(new TokenCallback() {
 //            @Override
 //            public void execute() {
-//                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+//                String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //                if (StringUtils.isEmpty(accessToken)) {
 //                    listener.onFailure(NumericConstants.TOLINGIN + "");
 //                    return;
@@ -2930,7 +2930,7 @@ public class RequestClient {
 //        doServer(new TokenCallback() {
 //            @Override
 //            public void execute() {
-//                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+//                String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //                if (StringUtils.isEmpty(accessToken)) {
 //                    listener.onFailure(NumericConstants.TOLINGIN + "");
 //                    return;
@@ -2947,7 +2947,7 @@ public class RequestClient {
 //        doServer(new TokenCallback() {
 //            @Override
 //            public void execute() {
-//                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+//                String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //                if (StringUtils.isEmpty(accessToken)) {
 //                    listener.onFailure(NumericConstants.TOLINGIN + "");
 //                    return;
@@ -2964,7 +2964,7 @@ public class RequestClient {
 //        doServer(new TokenCallback() {
 //            @Override
 //            public void execute() {
-//                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+//                String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //                if (StringUtils.isEmpty(accessToken)) {
 //                    listener.onFailure(NumericConstants.TOLINGIN + "");
 //                    return;
@@ -2982,7 +2982,7 @@ public class RequestClient {
 //        doServer(new TokenCallback() {
 //            @Override
 //            public void execute() {
-//                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+//                String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //                if (StringUtils.isEmpty(accessToken)) {
 //                    listener.onFailure(NumericConstants.TOLINGIN + "");
 //                    return;
@@ -3000,7 +3000,7 @@ public class RequestClient {
 //        doServer(new TokenCallback() {
 //            @Override
 //            public void execute() {
-//                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+//                String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //                if (StringUtils.isEmpty(accessToken)) {
 //                    listener.onFailure(NumericConstants.TOLINGIN + "");
 //                    return;
@@ -3017,7 +3017,7 @@ public class RequestClient {
 //        doServer(new TokenCallback() {
 //            @Override
 //            public void execute() {
-//                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+//                String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //                if (StringUtils.isEmpty(accessToken)) {
 //                    listener.onFailure(NumericConstants.TOLINGIN + "");
 //                    return;
@@ -3034,7 +3034,7 @@ public class RequestClient {
 //        doServer(new TokenCallback() {
 //            @Override
 //            public void execute() {
-//                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+//                String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //                if (StringUtils.isEmpty(accessToken)) {
 //                    listener.onFailure(NumericConstants.TOLINGIN + "");
 //                    return;
@@ -3052,7 +3052,7 @@ public class RequestClient {
 //        doServer(new TokenCallback() {
 //            @Override
 //            public void execute() {
-//                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+//                String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //                if (StringUtils.isEmpty(accessToken)) {
 //                    listener.onFailure(NumericConstants.TOLINGIN + "");
 //                    return;
@@ -3070,7 +3070,7 @@ public class RequestClient {
 //        doServer(new TokenCallback() {
 //            @Override
 //            public void execute() {
-//                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+//                String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //                if (StringUtils.isEmpty(accessToken)) {
 //                    listener.onFailure(NumericConstants.TOLINGIN + "");
 //                    return;
@@ -3088,7 +3088,7 @@ public class RequestClient {
 //        doServer(new TokenCallback() {
 //            @Override
 //            public void execute() {
-//                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+//                String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //                if (StringUtils.isEmpty(accessToken)) {
 //                    listener.onFailure(NumericConstants.TOLINGIN + "");
 //                    return;
@@ -3106,7 +3106,7 @@ public class RequestClient {
 //        doServer(new TokenCallback() {
 //            @Override
 //            public void execute() {
-//                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+//                String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //                if (StringUtils.isEmpty(accessToken)) {
 //                    listener.onFailure(NumericConstants.TOLINGIN + "");
 //                    return;
@@ -3125,7 +3125,7 @@ public class RequestClient {
 //        doServer(new TokenCallback() {
 //            @Override
 //            public void execute() {
-//                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+//                String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //                if (StringUtils.isEmpty(accessToken)) {
 //                    listener.onFailure(NumericConstants.TOLINGIN + "");
 //                    return;
@@ -3144,7 +3144,7 @@ public class RequestClient {
 //        doServer(new TokenCallback() {
 //            @Override
 //            public void execute() {
-//                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+//                String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //                if (StringUtils.isEmpty(accessToken)) {
 //                    listener.onFailure(NumericConstants.TOLINGIN + "");
 //                    return;
@@ -3182,7 +3182,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -3197,7 +3197,7 @@ public class RequestClient {
      * 获取会员登录状态
      */
     public static void getIsLogin(Context context, HttpParams httpParams, ResponseListener<String> listener) {
-        String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+        String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
         if (StringUtils.isEmpty(cookies)) {
             listener.onFailure(NumericConstants.TOLINGIN + "");
             return;
@@ -3213,7 +3213,7 @@ public class RequestClient {
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
                 if (StringUtils.isEmpty(cookies)) {
                     listener.onFailure(NumericConstants.TOLINGIN + "");
                     return;
@@ -3236,7 +3236,7 @@ public class RequestClient {
             return;
         }
         Log.d("tag", "isNetWorkAvailable" + true);
-        String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+        String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
         if (StringUtils.isEmpty(cookies)) {
             Log.d("tag", "onFailure");
             UserUtil.clearUserInfo(context);

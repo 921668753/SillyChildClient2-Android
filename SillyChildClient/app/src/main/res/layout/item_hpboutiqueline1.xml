@@ -11,6 +11,7 @@
         android:id="@+id/img_boutiQueLine"
         android:layout_width="@dimen/dimen117"
         android:layout_height="@dimen/dimen97"
+        android:scaleType="fitXY"
         android:layout_marginBottom="@dimen/dimen16"
         android:layout_marginTop="@dimen/dimen16"
         android:src="@mipmap/placeholderfigure" />

@@ -36,7 +36,7 @@ public abstract class RevertBouncedDialog extends BaseDialog implements View.OnC
     private int type = 0;
 
     public RevertBouncedDialog(Context context) {
-        super(context, R.style.MyDialog1);
+        super(context, R.style.MyDialog);
     }
 
     @Override

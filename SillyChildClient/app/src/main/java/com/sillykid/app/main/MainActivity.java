@@ -36,7 +36,6 @@ import static com.sillykid.app.constant.StringNewConstants.KEY_EXTRAS;
 import static com.sillykid.app.constant.StringNewConstants.KEY_MESSAGE;
 import static com.sillykid.app.constant.StringNewConstants.MESSAGE_RECEIVED_ACTION;
 
-@SuppressWarnings("deprecation")
 public class MainActivity extends BaseActivity implements MainContract.View {
 
     @BindView(id = R.id.bottombar_homePage, click = true)
@@ -86,7 +85,7 @@ public class MainActivity extends BaseActivity implements MainContract.View {
 
 
     private BaseFragment contentFragment;
-    private BaseFragment contentFragment1;
+    public CommunityFragment contentFragment1;
     private BaseFragment contentFragment2;
     private BaseFragment contentFragment3;
     private BaseFragment contentFragment4;

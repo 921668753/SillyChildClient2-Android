@@ -150,6 +150,7 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
     private boolean isFirst = true;
 
     private Intent intentservice;
+
     private MainReceiver mainReceiver;
 
     @Override

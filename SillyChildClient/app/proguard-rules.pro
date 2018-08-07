@@ -250,9 +250,6 @@
 
 # RongCloud SDK
 -keep class io.rong.** {*;}
--keep class com.huawei.android.**
--keep class io.rong.imkit.plugin.**
--keep class com.parse.**
 -keep class * implements io.rong.imlib.model.MessageContent {*;}
 -dontwarn io.rong.push.**
 -dontnote com.xiaomi.**
@@ -277,6 +274,20 @@
 -ignorewarnings
 
 -keep class io.rong.app.DemoNotificationReceiver {*;}
+
+-ignorewarning
+-keepattributes *Annotation*
+-keepattributes Exceptions
+-keepattributes InnerClasses
+-keepattributes Signature
+-keepattributes SourceFile,LineNumberTable
+-keep class com.hianalytics.android.**{*;}
+-keep class com.huawei.updatesdk.**{*;}
+-keep class com.huawei.hms.**{*;}
+
+-keep class com.huawei.android.hms.agent.**{*;}
+-keep class com.huawei.gamebox.plugin.gameservice.**{*;}
+
 
 ## ----------------------------------
 ##       七牛云

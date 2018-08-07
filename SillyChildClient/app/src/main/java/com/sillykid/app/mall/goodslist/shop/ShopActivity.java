@@ -8,14 +8,11 @@ import com.common.cklibrary.common.BaseActivity;
 import com.common.cklibrary.common.BaseFragment;
 import com.common.cklibrary.common.BindView;
 import com.common.cklibrary.common.ViewInject;
-import com.common.cklibrary.utils.ActivityTitleUtils;
 import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.rx.MsgEvent;
 import com.sillykid.app.R;
-import com.sillykid.app.constant.NumericConstants;
 import com.sillykid.app.entity.mall.goodslist.shop.ShopBean;
 import com.sillykid.app.loginregister.LoginActivity;
-import com.sillykid.app.mine.mycollection.CollectionContract;
 
 import cn.bingoogolapple.titlebar.BGATitleBar;
 
@@ -192,7 +189,9 @@ public class ShopActivity extends BaseActivity implements ShopContract.View {
     @Override
     public void errorMsg(String msg, int flag) {
         dismissLoadingDialog();
-        if (isLogin(msg)) {
+        if (flag == 0 && isLogin(msg)) {
+
+        } else if (flag != 0 && isLogin(msg)) {
             showActivity(aty, LoginActivity.class);
         } else {
             ViewInject.toast(msg);

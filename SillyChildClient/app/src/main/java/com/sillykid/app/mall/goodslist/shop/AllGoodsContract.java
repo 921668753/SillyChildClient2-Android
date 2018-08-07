@@ -8,6 +8,7 @@ import com.common.cklibrary.common.BaseView;
  */
 
 public interface AllGoodsContract {
+
     interface Presenter extends BasePresenter {
 
         /**

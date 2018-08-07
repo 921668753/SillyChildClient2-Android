@@ -48,7 +48,6 @@ import com.sillykid.app.receivers.MainCallBack;
 import com.sillykid.app.receivers.MainReceiver;
 import com.sillykid.app.services.MainService;
 import com.sillykid.app.utils.GlideImageLoader;
-import com.sillykid.app.utils.SpacesItemDecoration;
 
 import java.util.List;
 

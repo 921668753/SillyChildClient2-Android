@@ -40,6 +40,7 @@ import com.sillykid.app.homepage.message.interactivemessage.imuitl.UserUtil;
 import com.sillykid.app.retrofit.uploadimg.UploadManagerUtil;
 
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
@@ -104,7 +105,7 @@ public class RequestClient {
     private static void upLoadImgQiNiuYun(Context context, File file, int type, ResponseListener<String> listener) {
         String token = PreferenceHelper.readString(context, StringConstants.FILENAME, "qiNiuToken");
         //     if (type == 0) {
-        String key = "SHZS_" + UserUtil.getRcId(context) + "_" + file.getName();
+        String key = null;
         Log.d("ReadFragment", "key" + key);
         if (type == 0) {
             //参数 图片路径,图片名,token,成功的回调
@@ -114,7 +115,14 @@ public class RequestClient {
                     Log.d("ReadFragment", "key" + key + "responseInfo" + JsonUtil.obj2JsonString(responseInfo) + "jsObj:" + String.valueOf(jsonObject));
                     if (responseInfo.isOK()) {
                         String host = PreferenceHelper.readString(context, StringConstants.FILENAME, "qiNiuImgHost");
-                        String headpicPath = host + key;
+                        String headpicPath = null;
+                        try {
+                            headpicPath = host + jsonObject.getString("name");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            listener.onFailure(context.getString(R.string.failedUploadPicture));
+                            return;
+                        }
                         Log.i("ReadFragment", "complete: " + headpicPath);
                         listener.onSuccess(headpicPath);
                         return;
@@ -149,7 +157,14 @@ public class RequestClient {
                     Log.d("ReadFragment", "key" + key + "responseInfo" + JsonUtil.obj2JsonString(responseInfo) + "jsObj:" + String.valueOf(jsonObject));
                     if (responseInfo.isOK()) {
                         String host = PreferenceHelper.readString(context, StringConstants.FILENAME, "qiNiuImgHost");
-                        String headpicPath = host + key;
+                        String headpicPath = null;
+                        try {
+                            headpicPath = host + jsonObject.getString("name");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            listener.onFailure(context.getString(R.string.failedUploadPicture));
+                            return;
+                        }
                         Log.i("ReadFragment", "complete: " + headpicPath);
                         listener.onSuccess(headpicPath);
                         return;
@@ -240,7 +255,7 @@ public class RequestClient {
     private static void upLoadImgQiNiuYun(Context context, File file, int type, UploadOptions options, ResponseListener<String> listener) {
         String token = PreferenceHelper.readString(context, StringConstants.FILENAME, "qiNiuToken");
         //     if (type == 0) {
-        String key = "SHZS_" + UserUtil.getRcId(context) + "_" + file.getName();
+        String key = null;
         Log.d("ReadFragment", "key" + key);
         if (type == 0) {
             //参数 图片路径,图片名,token,成功的回调
@@ -1151,8 +1166,8 @@ public class RequestClient {
      * 首页----包车定制---包车产品详情
      */
     public static void getCharterDetails(HttpParams httpParams, final ResponseListener<String> listener) {
-    //    String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
-    //    httpParams.put("token", accessToken);
+        //    String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
+        //    httpParams.put("token", accessToken);
         //   HttpRequest.requestGetHttp(URLConstants.PACKCARPRODUCT, httpParams, listener);
     }
 
@@ -1365,7 +1380,7 @@ public class RequestClient {
      * 首页----包车定制----精品路线详情
      */
     public static void getRouteDetails(HttpParams httpParams, String id, final ResponseListener<String> listener) {
-    //    String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
+        //    String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
         //    HttpRequest.requestGetHttp(URLConstants.ROUTEDETAILS1 + "&id=" + id + "&token=" + accessToken, httpParams, listener);
     }
 
@@ -1457,7 +1472,7 @@ public class RequestClient {
      * 首页-----动态详情
      */
     public static void getDynamicsDetails(HttpParams httpParams, String id, final ResponseListener<String> listener) {
-    //    String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
+        //    String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //        HttpRequest.requestGetHttp(URLConstants.GETDYNAMICDETAIL + "&id=" + id + "&token=" + accessToken, httpParams, listener);
     }
 
@@ -1582,8 +1597,8 @@ public class RequestClient {
      * 首页-----动态详情---- 得到动态评论
      */
     public static void getDynamicsCommentaries(HttpParams httpParams, final ResponseListener<String> listener) {
-   //     String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
-   //     httpParams.put("token", accessToken);
+        //     String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
+        //     httpParams.put("token", accessToken);
         //    HttpRequest.requestGetHttp(URLConstants.DYNAMICSCOMMENTARIES, httpParams, listener);
     }
 
@@ -1592,7 +1607,7 @@ public class RequestClient {
      * 获取系统消息列表
      */
     public static void getSystemMessage(HttpParams httpParams, int page, final ResponseListener<String> listener) {
-      //  String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
+        //  String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
 //        httpParams.put("token", accessToken);
 //        HttpRequest.requestGetHttp(URLConstants.SYSTEMMESSAGELIST + "&p=" + page + "&token=" + accessToken, httpParams, listener);
     }

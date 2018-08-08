@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Match45"
+    android:background="@color/whiteColors"
+    android:orientation="horizontal">
+
+
+    <ImageView
+        android:layout_width="@dimen/dimen45"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/dimen10"
+        android:layout_marginRight="@dimen/dimen4"
+        android:paddingBottom="@dimen/dimen14"
+        android:paddingLeft="@dimen/dimen14"
+        android:paddingRight="@dimen/dimen14"
+        android:paddingTop="@dimen/dimen14"
+        android:src="@mipmap/shopping_cart_unselected" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:text="包车人数≥6     行李件数≤7"
+        android:textColor="@color/tabColors"
+        android:textSize="@dimen/textsize14" />
+
+</LinearLayout>

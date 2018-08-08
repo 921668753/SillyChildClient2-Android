@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "D:\\studioWorkspace\\shahaizi2\\SillyChildClient2-Android\\SillyChildClient\\UMLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\umeng_socialize_oauth_dialog.xml",
+        "source": "D:\\studioWorkspace\\shahaizi2\\SillyChildClient2-Android\\SillyChildClient\\UMLibrary\\build\\intermediates\\bundles\\debug\\res\\layout\\umeng_socialize_oauth_dialog.xml"
+    },
+    {
+        "merged": "D:\\studioWorkspace\\shahaizi2\\SillyChildClient2-Android\\SillyChildClient\\UMLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\socialize_share_menu_item.xml",
+        "source": "D:\\studioWorkspace\\shahaizi2\\SillyChildClient2-Android\\SillyChildClient\\UMLibrary\\build\\intermediates\\bundles\\debug\\res\\layout\\socialize_share_menu_item.xml"
+    },
+    {
+        "merged": "D:\\studioWorkspace\\shahaizi2\\SillyChildClient2-Android\\SillyChildClient\\UMLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\umeng_socialize_share.xml",
+        "source": "D:\\studioWorkspace\\shahaizi2\\SillyChildClient2-Android\\SillyChildClient\\UMLibrary\\build\\intermediates\\bundles\\debug\\res\\layout\\umeng_socialize_share.xml"
+    }
+]

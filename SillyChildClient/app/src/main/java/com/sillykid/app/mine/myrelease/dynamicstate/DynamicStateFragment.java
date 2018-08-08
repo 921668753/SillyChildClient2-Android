@@ -45,7 +45,6 @@ public class DynamicStateFragment extends BaseFragment implements DynamicStateCo
     private boolean isresume;
     private Intent jumpintent;
     private PublicPromptDialog publicPromptDialog;
-    private int currentpostion=0;//当前操作的位置
     private UserInfoBean userInfoBean;
 
     @Override
@@ -186,7 +185,6 @@ public class DynamicStateFragment extends BaseFragment implements DynamicStateCo
 
     @Override
     public void masonryOnLongItemClick(View view, int postion) {
-        currentpostion=postion;
         //删除
         if (postion!=0){
             if (publicPromptDialog ==null){

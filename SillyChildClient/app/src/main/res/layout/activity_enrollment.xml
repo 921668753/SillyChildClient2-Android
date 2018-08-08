@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title" />
+
+    <ScrollView
+        style="@style/MatchMatch"
+        android:scrollbars="none">
+
+        <LinearLayout
+            style="@style/MatchMatch"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen175"
+                android:layout_marginTop="@dimen/dimen6"
+                android:scaleType="fitXY"
+                android:src="@mipmap/placeholderfigure" />
+
+
+            <TextView
+                style="@style/MatchWrap"
+                android:layout_marginTop="@dimen/dimen6"
+                android:background="@color/whiteColors"
+                android:paddingBottom="@dimen/dimen12"
+                android:paddingLeft="@dimen/dimen24"
+                android:paddingRight="@dimen/dimen24"
+                android:paddingTop="@dimen/dimen10"
+                android:text="如果你无法简洁的表达你的想法，那只说明你还不够了解它。如果你无法简洁的表达你的想法，那只说明你还不够了解它。如果你无法简洁的表达你的想法，那只说明你还不够了解它。如果你无法简洁的表达你的想法，那只说明你还不够了解它如果你无法简洁的表达你的想法，那只说明你还不够了解它。"
+                android:textColor="@color/hintColors"
+                android:textSize="@dimen/textsize13" />
+
+
+            <TextView
+                style="@style/MatchWrap"
+                android:layout_marginTop="@dimen/dimen6"
+                android:background="@color/whiteColors"
+                android:paddingLeft="@dimen/dimen17"
+                android:paddingTop="@dimen/dimen10"
+                android:text="@string/yourName"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize15" />
+
+
+            <EditText
+                style="@style/Match44"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:hint="@string/yourName"
+                android:paddingLeft="@dimen/dimen17"
+                android:paddingRight="@dimen/dimen17"
+                android:singleLine="true"
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/hintColors"
+                android:textCursorDrawable="@drawable/shape_cursor"
+                android:textSize="@dimen/textsize13" />
+
+
+            <TextView
+                style="@style/MatchWrap"
+                android:layout_marginTop="@dimen/dimen1"
+                android:background="@color/whiteColors"
+                android:paddingLeft="@dimen/dimen17"
+                android:paddingTop="@dimen/dimen10"
+                android:text="@string/contactWay3"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize15" />
+
+
+            <EditText
+                style="@style/Match44"
+                android:background="@color/whiteColors"
+                android:digits="@string/number0"
+                android:gravity="center_vertical"
+                android:hint="@string/contactWay3"
+                android:inputType="phone"
+                android:paddingLeft="@dimen/dimen17"
+                android:paddingRight="@dimen/dimen17"
+                android:singleLine="true"
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/hintColors"
+                android:textCursorDrawable="@drawable/shape_cursor"
+                android:textSize="@dimen/textsize13" />
+
+
+            <TextView
+                style="@style/MatchWrap"
+                android:layout_marginTop="@dimen/dimen1"
+                android:background="@color/whiteColors"
+                android:paddingLeft="@dimen/dimen17"
+                android:paddingTop="@dimen/dimen10"
+                android:text="@string/sillyChildNum"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize15" />
+
+            <EditText
+                style="@style/Match44"
+                android:background="@color/whiteColors"
+                android:digits="@string/alphanumeric1"
+                android:gravity="center_vertical"
+                android:hint="@string/sillyChildNum"
+                android:paddingLeft="@dimen/dimen17"
+                android:paddingRight="@dimen/dimen17"
+                android:singleLine="true"
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/hintColors"
+                android:textCursorDrawable="@drawable/shape_cursor"
+                android:textSize="@dimen/textsize13" />
+
+            <EditText
+                style="@style/MatchWrap"
+                android:layout_marginTop="@dimen/dimen6"
+                android:background="@color/whiteColors"
+                android:gravity="left"
+                android:hint="@string/addNotes"
+                android:minHeight="@dimen/dimen126"
+                android:paddingBottom="@dimen/dimen12"
+                android:paddingLeft="@dimen/dimen17"
+                android:paddingRight="@dimen/dimen17"
+                android:paddingTop="@dimen/dimen12"
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/hintColors"
+                android:textCursorDrawable="@drawable/shape_cursor"
+                android:textSize="@dimen/textsize15" />
+
+
+            <TextView
+                style="@style/Match40"
+                android:layout_marginBottom="@dimen/dimen20"
+                android:layout_marginLeft="@dimen/dimen100"
+                android:layout_marginRight="@dimen/dimen100"
+                android:layout_marginTop="@dimen/dimen29"
+                android:background="@drawable/shape_charter1"
+                android:gravity="center"
+                android:text="@string/determine"
+                android:textColor="@color/whiteColors"
+                android:textSize="@dimen/textsize16" />
+            <!--shape_determine.xml-->
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

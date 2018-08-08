@@ -40,8 +40,10 @@ public class DynamicImgPagerAdapter extends PagerAdapter {
         DynamicDetailsImgBean dynamicDetailsImgBean = list.get(position);
         if (dynamicDetailsImgBean.getCalculateHeight() == 0) {
             dynamicDetailsImgBean.setCalculateHeight(dynamicDetailsImgBean.getCalculateWidth());
+            GlideImageLoader.glideLoaderRaudio(mContext, R.mipmap.placeholderfigure, imageView, 1, (int) dynamicDetailsImgBean.getCalculateWidth(), (int) dynamicDetailsImgBean.getCalculateHeight(), R.mipmap.placeholderfigure);
+        } else {
+            GlideImageLoader.glideLoaderRaudio(mContext, dynamicDetailsImgBean.getUrl() + "?imageView2/0/w/" + dynamicDetailsImgBean.getCalculateWidth() + "/h/" + dynamicDetailsImgBean.getCalculateHeight(), imageView, 1, (int) dynamicDetailsImgBean.getCalculateWidth(), (int) dynamicDetailsImgBean.getCalculateHeight(), R.mipmap.placeholderfigure);
         }
-        GlideImageLoader.glideLoaderRaudio(mContext, dynamicDetailsImgBean.getUrl() + "?imageView2/0/w/" + dynamicDetailsImgBean.getCalculateWidth() + "/h/" + dynamicDetailsImgBean.getCalculateHeight(), imageView, 1, (int) dynamicDetailsImgBean.getCalculateWidth(), (int) dynamicDetailsImgBean.getCalculateHeight(), R.mipmap.placeholderfigure);
         container.addView(view);
         return view;
     }

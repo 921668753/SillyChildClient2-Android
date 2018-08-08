@@ -89,7 +89,7 @@
 
     <!--按天包车游-->
     <color name="byTheDayHintColors">#C7C7CD</color>
-
+    <color name="fF5050Colors">#FF5050</color>
     <!--美食-->
     <color name="gastronomyAddressColors">#7c7979</color>
     <color name="blueColors">#3F96F3</color>

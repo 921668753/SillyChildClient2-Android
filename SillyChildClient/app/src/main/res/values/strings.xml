@@ -34,6 +34,7 @@
     <string name="login">登录</string>
     <string name="number0">0123456789</string>
     <string name="alphanumeric">ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789</string>
+    <string name="alphanumeric1">ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_0123456789</string>
     <string name="accountNumber">帐号</string>
     <string name="accountErroe">帐号错误</string>
     <string name="hintAccountText">请输入号码</string>
@@ -187,6 +188,31 @@
     <string name="people">人</string>
     <string name="peopleWatch">人观看</string>
     <string name="video">视频</string>
+
+
+    <!--活动-->
+    <string name="contactWay3">联系方式</string>
+    <string name="sillyChildNum">傻孩志号</string>
+
+    <!--按天包车-->
+    <string name="travelTime2">行程时间：</string>
+    <string name="journeyBegins">行程出发开始地</string>
+    <string name="fillPlaceDeparture">填写出发地点</string>
+    <string name="journeyEnds">行程结束送达地</string>
+    <string name="fillPlaceService">填写送达地点</string>
+    <string name="contact">联系人</string>
+    <string name="ContactName">联系人姓名</string>
+    <string name="ContactNumber">联系人电话</string>
+    <string name="dueDemand">预定需求</string>
+    <string name="adult1">成人：</string>
+    <string name="children1">儿童：</string>
+    <string name="luggage1">行李：</string>
+
+
+
+
+
+
 
 
     <!--搜索界面-->

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrap"
+    android:background="@color/whiteColors"
+    android:orientation="horizontal">
+
+
+    <ImageView
+        android:layout_width="@dimen/dimen125"
+        android:layout_height="@dimen/dimen84"
+        android:layout_marginLeft="@dimen/dimen24"
+        android:layout_marginBottom="@dimen/dimen14"
+        android:layout_marginTop="@dimen/dimen14"
+        android:scaleType="fitXY"
+        android:src="@mipmap/placeholderfigure" />
+
+
+    <RelativeLayout
+        style="@style/MatchMatch"
+        android:layout_marginLeft="@dimen/dimen8"
+        android:layout_marginRight="@dimen/dimen20">
+
+        <ImageView
+            android:layout_width="@dimen/dimen70"
+            android:layout_height="@dimen/dimen56"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/dimen18"
+            android:src="@mipmap/placeholderfigure" />
+
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/MatchWrap"
+            android:layout_marginTop="@dimen/dimen15"
+            android:maxLines="2"
+            android:text="春游踏青 傻孩志一路相伴"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize15" />
+
+        <TextView
+            style="@style/MatchWrap"
+            android:layout_below="@id/tv_title"
+            android:layout_marginTop="@dimen/dimen10"
+            android:singleLine="true"
+            android:text="时间：2017.09-11.30"
+            android:textColor="@color/hintColors"
+            android:textSize="@dimen/textsize13" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

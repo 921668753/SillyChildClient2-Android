@@ -481,11 +481,11 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
             is_concern = dynamicDetailsBean.getData().getIs_concern();
             if (is_concern == 1) {
                 tv_follow.setText(getString(R.string.followed));
-                tv_follow.setBackgroundResource(R.drawable.shape_followed);
-                tv_follow.setTextColor(getResources().getColor(R.color.tabColors));
+                tv_follow.setBackgroundResource(R.drawable.shape_followed1);
+                tv_follow.setTextColor(getResources().getColor(R.color.whiteColors));
             } else {
                 tv_follow.setText(getString(R.string.follow));
-                tv_follow.setBackgroundResource(R.drawable.shape_follow);
+                tv_follow.setBackgroundResource(R.drawable.shape_followdd);
                 tv_follow.setTextColor(getResources().getColor(R.color.greenColors));
             }
             tv_content.setText(dynamicDetailsBean.getData().getContent());
@@ -522,14 +522,14 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
             if (is_concern == 1) {
                 is_concern = 0;
                 tv_follow.setText(getString(R.string.follow));
-                tv_follow.setBackgroundResource(R.drawable.shape_follow);
+                tv_follow.setBackgroundResource(R.drawable.shape_followdd);
                 tv_follow.setTextColor(getResources().getColor(R.color.greenColors));
                 ViewInject.toast(getString(R.string.focusSuccess));
             } else {
                 is_concern = 1;
                 tv_follow.setText(getString(R.string.followed));
-                tv_follow.setBackgroundResource(R.drawable.shape_followed);
-                tv_follow.setTextColor(getResources().getColor(R.color.tabColors));
+                tv_follow.setBackgroundResource(R.drawable.shape_followed1);
+                tv_follow.setTextColor(getResources().getColor(R.color.whiteColors));
                 ViewInject.toast(getString(R.string.attentionSuccess));
             }
             isRefresh = 1;

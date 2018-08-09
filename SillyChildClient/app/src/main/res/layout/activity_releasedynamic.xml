@@ -49,6 +49,7 @@
                 android:background="@color/whiteColors"
                 android:gravity="center_vertical"
                 android:hint="@string/addTitle"
+                android:maxLength="50"
                 android:paddingLeft="@dimen/dimen20"
                 android:paddingRight="@dimen/dimen20"
                 android:textColor="@color/textColor"
@@ -74,11 +75,11 @@
                 android:textCursorDrawable="@drawable/shape_cursor"
                 android:textSize="@dimen/textsize13" />
             <!--<android.support.v7.widget.RecyclerView-->
-                <!--android:id="@+id/recyclerView"-->
-                <!--style="@style/MatchWrap"-->
-                <!--android:layout_marginLeft="5dp"-->
-                <!--android:layout_marginTop="5dp"-->
-                <!--android:overScrollMode="never" />-->
+            <!--android:id="@+id/recyclerView"-->
+            <!--style="@style/MatchWrap"-->
+            <!--android:layout_marginLeft="5dp"-->
+            <!--android:layout_marginTop="5dp"-->
+            <!--android:overScrollMode="never" />-->
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerView"
@@ -90,8 +91,8 @@
                 android:choiceMode="singleChoice"
                 android:divider="@null"
                 android:fadingEdge="none"
-                android:overScrollMode="never"
                 android:listSelector="@android:color/transparent"
+                android:overScrollMode="never"
                 android:paddingBottom="@dimen/dimen5"
                 android:paddingLeft="@dimen/dimen8"
                 android:paddingRight="@dimen/dimen8"

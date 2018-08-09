@@ -7,6 +7,7 @@
 
     <include layout="@layout/common_title" />
 
+
     <ScrollView
         style="@style/MatchMatch"
         android:scrollbars="none">
@@ -15,6 +16,7 @@
             style="@style/MatchMatch"
             android:orientation="vertical">
 
+
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimen143"
@@ -22,121 +24,142 @@
                 android:scaleType="fitXY"
                 android:src="@mipmap/placeholderfigure" />
 
-            <LinearLayout
+            <TextView
                 style="@style/MatchWrap"
                 android:layout_marginTop="@dimen/dimen6"
                 android:background="@color/whiteColors"
-                android:orientation="horizontal">
-
-                <TextView
-                    style="@style/WrapMatch"
-                    android:layout_marginLeft="@dimen/dimen17"
-                    android:layout_marginTop="@dimen/dimen13"
-                    android:text="@string/travelTime2"
-                    android:textColor="@color/textColor"
-                    android:textSize="@dimen/textsize15" />
-
-
-                <TextView
-                    style="@style/AutoWrap"
-                    android:lineSpacingExtra="@dimen/dimen6"
-                    android:paddingBottom="@dimen/dimen13"
-                    android:paddingTop="@dimen/dimen12"
-                    android:text="2018-05-15    2018-05-15
-2018-05-15    2018-05-15"
-                    android:textColor="@color/hintColors"
-                    android:textSize="@dimen/textsize13" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                style="@style/MatchWrap"
-                android:layout_marginTop="@dimen/dimen1"
-                android:background="@color/whiteColors"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingTop="@dimen/dimen12">
-
-                <TextView
-                    style="@style/WrapWrap"
-                    android:layout_marginRight="@dimen/dimen6"
-                    android:paddingLeft="@dimen/dimen17"
-                    android:text="@string/journeyBegins"
-                    android:textColor="@color/textColor"
-                    android:textSize="@dimen/textsize15" />
-
-                <ImageView
-                    android:layout_width="@dimen/dimen8"
-                    android:layout_height="@dimen/dimen8"
-                    android:src="@mipmap/xingimg" />
-
-
-            </LinearLayout>
-
-
-            <EditText
-                style="@style/Match44"
-                android:background="@color/whiteColors"
-                android:digits="@string/number0"
-                android:gravity="center_vertical"
-                android:hint="@string/fillPlaceDeparture"
-                android:inputType="phone"
+                android:paddingBottom="@dimen/dimen12"
                 android:paddingLeft="@dimen/dimen17"
                 android:paddingRight="@dimen/dimen17"
-                android:singleLine="true"
+                android:paddingTop="@dimen/dimen12"
+                android:text="成田机场东京室内接机"
                 android:textColor="@color/textColor"
-                android:textColorHint="@color/hintColors"
-                android:textCursorDrawable="@drawable/shape_cursor"
-                android:textSize="@dimen/textsize13" />
-
-            <LinearLayout
-                style="@style/MatchWrap"
-                android:layout_marginTop="@dimen/dimen1"
-                android:background="@color/whiteColors"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingTop="@dimen/dimen12">
-
-                <TextView
-                    style="@style/WrapWrap"
-                    android:layout_marginRight="@dimen/dimen6"
-                    android:paddingLeft="@dimen/dimen17"
-                    android:text="@string/journeyEnds"
-                    android:textColor="@color/textColor"
-                    android:textSize="@dimen/textsize15" />
-
-                <ImageView
-                    android:layout_width="@dimen/dimen8"
-                    android:layout_height="@dimen/dimen8"
-                    android:src="@mipmap/xingimg" />
-
-            </LinearLayout>
-
-
-            <EditText
-                style="@style/Match44"
-                android:background="@color/whiteColors"
-                android:digits="@string/number0"
-                android:gravity="center_vertical"
-                android:hint="@string/fillPlaceService"
-                android:inputType="phone"
-                android:paddingLeft="@dimen/dimen17"
-                android:paddingRight="@dimen/dimen17"
-                android:singleLine="true"
-                android:textColor="@color/textColor"
-                android:textColorHint="@color/hintColors"
-                android:textCursorDrawable="@drawable/shape_cursor"
-                android:textSize="@dimen/textsize13" />
-
+                android:textSize="@dimen/textsize15" />
 
             <TextView
-                style="@style/Match45"
-                android:layout_marginTop="@dimen/dimen6"
+                style="@style/MatchWrap"
                 android:background="@color/whiteColors"
-                android:gravity="center"
-                android:text="若行程出发及结束地点超过一个 请备注说明"
-                android:textColor="@color/fF5050Colors"
-                android:textSize="@dimen/textsize15" />
+                android:paddingBottom="@dimen/dimen10"
+                android:paddingLeft="@dimen/dimen17"
+                android:paddingRight="@dimen/dimen17"
+                android:text="接机人数≤6   行李件数≤3"
+                android:textColor="@color/hintColors"
+                android:textSize="@dimen/textsize13" />
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:layout_marginTop="@dimen/dimen1"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/dimen12">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginRight="@dimen/dimen6"
+                    android:paddingLeft="@dimen/dimen17"
+                    android:text="@string/deliveredAirport"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+
+                <ImageView
+                    android:layout_width="@dimen/dimen8"
+                    android:layout_height="@dimen/dimen8"
+                    android:src="@mipmap/xingimg" />
+
+
+            </LinearLayout>
+
+            <EditText
+                style="@style/MatchWrap"
+                android:background="@color/whiteColors"
+                android:hint="@string/fillServiceAirport"
+                android:paddingBottom="@dimen/dimen10"
+                android:paddingLeft="@dimen/dimen17"
+                android:paddingRight="@dimen/dimen17"
+                android:paddingTop="@dimen/dimen12"
+                android:singleLine="true"
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/hintColors"
+                android:textCursorDrawable="@drawable/shape_cursor"
+                android:textSize="@dimen/textsize13" />
+
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:layout_marginTop="@dimen/dimen1"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/dimen12">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginRight="@dimen/dimen6"
+                    android:paddingLeft="@dimen/dimen17"
+                    android:text="@string/placeDeparture"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+
+                <ImageView
+                    android:layout_width="@dimen/dimen8"
+                    android:layout_height="@dimen/dimen8"
+                    android:src="@mipmap/xingimg" />
+
+
+            </LinearLayout>
+
+            <EditText
+                style="@style/MatchWrap"
+                android:background="@color/whiteColors"
+                android:hint="@string/placeDeparture2"
+                android:paddingBottom="@dimen/dimen10"
+                android:paddingLeft="@dimen/dimen17"
+                android:paddingRight="@dimen/dimen17"
+                android:paddingTop="@dimen/dimen12"
+                android:singleLine="true"
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/hintColors"
+                android:textCursorDrawable="@drawable/shape_cursor"
+                android:textSize="@dimen/textsize13" />
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:layout_marginTop="@dimen/dimen1"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/dimen12">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginRight="@dimen/dimen6"
+                    android:paddingLeft="@dimen/dimen17"
+                    android:text="@string/timeDeparture"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+
+                <ImageView
+                    android:layout_width="@dimen/dimen8"
+                    android:layout_height="@dimen/dimen8"
+                    android:src="@mipmap/xingimg" />
+
+
+            </LinearLayout>
+
+            <EditText
+                style="@style/MatchWrap"
+                android:background="@color/whiteColors"
+                android:hint="@string/fillDepartureTime"
+                android:paddingBottom="@dimen/dimen10"
+                android:paddingLeft="@dimen/dimen17"
+                android:paddingRight="@dimen/dimen17"
+                android:paddingTop="@dimen/dimen12"
+                android:singleLine="true"
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/hintColors"
+                android:textCursorDrawable="@drawable/shape_cursor"
+                android:textSize="@dimen/textsize13" />
 
 
             <LinearLayout
@@ -164,12 +187,13 @@
             </LinearLayout>
 
             <EditText
-                style="@style/Match44"
+                style="@style/MatchWrap"
                 android:background="@color/whiteColors"
-                android:gravity="center_vertical"
                 android:hint="@string/ContactName"
+                android:paddingBottom="@dimen/dimen10"
                 android:paddingLeft="@dimen/dimen17"
                 android:paddingRight="@dimen/dimen17"
+                android:paddingTop="@dimen/dimen12"
                 android:singleLine="true"
                 android:textColor="@color/textColor"
                 android:textColorHint="@color/hintColors"
@@ -201,16 +225,15 @@
 
             </LinearLayout>
 
-
             <EditText
-                style="@style/Match44"
+                style="@style/MatchWrap"
                 android:background="@color/whiteColors"
-                android:digits="@string/number0"
-                android:gravity="center_vertical"
                 android:hint="@string/ContactNumber"
                 android:inputType="phone"
+                android:paddingBottom="@dimen/dimen10"
                 android:paddingLeft="@dimen/dimen17"
                 android:paddingRight="@dimen/dimen17"
+                android:paddingTop="@dimen/dimen12"
                 android:singleLine="true"
                 android:textColor="@color/textColor"
                 android:textColorHint="@color/hintColors"
@@ -268,8 +291,10 @@
                         <EditText
                             style="@style/MatchAuto"
                             android:background="@android:color/transparent"
+                            android:gravity="center"
                             android:inputType="number"
                             android:singleLine="true"
+                            android:text="1"
                             android:textColor="@color/textColor"
                             android:textCursorDrawable="@drawable/shape_cursor"
                             android:textSize="@dimen/textsize13" />
@@ -301,8 +326,10 @@
                         <EditText
                             style="@style/MatchAuto"
                             android:background="@android:color/transparent"
+                            android:gravity="center"
                             android:inputType="number"
                             android:singleLine="true"
+                            android:text="1"
                             android:textColor="@color/textColor"
                             android:textCursorDrawable="@drawable/shape_cursor"
                             android:textSize="@dimen/textsize13" />
@@ -340,9 +367,11 @@
 
                         <EditText
                             style="@style/MatchAuto"
-                            android:background="@android:color/transparent"
+                            android:gravity="center"
                             android:inputType="number"
+                            android:background="@android:color/transparent"
                             android:singleLine="true"
+                            android:text="1"
                             android:textColor="@color/textColor"
                             android:textCursorDrawable="@drawable/shape_cursor"
                             android:textSize="@dimen/textsize13" />
@@ -394,11 +423,8 @@
                 android:textColor="@color/whiteColors"
                 android:textSize="@dimen/textsize16" />
 
-
         </LinearLayout>
 
-
     </ScrollView>
-
 
 </LinearLayout>

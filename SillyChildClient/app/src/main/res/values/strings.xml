@@ -208,12 +208,16 @@
     <string name="children1">儿童：</string>
     <string name="luggage1">行李：</string>
 
-
-
-
-
-
-
+    <!--选择日期-->
+    <string name="selectDate">选择日期</string>
+    <string name="chooseTimeNeedServe">选择你需要服务的时间</string>
+    <string name="day">日</string>
+    <string name="one">一</string>
+    <string name="two">二</string>
+    <string name="three">三</string>
+    <string name="four">四</string>
+    <string name="five">五</string>
+    <string name="six">六</string>
 
     <!--搜索界面-->
     <string name="searchThousandsOverseasGoods">在万千海外商品中搜索</string>
@@ -508,7 +512,7 @@
     <string name="greateThanCurrentTime">预约的时间要大于当前时间</string>
     <string name="pleaseAddLuggage">请添加行李个数</string>
     <string name="flightNumber">航班号</string>
-    <string name="inputFlightNumber">输入航班号</string>
+    <string name="inputFlightNumber">填写航班号</string>
     <string name="pleaseEnterFlightNumber">请输入航班号</string>
     <string name="pickUpAtAirport">接机机场</string>
     <string name="inputAirport">输入机场名称</string>
@@ -520,7 +524,25 @@
     <string name="takeYouGo">送您去哪</string>
     <string name="pleaseIncreaseNumberPassengers">请增加乘客人数</string>
     <string name="deliveredAirport">送达机场</string>
+    <string name="fillServiceAirport">填写送达机场</string>
     <string name="placeDeparture">出发地点</string>
+    <string name="placeDeparture2">填写出发地</string>
+    <string name="timeDeparture">出发时间</string>
+
+
+    <string name="flightArrivalTime">航班到达时间</string>
+
+    <string name="fillDepartureTime">填写出发时间</string>
+
+    <string name="priceDescription">价格说明</string>
+    <string name="dueThat">预定说明</string>
+    <string name="vouchers">抵用券</string>
+    <string name="actualPayment1">实际支付：</string>
+    <string name="fillDestination">填写目的地</string>
+    <string name="fillEstimatedArrivalTimeFlight">填写航班预计到达时间</string>
+
+    <string name="selectiveServiceCity">选择送达城市：</string>
+    <string name="travelConfiguration">出行配置：</string>
 
     <!--首页   单次接送-->
     <string name="vehicleTime">用车时间</string>

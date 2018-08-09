@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title" />
+
+
+    <ScrollView
+        style="@style/MatchMatch"
+        android:scrollbars="none">
+
+        <LinearLayout
+            style="@style/MatchMatch"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                style="@style/Match45"
+                android:layout_marginTop="@dimen/dimen6"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:paddingLeft="@dimen/dimen22"
+                    android:paddingRight="@dimen/dimen5"
+                    android:text="@string/pickUpAtAirport1"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    style="@style/AutoWrap"
+                    android:paddingRight="@dimen/dimen22"
+                    android:text="成田国际机场"
+                    android:textColor="@color/greenColors"
+                    android:textSize="@dimen/textsize15" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                style="@style/Match45"
+                android:layout_marginTop="@dimen/dimen6"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:paddingLeft="@dimen/dimen22"
+                    android:paddingRight="@dimen/dimen5"
+                    android:text="@string/selectiveServiceCity"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+
+
+                <LinearLayout
+                    style="@style/AutoWrap"
+                    android:layout_height="@dimen/dimen36"
+                    android:layout_marginRight="@dimen/dimen36"
+                    android:background="@drawable/ahape_selectiveservicecity"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/dimen10"
+                    android:paddingRight="@dimen/dimen10">
+
+                    <TextView
+                        style="@style/AutoWrap"
+                        android:paddingRight="@dimen/dimen22"
+                        android:text="成田国际机场"
+                        android:textColor="@color/greenColors"
+                        android:textSize="@dimen/textsize15" />
+
+                    <ImageView
+                        android:layout_width="@dimen/dimen13"
+                        android:layout_height="@dimen/dimen11"
+                        android:src="@mipmap/xingimg" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <TextView
+                style="@style/Match45"
+                android:layout_marginTop="@dimen/dimen6"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/dimen22"
+                android:text="@string/travelConfiguration"
+                android:textColor="@color/greenColors"
+                android:textSize="@dimen/textsize15" />
+
+
+            <com.common.cklibrary.utils.myview.ChildListView
+                android:id="@+id/clv_selectProduct"
+                style="@style/MatchWrap"
+                android:layout_marginTop="@dimen/dimen8"
+                android:divider="@color/background"
+                android:dividerHeight="@dimen/dimen1"
+                android:scrollbars="none"
+                tools:listitem="@layout/item_selectproduct" />
+
+            <TextView
+                style="@style/Match40"
+                android:layout_marginBottom="@dimen/dimen20"
+                android:layout_marginLeft="@dimen/dimen100"
+                android:layout_marginRight="@dimen/dimen100"
+                android:layout_marginTop="@dimen/dimen29"
+                android:background="@drawable/shape_charter1"
+                android:gravity="center"
+                android:text="@string/determine"
+                android:textColor="@color/whiteColors"
+                android:textSize="@dimen/textsize16" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

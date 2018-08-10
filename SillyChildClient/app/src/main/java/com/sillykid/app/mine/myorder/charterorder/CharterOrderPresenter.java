@@ -12,7 +12,7 @@ import com.kymjs.rxvolley.client.HttpParams;
 import com.sillykid.app.R;
 import com.sillykid.app.homepage.chartercustom.routes.CheckstandActivity;
 import com.sillykid.app.mine.myorder.MyOrderActivity;
-import com.sillykid.app.mine.myorder.orderdetails.CharterOrderDetailsActivity;
+import com.sillykid.app.mine.myorder.charterorder.orderdetails.CharterOrderDetailsActivity;
 import com.sillykid.app.mine.myorder.orderevaluation.PostEvaluationActivity;
 import com.sillykid.app.mine.myorder.orderevaluation.SeeEvaluationActivity;
 import com.sillykid.app.retrofit.RequestClient;

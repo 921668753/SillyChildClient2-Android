@@ -12,7 +12,7 @@ import com.kymjs.common.Log;
 import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
 import com.sillykid.app.entity.mine.myorder.GoodOrderBean.DataBean.ResultBean;
-import com.sillykid.app.mine.myorder.goodorder.orderdetails.OrderDetailsActivity;
+import com.sillykid.app.mine.myorder.goodorder.orderdetails.GoodOrderDetailsActivity;
 
 import cn.bingoogolapple.androidcommon.adapter.BGAAdapterViewAdapter;
 import cn.bingoogolapple.androidcommon.adapter.BGAViewHolderHelper;
@@ -130,7 +130,7 @@ public class GoodsOrderViewAdapter extends BGAAdapterViewAdapter<ResultBean> {
         clv_shopgoods.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(mContext, OrderDetailsActivity.class);
+                Intent intent = new Intent(mContext, GoodOrderDetailsActivity.class);
                 intent.putExtra("order_id", model.getOrderId());
                 mContext.startActivity(intent);
             }

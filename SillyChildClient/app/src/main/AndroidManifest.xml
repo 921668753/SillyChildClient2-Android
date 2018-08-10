@@ -465,7 +465,7 @@
 
         <!--我的   我的订单   订单详情-->
         <activity
-            android:name=".mine.myorder.goodorder.orderdetails.OrderDetailsActivity"
+            android:name=".mine.myorder.goodorder.orderdetails.GoodOrderDetailsActivity"
             android:screenOrientation="portrait" />
 
         <!--我的   我的订单   订单跟踪-->
@@ -514,7 +514,7 @@
 
         <!--我的   我的订单 订单详情-->
         <activity
-            android:name=".mine.myorder.orderdetails.CharterOrderDetailsActivity"
+            android:name=".mine.myorder.charterorder.orderdetails.CharterOrderDetailsActivity"
             android:screenOrientation="portrait"></activity>
 
         <!--我的   我的发布-->

@@ -77,11 +77,11 @@ public class AllCharterFragment extends BaseFragment implements AdapterView.OnIt
      */
     private boolean isShowLoadingMore = false;
     private CharterOrderFragment charterOrderFragment;
-    private int finishPosition=0;//确认订单结束按钮的位置
+    private int finishPosition = 0;//确认订单结束按钮的位置
     private PublicPromptDialog publicPromptDialog;
     private FragmentJumpBetween fragmentJumpBetween;
-    private int dotype=0;//0:没有操作；1:删除订单操作；2：确认订单完成状态
-    private String successwords="";//删除操作成功之后，刷新列表的提示
+    private int dotype = 0;//0:没有操作；1:删除订单操作；2：确认订单完成状态
+    private String successwords = "";//删除操作成功之后，刷新列表的提示
     private CharterOrderAngleBean charterOrderAngleBean;
 
 
@@ -98,22 +98,6 @@ public class AllCharterFragment extends BaseFragment implements AdapterView.OnIt
         mAdapter = new CharterOrderAdapter(aty);
         mAdapter.setOnItemChildClickListener(this);
         charterOrderFragment = (CharterOrderFragment) getParentFragment();
-        fragmentJumpBetween=new FragmentJumpBetween() {
-            @Override
-            public void fragmentPosition() {
-                mRefreshLayout.beginRefreshing();
-            }
-
-            @Override
-            public void doAttention() {
-
-            }
-
-            @Override
-            public void doCancleAttention() {
-
-            }
-        };
     }
 
     @Override
@@ -122,6 +106,7 @@ public class AllCharterFragment extends BaseFragment implements AdapterView.OnIt
         RefreshLayoutUtil.initRefreshLayout(mRefreshLayout, this, aty, true);
         lv_order.setAdapter(mAdapter);
         lv_order.setOnItemClickListener(this);
+        mRefreshLayout.beginRefreshing();
     }
 
     @Override
@@ -154,10 +139,10 @@ public class AllCharterFragment extends BaseFragment implements AdapterView.OnIt
     @Override
     public void onBGARefreshLayoutBeginRefreshing(BGARefreshLayout refreshLayout) {
         mRefreshLayout.endRefreshing();
-        showLoadingDialog(successwords+getString(R.string.dataLoad));
-        successwords="";
+        showLoadingDialog(successwords + getString(R.string.dataLoad));
+        successwords = "";
         mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
-        ((CharterOrderPresenter)mPresenter).getOrderAround();
+        ((CharterOrderPresenter) mPresenter).getOrderAround();
     }
 
     @Override
@@ -183,21 +168,18 @@ public class AllCharterFragment extends BaseFragment implements AdapterView.OnIt
 
     @Override
     public void getSuccess(String success, int flag) {
-        if (flag==2){//确认结束订单
-            dotype=0;
+        if (flag == 2) {//确认结束订单
+            dotype = 0;
             dismissLoadingDialog();
             ((CharterOrderContract.Presenter) mPresenter).toDetails(aty, databean.get(finishPosition).getAir_id());
-        }else if (flag==3){
+        } else if (flag == 3) {
             charterOrderAngleBean = (CharterOrderAngleBean) JsonUtil.getInstance().json2Obj(success, CharterOrderAngleBean.class);
-            if (charterOrderAngleBean!=null&&charterOrderAngleBean.getData()!=null){
-                charterOrderFragment.initAngle(charterOrderAngleBean.getData().getUN_PAY()+"",charterOrderAngleBean.getData().getDOING()+"",charterOrderAngleBean.getData().getUN_COMMENT()+"");
-            }
             ((CharterOrderContract.Presenter) mPresenter).getChartOrder(StringNewConstants.All, mMorePageNumber);
-        }else if (flag==4){//删除订单成功
+        } else if (flag == 4) {//删除订单成功
             ViewInject.toast(getString(R.string.deleteFinish));
-            successwords=getString(R.string.deleteFinish)+getString(R.string.refreshDataWords);
+            successwords = getString(R.string.deleteFinish) + getString(R.string.refreshDataWords);
             mRefreshLayout.beginRefreshing();
-        }else{
+        } else {
             charterOrderBean = (CharterOrderBean) JsonUtil.getInstance().json2Obj(success, CharterOrderBean.class);
             if (charterOrderBean == null) {
                 ll_commonError.setVisibility(View.VISIBLE);
@@ -224,7 +206,7 @@ public class AllCharterFragment extends BaseFragment implements AdapterView.OnIt
                 mRefreshLayout.endLoadingMore();
                 mAdapter.addMoreData(databean);
             }
-            databean=mAdapter.getData();
+            databean = mAdapter.getData();
             dismissLoadingDialog();
         }
     }
@@ -235,7 +217,7 @@ public class AllCharterFragment extends BaseFragment implements AdapterView.OnIt
             dismissLoadingDialog();
             ViewInject.toast(msg);
             return;
-        }else if (flag==4){
+        } else if (flag == 4) {
             isShowLoadingMore = false;
             if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
                 mRefreshLayout.endRefreshing();
@@ -243,15 +225,15 @@ public class AllCharterFragment extends BaseFragment implements AdapterView.OnIt
                 mRefreshLayout.endLoadingMore();
             }
             dismissLoadingDialog();
-            if (isLogin(msg)){
+            if (isLogin(msg)) {
                 ViewInject.toast(getString(R.string.reloginPrompting));
                 PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshMineFragment", false);
                 PreferenceHelper.write(aty, StringConstants.FILENAME, "isReLogin", true);
-                aty.showActivity(aty,LoginActivity.class);
+                aty.showActivity(aty, LoginActivity.class);
                 return;
             }
             ViewInject.toast(msg);
-        }else {
+        } else {
             isShowLoadingMore = false;
             mRefreshLayout.setVisibility(View.GONE);
             ll_commonError.setVisibility(View.VISIBLE);
@@ -285,12 +267,12 @@ public class AllCharterFragment extends BaseFragment implements AdapterView.OnIt
     public void onItemChildClick(ViewGroup parent, View childView, int position) {
         switch (childView.getId()) {
             case R.id.tv_leftbtn:
-                switch (databean.get(position).getStatusX()){
+                switch (databean.get(position).getStatusX()) {
                     case NumericConstants.Close:
                     case NumericConstants.NoPay:
                         //删除订单
-                        finishPosition=position;
-                        dotype=1;
+                        finishPosition = position;
+                        dotype = 1;
                         initDialog();
                         break;
                     case NumericConstants.OnGoing:
@@ -301,15 +283,15 @@ public class AllCharterFragment extends BaseFragment implements AdapterView.OnIt
             case R.id.tv_rightbtn:
                 switch (databean.get(position).getStatusX()) {
                     case NumericConstants.NoPay:
-                        ((CharterOrderContract.Presenter) mPresenter).toPay(aty, databean.get(position).getAir_id(), databean.get(position).getReal_price(),databean.get(position).getReal_price_fmt());
+                        ((CharterOrderContract.Presenter) mPresenter).toPay(aty, databean.get(position).getAir_id(), databean.get(position).getReal_price(), databean.get(position).getReal_price_fmt());
                         break;
                     case NumericConstants.OnGoing:
-                        ((CharterOrderContract.Presenter) mPresenter).toChart(aty, databean.get(position).getHx_user_name(), databean.get(position).getNickname(),databean.get(position).getDrv_phone(), databean.get(position).getAvatar());
+                        ((CharterOrderContract.Presenter) mPresenter).toChart(aty, databean.get(position).getHx_user_name(), databean.get(position).getNickname(), databean.get(position).getDrv_phone(), databean.get(position).getAvatar());
                         break;
                     case NumericConstants.Completed:
-                        if (StringUtils.toInt(databean.get(position).getUser_order_status(),0)==0){
-                            ((CharterOrderContract.Presenter) mPresenter).toEvaluate(aty, databean.get(position).getAir_id(),databean.get(position).getType(),databean.get(position).getLine_id(),databean.get(position).getSeller_id());
-                        }else{
+                        if (StringUtils.toInt(databean.get(position).getUser_order_status(), 0) == 0) {
+                            ((CharterOrderContract.Presenter) mPresenter).toEvaluate(aty, databean.get(position).getAir_id(), databean.get(position).getType(), databean.get(position).getLine_id(), databean.get(position).getSeller_id());
+                        } else {
                             ((CharterOrderContract.Presenter) mPresenter).toSeeEvaluate(aty, databean.get(position).getAir_id());
                         }
                         break;
@@ -321,40 +303,37 @@ public class AllCharterFragment extends BaseFragment implements AdapterView.OnIt
                 break;
             case R.id.tv_rightbtn2:
                 //确认完成
-                finishPosition=position;
-                dotype=2;
+                finishPosition = position;
+                dotype = 2;
                 initDialog();
                 break;
         }
     }
 
-    private void initDialog(){
-        if (publicPromptDialog==null) {
-            publicPromptDialog=new PublicPromptDialog(aty) {
+    private void initDialog() {
+        if (publicPromptDialog == null) {
+            publicPromptDialog = new PublicPromptDialog(aty) {
                 @Override
                 public void doAction() {
                     showLoadingDialog(getString(R.string.submissionLoad));
-                    if (dotype==1){
+                    if (dotype == 1) {
                         ((CharterOrderContract.Presenter) mPresenter).delPackOrder(mAdapter.getItem(finishPosition).getAir_id());
-                    }else if (dotype==2){
-                        ((CharterOrderContract.Presenter) mPresenter).orderConfirmCompleted(aty,databean.get(finishPosition).getAir_id(),2);
+                    } else if (dotype == 2) {
+                        ((CharterOrderContract.Presenter) mPresenter).orderConfirmCompleted(aty, databean.get(finishPosition).getAir_id(), 2);
                     }
                 }
             };
         }
         publicPromptDialog.show();
-        if (dotype==1){
+        if (dotype == 1) {
             publicPromptDialog.setContent(getString(R.string.orderDeletePrompt));
             publicPromptDialog.setContentSmallShow(false);
             publicPromptDialog.setBtnContent(getString(R.string.delete));
-        }if (dotype==2){
+        }
+        if (dotype == 2) {
             publicPromptDialog.setContent(getString(R.string.orderFinishPrompt));
             publicPromptDialog.setContentSmallShow(true);
             publicPromptDialog.setBtnContent(getString(R.string.confirm));
         }
-    }
-
-    public FragmentJumpBetween getFragmentJumpBetween() {
-        return fragmentJumpBetween;
     }
 }

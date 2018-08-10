@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import com.common.cklibrary.common.BaseActivity;
 import com.common.cklibrary.common.BindView;
-import com.common.cklibrary.common.StringConstants;
 import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.ActivityTitleUtils;
 import com.common.cklibrary.utils.JsonUtil;
@@ -28,7 +27,6 @@ import com.sillykid.app.mine.myorder.goodorder.dialog.OrderBouncedDialog;
 import com.sillykid.app.mine.myorder.goodorder.orderevaluation.PublishedeEvaluationActivity;
 import com.sillykid.app.mine.myshoppingcart.makesureorder.PaymentOrderActivity;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -36,7 +34,7 @@ import java.util.List;
  * Created by Administrator on 2017/9/2.
  */
 
-public class OrderDetailsActivity extends BaseActivity implements OrderDetailsContract.View, TimeCount.TimeCountCallBack {
+public class GoodOrderDetailsActivity extends BaseActivity implements GoodOrderDetailsContract.View, TimeCount.TimeCountCallBack {
 
     /**
      * 等待买家付款
@@ -266,17 +264,17 @@ public class OrderDetailsActivity extends BaseActivity implements OrderDetailsCo
 
     @Override
     public void setRootView() {
-        setContentView(R.layout.activity_orderdetails);
+        setContentView(R.layout.activity_goodorderdetails);
     }
 
     @Override
     public void initData() {
         super.initData();
-        mPresenter = new OrderDetailsPresenter(this);
+        mPresenter = new GoodOrderDetailsPresenter(this);
         mAdapter = new OrderDetailGoodViewAdapter(this);
         orderId = getIntent().getIntExtra("order_id", 0);
         showLoadingDialog(getString(R.string.dataLoad));
-        ((OrderDetailsContract.Presenter) mPresenter).getOrderDetails(orderId);
+        ((GoodOrderDetailsContract.Presenter) mPresenter).getOrderDetails(orderId);
         initDialog();
     }
 
@@ -286,13 +284,13 @@ public class OrderDetailsActivity extends BaseActivity implements OrderDetailsCo
             public void toDialogDo(int id, int flag) {
                 if (flag == 0) {
                     showLoadingDialog(getString(R.string.cancelLoad));
-                    ((OrderDetailsContract.Presenter) mPresenter).postOrderCancel(aty, id);
+                    ((GoodOrderDetailsContract.Presenter) mPresenter).postOrderCancel(aty, id);
                 } else if (flag == 1) {
                     showLoadingDialog(getString(R.string.submissionLoad));
-                    ((OrderDetailsContract.Presenter) mPresenter).postOrderRemind(aty, id);
+                    ((GoodOrderDetailsContract.Presenter) mPresenter).postOrderRemind(aty, id);
                 } else if (flag == 2) {
                     showLoadingDialog(getString(R.string.submissionLoad));
-                    ((OrderDetailsContract.Presenter) mPresenter).postOrderConfirm(aty, id);
+                    ((GoodOrderDetailsContract.Presenter) mPresenter).postOrderConfirm(aty, id);
                 }
             }
         };
@@ -363,7 +361,7 @@ public class OrderDetailsActivity extends BaseActivity implements OrderDetailsCo
     }
 
     @Override
-    public void setPresenter(OrderDetailsContract.Presenter presenter) {
+    public void setPresenter(GoodOrderDetailsContract.Presenter presenter) {
         mPresenter = presenter;
     }
 
@@ -432,7 +430,7 @@ public class OrderDetailsActivity extends BaseActivity implements OrderDetailsCo
             dismissLoadingDialog();
         } else if (flag == 1 || flag == 4) {
             showLoadingDialog(getString(R.string.dataLoad));
-            ((OrderDetailsContract.Presenter) mPresenter).getOrderDetails(orderId);
+            ((GoodOrderDetailsContract.Presenter) mPresenter).getOrderDetails(orderId);
         } else if (flag == 2) {
             /**
              * 发送消息
@@ -686,7 +684,7 @@ public class OrderDetailsActivity extends BaseActivity implements OrderDetailsCo
         if (((String) msgEvent.getData()).equals("RxBusPublishedeEvaluationEvent") && mPresenter != null) {
             ll_bottom.setVisibility(View.GONE);
         } else if (((String) msgEvent.getData()).equals("RxBusApplyAfterSalesEvent") && mPresenter != null) {
-            ((OrderDetailsContract.Presenter) mPresenter).getOrderDetails(orderId);
+            ((GoodOrderDetailsContract.Presenter) mPresenter).getOrderDetails(orderId);
         }
     }
 

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title" />
+
+
+    <ScrollView
+        style="@style/MatchMatch"
+        android:scrollbars="none">
+
+        <LinearLayout
+            style="@style/MatchMatch"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen147"
+                android:layout_marginTop="@dimen/dimen6"
+                android:scaleType="fitXY"
+                android:src="@mipmap/placeholderfigure" />
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:background="@color/whiteColors"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/AutoMatch"
+                    android:layout_marginLeft="@dimen/dimen15"
+                    android:paddingTop="@dimen/dimen9"
+                    android:text="【芭提雅三天六晚自由行】"
+                    android:textSize="@dimen/textsize15" />
+
+                <LinearLayout
+                    style="@style/WrapMatch"
+                    android:layout_marginRight="@dimen/dimen21"
+                    android:gravity="right"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/dimen100"
+                        android:layout_height="@dimen/dimen13"
+                        android:layout_marginLeft="@dimen/dimen10"
+                        android:layout_marginTop="@dimen/dimen13"
+                        android:src="@mipmap/arrow" />
+
+                    <TextView
+                        style="@style/WrapWrap"
+                        android:layout_marginBottom="@dimen/dimen8"
+                        android:layout_marginTop="@dimen/dimen13"
+                        android:text="4.8分"
+                        android:textColor="@color/fF5656Colors"
+                        android:textSize="@dimen/textsize12" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

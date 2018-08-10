@@ -3,13 +3,14 @@ package com.sillykid.app.homepage.boutiqueline;
 import com.common.cklibrary.common.BaseActivity;
 import com.sillykid.app.R;
 
+
 /**
- * 精品线路
+ * 线路详情
  */
-public class BoutiqueLineActivity extends BaseActivity {
+public class LineDetailsActivity extends BaseActivity {
 
     @Override
     public void setRootView() {
-        setContentView(R.layout.activity_boutiqueline);
+        setContentView(R.layout.activity_linedetails);
     }
 }

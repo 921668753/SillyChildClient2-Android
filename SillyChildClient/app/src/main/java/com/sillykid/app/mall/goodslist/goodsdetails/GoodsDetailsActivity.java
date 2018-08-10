@@ -10,10 +10,12 @@ import android.widget.TextView;
 
 import com.common.cklibrary.common.BaseActivity;
 import com.common.cklibrary.common.BindView;
+import com.common.cklibrary.common.StringConstants;
 import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.MathUtil;
 import com.common.cklibrary.utils.myview.WebViewLayout1;
+import com.kymjs.common.PreferenceHelper;
 import com.kymjs.common.StringUtils;
 import com.sillykid.app.BuildConfig;
 import com.sillykid.app.constant.URLConstants;
@@ -411,7 +413,8 @@ public class GoodsDetailsActivity extends BaseActivity implements GoodsDetailsCo
      */
     public void umShare(SHARE_MEDIA platform) {
         UMImage thumb = new UMImage(this, smallImg);
-        String url = URLConstants.REGISTERHTML;
+        String invite_code = PreferenceHelper.readString(aty, StringConstants.FILENAME, "invite_code", "");
+        String url = URLConstants.REGISTERHTML + invite_code;
         UMWeb web = new UMWeb(url);
         web.setTitle(goodName);//标题
         web.setThumb(thumb);  //缩略图

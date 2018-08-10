@@ -10,7 +10,7 @@ import com.sillykid.app.entity.mine.myorder.GoodOrderBean;
  * Created by ruitu on 2016/9/24.
  */
 
-public interface OrderDetailsContract {
+public interface GoodOrderDetailsContract {
     interface Presenter extends BasePresenter {
         /**
          * 获取订单详情

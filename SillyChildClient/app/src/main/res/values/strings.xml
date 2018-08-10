@@ -189,12 +189,17 @@
     <string name="peopleWatch">人观看</string>
     <string name="video">视频</string>
 
+    <!--首页   精品线路-->
+    <string name="hotRecommended">热门推荐</string>
+    <string name="selectCity">选择城市</string>
+
 
     <!--活动-->
     <string name="contactWay3">联系方式</string>
     <string name="sillyChildNum">傻孩志号</string>
 
     <!--按天包车-->
+    <string name="travelTime3">行程时间</string>
     <string name="travelTime2">行程时间：</string>
     <string name="journeyBegins">行程出发开始地</string>
     <string name="fillPlaceDeparture">填写出发地点</string>
@@ -818,7 +823,7 @@
     <string name="sharingCeremony">分享有礼</string>
     <string name="deliveryAddress">收货地址</string>
     <string name="setUp">设置</string>
-    <string name="vipEmergencyCall">VIP救助电话</string>
+    <string name="vipEmergencyCall">VIP救援电话</string>
     <string name="yuan">元</string>
     <string name="yuan1">元/天</string>
     <string name="yuan2">元/次</string>
@@ -1311,6 +1316,16 @@
     <string name="orderDeletePrompt">您确定要删除该订单吗？</string>
     <string name="refreshDataWords">!正在为您刷新数据。</string>
     <string name="orderFinishPromptOver">订单已结束，请进行评价哟</string>
+    <string name="additionalComments">追加评论</string>
+    <string name="userNote">用户备注</string>
+
+    <!-- 个人中心 我的订单  包车订单详情-->
+    <string name="airportPickupLocation">接机地点：</string>
+    <string name="destinations">游玩目的地：</string>
+    <string name="foodPreferences">美食偏好：</string>
+    <string name="accommodationPreferences">住宿偏好：</string>
+    <string name="charterCity">包车城市：</string>
+
 
     <!-- 个人中心 我的订单  订单详情-->
     <string name="orderDetails">订单详情</string>

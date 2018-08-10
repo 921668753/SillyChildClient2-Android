@@ -17,7 +17,7 @@ import com.sillykid.app.constant.NumericConstants;
 import com.sillykid.app.entity.main.UserInfoBean;
 import com.sillykid.app.loginregister.LoginActivity;
 import com.sillykid.app.main.MainActivity;
-import com.sillykid.app.mine.myorder.orderdetails.CharterOrderDetailsActivity;
+import com.sillykid.app.mine.myorder.charterorder.orderdetails.CharterOrderDetailsActivity;
 
 /**
  * 支付成功

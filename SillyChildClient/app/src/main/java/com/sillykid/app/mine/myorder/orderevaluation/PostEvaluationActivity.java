@@ -34,7 +34,7 @@ import com.sillykid.app.dialog.ImagePopupWindow;
 import com.sillykid.app.dialog.PublicPromptDialog;
 import com.sillykid.app.entity.UploadImageBean;
 import com.sillykid.app.loginregister.LoginActivity;
-import com.sillykid.app.mine.myorder.goodorder.orderdetails.OrderDetailsActivity;
+import com.sillykid.app.mine.myorder.goodorder.orderdetails.GoodOrderDetailsActivity;
 import com.sillykid.app.utils.GlideImageLoader;
 
 import java.io.File;
@@ -377,7 +377,7 @@ public class PostEvaluationActivity extends BaseActivity implements ImagePickerA
             dismissLoadingDialog();
 //            if (urlerrornum==0){
                 ViewInject.toast(getString(R.string.successfulReviews));
-                KJActivityStack.create().finishActivity(OrderDetailsActivity.class);
+                KJActivityStack.create().finishActivity(GoodOrderDetailsActivity.class);
                 finish();
 //            }
         }else{

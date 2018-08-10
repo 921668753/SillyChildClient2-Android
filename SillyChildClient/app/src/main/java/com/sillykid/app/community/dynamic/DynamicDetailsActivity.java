@@ -22,6 +22,7 @@ import com.bumptech.glide.request.transition.Transition;
 import com.common.cklibrary.common.BaseActivity;
 import com.common.cklibrary.common.BindView;
 import com.common.cklibrary.common.GlideApp;
+import com.common.cklibrary.common.StringConstants;
 import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.myview.ChildListView;
@@ -29,6 +30,7 @@ import com.common.cklibrary.utils.rx.MsgEvent;
 import com.common.cklibrary.utils.rx.RxBus;
 import com.kymjs.common.DensityUtils;
 import com.kymjs.common.Log;
+import com.kymjs.common.PreferenceHelper;
 import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
 import com.sillykid.app.adapter.community.dynamic.DynamicImgPagerAdapter;
@@ -235,7 +237,8 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
      */
     public void umShare(SHARE_MEDIA platform) {
         UMImage thumb = new UMImage(this, smallImg);
-        String url = smallImg;
+        String invite_code = PreferenceHelper.readString(aty, StringConstants.FILENAME, "invite_code", "");
+        String url = URLConstants.REGISTERHTML + invite_code;
         UMWeb web = new UMWeb(url);
         web.setTitle(title);//标题
         web.setThumb(thumb);  //缩略图

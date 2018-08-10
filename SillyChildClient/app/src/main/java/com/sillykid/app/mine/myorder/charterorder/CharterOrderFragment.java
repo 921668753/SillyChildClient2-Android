@@ -1,22 +1,16 @@
 package com.sillykid.app.mine.myorder.charterorder;
 
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.common.cklibrary.common.BaseFragment;
 import com.common.cklibrary.common.BindView;
-import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
 import com.sillykid.app.mine.myorder.MyOrderActivity;
-
-import cn.bingoogolapple.androidcommon.adapter.BGAOnItemChildClickListener;
 
 /**
  * 我的订单----包车订单
@@ -26,55 +20,40 @@ import cn.bingoogolapple.androidcommon.adapter.BGAOnItemChildClickListener;
 public class CharterOrderFragment extends BaseFragment {
     private MyOrderActivity aty;
 
-    @BindView(id = R.id.ll_charter_obligation, click = true)
-    private LinearLayout ll_charter_obligation;
-    @BindView(id = R.id.rl_charter_obligation, click = true)
-    private RelativeLayout rl_charter_obligation;
-    @BindView(id = R.id.tv_charter_obligation, click = true)
-    private TextView tv_charter_obligation;
-    @BindView(id = R.id.tv_charter_obligationnum, click = true)
-    private TextView tv_charter_obligationnum;
-    @BindView(id = R.id.v_charter_obligation)
-    private View v_charter_obligation;
+    @BindView(id = R.id.ll_obligation, click = true)
+    private LinearLayout ll_obligation;
+    @BindView(id = R.id.tv_obligation)
+    private TextView tv_obligation;
+    @BindView(id = R.id.tv_obligation1)
+    private TextView tv_obligation1;
 
-    @BindView(id = R.id.ll_charter_ongoing, click = true)
-    private LinearLayout ll_charter_ongoing;
-    @BindView(id = R.id.rl_charter_ongoing, click = true)
-    private RelativeLayout rl_charter_ongoing;
-    @BindView(id = R.id.tv_charter_ongoing, click = true)
-    private TextView tv_charter_ongoing;
-    @BindView(id = R.id.tv_charter_ongoingnum, click = true)
-    private TextView tv_charter_ongoingnum;
-    @BindView(id = R.id.v_charter_ongoing)
-    private View v_charter_ongoing;
+    @BindView(id = R.id.ll_ongoing, click = true)
+    private LinearLayout ll_ongoing;
+    @BindView(id = R.id.tv_ongoing)
+    private TextView tv_ongoing;
+    @BindView(id = R.id.tv_ongoing1)
+    private TextView tv_ongoing1;
 
-    @BindView(id = R.id.ll_charter_evaluate, click = true)
-    private LinearLayout ll_charter_evaluate;
-    @BindView(id = R.id.rl_charter_evaluate, click = true)
-    private RelativeLayout rl_charter_evaluate;
-    @BindView(id = R.id.tv_charter_evaluate, click = true)
-    private TextView tv_charter_evaluate;
-    @BindView(id = R.id.tv_charter_evaluatenum, click = true)
-    private TextView tv_charter_evaluatenum;
-    @BindView(id = R.id.v_charter_evaluate)
-    private View v_charter_evaluate;
+    @BindView(id = R.id.ll_evaluate, click = true)
+    private LinearLayout ll_evaluate;
+    @BindView(id = R.id.tv_evaluate)
+    private TextView tv_evaluate;
+    @BindView(id = R.id.tv_evaluate1)
+    private TextView tv_evaluate1;
 
-    @BindView(id = R.id.ll_charter_completed, click = true)
-    private LinearLayout ll_charter_completed;
-    @BindView(id = R.id.tv_charter_completed)
-    private TextView tv_charter_completed;
-    @BindView(id = R.id.v_charter_completed)
-    private View v_charter_completed;
+    @BindView(id = R.id.ll_completed, click = true)
+    private LinearLayout ll_completed;
+    @BindView(id = R.id.tv_completed)
+    private TextView tv_completed;
+    @BindView(id = R.id.tv_completed1)
+    private TextView tv_completed1;
 
-    @BindView(id = R.id.ll_charter_all, click = true)
-    private LinearLayout ll_charter_all;
-    @BindView(id = R.id.tv_charter_all)
-    private TextView tv_charter_all;
-    @BindView(id = R.id.v_charter_all)
-    private View v_charter_all;
-
-    @BindView(id = R.id.fl_charterorder)
-    private FrameLayout fl_charterorder;
+    @BindView(id = R.id.ll_all, click = true)
+    private LinearLayout ll_all;
+    @BindView(id = R.id.tv_all)
+    private TextView tv_all;
+    @BindView(id = R.id.tv_all1)
+    private TextView tv_all1;
 
     private ObligationCharterFragment obligationCharterFragment;
     private OngoingCharterFragment ongoingCharterFragment;
@@ -103,7 +82,7 @@ public class CharterOrderFragment extends BaseFragment {
     @Override
     protected void initWidget(View parentView) {
         super.initWidget(parentView);
-        cleanColors();
+        cleanColors(chageIcon);
     }
 
     public void changeFragment(BaseFragment targetFragment) {
@@ -114,34 +93,25 @@ public class CharterOrderFragment extends BaseFragment {
     protected void widgetClick(View v) {
         super.widgetClick(v);
         switch (v.getId()) {
-            case R.id.ll_charter_obligation:
-            case R.id.rl_charter_obligation:
-            case R.id.tv_charter_obligation:
-            case R.id.tv_charter_obligationnum:
+            case R.id.ll_obligation:
                 chageIcon = 0;
-                cleanColors();
+                cleanColors(chageIcon);
                 break;
-            case R.id.ll_charter_ongoing:
-            case R.id.rl_charter_ongoing:
-            case R.id.tv_charter_ongoing:
-            case R.id.tv_charter_ongoingnum:
+            case R.id.ll_ongoing:
                 chageIcon = 1;
-                cleanColors();
+                cleanColors(chageIcon);
                 break;
-            case R.id.ll_charter_evaluate:
-            case R.id.rl_charter_evaluate:
-            case R.id.tv_charter_evaluate:
-            case R.id.tv_charter_evaluatenum:
+            case R.id.ll_evaluate:
                 chageIcon = 2;
-                cleanColors();
+                cleanColors(chageIcon);
                 break;
-            case R.id.ll_charter_completed:
+            case R.id.ll_completed:
                 chageIcon = 3;
-                cleanColors();
+                cleanColors(chageIcon);
                 break;
-            case R.id.ll_charter_all:
+            case R.id.ll_all:
                 chageIcon = 4;
-                cleanColors();
+                cleanColors(chageIcon);
                 break;
         }
 
@@ -152,68 +122,42 @@ public class CharterOrderFragment extends BaseFragment {
      * 清除颜色，并添加颜色
      */
     @SuppressWarnings("deprecation")
-    public void cleanColors() {
-        tv_charter_obligation.setTextColor(getResources().getColor(R.color.hintColors));
-        v_charter_obligation.setBackgroundResource(android.R.color.transparent);
-        tv_charter_ongoing.setTextColor(getResources().getColor(R.color.hintColors));
-        v_charter_ongoing.setBackgroundResource(android.R.color.transparent);
-        tv_charter_evaluate.setTextColor(getResources().getColor(R.color.hintColors));
-        v_charter_evaluate.setBackgroundResource(android.R.color.transparent);
-        tv_charter_completed.setTextColor(getResources().getColor(R.color.hintColors));
-        v_charter_completed.setBackgroundResource(android.R.color.transparent);
-        tv_charter_all.setTextColor(getResources().getColor(R.color.hintColors));
-        v_charter_all.setBackgroundResource(android.R.color.transparent);
+    public void cleanColors(int chageIcon) {
+        tv_obligation.setTextColor(getResources().getColor(R.color.textColor));
+        tv_obligation1.setBackgroundResource(R.color.whiteColors);
+
+        tv_ongoing.setTextColor(getResources().getColor(R.color.textColor));
+        tv_ongoing1.setBackgroundResource(R.color.whiteColors);
+
+        tv_evaluate.setTextColor(getResources().getColor(R.color.textColor));
+        tv_evaluate1.setBackgroundResource(R.color.whiteColors);
+
+        tv_completed.setTextColor(getResources().getColor(R.color.textColor));
+        tv_completed1.setBackgroundResource(R.color.whiteColors);
+
+        tv_all.setTextColor(getResources().getColor(R.color.textColor));
+        tv_all1.setBackgroundResource(R.color.whiteColors);
+
         if (chageIcon == 0) {
-            tv_charter_obligation.setTextColor(getResources().getColor(R.color.greenColors));
-            v_charter_obligation.setBackgroundResource(R.color.greenColors);
+            tv_obligation.setTextColor(getResources().getColor(R.color.greenColors));
+            tv_obligation1.setBackgroundResource(R.color.greenColors);
             changeFragment(obligationCharterFragment);
-            if (obligationCharterFragment.getFragmentJumpBetween()!=null)obligationCharterFragment.getFragmentJumpBetween().fragmentPosition();
         } else if (chageIcon == 1) {
-            tv_charter_ongoing.setTextColor(getResources().getColor(R.color.greenColors));
-            v_charter_ongoing.setBackgroundResource(R.color.greenColors);
+            tv_ongoing.setTextColor(getResources().getColor(R.color.greenColors));
+            tv_ongoing1.setBackgroundResource(R.color.greenColors);
             changeFragment(ongoingCharterFragment);
-            if (ongoingCharterFragment.getFragmentJumpBetween()!=null)ongoingCharterFragment.getFragmentJumpBetween().fragmentPosition();
         } else if (chageIcon == 2) {
-            tv_charter_evaluate.setTextColor(getResources().getColor(R.color.greenColors));
-            v_charter_evaluate.setBackgroundResource(R.color.greenColors);
+            tv_evaluate.setTextColor(getResources().getColor(R.color.greenColors));
+            tv_evaluate.setBackgroundResource(R.color.greenColors);
             changeFragment(evaluateCharterFragment);
-            if (evaluateCharterFragment.getFragmentJumpBetween()!=null)evaluateCharterFragment.getFragmentJumpBetween().fragmentPosition();
         } else if (chageIcon == 3) {
-            tv_charter_completed.setTextColor(getResources().getColor(R.color.greenColors));
-            v_charter_completed.setBackgroundResource(R.color.greenColors);
+            tv_completed.setTextColor(getResources().getColor(R.color.greenColors));
+            tv_completed.setBackgroundResource(R.color.greenColors);
             changeFragment(completedCharterFragment);
-            if (completedCharterFragment.getFragmentJumpBetween()!=null)completedCharterFragment.getFragmentJumpBetween().fragmentPosition();
         } else if (chageIcon == 4) {
-            tv_charter_all.setTextColor(getResources().getColor(R.color.greenColors));
-            v_charter_all.setBackgroundResource(R.color.greenColors);
+            tv_all.setTextColor(getResources().getColor(R.color.greenColors));
+            tv_all.setBackgroundResource(R.color.greenColors);
             changeFragment(allCharterFragment);
-            if (allCharterFragment.getFragmentJumpBetween()!=null)allCharterFragment.getFragmentJumpBetween().fragmentPosition();
-        }
-    }
-
-    /**
-     * 初始化角标
-     */
-    public void initAngle(String obligationnum,String ongoingnum,String evaluatenum){
-        if (TextUtils.isEmpty(obligationnum)|| StringUtils.toInt(obligationnum,0)==0){
-            tv_charter_obligationnum.setVisibility(View.GONE);
-        }else{
-            tv_charter_obligationnum.setVisibility(View.VISIBLE);
-            tv_charter_obligationnum.setText(obligationnum);
-        }
-
-        if (TextUtils.isEmpty(ongoingnum)|| StringUtils.toInt(ongoingnum,0)==0){
-            tv_charter_ongoingnum.setVisibility(View.GONE);
-        }else{
-            tv_charter_ongoingnum.setVisibility(View.VISIBLE);
-            tv_charter_ongoingnum.setText(ongoingnum);
-        }
-
-        if (TextUtils.isEmpty(evaluatenum)|| StringUtils.toInt(evaluatenum,0)==0){
-            tv_charter_evaluatenum.setVisibility(View.GONE);
-        }else{
-            tv_charter_evaluatenum.setVisibility(View.VISIBLE);
-            tv_charter_evaluatenum.setText(evaluatenum);
         }
     }
 

@@ -22,12 +22,10 @@ import com.sillykid.app.dialog.chartercustom.CostsThatDialog;
 import com.sillykid.app.entity.AirportDropOffBean;
 import com.sillykid.app.entity.CarBrandBean;
 import com.sillykid.app.loginregister.LoginActivity;
-import com.sillykid.app.mine.myorder.orderdetails.CharterOrderDetailsActivity;
+import com.sillykid.app.mine.myorder.charterorder.orderdetails.CharterOrderDetailsActivity;
 import com.sillykid.app.utils.SoftKeyboardUtils;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 /**

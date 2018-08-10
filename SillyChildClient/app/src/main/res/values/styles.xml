@@ -76,6 +76,12 @@
         <item name="bgatitlebar_leftAndRightPadding">@dimen/dimen14</item>
     </style>
 
+
+    <style name="Match37">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dimen37</item>
+    </style>
+
     <style name="Match40">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/dimen40</item>

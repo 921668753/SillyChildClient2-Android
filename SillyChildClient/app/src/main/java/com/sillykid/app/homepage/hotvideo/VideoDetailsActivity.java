@@ -1,6 +1,7 @@
 package com.sillykid.app.homepage.hotvideo;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -10,12 +11,14 @@ import android.widget.TextView;
 
 import com.common.cklibrary.common.BaseActivity;
 import com.common.cklibrary.common.BindView;
+import com.common.cklibrary.common.StringConstants;
 import com.common.cklibrary.common.ViewInject;
-import com.common.cklibrary.utils.ActivityTitleUtils;
 import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.myview.ChildListView;
 import com.common.cklibrary.utils.rx.MsgEvent;
 import com.common.cklibrary.utils.rx.RxBus;
+import com.kymjs.common.Log;
+import com.kymjs.common.PreferenceHelper;
 import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
 import com.sillykid.app.adapter.community.dynamic.UserEvaluationViewAdapter;
@@ -24,10 +27,18 @@ import com.sillykid.app.community.dynamic.dialog.ReportBouncedDialog;
 import com.sillykid.app.community.dynamic.dialog.RevertBouncedDialog;
 import com.sillykid.app.community.dynamic.dynamiccomments.CommentDetailsActivity;
 import com.sillykid.app.community.dynamic.dynamiccomments.DynamicCommentsActivity;
+import com.sillykid.app.constant.URLConstants;
 import com.sillykid.app.entity.homepage.hotvideo.VideoDetailsBean;
 import com.sillykid.app.loginregister.LoginActivity;
+import com.sillykid.app.mine.sharingceremony.dialog.ShareBouncedDialog;
 import com.sillykid.app.utils.GlideImageLoader;
 import com.common.cklibrary.utils.custommediaplayer.JZPLMediaPlayer;
+import com.umeng.socialize.ShareAction;
+import com.umeng.socialize.UMShareAPI;
+import com.umeng.socialize.UMShareListener;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.umeng.socialize.media.UMImage;
+import com.umeng.socialize.media.UMWeb;
 
 import cn.bingoogolapple.androidcommon.adapter.BGAOnItemChildClickListener;
 import cn.bingoogolapple.titlebar.BGATitleBar;
@@ -40,6 +51,9 @@ import static com.sillykid.app.constant.NumericConstants.REQUEST_CODE;
  * 视频详情
  */
 public class VideoDetailsActivity extends BaseActivity implements VideoDetailsContract.View, AdapterView.OnItemClickListener, BGAOnItemChildClickListener {
+
+    @BindView(id = R.id.titlebar)
+    private BGATitleBar titlebar;
 
     @BindView(id = R.id.videoplayer)
     private JZVideoPlayerStandard jzVideoPlayerStandard;
@@ -122,6 +136,10 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
 
     private RevertBouncedDialog revertBouncedDialog = null;
 
+    private ShareBouncedDialog shareBouncedDialog = null;
+
+    private String smallImg = "";
+
     private int type = 2;
     private int positionItem = 0;
 
@@ -152,6 +170,7 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
         mAdapter = new UserEvaluationViewAdapter(this);
         mPresenter = new VideoDetailsPresenter(this);
         initBouncedDialog();
+        initShareBouncedDialog();
         showLoadingDialog(getString(R.string.dataLoad));
         ((VideoDetailsContract.Presenter) mPresenter).getVideoDetails(id);
     }
@@ -168,6 +187,79 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
         };
     }
 
+    /**
+     * 分享
+     */
+    private void initShareBouncedDialog() {
+        shareBouncedDialog = new ShareBouncedDialog(this) {
+            @Override
+            public void share(SHARE_MEDIA platform) {
+                umShare(platform);
+            }
+        };
+    }
+
+    /**
+     * 直接分享
+     * SHARE_MEDIA.QQ
+     */
+    public void umShare(SHARE_MEDIA platform) {
+        UMImage thumb = new UMImage(this, smallImg);
+        String invite_code = PreferenceHelper.readString(aty, StringConstants.FILENAME, "invite_code", "");
+        String url = URLConstants.REGISTERHTML + invite_code;
+        UMWeb web = new UMWeb(url);
+        web.setTitle(title);//标题
+        web.setThumb(thumb);  //缩略图
+        web.setDescription(tv_content.getText().toString());
+        new ShareAction(aty).setPlatform(platform)
+//                .withText("hello")
+//                .withMedia(thumb)
+                .withMedia(web)
+                .setCallback(umShareListener)
+                .share();
+    }
+
+    private UMShareListener umShareListener = new UMShareListener() {
+        @Override
+        public void onStart(SHARE_MEDIA platform) {
+            //分享开始的回调
+            showLoadingDialog(getString(R.string.shareJumpLoad));
+        }
+
+        @Override
+        public void onResult(SHARE_MEDIA platform) {
+            dismissLoadingDialog();
+            Log.d("throw", "platform" + platform);
+            ViewInject.toast(getString(R.string.shareSuccess));
+        }
+
+        @Override
+        public void onError(SHARE_MEDIA platform, Throwable t) {
+            dismissLoadingDialog();
+            if (t.getMessage().contains(getString(R.string.authoriseErr3))) {
+                ViewInject.toast(getString(R.string.authoriseErr2));
+                return;
+            }
+            ViewInject.toast(getString(R.string.shareError));
+            //   ViewInject.toast(t.getMessage());
+            Log.d("throw", "throw:" + t.getMessage());
+            if (t != null) {
+                Log.d("throw", "throw:" + t.getMessage());
+            }
+        }
+
+        @Override
+        public void onCancel(SHARE_MEDIA share_media) {
+            Log.d("throw", "throw:" + "onCancel");
+        }
+    };
+
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        UMShareAPI.get(this).onSaveInstanceState(outState);
+    }
 
     @Override
     public void initWidget() {
@@ -175,6 +267,9 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
         clv_dynamicDetails.setAdapter(mAdapter);
         clv_dynamicDetails.setOnItemClickListener(this);
         mAdapter.setOnItemChildClickListener(this);
+
+        titlebar.setTitleText(title);
+        titlebar.setRightDrawable(getResources().getDrawable(R.mipmap.product_details_share));
         BGATitleBar.SimpleDelegate simpleDelegate = new BGATitleBar.SimpleDelegate() {
             @Override
             public void onClickLeftCtv() {
@@ -189,9 +284,16 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
             @Override
             public void onClickRightCtv() {
                 super.onClickRightCtv();
+                //分享
+                if (shareBouncedDialog == null) {
+                    initShareBouncedDialog();
+                }
+                if (shareBouncedDialog != null & !shareBouncedDialog.isShowing()) {
+                    shareBouncedDialog.show();
+                }
             }
         };
-        ActivityTitleUtils.initToolbar(aty, title, null, R.id.titlebar, simpleDelegate);
+        titlebar.setDelegate(simpleDelegate);
     }
 
 
@@ -315,7 +417,8 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
         if (flag == 0) {
             VideoDetailsBean dynamicDetailsBean = (VideoDetailsBean) JsonUtil.getInstance().json2Obj(success, VideoDetailsBean.class);
             jzVideoPlayerStandard.setUp(dynamicDetailsBean.getData().getVideo_url(), JZVideoPlayerStandard.SCREEN_WINDOW_NORMAL, "");
-            GlideImageLoader.glideOrdinaryLoader(this, dynamicDetailsBean.getData().getVideo_image(), jzVideoPlayerStandard.thumbImageView, R.mipmap.placeholderfigure);
+            smallImg = dynamicDetailsBean.getData().getVideo_image();
+            GlideImageLoader.glideOrdinaryLoader(this, smallImg, jzVideoPlayerStandard.thumbImageView, R.mipmap.placeholderfigure);
             JZVideoPlayer.setMediaInterface(new JZPLMediaPlayer());
             user_id = dynamicDetailsBean.getData().getMember_id();
             GlideImageLoader.glideLoader(this, dynamicDetailsBean.getData().getFace(), img_head, 0, R.mipmap.avatar);
@@ -435,6 +538,8 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
         super.onActivityResult(requestCode, resultCode, data);
         if (data != null && requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
             ((VideoDetailsContract.Presenter) mPresenter).getVideoDetails(id);
+        } else {
+            UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
         }
     }
 
@@ -452,6 +557,7 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        UMShareAPI.get(this).release();
         if (reportBouncedDialog != null) {
             reportBouncedDialog.cancel();
         }
@@ -461,6 +567,10 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
             revertBouncedDialog.cancel();
         }
         revertBouncedDialog = null;
+        if (shareBouncedDialog != null) {
+            shareBouncedDialog.cancel();
+        }
+        shareBouncedDialog = null;
         mAdapter.clear();
         mAdapter = null;
     }

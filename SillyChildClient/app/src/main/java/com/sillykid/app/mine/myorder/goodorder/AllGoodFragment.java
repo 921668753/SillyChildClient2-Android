@@ -25,7 +25,7 @@ import com.sillykid.app.loginregister.LoginActivity;
 import com.sillykid.app.mine.myorder.MyOrderActivity;
 import com.sillykid.app.mine.myorder.goodorder.ordertracking.OrderTrackingActivity;
 import com.sillykid.app.mine.myorder.goodorder.dialog.OrderBouncedDialog;
-import com.sillykid.app.mine.myorder.goodorder.orderdetails.OrderDetailsActivity;
+import com.sillykid.app.mine.myorder.goodorder.orderdetails.GoodOrderDetailsActivity;
 import com.sillykid.app.mine.myorder.goodorder.orderevaluation.PublishedeEvaluationActivity;
 import com.sillykid.app.mine.myshoppingcart.makesureorder.PaymentOrderActivity;
 
@@ -173,7 +173,7 @@ public class AllGoodFragment extends BaseFragment implements AdapterView.OnItemC
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-        Intent intent = new Intent(aty, OrderDetailsActivity.class);
+        Intent intent = new Intent(aty, GoodOrderDetailsActivity.class);
         intent.putExtra("order_id", mAdapter.getItem(position).getOrderId());
         aty.showActivity(aty, intent);
     }

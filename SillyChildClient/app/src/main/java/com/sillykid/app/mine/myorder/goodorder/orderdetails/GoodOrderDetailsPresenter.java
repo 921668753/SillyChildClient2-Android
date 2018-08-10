@@ -12,10 +12,10 @@ import com.sillykid.app.retrofit.RequestClient;
  * Created by ruitu on 2016/9/24.
  */
 
-public class OrderDetailsPresenter implements OrderDetailsContract.Presenter {
-    private OrderDetailsContract.View mView;
+public class GoodOrderDetailsPresenter implements GoodOrderDetailsContract.Presenter {
+    private GoodOrderDetailsContract.View mView;
 
-    public OrderDetailsPresenter(OrderDetailsContract.View view) {
+    public GoodOrderDetailsPresenter(GoodOrderDetailsContract.View view) {
         mView = view;
         mView.setPresenter(this);
     }

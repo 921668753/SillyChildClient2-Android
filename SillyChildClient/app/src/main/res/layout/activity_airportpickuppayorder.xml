@@ -8,7 +8,7 @@
     <include layout="@layout/common_title" />
 
     <ScrollView
-        style="@style/MatchMatch"
+        style="@style/MatchAuto"
         android:scrollbars="none">
 
         <LinearLayout
@@ -147,7 +147,7 @@
 
                         <EditText
                             style="@style/MatchAuto"
-                            android:background="@color/whiteColors"
+                            android:background="@android:color/transparent"
                             android:gravity="center"
                             android:inputType="number"
                             android:singleLine="true"
@@ -182,7 +182,7 @@
 
                         <EditText
                             style="@style/MatchAuto"
-                            android:background="@color/whiteColors"
+                            android:background="@android:color/transparent"
                             android:gravity="center"
                             android:inputType="number"
                             android:singleLine="true"
@@ -224,7 +224,7 @@
 
                         <EditText
                             style="@style/MatchAuto"
-                            android:background="@color/whiteColors"
+                            android:background="@android:color/transparent"
                             android:gravity="center"
                             android:inputType="number"
                             android:singleLine="true"
@@ -342,8 +342,7 @@
 
 2.京东包车景点简介京东包车景点
 
-3.京东包车景点简介京东包车景点
-"
+3.京东包车景点简介京东包车景点"
                 android:textColor="@color/hintColors"
                 android:textSize="@dimen/textsize12" />
 
@@ -376,6 +375,7 @@
 
             <LinearLayout
                 style="@style/Match45"
+                android:layout_marginTop="@dimen/dimen6"
                 android:background="@color/whiteColors"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
@@ -403,6 +403,8 @@
 
             <LinearLayout
                 style="@style/Match45"
+                android:layout_marginBottom="@dimen/dimen6"
+                android:layout_marginTop="@dimen/dimen1"
                 android:background="@color/whiteColors"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
@@ -429,42 +431,41 @@
             </LinearLayout>
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen55"
-                android:layout_marginTop="@dimen/dimen6"
-                android:background="@color/whiteColors"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <TextView
-                    style="@style/WrapWrap"
-                    android:layout_marginLeft="@dimen/dimen17"
-                    android:text="@string/actualPayment1"
-                    android:textColor="@color/textColor"
-                    android:textSize="@dimen/textsize15" />
-
-                <TextView
-                    style="@style/AutoWrap"
-                    android:text="￥2350.00"
-                    android:textColor="@color/fF5656Colors"
-                    android:textSize="@dimen/textsize17" />
-
-                <TextView
-                    android:layout_width="@dimen/dimen126"
-                    android:layout_height="match_parent"
-                    android:background="@color/fF5656Colors"
-                    android:gravity="center"
-                    android:text="@string/confirmPayment"
-                    android:textColor="@color/whiteColors"
-                    android:textSize="@dimen/textsize15" />
-            </LinearLayout>
-
-
         </LinearLayout>
 
 
     </ScrollView>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen55"
+        android:layout_marginTop="@dimen/dimen2"
+        android:background="@color/whiteColors"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/WrapWrap"
+            android:layout_marginLeft="@dimen/dimen17"
+            android:text="@string/actualPayment1"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize15" />
+
+        <TextView
+            style="@style/AutoWrap"
+            android:text="￥2350.00"
+            android:textStyle="bold"
+            android:textColor="@color/fF5656Colors"
+            android:textSize="@dimen/textsize17" />
+
+        <TextView
+            android:layout_width="@dimen/dimen126"
+            android:layout_height="match_parent"
+            android:background="@color/fF5656Colors"
+            android:gravity="center"
+            android:text="@string/confirmPayment"
+            android:textColor="@color/whiteColors"
+            android:textSize="@dimen/textsize15" />
+    </LinearLayout>
 
 </LinearLayout>

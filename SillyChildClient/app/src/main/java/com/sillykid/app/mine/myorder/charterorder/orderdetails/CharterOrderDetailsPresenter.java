@@ -1,4 +1,4 @@
-package com.sillykid.app.mine.myorder.orderdetails;
+package com.sillykid.app.mine.myorder.charterorder.orderdetails;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -17,7 +17,7 @@ import com.sillykid.app.mine.myorder.orderevaluation.SeeEvaluationActivity;
 import com.sillykid.app.retrofit.RequestClient;
 
 /**
- * Created by ruitu on 2016/9/24.
+ * Created by ruitu on 2018/9/24.
  */
 
 public class CharterOrderDetailsPresenter implements CharterOrderDetailsContract.Presenter {

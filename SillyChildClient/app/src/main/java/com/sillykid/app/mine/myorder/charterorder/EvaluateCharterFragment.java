@@ -94,22 +94,6 @@ public class EvaluateCharterFragment extends BaseFragment implements AdapterView
         mAdapter = new CharterOrderAdapter(aty);
         mAdapter.setOnItemChildClickListener(this);
         charterOrderFragment=(CharterOrderFragment)getParentFragment();
-        fragmentJumpBetween=new FragmentJumpBetween() {
-            @Override
-            public void fragmentPosition() {
-                mRefreshLayout.beginRefreshing();
-            }
-
-            @Override
-            public void doAttention() {
-
-            }
-
-            @Override
-            public void doCancleAttention() {
-
-            }
-        };
     }
 
     @Override
@@ -118,6 +102,7 @@ public class EvaluateCharterFragment extends BaseFragment implements AdapterView
         RefreshLayoutUtil.initRefreshLayout(mRefreshLayout, this, aty, true);
         lv_order.setAdapter(mAdapter);
         lv_order.setOnItemClickListener(this);
+        mRefreshLayout.beginRefreshing();
     }
 
     @Override
@@ -180,9 +165,6 @@ public class EvaluateCharterFragment extends BaseFragment implements AdapterView
     public void getSuccess(String success, int flag) {
         if (flag==3){
             charterOrderAngleBean = (CharterOrderAngleBean) JsonUtil.getInstance().json2Obj(success, CharterOrderAngleBean.class);
-            if (charterOrderAngleBean!=null&&charterOrderAngleBean.getData()!=null){
-                charterOrderFragment.initAngle(charterOrderAngleBean.getData().getUN_PAY()+"",charterOrderAngleBean.getData().getDOING()+"",charterOrderAngleBean.getData().getUN_COMMENT()+"");
-            }
             ((CharterOrderPresenter) mPresenter).getChartOrder(StringNewConstants.UNCOMMENT, mMorePageNumber);
         }else {
             charterOrderBean = (CharterOrderBean) JsonUtil.getInstance().json2Obj(success, CharterOrderBean.class);

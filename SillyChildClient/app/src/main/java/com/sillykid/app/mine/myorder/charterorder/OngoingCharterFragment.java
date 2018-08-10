@@ -77,7 +77,7 @@ public class OngoingCharterFragment extends BaseFragment implements AdapterView.
      * 是否加载更多
      */
     private boolean isShowLoadingMore = false;
-    private int finishPosition=0;//确认订单结束按钮的位置
+    private int finishPosition = 0;//确认订单结束按钮的位置
     private PublicPromptDialog publicPromptDialog;
     private FragmentJumpBetween fragmentJumpBetween;
     private CharterOrderAngleBean charterOrderAngleBean;
@@ -96,22 +96,6 @@ public class OngoingCharterFragment extends BaseFragment implements AdapterView.
         mAdapter = new CharterOrderAdapter(aty);
         mAdapter.setOnItemChildClickListener(this);
         charterOrderFragment = (CharterOrderFragment) getParentFragment();
-        fragmentJumpBetween=new FragmentJumpBetween() {
-            @Override
-            public void fragmentPosition() {
-                mRefreshLayout.beginRefreshing();
-            }
-
-            @Override
-            public void doAttention() {
-
-            }
-
-            @Override
-            public void doCancleAttention() {
-
-            }
-        };
     }
 
     @Override
@@ -120,6 +104,7 @@ public class OngoingCharterFragment extends BaseFragment implements AdapterView.
         RefreshLayoutUtil.initRefreshLayout(mRefreshLayout, this, aty, true);
         lv_order.setAdapter(mAdapter);
         lv_order.setOnItemClickListener(this);
+        mRefreshLayout.beginRefreshing();
     }
 
     @Override
@@ -154,7 +139,7 @@ public class OngoingCharterFragment extends BaseFragment implements AdapterView.
         mRefreshLayout.endRefreshing();
         showLoadingDialog(getString(R.string.dataLoad));
         mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
-        ((CharterOrderPresenter)mPresenter).getOrderAround();
+        ((CharterOrderPresenter) mPresenter).getOrderAround();
     }
 
     @Override
@@ -180,17 +165,14 @@ public class OngoingCharterFragment extends BaseFragment implements AdapterView.
 
     @Override
     public void getSuccess(String success, int flag) {
-        if (flag==2){//确认结束订单
+        if (flag == 2) {//确认结束订单
             dismissLoadingDialog();
             ((CharterOrderContract.Presenter) mPresenter).toDetails(aty, databean.get(finishPosition).getAir_id());
             return;
-        }else if (flag==3){
+        } else if (flag == 3) {
             charterOrderAngleBean = (CharterOrderAngleBean) JsonUtil.getInstance().json2Obj(success, CharterOrderAngleBean.class);
-            if (charterOrderAngleBean!=null&&charterOrderAngleBean.getData()!=null){
-                charterOrderFragment.initAngle(charterOrderAngleBean.getData().getUN_PAY()+"",charterOrderAngleBean.getData().getDOING()+"",charterOrderAngleBean.getData().getUN_COMMENT()+"");
-            }
             ((CharterOrderPresenter) mPresenter).getChartOrder(StringNewConstants.DOING, mMorePageNumber);
-        }else {
+        } else {
             charterOrderBean = (CharterOrderBean) JsonUtil.getInstance().json2Obj(success, CharterOrderBean.class);
             if (charterOrderBean == null) {
                 ll_commonError.setVisibility(View.VISIBLE);
@@ -227,7 +209,7 @@ public class OngoingCharterFragment extends BaseFragment implements AdapterView.
         if (flag == 1) {
             dismissLoadingDialog();
             ViewInject.toast(msg);
-        }else if (flag==4){
+        } else if (flag == 4) {
             isShowLoadingMore = false;
             if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
                 mRefreshLayout.endRefreshing();
@@ -235,11 +217,11 @@ public class OngoingCharterFragment extends BaseFragment implements AdapterView.
                 mRefreshLayout.endLoadingMore();
             }
             dismissLoadingDialog();
-            if (isLogin(msg)){
+            if (isLogin(msg)) {
                 ViewInject.toast(getString(R.string.reloginPrompting));
                 PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshMineFragment", false);
                 PreferenceHelper.write(aty, StringConstants.FILENAME, "isReLogin", true);
-                aty.showActivity(aty,LoginActivity.class);
+                aty.showActivity(aty, LoginActivity.class);
                 return;
             }
             ViewInject.toast(msg);
@@ -281,23 +263,23 @@ public class OngoingCharterFragment extends BaseFragment implements AdapterView.
                 ((CharterOrderPresenter) mPresenter).CallPhone(aty, databean.get(position).getDrv_phone());
                 break;
             case R.id.tv_rightbtn:
-                ((CharterOrderPresenter) mPresenter).toChart(aty, databean.get(position).getHx_user_name(), databean.get(position).getNickname(),databean.get(position).getDrv_phone(), databean.get(position).getAvatar());
+                ((CharterOrderPresenter) mPresenter).toChart(aty, databean.get(position).getHx_user_name(), databean.get(position).getNickname(), databean.get(position).getDrv_phone(), databean.get(position).getAvatar());
                 break;
             case R.id.tv_rightbtn2:
                 //确认完成
-                finishPosition=position;
+                finishPosition = position;
                 initDialog();
                 break;
         }
     }
 
-    private void initDialog(){
-        if (publicPromptDialog==null) {
-            publicPromptDialog=new PublicPromptDialog(aty) {
+    private void initDialog() {
+        if (publicPromptDialog == null) {
+            publicPromptDialog = new PublicPromptDialog(aty) {
                 @Override
                 public void doAction() {
                     showLoadingDialog(getString(R.string.submissionLoad));
-                    ((CharterOrderContract.Presenter) mPresenter).orderConfirmCompleted(aty,databean.get(finishPosition).getAir_id(),2);
+                    ((CharterOrderContract.Presenter) mPresenter).orderConfirmCompleted(aty, databean.get(finishPosition).getAir_id(), 2);
                 }
             };
         }

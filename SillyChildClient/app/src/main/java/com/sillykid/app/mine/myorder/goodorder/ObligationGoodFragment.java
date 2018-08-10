@@ -13,23 +13,18 @@ import android.widget.TextView;
 
 import com.common.cklibrary.common.BaseFragment;
 import com.common.cklibrary.common.BindView;
-import com.common.cklibrary.common.StringConstants;
 import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.JsonUtil;
-import com.common.cklibrary.utils.MathUtil;
 import com.common.cklibrary.utils.RefreshLayoutUtil;
 import com.common.cklibrary.utils.rx.MsgEvent;
-import com.kymjs.common.PreferenceHelper;
-import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
 import com.sillykid.app.adapter.mine.myorder.GoodsOrderViewAdapter;
 import com.sillykid.app.constant.NumericConstants;
 import com.sillykid.app.entity.mine.myorder.GoodOrderBean;
-import com.sillykid.app.entity.mine.myorder.GoodOrderBean.DataBean.ResultBean;
 import com.sillykid.app.loginregister.LoginActivity;
 import com.sillykid.app.mine.myorder.MyOrderActivity;
 import com.sillykid.app.mine.myorder.goodorder.dialog.OrderBouncedDialog;
-import com.sillykid.app.mine.myorder.goodorder.orderdetails.OrderDetailsActivity;
+import com.sillykid.app.mine.myorder.goodorder.orderdetails.GoodOrderDetailsActivity;
 import com.sillykid.app.mine.myshoppingcart.makesureorder.PaymentOrderActivity;
 
 import cn.bingoogolapple.androidcommon.adapter.BGAOnItemChildClickListener;
@@ -168,7 +163,7 @@ public class ObligationGoodFragment extends BaseFragment implements AdapterView.
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-        Intent intent = new Intent(aty, OrderDetailsActivity.class);
+        Intent intent = new Intent(aty, GoodOrderDetailsActivity.class);
         intent.putExtra("order_id", mAdapter.getItem(position).getOrderId());
         aty.showActivity(aty, intent);
     }

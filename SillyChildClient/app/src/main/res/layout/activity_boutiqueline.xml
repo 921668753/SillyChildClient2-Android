@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title" />
+
+
+    <LinearLayout
+        style="@style/Match45"
+        android:layout_marginTop="@dimen/dimen6"
+        android:background="@color/whiteColors"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/AutoMatch"
+            android:gravity="center"
+            android:text="@string/chosecity"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize15" />
+
+        <TextView
+            style="@style/AutoMatch"
+            android:gravity="center"
+            android:text="@string/hotRecommended"
+            android:textColor="@color/fF5656Colors"
+            android:textSize="@dimen/textsize15" />
+
+    </LinearLayout>
+
+
+    <FrameLayout
+        android:id="@+id/main_content"
+        style="@style/MatchMatch" />
+
+
+</LinearLayout>

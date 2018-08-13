@@ -28,6 +28,7 @@ public class DynamicStateBean extends BaseResult<List<DynamicStateBean.DataBean>
         private String nickname;
         private String face;
         private String concern_number;
+        private String click_number;
         private String post_number;
         private int height;
         private int width;
@@ -119,6 +120,14 @@ public class DynamicStateBean extends BaseResult<List<DynamicStateBean.DataBean>
 
         public void setWidth(int width) {
             this.width = width;
+        }
+
+        public String getClick_number() {
+            return click_number;
+        }
+
+        public void setClick_number(String click_number) {
+            this.click_number = click_number;
         }
 
         public int getType() {

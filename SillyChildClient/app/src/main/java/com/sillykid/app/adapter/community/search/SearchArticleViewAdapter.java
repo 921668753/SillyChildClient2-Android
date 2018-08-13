@@ -46,10 +46,10 @@ public class SearchArticleViewAdapter extends BGARecyclerViewAdapter<CommunityBe
 
         helper.setText(R.id.tv_nickName, model.getNickname());
 
-        if (StringUtils.isEmpty(model.getConcern_number())) {
+        if (StringUtils.isEmpty(model.getClick_number())) {
             helper.setText(R.id.tv_attentionNum, "0");
         } else {
-            helper.setText(R.id.tv_attentionNum, model.getConcern_number());
+            helper.setText(R.id.tv_attentionNum, model.getClick_number());
         }
 
     }

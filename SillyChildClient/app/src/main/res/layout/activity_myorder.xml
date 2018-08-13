@@ -90,9 +90,64 @@
 
     <View style="@style/DividerWidth" />
 
-    <include layout="@layout/order_goodstopbar" />
 
-    <View style="@style/DividerWidth" />
+
+    <LinearLayout
+        style="@style/Match45"
+        android:layout_marginTop="@dimen/dimen6"
+        android:background="@color/whiteColors"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/ll_goodOrder"
+            style="@style/AutoMatch"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_goodOrder"
+                style="@style/MatchAuto"
+                android:gravity="center"
+                android:text="@string/goodOrder"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize15" />
+
+
+            <TextView
+                android:id="@+id/tv_goodOrder1"
+                android:layout_width="@dimen/dimen38"
+                android:layout_height="@dimen/dimen2"
+                android:background="@color/whiteColors" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ll_charterOrder"
+            style="@style/AutoMatch"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_charterOrder"
+                style="@style/MatchAuto"
+                android:gravity="center"
+                android:text="@string/charterOrder"
+                android:textColor="@color/greenColors"
+                android:textSize="@dimen/textsize15" />
+
+
+            <TextView
+                android:id="@+id/tv_charterOrder1"
+                android:layout_width="@dimen/dimen38"
+                android:layout_height="@dimen/dimen2"
+                android:background="@color/greenColors" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!--<include layout="@layout/order_topbar" />-->
 
     <FrameLayout
         android:id="@+id/order_content"

@@ -1,17 +1,13 @@
 package com.sillykid.app.adapter;
 
 import android.content.Context;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
 import com.sillykid.app.constant.NumericConstants;
 import com.sillykid.app.entity.CharterOrderBean.ResultBean.ListBean;
 import com.sillykid.app.utils.GlideImageLoader;
-
-import java.text.SimpleDateFormat;
 
 import cn.bingoogolapple.androidcommon.adapter.BGAAdapterViewAdapter;
 import cn.bingoogolapple.androidcommon.adapter.BGAViewHolderHelper;
@@ -22,109 +18,69 @@ import cn.bingoogolapple.androidcommon.adapter.BGAViewHolderHelper;
  */
 
 public class CharterOrderAdapter extends BGAAdapterViewAdapter<ListBean> {
-    private Context context;
-    private SimpleDateFormat dateformat;
 
     public CharterOrderAdapter(Context context) {
         super(context, R.layout.item_charterorder);
-        this.context = context;
     }
 
     @Override
     protected void setItemChildListener(BGAViewHolderHelper helper) {
         super.setItemChildListener(helper);
-        helper.setItemChildClickListener(R.id.tv_leftbtn);
-        helper.setItemChildClickListener(R.id.tv_rightbtn);
-        helper.setItemChildClickListener(R.id.tv_rightbtn2);
+        helper.setItemChildClickListener(R.id.tv_confirmPayment);
+        helper.setItemChildClickListener(R.id.tv_callUp);
+        helper.setItemChildClickListener(R.id.tv_sendPrivateChat);
+        helper.setItemChildClickListener(R.id.tv_appraiseOrder);
+        helper.setItemChildClickListener(R.id.tv_additionalComments);
     }
 
     @Override
     public void fillData(BGAViewHolderHelper viewHolderHelper, int position, ListBean listBean) {
 
-        viewHolderHelper.setText(R.id.tv_charter_code, listBean.getOrder_sn());
+        viewHolderHelper.setText(R.id.tv_orderNumber, listBean.getOrder_sn());
 
         switch (listBean.getStatusX()) {
-            case NumericConstants.NoPay:
-                viewHolderHelper.setVisibility(R.id.ll_btns, View.VISIBLE);
-                viewHolderHelper.setText(R.id.tv_charter_status, R.string.obligation);
-                viewHolderHelper.setText(R.id.tv_charter_paymoney_hint, R.string.needpayWithSymbol);
-                viewHolderHelper.setVisibility(R.id.tv_leftbtn, View.VISIBLE);
-                viewHolderHelper.setVisibility(R.id.tv_rightbtn, View.VISIBLE);
-                viewHolderHelper.setVisibility(R.id.tv_rightbtn2, View.GONE);
-                viewHolderHelper.setText(R.id.tv_leftbtn, R.string.delete);
-                viewHolderHelper.setText(R.id.tv_rightbtn, R.string.toPayment);
+            case NumericConstants.NoPay://待付款
+                viewHolderHelper.setText(R.id.tv_charterStatus, R.string.obligation);
+                viewHolderHelper.setVisibility(R.id.tv_confirmPayment, View.VISIBLE);
+                viewHolderHelper.setVisibility(R.id.tv_callUp, View.GONE);
+                viewHolderHelper.setVisibility(R.id.tv_sendPrivateChat, View.GONE);
+                viewHolderHelper.setVisibility(R.id.tv_appraiseOrder, View.GONE);
+                viewHolderHelper.setVisibility(R.id.tv_additionalComments, View.GONE);
                 break;
-            case NumericConstants.SendOrder://未派单
-                viewHolderHelper.setVisibility(R.id.ll_btns, View.GONE);
-                viewHolderHelper.setText(R.id.tv_charter_status, R.string.sendSingle);
+            case NumericConstants.SendOrder://进行中
+                viewHolderHelper.setText(R.id.tv_charterStatus, R.string.ongoing);
+                viewHolderHelper.setVisibility(R.id.tv_confirmPayment, View.GONE);
+                viewHolderHelper.setVisibility(R.id.tv_callUp, View.VISIBLE);
+                viewHolderHelper.setVisibility(R.id.tv_sendPrivateChat, View.VISIBLE);
+                viewHolderHelper.setVisibility(R.id.tv_appraiseOrder, View.GONE);
+                viewHolderHelper.setVisibility(R.id.tv_additionalComments, View.GONE);
                 break;
-            case NumericConstants.WaiteOrder://已派单待接单
-                viewHolderHelper.setVisibility(R.id.ll_btns, View.GONE);
-                viewHolderHelper.setText(R.id.tv_charter_status, R.string.sendSingleWaitingList);
-                break;
-            case NumericConstants.OnGoing://即将开始
-            case NumericConstants.WaiteEvaluate://进行中
-                viewHolderHelper.setVisibility(R.id.ll_btns, View.VISIBLE);
-                viewHolderHelper.setVisibility(R.id.tv_leftbtn, View.VISIBLE);
-                viewHolderHelper.setVisibility(R.id.tv_rightbtn, View.VISIBLE);
-                if (StringUtils.toInt(listBean.getUser_confirm(), 0) == 0) {
-                    viewHolderHelper.setText(R.id.tv_charter_status, R.string.ongoing);
-                    viewHolderHelper.setVisibility(R.id.tv_rightbtn2, View.VISIBLE);
-                } else {
-                    viewHolderHelper.setText(R.id.tv_charter_status, R.string.waitConfing);
-                    viewHolderHelper.setVisibility(R.id.tv_rightbtn2, View.GONE);
-                }
-                viewHolderHelper.setText(R.id.tv_leftbtn, R.string.callUp);
-                viewHolderHelper.setText(R.id.tv_rightbtn, R.string.sendPrivateChat);
-
-                break;
-            case NumericConstants.Completed://待评价
-                viewHolderHelper.setVisibility(R.id.ll_btns, View.VISIBLE);
-                viewHolderHelper.setVisibility(R.id.tv_leftbtn, View.GONE);
-                viewHolderHelper.setVisibility(R.id.tv_rightbtn, View.VISIBLE);
-                viewHolderHelper.setVisibility(R.id.tv_rightbtn2, View.GONE);
-                if (StringUtils.toInt(listBean.getUser_order_status(), 0) == 0) {//未评价
-                    viewHolderHelper.setText(R.id.tv_charter_status, R.string.evaluate);
-                    viewHolderHelper.setText(R.id.tv_rightbtn, R.string.toAppraise);
-                } else {
-                    viewHolderHelper.setText(R.id.tv_charter_status, R.string.guideEvaluate);
-                    viewHolderHelper.setText(R.id.tv_rightbtn, R.string.seeEvaluation);
-                }
+            case NumericConstants.WaiteOrder://待评价
+                viewHolderHelper.setText(R.id.tv_charterStatus, R.string.evaluate);
+                viewHolderHelper.setVisibility(R.id.tv_confirmPayment, View.GONE);
+                viewHolderHelper.setVisibility(R.id.tv_callUp, View.GONE);
+                viewHolderHelper.setVisibility(R.id.tv_sendPrivateChat, View.GONE);
+                viewHolderHelper.setVisibility(R.id.tv_appraiseOrder, View.VISIBLE);
+                viewHolderHelper.setVisibility(R.id.tv_additionalComments, View.GONE);
                 break;
             case NumericConstants.CompletedInDeatil://已完成
-                viewHolderHelper.setText(R.id.tv_charter_status, R.string.completed);
-                viewHolderHelper.setVisibility(R.id.ll_btns, View.VISIBLE);
-                viewHolderHelper.setVisibility(R.id.tv_leftbtn, View.GONE);
-                viewHolderHelper.setVisibility(R.id.tv_rightbtn, View.VISIBLE);
-                viewHolderHelper.setVisibility(R.id.tv_rightbtn2, View.GONE);
-                viewHolderHelper.setText(R.id.tv_rightbtn, R.string.seeEvaluation);
-                break;
-            case NumericConstants.Close://已关闭
-                viewHolderHelper.setText(R.id.tv_charter_status, R.string.closed);
-                viewHolderHelper.setVisibility(R.id.ll_btns, View.VISIBLE);
-                viewHolderHelper.setVisibility(R.id.tv_leftbtn, View.VISIBLE);
-                viewHolderHelper.setVisibility(R.id.tv_rightbtn, View.GONE);
-                viewHolderHelper.setVisibility(R.id.tv_rightbtn2, View.GONE);
-                viewHolderHelper.setText(R.id.tv_leftbtn, R.string.delete);
+                viewHolderHelper.setText(R.id.tv_charterStatus, R.string.completed);
+                viewHolderHelper.setVisibility(R.id.tv_confirmPayment, View.GONE);
+                viewHolderHelper.setVisibility(R.id.tv_callUp, View.GONE);
+                viewHolderHelper.setVisibility(R.id.tv_sendPrivateChat, View.GONE);
+                viewHolderHelper.setVisibility(R.id.tv_appraiseOrder, View.GONE);
+                viewHolderHelper.setVisibility(R.id.tv_additionalComments, View.VISIBLE);
                 break;
             default:
-                viewHolderHelper.setVisibility(R.id.ll_btns, View.GONE);
                 break;
 
         }
 
-        GlideImageLoader.glideLoader(mContext, listBean.getAvatar(), (ImageView) viewHolderHelper.getView(R.id.iv_goodsicon),0, R.mipmap.avatar);
-        viewHolderHelper.setText(R.id.tv_charter_title, listBean.getTitle());
-        viewHolderHelper.setText(R.id.tv_charter_datetime, listBean.getCreate_at());
-        if (TextUtils.isEmpty(listBean.getTotal_price())) {
-            viewHolderHelper.setText(R.id.tv_charter_orderprice, context.getResources().getString(R.string.moneySign) + "0.00");
-        } else {
-            viewHolderHelper.setText(R.id.tv_charter_orderprice, listBean.getTotal_price_fmt());
-        }
-        if (TextUtils.isEmpty(listBean.getReal_price())) {
-            viewHolderHelper.setText(R.id.tv_charter_paymoney, context.getResources().getString(R.string.moneySign) + "0.00");
-        } else {
-            viewHolderHelper.setText(R.id.tv_charter_paymoney, listBean.getReal_price_fmt());
-        }
+        GlideImageLoader.glideLoader(mContext, listBean.getAvatar(), (ImageView) viewHolderHelper.getView(R.id.img_charterOrder), 0, R.mipmap.avatar);
+        viewHolderHelper.setText(R.id.tv_title, R.string.needpayWithSymbol);
+        viewHolderHelper.setText(R.id.tv_serviceTime, mContext.getString(R.string.serviceTime));
+        viewHolderHelper.setText(R.id.tv_serviceCompany, mContext.getString(R.string.serviceCompany));
+        viewHolderHelper.setText(R.id.tv_orderMoney, mContext.getString(R.string.renminbi));
+        viewHolderHelper.setText(R.id.tv_money, mContext.getString(R.string.renminbi));
     }
 }

@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     style="@style/MatchMatch"
-    android:background="@color/background">
+    android:background="@color/background"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen44"
+        android:layout_height="@dimen/dimen45"
         android:background="@color/whiteColors"
         android:orientation="horizontal">
 
@@ -22,14 +21,15 @@
                 style="@style/MatchAuto"
                 android:gravity="center"
                 android:text="@string/obligation"
-                android:textColor="@color/greenColors"
-                android:textSize="@dimen/dimen15" />
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize14" />
 
-            <View
-                android:id="@+id/v_good_obligation"
-                android:layout_width="@dimen/dimen52"
+            <TextView
+                android:id="@+id/tv_good_obligation1"
+                android:layout_width="@dimen/dimen21"
                 android:layout_height="@dimen/dimen2"
                 android:background="@color/greenColors" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -43,15 +43,17 @@
                 style="@style/MatchAuto"
                 android:gravity="center"
                 android:text="@string/sendGoods"
-                android:textColor="@color/hintColors"
-                android:textSize="@dimen/dimen15" />
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize14" />
 
-            <View
-                android:id="@+id/v_good_send"
-                android:layout_width="@dimen/dimen52"
+            <TextView
+                android:id="@+id/tv_good_send1"
+                android:layout_width="@dimen/dimen21"
                 android:layout_height="@dimen/dimen2"
-                android:background="@android:color/transparent" />
+                android:background="@color/greenColors" />
+
         </LinearLayout>
+
 
         <LinearLayout
             android:id="@+id/ll_good_wait"
@@ -64,15 +66,17 @@
                 style="@style/MatchAuto"
                 android:gravity="center"
                 android:text="@string/waitGoods"
-                android:textColor="@color/hintColors"
-                android:textSize="@dimen/dimen15" />
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize14" />
 
-            <View
-                android:id="@+id/v_good_wait"
-                android:layout_width="@dimen/dimen52"
+            <TextView
+                android:id="@+id/tv_good_wait1"
+                android:layout_width="@dimen/dimen21"
                 android:layout_height="@dimen/dimen2"
-                android:background="@android:color/transparent" />
+                android:background="@color/greenColors" />
+
         </LinearLayout>
+
 
         <LinearLayout
             android:id="@+id/ll_good_completed"
@@ -85,15 +89,17 @@
                 style="@style/MatchAuto"
                 android:gravity="center"
                 android:text="@string/completed"
-                android:textColor="@color/hintColors"
-                android:textSize="@dimen/dimen15" />
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize14" />
 
-            <View
-                android:id="@+id/v_good_completed"
-                android:layout_width="@dimen/dimen52"
+            <TextView
+                android:id="@+id/tv_good_completed1"
+                android:layout_width="@dimen/dimen21"
                 android:layout_height="@dimen/dimen2"
-                android:background="@android:color/transparent" />
+                android:background="@color/greenColors" />
+
         </LinearLayout>
+
 
         <LinearLayout
             android:id="@+id/ll_good_afterSale"
@@ -106,15 +112,17 @@
                 style="@style/MatchAuto"
                 android:gravity="center"
                 android:text="@string/afterSale"
-                android:textColor="@color/hintColors"
-                android:textSize="@dimen/dimen15" />
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize14" />
 
-            <View
-                android:id="@+id/v_good_afterSale"
-                android:layout_width="@dimen/dimen52"
+            <TextView
+                android:id="@+id/tv_good_afterSale1"
+                android:layout_width="@dimen/dimen21"
                 android:layout_height="@dimen/dimen2"
-                android:background="@android:color/transparent" />
+                android:background="@color/greenColors" />
+
         </LinearLayout>
+
 
         <LinearLayout
             android:id="@+id/ll_good_all"
@@ -127,20 +135,22 @@
                 style="@style/MatchAuto"
                 android:gravity="center"
                 android:text="@string/all"
-                android:textColor="@color/hintColors"
-                android:textSize="@dimen/dimen15" />
+                android:textColor="@color/greenColors"
+                android:textSize="@dimen/textsize14" />
 
-            <View
-                android:id="@+id/v_good_all"
-                android:layout_width="@dimen/dimen52"
+            <TextView
+                android:id="@+id/tv_good_all1"
+                android:layout_width="@dimen/dimen21"
                 android:layout_height="@dimen/dimen2"
-                android:background="@android:color/transparent" />
+                android:background="@color/greenColors" />
+
         </LinearLayout>
+
 
     </LinearLayout>
 
     <FrameLayout
-        android:id="@+id/order_content"
-        style="@style/MatchMatch"/>
+        android:id="@+id/order_goodcontent"
+        style="@style/MatchMatch" />
 
 </LinearLayout>

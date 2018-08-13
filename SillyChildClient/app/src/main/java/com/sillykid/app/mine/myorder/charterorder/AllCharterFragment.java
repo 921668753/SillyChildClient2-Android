@@ -29,6 +29,7 @@ import com.sillykid.app.entity.CharterOrderAngleBean;
 import com.sillykid.app.entity.CharterOrderBean;
 import com.sillykid.app.entity.CharterOrderBean.ResultBean.ListBean;
 import com.sillykid.app.loginregister.LoginActivity;
+import com.sillykid.app.mine.myorder.CharterOrderFragment;
 import com.sillykid.app.mine.myorder.MyOrderActivity;
 
 import java.util.List;
@@ -266,47 +267,47 @@ public class AllCharterFragment extends BaseFragment implements AdapterView.OnIt
     @Override
     public void onItemChildClick(ViewGroup parent, View childView, int position) {
         switch (childView.getId()) {
-            case R.id.tv_leftbtn:
-                switch (databean.get(position).getStatusX()) {
-                    case NumericConstants.Close:
-                    case NumericConstants.NoPay:
-                        //删除订单
-                        finishPosition = position;
-                        dotype = 1;
-                        initDialog();
-                        break;
-                    case NumericConstants.OnGoing:
-                        ((CharterOrderContract.Presenter) mPresenter).CallPhone(aty, mAdapter.getItem(position).getDrv_phone());
-                        break;
-                }
-                break;
-            case R.id.tv_rightbtn:
-                switch (databean.get(position).getStatusX()) {
-                    case NumericConstants.NoPay:
-                        ((CharterOrderContract.Presenter) mPresenter).toPay(aty, databean.get(position).getAir_id(), databean.get(position).getReal_price(), databean.get(position).getReal_price_fmt());
-                        break;
-                    case NumericConstants.OnGoing:
-                        ((CharterOrderContract.Presenter) mPresenter).toChart(aty, databean.get(position).getHx_user_name(), databean.get(position).getNickname(), databean.get(position).getDrv_phone(), databean.get(position).getAvatar());
-                        break;
-                    case NumericConstants.Completed:
-                        if (StringUtils.toInt(databean.get(position).getUser_order_status(), 0) == 0) {
-                            ((CharterOrderContract.Presenter) mPresenter).toEvaluate(aty, databean.get(position).getAir_id(), databean.get(position).getType(), databean.get(position).getLine_id(), databean.get(position).getSeller_id());
-                        } else {
-                            ((CharterOrderContract.Presenter) mPresenter).toSeeEvaluate(aty, databean.get(position).getAir_id());
-                        }
-                        break;
-                    case NumericConstants.CompletedInDeatil:
-//                        ViewInject.toast("尚未开发，敬请期待！");
-                        ((CharterOrderContract.Presenter) mPresenter).toSeeEvaluate(aty, databean.get(position).getAir_id());
-                        break;
-                }
-                break;
-            case R.id.tv_rightbtn2:
-                //确认完成
-                finishPosition = position;
-                dotype = 2;
-                initDialog();
-                break;
+//            case R.id.tv_leftbtn:
+//                switch (databean.get(position).getStatusX()) {
+//                    case NumericConstants.Close:
+//                    case NumericConstants.NoPay:
+//                        //删除订单
+//                        finishPosition = position;
+//                        dotype = 1;
+//                        initDialog();
+//                        break;
+//                    case NumericConstants.OnGoing:
+//                        ((CharterOrderContract.Presenter) mPresenter).CallPhone(aty, mAdapter.getItem(position).getDrv_phone());
+//                        break;
+//                }
+//                break;
+//            case R.id.tv_rightbtn:
+//                switch (databean.get(position).getStatusX()) {
+//                    case NumericConstants.NoPay:
+//                        ((CharterOrderContract.Presenter) mPresenter).toPay(aty, databean.get(position).getAir_id(), databean.get(position).getReal_price(), databean.get(position).getReal_price_fmt());
+//                        break;
+//                    case NumericConstants.OnGoing:
+//                        ((CharterOrderContract.Presenter) mPresenter).toChart(aty, databean.get(position).getHx_user_name(), databean.get(position).getNickname(), databean.get(position).getDrv_phone(), databean.get(position).getAvatar());
+//                        break;
+//                    case NumericConstants.Completed:
+//                        if (StringUtils.toInt(databean.get(position).getUser_order_status(), 0) == 0) {
+//                            ((CharterOrderContract.Presenter) mPresenter).toEvaluate(aty, databean.get(position).getAir_id(), databean.get(position).getType(), databean.get(position).getLine_id(), databean.get(position).getSeller_id());
+//                        } else {
+//                            ((CharterOrderContract.Presenter) mPresenter).toSeeEvaluate(aty, databean.get(position).getAir_id());
+//                        }
+//                        break;
+//                    case NumericConstants.CompletedInDeatil:
+////                        ViewInject.toast("尚未开发，敬请期待！");
+//                        ((CharterOrderContract.Presenter) mPresenter).toSeeEvaluate(aty, databean.get(position).getAir_id());
+//                        break;
+//                }
+//                break;
+//            case R.id.tv_rightbtn2:
+//                //确认完成
+//                finishPosition = position;
+//                dotype = 2;
+//                initDialog();
+//                break;
         }
     }
 

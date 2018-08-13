@@ -28,6 +28,7 @@ import com.sillykid.app.entity.CharterOrderAngleBean;
 import com.sillykid.app.entity.CharterOrderBean;
 import com.sillykid.app.entity.CharterOrderBean.ResultBean.ListBean;
 import com.sillykid.app.loginregister.LoginActivity;
+import com.sillykid.app.mine.myorder.CharterOrderFragment;
 import com.sillykid.app.mine.myorder.MyOrderActivity;
 
 import java.util.List;

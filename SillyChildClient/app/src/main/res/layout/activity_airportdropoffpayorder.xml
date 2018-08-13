@@ -16,6 +16,7 @@
             android:orientation="vertical">
 
             <ImageView
+                android:id="@+id/img_airportDropOff"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimen143"
                 android:layout_marginTop="@dimen/dimen6"
@@ -24,6 +25,7 @@
 
 
             <TextView
+                android:id="@+id/tv_selectProduct"
                 style="@style/MatchWrap"
                 android:layout_marginTop="@dimen/dimen6"
                 android:background="@color/whiteColors"
@@ -36,6 +38,7 @@
                 android:textSize="@dimen/textsize15" />
 
             <TextView
+                android:id="@+id/tv_travelConfiguration"
                 style="@style/MatchWrap"
                 android:background="@color/whiteColors"
                 android:paddingBottom="@dimen/dimen10"
@@ -58,6 +61,7 @@
                 android:textSize="@dimen/textsize15" />
 
             <TextView
+                android:id="@+id/tv_placeDeparture"
                 style="@style/MatchWrap"
                 android:background="@color/whiteColors"
                 android:paddingBottom="@dimen/dimen10"
@@ -80,6 +84,7 @@
                 android:textSize="@dimen/textsize15" />
 
             <TextView
+                android:id="@+id/tv_timeDeparture"
                 style="@style/MatchWrap"
                 android:background="@color/whiteColors"
                 android:paddingBottom="@dimen/dimen10"
@@ -123,13 +128,13 @@
                         style="@style/MatchWrap"
                         android:orientation="vertical">
 
-                        <EditText
+                        <TextView
+                            android:id="@+id/tv_adult"
                             style="@style/MatchAuto"
                             android:background="@android:color/transparent"
                             android:gravity="center"
                             android:inputType="number"
                             android:singleLine="true"
-                            android:text="1"
                             android:textColor="@color/textColor"
                             android:textCursorDrawable="@drawable/shape_cursor"
                             android:textSize="@dimen/textsize13" />
@@ -158,13 +163,13 @@
                         style="@style/MatchWrap"
                         android:orientation="vertical">
 
-                        <EditText
+                        <TextView
+                            android:id="@+id/tv_children"
                             style="@style/MatchAuto"
                             android:background="@android:color/transparent"
                             android:gravity="center"
                             android:inputType="number"
                             android:singleLine="true"
-                            android:text="1"
                             android:textColor="@color/textColor"
                             android:textCursorDrawable="@drawable/shape_cursor"
                             android:textSize="@dimen/textsize13" />
@@ -200,13 +205,13 @@
                         style="@style/MatchWrap"
                         android:orientation="vertical">
 
-                        <EditText
+                        <TextView
+                            android:id="@+id/tv_luggage"
                             style="@style/MatchAuto"
                             android:background="@android:color/transparent"
                             android:gravity="center"
                             android:inputType="number"
                             android:singleLine="true"
-                            android:text="1"
                             android:textColor="@color/textColor"
                             android:textCursorDrawable="@drawable/shape_cursor"
                             android:textSize="@dimen/textsize13" />
@@ -242,6 +247,7 @@
                 android:textSize="@dimen/textsize15" />
 
             <TextView
+                android:id="@+id/tv_contact"
                 style="@style/MatchWrap"
                 android:background="@color/whiteColors"
                 android:paddingBottom="@dimen/dimen10"
@@ -265,6 +271,7 @@
                 android:textSize="@dimen/textsize15" />
 
             <TextView
+                android:id="@+id/tv_contactWay"
                 style="@style/MatchWrap"
                 android:background="@color/whiteColors"
                 android:paddingBottom="@dimen/dimen10"
@@ -288,6 +295,7 @@
                 android:textSize="@dimen/textsize15" />
 
             <TextView
+                android:id="@+id/tv_priceDescription"
                 style="@style/MatchWrap"
                 android:background="@color/whiteColors"
                 android:paddingBottom="@dimen/dimen10"
@@ -311,6 +319,7 @@
                 android:textSize="@dimen/textsize15" />
 
             <TextView
+                android:id="@+id/tv_dueThat"
                 style="@style/MatchWrap"
                 android:background="@color/whiteColors"
                 android:paddingBottom="@dimen/dimen10"
@@ -336,7 +345,8 @@
                 android:textColor="@color/textColor"
                 android:textSize="@dimen/textsize15" />
 
-            <EditText
+            <TextView
+                android:id="@+id/tv_remark"
                 style="@style/MatchWrap"
                 android:background="@color/whiteColors"
                 android:gravity="left"
@@ -367,6 +377,7 @@
 
 
                 <TextView
+                    android:id="@+id/tv_orderMoney"
                     style="@style/AutoWrap"
                     android:gravity="right"
                     android:paddingLeft="@dimen/dimen10"
@@ -396,6 +407,7 @@
 
 
                 <TextView
+                    android:id="@+id/tv_vouchers"
                     style="@style/AutoWrap"
                     android:gravity="right"
                     android:paddingLeft="@dimen/dimen10"
@@ -430,6 +442,7 @@
             android:textSize="@dimen/textsize15" />
 
         <TextView
+            android:id="@+id/tv_actualPayment"
             style="@style/AutoWrap"
             android:text="￥2350.00"
             android:textColor="@color/fF5656Colors"
@@ -437,6 +450,7 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/tv_confirmPayment"
             android:layout_width="@dimen/dimen126"
             android:layout_height="match_parent"
             android:background="@color/fF5656Colors"

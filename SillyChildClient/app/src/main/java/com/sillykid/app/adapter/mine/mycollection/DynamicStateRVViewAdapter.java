@@ -48,7 +48,7 @@ public class DynamicStateRVViewAdapter extends BGARecyclerViewAdapter<DataBean> 
 
         helper.setText(R.id.tv_nickName, model.getNickname());
 
-        helper.setText(R.id.tv_attentionNum, model.getConcern_number());
+        helper.setText(R.id.tv_attentionNum, model.getClick_number());
     }
 
 }

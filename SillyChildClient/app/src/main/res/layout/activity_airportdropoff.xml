@@ -18,6 +18,7 @@
 
 
             <ImageView
+                android:id="@+id/img_airportDropOff"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimen143"
                 android:layout_marginTop="@dimen/dimen6"
@@ -25,6 +26,7 @@
                 android:src="@mipmap/placeholderfigure" />
 
             <TextView
+                android:id="@+id/tv_selectProduct"
                 style="@style/MatchWrap"
                 android:layout_marginTop="@dimen/dimen6"
                 android:background="@color/whiteColors"
@@ -37,6 +39,7 @@
                 android:textSize="@dimen/textsize15" />
 
             <TextView
+                android:id="@+id/tv_travelConfiguration"
                 style="@style/MatchWrap"
                 android:background="@color/whiteColors"
                 android:paddingBottom="@dimen/dimen10"
@@ -71,6 +74,7 @@
             </LinearLayout>
 
             <EditText
+                android:id="@+id/et_deliveredAirport"
                 style="@style/MatchWrap"
                 android:background="@color/whiteColors"
                 android:hint="@string/fillServiceAirport"
@@ -110,6 +114,7 @@
             </LinearLayout>
 
             <EditText
+                android:id="@+id/et_placeDeparture"
                 style="@style/MatchWrap"
                 android:background="@color/whiteColors"
                 android:hint="@string/placeDeparture2"
@@ -148,6 +153,7 @@
             </LinearLayout>
 
             <EditText
+                android:id="@+id/et_timeDeparture"
                 style="@style/MatchWrap"
                 android:background="@color/whiteColors"
                 android:hint="@string/fillDepartureTime"
@@ -187,6 +193,7 @@
             </LinearLayout>
 
             <EditText
+                android:id="@+id/et_contact"
                 style="@style/MatchWrap"
                 android:background="@color/whiteColors"
                 android:hint="@string/ContactName"
@@ -226,6 +233,7 @@
             </LinearLayout>
 
             <EditText
+                android:id="@+id/et_contactWay"
                 style="@style/MatchWrap"
                 android:background="@color/whiteColors"
                 android:hint="@string/ContactNumber"
@@ -289,12 +297,13 @@
                         android:orientation="vertical">
 
                         <EditText
+                            android:id="@+id/et_adult"
                             style="@style/MatchAuto"
                             android:background="@android:color/transparent"
+                            android:digits="@string/number0"
                             android:gravity="center"
                             android:inputType="number"
                             android:singleLine="true"
-                            android:text="1"
                             android:textColor="@color/textColor"
                             android:textCursorDrawable="@drawable/shape_cursor"
                             android:textSize="@dimen/textsize13" />
@@ -324,12 +333,13 @@
                         android:orientation="vertical">
 
                         <EditText
+                            android:id="@+id/et_children"
                             style="@style/MatchAuto"
                             android:background="@android:color/transparent"
+                            android:digits="@string/number0"
                             android:gravity="center"
                             android:inputType="number"
                             android:singleLine="true"
-                            android:text="1"
                             android:textColor="@color/textColor"
                             android:textCursorDrawable="@drawable/shape_cursor"
                             android:textSize="@dimen/textsize13" />
@@ -366,12 +376,13 @@
                         android:orientation="vertical">
 
                         <EditText
+                            android:id="@+id/et_luggage"
                             style="@style/MatchAuto"
+                            android:background="@android:color/transparent"
+                            android:digits="@string/number0"
                             android:gravity="center"
                             android:inputType="number"
-                            android:background="@android:color/transparent"
                             android:singleLine="true"
-                            android:text="1"
                             android:textColor="@color/textColor"
                             android:textCursorDrawable="@drawable/shape_cursor"
                             android:textSize="@dimen/textsize13" />
@@ -395,6 +406,7 @@
 
 
             <EditText
+                android:id="@+id/et_remark"
                 style="@style/MatchWrap"
                 android:layout_marginTop="@dimen/dimen6"
                 android:background="@color/whiteColors"
@@ -412,6 +424,7 @@
 
 
             <TextView
+                android:id="@+id/submitOrder"
                 style="@style/Match40"
                 android:layout_marginBottom="@dimen/dimen20"
                 android:layout_marginLeft="@dimen/dimen100"

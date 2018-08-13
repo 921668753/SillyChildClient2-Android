@@ -65,8 +65,8 @@ public class CharterOrderDetailsActivity extends BaseActivity implements Charter
     public void widgetClick(View v) {
         super.widgetClick(v);
         switch (v.getId()) {
-            case R.id.btn_bottoml:
-                break;
+//            case R.id.btn_bottoml:
+//                break;
         }
     }
 

@@ -33,6 +33,7 @@ import com.sillykid.app.loginregister.LoginActivity;
 import com.sillykid.app.mine.sharingceremony.dialog.ShareBouncedDialog;
 import com.sillykid.app.utils.GlideImageLoader;
 import com.common.cklibrary.utils.custommediaplayer.JZPLMediaPlayer;
+import com.sillykid.app.utils.jiaozivideoplayer.JZVideoPlayerStandard;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.UMShareListener;
@@ -42,8 +43,8 @@ import com.umeng.socialize.media.UMWeb;
 
 import cn.bingoogolapple.androidcommon.adapter.BGAOnItemChildClickListener;
 import cn.bingoogolapple.titlebar.BGATitleBar;
+import cn.jzvd.JZUserAction;
 import cn.jzvd.JZVideoPlayer;
-import cn.jzvd.JZVideoPlayerStandard;
 
 import static com.sillykid.app.constant.NumericConstants.REQUEST_CODE;
 
@@ -420,6 +421,10 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
             smallImg = dynamicDetailsBean.getData().getVideo_image();
             GlideImageLoader.glideOrdinaryLoader(this, smallImg, jzVideoPlayerStandard.thumbImageView, R.mipmap.placeholderfigure);
             JZVideoPlayer.setMediaInterface(new JZPLMediaPlayer());
+            jzVideoPlayerStandard.startVideo();
+            jzVideoPlayerStandard.onEvent(JZUserAction.ON_CLICK_START_ICON);
+            jzVideoPlayerStandard.onEvent(JZUserAction.ON_ENTER_FULLSCREEN);
+            jzVideoPlayerStandard.startWindowFullscreen();
             user_id = dynamicDetailsBean.getData().getMember_id();
             GlideImageLoader.glideLoader(this, dynamicDetailsBean.getData().getFace(), img_head, 0, R.mipmap.avatar);
             tv_nickName.setText(dynamicDetailsBean.getData().getNickname());
@@ -529,6 +534,44 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
         super.callMsgEvent(msgEvent);
         if (((String) msgEvent.getData()).equals("RxBusLoginEvent") && mPresenter != null || ((String) msgEvent.getData()).equals("RxBusDynamicDetailsEvent") && mPresenter != null) {
             ((VideoDetailsContract.Presenter) mPresenter).getVideoDetails(id);
+        } else if (((String) msgEvent.getData()).equals("RxBusDynamicDetailsZanEvent") && mPresenter != null) {
+            is_like = 1;
+            tv_zanNum.setText(StringUtils.toInt(tv_zanNum.getText().toString(), 0) + 1 + "");
+            img_zan.setImageResource(R.mipmap.dynamicdetails_zan1);
+            tv_zan.setTextColor(getResources().getColor(R.color.greenColors));
+            tv_zanNum.setTextColor(getResources().getColor(R.color.greenColors));
+        } else if (((String) msgEvent.getData()).equals("RxBusDynamicDetailsCancelZanEvent") && mPresenter != null) {
+            is_like = 0;
+            tv_zanNum.setText(StringUtils.toInt(tv_zanNum.getText().toString(), 0) - 1 + "");
+            img_zan.setImageResource(R.mipmap.dynamicdetails_zan);
+            tv_zan.setTextColor(getResources().getColor(R.color.textColor));
+            tv_zanNum.setTextColor(getResources().getColor(R.color.textColor));
+        } else if (((String) msgEvent.getData()).equals("RxBusDynamicDetailsCollectionEvent") && mPresenter != null) {
+            is_collect = 1;
+            img_collection.setImageResource(R.mipmap.dynamicdetails_collection1);
+            tv_collection.setTextColor(getResources().getColor(R.color.greenColors));
+            tv_collectionNum.setText(StringUtils.toInt(tv_collectionNum.getText().toString(), 0) + 1 + "");
+            tv_collectionNum.setTextColor(getResources().getColor(R.color.greenColors));
+            isRefresh = 1;
+        } else if (((String) msgEvent.getData()).equals("RxBusDynamicDetailsUnCollectionEvent") && mPresenter != null) {
+            img_collection.setImageResource(R.mipmap.dynamicdetails_collection);
+            tv_collection.setTextColor(getResources().getColor(R.color.textColor));
+            tv_collectionNum.setTextColor(getResources().getColor(R.color.textColor));
+            is_collect = 0;
+            isRefresh = 1;
+            tv_collectionNum.setText(StringUtils.toInt(tv_collectionNum.getText().toString(), 0) - 1 + "");
+        } else if (((String) msgEvent.getData()).equals("RxBusDynamicDetailsFocusEvent") && mPresenter != null) {
+            is_concern = 1;
+            tv_follow.setText(getString(R.string.followed));
+            tv_follow.setBackgroundResource(R.drawable.shape_followed1);
+            tv_follow.setTextColor(getResources().getColor(R.color.whiteColors));
+            isRefresh = 1;
+        } else if (((String) msgEvent.getData()).equals("RxBusDynamicDetailsUnFocusEvent") && mPresenter != null) {
+            is_concern = 0;
+            tv_follow.setText(getString(R.string.follow));
+            tv_follow.setBackgroundResource(R.drawable.shape_followdd);
+            tv_follow.setTextColor(getResources().getColor(R.color.greenColors));
+            isRefresh = 1;
         }
     }
 

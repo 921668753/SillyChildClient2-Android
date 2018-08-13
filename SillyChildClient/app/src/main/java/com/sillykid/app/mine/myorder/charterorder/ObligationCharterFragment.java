@@ -18,7 +18,6 @@ import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.RefreshLayoutUtil;
 import com.kymjs.common.PreferenceHelper;
-import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
 import com.sillykid.app.adapter.CharterOrderAdapter;
 import com.sillykid.app.constant.NumericConstants;
@@ -29,6 +28,7 @@ import com.sillykid.app.entity.CharterOrderAngleBean;
 import com.sillykid.app.entity.CharterOrderBean;
 import com.sillykid.app.entity.CharterOrderBean.ResultBean.ListBean;
 import com.sillykid.app.loginregister.LoginActivity;
+import com.sillykid.app.mine.myorder.CharterOrderFragment;
 import com.sillykid.app.mine.myorder.MyOrderActivity;
 
 import java.util.List;
@@ -261,14 +261,14 @@ public class ObligationCharterFragment extends BaseFragment implements AdapterVi
     @Override
     public void onItemChildClick(ViewGroup parent, View childView, int position) {
         switch (childView.getId()){
-            case R.id.tv_leftbtn:
-                //删除订单
-                itemposition=position;
-                initDialog();
-                break;
-            case R.id.tv_rightbtn:
-                ((CharterOrderPresenter)mPresenter).toPay(aty, databean.get(position).getAir_id(), databean.get(position).getReal_price(),databean.get(position).getReal_price_fmt());
-                break;
+//            case R.id.tv_leftbtn:
+//                //删除订单
+//                itemposition=position;
+//                initDialog();
+//                break;
+//            case R.id.tv_rightbtn:
+//                ((CharterOrderPresenter)mPresenter).toPay(aty, databean.get(position).getAir_id(), databean.get(position).getReal_price(),databean.get(position).getReal_price_fmt());
+//                break;
         }
     }
 

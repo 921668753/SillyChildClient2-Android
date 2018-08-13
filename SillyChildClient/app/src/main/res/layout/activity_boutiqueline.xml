@@ -7,26 +7,59 @@
 
     <include layout="@layout/common_title" />
 
-
     <LinearLayout
         style="@style/Match45"
         android:layout_marginTop="@dimen/dimen6"
         android:background="@color/whiteColors"
         android:orientation="horizontal">
 
-        <TextView
+        <LinearLayout
+            android:id="@+id/ll_chosecity"
             style="@style/AutoMatch"
             android:gravity="center"
-            android:text="@string/chosecity"
-            android:textColor="@color/textColor"
-            android:textSize="@dimen/textsize15" />
+            android:orientation="vertical">
 
-        <TextView
+            <TextView
+                android:id="@+id/tv_chosecity"
+                style="@style/MatchAuto"
+                android:gravity="center"
+                android:text="@string/chosecity"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize15" />
+
+
+            <TextView
+                android:id="@+id/tv_chosecity1"
+                android:layout_width="@dimen/dimen38"
+                android:layout_height="@dimen/dimen2"
+                android:background="@color/whiteColors" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ll_hotRecommended"
             style="@style/AutoMatch"
             android:gravity="center"
-            android:text="@string/hotRecommended"
-            android:textColor="@color/fF5656Colors"
-            android:textSize="@dimen/textsize15" />
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_hotRecommended"
+                style="@style/MatchAuto"
+                android:gravity="center"
+                android:text="@string/hotRecommended"
+                android:textColor="@color/greenColors"
+                android:textSize="@dimen/textsize15" />
+
+
+            <TextView
+                android:id="@+id/tv_hotRecommended1"
+                android:layout_width="@dimen/dimen38"
+                android:layout_height="@dimen/dimen2"
+                android:background="@color/greenColors" />
+
+        </LinearLayout>
+
 
     </LinearLayout>
 
@@ -34,6 +67,5 @@
     <FrameLayout
         android:id="@+id/main_content"
         style="@style/MatchMatch" />
-
 
 </LinearLayout>

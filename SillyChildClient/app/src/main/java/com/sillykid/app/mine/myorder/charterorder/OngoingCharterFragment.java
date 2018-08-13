@@ -28,6 +28,7 @@ import com.sillykid.app.entity.CharterOrderAngleBean;
 import com.sillykid.app.entity.CharterOrderBean;
 import com.sillykid.app.entity.CharterOrderBean.ResultBean.ListBean;
 import com.sillykid.app.loginregister.LoginActivity;
+import com.sillykid.app.mine.myorder.CharterOrderFragment;
 import com.sillykid.app.mine.myorder.MyOrderActivity;
 
 import java.util.List;
@@ -259,17 +260,17 @@ public class OngoingCharterFragment extends BaseFragment implements AdapterView.
     @Override
     public void onItemChildClick(ViewGroup parent, View childView, int position) {
         switch (childView.getId()) {
-            case R.id.tv_leftbtn:
-                ((CharterOrderPresenter) mPresenter).CallPhone(aty, databean.get(position).getDrv_phone());
-                break;
-            case R.id.tv_rightbtn:
-                ((CharterOrderPresenter) mPresenter).toChart(aty, databean.get(position).getHx_user_name(), databean.get(position).getNickname(), databean.get(position).getDrv_phone(), databean.get(position).getAvatar());
-                break;
-            case R.id.tv_rightbtn2:
-                //确认完成
-                finishPosition = position;
-                initDialog();
-                break;
+//            case R.id.tv_leftbtn:
+//                ((CharterOrderPresenter) mPresenter).CallPhone(aty, databean.get(position).getDrv_phone());
+//                break;
+//            case R.id.tv_rightbtn:
+//                ((CharterOrderPresenter) mPresenter).toChart(aty, databean.get(position).getHx_user_name(), databean.get(position).getNickname(), databean.get(position).getDrv_phone(), databean.get(position).getAvatar());
+//                break;
+//            case R.id.tv_rightbtn2:
+//                //确认完成
+//                finishPosition = position;
+//                initDialog();
+//                break;
         }
     }
 

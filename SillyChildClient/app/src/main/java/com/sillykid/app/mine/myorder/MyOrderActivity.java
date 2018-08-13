@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.SystemClock;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.common.cklibrary.common.BaseActivity;
@@ -12,12 +13,6 @@ import com.common.cklibrary.common.BindView;
 import com.common.cklibrary.utils.ActivityTitleUtils;
 import com.kymjs.common.Log;
 import com.sillykid.app.R;
-import com.sillykid.app.mine.myorder.goodorder.AfterSaleGoodFragment;
-import com.sillykid.app.mine.myorder.goodorder.AllGoodFragment;
-import com.sillykid.app.mine.myorder.goodorder.CompletedGoodFragment;
-import com.sillykid.app.mine.myorder.goodorder.ObligationGoodFragment;
-import com.sillykid.app.mine.myorder.goodorder.SendGoodsGoodFragment;
-import com.sillykid.app.mine.myorder.goodorder.WaitGoodsGoodFragment;
 
 /**
  * 我的订单
@@ -26,35 +21,29 @@ import com.sillykid.app.mine.myorder.goodorder.WaitGoodsGoodFragment;
 
 public class MyOrderActivity extends BaseActivity {
 
-    @BindView(id = R.id.tv_good_obligation, click = true)
-    private TextView tv_good_obligation;
+    @BindView(id = R.id.ll_goodOrder, click = true)
+    private LinearLayout ll_goodOrder;
 
-    @BindView(id = R.id.tv_good_send, click = true)
-    private TextView tv_good_send;
-
-
-    @BindView(id = R.id.tv_good_wait, click = true)
-    private TextView tv_good_wait;
+    @BindView(id = R.id.tv_goodOrder)
+    private TextView tv_goodOrder;
 
 
-    @BindView(id = R.id.tv_good_completed, click = true)
-    private TextView tv_good_completed;
+    @BindView(id = R.id.tv_goodOrder1)
+    private TextView tv_goodOrder1;
 
 
-    @BindView(id = R.id.tv_good_afterSale, click = true)
-    private TextView tv_good_afterSale;
+    @BindView(id = R.id.ll_charterOrder, click = true)
+    private LinearLayout ll_charterOrder;
 
 
-    @BindView(id = R.id.tv_good_all, click = true)
-    private TextView tv_good_all;
+    @BindView(id = R.id.tv_charterOrder, click = true)
+    private TextView tv_charterOrder;
 
+    @BindView(id = R.id.tv_charterOrder1, click = true)
+    private TextView tv_charterOrder1;
 
-    private BaseFragment obligationGoodFragment;
-    private BaseFragment sendGoodsGoodFragment;
-    private BaseFragment waitGoodsGoodFragment;
-    private BaseFragment completedGoodFragment;
-    private BaseFragment afterSaleGoodFragment;
-    private BaseFragment allGoodFragment;
+    private BaseFragment baseFragment;
+    private BaseFragment baseFragment1;
     private int chageIcon = 0;
 
     @Override
@@ -65,13 +54,9 @@ public class MyOrderActivity extends BaseActivity {
     @Override
     public void initData() {
         super.initData();
-        obligationGoodFragment = new ObligationGoodFragment();
-        sendGoodsGoodFragment = new SendGoodsGoodFragment();
-        waitGoodsGoodFragment = new WaitGoodsGoodFragment();
-        completedGoodFragment = new CompletedGoodFragment();
-        afterSaleGoodFragment = new AfterSaleGoodFragment();
-        allGoodFragment = new AllGoodFragment();
-        chageIcon = aty.getIntent().getIntExtra("chageIcon", 0);
+        baseFragment = new GoodOrderFragment();
+        baseFragment1 = new CharterOrderFragment();
+        chageIcon = getIntent().getIntExtra("chageIcon", 0);
     }
 
     @Override
@@ -80,31 +65,15 @@ public class MyOrderActivity extends BaseActivity {
         initTitle();
         if (chageIcon == 0) {
             cleanColors(0);
-            changeFragment(obligationGoodFragment);
+            changeFragment(baseFragment);
             chageIcon = 0;
         } else if (chageIcon == 1) {
             cleanColors(1);
-            changeFragment(sendGoodsGoodFragment);
+            changeFragment(baseFragment1);
             chageIcon = 1;
-        } else if (chageIcon == 2) {
-            cleanColors(2);
-            changeFragment(waitGoodsGoodFragment);
-            chageIcon = 2;
-        } else if (chageIcon == 3) {
-            cleanColors(3);
-            changeFragment(completedGoodFragment);
-            chageIcon = 3;
-        } else if (chageIcon == 4) {
-            cleanColors(4);
-            changeFragment(afterSaleGoodFragment);
-            chageIcon = 4;
-        } else if (chageIcon == 5) {
-            cleanColors(5);
-            changeFragment(allGoodFragment);
-            chageIcon = 5;
         } else {
             cleanColors(0);
-            changeFragment(obligationGoodFragment);
+            changeFragment(baseFragment);
             chageIcon = 0;
         }
 
@@ -131,17 +100,9 @@ public class MyOrderActivity extends BaseActivity {
         int newChageIcon = intent.getIntExtra("newChageIcon", 0);
         Log.d("newChageIcon", newChageIcon + "");
         if (newChageIcon == 0) {
-            setSimulateClick(tv_good_obligation, 160, 100);
+            setSimulateClick(ll_goodOrder, 160, 100);
         } else if (newChageIcon == 1) {
-            setSimulateClick(tv_good_send, 160, 100);
-        } else if (newChageIcon == 2) {
-            setSimulateClick(tv_good_wait, 160, 100);
-        } else if (newChageIcon == 3) {
-            setSimulateClick(tv_good_completed, 160, 100);
-        } else if (newChageIcon == 4) {
-            setSimulateClick(tv_good_afterSale, 160, 100);
-        } else if (newChageIcon == 5) {
-            setSimulateClick(tv_good_all, 160, 100);
+            setSimulateClick(ll_charterOrder, 160, 100);
         }
     }
 
@@ -173,35 +134,15 @@ public class MyOrderActivity extends BaseActivity {
     public void widgetClick(View v) {
         super.widgetClick(v);
         switch (v.getId()) {
-            case R.id.tv_good_obligation:
+            case R.id.ll_goodOrder:
                 cleanColors(0);
-                changeFragment(obligationGoodFragment);
+                changeFragment(baseFragment);
                 chageIcon = 0;
                 break;
-            case R.id.tv_good_send:
+            case R.id.ll_charterOrder:
                 cleanColors(1);
-                changeFragment(sendGoodsGoodFragment);
+                changeFragment(baseFragment1);
                 chageIcon = 1;
-                break;
-            case R.id.tv_good_wait:
-                cleanColors(2);
-                changeFragment(waitGoodsGoodFragment);
-                chageIcon = 2;
-                break;
-            case R.id.tv_good_completed:
-                cleanColors(3);
-                changeFragment(completedGoodFragment);
-                chageIcon = 3;
-                break;
-            case R.id.tv_good_afterSale:
-                cleanColors(4);
-                changeFragment(afterSaleGoodFragment);
-                chageIcon = 4;
-                break;
-            case R.id.tv_good_all:
-                cleanColors(5);
-                changeFragment(allGoodFragment);
-                chageIcon = 5;
                 break;
         }
 
@@ -212,24 +153,19 @@ public class MyOrderActivity extends BaseActivity {
      */
     @SuppressWarnings("deprecation")
     public void cleanColors(int chageIcon) {
-        tv_good_obligation.setTextColor(getResources().getColor(R.color.textColor));
-        tv_good_send.setTextColor(getResources().getColor(R.color.textColor));
-        tv_good_wait.setTextColor(getResources().getColor(R.color.textColor));
-        tv_good_completed.setTextColor(getResources().getColor(R.color.textColor));
-        tv_good_afterSale.setTextColor(getResources().getColor(R.color.textColor));
-        tv_good_all.setTextColor(getResources().getColor(R.color.textColor));
+        tv_goodOrder.setTextColor(getResources().getColor(R.color.textColor));
+        tv_goodOrder1.setTextColor(getResources().getColor(R.color.whiteColors));
+        tv_charterOrder.setTextColor(getResources().getColor(R.color.textColor));
+        tv_charterOrder1.setTextColor(getResources().getColor(R.color.whiteColors));
         if (chageIcon == 0) {
-            tv_good_obligation.setTextColor(getResources().getColor(R.color.greenColors));
+            tv_goodOrder.setTextColor(getResources().getColor(R.color.greenColors));
+            tv_goodOrder1.setTextColor(getResources().getColor(R.color.greenColors));
         } else if (chageIcon == 1) {
-            tv_good_send.setTextColor(getResources().getColor(R.color.greenColors));
-        } else if (chageIcon == 2) {
-            tv_good_wait.setTextColor(getResources().getColor(R.color.greenColors));
-        } else if (chageIcon == 3) {
-            tv_good_completed.setTextColor(getResources().getColor(R.color.greenColors));
-        } else if (chageIcon == 4) {
-            tv_good_afterSale.setTextColor(getResources().getColor(R.color.greenColors));
-        } else if (chageIcon == 5) {
-            tv_good_all.setTextColor(getResources().getColor(R.color.greenColors));
+            tv_charterOrder.setTextColor(getResources().getColor(R.color.greenColors));
+            tv_charterOrder1.setTextColor(getResources().getColor(R.color.greenColors));
+        } else {
+            tv_goodOrder.setTextColor(getResources().getColor(R.color.greenColors));
+            tv_goodOrder1.setTextColor(getResources().getColor(R.color.greenColors));
         }
     }
 }

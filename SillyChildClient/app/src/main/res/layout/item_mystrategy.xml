@@ -55,11 +55,11 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="@dimen/dimen20"
-                android:layout_height="@dimen/dimen11"
+                android:layout_width="@dimen/dimen22"
+                android:layout_height="@dimen/dimen10"
                 android:paddingLeft="@dimen/dimen4"
                 android:paddingRight="@dimen/dimen4"
-                android:src="@mipmap/hp_attention" />
+                android:src="@mipmap/yanjing2" />
 
             <TextView
                 android:id="@+id/tv_attentionNum"
@@ -68,7 +68,7 @@
                 android:maxWidth="@dimen/dimen20"
                 android:singleLine="true"
                 android:text="1111111"
-                android:textColor="@color/fF5656Colors"
+                android:textColor="@color/hintColors"
                 android:textSize="@dimen/textsize9" />
         </LinearLayout>
     </LinearLayout>

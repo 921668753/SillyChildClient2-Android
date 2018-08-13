@@ -50,7 +50,7 @@ public class JZPLMediaPlayer extends JZMediaInterface implements PLOnPreparedLis
         /**
          * 若设置为 1，则底层会进行一些针对直播流的优化
          */
-        options.setInteger(AVOptions.KEY_LIVE_STREAMING, 1);
+//        options.setInteger(AVOptions.KEY_LIVE_STREAMING, 1);
 
         /**
          * 快开模式，启用后会加快该播放器实例再次打开相同协议的视频流的速度
@@ -82,7 +82,7 @@ public class JZPLMediaPlayer extends JZMediaInterface implements PLOnPreparedLis
 //            ijkMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
             ijkMediaPlayer.setScreenOnWhilePlaying(true);
             ijkMediaPlayer.prepareAsync();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

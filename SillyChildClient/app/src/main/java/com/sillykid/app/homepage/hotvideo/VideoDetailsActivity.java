@@ -117,11 +117,7 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
     @BindView(id = R.id.tv_commentNum)
     private TextView tv_commentNum;
 
-    private int id = 0;
-
     private String title = "";
-
-    private int user_id = 0;
 
     private int is_concern = 0;
 
@@ -140,7 +136,8 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
     private ShareBouncedDialog shareBouncedDialog = null;
 
     private String smallImg = "";
-
+    private int id = 0;
+    private int user_id = 0;
     private int type = 2;
     private int positionItem = 0;
 
@@ -160,7 +157,7 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
     @Override
     protected void onPause() {
         super.onPause();
-        JZVideoPlayer.releaseAllVideos();
+        JZVideoPlayer.goOnPlayOnPause();
     }
 
     @Override
@@ -417,20 +414,32 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
     public void getSuccess(String success, int flag) {
         if (flag == 0) {
             VideoDetailsBean dynamicDetailsBean = (VideoDetailsBean) JsonUtil.getInstance().json2Obj(success, VideoDetailsBean.class);
-            jzVideoPlayerStandard.setUp(dynamicDetailsBean.getData().getVideo_url(), JZVideoPlayerStandard.SCREEN_WINDOW_NORMAL, "");
+            is_like = dynamicDetailsBean.getData().getIs_like();
+            is_collect = dynamicDetailsBean.getData().getIs_collect();
+            user_id = dynamicDetailsBean.getData().getMember_id();
+            String[] strings = new String[14];
+            strings[0] = "";
+            strings[1] = dynamicDetailsBean.getData().getFace();
+            strings[2] = dynamicDetailsBean.getData().getNickname();
+            strings[3] = "2";
+            strings[4] = dynamicDetailsBean.getData().getVideo_description();
+            strings[5] = is_like + "";
+            strings[6] = dynamicDetailsBean.getData().getLike_number();
+            strings[7] = is_collect + "";
+            strings[8] = dynamicDetailsBean.getData().getCollection_number();
+            strings[9] = dynamicDetailsBean.getData().getReview_number();
+            strings[10] = user_id + "";
+            strings[11] = type + "";
+            strings[12] = id + "";
+            strings[13] = 4 + "";
+            jzVideoPlayerStandard.setUp(dynamicDetailsBean.getData().getVideo_url(), JZVideoPlayerStandard.SCREEN_WINDOW_NORMAL, strings);
             smallImg = dynamicDetailsBean.getData().getVideo_image();
             GlideImageLoader.glideOrdinaryLoader(this, smallImg, jzVideoPlayerStandard.thumbImageView, R.mipmap.placeholderfigure);
             JZVideoPlayer.setMediaInterface(new JZPLMediaPlayer());
-            jzVideoPlayerStandard.startVideo();
-            jzVideoPlayerStandard.onEvent(JZUserAction.ON_CLICK_START_ICON);
-            jzVideoPlayerStandard.onEvent(JZUserAction.ON_ENTER_FULLSCREEN);
-            jzVideoPlayerStandard.startWindowFullscreen();
-            user_id = dynamicDetailsBean.getData().getMember_id();
             GlideImageLoader.glideLoader(this, dynamicDetailsBean.getData().getFace(), img_head, 0, R.mipmap.avatar);
             tv_nickName.setText(dynamicDetailsBean.getData().getNickname());
             tv_content.setText(dynamicDetailsBean.getData().getVideo_description());
             tv_userEvaluationNum.setText(dynamicDetailsBean.getData().getReview_number() + getString(R.string.evaluation1));
-            is_like = dynamicDetailsBean.getData().getIs_like();
             tv_zanNum.setText(dynamicDetailsBean.getData().getLike_number());
             if (is_like == 1) {
                 img_zan.setImageResource(R.mipmap.dynamicdetails_zan1);
@@ -441,7 +450,6 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
                 tv_zan.setTextColor(getResources().getColor(R.color.textColor));
                 tv_zanNum.setTextColor(getResources().getColor(R.color.textColor));
             }
-            is_collect = dynamicDetailsBean.getData().getIs_collect();
             tv_collectionNum.setText(dynamicDetailsBean.getData().getCollection_number());
             if (is_collect == 1) {
                 img_collection.setImageResource(R.mipmap.dynamicdetails_collection1);
@@ -457,6 +465,10 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
                 mAdapter.clear();
                 mAdapter.addNewData(dynamicDetailsBean.getData().getComment());
             }
+            jzVideoPlayerStandard.startVideo();
+            jzVideoPlayerStandard.onEvent(JZUserAction.ON_CLICK_START_ICON);
+            jzVideoPlayerStandard.onEvent(JZUserAction.ON_ENTER_FULLSCREEN);
+            jzVideoPlayerStandard.startWindowFullscreen();
             dismissLoadingDialog();
         } else if (flag == 1) {
             if (is_concern == 1) {
@@ -600,6 +612,7 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        JZVideoPlayer.releaseAllVideos();
         UMShareAPI.get(this).release();
         if (reportBouncedDialog != null) {
             reportBouncedDialog.cancel();

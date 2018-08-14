@@ -45,7 +45,7 @@ public class JZPLMediaPlayer extends JZMediaInterface implements PLOnPreparedLis
          *      codec=AVOptions.MEDIA_CODEC_AUTO, 硬解优先，失败后自动切换到软解
          *      默认值是：MEDIA_CODEC_SW_DECODE
          */
-   //     options.setInteger(AVOptions.KEY_MEDIACODEC, AVOptions.MEDIA_CODEC_AUTO);
+        //     options.setInteger(AVOptions.KEY_MEDIACODEC, AVOptions.MEDIA_CODEC_AUTO);
 
         /**
          * 若设置为 1，则底层会进行一些针对直播流的优化
@@ -64,7 +64,7 @@ public class JZPLMediaPlayer extends JZMediaInterface implements PLOnPreparedLis
 //        options.setInteger(AVOptions.KEY_LOG_LEVEL, 2);
 
         // 打开视频时单次 http 请求的超时时间，一次打开过程最多尝试五次,单位为 ms
-       // options.setInteger(AVOptions.KEY_PREPARE_TIMEOUT, 10 * 1000);
+        // options.setInteger(AVOptions.KEY_PREPARE_TIMEOUT, 10 * 1000);
         String downloadDirectoryPath = FileUtils.getSaveFolder(StringConstants.VIDEOCACHE).getAbsolutePath();
         options.setString(AVOptions.KEY_CACHE_DIR, downloadDirectoryPath);
         ijkMediaPlayer = new PLMediaPlayer(KJActivityStack.create().topActivity(), options);
@@ -119,7 +119,15 @@ public class JZPLMediaPlayer extends JZMediaInterface implements PLOnPreparedLis
 
     @Override
     public long getDuration() {
-        return ijkMediaPlayer.getDuration();
+        try {
+            if (ijkMediaPlayer != null) {
+                return ijkMediaPlayer.getDuration();
+            } else {
+                return 0;
+            }
+        } catch (Exception e) {
+            return 0;
+        }
     }
 
     @Override

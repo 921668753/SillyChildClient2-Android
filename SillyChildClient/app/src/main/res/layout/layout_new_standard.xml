@@ -78,13 +78,13 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/ll_content"
+            android:id="@+id/ll_content1"
             style="@style/MatchWrap"
             android:background="@color/black20"
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tv_content"
+                android:id="@+id/tv_content1"
                 style="@style/AutoWrap"
                 android:paddingLeft="@dimen/dimen16"
                 android:text="@string/authoriseErr"
@@ -92,7 +92,7 @@
                 android:textSize="@dimen/textsize12" />
 
             <TextView
-                android:id="@+id/more"
+                android:id="@+id/tv_more1"
                 style="@style/WrapWrap"
                 android:paddingLeft="@dimen/dimen16"
                 android:paddingRight="@dimen/dimen16"
@@ -103,26 +103,26 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/ll_bottom"
+            android:id="@+id/ll_bottom1"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen43"
             android:layout_marginTop="@dimen/dimen2"
             android:background="@color/black20">
 
             <LinearLayout
-                android:id="@+id/ll_zan"
+                android:id="@+id/ll_zan1"
                 style="@style/AutoMatch"
                 android:gravity="center"
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/img_zan"
+                    android:id="@+id/img_zan1"
                     android:layout_width="@dimen/dimen20"
                     android:layout_height="@dimen/dimen20"
                     android:src="@mipmap/dynamicdetails_zan" />
 
                 <TextView
-                    android:id="@+id/tv_zan"
+                    android:id="@+id/tv_zan1"
                     style="@style/WrapWrap"
                     android:layout_marginLeft="@dimen/dimen8"
                     android:text="@string/zan"
@@ -130,7 +130,7 @@
                     android:textSize="@dimen/textsize12" />
 
                 <TextView
-                    android:id="@+id/tv_zanNum"
+                    android:id="@+id/tv_zanNum1"
                     style="@style/WrapWrap"
                     android:layout_marginLeft="@dimen/dimen8"
                     android:text="0"
@@ -140,19 +140,19 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/ll_collection"
+                android:id="@+id/ll_collection1"
                 style="@style/AutoMatch"
                 android:gravity="center"
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/img_collection"
+                    android:id="@+id/img_collection1"
                     android:layout_width="@dimen/dimen20"
                     android:layout_height="@dimen/dimen20"
                     android:src="@mipmap/dynamicdetails_collection1" />
 
                 <TextView
-                    android:id="@+id/tv_collection"
+                    android:id="@+id/tv_collection1"
                     style="@style/WrapWrap"
                     android:layout_marginLeft="@dimen/dimen8"
                     android:text="@string/collection"
@@ -160,7 +160,7 @@
                     android:textSize="@dimen/textsize12" />
 
                 <TextView
-                    android:id="@+id/tv_collectionNum"
+                    android:id="@+id/tv_collectionNum1"
                     style="@style/WrapWrap"
                     android:layout_marginLeft="@dimen/dimen8"
                     android:text="0"
@@ -170,19 +170,19 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/ll_comment"
+                android:id="@+id/ll_comment1"
                 style="@style/AutoMatch"
                 android:gravity="center"
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/img_comment"
+                    android:id="@+id/img_comment1"
                     android:layout_width="@dimen/dimen20"
                     android:layout_height="@dimen/dimen20"
                     android:src="@mipmap/dynamicdetails_comments1" />
 
                 <TextView
-                    android:id="@+id/tv_comment"
+                    android:id="@+id/tv_comment1"
                     style="@style/WrapWrap"
                     android:layout_marginLeft="@dimen/dimen8"
                     android:text="@string/comment"
@@ -190,7 +190,7 @@
                     android:textSize="@dimen/textsize12" />
 
                 <TextView
-                    android:id="@+id/tv_commentNum"
+                    android:id="@+id/tv_commentNum1"
                     style="@style/WrapWrap"
                     android:layout_marginLeft="@dimen/dimen8"
                     android:text="0"
@@ -241,8 +241,21 @@
             android:scaleType="centerInside"
             android:src="@drawable/jz_click_back_selector" />
 
+        <TextView
+            android:id="@+id/title"
+            style="@style/WrapWrap"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dimen7"
+            android:layout_toRightOf="@id/back"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="薄荷色的夏天"
+            android:textColor="@color/whiteColors"
+            android:textSize="@dimen/textsize13"
+            android:visibility="gone" />
+
         <ImageView
-            android:id="@+id/img_head"
+            android:id="@+id/img_head1"
             android:layout_width="@dimen/dimen33"
             android:layout_height="@dimen/dimen33"
             android:layout_marginBottom="@dimen/dimen13"
@@ -252,25 +265,27 @@
             android:src="@mipmap/avatar" />
 
         <TextView
-            android:id="@+id/title"
+            android:id="@+id/title1"
             style="@style/WrapWrap"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/dimen7"
-            android:layout_toRightOf="@id/img_head"
+            android:layout_toRightOf="@id/img_head1"
             android:ellipsize="end"
+            android:maxWidth="@dimen/dimen210"
             android:singleLine="true"
-            android:text="薄荷色的夏天"
+            android:text="薄荷色的夏天薄荷色的夏天薄荷色的夏天"
             android:textColor="@color/whiteColors"
             android:textSize="@dimen/textsize13" />
 
         <TextView
-            android:id="@+id/tv_follow"
+            android:id="@+id/tv_follow1"
             android:layout_width="@dimen/dimen64"
             android:layout_height="@dimen/dimen25"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/dimen7"
             android:layout_marginRight="@dimen/dimen19"
+            android:layout_toLeftOf="@id/title1"
             android:background="@drawable/shape_followdd"
             android:gravity="center"
             android:text="@string/follow"

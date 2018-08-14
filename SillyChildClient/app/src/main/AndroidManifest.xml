@@ -375,6 +375,13 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
 
+        <!--社区   动态详情-->
+        <activity
+            android:name=".community.dynamic.DynamicVideoDetailsActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+
         <!--社区   单条动态评论详情-->
         <activity
             android:name=".community.dynamic.dynamiccomments.CommentDetailsActivity"

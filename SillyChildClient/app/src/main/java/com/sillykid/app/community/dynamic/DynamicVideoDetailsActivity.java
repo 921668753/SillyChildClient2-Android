@@ -1,12 +1,17 @@
-package com.sillykid.app.homepage.hotvideo;
+package com.sillykid.app.community.dynamic;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.common.cklibrary.common.BaseActivity;
@@ -14,13 +19,16 @@ import com.common.cklibrary.common.BindView;
 import com.common.cklibrary.common.StringConstants;
 import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.JsonUtil;
+import com.common.cklibrary.utils.custommediaplayer.JZPLMediaPlayer;
 import com.common.cklibrary.utils.myview.ChildListView;
 import com.common.cklibrary.utils.rx.MsgEvent;
 import com.common.cklibrary.utils.rx.RxBus;
+import com.kymjs.common.DensityUtils;
 import com.kymjs.common.Log;
 import com.kymjs.common.PreferenceHelper;
 import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
+import com.sillykid.app.adapter.community.dynamic.DynamicImgPagerAdapter;
 import com.sillykid.app.adapter.community.dynamic.UserEvaluationViewAdapter;
 import com.sillykid.app.community.DisplayPageActivity;
 import com.sillykid.app.community.dynamic.dialog.ReportBouncedDialog;
@@ -28,17 +36,19 @@ import com.sillykid.app.community.dynamic.dialog.RevertBouncedDialog;
 import com.sillykid.app.community.dynamic.dynamiccomments.CommentDetailsActivity;
 import com.sillykid.app.community.dynamic.dynamiccomments.DynamicCommentsActivity;
 import com.sillykid.app.constant.URLConstants;
-import com.sillykid.app.entity.homepage.hotvideo.VideoDetailsBean;
+import com.sillykid.app.entity.community.dynamic.DynamicDetailsBean;
 import com.sillykid.app.loginregister.LoginActivity;
 import com.sillykid.app.mine.sharingceremony.dialog.ShareBouncedDialog;
 import com.sillykid.app.utils.GlideImageLoader;
-import com.common.cklibrary.utils.custommediaplayer.JZPLMediaPlayer;
+import com.sillykid.app.utils.myview.AnimatorUtil;
+import com.sillykid.app.utils.myview.ViewSizeChangeAnimation;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.UMShareListener;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.media.UMImage;
 import com.umeng.socialize.media.UMWeb;
+
 
 import cn.bingoogolapple.androidcommon.adapter.BGAOnItemChildClickListener;
 import cn.bingoogolapple.titlebar.BGATitleBar;
@@ -48,12 +58,32 @@ import cn.jzvd.JZVideoPlayerStandard;
 import static com.sillykid.app.constant.NumericConstants.REQUEST_CODE;
 
 /**
- * 视频详情
+ * 动态视频详情
  */
-public class VideoDetailsActivity extends BaseActivity implements VideoDetailsContract.View, AdapterView.OnItemClickListener, BGAOnItemChildClickListener {
+public class DynamicVideoDetailsActivity extends BaseActivity implements DynamicDetailsContract.View, AdapterView.OnItemClickListener, BGAOnItemChildClickListener {
 
-    @BindView(id = R.id.titlebar)
-    private BGATitleBar titlebar;
+
+    @BindView(id = R.id.img_back, click = true)
+    private ImageView img_back;
+
+
+    @BindView(id = R.id.img_share, click = true)
+    private ImageView img_share;
+
+    @BindView(id = R.id.ll_title)
+    private LinearLayout ll_title;
+
+    @BindView(id = R.id.ll_title1)
+    private LinearLayout ll_title1;
+
+    @BindView(id = R.id.tv_title)
+    private TextView tv_title;
+
+    @BindView(id = R.id.img_delete, click = true)
+    private ImageView img_delete;
+
+    @BindView(id = R.id.rl_videoplayer)
+    private RelativeLayout rl_videoplayer;
 
     @BindView(id = R.id.videoplayer)
     private JZVideoPlayerStandard jzVideoPlayerStandard;
@@ -67,11 +97,29 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
     @BindView(id = R.id.tv_nickName)
     private TextView tv_nickName;
 
+    @BindView(id = R.id.ll_content1)
+    private LinearLayout ll_content1;
+
+    @BindView(id = R.id.tv_content1)
+    private TextView tv_content1;
+
+    @BindView(id = R.id.tv_more1, click = true)
+    private TextView tv_more1;
+
     @BindView(id = R.id.tv_follow, click = true)
     private TextView tv_follow;
 
     @BindView(id = R.id.tv_content)
     private TextView tv_content;
+
+    /**
+     * 举报
+     */
+    @BindView(id = R.id.ll_report, click = true)
+    private LinearLayout ll_report;
+
+    @BindView(id = R.id.ll_report1)
+    private LinearLayout ll_report1;
 
     @BindView(id = R.id.ll_userEvaluation, click = true)
     private LinearLayout ll_userEvaluation;
@@ -83,6 +131,11 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
     @BindView(id = R.id.clv_dynamicDetails)
     private ChildListView clv_dynamicDetails;
 
+    @BindView(id = R.id.ll_bottom1)
+    private LinearLayout ll_bottom1;
+
+    @BindView(id = R.id.ll_bottom)
+    private LinearLayout ll_bottom;
 
     @BindView(id = R.id.ll_zan, click = true)
     private LinearLayout ll_zan;
@@ -116,7 +169,43 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
     @BindView(id = R.id.tv_commentNum)
     private TextView tv_commentNum;
 
+
+    @BindView(id = R.id.ll_zan1, click = true)
+    private LinearLayout ll_zan1;
+
+    @BindView(id = R.id.img_zan1)
+    private ImageView img_zan1;
+
+    @BindView(id = R.id.tv_zan1)
+    private TextView tv_zan1;
+
+    @BindView(id = R.id.tv_zanNum1)
+    private TextView tv_zanNum1;
+
+
+    @BindView(id = R.id.ll_collection1, click = true)
+    private LinearLayout ll_collection1;
+
+    @BindView(id = R.id.img_collection1)
+    private ImageView img_collection1;
+
+    @BindView(id = R.id.tv_collection1)
+    private TextView tv_collection1;
+
+    @BindView(id = R.id.tv_collectionNum1)
+    private TextView tv_collectionNum1;
+
+    @BindView(id = R.id.ll_comment1, click = true)
+    private LinearLayout ll_comment1;
+
+    @BindView(id = R.id.tv_commentNum1)
+    private TextView tv_commentNum1;
+
+    private int id = 0;
+
     private String title = "";
+
+    private int user_id = 0;
 
     private int is_concern = 0;
 
@@ -132,32 +221,21 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
 
     private RevertBouncedDialog revertBouncedDialog = null;
 
+    private int type = 1;
+
+    private int positionItem = 0;
+
     private ShareBouncedDialog shareBouncedDialog = null;
 
     private String smallImg = "";
-    private int id = 0;
-    private int user_id = 0;
-    private int type = 2;
-    private int positionItem = 0;
-    private boolean isOpenPlayer = true;
+
+    private Thread thread = null;
+
+    private boolean isFull = true;
 
     @Override
     public void setRootView() {
-        setContentView(R.layout.activity_videodetails);
-    }
-
-    @Override
-    public void onBackPressed() {
-        if (JZVideoPlayer.backPress()) {
-            return;
-        }
-        super.onBackPressed();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        JZVideoPlayer.releaseAllVideos();
+        setContentView(R.layout.activity_dynamicvideodetails);
     }
 
     @Override
@@ -165,12 +243,12 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
         super.initData();
         id = getIntent().getIntExtra("id", 0);
         title = getIntent().getStringExtra("title");
+        mPresenter = new DynamicDetailsPresenter(this);
         mAdapter = new UserEvaluationViewAdapter(this);
-        mPresenter = new VideoDetailsPresenter(this);
         initBouncedDialog();
         initShareBouncedDialog();
         showLoadingDialog(getString(R.string.dataLoad));
-        ((VideoDetailsContract.Presenter) mPresenter).getVideoDetails(id);
+        ((DynamicDetailsContract.Presenter) mPresenter).getDynamicDetails(id);
     }
 
     private void initBouncedDialog() {
@@ -179,8 +257,6 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
             @Override
             public void toSuccess() {
                 RxBus.getInstance().post(new MsgEvent<String>("RxBusDynamicDetailsEvent"));
-//                tv_userEvaluationNum.setText(StringUtils.toInt(tv_commentNum.getText().toString(), 0) + 1 + getString(R.string.evaluation1));
-//                tv_commentNum.setText(StringUtils.toInt(tv_commentNum.getText().toString(), 0) + 1 + "");
             }
         };
     }
@@ -210,8 +286,6 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
         web.setThumb(thumb);  //缩略图
         web.setDescription(tv_content.getText().toString());
         new ShareAction(aty).setPlatform(platform)
-//                .withText("hello")
-//                .withMedia(thumb)
                 .withMedia(web)
                 .setCallback(umShareListener)
                 .share();
@@ -259,39 +333,13 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
         UMShareAPI.get(this).onSaveInstanceState(outState);
     }
 
+
     @Override
     public void initWidget() {
         super.initWidget();
         clv_dynamicDetails.setAdapter(mAdapter);
         clv_dynamicDetails.setOnItemClickListener(this);
         mAdapter.setOnItemChildClickListener(this);
-
-        titlebar.setTitleText(title);
-        titlebar.setRightDrawable(getResources().getDrawable(R.mipmap.product_details_share));
-        BGATitleBar.SimpleDelegate simpleDelegate = new BGATitleBar.SimpleDelegate() {
-            @Override
-            public void onClickLeftCtv() {
-                super.onClickLeftCtv();
-                if (isRefresh == 1) {
-                    Intent intent = getIntent();
-                    setResult(RESULT_OK, intent);
-                }
-                aty.finish();
-            }
-
-            @Override
-            public void onClickRightCtv() {
-                super.onClickRightCtv();
-                //分享
-                if (shareBouncedDialog == null) {
-                    initShareBouncedDialog();
-                }
-                if (shareBouncedDialog != null & !shareBouncedDialog.isShowing()) {
-                    shareBouncedDialog.show();
-                }
-            }
-        };
-        titlebar.setDelegate(simpleDelegate);
     }
 
 
@@ -299,11 +347,61 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
     public void widgetClick(View v) {
         super.widgetClick(v);
         switch (v.getId()) {
+            case R.id.img_back:
+                if (isRefresh == 1) {
+                    Intent intent = getIntent();
+                    setResult(RESULT_OK, intent);
+                }
+                aty.finish();
+                break;
+            case R.id.img_share:
+                //分享
+                if (shareBouncedDialog == null) {
+                    initShareBouncedDialog();
+                }
+                if (shareBouncedDialog != null & !shareBouncedDialog.isShowing()) {
+                    shareBouncedDialog.show();
+                }
+                break;
             case R.id.ll_author:
-//                Intent intent = new Intent(aty, DisplayPageActivity.class);
-//                intent.putExtra("user_id", user_id);
-//                intent.putExtra("isRefresh", 0);
-//                showActivity(aty, intent);
+                Intent intent = new Intent(aty, DisplayPageActivity.class);
+                intent.putExtra("user_id", user_id);
+                intent.putExtra("isRefresh", 0);
+                showActivity(aty, intent);
+                break;
+            case R.id.tv_more1:
+                isFull = false;
+                ViewGroup.LayoutParams params = rl_videoplayer.getLayoutParams();
+                params.height = DensityUtils.dip2px(216);
+                rl_videoplayer.setLayoutParams(params);
+                rl_videoplayer.setPadding(0, DensityUtils.dip2px(43), 0, 0);
+                animHeightToView(rl_videoplayer, DensityUtils.getScreenH() - DensityUtils.dip2px(20), DensityUtils.dip2px(216), isFull, 1000);
+                ViewGroup.LayoutParams lp = jzVideoPlayerStandard.bottomContainer.getLayoutParams();
+                lp.height = DensityUtils.dip2px(45);
+                jzVideoPlayerStandard.bottomContainer.setLayoutParams(lp);
+                jzVideoPlayerStandard.bottomContainer.setPadding(0, 0, 0, 0);
+                ll_title1.setBackgroundResource(R.color.searchTextColors);
+                ll_content1.setVisibility(View.GONE);
+                ll_bottom1.setVisibility(View.GONE);
+                tv_content.setVisibility(View.VISIBLE);
+                ll_report1.setVisibility(View.VISIBLE);
+                ll_userEvaluation.setVisibility(View.VISIBLE);
+                clv_dynamicDetails.setVisibility(View.VISIBLE);
+                ll_bottom.setVisibility(View.VISIBLE);
+                ll_title.setVisibility(View.VISIBLE);
+                break;
+            case R.id.img_delete:
+                isFull = true;
+                ViewGroup.LayoutParams params1 = rl_videoplayer.getLayoutParams();
+                params1.height = DensityUtils.getScreenH() - DensityUtils.dip2px(20);
+                rl_videoplayer.setLayoutParams(params1);
+                rl_videoplayer.setPadding(0, 0, 0, 0);
+                animHeightToView(rl_videoplayer, DensityUtils.dip2px(216), DensityUtils.getScreenH() - DensityUtils.dip2px(20), isFull, 1000);
+                ViewGroup.LayoutParams lp1 = jzVideoPlayerStandard.bottomContainer.getLayoutParams();
+                lp1.height = ll_bottom1.getHeight() + ll_content1.getHeight() + DensityUtils.dip2px(50);
+                jzVideoPlayerStandard.bottomContainer.setLayoutParams(lp1);
+                jzVideoPlayerStandard.bottomContainer.setPadding(0, 0, 0, ll_bottom1.getHeight() + ll_content1.getHeight());
+                ll_title1.setBackgroundResource(R.color.white30);
                 break;
             case R.id.tv_follow:
                 String title = getString(R.string.attentionLoad);
@@ -313,7 +411,7 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
                     title = getString(R.string.attentionLoad);
                 }
                 showLoadingDialog(title);
-                ((VideoDetailsContract.Presenter) mPresenter).postAddConcern(user_id, type);
+                ((DynamicDetailsContract.Presenter) mPresenter).postAddConcern(user_id, type);
                 break;
 
             case R.id.ll_report:
@@ -331,25 +429,26 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
                 showActivity(aty, intent1);
                 break;
             case R.id.ll_zan:
+            case R.id.ll_zan1:
                 showLoadingDialog(getString(R.string.dataLoad));
-                ((VideoDetailsContract.Presenter) mPresenter).postAddLike(id, type);
+                ((DynamicDetailsContract.Presenter) mPresenter).postAddLike(id, type);
                 break;
             case R.id.ll_collection:
+            case R.id.ll_collection1:
                 showLoadingDialog(getString(R.string.dataLoad));
                 if (is_collect == 1) {
-                    ((VideoDetailsContract.Presenter) mPresenter).postUnfavorite(id);
+                    ((DynamicDetailsContract.Presenter) mPresenter).postUnfavorite(id);
                 } else {
-                    ((VideoDetailsContract.Presenter) mPresenter).postAddFavorite(id);
+                    ((DynamicDetailsContract.Presenter) mPresenter).postAddFavorite(id);
                 }
                 break;
             case R.id.ll_comment:
+            case R.id.ll_comment1:
                 if (revertBouncedDialog == null) {
                     revertBouncedDialog = new RevertBouncedDialog(this) {
                         @Override
                         public void toSuccess() {
                             RxBus.getInstance().post(new MsgEvent<String>("RxBusDynamicDetailsEvent"));
-//                            tv_userEvaluationNum.setText(StringUtils.toInt(tv_commentNum.getText().toString(), 0) + 1 + getString(R.string.evaluation1));
-//                            tv_commentNum.setText(StringUtils.toInt(tv_commentNum.getText().toString(), 0) + 1 + "");
                         }
                     };
                 }
@@ -361,6 +460,73 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        if (JZVideoPlayer.backPress()) {
+            return;
+        }
+        super.onBackPressed();
+    }
+
+
+    private void animHeightToView(final View v, final int start, final int end, final boolean isToShow,
+                                  long duration) {
+
+        ValueAnimator va = ValueAnimator.ofInt(start, end);
+        final ViewGroup.LayoutParams layoutParams = v.getLayoutParams();
+        va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                int h = (int) animation.getAnimatedValue();
+                layoutParams.height = h;
+                v.setLayoutParams(layoutParams);
+                v.requestLayout();
+            }
+        });
+
+        va.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+                if (isToShow) {
+                    v.setVisibility(View.VISIBLE);
+                    ll_bottom.setVisibility(View.GONE);
+                }
+                super.onAnimationStart(animation);
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                if (isToShow) {
+                    ll_content1.setVisibility(View.VISIBLE);
+                    ll_bottom1.setVisibility(View.VISIBLE);
+                    tv_content.setVisibility(View.GONE);
+                    ll_report1.setVisibility(View.GONE);
+                    ll_userEvaluation.setVisibility(View.GONE);
+                    clv_dynamicDetails.setVisibility(View.GONE);
+                    ll_title.setVisibility(View.GONE);
+                } else {
+                    ll_content1.setVisibility(View.GONE);
+                    ll_bottom1.setVisibility(View.GONE);
+                    tv_content.setVisibility(View.VISIBLE);
+                    ll_report1.setVisibility(View.VISIBLE);
+                    ll_userEvaluation.setVisibility(View.VISIBLE);
+                    clv_dynamicDetails.setVisibility(View.VISIBLE);
+                    ll_bottom.setVisibility(View.VISIBLE);
+                    ll_title.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+        va.setDuration(duration);
+        va.start();
+    }
+
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        JZVideoPlayer.goOnPlayOnPause();
+    }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -375,7 +541,7 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
         positionItem = position;
         if (childView.getId() == R.id.ll_giveLike) {
             showLoadingDialog(getString(R.string.dataLoad));
-            ((VideoDetailsContract.Presenter) mPresenter).postAddCommentLike(mAdapter.getItem(positionItem).getId(), type);
+            ((DynamicDetailsContract.Presenter) mPresenter).postAddCommentLike(mAdapter.getItem(positionItem).getId(), type);
         } else if (childView.getId() == R.id.tv_revert) {
             Intent intent = new Intent(aty, CommentDetailsActivity.class);
             intent.putExtra("id", mAdapter.getItem(position).getId());
@@ -405,50 +571,100 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
         }
     }
 
+
     @Override
-    public void setPresenter(VideoDetailsContract.Presenter presenter) {
+    public void setPresenter(DynamicDetailsContract.Presenter presenter) {
         mPresenter = presenter;
     }
 
     @Override
     public void getSuccess(String success, int flag) {
         if (flag == 0) {
-            VideoDetailsBean dynamicDetailsBean = (VideoDetailsBean) JsonUtil.getInstance().json2Obj(success, VideoDetailsBean.class);
-            is_like = dynamicDetailsBean.getData().getIs_like();
-            is_collect = dynamicDetailsBean.getData().getIs_collect();
-            user_id = dynamicDetailsBean.getData().getMember_id();
-            smallImg = dynamicDetailsBean.getData().getVideo_image();
-            jzVideoPlayerStandard.setUp(dynamicDetailsBean.getData().getVideo_url(), JZVideoPlayerStandard.SCREEN_WINDOW_NORMAL, "");
-            GlideImageLoader.glideOrdinaryLoader(this, smallImg, jzVideoPlayerStandard.thumbImageView, R.mipmap.placeholderfigure);
+            DynamicDetailsBean dynamicDetailsBean = (DynamicDetailsBean) JsonUtil.getInstance().json2Obj(success, DynamicDetailsBean.class);
+            jzVideoPlayerStandard.setUp(dynamicDetailsBean.getData().getList().get(0), JZVideoPlayerStandard.SCREEN_WINDOW_NORMAL, "");
+            GlideImageLoader.glideOrdinaryLoader(this, dynamicDetailsBean.getData().getList().get(0) + "?vframe/jpg/offset/0", jzVideoPlayerStandard.thumbImageView, R.mipmap.placeholderfigure);
             JZVideoPlayer.setMediaInterface(new JZPLMediaPlayer());
+            ViewGroup.LayoutParams lp = jzVideoPlayerStandard.bottomContainer.getLayoutParams();
+            lp.height = ll_bottom1.getHeight() + ll_content1.getHeight() + DensityUtils.dip2px(45);
+            jzVideoPlayerStandard.bottomContainer.setLayoutParams(lp);
+            jzVideoPlayerStandard.bottomContainer.setPadding(0, 0, 0, ll_bottom1.getHeight() + ll_content1.getHeight());
+            tv_title.setText(title);
+            smallImg = dynamicDetailsBean.getData().getList().get(0) + "?vframe/jpg/offset/0";
+            user_id = dynamicDetailsBean.getData().getMember_id();
             GlideImageLoader.glideLoader(this, dynamicDetailsBean.getData().getFace(), img_head, 0, R.mipmap.avatar);
             tv_nickName.setText(dynamicDetailsBean.getData().getNickname());
-            tv_content.setText(dynamicDetailsBean.getData().getVideo_description());
+            is_concern = dynamicDetailsBean.getData().getIs_concern();
+            if (is_concern == 1) {
+                tv_follow.setText(getString(R.string.followed));
+                tv_follow.setBackgroundResource(R.drawable.shape_followed1);
+                tv_follow.setTextColor(getResources().getColor(R.color.whiteColors));
+            } else {
+                tv_follow.setText(getString(R.string.follow));
+                tv_follow.setBackgroundResource(R.drawable.shape_followdd);
+                tv_follow.setTextColor(getResources().getColor(R.color.greenColors));
+            }
+            tv_content.setText(dynamicDetailsBean.getData().getContent());
+            tv_content1.setText(dynamicDetailsBean.getData().getContent());
             tv_userEvaluationNum.setText(dynamicDetailsBean.getData().getReview_number() + getString(R.string.evaluation1));
+            is_like = dynamicDetailsBean.getData().getIs_like();
             tv_zanNum.setText(dynamicDetailsBean.getData().getLike_number());
+            tv_zanNum1.setText(dynamicDetailsBean.getData().getLike_number());
             if (is_like == 1) {
                 img_zan.setImageResource(R.mipmap.dynamicdetails_zan1);
                 tv_zan.setTextColor(getResources().getColor(R.color.greenColors));
                 tv_zanNum.setTextColor(getResources().getColor(R.color.greenColors));
+                img_zan1.setImageResource(R.mipmap.dynamicdetails_zan1);
+                tv_zan1.setTextColor(getResources().getColor(R.color.greenColors));
+                tv_zanNum1.setTextColor(getResources().getColor(R.color.greenColors));
             } else {
                 img_zan.setImageResource(R.mipmap.dynamicdetails_zan);
                 tv_zan.setTextColor(getResources().getColor(R.color.textColor));
                 tv_zanNum.setTextColor(getResources().getColor(R.color.textColor));
+                img_zan1.setImageResource(R.mipmap.dynamicdetails_zan);
+                tv_zan1.setTextColor(getResources().getColor(R.color.textColor));
+                tv_zanNum1.setTextColor(getResources().getColor(R.color.textColor));
             }
+            is_collect = dynamicDetailsBean.getData().getIs_collect();
             tv_collectionNum.setText(dynamicDetailsBean.getData().getCollection_number());
+            tv_collectionNum1.setText(dynamicDetailsBean.getData().getCollection_number());
             if (is_collect == 1) {
                 img_collection.setImageResource(R.mipmap.dynamicdetails_collection1);
                 tv_collection.setTextColor(getResources().getColor(R.color.greenColors));
                 tv_collectionNum.setTextColor(getResources().getColor(R.color.greenColors));
+                img_collection1.setImageResource(R.mipmap.dynamicdetails_collection1);
+                tv_collection1.setTextColor(getResources().getColor(R.color.greenColors));
+                tv_collectionNum1.setTextColor(getResources().getColor(R.color.greenColors));
             } else {
                 img_collection.setImageResource(R.mipmap.dynamicdetails_collection);
                 tv_collection.setTextColor(getResources().getColor(R.color.textColor));
                 tv_collectionNum.setTextColor(getResources().getColor(R.color.textColor));
+                img_collection1.setImageResource(R.mipmap.dynamicdetails_collection);
+                tv_collection1.setTextColor(getResources().getColor(R.color.textColor));
+                tv_collectionNum1.setTextColor(getResources().getColor(R.color.textColor));
             }
             tv_commentNum.setText(dynamicDetailsBean.getData().getReview_number());
+            tv_commentNum1.setText(dynamicDetailsBean.getData().getReview_number());
             if (dynamicDetailsBean.getData().getComment() != null && dynamicDetailsBean.getData().getComment().size() > 0) {
                 mAdapter.clear();
                 mAdapter.addNewData(dynamicDetailsBean.getData().getComment());
+            }
+            if (isFull) {
+                ViewGroup.LayoutParams params1 = rl_videoplayer.getLayoutParams();
+                params1.height = DensityUtils.getScreenH() - DensityUtils.dip2px(20);
+                rl_videoplayer.setLayoutParams(params1);
+                rl_videoplayer.setPadding(0, 0, 0, 0);
+//                Animation animation1 = new ViewSizeChangeAnimation(rl_videoplayer, DensityUtils.getScreenH(), DensityUtils.getScreenW());
+//                animation1.setDuration(5000);
+//                rl_videoplayer.startAnimation(animation1);
+                ll_title1.setBackgroundResource(R.color.white30);
+                ll_content1.setVisibility(View.VISIBLE);
+                ll_bottom1.setVisibility(View.VISIBLE);
+                tv_content.setVisibility(View.GONE);
+                ll_report1.setVisibility(View.GONE);
+                ll_userEvaluation.setVisibility(View.GONE);
+                clv_dynamicDetails.setVisibility(View.GONE);
+                ll_bottom.setVisibility(View.GONE);
+                ll_title.setVisibility(View.GONE);
             }
             dismissLoadingDialog();
         } else if (flag == 1) {
@@ -474,6 +690,11 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
             tv_collectionNum.setTextColor(getResources().getColor(R.color.textColor));
             is_collect = 0;
             tv_collectionNum.setText(StringUtils.toInt(tv_collectionNum.getText().toString(), 0) - 1 + "");
+
+            img_collection1.setImageResource(R.mipmap.dynamicdetails_collection);
+            tv_collection1.setTextColor(getResources().getColor(R.color.textColor));
+            tv_collectionNum1.setTextColor(getResources().getColor(R.color.textColor));
+            tv_collectionNum1.setText(StringUtils.toInt(tv_collectionNum.getText().toString(), 0) - 1 + "");
             ViewInject.toast(getString(R.string.uncollectible));
             isRefresh = 1;
         } else if (flag == 3) {
@@ -483,6 +704,10 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
             tv_collection.setTextColor(getResources().getColor(R.color.greenColors));
             tv_collectionNum.setText(StringUtils.toInt(tv_collectionNum.getText().toString(), 0) + 1 + "");
             tv_collectionNum.setTextColor(getResources().getColor(R.color.greenColors));
+            img_collection1.setImageResource(R.mipmap.dynamicdetails_collection1);
+            tv_collection1.setTextColor(getResources().getColor(R.color.greenColors));
+            tv_collectionNum1.setText(StringUtils.toInt(tv_collectionNum.getText().toString(), 0) + 1 + "");
+            tv_collectionNum1.setTextColor(getResources().getColor(R.color.greenColors));
             ViewInject.toast(getString(R.string.collectionSuccess));
             isRefresh = 1;
         } else if (flag == 4) {
@@ -492,6 +717,10 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
                 img_zan.setImageResource(R.mipmap.dynamicdetails_zan);
                 tv_zan.setTextColor(getResources().getColor(R.color.textColor));
                 tv_zanNum.setTextColor(getResources().getColor(R.color.textColor));
+                tv_zanNum1.setText(StringUtils.toInt(tv_zanNum.getText().toString(), 0) - 1 + "");
+                img_zan1.setImageResource(R.mipmap.dynamicdetails_zan);
+                tv_zan1.setTextColor(getResources().getColor(R.color.textColor));
+                tv_zanNum1.setTextColor(getResources().getColor(R.color.textColor));
                 ViewInject.toast(getString(R.string.cancelZanSuccess));
             } else {
                 is_like = 1;
@@ -499,6 +728,10 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
                 img_zan.setImageResource(R.mipmap.dynamicdetails_zan1);
                 tv_zan.setTextColor(getResources().getColor(R.color.greenColors));
                 tv_zanNum.setTextColor(getResources().getColor(R.color.greenColors));
+                tv_zanNum1.setText(StringUtils.toInt(tv_zanNum.getText().toString(), 0) + 1 + "");
+                img_zan1.setImageResource(R.mipmap.dynamicdetails_zan1);
+                tv_zan1.setTextColor(getResources().getColor(R.color.greenColors));
+                tv_zanNum1.setTextColor(getResources().getColor(R.color.greenColors));
                 ViewInject.toast(getString(R.string.zanSuccess));
             }
             dismissLoadingDialog();
@@ -526,48 +759,7 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
     public void callMsgEvent(MsgEvent msgEvent) {
         super.callMsgEvent(msgEvent);
         if (((String) msgEvent.getData()).equals("RxBusLoginEvent") && mPresenter != null || ((String) msgEvent.getData()).equals("RxBusDynamicDetailsEvent") && mPresenter != null) {
-            isOpenPlayer = false;
-            ((VideoDetailsContract.Presenter) mPresenter).getVideoDetails(id);
-        } else if (((String) msgEvent.getData()).equals("RxBusDynamicDetailsEvent") && mPresenter != null) {
-            ((VideoDetailsContract.Presenter) mPresenter).getVideoDetails(id);
-        } else if (((String) msgEvent.getData()).equals("RxBusDynamicDetailsZanEvent") && mPresenter != null) {
-            is_like = 1;
-            tv_zanNum.setText(StringUtils.toInt(tv_zanNum.getText().toString(), 0) + 1 + "");
-            img_zan.setImageResource(R.mipmap.dynamicdetails_zan1);
-            tv_zan.setTextColor(getResources().getColor(R.color.greenColors));
-            tv_zanNum.setTextColor(getResources().getColor(R.color.greenColors));
-        } else if (((String) msgEvent.getData()).equals("RxBusDynamicDetailsCancelZanEvent") && mPresenter != null) {
-            is_like = 0;
-            tv_zanNum.setText(StringUtils.toInt(tv_zanNum.getText().toString(), 0) - 1 + "");
-            img_zan.setImageResource(R.mipmap.dynamicdetails_zan);
-            tv_zan.setTextColor(getResources().getColor(R.color.textColor));
-            tv_zanNum.setTextColor(getResources().getColor(R.color.textColor));
-        } else if (((String) msgEvent.getData()).equals("RxBusDynamicDetailsCollectionEvent") && mPresenter != null) {
-            is_collect = 1;
-            img_collection.setImageResource(R.mipmap.dynamicdetails_collection1);
-            tv_collection.setTextColor(getResources().getColor(R.color.greenColors));
-            tv_collectionNum.setText(StringUtils.toInt(tv_collectionNum.getText().toString(), 0) + 1 + "");
-            tv_collectionNum.setTextColor(getResources().getColor(R.color.greenColors));
-            isRefresh = 1;
-        } else if (((String) msgEvent.getData()).equals("RxBusDynamicDetailsUnCollectionEvent") && mPresenter != null) {
-            img_collection.setImageResource(R.mipmap.dynamicdetails_collection);
-            tv_collection.setTextColor(getResources().getColor(R.color.textColor));
-            tv_collectionNum.setTextColor(getResources().getColor(R.color.textColor));
-            is_collect = 0;
-            isRefresh = 1;
-            tv_collectionNum.setText(StringUtils.toInt(tv_collectionNum.getText().toString(), 0) - 1 + "");
-        } else if (((String) msgEvent.getData()).equals("RxBusDynamicDetailsFocusEvent") && mPresenter != null) {
-            is_concern = 1;
-            tv_follow.setText(getString(R.string.followed));
-            tv_follow.setBackgroundResource(R.drawable.shape_followed1);
-            tv_follow.setTextColor(getResources().getColor(R.color.whiteColors));
-            isRefresh = 1;
-        } else if (((String) msgEvent.getData()).equals("RxBusDynamicDetailsUnFocusEvent") && mPresenter != null) {
-            is_concern = 0;
-            tv_follow.setText(getString(R.string.follow));
-            tv_follow.setBackgroundResource(R.drawable.shape_followdd);
-            tv_follow.setTextColor(getResources().getColor(R.color.greenColors));
-            isRefresh = 1;
+            ((DynamicDetailsContract.Presenter) mPresenter).getDynamicDetails(id);
         }
     }
 
@@ -576,7 +768,7 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (data != null && requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
-            ((VideoDetailsContract.Presenter) mPresenter).getVideoDetails(id);
+            ((DynamicDetailsContract.Presenter) mPresenter).getDynamicDetails(id);
         } else {
             UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
         }
@@ -598,6 +790,14 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
         super.onDestroy();
         JZVideoPlayer.releaseAllVideos();
         UMShareAPI.get(this).release();
+        if (thread != null) {
+            thread.interrupted();
+        }
+        thread = null;
+        if (shareBouncedDialog != null) {
+            shareBouncedDialog.cancel();
+        }
+        shareBouncedDialog = null;
         if (reportBouncedDialog != null) {
             reportBouncedDialog.cancel();
         }
@@ -607,11 +807,8 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
             revertBouncedDialog.cancel();
         }
         revertBouncedDialog = null;
-        if (shareBouncedDialog != null) {
-            shareBouncedDialog.cancel();
-        }
-        shareBouncedDialog = null;
         mAdapter.clear();
         mAdapter = null;
     }
+
 }

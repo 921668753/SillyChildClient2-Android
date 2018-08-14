@@ -96,6 +96,7 @@ public abstract class JZVideoPlayer extends FrameLayout implements View.OnClickL
     };
     protected static JZUserAction JZ_USER_EVENT;
     protected static Timer UPDATE_PROGRESS_TIMER;
+    public static Object mPresenter;
     public int currentState = -1;
     public int currentScreen = -1;
     public Object[] objects = null;
@@ -141,6 +142,7 @@ public abstract class JZVideoPlayer extends FrameLayout implements View.OnClickL
     public static void releaseAllVideos() {
         if ((System.currentTimeMillis() - CLICK_QUIT_FULLSCREEN_TIME) > FULL_SCREEN_NORMAL_DELAY) {
             Log.d(TAG, "releaseAllVideos");
+            mPresenter = null;
             JZVideoPlayerManager.completeAll();
             JZMediaManager.instance().positionInList = -1;
             JZMediaManager.instance().releaseMediaPlayer();
@@ -974,7 +976,7 @@ public abstract class JZVideoPlayer extends FrameLayout implements View.OnClickL
         hideSupportActionBar(getContext());
 
         ViewGroup vp = (JZUtils.scanForActivity(getContext()))//.getWindow().getDecorView();
-                .findViewById(Window.ID_ANDROID_CONTENT);
+        .findViewById(Window.ID_ANDROID_CONTENT);
         View old = vp.findViewById(R.id.jz_fullscreen_id);
         if (old != null) {
             vp.removeView(old);

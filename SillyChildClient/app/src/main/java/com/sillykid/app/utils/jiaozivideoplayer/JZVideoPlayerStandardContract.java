@@ -12,6 +12,10 @@ import com.common.cklibrary.common.BaseView;
 public interface JZVideoPlayerStandardContract {
 
     interface Presenter extends BasePresenter {
+        /**
+         * 获取视频详情
+         */
+        void getVideoDetails(int id);
 
         /**
          * 关注或取消关注

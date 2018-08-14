@@ -19,6 +19,7 @@ import com.common.cklibrary.utils.RefreshLayoutUtil;
 import com.sillykid.app.R;
 import com.sillykid.app.adapter.community.search.SearchArticleViewAdapter;
 import com.sillykid.app.community.dynamic.DynamicDetailsActivity;
+import com.sillykid.app.community.dynamic.DynamicVideoDetailsActivity;
 import com.sillykid.app.constant.NumericConstants;
 import com.sillykid.app.entity.main.community.CommunityBean;
 import com.sillykid.app.loginregister.LoginActivity;
@@ -156,10 +157,17 @@ public class SearchArticleActivity extends BaseActivity implements SearchArticle
 
     @Override
     public void onRVItemClick(ViewGroup parent, View itemView, int position) {
-        Intent intent = new Intent(aty, DynamicDetailsActivity.class);
-        intent.putExtra("id", mAdapter.getItem(position).getId());
-        intent.putExtra("title", mAdapter.getItem(position).getPost_title());
-        showActivity(aty, intent);
+        if (mAdapter.getItem(position).getType() == 1) {//动态
+            Intent intent = new Intent(aty, DynamicDetailsActivity.class);
+            intent.putExtra("id", mAdapter.getItem(position).getId());
+            intent.putExtra("title", mAdapter.getItem(position).getPost_title());
+            showActivity(aty, intent);
+        } else if (mAdapter.getItem(position).getType() == 2) {//视频
+            Intent intent = new Intent(aty, DynamicVideoDetailsActivity.class);
+            intent.putExtra("id", mAdapter.getItem(position).getId());
+            intent.putExtra("title", mAdapter.getItem(position).getPost_title());
+            showActivity(aty, intent);
+        }
     }
 
     @Override

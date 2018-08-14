@@ -40,7 +40,7 @@ public class JZVideoPlayerStandardPresenter implements JZVideoPlayerStandardCont
     }
 
     @Override
-    public void postUnfavorite(int id,int type_id) {
+    public void postUnfavorite(int id, int type_id) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
         httpParams.put("goodsid", id);
         httpParams.put("type_id", type_id);
@@ -58,7 +58,7 @@ public class JZVideoPlayerStandardPresenter implements JZVideoPlayerStandardCont
     }
 
     @Override
-    public void postAddFavorite(int id,int type_id) {
+    public void postAddFavorite(int id, int type_id) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
         httpParams.put("goodsid", id);
         httpParams.put("type_id", type_id);
@@ -89,6 +89,23 @@ public class JZVideoPlayerStandardPresenter implements JZVideoPlayerStandardCont
             @Override
             public void onFailure(String msg) {
                 mView.errorMsg(msg, 3);
+            }
+        });
+    }
+
+    @Override
+    public void getVideoDetails(int id) {
+        HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
+        httpParams.put("video_id", id);
+        RequestClient.getVideoDetail(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
+            @Override
+            public void onSuccess(String response) {
+                mView.getSuccess(response, 4);
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                mView.errorMsg(msg, 4);
             }
         });
     }

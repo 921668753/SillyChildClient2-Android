@@ -25,12 +25,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.common.cklibrary.common.ViewInject;
+import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.rx.MsgEvent;
 import com.common.cklibrary.utils.rx.RxBus;
 import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
 import com.sillykid.app.community.DisplayPageActivity;
 import com.sillykid.app.community.dynamic.dynamiccomments.DynamicCommentsActivity;
+import com.sillykid.app.entity.homepage.hotvideo.VideoDetailsBean;
 import com.sillykid.app.loginregister.LoginActivity;
 import com.sillykid.app.utils.GlideImageLoader;
 
@@ -46,6 +48,7 @@ import cn.jzvd.JZUserActionStandard;
 import cn.jzvd.JZUtils;
 import cn.jzvd.JZVideoPlayer;
 import cn.jzvd.JZVideoPlayerManager;
+import rx.functions.Action1;
 
 /**
  * Created by Nathen
@@ -93,7 +96,6 @@ public class JZVideoPlayerStandard extends JZVideoPlayer implements JZVideoPlaye
     private int user_id = 0;
     private int type = 1;
     private int type_id = 3;
-    private JZVideoPlayerStandardContract.Presenter mPresenter = null;
 
     protected DismissControlViewTimerTask mDismissControlViewTimerTask;
     protected Dialog mProgressDialog;
@@ -223,11 +225,10 @@ public class JZVideoPlayerStandard extends JZVideoPlayer implements JZVideoPlaye
         }
     }
 
-    private void setView(Object... objects) {
-        mPresenter = new JZVideoPlayerStandardPresenter(this);
-        ll_collection = findViewById(R.id.ll_collection1);
-        img_collection = findViewById(R.id.img_collection1);
-        tv_collection = findViewById(R.id.tv_collection1);
+    public void setView(Object... objects) {
+        if (mPresenter == null) {
+            mPresenter = new JZVideoPlayerStandardPresenter(this);
+        }
         GlideImageLoader.glideLoader(getContext(), objects[1].toString(), img_head, 0, R.mipmap.avatar);
         title1.setText(objects[2].toString());
         if (objects.length != 0 && StringUtils.toInt(objects[3].toString(), -1) == 0) {
@@ -280,8 +281,17 @@ public class JZVideoPlayerStandard extends JZVideoPlayer implements JZVideoPlaye
         type = StringUtils.toInt(objects[11].toString(), 1);
         id = StringUtils.toInt(objects[12].toString(), 0);
         type_id = StringUtils.toInt(objects[13].toString(), 3);
+        RxBus.getInstance().register(MsgEvent.class).subscribe(new Action1<MsgEvent>() {
+            @Override
+            public void call(MsgEvent msgEvent) {
+                if (((String) msgEvent.getData()).equals("RxBusLoginEvent") && mPresenter != null) {
+                    if (type_id == 4 && type == 2) {
+                        ((JZVideoPlayerStandardContract.Presenter) mPresenter).getVideoDetails(id);
+                    }
+                }
+            }
+        });
     }
-
 
     public void changeStartButtonSize(int size) {
         ViewGroup.LayoutParams lp = startButton.getLayoutParams();
@@ -380,7 +390,6 @@ public class JZVideoPlayerStandard extends JZVideoPlayer implements JZVideoPlaye
 
     @Override
     public void onClick(View v) {
-        super.onClick(v);
         int i = v.getId();
         if (i == R.id.thumb) {
             if (dataSourceObjects == null || JZUtils.getCurrentFromDataSource(dataSourceObjects, currentUrlMapIndex) == null) {
@@ -404,19 +413,19 @@ public class JZVideoPlayerStandard extends JZVideoPlayer implements JZVideoPlaye
         } else if (i == R.id.back || i == R.id.tv_more1) {
             backPress();
         } else if (i == R.id.tv_follow) {
-            mPresenter.postAddConcern(user_id, type);
+            ((JZVideoPlayerStandardContract.Presenter) mPresenter).postAddConcern(user_id, type);
         } else if (i == R.id.img_head || i == R.id.title1) {
             Intent intent1 = new Intent(getContext(), DisplayPageActivity.class);
             intent1.putExtra("user_id", user_id);
             intent1.putExtra("isRefresh", 0);
             getContext().startActivity(intent1);
         } else if (i == R.id.ll_zan1) {
-            mPresenter.postAddLike(id, type);
+            ((JZVideoPlayerStandardContract.Presenter) mPresenter).postAddLike(id, type);
         } else if (i == R.id.ll_collection1) {
             if (is_collect == 1) {
-                mPresenter.postUnfavorite(id, type_id);
+                ((JZVideoPlayerStandardContract.Presenter) mPresenter).postUnfavorite(id, type_id);
             } else {
-                mPresenter.postAddFavorite(id, type_id);
+                ((JZVideoPlayerStandardContract.Presenter) mPresenter).postAddFavorite(id, type_id);
             }
         } else if (i == R.id.ll_comment1) {
             Intent intent1 = new Intent(getContext(), DynamicCommentsActivity.class);
@@ -488,7 +497,16 @@ public class JZVideoPlayerStandard extends JZVideoPlayer implements JZVideoPlaye
             JZMediaManager.setCurrentDataSource(JZUtils.getCurrentFromDataSource(dataSourceObjects, currentUrlMapIndex));
             onStatePreparing();
             onEvent(JZUserAction.ON_CLICK_START_ERROR);
+        } else if (i == R.id.fullscreen) {
+            if (currentScreen == SCREEN_WINDOW_FULLSCREEN) {
+                //click quit fullscreen
+                backPress();
+            } else {
+//                onEvent(JZUserAction.ON_ENTER_FULLSCREEN);
+//                startWindowFullscreen();
+            }
         }
+        super.onClick(v);
     }
 
     @Override
@@ -1077,6 +1095,36 @@ public class JZVideoPlayerStandard extends JZVideoPlayer implements JZVideoPlaye
                 RxBus.getInstance().post(new MsgEvent<String>("RxBusDynamicDetailsZanEvent"));
             }
             dismissLoadingDialog();
+        } else if (flag == 4) {
+            VideoDetailsBean dynamicDetailsBean = (VideoDetailsBean) JsonUtil.getInstance().json2Obj(success, VideoDetailsBean.class);
+            is_like = dynamicDetailsBean.getData().getIs_like();
+            is_collect = dynamicDetailsBean.getData().getIs_collect();
+            user_id = dynamicDetailsBean.getData().getMember_id();
+            GlideImageLoader.glideLoader(getContext(), dynamicDetailsBean.getData().getFace(), img_head, 0, R.mipmap.avatar);
+            tv_follow.setVisibility(View.GONE);
+            is_like = dynamicDetailsBean.getData().getIs_like();
+            if (is_like == 1) {
+                img_zan.setImageResource(R.mipmap.dynamicdetails_zan1);
+                tv_zan.setTextColor(getResources().getColor(R.color.greenColors));
+                tv_zanNum.setTextColor(getResources().getColor(R.color.greenColors));
+            } else {
+                img_zan.setImageResource(R.mipmap.dynamicdetails_zan);
+                tv_zan.setTextColor(getResources().getColor(R.color.textColor));
+                tv_zanNum.setTextColor(getResources().getColor(R.color.textColor));
+            }
+            tv_zanNum.setText(dynamicDetailsBean.getData().getLike_number());
+            tv_collectionNum.setText(dynamicDetailsBean.getData().getCollection_number());
+            is_collect = dynamicDetailsBean.getData().getIs_collect();
+            if (is_collect == 1) {
+                img_collection.setImageResource(R.mipmap.dynamicdetails_collection1);
+                tv_collection.setTextColor(getResources().getColor(R.color.greenColors));
+                tv_collectionNum.setTextColor(getResources().getColor(R.color.greenColors));
+            } else {
+                img_collection.setImageResource(R.mipmap.dynamicdetails_collection);
+                tv_collection.setTextColor(getResources().getColor(R.color.textColor));
+                tv_collectionNum.setTextColor(getResources().getColor(R.color.textColor));
+            }
+            tv_commentNum.setText(dynamicDetailsBean.getData().getReview_number());
         }
     }
 

@@ -33,7 +33,10 @@ public class JZPLMediaPlayer extends JZMediaInterface implements PLOnPreparedLis
 
     @Override
     public void start() {
-        ijkMediaPlayer.start();
+        if (ijkMediaPlayer != null) {
+            ijkMediaPlayer.start();
+        }
+
     }
 
     @Override
@@ -114,7 +117,15 @@ public class JZPLMediaPlayer extends JZMediaInterface implements PLOnPreparedLis
 
     @Override
     public long getCurrentPosition() {
-        return ijkMediaPlayer.getCurrentPosition();
+        try {
+            if (ijkMediaPlayer != null) {
+                return ijkMediaPlayer.getCurrentPosition();
+            } else {
+                return 0;
+            }
+        } catch (Exception e) {
+            return 0;
+        }
     }
 
     @Override

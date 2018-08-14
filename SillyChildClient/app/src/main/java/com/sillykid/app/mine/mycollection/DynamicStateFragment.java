@@ -21,6 +21,7 @@ import com.common.cklibrary.utils.rx.MsgEvent;
 import com.sillykid.app.R;
 import com.sillykid.app.adapter.mine.mycollection.DynamicStateRVViewAdapter;
 import com.sillykid.app.community.dynamic.DynamicDetailsActivity;
+import com.sillykid.app.community.dynamic.DynamicVideoDetailsActivity;
 import com.sillykid.app.constant.NumericConstants;
 import com.sillykid.app.entity.mine.mycollection.DynamicStateBean;
 import com.sillykid.app.homepage.hotvideo.VideoDetailsActivity;
@@ -184,7 +185,7 @@ public class DynamicStateFragment extends BaseFragment implements CollectionCont
             intent.putExtra("title", mAdapter.getItem(position).getPost_title());
             startActivityForResult(intent, REQUEST_CODE_PREVIEW1);
         } else if (mAdapter.getItem(position).getType_id() == 2) {//视频
-            Intent intent = new Intent(aty, VideoDetailsActivity.class);
+            Intent intent = new Intent(aty, DynamicVideoDetailsActivity.class);
             intent.putExtra("id", mAdapter.getItem(position).getId());
             intent.putExtra("title", mAdapter.getItem(position).getPost_title());
             startActivityForResult(intent, REQUEST_CODE_PREVIEW1);

@@ -21,6 +21,7 @@ import com.common.cklibrary.utils.rx.MsgEvent;
 import com.sillykid.app.R;
 import com.sillykid.app.adapter.main.community.CommunityViewAdapter;
 import com.sillykid.app.community.dynamic.DynamicDetailsActivity;
+import com.sillykid.app.community.dynamic.DynamicVideoDetailsActivity;
 import com.sillykid.app.constant.NumericConstants;
 import com.sillykid.app.entity.main.community.CommunityBean;
 import com.sillykid.app.loginregister.LoginActivity;
@@ -174,7 +175,7 @@ public class CommunityClassificationFragment extends BaseFragment implements Com
             intent.putExtra("title", mAdapter.getItem(position).getPost_title());
             aty.showActivity(aty, intent);
         } else if (mAdapter.getItem(position).getType() == 2) {//视频
-            Intent intent = new Intent(aty, DynamicDetailsActivity.class);
+            Intent intent = new Intent(aty, DynamicVideoDetailsActivity.class);
             intent.putExtra("id", mAdapter.getItem(position).getId());
             intent.putExtra("title", mAdapter.getItem(position).getPost_title());
             aty.showActivity(aty, intent);

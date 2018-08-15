@@ -9,6 +9,11 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+        ndk {
+            //选择要添加的对应cpu类型的.so库。
+            abiFilters "armeabi", "armeabi-v7a", "arm64-v8a", "x86", "x86_64", 'mips', 'mips64'
+            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
+        }
     }
 
     buildTypes {
@@ -130,7 +135,24 @@ dependencies {
      */
     //compile 'cn.jzvd:jiaozivideoplayer:6.2.12'
     api project(':jiaozivideoplayer')
+    /**
+     *   https://github.com/dueeeke/dkplayer
+     * 视频播放器
+     */
+    //  # 必选，可兼容市面上绝大部分设备
+    api 'com.github.dueeeke.dkplayer:dkplayer-java:2.5.2'
+    api 'com.github.dueeeke.dkplayer:dkplayer-armv7a:2.5.2'
 
+    //  # 可选，用于兼容一些其他的CPU架构
+    api 'com.github.dueeeke.dkplayer:dkplayer-armv5:2.5.2'
+    api 'com.github.dueeeke.dkplayer:dkplayer-arm64:2.5.2'
+    api 'com.github.dueeeke.dkplayer:dkplayer-x86:2.5.2'
+    api 'com.github.dueeeke.dkplayer:dkplayer-x86_64:2.5.2'
+
+    //  # 可选，里面包含StandardVideoController的实现
+    api 'com.github.dueeeke.dkplayer:dkplayer-ui:2.5.2'
+
+    api 'com.github.castorflex.verticalviewpager:library:19.0.1'
     /**
      * https://github.com/Othershe/CalendarView
      * 日历控件

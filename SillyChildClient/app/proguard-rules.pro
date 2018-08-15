@@ -481,6 +481,14 @@
 #-dontwarn net.sourceforge.zbar.**
 
 
+
+#==================基于IjkPlayer的视频播放器======================
+-keep class tv.danmaku.ijk.** { *; }
+-dontwarn tv.danmaku.ijk.**
+-keep class com.dueeeke.videoplayer.** { *; }
+-dontwarn com.dueeeke.videoplayer.**
+
+
 #==================Cklibrary=====================
 
 -keep class com.common.cklibrary.entity.** { *; }        # 保持实体类不被混淆

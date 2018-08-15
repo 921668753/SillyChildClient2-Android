@@ -16,7 +16,6 @@ import com.pili.pldroid.player.PLOnPreparedListener;
 import com.pili.pldroid.player.PLOnSeekCompleteListener;
 import com.pili.pldroid.player.PLOnVideoSizeChangedListener;
 
-import java.io.IOException;
 
 import cn.jzvd.JZMediaInterface;
 import cn.jzvd.JZMediaManager;

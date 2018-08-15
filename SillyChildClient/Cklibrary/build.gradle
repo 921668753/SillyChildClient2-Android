@@ -53,6 +53,7 @@ dependencies {
     compile 'com.github.f0ris.sweetalert:library:1.5.3'
 
     //图片选择器  https://github.com/jeasonlzy/ImagePicker
+    //https://github.com/LuckSiege/PictureSelector   com.github.LuckSiege.PictureSelector:picture_library:v2.2.3'
     // compile 'com.lzy.widget:imagepicker:0.6.1'
     api project(path: ':imagepicker')
     api project(':picture_library')
@@ -130,7 +131,6 @@ dependencies {
     //compile 'cn.jzvd:jiaozivideoplayer:6.2.12'
     api project(':jiaozivideoplayer')
 
-
     /**
      * https://github.com/Othershe/CalendarView
      * 日历控件
@@ -148,7 +148,7 @@ dependencies {
      * https://github.com/AndroidKun/XTabLayout
      * XTabLayout
      */
-   // compile 'com.androidkun:XTabLayout:1.1.4'
+    // compile 'com.androidkun:XTabLayout:1.1.4'
 
 //    compile 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.3'
 //    annotationProcessor 'com.github.bumptech.glide:compiler:4.5.0'

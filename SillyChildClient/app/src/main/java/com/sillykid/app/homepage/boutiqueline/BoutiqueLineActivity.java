@@ -44,7 +44,6 @@ public class BoutiqueLineActivity extends BaseActivity {
      */
     private int chageIcon;
 
-
     private BaseFragment contentFragment;
     private BaseFragment contentFragment1;
 

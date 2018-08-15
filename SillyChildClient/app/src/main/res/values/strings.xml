@@ -69,9 +69,9 @@
     <string name="failedCloudInformation">获取融云信息失败</string>
     <string name="failedCloudInformation1">获取融云信息失败,请用账号密码登录</string>
 
+
     <!--选择国家或地区-->
     <string name="selectCountry">选择国家或地区</string>
-
 
     <!--注册-->
     <string name="registerPhone">手机号注册</string>
@@ -192,7 +192,6 @@
     <!--首页   精品线路-->
     <string name="hotRecommended">热门推荐</string>
     <string name="selectCity">选择城市</string>
-
 
     <!--活动-->
     <string name="contactWay3">联系方式</string>
@@ -627,6 +626,13 @@
     <string name="reply">条回复</string>
     <string name="notFillEvaluation">此用户没有填写评价。</string>
     <string name="thankReport">感谢您的举报，我们将更加努力净化社区，给大家带来良好的环境</string>
+
+    <string name="fullScreen">全屏</string>
+
+
+
+
+
 
     <!--首页   当地达人详情-->
     <string name="shopkeepers">店主</string>
@@ -1397,6 +1403,17 @@
     <string name="refundAmount">退款金额</string>
     <string name="afterNumber">售后数量</string>
     <string name="afterWhy">售后原因</string>
+
+    <!-- 线路详情 -->
+    <string name="experienceBrightSpot">体验亮点</string>
+
+
+
+
+
+
+
+
 
     <!-- 个人中心 我的订单  订单跟踪-->
     <string name="orderTracking">订单跟踪</string>

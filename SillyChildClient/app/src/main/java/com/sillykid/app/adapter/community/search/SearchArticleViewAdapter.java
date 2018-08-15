@@ -42,7 +42,7 @@ public class SearchArticleViewAdapter extends BGARecyclerViewAdapter<CommunityBe
         }
         helper.setText(R.id.tv_strategy, model.getPost_title());
 
-        GlideImageLoader.glideLoader(mContext, model.getFace(), helper.getImageView(R.id.img_head), 0, R.mipmap.placeholderfigure);
+        GlideImageLoader.glideLoader(mContext, model.getFace(), helper.getImageView(R.id.img_head), 0, R.mipmap.avatar);
 
         helper.setText(R.id.tv_nickName, model.getNickname());
 

@@ -40,12 +40,12 @@ public interface ReleaseDynamicContract {
         /**
          * 用户发布帖子
          */
-        void postAddPost(String post_title, List<LocalMedia> selectList, String content, int classification_id);
+        void postAddPost(String post_title, List<LocalMedia> selectList, int mediaType, String content, int classification_id);
 
         /**
          * 编辑帖子
          */
-        void postEditPost(String post_title, List<LocalMedia> selectList, String content, int classification_id, int post_id);
+        void postEditPost(String post_title, List<LocalMedia> selectList, int mediaType, String content, int classification_id, int post_id);
 
         /**
          * 用户删除帖子

@@ -31,7 +31,7 @@ public class CommentDetailsViewAdapter extends BGAAdapterViewAdapter<ReplyListBe
     @Override
     protected void fillData(BGAViewHolderHelper helper, int position, ReplyListBean model) {
 
-        GlideImageLoader.glideLoader(mContext, model.getReply_face(), helper.getImageView(R.id.img_head), 0, R.mipmap.placeholderfigure);
+        GlideImageLoader.glideLoader(mContext, model.getReply_face(), helper.getImageView(R.id.img_head), 0, R.mipmap.avatar);
 
         helper.setText(R.id.tv_nickName1, model.getNickname());
 

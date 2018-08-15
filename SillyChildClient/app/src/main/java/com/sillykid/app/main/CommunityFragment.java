@@ -19,6 +19,7 @@ import com.sillykid.app.community.CommunityClassificationFragment;
 import com.sillykid.app.community.search.CommunitySearchActivity;
 import com.sillykid.app.entity.main.community.ClassificationListBean;
 import com.sillykid.app.loginregister.LoginActivity;
+import com.sillykid.app.mine.myrelease.mydynamic.ReleaseDynamicActivity;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -46,6 +47,9 @@ public class CommunityFragment extends BaseFragment implements CommunityContract
     private int itemSelected = 0;
 
     private List<CommunityClassificationFragment> list;
+
+    @BindView(id = R.id.tv_newTrends, click = true)
+    private TextView tv_newTrends;
 
     /**
      * 错误提示页
@@ -93,6 +97,9 @@ public class CommunityFragment extends BaseFragment implements CommunityContract
             case R.id.ll_search:
                 aty.showActivity(aty, CommunitySearchActivity.class);
                 break;
+            case R.id.tv_newTrends:
+                aty.showActivity(aty, ReleaseDynamicActivity.class);
+                break;
             case R.id.tv_button:
                 if (tv_button.getText().toString().contains(getString(R.string.retry))) {
                     showLoadingDialog(getString(R.string.dataLoad));
@@ -135,7 +142,7 @@ public class CommunityFragment extends BaseFragment implements CommunityContract
                     /**
                      * 发送消息
                      */
-                  //  RxBus.getInstance().post(new MsgEvent<String>("RxBusCommunityClassificationFragmentEvent"));
+                    //  RxBus.getInstance().post(new MsgEvent<String>("RxBusCommunityClassificationFragmentEvent"));
                 }
             }
             reflex(tabLayout);
@@ -157,7 +164,7 @@ public class CommunityFragment extends BaseFragment implements CommunityContract
                     /**
                      * 发送消息
                      */
-                 //   RxBus.getInstance().post(new MsgEvent<String>("RxBusCommunityClassificationFragmentEvent"));
+                    //   RxBus.getInstance().post(new MsgEvent<String>("RxBusCommunityClassificationFragmentEvent"));
                 }
 
                 @Override

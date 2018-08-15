@@ -5,7 +5,45 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
-    <include layout="@layout/common_title" />
+    <RelativeLayout
+        style="@style/Match45"
+        android:background="@color/whiteColors"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="@dimen/dimen45"
+            android:layout_height="@dimen/dimen45"
+            android:padding="@dimen/dimen15"
+            android:src="@mipmap/back" />
+
+
+        <TextView
+            style="@style/WrapWrap"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="@string/detailsLine"
+            android:textColor="@color/titletextcolors"
+            android:textSize="@dimen/textsize17" />
+
+        <ImageView
+            android:id="@+id/img_collection"
+            android:layout_width="@dimen/dimen45"
+            android:layout_height="@dimen/dimen45"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dimen45"
+            android:padding="@dimen/dimen14"
+            android:src="@mipmap/dynamicdetails_collection1" />
+
+        <ImageView
+            android:id="@+id/img_share"
+            android:layout_width="@dimen/dimen45"
+            android:layout_height="@dimen/dimen45"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dimen5"
+            android:padding="@dimen/dimen14"
+            android:src="@mipmap/product_details_share" />
+
+    </RelativeLayout>
 
 
     <ScrollView
@@ -15,7 +53,6 @@
         <LinearLayout
             style="@style/MatchMatch"
             android:orientation="vertical">
-
 
             <ImageView
                 android:layout_width="match_parent"
@@ -62,18 +99,36 @@
 
             </LinearLayout>
 
+            <TextView
+                style="@style/MatchWrap"
+                android:layout_marginTop="@dimen/dimen6"
+                android:background="@color/whiteColors"
+                android:paddingBottom="@dimen/dimen10"
+                android:paddingLeft="@dimen/dimen17"
+                android:paddingTop="@dimen/dimen10"
+                android:text="@string/experienceBrightSpot"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize15" />
 
+            <TextView
+                style="@style/MatchWrap"
+                android:background="@color/whiteColors"
+                android:paddingBottom="@dimen/dimen13"
+                android:paddingLeft="@dimen/dimen17"
+                android:paddingRight="@dimen/dimen17"
+                android:text="体验亮点体验亮点体验亮点体验亮点体验亮点体验亮点体验亮点体验亮点体验亮点体验亮点体验亮点体验亮点"
+                android:textColor="@color/hintColors"
+                android:textSize="@dimen/textsize13" />
 
-
-
-
-
-
-
-
-
-
-
+            <TextView
+                style="@style/Match45"
+                android:layout_marginTop="@dimen/dimen6"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/dimen17"
+                android:text="@string/detailsLine"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize15" />
 
 
 

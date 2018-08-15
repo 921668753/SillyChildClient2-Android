@@ -823,6 +823,10 @@ public class PictureSelectorActivity extends PictureBaseActivity implements View
                 break;
             case PictureConfig.TYPE_VIDEO:
                 // video
+                if (result.size() == 1) {
+                    ToastManage.s(this, getString(R.string.picture_message_video_max_num, "1"));
+                    return;
+                }
                 if (config.selectionMode == PictureConfig.SINGLE) {
                     result.add(media);
                     onResult(result);

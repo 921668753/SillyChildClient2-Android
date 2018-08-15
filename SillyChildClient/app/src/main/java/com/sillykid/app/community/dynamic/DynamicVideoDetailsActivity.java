@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -28,20 +27,17 @@ import com.kymjs.common.Log;
 import com.kymjs.common.PreferenceHelper;
 import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
-import com.sillykid.app.adapter.community.dynamic.DynamicImgPagerAdapter;
 import com.sillykid.app.adapter.community.dynamic.UserEvaluationViewAdapter;
 import com.sillykid.app.community.DisplayPageActivity;
 import com.sillykid.app.community.dynamic.dialog.ReportBouncedDialog;
 import com.sillykid.app.community.dynamic.dialog.RevertBouncedDialog;
+import com.sillykid.app.community.dynamic.dialog.ShareBouncedDialog;
 import com.sillykid.app.community.dynamic.dynamiccomments.CommentDetailsActivity;
 import com.sillykid.app.community.dynamic.dynamiccomments.DynamicCommentsActivity;
 import com.sillykid.app.constant.URLConstants;
 import com.sillykid.app.entity.community.dynamic.DynamicDetailsBean;
 import com.sillykid.app.loginregister.LoginActivity;
-import com.sillykid.app.mine.sharingceremony.dialog.ShareBouncedDialog;
 import com.sillykid.app.utils.GlideImageLoader;
-import com.sillykid.app.utils.myview.AnimatorUtil;
-import com.sillykid.app.utils.myview.ViewSizeChangeAnimation;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.UMShareListener;
@@ -51,7 +47,7 @@ import com.umeng.socialize.media.UMWeb;
 
 
 import cn.bingoogolapple.androidcommon.adapter.BGAOnItemChildClickListener;
-import cn.bingoogolapple.titlebar.BGATitleBar;
+import cn.jzvd.JZUserAction;
 import cn.jzvd.JZVideoPlayer;
 import cn.jzvd.JZVideoPlayerStandard;
 
@@ -79,8 +75,8 @@ public class DynamicVideoDetailsActivity extends BaseActivity implements Dynamic
     @BindView(id = R.id.tv_title)
     private TextView tv_title;
 
-    @BindView(id = R.id.img_delete, click = true)
-    private ImageView img_delete;
+    @BindView(id = R.id.tv_fullScreen, click = true)
+    private TextView tv_fullScreen;
 
     @BindView(id = R.id.rl_videoplayer)
     private RelativeLayout rl_videoplayer;
@@ -97,14 +93,14 @@ public class DynamicVideoDetailsActivity extends BaseActivity implements Dynamic
     @BindView(id = R.id.tv_nickName)
     private TextView tv_nickName;
 
-    @BindView(id = R.id.ll_content1)
+    @BindView(id = R.id.ll_content1, click = true)
     private LinearLayout ll_content1;
 
     @BindView(id = R.id.tv_content1)
     private TextView tv_content1;
 
-    @BindView(id = R.id.tv_more1, click = true)
-    private TextView tv_more1;
+//    @BindView(id = R.id.tv_more1, click = true)
+//    private TextView tv_more1;
 
     @BindView(id = R.id.tv_follow, click = true)
     private TextView tv_follow;
@@ -126,7 +122,6 @@ public class DynamicVideoDetailsActivity extends BaseActivity implements Dynamic
 
     @BindView(id = R.id.tv_userEvaluationNum)
     private TextView tv_userEvaluationNum;
-
 
     @BindView(id = R.id.clv_dynamicDetails)
     private ChildListView clv_dynamicDetails;
@@ -168,7 +163,6 @@ public class DynamicVideoDetailsActivity extends BaseActivity implements Dynamic
 
     @BindView(id = R.id.tv_commentNum)
     private TextView tv_commentNum;
-
 
     @BindView(id = R.id.ll_zan1, click = true)
     private LinearLayout ll_zan1;
@@ -265,7 +259,7 @@ public class DynamicVideoDetailsActivity extends BaseActivity implements Dynamic
      * 分享
      */
     private void initShareBouncedDialog() {
-        shareBouncedDialog = new ShareBouncedDialog(this) {
+        shareBouncedDialog = new ShareBouncedDialog(this, id) {
             @Override
             public void share(SHARE_MEDIA platform) {
                 umShare(platform);
@@ -369,7 +363,7 @@ public class DynamicVideoDetailsActivity extends BaseActivity implements Dynamic
                 intent.putExtra("isRefresh", 0);
                 showActivity(aty, intent);
                 break;
-            case R.id.tv_more1:
+            case R.id.ll_content1:
                 isFull = false;
                 ViewGroup.LayoutParams params = rl_videoplayer.getLayoutParams();
                 params.height = DensityUtils.dip2px(216);
@@ -390,7 +384,7 @@ public class DynamicVideoDetailsActivity extends BaseActivity implements Dynamic
                 ll_bottom.setVisibility(View.VISIBLE);
                 ll_title.setVisibility(View.VISIBLE);
                 break;
-            case R.id.img_delete:
+            case R.id.tv_fullScreen:
                 isFull = true;
                 ViewGroup.LayoutParams params1 = rl_videoplayer.getLayoutParams();
                 params1.height = DensityUtils.getScreenH() - DensityUtils.dip2px(20);
@@ -584,6 +578,8 @@ public class DynamicVideoDetailsActivity extends BaseActivity implements Dynamic
             jzVideoPlayerStandard.setUp(dynamicDetailsBean.getData().getList().get(0), JZVideoPlayerStandard.SCREEN_WINDOW_NORMAL, "");
             GlideImageLoader.glideOrdinaryLoader(this, dynamicDetailsBean.getData().getList().get(0) + "?vframe/jpg/offset/0", jzVideoPlayerStandard.thumbImageView, R.mipmap.placeholderfigure);
             JZVideoPlayer.setMediaInterface(new JZPLMediaPlayer());
+            jzVideoPlayerStandard.onEvent(JZUserAction.ON_CLICK_START_AUTO_COMPLETE);
+            jzVideoPlayerStandard.startVideo();
             ViewGroup.LayoutParams lp = jzVideoPlayerStandard.bottomContainer.getLayoutParams();
             lp.height = ll_bottom1.getHeight() + ll_content1.getHeight() + DensityUtils.dip2px(45);
             jzVideoPlayerStandard.bottomContainer.setLayoutParams(lp);
@@ -596,12 +592,8 @@ public class DynamicVideoDetailsActivity extends BaseActivity implements Dynamic
             is_concern = dynamicDetailsBean.getData().getIs_concern();
             if (is_concern == 1) {
                 tv_follow.setText(getString(R.string.followed));
-                tv_follow.setBackgroundResource(R.drawable.shape_followed1);
-                tv_follow.setTextColor(getResources().getColor(R.color.whiteColors));
             } else {
                 tv_follow.setText(getString(R.string.follow));
-                tv_follow.setBackgroundResource(R.drawable.shape_followdd);
-                tv_follow.setTextColor(getResources().getColor(R.color.greenColors));
             }
             tv_content.setText(dynamicDetailsBean.getData().getContent());
             tv_content1.setText(dynamicDetailsBean.getData().getContent());
@@ -620,9 +612,9 @@ public class DynamicVideoDetailsActivity extends BaseActivity implements Dynamic
                 img_zan.setImageResource(R.mipmap.dynamicdetails_zan);
                 tv_zan.setTextColor(getResources().getColor(R.color.textColor));
                 tv_zanNum.setTextColor(getResources().getColor(R.color.textColor));
-                img_zan1.setImageResource(R.mipmap.dynamicdetails_zan);
-                tv_zan1.setTextColor(getResources().getColor(R.color.textColor));
-                tv_zanNum1.setTextColor(getResources().getColor(R.color.textColor));
+                img_zan1.setImageResource(R.mipmap.essay_bottom_like_default);
+                tv_zan1.setTextColor(getResources().getColor(R.color.whiteColors));
+                tv_zanNum1.setTextColor(getResources().getColor(R.color.whiteColors));
             }
             is_collect = dynamicDetailsBean.getData().getIs_collect();
             tv_collectionNum.setText(dynamicDetailsBean.getData().getCollection_number());
@@ -638,9 +630,9 @@ public class DynamicVideoDetailsActivity extends BaseActivity implements Dynamic
                 img_collection.setImageResource(R.mipmap.dynamicdetails_collection);
                 tv_collection.setTextColor(getResources().getColor(R.color.textColor));
                 tv_collectionNum.setTextColor(getResources().getColor(R.color.textColor));
-                img_collection1.setImageResource(R.mipmap.dynamicdetails_collection);
-                tv_collection1.setTextColor(getResources().getColor(R.color.textColor));
-                tv_collectionNum1.setTextColor(getResources().getColor(R.color.textColor));
+                img_collection1.setImageResource(R.mipmap.essay_bottom_collection_default);
+                tv_collection1.setTextColor(getResources().getColor(R.color.whiteColors));
+                tv_collectionNum1.setTextColor(getResources().getColor(R.color.whiteColors));
             }
             tv_commentNum.setText(dynamicDetailsBean.getData().getReview_number());
             tv_commentNum1.setText(dynamicDetailsBean.getData().getReview_number());
@@ -671,14 +663,10 @@ public class DynamicVideoDetailsActivity extends BaseActivity implements Dynamic
             if (is_concern == 1) {
                 is_concern = 0;
                 tv_follow.setText(getString(R.string.follow));
-                tv_follow.setBackgroundResource(R.drawable.shape_followdd);
-                tv_follow.setTextColor(getResources().getColor(R.color.greenColors));
                 ViewInject.toast(getString(R.string.focusSuccess));
             } else {
                 is_concern = 1;
                 tv_follow.setText(getString(R.string.followed));
-                tv_follow.setBackgroundResource(R.drawable.shape_followed1);
-                tv_follow.setTextColor(getResources().getColor(R.color.whiteColors));
                 ViewInject.toast(getString(R.string.attentionSuccess));
             }
             isRefresh = 1;

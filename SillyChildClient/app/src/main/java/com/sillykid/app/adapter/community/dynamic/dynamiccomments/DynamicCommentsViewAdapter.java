@@ -35,7 +35,7 @@ public class DynamicCommentsViewAdapter extends BGAAdapterViewAdapter<ListBean> 
     @Override
     protected void fillData(BGAViewHolderHelper helper, int position, ListBean model) {
 
-        GlideImageLoader.glideLoader(mContext, model.getFace(), helper.getImageView(R.id.img_avatar), 0, R.mipmap.placeholderfigure);
+        GlideImageLoader.glideLoader(mContext, model.getFace(), helper.getImageView(R.id.img_avatar), 0, R.mipmap.avatar);
 
         helper.setText(R.id.tv_nickName, model.getNickname());
 
@@ -58,7 +58,7 @@ public class DynamicCommentsViewAdapter extends BGAAdapterViewAdapter<ListBean> 
         } else {
             helper.setVisibility(R.id.ll_revert, View.VISIBLE);
 
-            GlideImageLoader.glideLoader(mContext, model.getReplyList().get(0).getReply_face(), helper.getImageView(R.id.img_head), 0, R.mipmap.placeholderfigure);
+            GlideImageLoader.glideLoader(mContext, model.getReplyList().get(0).getReply_face(), helper.getImageView(R.id.img_head), 0, R.mipmap.avatar);
 
             helper.setText(R.id.tv_nickName1, model.getReplyList().get(0).getNickname());
 

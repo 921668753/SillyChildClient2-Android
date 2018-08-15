@@ -72,7 +72,7 @@
                             android:id="@+id/img_zan1"
                             android:layout_width="@dimen/dimen20"
                             android:layout_height="@dimen/dimen20"
-                            android:src="@mipmap/dynamicdetails_zan" />
+                            android:src="@mipmap/essay_bottom_like_default" />
 
                         <TextView
                             android:id="@+id/tv_zan1"
@@ -102,7 +102,7 @@
                             android:id="@+id/img_collection1"
                             android:layout_width="@dimen/dimen20"
                             android:layout_height="@dimen/dimen20"
-                            android:src="@mipmap/dynamicdetails_collection1" />
+                            android:src="@mipmap/essay_bottom_collection_default" />
 
                         <TextView
                             android:id="@+id/tv_collection1"
@@ -174,14 +174,18 @@
                     android:textColor="@color/textColor"
                     android:textSize="@dimen/textsize15" />
 
-                <ImageView
-                    android:id="@+id/img_delete"
-                    android:layout_width="@dimen/dimen35"
-                    android:layout_height="@dimen/dimen29"
+                <TextView
+                    android:id="@+id/tv_fullScreen"
+                    style="@style/WrapWrap"
+                    android:layout_marginRight="@dimen/dimen17"
+                    android:background="@drawable/shape_follow"
+                    android:paddingBottom="@dimen/dimen3"
                     android:paddingLeft="@dimen/dimen10"
                     android:paddingRight="@dimen/dimen10"
-                    android:src="@mipmap/delete" />
-
+                    android:paddingTop="@dimen/dimen3"
+                    android:text="@string/fullScreen"
+                    android:textColor="@color/greenColors"
+                    android:textSize="@dimen/textsize10" />
 
             </LinearLayout>
 
@@ -190,19 +194,20 @@
                 android:id="@+id/tv_content"
                 style="@style/MatchWrap"
                 android:background="@color/whiteColors"
+                android:paddingBottom="@dimen/dimen10"
                 android:paddingLeft="@dimen/dimen17"
                 android:paddingRight="@dimen/dimen17"
                 android:text="薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天"
                 android:textColor="@color/tabColors"
                 android:textSize="@dimen/textsize12" />
 
-
             <LinearLayout
                 android:id="@+id/ll_report1"
                 style="@style/MatchWrap"
                 android:background="@color/whiteColors"
                 android:gravity="right"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <LinearLayout
                     android:id="@+id/ll_report"
@@ -427,11 +432,11 @@
                 android:layout_width="@dimen/dimen64"
                 android:layout_height="@dimen/dimen25"
                 android:layout_marginLeft="@dimen/dimen7"
-                android:layout_marginRight="@dimen/dimen19"
-                android:background="@drawable/shape_followdd"
+                android:layout_marginRight="@dimen/dimen5"
+                android:background="@drawable/shape_followed1"
                 android:gravity="center"
                 android:text="@string/follow"
-                android:textColor="@color/greenColors"
+                android:textColor="@color/whiteColors"
                 android:textSize="@dimen/textsize11" />
 
         </LinearLayout>
@@ -443,7 +448,7 @@
             android:layout_height="@dimen/dimen45"
             android:layout_marginRight="@dimen/dimen5"
             android:padding="@dimen/dimen14"
-            android:src="@mipmap/product_details_share_white_icon" />
+            android:src="@mipmap/img_more" />
 
 
     </LinearLayout>

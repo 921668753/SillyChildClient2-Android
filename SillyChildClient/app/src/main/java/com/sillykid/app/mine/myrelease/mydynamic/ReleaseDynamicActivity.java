@@ -79,11 +79,13 @@ public class ReleaseDynamicActivity extends BaseActivity implements ReleaseDynam
     private int chooseMode = PictureMimeType.ofAll();
     private int aspect_ratio_x = 16, aspect_ratio_y = 9;
     private int maxSelectNum = 9;
-    private List<LocalMedia> selectList1;
+    //  private List<LocalMedia> selectList1;
     private int id = 0;
     private int type = 0;
 
     private DeleteCollectionDialog deleteCollectionDialog = null;
+
+    private int mediaType = 0;
 
     @Override
     public void setRootView() {
@@ -97,7 +99,7 @@ public class ReleaseDynamicActivity extends BaseActivity implements ReleaseDynam
         type = getIntent().getIntExtra("type", 0);
         themeId = R.style.picture_default_style;
         mPresenter = new ReleaseDynamicPresenter(this);
-        selectList1 = new ArrayList<>();
+        //   selectList1 = new ArrayList<>();
         selectList = new ArrayList<>();
         FullyGridLayoutManager manager = new FullyGridLayoutManager(ReleaseDynamicActivity.this, 4, GridLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(manager);
@@ -179,7 +181,7 @@ public class ReleaseDynamicActivity extends BaseActivity implements ReleaseDynam
                     .maxSelectNum(maxSelectNum)// 最大图片选择数量
                     .minSelectNum(1)// 最小选择数量
                     .imageSpanCount(4)// 每行显示个数
-                    .selectionMode(PictureConfig.SINGLE)// 多选 or 单选
+                    .selectionMode(PictureConfig.MULTIPLE)// 多选 or 单选
                     .previewImage(true)// 是否可预览图片
                     .previewVideo(true)// 是否可预览视频
                     .enablePreviewAudio(true) // 是否可播放音频
@@ -299,10 +301,10 @@ public class ReleaseDynamicActivity extends BaseActivity implements ReleaseDynam
             case R.id.tv_release:
                 showLoadingDialog(getString(R.string.submissionLoad));
                 if (type == 0) {
-                    ((ReleaseDynamicContract.Presenter) mPresenter).postAddPost(et_title.getText().toString().trim(), selectList, et_addDescription.getText().toString().trim(), classification_id);
+                    ((ReleaseDynamicContract.Presenter) mPresenter).postAddPost(et_title.getText().toString().trim(), selectList, mediaType, et_addDescription.getText().toString().trim(), classification_id);
                     break;
                 }
-                ((ReleaseDynamicContract.Presenter) mPresenter).postEditPost(et_title.getText().toString().trim(), selectList, et_addDescription.getText().toString().trim(), classification_id, id);
+                ((ReleaseDynamicContract.Presenter) mPresenter).postEditPost(et_title.getText().toString().trim(), selectList, mediaType, et_addDescription.getText().toString().trim(), classification_id, id);
                 break;
         }
     }
@@ -318,7 +320,8 @@ public class ReleaseDynamicActivity extends BaseActivity implements ReleaseDynam
         if (flag == 0) {
             ClassificationListBean classificationListBean = (ClassificationListBean) JsonUtil.json2Obj(success, ClassificationListBean.class);
             classificationList = classificationListBean.getData();
-            if (classificationList != null && classificationList.size() > 0) {
+            if (classificationList != null && classificationList.size() > 1) {
+                classificationList.remove(0);
                 pvOptions.setPicker(classificationList);
             }
             if (type != 0) {
@@ -327,11 +330,11 @@ public class ReleaseDynamicActivity extends BaseActivity implements ReleaseDynam
             }
             dismissLoadingDialog();
         } else if (flag == 1 || flag == 2) {
-            selectList.addAll(selectList1);
-            selectList.get(selectList.size() - 1).setPath(success);
-            adapter.setList(selectList);
-            adapter.notifyDataSetChanged();
-            dismissLoadingDialog();
+//            selectList.addAll(selectList1);
+//            selectList.get(selectList.size() - 1).setPath(success);
+//            adapter.setList(selectList);
+//            adapter.notifyDataSetChanged();
+//            dismissLoadingDialog();
         } else if (flag == 3) {
             dismissLoadingDialog();
             ViewInject.toast(getString(R.string.releaseSuccessful));
@@ -363,8 +366,10 @@ public class ReleaseDynamicActivity extends BaseActivity implements ReleaseDynam
                 localMedia.setPath(dynamicDetailsBean.getData().getList().get(i));
                 if (dynamicDetailsBean.getData().getType() == 1) {
                     localMedia.setPictureType("image/jpeg");
+                    mediaType = 1;
                 } else {
                     localMedia.setPictureType("video");
+                    mediaType = 2;
                 }
                 localMedia.setPosition(i);
                 selectList.add(localMedia);
@@ -398,7 +403,11 @@ public class ReleaseDynamicActivity extends BaseActivity implements ReleaseDynam
             switch (requestCode) {
                 case PictureConfig.CHOOSE_REQUEST:
                     // 图片选择结果回调
-                    selectList1 = PictureSelector.obtainMultipleResult(data);
+                    selectList = PictureSelector.obtainMultipleResult(data);
+                    String pictureType = selectList.get(0).getPictureType();
+                    mediaType = PictureMimeType.pictureToVideo(pictureType);
+                    adapter.setList(selectList);
+                    adapter.notifyDataSetChanged();
                     // 例如 LocalMedia 里面返回三种path
                     // 1.media.getPath(); 为原图path
                     // 2.media.getCutPath();为裁剪后path，需判断media.isCut();是否为true
@@ -410,14 +419,14 @@ public class ReleaseDynamicActivity extends BaseActivity implements ReleaseDynam
 ////                        String pictureType = media.getPictureType();
 ////                        int mediaType = PictureMimeType.pictureToVideo(pictureType);
 //                    }
-                    LocalMedia media = selectList1.get(selectList1.size() - 1);
-                    String pictureType = media.getPictureType();
-                    int mediaType = PictureMimeType.pictureToVideo(pictureType);
-                    if (mediaType == 1) {
-                        ((ReleaseDynamicContract.Presenter) mPresenter).upPictures(media.getPath());
-                        break;
-                    }
-                    ((ReleaseDynamicContract.Presenter) mPresenter).uploadVideo(media.getPath());
+//                    LocalMedia media = selectList1.get(selectList1.size() - 1);
+//                    String pictureType = media.getPictureType();
+//                    int mediaType = PictureMimeType.pictureToVideo(pictureType);
+//                    if (mediaType == 1) {
+//                        ((ReleaseDynamicContract.Presenter) mPresenter).upPictures(media.getPath());
+//                        break;
+//                    }
+//                    ((ReleaseDynamicContract.Presenter) mPresenter).uploadVideo(media.getPath());
                     break;
             }
         }
@@ -429,8 +438,8 @@ public class ReleaseDynamicActivity extends BaseActivity implements ReleaseDynam
         super.onDestroy();
         selectList.clear();
         selectList = null;
-        selectList1.clear();
-        selectList1 = null;
+//        selectList1.clear();
+//        selectList1 = null;
         classificationList.clear();
         classificationList = null;
         adapter = null;

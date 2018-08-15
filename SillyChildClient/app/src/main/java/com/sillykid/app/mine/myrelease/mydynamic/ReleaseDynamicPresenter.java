@@ -4,18 +4,28 @@ import com.common.cklibrary.common.KJActivityStack;
 import com.common.cklibrary.common.StringConstants;
 import com.common.cklibrary.utils.BitmapCoreUtil;
 import com.common.cklibrary.utils.DataCleanManager;
+import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.httputil.HttpUtilParams;
 import com.common.cklibrary.utils.httputil.ResponseListener;
 import com.common.cklibrary.utils.httputil.ResponseProgressbarListener;
+import com.kymjs.common.Log;
+import com.kymjs.common.PreferenceHelper;
 import com.kymjs.common.StringUtils;
 import com.kymjs.rxvolley.client.HttpParams;
 import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
 import com.nanchen.compresshelper.FileUtil;
+import com.qiniu.android.http.ResponseInfo;
+import com.qiniu.android.storage.UpCompletionHandler;
 import com.sillykid.app.R;
 import com.sillykid.app.retrofit.RequestClient;
+import com.sillykid.app.retrofit.uploadimg.UploadManagerUtil;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -142,7 +152,106 @@ public class ReleaseDynamicPresenter implements ReleaseDynamicContract.Presenter
 
 
     @Override
-    public void postAddPost(String post_title, List<LocalMedia> selectList, String content, int classification_id) {
+    public void postAddPost(String post_title, List<LocalMedia> selectList, int mediaType, String content, int classification_id) {
+        if (classification_id <= 0) {
+            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.pleaseSelect) + KJActivityStack.create().topActivity().getString(R.string.category), 3);
+            return;
+        }
+        if (StringUtils.isEmpty(post_title)) {
+            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.addTitle1), 3);
+            return;
+        }
+        if (StringUtils.isEmpty(content)) {
+            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.addDescription1), 3);
+            return;
+        }
+        if (selectList.size() <= 0) {
+            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.addPicturesOrVideo), 3);
+            return;
+        }
+        PreferenceHelper.write(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "selectListSize", 0);
+        List<String> listStr = new ArrayList<String>();
+        for (int i = 0; i < selectList.size(); i++) {
+            if (StringUtils.isEmpty(selectList.get(i).getPath())) {
+                mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.noData), 3);
+                return;
+            }
+            listStr.add("");
+            String token = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "qiNiuToken");
+            if (mediaType != 2) {
+                //参数 图片路径,图片名,token,成功的回调
+                int finalI = i;
+                UploadManagerUtil.getInstance().getUploadManager().put(selectList.get(i).getPath(), null, token, new UpCompletionHandler() {
+                    @Override
+                    public void complete(String key, ResponseInfo responseInfo, JSONObject jsonObject) {
+                        Log.d("ReadFragment", "key" + key + "responseInfo" + JsonUtil.obj2JsonString(responseInfo) + "jsObj:" + String.valueOf(jsonObject));
+                        if (responseInfo.isOK()) {
+                            String host = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "qiNiuImgHost");
+                            String headpicPath = null;
+                            try {
+                                headpicPath = host + jsonObject.getString("name");
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                                KJActivityStack.create().topActivity().runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.failedUploadPicture), 3);
+                                        return;
+                                    }
+                                });
+                                return;
+                            }
+                            int selectListSize = PreferenceHelper.readInt(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "selectListSize", 0);
+                            selectListSize = selectListSize + 1;
+                            PreferenceHelper.write(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "selectListSize", selectListSize);
+                            Log.i("ReadFragment", "complete: " + headpicPath);
+                            listStr.set(finalI, headpicPath);
+                            if (selectListSize == selectList.size()) {
+                                postAddPost1(post_title, listStr, mediaType, content, classification_id);
+                            }
+                            return;
+                        }
+                        KJActivityStack.create().topActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.failedUploadPicture), 3);
+                                return;
+                            }
+                        });
+                        return;
+                    }
+                }, null);
+            } else {
+                File file = new File(selectList.get(i).getPath());
+                int finalI1 = i;
+                RequestClient.upLoadImg(KJActivityStack.create().topActivity(), file, 1, new ResponseProgressbarListener<String>() {
+                    @Override
+                    public void onProgress(String progress) {
+                        mView.showLoadingDialog(KJActivityStack.create().topActivity().getString(R.string.crossLoad) + progress + "%");
+                    }
+
+                    @Override
+                    public void onSuccess(String response) {
+                        listStr.set(finalI1, response);
+                        postAddPost1(post_title, listStr, mediaType, content, classification_id);
+                    }
+
+                    @Override
+                    public void onFailure(String msg) {
+                        KJActivityStack.create().topActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                mView.errorMsg(msg, 3);
+                                return;
+                            }
+                        });
+                    }
+                });
+            }
+        }
+    }
+
+    private void postAddPost1(String post_title, List<String> selectList, int mediaType, String content, int classification_id) {
         if (classification_id <= 0) {
             mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.pleaseSelect) + KJActivityStack.create().topActivity().getString(R.string.category), 3);
             return;
@@ -162,12 +271,9 @@ public class ReleaseDynamicPresenter implements ReleaseDynamicContract.Presenter
         String imgsStr = "";
         if (selectList.size() > 0) {
             for (int i = 0; i < selectList.size(); i++) {
-                imgsStr = imgsStr + "," + selectList.get(i).getPath();
+                imgsStr = imgsStr + "," + selectList.get(i);
             }
         }
-        LocalMedia media = selectList.get(selectList.size() - 1);
-        String pictureType = media.getPictureType();
-        int mediaType = PictureMimeType.pictureToVideo(pictureType);
         if (StringUtils.isEmpty(imgsStr) && mediaType != 2 || StringUtils.isEmpty(imgsStr.substring(1)) && mediaType != 2) {
             mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.addImages1), 3);
             return;
@@ -195,8 +301,126 @@ public class ReleaseDynamicPresenter implements ReleaseDynamicContract.Presenter
         });
     }
 
+
     @Override
-    public void postEditPost(String post_title, List<LocalMedia> selectList, String content, int classification_id, int post_id) {
+    public void postEditPost(String post_title, List<LocalMedia> selectList, int mediaType, String content, int classification_id, int post_id) {
+        if (classification_id <= 0) {
+            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.pleaseSelect) + KJActivityStack.create().topActivity().getString(R.string.category), 4);
+            return;
+        }
+        if (StringUtils.isEmpty(post_title)) {
+            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.addTitle1), 4);
+            return;
+        }
+        if (StringUtils.isEmpty(content)) {
+            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.addDescription1), 4);
+            return;
+        }
+        if (selectList.size() <= 0) {
+            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.addPicturesOrVideo), 4);
+            return;
+        }
+        PreferenceHelper.write(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "selectListSize", 0);
+        List<String> listStr = new ArrayList<String>();
+        for (int i = 0; i < selectList.size(); i++) {
+            if (StringUtils.isEmpty(selectList.get(i).getPath())) {
+                mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.noData), 4);
+                return;
+            }
+            listStr.add("");
+            if (mediaType != 2) {
+                String imgStr = selectList.get(i).getPath();
+                if (!StringUtils.isEmpty(imgStr) && imgStr.startsWith("http")) {
+                    int selectListSize = PreferenceHelper.readInt(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "selectListSize", 0);
+                    selectListSize = selectListSize + 1;
+                    PreferenceHelper.write(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "selectListSize", selectListSize);
+                    listStr.set(i, imgStr);
+                    if (selectListSize == selectList.size()) {
+                        postEditPost1(post_title, listStr, mediaType, content, classification_id, post_id);
+                        return;
+                    }
+                    continue;
+                }
+                String token = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "qiNiuToken");
+                int finalI = i;
+                UploadManagerUtil.getInstance().getUploadManager().put(selectList.get(i).getPath(), null, token, new UpCompletionHandler() {
+                    @Override
+                    public void complete(String key, ResponseInfo responseInfo, JSONObject jsonObject) {
+                        Log.d("ReadFragment", "key" + key + "responseInfo" + JsonUtil.obj2JsonString(responseInfo) + "jsObj:" + String.valueOf(jsonObject));
+                        if (responseInfo.isOK()) {
+                            String host = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "qiNiuImgHost");
+                            String headpicPath = null;
+                            try {
+                                headpicPath = host + jsonObject.getString("name");
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                                KJActivityStack.create().topActivity().runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.failedUploadPicture), 4);
+                                        return;
+                                    }
+                                });
+                                return;
+                            }
+                            int selectListSize = PreferenceHelper.readInt(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "selectListSize", 0);
+                            selectListSize = selectListSize + 1;
+                            PreferenceHelper.write(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "selectListSize", selectListSize);
+                            Log.i("ReadFragment", "complete: " + headpicPath);
+                            listStr.set(finalI, headpicPath);
+                            if (selectListSize == selectList.size()) {
+                                postEditPost1(post_title, listStr, mediaType, content, classification_id, post_id);
+                            }
+                            return;
+                        }
+                        KJActivityStack.create().topActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.failedUploadPicture), 4);
+                                return;
+                            }
+                        });
+                        return;
+                    }
+                }, null);
+            } else {
+                String viodeStr = selectList.get(i).getPath();
+                if (!StringUtils.isEmpty(viodeStr) && viodeStr.startsWith("http")) {
+                    listStr.set(i, viodeStr);
+                    postEditPost1(post_title, listStr, mediaType, content, classification_id, post_id);
+                    return;
+                }
+                File file = new File(selectList.get(i).getPath());
+                int finalI1 = i;
+                RequestClient.upLoadImg(KJActivityStack.create().topActivity(), file, 1, new ResponseProgressbarListener<String>() {
+                    @Override
+                    public void onProgress(String progress) {
+                        mView.showLoadingDialog(KJActivityStack.create().topActivity().getString(R.string.crossLoad) + progress + "%");
+                    }
+
+                    @Override
+                    public void onSuccess(String response) {
+                        listStr.set(finalI1, response);
+                        postEditPost1(post_title, listStr, mediaType, content, classification_id, post_id);
+                    }
+
+                    @Override
+                    public void onFailure(String msg) {
+                        KJActivityStack.create().topActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                mView.errorMsg(msg, 4);
+                                return;
+                            }
+                        });
+                    }
+                });
+            }
+        }
+    }
+
+
+    public void postEditPost1(String post_title, List<String> selectList, int mediaType, String content, int classification_id, int post_id) {
         if (classification_id <= 0) {
             mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.pleaseSelect) + KJActivityStack.create().topActivity().getString(R.string.category), 4);
             return;
@@ -216,12 +440,9 @@ public class ReleaseDynamicPresenter implements ReleaseDynamicContract.Presenter
         String imgsStr = "";
         if (selectList.size() > 0) {
             for (int i = 0; i < selectList.size(); i++) {
-                imgsStr = imgsStr + "," + selectList.get(i).getPath();
+                imgsStr = imgsStr + "," + selectList.get(i);
             }
         }
-        LocalMedia media = selectList.get(selectList.size() - 1);
-        String pictureType = media.getPictureType();
-        int mediaType = PictureMimeType.pictureToVideo(pictureType);
         if (StringUtils.isEmpty(imgsStr) && mediaType != 2 || StringUtils.isEmpty(imgsStr.substring(1)) && mediaType != 2) {
             mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.addImages1), 4);
             return;
@@ -249,6 +470,7 @@ public class ReleaseDynamicPresenter implements ReleaseDynamicContract.Presenter
             }
         });
     }
+
 
     @Override
     public void postDeletePost(int id) {

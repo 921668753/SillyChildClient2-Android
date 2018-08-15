@@ -62,9 +62,27 @@
         app:tabTextAppearance="@style/TabLayout.TabText"
         app:tabTextColor="@color/hintColors" />
 
-    <FrameLayout
-        android:id="@+id/main_content"
-        style="@style/MatchMatch" />
+    <RelativeLayout style="@style/MatchMatch">
+
+        <FrameLayout
+            android:id="@+id/main_content"
+            style="@style/MatchMatch" />
+
+        <TextView
+            android:id="@+id/tv_newTrends"
+            android:layout_width="@dimen/dimen150"
+            android:layout_height="@dimen/dimen40"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/dimen10"
+            android:background="@drawable/shape_newstrategy1"
+            android:gravity="center"
+            android:text="@string/newTrends"
+            android:textColor="@color/whiteColors"
+            android:textSize="@dimen/textsize14" />
+
+    </RelativeLayout>
+
 
     <include layout="@layout/common_error" />
 

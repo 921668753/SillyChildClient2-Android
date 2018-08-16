@@ -22,7 +22,6 @@
             android:scaleType="fitXY"
             android:src="@mipmap/kefu" />
 
-
         <TextView
             style="@style/WrapWrap"
             android:layout_centerHorizontal="true"

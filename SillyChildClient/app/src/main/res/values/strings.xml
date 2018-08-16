@@ -193,6 +193,7 @@
     <string name="hotRecommended">热门推荐</string>
     <string name="selectCity">选择城市</string>
 
+
     <!--活动-->
     <string name="contactWay3">联系方式</string>
     <string name="sillyChildNum">傻孩志号</string>
@@ -214,7 +215,7 @@
 
     <!--选择日期-->
     <string name="selectDate">选择日期</string>
-    <string name="chooseTimeNeedServe">选择你需要服务的时间</string>
+    <string name="chooseTimeNeedServe">选择您需要服务的时间</string>
     <string name="day">日</string>
     <string name="one">一</string>
     <string name="two">二</string>
@@ -382,11 +383,12 @@
 
     <!--首页   全部路线  路线详情 -->
     <string name="reservationsNow">立即预订</string>
-    <string name="collectedRoute">你已经收藏过该路线了</string>
+    <string name="collectedRoute">您已经收藏过该路线了</string>
     <string name="share_driver_description">傻孩子出境游</string>
 
     <!-- 首页   全部路线  路线详情-->
     <string name="thanLineDays">服务日期不能大于线路天数</string>
+    <string name="linePaper">线路摘要</string>
 
 
     <!--首页   全部路线  请填写路线 -->
@@ -537,16 +539,29 @@
     <string name="flightArrivalTime">航班到达时间</string>
 
     <string name="fillDepartureTime">填写出发时间</string>
-
+    <string name="selectDepartureTime">请选择出发时间</string>
     <string name="priceDescription">价格说明</string>
     <string name="dueThat">预定说明</string>
     <string name="vouchers">抵用券</string>
     <string name="actualPayment1">实际支付：</string>
     <string name="fillDestination">填写目的地</string>
-    <string name="fillEstimatedArrivalTimeFlight">填写航班预计到达时间</string>
-
+    <string name="selectEstimatedArrivalTimeFlight">请选择航班预计到达时间</string>
     <string name="selectiveServiceCity">选择送达城市：</string>
     <string name="travelConfiguration">出行配置：</string>
+    <string name="booking">次预订</string>
+    <string name="canSitUp">最多可坐</string>
+    <string name="noteInformation">备注信息</string>
+    <string name="canTakeNumber">可乘人数</string>
+    <string name="carPrices">车型价格</string>
+    <string name="containsService">包含服务</string>
+    <string name="serviceDescription">服务说明</string>
+    <string name="serviceNote">服务备注</string>
+    <string name="particularRequirement">您还有什么特别需求</string>
+    <string name="customerInformation">客户信息</string>
+
+
+
+
 
     <!--首页   单次接送-->
     <string name="vehicleTime">用车时间</string>
@@ -628,10 +643,6 @@
     <string name="thankReport">感谢您的举报，我们将更加努力净化社区，给大家带来良好的环境</string>
 
     <string name="fullScreen">全屏</string>
-
-
-
-
 
 
     <!--首页   当地达人详情-->
@@ -1136,7 +1147,7 @@
     <string name="atRegion1">请选择您所在地区</string>
     <string name="bindEmail">绑定邮箱</string>
     <string name="personalizedSignature">个性签名</string>
-    <string name="personalizedSignatureHint">一句话描述你的个性签名(最多30个字)</string>
+    <string name="personalizedSignatureHint">一句话描述您的个性签名(最多30个字)</string>
     <string name="changepassword">修改密码</string>
     <string name="fillSignature">请填写您的个性签名</string>
     <string name="bindEmailHint">请输入认证邮箱</string>
@@ -1189,7 +1200,7 @@
     <string name="invitationCode">邀请码</string>
     <string name="activityRules">活动规则</string>
     <string name="noHaveApplyCode">缺少邀请码，无法分享，您可移步至客服</string>
-    <string name="welcomSilly">你的朋友邀请你使用傻孩志并给你发了一个大红包  </string>
+    <string name="welcomSilly">您的朋友邀请您使用傻孩志并给您发了一个大红包  </string>
     <string name="sillyChildMyHands">傻孩志在手天下我有</string>
 
 
@@ -1220,7 +1231,7 @@
     <string name="all">全部</string>
     <string name="evaluation">评价</string>
     <string name="anonymousEvaluation">匿名评价</string>
-    <string name="evaluationOtherFriends">你的评价能帮助其他小伙伴呦</string>
+    <string name="evaluationOtherFriends">您的评价能帮助其他小伙伴呦</string>
     <string name="scoring">评分</string>
     <string name="GoodsScoring">产品评分</string>
     <string name="guideScoring">司导评分</string>
@@ -1312,12 +1323,8 @@
     <string name="sendPrivateChat">发私聊</string>
     <string name="toAppraise">去评价</string>
     <string name="seeEvaluation">查看评价</string>
-
     <string name="serviceTime">服务时间：</string>
     <string name="serviceCompany">服务司导：</string>
-
-
-
     <string name="noPhone">没有可拨打的有效电话</string>
     <string name="doNotChat">数据缺失，无法发起私聊</string>
     <string name="doNotPay">订单信息缺失，无法发起支付</string>
@@ -1337,6 +1344,9 @@
     <string name="foodPreferences">美食偏好：</string>
     <string name="accommodationPreferences">住宿偏好：</string>
     <string name="charterCity">包车城市：</string>
+    <string name="haveMoreExperienceUsing">有更多的使用心得，分享给他们吧</string>
+    <string name="comment1">发表评论</string>
+
 
 
     <!-- 个人中心 我的订单  订单详情-->
@@ -1408,13 +1418,6 @@
     <string name="experienceBrightSpot">体验亮点</string>
 
 
-
-
-
-
-
-
-
     <!-- 个人中心 我的订单  订单跟踪-->
     <string name="orderTracking">订单跟踪</string>
 
@@ -1450,8 +1453,8 @@
     <string name="release">发布</string>
     <string name="have">！有</string>
     <string name="pictureFail">张图片上传失败，</string>
-    <string name="deleteSelect">你确定要删除该张图片吗？</string>
-    <string name="deleteTrends">你确定要删除这则动态吗？</string>
+    <string name="deleteSelect">您确定要删除该张图片吗？</string>
+    <string name="deleteTrends">您确定要删除这则动态吗？</string>
     <string name="deleteCollectionTrends">请确认取消对这则动态的收藏！</string>
     <string name="deleteToMin">删除失败！至少要有一张图片</string>
     <string name="addToMax">增加失败！已达图片添加的极限</string>
@@ -1468,7 +1471,7 @@
     <string name="fillContent">请填写攻略内容</string>
     <string name="newAddition">新增</string>
     <string name="china">中国</string>
-    <string name="deleteStrategy">你确定要删除这则攻略吗？</string>
+    <string name="deleteStrategy">您确定要删除这则攻略吗？</string>
     <string name="deleteCollectionStrategy">请确认取消对这则攻略的收藏！</string>
     <string name="strategyLongPressDelete">长按图片可删除相应图片和文字</string>
 

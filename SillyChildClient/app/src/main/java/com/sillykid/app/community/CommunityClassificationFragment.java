@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.common.cklibrary.common.BaseFragment;
@@ -26,6 +27,7 @@ import com.sillykid.app.constant.NumericConstants;
 import com.sillykid.app.entity.main.community.CommunityBean;
 import com.sillykid.app.loginregister.LoginActivity;
 import com.sillykid.app.main.MainActivity;
+import com.sillykid.app.mine.myrelease.mydynamic.ReleaseDynamicActivity;
 import com.sillykid.app.utils.GlideImageLoader;
 import com.sillykid.app.utils.SpacesItemDecoration;
 
@@ -48,6 +50,12 @@ public class CommunityClassificationFragment extends BaseFragment implements Com
     @BindView(id = R.id.mRefreshLayout)
     private BGARefreshLayout mRefreshLayout;
 
+    @BindView(id = R.id.rl_top)
+    private RelativeLayout rl_top;
+
+
+    @BindView(id = R.id.tv_newTrends, click = true)
+    private TextView tv_newTrends;
 
     @BindView(id = R.id.rv)
     private RecyclerView recyclerview;
@@ -134,7 +142,7 @@ public class CommunityClassificationFragment extends BaseFragment implements Com
         //设置item之间的间隔
         recyclerview.addItemDecoration(spacesItemDecoration);
         recyclerview.setAdapter(mAdapter);
-    //    layoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);//不设置的话，图片闪烁错位，有可能有整列错位的情况。
+        //    layoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);//不设置的话，图片闪烁错位，有可能有整列错位的情况。
         mAdapter.setOnRVItemClickListener(this);
         recyclerview.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -149,6 +157,9 @@ public class CommunityClassificationFragment extends BaseFragment implements Com
     public void widgetClick(View v) {
         super.widgetClick(v);
         switch (v.getId()) {
+            case R.id.tv_newTrends:
+                aty.showActivity(aty, ReleaseDynamicActivity.class);
+                break;
             case R.id.tv_button:
                 if (tv_button.getText().toString().contains(getString(R.string.retry))) {
                     mRefreshLayout.beginRefreshing();
@@ -220,6 +231,8 @@ public class CommunityClassificationFragment extends BaseFragment implements Com
     @Override
     public void getSuccess(String success, int flag) {
         isShowLoadingMore = true;
+        rl_top.setVisibility(View.VISIBLE);
+        // aty.contentFragment1.setTVnewTrendsVisible();
         ll_commonError.setVisibility(View.GONE);
         mRefreshLayout.setVisibility(View.VISIBLE);
         mRefreshLayout.setPullDownRefreshEnable(true);
@@ -273,19 +286,20 @@ public class CommunityClassificationFragment extends BaseFragment implements Com
             }
         });
         thread.start();
-
     }
 
     @Override
     public void errorMsg(String msg, int flag) {
         dismissLoadingDialog();
         isShowLoadingMore = false;
+        rl_top.setVisibility(View.GONE);
         if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
             mRefreshLayout.endRefreshing();
         } else {
             mRefreshLayout.endLoadingMore();
         }
         mRefreshLayout.setPullDownRefreshEnable(false);
+        //  aty.contentFragment1.setTVnewTrendsGone();
         mRefreshLayout.setVisibility(View.GONE);
         ll_commonError.setVisibility(View.VISIBLE);
         tv_hintText.setVisibility(View.VISIBLE);

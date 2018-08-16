@@ -137,6 +137,7 @@
                 <LinearLayout
                     style="@style/AutoWrap"
                     android:layout_marginLeft="@dimen/dimen17"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <TextView
@@ -145,27 +146,32 @@
                         android:textColor="@color/hintColors"
                         android:textSize="@dimen/textsize13" />
 
-
                     <LinearLayout
-                        style="@style/MatchWrap"
+                        style="@style/AutoWrap"
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/tv_adult"
+                            android:id="@+id/et_adult"
                             style="@style/MatchAuto"
                             android:background="@android:color/transparent"
+                            android:digits="@string/number0"
                             android:gravity="center"
                             android:inputType="number"
                             android:singleLine="true"
                             android:text="1"
                             android:textColor="@color/textColor"
                             android:textCursorDrawable="@drawable/shape_cursor"
-                            android:textSize="@dimen/textsize13" />
+                            android:textSize="@dimen/textsize12" />
 
                         <TextView style="@style/DividerWidth" />
 
                     </LinearLayout>
 
+                    <ImageView
+                        android:layout_width="@dimen/dimen13"
+                        android:layout_height="@dimen/dimen7"
+                        android:layout_marginTop="@dimen/dimen5"
+                        android:src="@mipmap/downarrow" />
 
                 </LinearLayout>
 
@@ -173,6 +179,7 @@
                     style="@style/AutoWrap"
                     android:layout_marginLeft="@dimen/dimen52"
                     android:layout_marginRight="@dimen/dimen40"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <TextView
@@ -183,25 +190,31 @@
 
 
                     <LinearLayout
-                        style="@style/MatchWrap"
+                        style="@style/AutoWrap"
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/tv_children"
+                            android:id="@+id/et_children"
                             style="@style/MatchAuto"
                             android:background="@android:color/transparent"
+                            android:digits="@string/number0"
                             android:gravity="center"
                             android:inputType="number"
                             android:singleLine="true"
                             android:text="1"
                             android:textColor="@color/textColor"
                             android:textCursorDrawable="@drawable/shape_cursor"
-                            android:textSize="@dimen/textsize13" />
+                            android:textSize="@dimen/textsize12" />
 
                         <TextView style="@style/DividerWidth" />
 
                     </LinearLayout>
 
+                    <ImageView
+                        android:layout_width="@dimen/dimen13"
+                        android:layout_height="@dimen/dimen7"
+                        android:layout_marginTop="@dimen/dimen5"
+                        android:src="@mipmap/downarrow" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -216,6 +229,7 @@
                 <LinearLayout
                     style="@style/AutoWrap"
                     android:layout_marginLeft="@dimen/dimen17"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <TextView
@@ -224,28 +238,32 @@
                         android:textColor="@color/hintColors"
                         android:textSize="@dimen/textsize13" />
 
-
                     <LinearLayout
-                        style="@style/MatchWrap"
+                        style="@style/AutoWrap"
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/tv_luggage"
+                            android:id="@+id/et_luggage"
                             style="@style/MatchAuto"
                             android:background="@android:color/transparent"
+                            android:digits="@string/number0"
                             android:gravity="center"
                             android:inputType="number"
                             android:singleLine="true"
                             android:text="1"
                             android:textColor="@color/textColor"
                             android:textCursorDrawable="@drawable/shape_cursor"
-                            android:textSize="@dimen/textsize13" />
+                            android:textSize="@dimen/textsize12" />
 
                         <TextView style="@style/DividerWidth" />
 
                     </LinearLayout>
 
-
+                    <ImageView
+                        android:layout_width="@dimen/dimen13"
+                        android:layout_height="@dimen/dimen7"
+                        android:layout_marginTop="@dimen/dimen5"
+                        android:src="@mipmap/downarrow" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -253,7 +271,6 @@
                     android:layout_marginLeft="@dimen/dimen52"
                     android:layout_marginRight="@dimen/dimen40"
                     android:orientation="horizontal">
-
 
                 </LinearLayout>
             </LinearLayout>
@@ -359,23 +376,14 @@
                 android:textSize="@dimen/textsize12" />
 
 
-            <TextView
+            <EditText
+                android:id="@+id/et_remark"
                 style="@style/MatchWrap"
                 android:layout_marginTop="@dimen/dimen6"
                 android:background="@color/whiteColors"
-                android:paddingLeft="@dimen/dimen17"
-                android:paddingRight="@dimen/dimen17"
-                android:paddingTop="@dimen/dimen12"
-                android:text="@string/remark1"
-                android:textColor="@color/textColor"
-                android:textSize="@dimen/textsize15" />
-
-            <TextView
-                android:id="@+id/tv_remark"
-                style="@style/MatchWrap"
-                android:background="@color/whiteColors"
                 android:gravity="left"
-                android:minHeight="@dimen/dimen105"
+                android:hint="@string/remark1"
+                android:minHeight="@dimen/dimen133"
                 android:paddingBottom="@dimen/dimen12"
                 android:paddingLeft="@dimen/dimen17"
                 android:paddingRight="@dimen/dimen17"
@@ -384,7 +392,6 @@
                 android:textColorHint="@color/hintColors"
                 android:textCursorDrawable="@drawable/shape_cursor"
                 android:textSize="@dimen/textsize15" />
-
 
             <LinearLayout
                 style="@style/Match45"

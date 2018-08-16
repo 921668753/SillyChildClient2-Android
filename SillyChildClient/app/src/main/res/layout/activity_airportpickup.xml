@@ -32,7 +32,7 @@
                 android:paddingLeft="@dimen/dimen17"
                 android:paddingRight="@dimen/dimen17"
                 android:paddingTop="@dimen/dimen12"
-                android:text="@string/selectProduct"
+                android:text="成田机场东京室内接机"
                 android:textColor="@color/textColor"
                 android:textSize="@dimen/textsize15" />
 
@@ -43,10 +43,18 @@
                 android:paddingBottom="@dimen/dimen10"
                 android:paddingLeft="@dimen/dimen17"
                 android:paddingRight="@dimen/dimen17"
-                android:text="接机人数≤6   行李件数≤3"
+                android:text="接机人数5人 行李件数2件"
                 android:textColor="@color/hintColors"
-                android:textSize="@dimen/textsize13"
-                android:visibility="gone" />
+                android:textSize="@dimen/textsize13" />
+
+            <TextView
+                style="@style/MatchWrap"
+                android:paddingBottom="@dimen/dimen10"
+                android:paddingLeft="@dimen/dimen17"
+                android:paddingTop="@dimen/dimen10"
+                android:text="@string/customerInformation"
+                android:textColor="@color/tabColors"
+                android:textSize="@dimen/textsize15" />
 
             <LinearLayout
                 style="@style/MatchWrap"
@@ -56,19 +64,18 @@
                 android:orientation="horizontal"
                 android:paddingTop="@dimen/dimen12">
 
-                <TextView
-                    style="@style/WrapWrap"
-                    android:layout_marginRight="@dimen/dimen6"
-                    android:paddingLeft="@dimen/dimen17"
-                    android:text="@string/flightNumber"
-                    android:textColor="@color/textColor"
-                    android:textSize="@dimen/textsize15" />
-
                 <ImageView
                     android:layout_width="@dimen/dimen8"
                     android:layout_height="@dimen/dimen8"
+                    android:layout_marginLeft="@dimen/dimen17"
                     android:src="@mipmap/xingimg" />
 
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginRight="@dimen/dimen6"
+                    android:text="@string/flightNumber"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
 
             </LinearLayout>
 
@@ -96,18 +103,19 @@
                 android:orientation="horizontal"
                 android:paddingTop="@dimen/dimen12">
 
-                <TextView
-                    style="@style/WrapWrap"
-                    android:layout_marginRight="@dimen/dimen6"
-                    android:paddingLeft="@dimen/dimen17"
-                    android:text="@string/deliveredSite"
-                    android:textColor="@color/textColor"
-                    android:textSize="@dimen/textsize15" />
 
                 <ImageView
                     android:layout_width="@dimen/dimen8"
                     android:layout_height="@dimen/dimen8"
+                    android:layout_marginLeft="@dimen/dimen17"
                     android:src="@mipmap/xingimg" />
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginRight="@dimen/dimen6"
+                    android:text="@string/deliveredSite"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
 
 
             </LinearLayout>
@@ -135,27 +143,28 @@
                 android:orientation="horizontal"
                 android:paddingTop="@dimen/dimen12">
 
-                <TextView
-                    style="@style/WrapWrap"
-                    android:layout_marginRight="@dimen/dimen6"
-                    android:paddingLeft="@dimen/dimen17"
-                    android:text="@string/flightArrivalTime"
-                    android:textColor="@color/textColor"
-                    android:textSize="@dimen/textsize15" />
 
                 <ImageView
                     android:layout_width="@dimen/dimen8"
                     android:layout_height="@dimen/dimen8"
+                    android:layout_marginLeft="@dimen/dimen17"
                     android:src="@mipmap/xingimg" />
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginRight="@dimen/dimen6"
+                    android:text="@string/flightArrivalTime"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
 
 
             </LinearLayout>
 
-            <EditText
+            <TextView
                 android:id="@+id/et_flightArrivalTime"
                 style="@style/MatchWrap"
                 android:background="@color/whiteColors"
-                android:hint="@string/fillEstimatedArrivalTimeFlight"
+                android:hint="@string/selectEstimatedArrivalTimeFlight"
                 android:paddingBottom="@dimen/dimen10"
                 android:paddingLeft="@dimen/dimen17"
                 android:paddingRight="@dimen/dimen17"
@@ -175,18 +184,18 @@
                 android:orientation="horizontal"
                 android:paddingTop="@dimen/dimen12">
 
-                <TextView
-                    style="@style/WrapWrap"
-                    android:layout_marginRight="@dimen/dimen6"
-                    android:paddingLeft="@dimen/dimen17"
-                    android:text="@string/contact"
-                    android:textColor="@color/textColor"
-                    android:textSize="@dimen/textsize15" />
-
                 <ImageView
                     android:layout_width="@dimen/dimen8"
                     android:layout_height="@dimen/dimen8"
+                    android:layout_marginLeft="@dimen/dimen17"
                     android:src="@mipmap/xingimg" />
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginRight="@dimen/dimen6"
+                    android:text="@string/contact"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
 
 
             </LinearLayout>
@@ -215,18 +224,18 @@
                 android:orientation="horizontal"
                 android:paddingTop="@dimen/dimen12">
 
-                <TextView
-                    style="@style/WrapWrap"
-                    android:layout_marginRight="@dimen/dimen6"
-                    android:paddingLeft="@dimen/dimen17"
-                    android:text="@string/contactWay3"
-                    android:textColor="@color/textColor"
-                    android:textSize="@dimen/textsize15" />
-
                 <ImageView
                     android:layout_width="@dimen/dimen8"
                     android:layout_height="@dimen/dimen8"
+                    android:layout_marginLeft="@dimen/dimen17"
                     android:src="@mipmap/xingimg" />
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginRight="@dimen/dimen6"
+                    android:text="@string/contactWay3"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
 
 
             </LinearLayout>
@@ -256,19 +265,18 @@
                 android:orientation="horizontal"
                 android:paddingTop="@dimen/dimen12">
 
-                <TextView
-                    style="@style/WrapWrap"
-                    android:layout_marginRight="@dimen/dimen6"
-                    android:paddingLeft="@dimen/dimen17"
-                    android:text="@string/dueDemand"
-                    android:textColor="@color/textColor"
-                    android:textSize="@dimen/textsize15" />
-
                 <ImageView
                     android:layout_width="@dimen/dimen8"
                     android:layout_height="@dimen/dimen8"
+                    android:layout_marginLeft="@dimen/dimen17"
                     android:src="@mipmap/xingimg" />
 
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginRight="@dimen/dimen6"
+                    android:text="@string/dueDemand"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
 
             </LinearLayout>
 
@@ -282,6 +290,7 @@
                 <LinearLayout
                     style="@style/AutoWrap"
                     android:layout_marginLeft="@dimen/dimen17"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <TextView
@@ -290,12 +299,11 @@
                         android:textColor="@color/hintColors"
                         android:textSize="@dimen/textsize13" />
 
-
                     <LinearLayout
-                        style="@style/MatchWrap"
+                        style="@style/AutoWrap"
                         android:orientation="vertical">
 
-                        <EditText
+                        <TextView
                             android:id="@+id/et_adult"
                             style="@style/MatchAuto"
                             android:background="@android:color/transparent"
@@ -303,14 +311,20 @@
                             android:gravity="center"
                             android:inputType="number"
                             android:singleLine="true"
+                            android:text="@string/pleaseSelect"
                             android:textColor="@color/textColor"
                             android:textCursorDrawable="@drawable/shape_cursor"
-                            android:textSize="@dimen/textsize13" />
+                            android:textSize="@dimen/textsize12" />
 
                         <TextView style="@style/DividerWidth" />
 
                     </LinearLayout>
 
+                    <ImageView
+                        android:layout_width="@dimen/dimen13"
+                        android:layout_height="@dimen/dimen7"
+                        android:layout_marginTop="@dimen/dimen5"
+                        android:src="@mipmap/downarrow" />
 
                 </LinearLayout>
 
@@ -318,6 +332,7 @@
                     style="@style/AutoWrap"
                     android:layout_marginLeft="@dimen/dimen52"
                     android:layout_marginRight="@dimen/dimen40"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <TextView
@@ -328,10 +343,10 @@
 
 
                     <LinearLayout
-                        style="@style/MatchWrap"
+                        style="@style/AutoWrap"
                         android:orientation="vertical">
 
-                        <EditText
+                        <TextView
                             android:id="@+id/et_children"
                             style="@style/MatchAuto"
                             android:background="@android:color/transparent"
@@ -339,14 +354,20 @@
                             android:gravity="center"
                             android:inputType="number"
                             android:singleLine="true"
+                            android:text="@string/pleaseSelect"
                             android:textColor="@color/textColor"
                             android:textCursorDrawable="@drawable/shape_cursor"
-                            android:textSize="@dimen/textsize13" />
+                            android:textSize="@dimen/textsize12" />
 
                         <TextView style="@style/DividerWidth" />
 
                     </LinearLayout>
 
+                    <ImageView
+                        android:layout_width="@dimen/dimen13"
+                        android:layout_height="@dimen/dimen7"
+                        android:layout_marginTop="@dimen/dimen5"
+                        android:src="@mipmap/downarrow" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -361,6 +382,7 @@
                 <LinearLayout
                     style="@style/AutoWrap"
                     android:layout_marginLeft="@dimen/dimen17"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <TextView
@@ -369,12 +391,11 @@
                         android:textColor="@color/hintColors"
                         android:textSize="@dimen/textsize13" />
 
-
                     <LinearLayout
-                        style="@style/MatchWrap"
+                        style="@style/AutoWrap"
                         android:orientation="vertical">
 
-                        <EditText
+                        <TextView
                             android:id="@+id/et_luggage"
                             style="@style/MatchAuto"
                             android:background="@android:color/transparent"
@@ -382,14 +403,20 @@
                             android:gravity="center"
                             android:inputType="number"
                             android:singleLine="true"
+                            android:text="@string/pleaseSelect"
                             android:textColor="@color/textColor"
                             android:textCursorDrawable="@drawable/shape_cursor"
-                            android:textSize="@dimen/textsize13" />
+                            android:textSize="@dimen/textsize12" />
 
                         <TextView style="@style/DividerWidth" />
 
                     </LinearLayout>
 
+                    <ImageView
+                        android:layout_width="@dimen/dimen13"
+                        android:layout_height="@dimen/dimen7"
+                        android:layout_marginTop="@dimen/dimen5"
+                        android:src="@mipmap/downarrow" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -398,28 +425,8 @@
                     android:layout_marginRight="@dimen/dimen40"
                     android:orientation="horizontal">
 
-
                 </LinearLayout>
             </LinearLayout>
-
-
-            <EditText
-                android:id="@+id/et_remark"
-                style="@style/MatchWrap"
-                android:layout_marginTop="@dimen/dimen6"
-                android:background="@color/whiteColors"
-                android:gravity="left"
-                android:hint="@string/remark1"
-                android:minHeight="@dimen/dimen126"
-                android:paddingBottom="@dimen/dimen12"
-                android:paddingLeft="@dimen/dimen17"
-                android:paddingRight="@dimen/dimen17"
-                android:paddingTop="@dimen/dimen12"
-                android:textColor="@color/textColor"
-                android:textColorHint="@color/hintColors"
-                android:textCursorDrawable="@drawable/shape_cursor"
-                android:textSize="@dimen/textsize15" />
-
 
             <TextView
                 android:id="@+id/tv_submitOrder"

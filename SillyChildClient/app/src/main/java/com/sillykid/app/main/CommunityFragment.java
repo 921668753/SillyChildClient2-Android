@@ -38,6 +38,10 @@ public class CommunityFragment extends BaseFragment implements CommunityContract
     @BindView(id = R.id.ll_search, click = true)
     private LinearLayout ll_search;
 
+    @BindView(id = R.id.img_search, click = true)
+    private ImageView img_search;
+
+
     @BindView(id = R.id.tabLayout)
     private TabLayout tabLayout;
 
@@ -47,9 +51,9 @@ public class CommunityFragment extends BaseFragment implements CommunityContract
     private int itemSelected = 0;
 
     private List<CommunityClassificationFragment> list;
-
-    @BindView(id = R.id.tv_newTrends, click = true)
-    private TextView tv_newTrends;
+//
+//    @BindView(id = R.id.tv_newTrends, click = true)
+//    private TextView tv_newTrends;
 
     /**
      * 错误提示页
@@ -95,11 +99,12 @@ public class CommunityFragment extends BaseFragment implements CommunityContract
         super.widgetClick(v);
         switch (v.getId()) {
             case R.id.ll_search:
+            case R.id.img_search:
                 aty.showActivity(aty, CommunitySearchActivity.class);
                 break;
-            case R.id.tv_newTrends:
-                aty.showActivity(aty, ReleaseDynamicActivity.class);
-                break;
+//            case R.id.tv_newTrends:
+//                aty.showActivity(aty, ReleaseDynamicActivity.class);
+//                break;
             case R.id.tv_button:
                 if (tv_button.getText().toString().contains(getString(R.string.retry))) {
                     showLoadingDialog(getString(R.string.dataLoad));
@@ -120,6 +125,8 @@ public class CommunityFragment extends BaseFragment implements CommunityContract
     @Override
     public void getSuccess(String success, int flag) {
         if (flag == 0) {
+            ll_commonError.setVisibility(View.GONE);
+        //    tv_newTrends.setVisibility(View.VISIBLE);
             ClassificationListBean classificationListBean = (ClassificationListBean) JsonUtil.getInstance().json2Obj(success, ClassificationListBean.class);
             if (classificationListBean.getData() == null || classificationListBean.getData().size() <= 0) {
                 dismissLoadingDialog();
@@ -241,13 +248,38 @@ public class CommunityFragment extends BaseFragment implements CommunityContract
     @Override
     public void errorMsg(String msg, int flag) {
         dismissLoadingDialog();
-        //  ViewInject.toast(msg);
+     //   tv_newTrends.setVisibility(View.GONE);
+        ll_commonError.setVisibility(View.VISIBLE);
+        tv_hintText.setVisibility(View.VISIBLE);
+        tv_button.setVisibility(View.VISIBLE);
+        if (isLogin(msg)) {
+            img_err.setImageResource(R.mipmap.no_login);
+            tv_hintText.setVisibility(View.GONE);
+            tv_button.setText(getString(R.string.login));
+            aty.showActivity(aty, LoginActivity.class);
+            return;
+        } else if (msg.contains(getString(R.string.checkNetwork))) {
+            img_err.setImageResource(R.mipmap.no_network);
+            tv_hintText.setText(msg);
+            tv_button.setText(getString(R.string.retry));
+        } else if (msg.contains(getString(R.string.noMovement))) {
+            img_err.setImageResource(R.mipmap.no_data);
+            tv_hintText.setText(msg);
+            tv_button.setVisibility(View.GONE);
+        } else {
+            img_err.setImageResource(R.mipmap.no_data);
+            tv_hintText.setText(msg);
+            tv_button.setText(getString(R.string.retry));
+        }
     }
 
-//    public int getClassificationId() {
-//        return classification_id;
+//    public void setTVnewTrendsGone() {
+//        tv_newTrends.setVisibility(View.GONE);
 //    }
-
+//
+//    public void setTVnewTrendsVisible() {
+//        tv_newTrends.setVisibility(View.VISIBLE);
+//    }
 
     public void changeFragment(BaseFragment targetFragment) {
         super.changeFragment(R.id.main_content, targetFragment);

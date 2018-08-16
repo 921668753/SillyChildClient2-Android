@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title" />
+
+    <ScrollView
+        style="@style/MatchMatch"
+        android:scrollbars="none">
+
+        <LinearLayout
+            style="@style/MatchMatch"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:layout_marginTop="@dimen/dimen6"
+                android:background="@color/whiteColors"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/dimen100"
+                    android:layout_height="@dimen/dimen100"
+                    android:layout_marginBottom="@dimen/dimen20"
+                    android:layout_marginLeft="@dimen/dimen21"
+                    android:layout_marginTop="@dimen/dimen20"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/placeholderfigure" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="@dimen/dimen20"
+                    android:layout_marginLeft="@dimen/dimen11"
+                    android:layout_marginRight="@dimen/dimen21"
+                    android:layout_marginTop="@dimen/dimen20"
+                    android:text="一叶子面膜一叶子面膜"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize14" />
+
+
+            </LinearLayout>
+
+
+            <EditText
+                android:id="@+id/et_remark"
+                style="@style/MatchWrap"
+                android:layout_marginTop="@dimen/dimen1"
+                android:background="@color/whiteColors"
+                android:gravity="left"
+                android:hint="@string/haveMoreExperienceUsing"
+                android:minHeight="@dimen/dimen104"
+                android:paddingBottom="@dimen/dimen15"
+                android:paddingLeft="@dimen/dimen21"
+                android:paddingRight="@dimen/dimen21"
+                android:paddingTop="@dimen/dimen15"
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/hintColors"
+                android:textCursorDrawable="@drawable/shape_cursor"
+                android:textSize="@dimen/textsize13" />
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                style="@style/MatchWrap"
+                android:layout_below="@id/et_addDescription"
+                android:layout_marginBottom="@dimen/dimen5"
+                android:layout_marginTop="@dimen/dimen1"
+                android:background="@color/whiteColors"
+                android:choiceMode="singleChoice"
+                android:divider="@null"
+                android:fadingEdge="none"
+                android:listSelector="@android:color/transparent"
+                android:overScrollMode="never"
+                android:paddingBottom="@dimen/dimen19"
+                android:paddingLeft="@dimen/dimen21"
+                android:paddingRight="@dimen/dimen21"
+                android:paddingTop="@dimen/dimen15"
+                android:scrollbarStyle="outsideOverlay"
+                app:layoutManager="android.support.v7.widget.GridLayoutManager"
+                app:spanCount="3"
+                tools:listitem="@layout/item_chooseimage" />
+
+
+            <TextView
+                android:id="@+id/tv_comment"
+                style="@style/Match40"
+                android:layout_marginBottom="@dimen/dimen89"
+                android:layout_marginLeft="@dimen/dimen100"
+                android:layout_marginRight="@dimen/dimen100"
+                android:layout_marginTop="@dimen/dimen58"
+                android:background="@drawable/shape_charter1"
+                android:gravity="center"
+                android:text="@string/comment1"
+                android:textColor="@color/whiteColors"
+                android:textSize="@dimen/textsize16" />
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+</LinearLayout>

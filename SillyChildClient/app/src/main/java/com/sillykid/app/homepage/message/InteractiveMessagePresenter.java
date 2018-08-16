@@ -27,12 +27,12 @@ public class InteractiveMessagePresenter implements InteractiveMessageContract.P
         RequestClient.getIsLogin(context, httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
-                mView.getSuccess(response, 0);
+                mView.getSuccess(response, flage);
             }
 
             @Override
             public void onFailure(String msg) {
-                mView.errorMsg(msg, 0);
+                mView.errorMsg(msg, flage);
             }
         });
     }

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrap"
+    android:background="@drawable/shape_selectproduct"
+    android:orientation="vertical">
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen128"
+        android:scaleType="fitXY"
+        android:src="@mipmap/placeholderfigure" />
+
+    <TextView
+        style="@style/MatchWrap"
+        android:paddingLeft="@dimen/dimen6"
+        android:paddingRight="@dimen/dimen6"
+        android:paddingTop="@dimen/dimen10"
+        android:text="成田机场接机"
+        android:textColor="@color/textColor"
+        android:textSize="@dimen/textsize11" />
+
+    <TextView
+        style="@style/MatchWrap"
+        android:paddingBottom="@dimen/dimen15"
+        android:paddingLeft="@dimen/dimen7"
+        android:paddingRight="@dimen/dimen7"
+        android:paddingTop="@dimen/dimen8"
+        android:text="丰田阿尔法"
+        android:textColor="@color/tabColors"
+        android:textSize="@dimen/textsize10" />
+
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/dimen9">
+
+
+        <TextView
+            style="@style/WrapWrap"
+            android:paddingLeft="@dimen/dimen7"
+            android:text="@string/canSitUp"
+            android:textColor="@color/hintColors"
+            android:textSize="@dimen/textsize9" />
+
+        <TextView
+            style="@style/WrapWrap"
+            android:text="6"
+            android:textColor="@color/hintColors"
+            android:textSize="@dimen/textsize9" />
+
+        <TextView
+            style="@style/WrapWrap"
+            android:text="@string/people"
+            android:textColor="@color/hintColors"
+            android:textSize="@dimen/textsize9" />
+
+        <TextView
+            style="@style/AutoWrap"
+            android:gravity="right"
+            android:paddingLeft="@dimen/dimen7"
+            android:text="126"
+            android:textColor="@color/hintColors"
+            android:textSize="@dimen/textsize9" />
+
+        <TextView
+            style="@style/WrapWrap"
+            android:paddingRight="@dimen/dimen7"
+            android:text="@string/booking"
+            android:textColor="@color/hintColors"
+            android:textSize="@dimen/textsize9" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

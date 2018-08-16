@@ -3,9 +3,9 @@
     <string name="picture_cancel">取消</string>
     <string name="picture_take_picture">拍摄</string>
     <string name="picture_rule">不能同时选择图片或视频</string>
-    <string name="picture_message_max_num">你最多可以选择%1$s张图片</string>
+    <string name="picture_message_max_num">您最多可以选择%1$s张图片</string>
     <string name="picture_min_video_num">视频最低选择不能少于%1$s个</string>
-    <string name="picture_message_video_max_num">你最多可以选择%1$s个视频</string>
+    <string name="picture_message_video_max_num">您最多可以选择%1$s个视频</string>
     <string name="picture_preview">预览</string>
     <string name="picture_please">请稍候...</string>
     <string name="picture_done_front_num">%1$d/%2$d 完成</string>
@@ -14,8 +14,8 @@
     <string name="picture_please_select">请选择</string>
     <string name="picture_empty_title">无视频或照片\n</string>
     <string name="picture_empty_audio_title">无音频文件\n</string>
-    <string name="picture_empty">你可以使用相机拍摄照片或视频</string>
-    <string name="picture_audio_empty">你可以使用系统录音录制音频</string>
+    <string name="picture_empty">您可以使用相机拍摄照片或视频</string>
+    <string name="picture_audio_empty">您可以使用系统录音录制音频</string>
     <string name="picture_min_img_num">图片最低选择不能少于%1$s张</string>
     <string name="gif_tag">动图</string>
     <string name="picture_jurisdiction">读取内存卡权限被拒绝</string>

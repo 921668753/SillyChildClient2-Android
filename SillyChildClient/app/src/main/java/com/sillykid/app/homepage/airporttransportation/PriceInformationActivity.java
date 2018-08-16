@@ -1,16 +1,15 @@
 package com.sillykid.app.homepage.airporttransportation;
 
-
 import com.common.cklibrary.common.BaseActivity;
 import com.sillykid.app.R;
 
 /**
- * 接送机分类
+ * 价格信息
  */
-public class airportTransportationClassificationActivity extends BaseActivity {
+public class PriceInformationActivity extends BaseActivity {
 
     @Override
     public void setRootView() {
-        setContentView(R.layout.activity_bythedaycharterclassification);
+        setContentView(R.layout.activity_priceinformation);
     }
 }

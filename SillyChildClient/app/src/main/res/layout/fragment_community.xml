@@ -21,7 +21,8 @@
         android:layout_marginTop="@dimen/dimen3"
         android:background="@color/whiteColors"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="gone">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -49,42 +50,56 @@
 
     </LinearLayout>
 
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tabLayout"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen35"
-        android:background="@color/whiteColors"
-        app:tabBackground="@drawable/tab_backgroud"
-        app:tabGravity="center"
-        app:tabIndicatorColor="@color/greenColors"
-        app:tabMode="scrollable"
-        app:tabSelectedTextColor="@color/greenColors"
-        app:tabTextAppearance="@style/TabLayout.TabText"
-        app:tabTextColor="@color/hintColors" />
+        android:layout_marginTop="@dimen/dimen5">
 
-    <RelativeLayout style="@style/MatchMatch">
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen35"
+            android:layout_marginRight="@dimen/dimen41"
+            android:background="@color/whiteColors"
+            app:tabBackground="@drawable/tab_backgroud"
+            app:tabGravity="center"
+            app:tabIndicatorColor="@color/greenColors"
+            app:tabMode="scrollable"
+            app:tabSelectedTextColor="@color/greenColors"
+            app:tabTextAppearance="@style/TabLayout.TabText"
+            app:tabTextColor="@color/hintColors" />
+
+
+        <ImageView
+            android:id="@+id/img_search"
+            android:layout_width="@dimen/dimen51"
+            android:layout_height="@dimen/dimen41"
+            android:layout_alignParentRight="true"
+            android:src="@mipmap/community_search1" />
+
+    </RelativeLayout>
+
+    <!--<RelativeLayout style="@style/MatchMatch">-->
 
         <FrameLayout
             android:id="@+id/main_content"
             style="@style/MatchMatch" />
 
-        <TextView
-            android:id="@+id/tv_newTrends"
-            android:layout_width="@dimen/dimen150"
-            android:layout_height="@dimen/dimen40"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="@dimen/dimen10"
-            android:background="@drawable/shape_newstrategy1"
-            android:gravity="center"
-            android:text="@string/newTrends"
-            android:textColor="@color/whiteColors"
-            android:textSize="@dimen/textsize14" />
+        <!--<TextView-->
+            <!--android:id="@+id/tv_newTrends"-->
+            <!--android:layout_width="@dimen/dimen104"-->
+            <!--android:layout_height="@dimen/dimen35"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:layout_marginBottom="@dimen/dimen10"-->
+            <!--android:background="@drawable/shape_newstrategy1"-->
+            <!--android:gravity="center"-->
+            <!--android:text="@string/newTrends"-->
+            <!--android:textColor="@color/whiteColors"-->
+            <!--android:textSize="@dimen/textsize13" />-->
 
-    </RelativeLayout>
-
+    <!--</RelativeLayout>-->
 
     <include layout="@layout/common_error" />
-
 
 </LinearLayout>

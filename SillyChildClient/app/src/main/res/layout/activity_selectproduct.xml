@@ -17,41 +17,30 @@
             style="@style/MatchMatch"
             android:orientation="vertical">
 
+
             <TextView
-                style="@style/MatchWrap"
+                style="@style/Match45"
                 android:layout_marginTop="@dimen/dimen6"
                 android:background="@color/whiteColors"
-                android:gravity="center_vertical"
-                android:paddingBottom="@dimen/dimen12"
-                android:paddingLeft="@dimen/dimen25"
-                android:paddingRight="@dimen/dimen25"
-                android:paddingTop="@dimen/dimen12"
-                android:text="日本东京室内包车游"
-                android:textColor="@color/greenColors"
-                android:textSize="@dimen/textsize17" />
-
-
-            <com.common.cklibrary.utils.myview.ChildListView
-                android:id="@+id/clv_selectProduct"
-                style="@style/MatchWrap"
-                android:layout_marginTop="@dimen/dimen8"
-                android:divider="@color/background"
-                android:dividerHeight="@dimen/dimen1"
-                android:scrollbars="none"
-                tools:listitem="@layout/item_selectproduct" />
-
-            <TextView
-                style="@style/Match40"
-                android:layout_marginBottom="@dimen/dimen20"
-                android:layout_marginLeft="@dimen/dimen100"
-                android:layout_marginRight="@dimen/dimen100"
-                android:layout_marginTop="@dimen/dimen29"
-                android:background="@drawable/shape_charter1"
                 android:gravity="center"
-                android:text="@string/determine"
-                android:textColor="@color/whiteColors"
-                android:textSize="@dimen/textsize16" />
+                android:paddingRight="@dimen/dimen22"
+                android:text="日本东京成田机场接机"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize14" />
 
+            <com.common.cklibrary.utils.myview.NoScrollGridView
+                android:id="@+id/gv_productAirportTransportation"
+                style="@style/MatchMatch"
+                android:layout_marginBottom="@dimen/dimen6"
+                android:layout_marginLeft="@dimen/dimen13"
+                android:layout_marginRight="@dimen/dimen13"
+                android:layout_marginTop="@dimen/dimen6"
+                android:horizontalSpacing="@dimen/dimen13"
+                android:numColumns="2"
+                android:overScrollMode="never"
+                android:scrollbars="none"
+                android:verticalSpacing="@dimen/dimen6"
+                tools:listitem="@layout/item_productairporttransportation" />
 
         </LinearLayout>
 

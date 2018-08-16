@@ -29,7 +29,7 @@ import static com.sillykid.app.constant.StringNewConstants.MainServiceAction;
  * 8、会话界面操作的监听器：            ConversationBehaviorListener。
  * 9、未读消息数监听器的监听器：           addUnReadMessageCountChangedObserver。
  */
-public final class RongCloudEvent implements
+public final class RongCloudEvent extends RongIMClient.ResultCallback<Conversation.ConversationNotificationStatus> implements
         RongIM.ConversationListBehaviorListener,
         RongIMClient.OnReceiveMessageListener,
         RongIM.UserInfoProvider,
@@ -103,7 +103,7 @@ public final class RongCloudEvent implements
     public void setOtherListener() {
         RongIM.setOnReceiveMessageListener(this);// 设置发出消息接收监听器.
         RongIM.setConnectionStatusListener(this);// 设置连接状态监听器。
-        //  RongIM.setOnReceiveMessageListener(this);// 设置消息接收监听器。
+     //   RongIM.getInstance().getConversationNotificationStatus(Conversation.ConversationType.PRIVATE, "1", this);// 设置消息免打扰状态。
         setUserInfoEngineListener();   //用户信息提供者回调监听
 //    setGroupInfoEngineListener();  //群组信息提供者回调监听
     }
@@ -247,5 +247,16 @@ public final class RongCloudEvent implements
 
     public void removeUnReadMessageCountChangedObserver() {
         RongIM.getInstance().removeUnReadMessageCountChangedObserver(this);
+    }
+
+
+    @Override
+    public void onSuccess(Conversation.ConversationNotificationStatus conversationNotificationStatus) {
+
+    }
+
+    @Override
+    public void onError(RongIMClient.ErrorCode errorCode) {
+
     }
 }

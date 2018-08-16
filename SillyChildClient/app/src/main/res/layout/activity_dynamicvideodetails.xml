@@ -31,7 +31,6 @@
                     style="@style/MatchWrap"
                     android:layout_alignParentBottom="true"
                     android:layout_marginBottom="@dimen/dimen43"
-                    android:background="@color/white30"
                     android:orientation="horizontal">
 
                     <TextView
@@ -57,7 +56,7 @@
                 <LinearLayout
                     android:id="@+id/ll_bottom1"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dimen43"
+                    android:layout_height="@dimen/dimen40"
                     android:layout_alignParentBottom="true"
                     android:layout_marginTop="@dimen/dimen2"
                     android:background="@color/white30">

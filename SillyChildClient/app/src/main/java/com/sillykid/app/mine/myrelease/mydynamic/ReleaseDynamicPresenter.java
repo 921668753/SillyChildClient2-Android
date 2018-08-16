@@ -62,7 +62,7 @@ public class ReleaseDynamicPresenter implements ReleaseDynamicContract.Presenter
     @Override
     public void getClassificationList() {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        RequestClient.getClassificationList(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
+        RequestClient.getPostClassificationList(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
                 mView.getSuccess(response, 0);

@@ -19,8 +19,8 @@ public class URLConstants {
      */
     // public static String SERVERURL = "http://xiaowei.local.keiousoft.com/";
 
-//    public static String SERVERURL = "http://192.168.1.247:8080/";
-    public static String SERVERURL = "http://user.api.shahaizhi.com/";
+    public static String SERVERURL = "http://192.168.1.247:8080/";
+   // public static String SERVERURL = "http://user.api.shahaizhi.com/";
     public static String SERVERURL1 = "http://www.shahaizhi.tech/";
 
     /**
@@ -180,6 +180,11 @@ public class URLConstants {
      * 社区----分类信息列表
      */
     public static String CLASSIFITCATIONLIST = APIURL + "classification/get_classification_list.do";
+
+    /**
+     * 社区----发动态分类信息列表
+     */
+    public static String POSTCLASSIFITCATIONLIST = APIURL + "classification/get_post_classification_list.do";
 
     /**
      * 社区----帖子列表

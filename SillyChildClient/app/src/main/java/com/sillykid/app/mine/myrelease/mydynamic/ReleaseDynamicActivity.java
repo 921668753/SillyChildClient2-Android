@@ -214,8 +214,9 @@ public class ReleaseDynamicActivity extends BaseActivity implements ReleaseDynam
                     //.rotateEnabled(true) // 裁剪是否可旋转图片
                     //.scaleEnabled(true)// 裁剪是否可放大缩小图片
                     //.videoQuality()// 视频录制质量 0 or 1
-                    //.videoSecond()//显示多少秒以内的视频or音频也可适用
-                    //.recordVideoSecond()//录制视频秒数 默认60s
+                    .videoMaxSecond(60)// 显示多少秒以内的视频or音频也可适用 int
+                    .videoMinSecond(1)// 显示多少秒以内的视频or音频也可适用 int
+                    .recordVideoSecond(60)//视频秒数录制 默认60s int
                     .forResult(PictureConfig.CHOOSE_REQUEST);//结果回调onActivityResult code
         }
 
@@ -320,8 +321,7 @@ public class ReleaseDynamicActivity extends BaseActivity implements ReleaseDynam
         if (flag == 0) {
             ClassificationListBean classificationListBean = (ClassificationListBean) JsonUtil.json2Obj(success, ClassificationListBean.class);
             classificationList = classificationListBean.getData();
-            if (classificationList != null && classificationList.size() > 1) {
-                classificationList.remove(0);
+            if (classificationList != null && classificationList.size() > 2) {
                 pvOptions.setPicker(classificationList);
             }
             if (type != 0) {

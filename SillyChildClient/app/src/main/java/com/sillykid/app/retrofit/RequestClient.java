@@ -829,6 +829,13 @@ public class RequestClient {
     }
 
     /**
+     * 社区----分类信息列表
+     */
+    public static void getPostClassificationList(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        HttpRequest.requestGetHttp(context, URLConstants.POSTCLASSIFITCATIONLIST, httpParams, false, listener);
+    }
+
+    /**
      * 社区----帖子列表
      */
     public static void getPostList(Context context, HttpParams httpParams, ResponseListener<String> listener) {

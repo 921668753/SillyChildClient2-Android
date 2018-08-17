@@ -535,7 +535,7 @@
     <string name="placeDeparture2">填写出发地</string>
     <string name="timeDeparture">出发时间</string>
     <string name="selectProduct">选择产品</string>
-
+    <string name="priceInformation">价格信息</string>
     <string name="flightArrivalTime">航班到达时间</string>
 
     <string name="fillDepartureTime">填写出发时间</string>
@@ -784,7 +784,7 @@
     <!--出行    地区攻略-->
     <string name="regionalStrategy">地区攻略</string>
     <string name="views">次阅读</string>
-
+    <string name="noProduct">亲，还没有任何产品哟~</string>
 
     <!--出行    美食-->
     <string name="near">附近</string>
@@ -1378,7 +1378,7 @@
     <string name="piece30">件30寸</string>
     <string name="pickOrder">接机订单</string>
     <string name="sendOrder">送机订单</string>
-
+    <string name="totalOrder">订单总额</string>
     <string name="detailsLine">线路详情</string>
     <string name="LineOrder">线路订单</string>
     <string name="noHave">无</string>
@@ -1386,7 +1386,7 @@
     <string name="serviceStartTime">服务开始时间：</string>
     <string name="noExplanation">暂无相关说明，敬请期待！</string>
     <string name="scheduleDetails">行程详情</string>
-
+    <string name="orderNumber2">订单数量</string>
     <string name="orderEnteredWarehouse">您的订单已交付快递公司，请耐心等待</string>
     <string name="orderInformation">订单信息</string>
     <string name="commodityInformation">商品信息</string>

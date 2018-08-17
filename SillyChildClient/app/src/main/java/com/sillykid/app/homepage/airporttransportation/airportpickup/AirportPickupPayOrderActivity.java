@@ -28,14 +28,8 @@ public class AirportPickupPayOrderActivity extends BaseActivity {
     @BindView(id = R.id.tv_flightArrivalTime)
     private TextView tv_flightArrivalTime;
 
-    @BindView(id = R.id.tv_adult)
-    private TextView tv_adult;
-
     @BindView(id = R.id.tv_children)
     private TextView tv_children;
-
-    @BindView(id = R.id.tv_luggage)
-    private TextView tv_luggage;
 
     @BindView(id = R.id.tv_contact)
     private TextView tv_contact;

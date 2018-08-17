@@ -31,274 +31,19 @@
                 android:paddingLeft="@dimen/dimen17"
                 android:paddingRight="@dimen/dimen17"
                 android:paddingTop="@dimen/dimen12"
-                android:text="@string/deliveredAirport"
+                android:text="京东包车景点简介"
                 android:textColor="@color/textColor"
                 android:textSize="@dimen/textsize15" />
 
             <TextView
-                android:id="@+id/tv_deliveredAirport"
                 style="@style/MatchWrap"
                 android:background="@color/whiteColors"
                 android:paddingBottom="@dimen/dimen10"
                 android:paddingLeft="@dimen/dimen17"
                 android:paddingRight="@dimen/dimen17"
-                android:text="成田国际机场"
+                android:text="京东包车景点简介京东包车景点简介京东包车景点简介京东包车景点简介京东包车景点简介京东包车景点简介京东包车景点简介京东包车景点简介"
                 android:textColor="@color/hintColors"
-                android:textSize="@dimen/textsize13" />
-
-
-            <TextView
-                style="@style/MatchWrap"
-                android:layout_marginTop="@dimen/dimen1"
-                android:background="@color/whiteColors"
-                android:paddingBottom="@dimen/dimen12"
-                android:paddingLeft="@dimen/dimen17"
-                android:paddingRight="@dimen/dimen17"
-                android:paddingTop="@dimen/dimen12"
-                android:text="@string/placeDeparture"
-                android:textColor="@color/textColor"
-                android:textSize="@dimen/textsize15" />
-
-            <TextView
-                android:id="@+id/tv_placeDeparture"
-                style="@style/MatchWrap"
-                android:background="@color/whiteColors"
-                android:paddingBottom="@dimen/dimen10"
-                android:paddingLeft="@dimen/dimen17"
-                android:paddingRight="@dimen/dimen17"
-                android:text="希尔顿酒店"
-                android:textColor="@color/hintColors"
-                android:textSize="@dimen/textsize13" />
-
-            <TextView
-                style="@style/MatchWrap"
-                android:layout_marginTop="@dimen/dimen1"
-                android:background="@color/whiteColors"
-                android:paddingBottom="@dimen/dimen12"
-                android:paddingLeft="@dimen/dimen17"
-                android:paddingRight="@dimen/dimen17"
-                android:paddingTop="@dimen/dimen12"
-                android:text="@string/timeDeparture"
-                android:textColor="@color/textColor"
-                android:textSize="@dimen/textsize15" />
-
-            <TextView
-                android:id="@+id/tv_timeDeparture"
-                style="@style/MatchWrap"
-                android:background="@color/whiteColors"
-                android:paddingBottom="@dimen/dimen10"
-                android:paddingLeft="@dimen/dimen17"
-                android:paddingRight="@dimen/dimen17"
-                android:text="2018-05-07  15:00"
-                android:textColor="@color/hintColors"
-                android:textSize="@dimen/textsize13" />
-
-
-            <TextView
-                style="@style/MatchWrap"
-                android:layout_marginTop="@dimen/dimen6"
-                android:background="@color/whiteColors"
-                android:paddingLeft="@dimen/dimen17"
-                android:paddingTop="@dimen/dimen10"
-                android:text="@string/dueDemand"
-                android:textColor="@color/textColor"
-                android:textSize="@dimen/textsize15" />
-
-
-            <LinearLayout
-                style="@style/MatchWrap"
-                android:background="@color/whiteColors"
-                android:orientation="horizontal"
-                android:paddingTop="@dimen/dimen17">
-
-                <LinearLayout
-                    style="@style/AutoWrap"
-                    android:layout_marginLeft="@dimen/dimen17"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        style="@style/WrapWrap"
-                        android:text="@string/adult1"
-                        android:textColor="@color/hintColors"
-                        android:textSize="@dimen/textsize13" />
-
-                    <LinearLayout
-                        style="@style/AutoWrap"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/et_adult"
-                            style="@style/MatchAuto"
-                            android:background="@android:color/transparent"
-                            android:digits="@string/number0"
-                            android:gravity="center"
-                            android:inputType="number"
-                            android:singleLine="true"
-                            android:text="1"
-                            android:textColor="@color/textColor"
-                            android:textCursorDrawable="@drawable/shape_cursor"
-                            android:textSize="@dimen/textsize12" />
-
-                        <TextView style="@style/DividerWidth" />
-
-                    </LinearLayout>
-
-                    <ImageView
-                        android:layout_width="@dimen/dimen13"
-                        android:layout_height="@dimen/dimen7"
-                        android:layout_marginTop="@dimen/dimen5"
-                        android:src="@mipmap/downarrow" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    style="@style/AutoWrap"
-                    android:layout_marginLeft="@dimen/dimen52"
-                    android:layout_marginRight="@dimen/dimen40"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        style="@style/WrapWrap"
-                        android:text="@string/children1"
-                        android:textColor="@color/hintColors"
-                        android:textSize="@dimen/textsize13" />
-
-
-                    <LinearLayout
-                        style="@style/AutoWrap"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/et_children"
-                            style="@style/MatchAuto"
-                            android:background="@android:color/transparent"
-                            android:digits="@string/number0"
-                            android:gravity="center"
-                            android:inputType="number"
-                            android:singleLine="true"
-                            android:text="1"
-                            android:textColor="@color/textColor"
-                            android:textCursorDrawable="@drawable/shape_cursor"
-                            android:textSize="@dimen/textsize12" />
-
-                        <TextView style="@style/DividerWidth" />
-
-                    </LinearLayout>
-
-                    <ImageView
-                        android:layout_width="@dimen/dimen13"
-                        android:layout_height="@dimen/dimen7"
-                        android:layout_marginTop="@dimen/dimen5"
-                        android:src="@mipmap/downarrow" />
-
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                style="@style/MatchWrap"
-                android:background="@color/whiteColors"
-                android:orientation="horizontal"
-                android:paddingBottom="@dimen/dimen13"
-                android:paddingTop="@dimen/dimen25">
-
-                <LinearLayout
-                    style="@style/AutoWrap"
-                    android:layout_marginLeft="@dimen/dimen17"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        style="@style/WrapWrap"
-                        android:text="@string/luggage1"
-                        android:textColor="@color/hintColors"
-                        android:textSize="@dimen/textsize13" />
-
-                    <LinearLayout
-                        style="@style/AutoWrap"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/et_luggage"
-                            style="@style/MatchAuto"
-                            android:background="@android:color/transparent"
-                            android:digits="@string/number0"
-                            android:gravity="center"
-                            android:inputType="number"
-                            android:singleLine="true"
-                            android:text="1"
-                            android:textColor="@color/textColor"
-                            android:textCursorDrawable="@drawable/shape_cursor"
-                            android:textSize="@dimen/textsize12" />
-
-                        <TextView style="@style/DividerWidth" />
-
-                    </LinearLayout>
-
-                    <ImageView
-                        android:layout_width="@dimen/dimen13"
-                        android:layout_height="@dimen/dimen7"
-                        android:layout_marginTop="@dimen/dimen5"
-                        android:src="@mipmap/downarrow" />
-                </LinearLayout>
-
-                <LinearLayout
-                    style="@style/AutoWrap"
-                    android:layout_marginLeft="@dimen/dimen52"
-                    android:layout_marginRight="@dimen/dimen40"
-                    android:orientation="horizontal">
-
-                </LinearLayout>
-            </LinearLayout>
-
-
-            <TextView
-                style="@style/MatchWrap"
-                android:layout_marginTop="@dimen/dimen1"
-                android:background="@color/whiteColors"
-                android:paddingBottom="@dimen/dimen12"
-                android:paddingLeft="@dimen/dimen17"
-                android:paddingRight="@dimen/dimen17"
-                android:paddingTop="@dimen/dimen12"
-                android:text="@string/contact"
-                android:textColor="@color/textColor"
-                android:textSize="@dimen/textsize15" />
-
-            <TextView
-                android:id="@+id/tv_contact"
-                style="@style/MatchWrap"
-                android:background="@color/whiteColors"
-                android:paddingBottom="@dimen/dimen10"
-                android:paddingLeft="@dimen/dimen17"
-                android:paddingRight="@dimen/dimen17"
-                android:text="柳倾城"
-                android:textColor="@color/hintColors"
-                android:textSize="@dimen/textsize13" />
-
-
-            <TextView
-                style="@style/MatchWrap"
-                android:layout_marginTop="@dimen/dimen1"
-                android:background="@color/whiteColors"
-                android:paddingBottom="@dimen/dimen12"
-                android:paddingLeft="@dimen/dimen17"
-                android:paddingRight="@dimen/dimen17"
-                android:paddingTop="@dimen/dimen12"
-                android:text="@string/contactWay3"
-                android:textColor="@color/textColor"
-                android:textSize="@dimen/textsize15" />
-
-            <TextView
-                android:id="@+id/tv_contactWay"
-                style="@style/MatchWrap"
-                android:background="@color/whiteColors"
-                android:paddingBottom="@dimen/dimen10"
-                android:paddingLeft="@dimen/dimen17"
-                android:paddingRight="@dimen/dimen17"
-                android:text="18000215301"
-                android:textColor="@color/hintColors"
-                android:textSize="@dimen/textsize13" />
+                android:textSize="@dimen/textsize12" />
 
 
             <TextView
@@ -352,23 +97,265 @@
                 android:textColor="@color/hintColors"
                 android:textSize="@dimen/textsize12" />
 
-
-            <EditText
-                android:id="@+id/et_remark"
+            <TextView
                 style="@style/MatchWrap"
                 android:layout_marginTop="@dimen/dimen6"
                 android:background="@color/whiteColors"
-                android:gravity="left"
-                android:hint="@string/remark1"
-                android:minHeight="@dimen/dimen133"
+                android:paddingLeft="@dimen/dimen17"
+                android:paddingTop="@dimen/dimen10"
+                android:text="@string/dueDemand"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize15" />
+
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:background="@color/whiteColors"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/dimen17">
+
+                <LinearLayout
+                    style="@style/AutoWrap"
+                    android:layout_marginLeft="@dimen/dimen17"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/WrapWrap"
+                        android:text="@string/adult1"
+                        android:textColor="@color/hintColors"
+                        android:textSize="@dimen/textsize13" />
+
+                    <LinearLayout
+                        style="@style/AutoWrap"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/et_adult"
+                            style="@style/MatchAuto"
+                            android:background="@android:color/transparent"
+                            android:digits="@string/number0"
+                            android:gravity="center"
+                            android:inputType="number"
+                            android:singleLine="true"
+                            android:text="1"
+                            android:textColor="@color/textColor"
+                            android:textCursorDrawable="@drawable/shape_cursor"
+                            android:textSize="@dimen/textsize12" />
+
+                        <TextView style="@style/DividerWidth" />
+
+                    </LinearLayout>
+
+                    <!--<ImageView-->
+                    <!--android:layout_width="@dimen/dimen13"-->
+                    <!--android:layout_height="@dimen/dimen7"-->
+                    <!--android:layout_marginTop="@dimen/dimen5"-->
+                    <!--android:src="@mipmap/downarrow" />-->
+
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/AutoWrap"
+                    android:layout_marginLeft="@dimen/dimen52"
+                    android:layout_marginRight="@dimen/dimen40"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/WrapWrap"
+                        android:text="@string/children1"
+                        android:textColor="@color/hintColors"
+                        android:textSize="@dimen/textsize13" />
+
+
+                    <LinearLayout
+                        style="@style/AutoWrap"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/et_children"
+                            style="@style/MatchAuto"
+                            android:background="@android:color/transparent"
+                            android:digits="@string/number0"
+                            android:gravity="center"
+                            android:inputType="number"
+                            android:singleLine="true"
+                            android:text="1"
+                            android:textColor="@color/textColor"
+                            android:textCursorDrawable="@drawable/shape_cursor"
+                            android:textSize="@dimen/textsize12" />
+
+                        <TextView style="@style/DividerWidth" />
+
+                    </LinearLayout>
+
+                    <!--<ImageView-->
+                    <!--android:layout_width="@dimen/dimen13"-->
+                    <!--android:layout_height="@dimen/dimen7"-->
+                    <!--android:layout_marginTop="@dimen/dimen5"-->
+                    <!--android:src="@mipmap/downarrow" />-->
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:background="@color/whiteColors"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/dimen13"
+                android:paddingTop="@dimen/dimen25">
+
+                <LinearLayout
+                    style="@style/AutoWrap"
+                    android:layout_marginLeft="@dimen/dimen17"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/WrapWrap"
+                        android:text="@string/luggage1"
+                        android:textColor="@color/hintColors"
+                        android:textSize="@dimen/textsize13" />
+
+                    <LinearLayout
+                        style="@style/AutoWrap"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/et_luggage"
+                            style="@style/MatchAuto"
+                            android:background="@android:color/transparent"
+                            android:digits="@string/number0"
+                            android:gravity="center"
+                            android:inputType="number"
+                            android:singleLine="true"
+                            android:text="1"
+                            android:textColor="@color/textColor"
+                            android:textCursorDrawable="@drawable/shape_cursor"
+                            android:textSize="@dimen/textsize12" />
+
+                        <TextView style="@style/DividerWidth" />
+
+                    </LinearLayout>
+
+                    <!--<ImageView-->
+                    <!--android:layout_width="@dimen/dimen13"-->
+                    <!--android:layout_height="@dimen/dimen7"-->
+                    <!--android:layout_marginTop="@dimen/dimen5"-->
+                    <!--android:src="@mipmap/downarrow" />-->
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/AutoWrap"
+                    android:layout_marginLeft="@dimen/dimen52"
+                    android:layout_marginRight="@dimen/dimen40"
+                    android:orientation="horizontal">
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:layout_marginTop="@dimen/dimen6"
+                android:background="@color/whiteColors"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapMatch"
+                    android:layout_marginTop="@dimen/dimen13"
+                    android:paddingLeft="@dimen/dimen17"
+                    android:text="@string/travelTime2"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+
+
+                <TextView
+                    style="@style/AutoWrap"
+                    android:lineSpacingExtra="@dimen/dimen6"
+                    android:paddingBottom="@dimen/dimen13"
+                    android:paddingTop="@dimen/dimen12"
+                    android:text="2018-05-15    2018-05-15
+2018-05-15    2018-05-15"
+                    android:textColor="@color/hintColors"
+                    android:textSize="@dimen/textsize13" />
+
+            </LinearLayout>
+
+
+            <TextView
+                style="@style/MatchWrap"
+                android:layout_marginTop="@dimen/dimen6"
+                android:background="@color/whiteColors"
                 android:paddingBottom="@dimen/dimen12"
                 android:paddingLeft="@dimen/dimen17"
                 android:paddingRight="@dimen/dimen17"
                 android:paddingTop="@dimen/dimen12"
+                android:text="@string/contact"
                 android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize15" />
+
+            <TextView
+                android:id="@+id/tv_contact"
+                style="@style/MatchWrap"
+                android:background="@color/whiteColors"
+                android:paddingBottom="@dimen/dimen10"
+                android:paddingLeft="@dimen/dimen17"
+                android:paddingRight="@dimen/dimen17"
+                android:text="柳倾城"
+                android:textColor="@color/hintColors"
+                android:textSize="@dimen/textsize13" />
+
+
+            <TextView
+                style="@style/MatchWrap"
+                android:layout_marginTop="@dimen/dimen1"
+                android:background="@color/whiteColors"
+                android:paddingBottom="@dimen/dimen12"
+                android:paddingLeft="@dimen/dimen17"
+                android:paddingRight="@dimen/dimen17"
+                android:paddingTop="@dimen/dimen12"
+                android:text="@string/contactWay3"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize15" />
+
+            <TextView
+                android:id="@+id/tv_contactWay"
+                style="@style/MatchWrap"
+                android:background="@color/whiteColors"
+                android:paddingBottom="@dimen/dimen10"
+                android:paddingLeft="@dimen/dimen17"
+                android:paddingRight="@dimen/dimen17"
+                android:text="18000215301"
+                android:textColor="@color/hintColors"
+                android:textSize="@dimen/textsize13" />
+
+            <TextView
+                style="@style/MatchWrap"
+                android:layout_marginTop="@dimen/dimen6"
+                android:background="@color/whiteColors"
+                android:paddingLeft="@dimen/dimen17"
+                android:paddingTop="@dimen/dimen13"
+                android:text="@string/remark1"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize15" />
+
+            <TextView
+                android:id="@+id/tv_remark"
+                style="@style/MatchWrap"
+                android:background="@color/whiteColors"
+                android:gravity="left"
+                android:hint="@string/remark1"
+                android:paddingBottom="@dimen/dimen10"
+                android:paddingLeft="@dimen/dimen17"
+                android:paddingRight="@dimen/dimen17"
+                android:paddingTop="@dimen/dimen10"
+                android:text="备注备注备注备注备注备注备注备注备注备注备注备注备注不在不在包治百病在不在不不准备 不准备不准备在不准备在备注不在不在备注不在不在部部长不在不在备注不治之症做做做做做做做做做做做做计算机价格家具价格家男男女女给你呢禁"
+                android:textColor="@color/hintColors"
                 android:textColorHint="@color/hintColors"
                 android:textCursorDrawable="@drawable/shape_cursor"
-                android:textSize="@dimen/textsize15" />
+                android:textSize="@dimen/textsize12" />
 
 
             <LinearLayout
@@ -385,7 +372,6 @@
                     android:textColor="@color/textColor"
                     android:textSize="@dimen/textsize15" />
 
-
                 <TextView
                     android:id="@+id/tv_orderMoney"
                     style="@style/AutoWrap"
@@ -399,6 +385,61 @@
 
 
             </LinearLayout>
+
+
+            <LinearLayout
+                style="@style/Match45"
+                android:layout_marginTop="@dimen/dimen1"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginLeft="@dimen/dimen17"
+                    android:text="@string/orderNumber2"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    style="@style/AutoWrap"
+                    android:gravity="right"
+                    android:paddingLeft="@dimen/dimen10"
+                    android:paddingRight="@dimen/dimen17"
+                    android:singleLine="true"
+                    android:text="X4"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                style="@style/Match45"
+                android:layout_marginTop="@dimen/dimen1"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginLeft="@dimen/dimen17"
+                    android:text="@string/totalOrder"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    style="@style/AutoWrap"
+                    android:gravity="right"
+                    android:paddingLeft="@dimen/dimen10"
+                    android:paddingRight="@dimen/dimen17"
+                    android:singleLine="true"
+                    android:text="￥2400.00"
+                    android:textColor="@color/fF5656Colors"
+                    android:textSize="@dimen/textsize15" />
+
+            </LinearLayout>
+
 
             <LinearLayout
                 style="@style/Match45"

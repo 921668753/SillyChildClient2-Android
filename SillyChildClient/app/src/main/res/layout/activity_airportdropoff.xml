@@ -162,7 +162,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/et_timeDeparture"
+                android:id="@+id/tv_timeDeparture"
                 style="@style/MatchWrap"
                 android:background="@color/whiteColors"
                 android:hint="@string/selectDepartureTime"
@@ -281,7 +281,6 @@
 
             </LinearLayout>
 
-
             <LinearLayout
                 style="@style/MatchWrap"
                 android:background="@color/whiteColors"
@@ -289,6 +288,7 @@
                 android:paddingTop="@dimen/dimen17">
 
                 <LinearLayout
+                    android:id="@+id/ll_adult"
                     style="@style/AutoWrap"
                     android:layout_marginLeft="@dimen/dimen17"
                     android:gravity="center_vertical"
@@ -305,7 +305,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/et_adult"
+                            android:id="@+id/tv_adult"
                             style="@style/MatchAuto"
                             android:background="@android:color/transparent"
                             android:digits="@string/number0"
@@ -330,6 +330,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/ll_children"
                     style="@style/AutoWrap"
                     android:layout_marginLeft="@dimen/dimen52"
                     android:layout_marginRight="@dimen/dimen40"
@@ -348,7 +349,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/et_children"
+                            android:id="@+id/tv_children"
                             style="@style/MatchAuto"
                             android:background="@android:color/transparent"
                             android:digits="@string/number0"
@@ -381,6 +382,7 @@
                 android:paddingTop="@dimen/dimen25">
 
                 <LinearLayout
+                    android:id="@+id/ll_luggage"
                     style="@style/AutoWrap"
                     android:layout_marginLeft="@dimen/dimen17"
                     android:gravity="center_vertical"
@@ -397,7 +399,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/et_luggage"
+                            android:id="@+id/tv_luggage"
                             style="@style/MatchAuto"
                             android:background="@android:color/transparent"
                             android:digits="@string/number0"
@@ -429,6 +431,22 @@
                 </LinearLayout>
             </LinearLayout>
 
+            <EditText
+                android:id="@+id/et_remark"
+                style="@style/MatchWrap"
+                android:layout_marginTop="@dimen/dimen6"
+                android:background="@color/whiteColors"
+                android:gravity="left"
+                android:hint="@string/remark1"
+                android:minHeight="@dimen/dimen133"
+                android:paddingBottom="@dimen/dimen12"
+                android:paddingLeft="@dimen/dimen17"
+                android:paddingRight="@dimen/dimen17"
+                android:paddingTop="@dimen/dimen12"
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/hintColors"
+                android:textCursorDrawable="@drawable/shape_cursor"
+                android:textSize="@dimen/textsize15" />
 
             <TextView
                 android:id="@+id/submitOrder"

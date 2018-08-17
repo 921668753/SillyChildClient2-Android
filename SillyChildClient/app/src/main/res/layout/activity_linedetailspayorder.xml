@@ -72,11 +72,11 @@
 
                     </LinearLayout>
 
-                    <ImageView
-                        android:layout_width="@dimen/dimen13"
-                        android:layout_height="@dimen/dimen7"
-                        android:layout_marginTop="@dimen/dimen5"
-                        android:src="@mipmap/downarrow" />
+                    <!--<ImageView-->
+                        <!--android:layout_width="@dimen/dimen13"-->
+                        <!--android:layout_height="@dimen/dimen7"-->
+                        <!--android:layout_marginTop="@dimen/dimen5"-->
+                        <!--android:src="@mipmap/downarrow" />-->
 
                 </LinearLayout>
 
@@ -115,11 +115,11 @@
 
                     </LinearLayout>
 
-                    <ImageView
-                        android:layout_width="@dimen/dimen13"
-                        android:layout_height="@dimen/dimen7"
-                        android:layout_marginTop="@dimen/dimen5"
-                        android:src="@mipmap/downarrow" />
+                    <!--<ImageView-->
+                        <!--android:layout_width="@dimen/dimen13"-->
+                        <!--android:layout_height="@dimen/dimen7"-->
+                        <!--android:layout_marginTop="@dimen/dimen5"-->
+                        <!--android:src="@mipmap/downarrow" />-->
 
                 </LinearLayout>
             </LinearLayout>
@@ -164,11 +164,11 @@
 
                     </LinearLayout>
 
-                    <ImageView
-                        android:layout_width="@dimen/dimen13"
-                        android:layout_height="@dimen/dimen7"
-                        android:layout_marginTop="@dimen/dimen5"
-                        android:src="@mipmap/downarrow" />
+                    <!--<ImageView-->
+                        <!--android:layout_width="@dimen/dimen13"-->
+                        <!--android:layout_height="@dimen/dimen7"-->
+                        <!--android:layout_marginTop="@dimen/dimen5"-->
+                        <!--android:src="@mipmap/downarrow" />-->
                 </LinearLayout>
 
                 <LinearLayout
@@ -299,22 +299,31 @@
                 android:textSize="@dimen/textsize12" />
 
 
-            <EditText
-                android:id="@+id/et_remark"
+            <TextView
                 style="@style/MatchWrap"
                 android:layout_marginTop="@dimen/dimen6"
                 android:background="@color/whiteColors"
+                android:paddingLeft="@dimen/dimen17"
+                android:paddingTop="@dimen/dimen13"
+                android:text="@string/remark1"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize15" />
+
+            <TextView
+                android:id="@+id/tv_remark"
+                style="@style/MatchWrap"
+                android:background="@color/whiteColors"
                 android:gravity="left"
                 android:hint="@string/remark1"
-                android:minHeight="@dimen/dimen133"
-                android:paddingBottom="@dimen/dimen12"
+                android:paddingBottom="@dimen/dimen10"
                 android:paddingLeft="@dimen/dimen17"
                 android:paddingRight="@dimen/dimen17"
-                android:paddingTop="@dimen/dimen12"
-                android:textColor="@color/textColor"
+                android:paddingTop="@dimen/dimen10"
+                android:text="备注备注备注备注备注备注备注备注备注备注备注备注备注不在不在包治百病在不在不不准备 不准备不准备在不准备在备注不在不在备注不在不在部部长不在不在备注不治之症做做做做做做做做做做做做计算机价格家具价格家男男女女给你呢禁"
+                android:textColor="@color/hintColors"
                 android:textColorHint="@color/hintColors"
                 android:textCursorDrawable="@drawable/shape_cursor"
-                android:textSize="@dimen/textsize15" />
+                android:textSize="@dimen/textsize12" />
 
 
             <LinearLayout

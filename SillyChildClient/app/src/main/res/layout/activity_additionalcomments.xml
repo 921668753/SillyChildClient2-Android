@@ -69,7 +69,6 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 style="@style/MatchWrap"
-                android:layout_below="@id/et_addDescription"
                 android:layout_marginBottom="@dimen/dimen5"
                 android:layout_marginTop="@dimen/dimen1"
                 android:background="@color/whiteColors"
@@ -86,7 +85,6 @@
                 app:layoutManager="android.support.v7.widget.GridLayoutManager"
                 app:spanCount="3"
                 tools:listitem="@layout/item_chooseimage" />
-
 
             <TextView
                 android:id="@+id/tv_comment"

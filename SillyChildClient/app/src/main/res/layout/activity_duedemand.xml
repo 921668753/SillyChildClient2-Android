@@ -8,7 +8,6 @@
 
     <include layout="@layout/common_title" />
 
-
     <ScrollView
         style="@style/MatchMatch"
         android:scrollbars="none">
@@ -16,7 +15,6 @@
         <LinearLayout
             style="@style/MatchMatch"
             android:orientation="vertical">
-
 
             <LinearLayout
                 style="@style/MatchWrap"
@@ -352,6 +350,22 @@
                 android:textCursorDrawable="@drawable/shape_cursor"
                 android:textSize="@dimen/textsize13" />
 
+            <EditText
+                android:id="@+id/et_remark"
+                style="@style/MatchWrap"
+                android:layout_marginTop="@dimen/dimen6"
+                android:background="@color/whiteColors"
+                android:gravity="left"
+                android:hint="@string/remark1"
+                android:minHeight="@dimen/dimen133"
+                android:paddingBottom="@dimen/dimen12"
+                android:paddingLeft="@dimen/dimen17"
+                android:paddingRight="@dimen/dimen17"
+                android:paddingTop="@dimen/dimen12"
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/hintColors"
+                android:textCursorDrawable="@drawable/shape_cursor"
+                android:textSize="@dimen/textsize15" />
 
             <TextView
                 android:id="@+id/tv_submitOrder"

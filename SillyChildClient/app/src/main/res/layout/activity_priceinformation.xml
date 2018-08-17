@@ -18,6 +18,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tv_productName"
                 style="@style/Match45"
                 android:layout_marginTop="@dimen/dimen6"
                 android:background="@color/whiteColors"
@@ -53,7 +54,7 @@
                     android:layout_width="@dimen/dimen25"
                     android:layout_height="@dimen/dimen19"
                     android:layout_marginLeft="@dimen/dimen17"
-                    android:src="@mipmap/placeholderfigure" />
+                    android:src="@mipmap/img_modelcar" />
 
 
                 <TextView
@@ -64,6 +65,7 @@
 
 
                 <TextView
+                    android:id="@+id/tv_modelCar"
                     style="@style/AutoWrap"
                     android:gravity="right"
                     android:paddingRight="@dimen/dimen26"
@@ -85,7 +87,7 @@
                     android:layout_width="@dimen/dimen25"
                     android:layout_height="@dimen/dimen19"
                     android:layout_marginLeft="@dimen/dimen17"
-                    android:src="@mipmap/placeholderfigure" />
+                    android:src="@mipmap/img_cantakenumber" />
 
 
                 <TextView
@@ -96,6 +98,7 @@
 
 
                 <TextView
+                    android:id="@+id/tv_canTakeNumber"
                     style="@style/AutoWrap"
                     android:gravity="right"
                     android:paddingRight="@dimen/dimen26"
@@ -117,7 +120,7 @@
                     android:layout_width="@dimen/dimen25"
                     android:layout_height="@dimen/dimen19"
                     android:layout_marginLeft="@dimen/dimen17"
-                    android:src="@mipmap/placeholderfigure" />
+                    android:src="@mipmap/img_carprices" />
 
                 <TextView
                     style="@style/WrapWrap"
@@ -126,6 +129,7 @@
                     android:textSize="@dimen/textsize14" />
 
                 <TextView
+                    android:id="@+id/tv_carPrices"
                     style="@style/AutoWrap"
                     android:gravity="right"
                     android:paddingRight="@dimen/dimen26"
@@ -168,6 +172,7 @@
                 android:textSize="@dimen/textsize14" />
 
             <TextView
+                android:id="@+id/tv_serviceDescription"
                 style="@style/MatchWrap"
                 android:background="@color/whiteColors"
                 android:paddingBottom="@dimen/dimen15"
@@ -207,7 +212,7 @@
 
 
             <TextView
-                android:id="@+id/submitOrder"
+                android:id="@+id/tv_nextStep"
                 style="@style/Match40"
                 android:layout_marginBottom="@dimen/dimen20"
                 android:layout_marginLeft="@dimen/dimen100"

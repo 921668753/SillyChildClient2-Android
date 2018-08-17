@@ -25,14 +25,8 @@ public class AirportDropOffPayOrderActivity extends BaseActivity {
     @BindView(id = R.id.tv_timeDeparture)
     private TextView tv_timeDeparture;
 
-    @BindView(id = R.id.tv_adult)
-    private TextView tv_adult;
-
     @BindView(id = R.id.tv_children)
     private TextView tv_children;
-
-    @BindView(id = R.id.tv_luggage)
-    private TextView tv_luggage;
 
     @BindView(id = R.id.tv_contact)
     private TextView tv_contact;

@@ -16,6 +16,7 @@
             android:orientation="vertical">
 
             <ImageView
+                android:id="@+id/img_lineDetails"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimen143"
                 android:layout_marginTop="@dimen/dimen6"
@@ -56,14 +57,14 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/et_adult"
+                            android:id="@+id/tv_adult"
                             style="@style/MatchAuto"
                             android:background="@android:color/transparent"
                             android:digits="@string/number0"
                             android:gravity="center"
                             android:inputType="number"
                             android:singleLine="true"
-                            android:text="@string/pleaseSelect"
+                            android:text="1"
                             android:textColor="@color/textColor"
                             android:textCursorDrawable="@drawable/shape_cursor"
                             android:textSize="@dimen/textsize12" />
@@ -73,10 +74,10 @@
                     </LinearLayout>
 
                     <!--<ImageView-->
-                        <!--android:layout_width="@dimen/dimen13"-->
-                        <!--android:layout_height="@dimen/dimen7"-->
-                        <!--android:layout_marginTop="@dimen/dimen5"-->
-                        <!--android:src="@mipmap/downarrow" />-->
+                    <!--android:layout_width="@dimen/dimen13"-->
+                    <!--android:layout_height="@dimen/dimen7"-->
+                    <!--android:layout_marginTop="@dimen/dimen5"-->
+                    <!--android:src="@mipmap/downarrow" />-->
 
                 </LinearLayout>
 
@@ -99,7 +100,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/et_children"
+                            android:id="@+id/tv_children"
                             style="@style/MatchAuto"
                             android:background="@android:color/transparent"
                             android:digits="@string/number0"
@@ -116,10 +117,10 @@
                     </LinearLayout>
 
                     <!--<ImageView-->
-                        <!--android:layout_width="@dimen/dimen13"-->
-                        <!--android:layout_height="@dimen/dimen7"-->
-                        <!--android:layout_marginTop="@dimen/dimen5"-->
-                        <!--android:src="@mipmap/downarrow" />-->
+                    <!--android:layout_width="@dimen/dimen13"-->
+                    <!--android:layout_height="@dimen/dimen7"-->
+                    <!--android:layout_marginTop="@dimen/dimen5"-->
+                    <!--android:src="@mipmap/downarrow" />-->
 
                 </LinearLayout>
             </LinearLayout>
@@ -148,7 +149,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/et_luggage"
+                            android:id="@+id/tv_luggage"
                             style="@style/MatchAuto"
                             android:background="@android:color/transparent"
                             android:digits="@string/number0"
@@ -165,10 +166,10 @@
                     </LinearLayout>
 
                     <!--<ImageView-->
-                        <!--android:layout_width="@dimen/dimen13"-->
-                        <!--android:layout_height="@dimen/dimen7"-->
-                        <!--android:layout_marginTop="@dimen/dimen5"-->
-                        <!--android:src="@mipmap/downarrow" />-->
+                    <!--android:layout_width="@dimen/dimen13"-->
+                    <!--android:layout_height="@dimen/dimen7"-->
+                    <!--android:layout_marginTop="@dimen/dimen5"-->
+                    <!--android:src="@mipmap/downarrow" />-->
                 </LinearLayout>
 
                 <LinearLayout
@@ -193,6 +194,7 @@
                 android:textSize="@dimen/textsize15" />
 
             <TextView
+                android:id="@+id/tv_travelTime"
                 style="@style/MatchWrap"
                 android:background="@color/whiteColors"
                 android:paddingBottom="@dimen/dimen10"
@@ -216,6 +218,7 @@
                 android:textSize="@dimen/textsize15" />
 
             <TextView
+                android:id="@+id/tv_contact"
                 style="@style/MatchWrap"
                 android:background="@color/whiteColors"
                 android:paddingBottom="@dimen/dimen10"
@@ -239,6 +242,7 @@
                 android:textSize="@dimen/textsize15" />
 
             <TextView
+                android:id="@+id/tv_contactWay"
                 style="@style/MatchWrap"
                 android:background="@color/whiteColors"
                 android:paddingBottom="@dimen/dimen10"
@@ -262,6 +266,7 @@
                 android:textSize="@dimen/textsize15" />
 
             <TextView
+                android:id="@+id/tv_priceDescription"
                 style="@style/MatchWrap"
                 android:background="@color/whiteColors"
                 android:paddingBottom="@dimen/dimen10"
@@ -285,6 +290,7 @@
                 android:textSize="@dimen/textsize15" />
 
             <TextView
+                android:id="@+id/tv_dueThat"
                 style="@style/MatchWrap"
                 android:background="@color/whiteColors"
                 android:paddingBottom="@dimen/dimen10"
@@ -342,6 +348,7 @@
 
 
                 <TextView
+                    android:id="@+id/tv_orderPriceNoSign"
                     style="@style/AutoWrap"
                     android:gravity="right"
                     android:paddingLeft="@dimen/dimen10"
@@ -371,6 +378,7 @@
 
 
                 <TextView
+                    android:id="@+id/tv_vouchers"
                     style="@style/AutoWrap"
                     android:gravity="right"
                     android:paddingLeft="@dimen/dimen10"
@@ -408,6 +416,7 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/tv_confirmPayment"
             android:layout_width="@dimen/dimen126"
             android:layout_height="match_parent"
             android:background="@color/fF5656Colors"

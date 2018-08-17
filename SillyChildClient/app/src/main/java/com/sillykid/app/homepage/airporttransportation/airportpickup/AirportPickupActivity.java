@@ -196,9 +196,7 @@ public class AirportPickupActivity extends BaseActivity {
         switch (v.getId()) {
             case R.id.tv_flightArrivalTime:
                 SoftKeyboardUtils.packUpKeyboard(this);
-                adultOptions.show(tv_adult);
-
-
+                pvCustomTime.show(tv_flightArrivalTime);
                 break;
             case R.id.ll_adult:
                 SoftKeyboardUtils.packUpKeyboard(this);

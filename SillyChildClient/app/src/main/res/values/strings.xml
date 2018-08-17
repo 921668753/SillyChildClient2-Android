@@ -537,6 +537,8 @@
     <string name="selectProduct">选择产品</string>
     <string name="priceInformation">价格信息</string>
     <string name="flightArrivalTime">航班到达时间</string>
+    <string name="fillYourInformation">填写您的信息</string>
+
 
     <string name="fillDepartureTime">填写出发时间</string>
     <string name="selectDepartureTime">请选择出发时间</string>
@@ -558,10 +560,9 @@
     <string name="serviceNote">服务备注</string>
     <string name="particularRequirement">您还有什么特别需求</string>
     <string name="customerInformation">客户信息</string>
-
-
-
-
+    <string name="serviceHours">服务时长（时/天）</string>
+    <string name="serviceMileage">服务里程（公里/天）</string>
+    <string name="servicePolicy">服务政策</string>
 
     <!--首页   单次接送-->
     <string name="vehicleTime">用车时间</string>
@@ -1324,6 +1325,7 @@
     <string name="toAppraise">去评价</string>
     <string name="seeEvaluation">查看评价</string>
     <string name="serviceTime">服务时间：</string>
+    <string name="serviceTime1">服务时间</string>
     <string name="serviceCompany">服务司导：</string>
     <string name="noPhone">没有可拨打的有效电话</string>
     <string name="doNotChat">数据缺失，无法发起私聊</string>

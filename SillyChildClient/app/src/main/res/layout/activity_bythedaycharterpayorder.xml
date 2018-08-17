@@ -16,7 +16,7 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/img_airportDropOff"
+                android:id="@+id/img_byTheDayCharter"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimen143"
                 android:layout_marginTop="@dimen/dimen6"
@@ -24,6 +24,7 @@
                 android:src="@mipmap/placeholderfigure" />
 
             <TextView
+                android:id="@+id/tv_tourSpots"
                 style="@style/MatchWrap"
                 android:layout_marginTop="@dimen/dimen6"
                 android:background="@color/whiteColors"
@@ -36,6 +37,7 @@
                 android:textSize="@dimen/textsize15" />
 
             <TextView
+                android:id="@+id/tv_tourSpots1"
                 style="@style/MatchWrap"
                 android:background="@color/whiteColors"
                 android:paddingBottom="@dimen/dimen10"
@@ -131,7 +133,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/et_adult"
+                            android:id="@+id/tv_adult"
                             style="@style/MatchAuto"
                             android:background="@android:color/transparent"
                             android:digits="@string/number0"
@@ -174,7 +176,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/et_children"
+                            android:id="@+id/tv_children"
                             style="@style/MatchAuto"
                             android:background="@android:color/transparent"
                             android:digits="@string/number0"
@@ -223,7 +225,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/et_luggage"
+                            android:id="@+id/tv_luggage"
                             style="@style/MatchAuto"
                             android:background="@android:color/transparent"
                             android:digits="@string/number0"
@@ -272,6 +274,7 @@
 
 
                 <TextView
+                    android:id="@+id/tv_travelTime"
                     style="@style/AutoWrap"
                     android:lineSpacingExtra="@dimen/dimen6"
                     android:paddingBottom="@dimen/dimen13"
@@ -373,7 +376,7 @@
                     android:textSize="@dimen/textsize15" />
 
                 <TextView
-                    android:id="@+id/tv_orderMoney"
+                    android:id="@+id/tv_orderPriceNoSign"
                     style="@style/AutoWrap"
                     android:gravity="right"
                     android:paddingLeft="@dimen/dimen10"
@@ -402,6 +405,7 @@
                     android:textSize="@dimen/textsize15" />
 
                 <TextView
+                    android:id="@+id/tv_orderNumber"
                     style="@style/AutoWrap"
                     android:gravity="right"
                     android:paddingLeft="@dimen/dimen10"
@@ -429,6 +433,7 @@
                     android:textSize="@dimen/textsize15" />
 
                 <TextView
+                    android:id="@+id/tv_totalOrder"
                     style="@style/AutoWrap"
                     android:gravity="right"
                     android:paddingLeft="@dimen/dimen10"

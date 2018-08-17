@@ -8,7 +8,6 @@
 
     <include layout="@layout/common_title" />
 
-
     <ScrollView
         style="@style/MatchMatch"
         android:scrollbars="none">
@@ -17,8 +16,8 @@
             style="@style/MatchMatch"
             android:orientation="vertical">
 
-
             <TextView
+                android:id="@+id/tv_selectProductName"
                 style="@style/Match45"
                 android:layout_marginTop="@dimen/dimen6"
                 android:background="@color/whiteColors"
@@ -41,6 +40,8 @@
                 android:scrollbars="none"
                 android:verticalSpacing="@dimen/dimen6"
                 tools:listitem="@layout/item_productairporttransportation" />
+
+            <include layout="@layout/common_error" />
 
         </LinearLayout>
 

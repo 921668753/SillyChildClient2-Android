@@ -29,7 +29,6 @@ public abstract class PublicPromptDialog extends Dialog implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_publicprompt);
         initView();
-
         Window dialogWindow = getWindow();
         WindowManager.LayoutParams lp = dialogWindow.getAttributes();
         lp.width= WindowManager.LayoutParams.MATCH_PARENT;

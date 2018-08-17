@@ -1350,7 +1350,6 @@
     <string name="comment1">发表评论</string>
 
 
-
     <!-- 个人中心 我的订单  订单详情-->
     <string name="orderDetails">订单详情</string>
     <string name="waitSending">等待发货</string>
@@ -1485,6 +1484,18 @@
 
 
     <!--融云start-->
+    <string name="clearSessionMessage">清空该会话消息</string>
+    <string name="deleteSession">删除该会话</string>
+    <string name="messageFree">消息免打扰</string>
+    <string name="cancelAvoidInterruption">消息取消免打扰</string>
+    <string name="successfullySet">设置成功</string>
+    <string name="setupFailed">设置失败</string>
+    <string name="deleteSuccess">删除成功</string>
+    <string name="deleteFailed">删除失败</string>
+    <string name="clearSuccess1">清空成功</string>
+    <string name="clearFailed">清空失败</string>
+
+
     <string name="server_exception">服务器异常</string>
     <string name="clear_success">清除成功</string>
     <string name="clear_failure">清除失败</string>

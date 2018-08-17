@@ -1,6 +1,7 @@
 package com.sillykid.app.mine.personaldata;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -31,6 +32,7 @@ import com.lzy.imagepicker.view.CropImageView;
 import com.sillykid.app.R;
 import com.sillykid.app.entity.mine.deliveryaddress.AddressRegionBean;
 import com.sillykid.app.entity.mine.deliveryaddress.RegionListBean;
+import com.sillykid.app.homepage.message.interactivemessage.imuitl.UserUtil;
 import com.sillykid.app.loginregister.LoginActivity;
 import com.sillykid.app.mine.personaldata.dialog.PictureSourceDialog;
 import com.sillykid.app.mine.personaldata.setnickname.SetNickNameActivity;
@@ -47,6 +49,8 @@ import java.util.Date;
 import java.util.List;
 
 import cn.bingoogolapple.titlebar.BGATitleBar;
+import io.rong.imkit.RongIM;
+import io.rong.imlib.model.UserInfo;
 
 import static com.sillykid.app.constant.NumericConstants.RESULT_CODE_BASKET_ADD;
 import static com.sillykid.app.constant.NumericConstants.RESULT_CODE_BASKET_MINUS;
@@ -576,6 +580,8 @@ public class PersonalDataActivity extends BaseActivity implements PersonalDataCo
             case 1:
                 GlideImageLoader.glideLoader(aty, success, iv_personaltx, 0, R.mipmap.avatar);
                 isRefresh = true;
+                UserInfo userInfo = new UserInfo(UserUtil.getRcId(this), tv_personalnickname.getText().toString(), Uri.parse(success));
+                RongIM.getInstance().refreshUserInfoCache(userInfo);
                 break;
             case 2:
                 String birthdayStr = DataUtil.formatData(birthday, "yyyy-MM-dd");

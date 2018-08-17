@@ -6,16 +6,19 @@ import android.os.Handler;
 import android.os.Message;
 
 import com.common.cklibrary.common.BaseActivity;
+import com.common.cklibrary.common.BindView;
 import com.common.cklibrary.utils.ActivityTitleUtils;
 import com.common.cklibrary.utils.JsonUtil;
 import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
 import com.sillykid.app.entity.application.RongCloudBean;
+import com.sillykid.app.homepage.message.interactivemessage.dialog.MessageSettingDialog;
 
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Locale;
 
+import cn.bingoogolapple.titlebar.BGATitleBar;
 import io.rong.imkit.RongIM;
 import io.rong.imlib.MessageTag;
 import io.rong.imlib.RongIMClient;
@@ -32,6 +35,10 @@ import io.rong.message.VoiceMessage;
  * 3，push 和 通知 判断
  */
 public class ConversationActivity extends BaseActivity implements ConversationContract.View {
+
+
+    @BindView(id = R.id.titlebar)
+    private BGATitleBar titlebar;
 
     /**
      * 对方id
@@ -54,6 +61,7 @@ public class ConversationActivity extends BaseActivity implements ConversationCo
     public static final int SET_TEXT_TYPING_TITLE = 1;
     public static final int SET_VOICE_TYPING_TITLE = 2;
     public static final int SET_TARGET_ID_TITLE = 0;
+    private MessageSettingDialog messageSettingDialog;
 
     @Override
     public void setRootView() {
@@ -71,8 +79,15 @@ public class ConversationActivity extends BaseActivity implements ConversationCo
         mTargetId = intent.getData().getQueryParameter("targetId");
         mConversationType = Conversation.ConversationType.valueOf(intent.getData().getLastPathSegment().toUpperCase(Locale.getDefault()));
         title = intent.getData().getQueryParameter("title");
-
+        initMessageSettingDialog();
     }
+
+    private void initMessageSettingDialog() {
+        if (messageSettingDialog == null) {
+            messageSettingDialog = new MessageSettingDialog(this);
+        }
+    }
+
 
     @Override
     public void initWidget() {
@@ -81,9 +96,30 @@ public class ConversationActivity extends BaseActivity implements ConversationCo
         if (StringUtils.isEmpty(title)) {
             ((ConversationContract.Presenter) mPresenter).getUserInfo(mTargetId);
         } else {
-            ActivityTitleUtils.initToolbar(aty, title, true, R.id.titlebar);
+            titlebar.setTitleText(title);
             errorMsg("", 0);
         }
+        titlebar.setRightDrawable(getResources().getDrawable(R.mipmap.img_set));
+        BGATitleBar.SimpleDelegate simpleDelegate = new BGATitleBar.SimpleDelegate() {
+            @Override
+            public void onClickLeftCtv() {
+                super.onClickLeftCtv();
+                aty.finish();
+            }
+
+            @Override
+            public void onClickRightCtv() {
+                super.onClickRightCtv();
+                if (messageSettingDialog == null) {
+                    initMessageSettingDialog();
+                }
+                if (messageSettingDialog != null && !messageSettingDialog.isShowing()) {
+                    messageSettingDialog.show();
+                    messageSettingDialog.setConversationType(mConversationType, mTargetId);
+                }
+            }
+        };
+        titlebar.setDelegate(simpleDelegate);
         setTypingStatusListener();
     }
 
@@ -159,7 +195,8 @@ public class ConversationActivity extends BaseActivity implements ConversationCo
             } else {
                 userInfo = new UserInfo(mTargetId + "", rongCloudBean.getData().getNickname(), Uri.parse(rongCloudBean.getData().getFace()));
             }
-            ActivityTitleUtils.initToolbar(aty, userInfo.getName(), true, R.id.titlebar);
+            titlebar.setTitleText(userInfo.getName());
+            //  ActivityTitleUtils.initToolbar(aty, userInfo.getName(), true, R.id.titlebar);
             RongIM.getInstance().refreshUserInfoCache(userInfo);
         }
     }
@@ -167,5 +204,14 @@ public class ConversationActivity extends BaseActivity implements ConversationCo
     @Override
     public void errorMsg(String msg, int flag) {
         dismissLoadingDialog();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (messageSettingDialog != null) {
+            messageSettingDialog.cancel();
+        }
+        messageSettingDialog = null;
     }
 }

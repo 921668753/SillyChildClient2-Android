@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
+import com.sillykid.app.homepage.message.MessageActivity;
 import com.sillykid.app.main.MainActivity;
 
 import io.rong.push.notification.PushMessageReceiver;
@@ -28,10 +29,9 @@ public class RongIMPushMessageReceiver extends PushMessageReceiver {
     public boolean onNotificationMessageClicked(Context context, PushNotificationMessage pushNotificationMessage) {
         Log.d("RY", "[RongIMPushMessageReceiver] 用户点击打开了通知");
         //打开自定义的Activity
-        Intent news = new Intent(context, MainActivity.class);
-        news.putExtra("chageIcon", 1);
-        news.putExtra("newChageIcon", 1);
-        news.putExtra("chageMessageIcon", 20);
+        Intent news = new Intent(context, MessageActivity.class);
+        news.putExtra("chageIcon", 0);
+        news.putExtra("newChageIcon", 0);
         news.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         context.startActivity(news);
         news.setAction(MainServiceAction);

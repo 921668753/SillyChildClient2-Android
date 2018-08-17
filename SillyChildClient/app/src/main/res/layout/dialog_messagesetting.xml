@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchMatch"
+    android:background="@color/black20">
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/dimen20"
+        android:layout_marginRight="@dimen/dimen20"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            style="@style/MatchWrap"
+            android:background="@drawable/shape_clearcache"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_messageFree"
+                style="@style/Match45"
+                android:gravity="center"
+                android:text="@string/messageFree"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize15" />
+
+            <TextView style="@style/DividerWidth" />
+
+            <TextView
+                android:id="@+id/tv_deleteSession"
+                style="@style/Match45"
+                android:gravity="center"
+                android:text="@string/deleteSession"
+                android:textColor="@color/fF0000Colors"
+                android:textSize="@dimen/textsize15" />
+
+            <TextView style="@style/DividerWidth" />
+
+            <TextView
+                android:id="@+id/tv_clearMessages"
+                style="@style/Match45"
+                android:gravity="center"
+                android:text="@string/clearSessionMessage"
+                android:textColor="@color/fF0000Colors"
+                android:textSize="@dimen/textsize15" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            style="@style/Match45"
+            android:layout_marginBottom="@dimen/dimen10"
+            android:layout_marginTop="@dimen/dimen5"
+            android:background="@drawable/shape_clearcache"
+            android:gravity="center"
+            android:text="@string/cancel"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize15" />
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -42,7 +42,6 @@ public class SystemMessageListActivity extends BaseActivity implements SystemMes
     @BindView(id = R.id.lv_systemMessage)
     private ListView lv_systemMessage;
 
-
     /**
      * 错误提示页
      */

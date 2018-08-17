@@ -12,7 +12,10 @@ import com.common.cklibrary.common.BindView;
 import com.common.cklibrary.utils.ActivityTitleUtils;
 import com.kymjs.common.Log;
 import com.sillykid.app.R;
+import com.sillykid.app.homepage.message.dialog.MessageSettingDialog;
 import com.sillykid.app.homepage.message.interactivemessage.imuitl.RongIMUtil;
+
+import cn.bingoogolapple.titlebar.BGATitleBar;
 
 /**
  * 消息
@@ -20,6 +23,9 @@ import com.sillykid.app.homepage.message.interactivemessage.imuitl.RongIMUtil;
  */
 
 public class MessageActivity extends BaseActivity {
+
+    @BindView(id = R.id.titlebar)
+    private BGATitleBar titlebar;
 
     @BindView(id = R.id.tv_interactiveMessage, click = true)
     private TextView tv_interactiveMessage;
@@ -34,6 +40,8 @@ public class MessageActivity extends BaseActivity {
 
     private BaseFragment contentFragment;
     private BaseFragment contentFragment1;
+
+    private MessageSettingDialog messageSettingDialog;
 
 //    @Override
 //    protected View inflaterView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -52,12 +60,36 @@ public class MessageActivity extends BaseActivity {
         contentFragment = new InteractiveMessageFragment();
         contentFragment1 = new SystemMessageFragment();
         chageIcon = aty.getIntent().getIntExtra("chageIcon", 0);
+        initMessageSettingDialog();
     }
 
+    private void initMessageSettingDialog() {
+        messageSettingDialog = new MessageSettingDialog(this);
+    }
 
     @Override
     public void initWidget() {
-        ActivityTitleUtils.initToolbar(aty, getString(R.string.message), true, R.id.titlebar);
+        titlebar.setTitleText(getString(R.string.message));
+        titlebar.setRightDrawable(getResources().getDrawable(R.mipmap.img_set));
+        BGATitleBar.SimpleDelegate simpleDelegate = new BGATitleBar.SimpleDelegate() {
+            @Override
+            public void onClickLeftCtv() {
+                super.onClickLeftCtv();
+                aty.finish();
+            }
+
+            @Override
+            public void onClickRightCtv() {
+                super.onClickRightCtv();
+                if (messageSettingDialog == null) {
+                    initMessageSettingDialog();
+                }
+                if (messageSettingDialog != null && !messageSettingDialog.isShowing()) {
+                    messageSettingDialog.show();
+                }
+            }
+        };
+        titlebar.setDelegate(simpleDelegate);
         if (chageIcon == 0) {
             chageIcon = 0;
             cleanColors(0);
@@ -168,5 +200,14 @@ public class MessageActivity extends BaseActivity {
         } else {
             tv_interactiveMessage.setTextColor(getResources().getColor(R.color.loginBackgroundColors));
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (messageSettingDialog != null) {
+            messageSettingDialog.cancel();
+        }
+        messageSettingDialog = null;
     }
 }

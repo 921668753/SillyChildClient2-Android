@@ -12,7 +12,7 @@ import com.common.cklibrary.utils.JsonUtil;
 import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
 import com.sillykid.app.entity.application.RongCloudBean;
-import com.sillykid.app.homepage.message.interactivemessage.dialog.MessageSettingDialog;
+import com.sillykid.app.homepage.message.interactivemessage.dialog.IMMessageSettingDialog;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -61,7 +61,7 @@ public class ConversationActivity extends BaseActivity implements ConversationCo
     public static final int SET_TEXT_TYPING_TITLE = 1;
     public static final int SET_VOICE_TYPING_TITLE = 2;
     public static final int SET_TARGET_ID_TITLE = 0;
-    private MessageSettingDialog messageSettingDialog;
+    private IMMessageSettingDialog messageSettingDialog;
 
     @Override
     public void setRootView() {
@@ -83,9 +83,7 @@ public class ConversationActivity extends BaseActivity implements ConversationCo
     }
 
     private void initMessageSettingDialog() {
-        if (messageSettingDialog == null) {
-            messageSettingDialog = new MessageSettingDialog(this);
-        }
+        messageSettingDialog = new IMMessageSettingDialog(this);
     }
 
 

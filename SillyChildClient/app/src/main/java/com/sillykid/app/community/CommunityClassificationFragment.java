@@ -23,6 +23,7 @@ import com.sillykid.app.R;
 import com.sillykid.app.adapter.main.community.CommunityViewAdapter;
 import com.sillykid.app.community.dynamic.DynamicDetailsActivity;
 import com.sillykid.app.community.dynamic.DynamicVideoDetailsActivity;
+import com.sillykid.app.community.videolist.VideoListActivity;
 import com.sillykid.app.constant.NumericConstants;
 import com.sillykid.app.entity.main.community.CommunityBean;
 import com.sillykid.app.loginregister.LoginActivity;
@@ -103,6 +104,7 @@ public class CommunityClassificationFragment extends BaseFragment implements Com
     private List<CommunityBean.DataBean.ResultBean> list = null;
 
     private CommunityViewAdapter mAdapter;
+    private int itemSelected = 0;
 
 
     @Override
@@ -171,8 +173,9 @@ public class CommunityClassificationFragment extends BaseFragment implements Com
     }
 
 
-    public void setClassificationId(int classification_id1) {
+    public void setClassificationId(int classification_id1, int itemSelected1) {
         classification_id = classification_id1;
+        itemSelected = itemSelected1;
 //        if (mRefreshLayout != null) {
 //            mRefreshLayout.beginRefreshing();
 //        }
@@ -184,6 +187,13 @@ public class CommunityClassificationFragment extends BaseFragment implements Com
             Intent intent = new Intent(aty, DynamicDetailsActivity.class);
             intent.putExtra("id", mAdapter.getItem(position).getId());
             intent.putExtra("title", mAdapter.getItem(position).getPost_title());
+            aty.showActivity(aty, intent);
+        } else if (mAdapter.getItem(position).getType() == 2 && itemSelected == 1) {//视频
+            Intent intent = new Intent(aty, VideoListActivity.class);
+            intent.putExtra("id", mAdapter.getItem(position).getId());
+            intent.putExtra("totalPageNumber", totalPageNumber);
+            intent.putExtra("position", position);
+            intent.putExtra("classification_id", classification_id);
             aty.showActivity(aty, intent);
         } else if (mAdapter.getItem(position).getType() == 2) {//视频
             Intent intent = new Intent(aty, DynamicVideoDetailsActivity.class);

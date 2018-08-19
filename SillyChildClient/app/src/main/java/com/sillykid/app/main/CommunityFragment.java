@@ -126,7 +126,7 @@ public class CommunityFragment extends BaseFragment implements CommunityContract
     public void getSuccess(String success, int flag) {
         if (flag == 0) {
             ll_commonError.setVisibility(View.GONE);
-        //    tv_newTrends.setVisibility(View.VISIBLE);
+            //    tv_newTrends.setVisibility(View.VISIBLE);
             ClassificationListBean classificationListBean = (ClassificationListBean) JsonUtil.getInstance().json2Obj(success, ClassificationListBean.class);
             if (classificationListBean.getData() == null || classificationListBean.getData().size() <= 0) {
                 dismissLoadingDialog();
@@ -145,7 +145,7 @@ public class CommunityFragment extends BaseFragment implements CommunityContract
                 if (i == itemSelected) {
                     classification_id = classificationListBean.getData().get(itemSelected).getId();
                     changeFragment(list.get(itemSelected));
-                    list.get(itemSelected).setClassificationId(classification_id);
+                    list.get(itemSelected).setClassificationId(classification_id, itemSelected);
                     /**
                      * 发送消息
                      */
@@ -167,7 +167,7 @@ public class CommunityFragment extends BaseFragment implements CommunityContract
                     itemSelected = tab.getPosition();
                     classification_id = classificationListBean.getData().get(itemSelected).getId();
                     changeFragment(list.get(itemSelected));
-                    list.get(itemSelected).setClassificationId(classification_id);
+                    list.get(itemSelected).setClassificationId(classification_id, itemSelected);
                     /**
                      * 发送消息
                      */
@@ -248,7 +248,7 @@ public class CommunityFragment extends BaseFragment implements CommunityContract
     @Override
     public void errorMsg(String msg, int flag) {
         dismissLoadingDialog();
-     //   tv_newTrends.setVisibility(View.GONE);
+        //   tv_newTrends.setVisibility(View.GONE);
         ll_commonError.setVisibility(View.VISIBLE);
         tv_hintText.setVisibility(View.VISIBLE);
         tv_button.setVisibility(View.VISIBLE);

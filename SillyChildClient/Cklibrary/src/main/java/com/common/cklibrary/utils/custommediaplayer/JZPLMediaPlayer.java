@@ -91,6 +91,9 @@ public class JZPLMediaPlayer extends JZMediaInterface implements PLOnPreparedLis
 
     @Override
     public void pause() {
+        if (ijkMediaPlayer == null) {
+            return;
+        }
         ijkMediaPlayer.pause();
     }
 
@@ -101,6 +104,9 @@ public class JZPLMediaPlayer extends JZMediaInterface implements PLOnPreparedLis
 
     @Override
     public void seekTo(long time) {
+        if (ijkMediaPlayer == null) {
+            return;
+        }
         ijkMediaPlayer.seekTo(time);
     }
 
@@ -142,16 +148,25 @@ public class JZPLMediaPlayer extends JZMediaInterface implements PLOnPreparedLis
 
     @Override
     public void setSurface(Surface surface) {
+        if (ijkMediaPlayer == null) {
+            return;
+        }
         ijkMediaPlayer.setSurface(surface);
     }
 
     @Override
     public void setVolume(float leftVolume, float rightVolume) {
+        if (ijkMediaPlayer == null) {
+            return;
+        }
         ijkMediaPlayer.setVolume(leftVolume, rightVolume);
     }
 
     @Override
     public void onPrepared(int i) {
+        if (ijkMediaPlayer == null) {
+            return;
+        }
         ijkMediaPlayer.start();
         if (currentDataSource.toString().toLowerCase().contains("mp3")) {
             JZMediaManager.instance().mainThreadHandler.post(new Runnable() {

@@ -465,7 +465,6 @@ public class DynamicVideoDetailsActivity extends BaseActivity implements Dynamic
 
     private void animHeightToView(final View v, final int start, final int end, final boolean isToShow,
                                   long duration) {
-
         ValueAnimator va = ValueAnimator.ofInt(start, end);
         final ViewGroup.LayoutParams layoutParams = v.getLayoutParams();
         va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {

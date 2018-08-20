@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_serviceName"
     android:layout_width="match_parent"
     android:layout_height="@dimen/dimen39"
     android:background="@drawable/shape_containsservice"
@@ -8,10 +9,11 @@
 
 
     <TextView
+        android:id="@+id/tv_serviceName"
         style="@style/WrapWrap"
         android:text="小费"
         android:textColor="@color/greenColors"
-        android:textSize="@dimen/textsize15" />
+        android:textSize="@dimen/textsize14" />
 
 
 </LinearLayout>

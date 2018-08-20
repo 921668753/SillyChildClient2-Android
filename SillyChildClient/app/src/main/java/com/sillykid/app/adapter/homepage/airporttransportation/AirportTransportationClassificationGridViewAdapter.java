@@ -1,9 +1,10 @@
 package com.sillykid.app.adapter.homepage.airporttransportation;
 
 import android.content.Context;
+import android.view.View;
 
 import com.sillykid.app.R;
-import com.sillykid.app.entity.mall.moreclassification.ClassificationBean.DataBean;
+import com.sillykid.app.entity.homepage.airporttransportation.AirportByCountryIdBean.DataBean;
 import com.sillykid.app.utils.GlideImageLoader;
 
 import cn.bingoogolapple.androidcommon.adapter.BGAAdapterViewAdapter;
@@ -26,14 +27,18 @@ public class AirportTransportationClassificationGridViewAdapter extends BGAAdapt
         /**
          * 图片
          */
-        GlideImageLoader.glideOrdinaryLoader(mContext, model.getImage(), helper.getImageView(R.id.img_classification), R.mipmap.placeholderfigure);
+        GlideImageLoader.glideOrdinaryLoader(mContext, model.getAirport_picture(), helper.getImageView(R.id.img_classification), R.mipmap.placeholderfigure);
 
 
         /**
-         * 分类名字
+         * 城市名字
          */
-        helper.setText(R.id.tv_classificationName, model.getName());
+        helper.setText(R.id.tv_classificationName, model.getRegion_name());
 
-
+        /**
+         * 机场名字
+         */
+        helper.setVisibility(R.id.tv_airportName, View.VISIBLE);
+        helper.setText(R.id.tv_airportName, "(" + model.getAirport_name() + ")");
     }
 }

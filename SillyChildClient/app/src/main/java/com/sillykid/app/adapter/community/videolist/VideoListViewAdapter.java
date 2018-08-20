@@ -44,14 +44,15 @@ public class VideoListViewAdapter extends BGARecyclerViewAdapter<ResultBean> {
     @Override
     protected void fillData(BGAViewHolderHelper helper, int position, ResultBean model) {
         JZVideoPlayerStandard jzVideoPlayerStandard = (JZVideoPlayerStandard) helper.getView(R.id.videoplayer);
-        jzVideoPlayerStandard.setUp(model.getPicture().substring(0, model.getPicture().indexOf("?")), JZVideoPlayerStandard.SCREEN_WINDOW_NORMAL, "");
+        String url = model.getPicture().substring(0, model.getPicture().indexOf("?"));
+        jzVideoPlayerStandard.setUp(url, JZVideoPlayerStandard.SCREEN_WINDOW_NORMAL, "");
         GlideImageLoader.glideOrdinaryLoader(mContext, model.getPicture(), jzVideoPlayerStandard.thumbImageView, R.mipmap.placeholderfigure);
-        jzVideoPlayerStandard.startVideo();
         helper.setText(R.id.tv_zanNum1, model.getConcern_number());
         helper.setText(R.id.tv_collectionNum1, model.getConcern_number());
         helper.setText(R.id.tv_commentNum1, model.getConcern_number());
         JZVideoPlayer.setMediaInterface(new JZPLMediaPlayer());
-        jzVideoPlayerStandard.onEvent(JZUserAction.ON_CLICK_START_AUTO_COMPLETE);
+//        jzVideoPlayerStandard.onEvent(JZUserAction.ON_CLICK_START_AUTO_COMPLETE);
+//        jzVideoPlayerStandard.startVideo();
     }
 
 }

@@ -16,7 +16,6 @@ import android.widget.RelativeLayout;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
-import com.common.cklibrary.utils.GlideCircleTransform;
 import com.sillykid.app.R;
 
 /**

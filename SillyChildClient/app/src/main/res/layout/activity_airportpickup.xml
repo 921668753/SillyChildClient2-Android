@@ -43,7 +43,6 @@
                 android:paddingBottom="@dimen/dimen10"
                 android:paddingLeft="@dimen/dimen17"
                 android:paddingRight="@dimen/dimen17"
-                android:text="接机人数5人 行李件数2件"
                 android:textColor="@color/hintColors"
                 android:textSize="@dimen/textsize13" />
 
@@ -83,6 +82,7 @@
                 android:id="@+id/et_flightNumber"
                 style="@style/MatchWrap"
                 android:background="@color/whiteColors"
+                android:digits="@string/alphanumeric2"
                 android:hint="@string/inputFlightNumber"
                 android:paddingBottom="@dimen/dimen10"
                 android:paddingLeft="@dimen/dimen17"
@@ -172,7 +172,6 @@
                 android:singleLine="true"
                 android:textColor="@color/textColor"
                 android:textColorHint="@color/hintColors"
-                android:textCursorDrawable="@drawable/shape_cursor"
                 android:textSize="@dimen/textsize13" />
 
 
@@ -308,14 +307,11 @@
                             android:id="@+id/tv_adult"
                             style="@style/MatchAuto"
                             android:background="@android:color/transparent"
-                            android:digits="@string/number0"
                             android:gravity="center"
-                            android:inputType="number"
                             android:singleLine="true"
                             android:text="@string/pleaseSelect"
                             android:textColor="@color/textColor"
-                            android:textCursorDrawable="@drawable/shape_cursor"
-                            android:textSize="@dimen/textsize12" />
+                            android:textSize="@dimen/textsize15" />
 
                         <TextView style="@style/DividerWidth" />
 
@@ -324,7 +320,6 @@
                     <ImageView
                         android:layout_width="@dimen/dimen13"
                         android:layout_height="@dimen/dimen7"
-                        android:layout_marginTop="@dimen/dimen5"
                         android:src="@mipmap/downarrow" />
 
                 </LinearLayout>
@@ -352,14 +347,11 @@
                             android:id="@+id/tv_children"
                             style="@style/MatchAuto"
                             android:background="@android:color/transparent"
-                            android:digits="@string/number0"
                             android:gravity="center"
-                            android:inputType="number"
                             android:singleLine="true"
                             android:text="@string/pleaseSelect"
                             android:textColor="@color/textColor"
-                            android:textCursorDrawable="@drawable/shape_cursor"
-                            android:textSize="@dimen/textsize12" />
+                            android:textSize="@dimen/textsize15" />
 
                         <TextView style="@style/DividerWidth" />
 
@@ -368,7 +360,6 @@
                     <ImageView
                         android:layout_width="@dimen/dimen13"
                         android:layout_height="@dimen/dimen7"
-                        android:layout_marginTop="@dimen/dimen5"
                         android:src="@mipmap/downarrow" />
 
                 </LinearLayout>
@@ -402,14 +393,11 @@
                             android:id="@+id/tv_luggage"
                             style="@style/MatchAuto"
                             android:background="@android:color/transparent"
-                            android:digits="@string/number0"
                             android:gravity="center"
-                            android:inputType="number"
                             android:singleLine="true"
                             android:text="@string/pleaseSelect"
                             android:textColor="@color/textColor"
-                            android:textCursorDrawable="@drawable/shape_cursor"
-                            android:textSize="@dimen/textsize12" />
+                            android:textSize="@dimen/textsize15" />
 
                         <TextView style="@style/DividerWidth" />
 
@@ -418,7 +406,6 @@
                     <ImageView
                         android:layout_width="@dimen/dimen13"
                         android:layout_height="@dimen/dimen7"
-                        android:layout_marginTop="@dimen/dimen5"
                         android:src="@mipmap/downarrow" />
                 </LinearLayout>
 

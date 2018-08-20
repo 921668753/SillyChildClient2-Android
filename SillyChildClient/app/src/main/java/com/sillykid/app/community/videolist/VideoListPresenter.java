@@ -19,7 +19,7 @@ public class VideoListPresenter implements VideoListContract.Presenter {
 
 
     @Override
-    public void getPostList(Context context, String post_title, String nickname, int classification_id, int pageno) {
+    public void getPostList(Context context, String post_title, String nickname, int classification_id, int pageno, int flag) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
         if (!StringUtils.isEmpty(post_title)) {
             httpParams.put("post_title", post_title);
@@ -31,16 +31,20 @@ public class VideoListPresenter implements VideoListContract.Presenter {
             httpParams.put("classification_id", classification_id);
         }
         httpParams.put("pageno", pageno);
-        httpParams.put("pagesize", 1);
+        if (flag == 0) {
+            httpParams.put("pagesize", pageno);
+        } else {
+            httpParams.put("pagesize", 1);
+        }
         RequestClient.getPostList(context, httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
-                mView.getSuccess(response, 0);
+                mView.getSuccess(response, flag);
             }
 
             @Override
             public void onFailure(String msg) {
-                mView.errorMsg(msg, 0);
+                mView.errorMsg(msg, flag);
             }
         });
     }

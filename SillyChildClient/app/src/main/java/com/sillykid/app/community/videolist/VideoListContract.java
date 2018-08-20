@@ -12,7 +12,7 @@ public interface VideoListContract {
         /**
          * 获取帖子列表
          */
-        void getPostList(Context context, String post_title, String nickname, int classification_id, int pageno);
+        void getPostList(Context context, String post_title, String nickname, int classification_id, int pageno, int flag);
 
     }
 

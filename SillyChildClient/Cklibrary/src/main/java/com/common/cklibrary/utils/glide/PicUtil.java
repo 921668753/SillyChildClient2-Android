@@ -1,4 +1,4 @@
-package com.common.cklibrary.utils;
+package com.common.cklibrary.utils.glide;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

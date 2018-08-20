@@ -2,7 +2,6 @@ package com.sillykid.app.homepage.bythedaycharter;
 
 import android.content.Intent;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -10,11 +9,13 @@ import com.common.cklibrary.common.BaseActivity;
 import com.common.cklibrary.common.BindView;
 import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.ActivityTitleUtils;
+import com.common.cklibrary.utils.JsonUtil;
+import com.common.cklibrary.utils.MathUtil;
 import com.common.cklibrary.utils.myview.NoScrollGridView;
 import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
-import com.sillykid.app.entity.main.MallBean;
-import com.sillykid.app.homepage.BannerDetailsActivity;
+import com.sillykid.app.adapter.homepage.airporttransportation.PriceInformationViewAdapter;
+import com.sillykid.app.entity.homepage.airporttransportation.PriceInformationBean;
 import com.sillykid.app.loginregister.LoginActivity;
 import com.sillykid.app.utils.GlideImageLoader;
 
@@ -25,11 +26,13 @@ import cn.bingoogolapple.bgabanner.BGABanner;
 /**
  * 价格信息
  */
-public class PriceInformationActivity extends BaseActivity implements PriceInformationContract.View, BGABanner.Delegate<ImageView, MallBean.DataBean.AdvcatBean>, BGABanner.Adapter<ImageView, MallBean.DataBean.AdvcatBean> {
-
+public class PriceInformationActivity extends BaseActivity implements PriceInformationContract.View, BGABanner.Delegate<ImageView, String>, BGABanner.Adapter<ImageView, String> {
     @BindView(id = R.id.tv_productName)
     private TextView tv_productName;
 
+    /**
+     * 轮播图
+     */
     @BindView(id = R.id.banner_ad)
     private BGABanner mForegroundBanner;
 
@@ -42,6 +45,9 @@ public class PriceInformationActivity extends BaseActivity implements PriceInfor
     @BindView(id = R.id.tv_carPrices)
     private TextView tv_carPrices;
 
+    @BindView(id = R.id.tv_containsService)
+    private TextView tv_containsService;
+
     @BindView(id = R.id.gv_containsService)
     private NoScrollGridView gv_containsService;
 
@@ -49,11 +55,18 @@ public class PriceInformationActivity extends BaseActivity implements PriceInfor
     @BindView(id = R.id.tv_serviceDescription)
     private TextView tv_serviceDescription;
 
-    @BindView(id = R.id.et_remark)
-    private EditText et_remark;
+    @BindView(id = R.id.tv_remark)
+    private TextView tv_remark;
 
     @BindView(id = R.id.tv_nextStep, click = true)
     private TextView tv_nextStep;
+
+    private int product_id = 0;
+    private int type = 0;
+
+    private PriceInformationViewAdapter mAdapter;
+
+    private PriceInformationBean priceInformationBean;
 
     @Override
     public void setRootView() {
@@ -65,6 +78,11 @@ public class PriceInformationActivity extends BaseActivity implements PriceInfor
     public void initData() {
         super.initData();
         mPresenter = new PriceInformationPresenter(this);
+        product_id = getIntent().getIntExtra("product_id", 0);
+        type = getIntent().getIntExtra("type", 0);
+        mAdapter = new PriceInformationViewAdapter(this);
+        showLoadingDialog(getString(R.string.dataLoad));
+        ((PriceInformationContract.Presenter) mPresenter).getProductDetails(product_id);
     }
 
     @Override
@@ -72,6 +90,7 @@ public class PriceInformationActivity extends BaseActivity implements PriceInfor
         super.initWidget();
         ActivityTitleUtils.initToolbar(aty, getString(R.string.priceInformation), true, R.id.titlebar);
         initBanner();
+        gv_containsService.setAdapter(mAdapter);
     }
 
     /**
@@ -109,27 +128,36 @@ public class PriceInformationActivity extends BaseActivity implements PriceInfor
         super.widgetClick(v);
         switch (v.getId()) {
             case R.id.tv_nextStep:
-
-
+                Intent intent = new Intent();
+                intent.setClass(aty, ByTheDayCharterActivity.class);
+                intent.putExtra("title", priceInformationBean.getData().getTitle());
+                intent.putExtra("baggage_number", priceInformationBean.getData().getBaggage_number());
+                intent.putExtra("passenger_number", priceInformationBean.getData().getPassenger_number());
+                if (priceInformationBean.getData().getPicture() != null && priceInformationBean.getData().getPicture().size() > 0) {
+                    intent.putExtra("picture", priceInformationBean.getData().getPicture().get(0));
+                }
+                intent.putExtra("product_id", product_id);
+                showActivity(aty, intent);
                 break;
         }
     }
 
     @Override
-    public void fillBannerItem(BGABanner banner, ImageView itemView, MallBean.DataBean.AdvcatBean model, int position) {
+    public void fillBannerItem(BGABanner banner, ImageView itemView, String model, int position) {
         //   GlideImageLoader.glideOrdinaryLoader(aty, model.getAd_code(), itemView);
-        GlideImageLoader.glideOrdinaryLoader(aty, model.getHttpAttUrl(), itemView, R.mipmap.placeholderfigure2);
+        itemView.setScaleType(ImageView.ScaleType.FIT_XY);
+        GlideImageLoader.glideOrdinaryLoader(aty, model, itemView, R.mipmap.placeholderfigure2);
     }
 
     @Override
-    public void onBannerItemClick(BGABanner banner, ImageView itemView, MallBean.DataBean.AdvcatBean model, int position) {
-        if (StringUtils.isEmpty(model.getUrl())) {
-            return;
-        }
-        Intent bannerDetails = new Intent(aty, BannerDetailsActivity.class);
-        bannerDetails.putExtra("url", model.getUrl());
-        bannerDetails.putExtra("title", model.getAname());
-        showActivity(aty, bannerDetails);
+    public void onBannerItemClick(BGABanner banner, ImageView itemView, String model, int position) {
+//        if (StringUtils.isEmpty(model.getUrl())) {
+//            return;
+//        }
+//        Intent bannerDetails = new Intent(aty, BannerDetailsActivity.class);
+//        bannerDetails.putExtra("url", model.getUrl());
+//        bannerDetails.putExtra("title", model.getAname());
+//        showActivity(aty, bannerDetails);
     }
 
     @Override
@@ -141,13 +169,38 @@ public class PriceInformationActivity extends BaseActivity implements PriceInfor
     @Override
     public void getSuccess(String success, int flag) {
         dismissLoadingDialog();
+        if (flag == 0) {
+            priceInformationBean = (PriceInformationBean) JsonUtil.getInstance().json2Obj(success, PriceInformationBean.class);
+            tv_productName.setText(priceInformationBean.getData().getTitle());
+            if (priceInformationBean.getData().getPicture() != null && priceInformationBean.getData().getPicture().size() > 0) {
+                mForegroundBanner.setVisibility(View.VISIBLE);
+                processLogic(priceInformationBean.getData().getPicture());
+            } else {
+                mForegroundBanner.setVisibility(View.GONE);
+            }
+            tv_modelCar.setText(priceInformationBean.getData().getModel());
+            tv_canTakeNumber.setText(priceInformationBean.getData().getPassenger());
+            tv_carPrices.setText(MathUtil.keepTwo(StringUtils.toDouble(priceInformationBean.getData().getPrice())));
+            if (priceInformationBean.getData() != null && priceInformationBean.getData().getService() != null && priceInformationBean.getData().getService().size() > 0) {
+                gv_containsService.setVisibility(View.VISIBLE);
+                tv_containsService.setVisibility(View.VISIBLE);
+                mAdapter.clear();
+                mAdapter.addNewData(priceInformationBean.getData().getService());
+            } else {
+                tv_containsService.setVisibility(View.GONE);
+                gv_containsService.setVisibility(View.GONE);
+            }
+            tv_serviceDescription.setText(priceInformationBean.getData().getService_description());
+            tv_remark.setText(priceInformationBean.getData().getService_note());
+
+        }
     }
 
     /**
      * 广告轮播图
      */
     @SuppressWarnings("unchecked")
-    private void processLogic(List<MallBean.DataBean.AdvcatBean> list) {
+    private void processLogic(List<String> list) {
         if (list != null && list.size() > 0) {
             if (list.size() == 1) {
                 mForegroundBanner.setAutoPlayAble(false);
@@ -160,7 +213,6 @@ public class PriceInformationActivity extends BaseActivity implements PriceInfor
             mForegroundBanner.setData(list, null);
         }
     }
-
 
     @Override
     public void errorMsg(String msg, int flag) {

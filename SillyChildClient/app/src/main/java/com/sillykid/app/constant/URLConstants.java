@@ -19,8 +19,8 @@ public class URLConstants {
      */
     // public static String SERVERURL = "http://xiaowei.local.keiousoft.com/";
 
-//    public static String SERVERURL = "http://192.168.1.247:8080/";
-    public static String SERVERURL = "http://user.api.shahaizhi.com/";
+    public static String SERVERURL = "http://192.168.1.247:8080/";
+    //    public static String SERVERURL = "http://user.api.shahaizhi.com/";
     public static String SERVERURL1 = "http://www.shahaizhi.tech/";
 
     /**
@@ -157,6 +157,37 @@ public class URLConstants {
      * 首页---更多分类----商品列表----商品详情----商品规格----获取商品剩余规格
      */
     public static String GOODSPRODUCTSPECLEFT = APIURL + "goods/specs-left.do";
+
+
+    /**
+     * 城市与机场 - 获取国家列表
+     */
+    public static String AIRPOTCOUNTRYLIST = APIURL + "airport/get_country_list.do";
+
+    /**
+     * 城市与机场 - 通过国家编号获取城市与机场信息
+     */
+    public static String AIRPOTBYCOUNTRYID = APIURL + "airport/get_airport_by_countryId.do";
+
+    /**
+     * 城市与机场 - 通过国家编号获取城市与机场信息
+     */
+    public static String PRODUCTBYAIRPORTID = APIURL + "products/get_product_by_airport_id.do";
+
+    /**
+     * 城市与机场 - 通过国家编号获取城市与机场信息
+     */
+    public static String PRODUCTDETAILS = APIURL + "products/get_product_details.do";
+
+    /**
+     * 城市与机场 - 通过国家编号获取城市与机场信息
+     */
+    public static String ADDREQUIREMENTS = APIURL + "products/add_requirements.do";
+
+    /**
+     * 接机---支付订单
+     */
+    public static String TRAVELORDERDETAIL = APIURL + "products/get_travel_order_detail.do";
 
     /**
      * 获取系统消息首页

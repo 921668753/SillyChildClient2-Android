@@ -19,18 +19,19 @@ public class SelectProductAirportTransportationPresenter implements SelectProduc
     }
 
     @Override
-    public void getClassification(int cat_id, int flag) {
+    public void getProductByAirportId(int airport_id, int category) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        httpParams.put("cat_id", cat_id);
-        RequestClient.getClassification(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
+        httpParams.put("airport_id", airport_id);
+        httpParams.put("category", category);
+        RequestClient.getProductByAirportId(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
-                mView.getSuccess(response, flag);
+                mView.getSuccess(response, 0);
             }
 
             @Override
             public void onFailure(String msg) {
-                mView.errorMsg(msg, flag);
+                mView.errorMsg(msg, 0);
             }
         });
     }

@@ -1,4 +1,4 @@
-package com.sillykid.app.homepage.airporttransportation;
+package com.sillykid.app.homepage.airporttransportation.airportpickup;
 
 import com.common.cklibrary.common.BasePresenter;
 import com.common.cklibrary.common.BaseView;
@@ -7,19 +7,14 @@ import com.common.cklibrary.common.BaseView;
  * Created by ruitu on 2016/9/24.
  */
 
-public interface AirportTransportationClassificationContract {
+public interface AirportPickupPayOrderContract {
 
     interface Presenter extends BasePresenter {
 
         /**
-         * 获取国家列表
+         * 获取订单信息
          */
-        void getAirportCountryList();
-
-        /**
-         * 获取分类
-         */
-        void getAirportByCountryId(int country_id);
+        void getTravelOrderDetail(int requirement_id);
 
     }
 

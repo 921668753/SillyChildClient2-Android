@@ -1,8 +1,10 @@
 package com.sillykid.app.community.videolist;
 
+import android.annotation.SuppressLint;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.AbsListView;
 
 import com.common.cklibrary.common.BaseActivity;
 import com.common.cklibrary.common.BindView;
@@ -16,12 +18,18 @@ import com.sillykid.app.loginregister.LoginActivity;
 import com.sillykid.app.utils.layoutmanager.MyLayoutManager;
 import com.sillykid.app.utils.layoutmanager.OnViewPagerListener;
 
+import cn.jzvd.JZMediaManager;
+import cn.jzvd.JZUserAction;
+import cn.jzvd.JZUtils;
+import cn.jzvd.JZVideoPlayer;
+import cn.jzvd.JZVideoPlayerManager;
 import cn.jzvd.JZVideoPlayerStandard;
 
 
 /**
  * 上下滑动切换视频
  */
+@SuppressLint("Registered")
 public class VideoListActivity extends BaseActivity implements VideoListContract.View, OnViewPagerListener {
 
     @BindView(id = R.id.recycler)
@@ -52,7 +60,7 @@ public class VideoListActivity extends BaseActivity implements VideoListContract
         int totalPageNumber = getIntent().getIntExtra("totalPageNumber", 0);
         classification_id = getIntent().getIntExtra("classification_id", 0);
         myLayoutManager = new MyLayoutManager(this, OrientationHelper.VERTICAL, false);
-        mAdapter = new VideoListViewAdapter(recyclerView, 1);
+        mAdapter = new VideoListViewAdapter(recyclerView, totalPageNumber);
     }
 
     @Override
@@ -61,7 +69,24 @@ public class VideoListActivity extends BaseActivity implements VideoListContract
         recyclerView.setLayoutManager(myLayoutManager);
         recyclerView.setAdapter(mAdapter);
         myLayoutManager.setOnViewPagerListener(this);
-          playVideo(page + 1);
+        recyclerView.addOnChildAttachStateChangeListener(new RecyclerView.OnChildAttachStateChangeListener() {
+            @Override
+            public void onChildViewAttachedToWindow(View view) {
+
+            }
+
+            @Override
+            public void onChildViewDetachedFromWindow(View view) {
+                JZVideoPlayer jzvd = view.findViewById(R.id.videoplayer);
+                if (jzvd != null && JZUtils.dataSourceObjectsContainsUri(jzvd.dataSourceObjects, JZMediaManager.getCurrentDataSource())) {
+                    JZVideoPlayer currentJzvd = JZVideoPlayerManager.getCurrentJzvd();
+                    if (currentJzvd != null && currentJzvd.currentScreen != JZVideoPlayer.SCREEN_WINDOW_FULLSCREEN) {
+                        JZVideoPlayer.releaseAllVideos();
+                    }
+                }
+            }
+        });
+        playVideo(page + 1, 0);
     }
 
 
@@ -81,7 +106,7 @@ public class VideoListActivity extends BaseActivity implements VideoListContract
         if (page <= 0) {
             return;
         }
-     //   releaseVideo(page);
+        releaseVideo(page);
     }
 
     @Override
@@ -89,24 +114,40 @@ public class VideoListActivity extends BaseActivity implements VideoListContract
         Log.e("VideoListView", "选中位置:" + position + " 是否是滑动到底部:" + isBottom);
         if (isBottom) {
             page++;
+            playVideo(page, 1);
         } else {
             page--;
+            playVideo(page, 2);
         }
         if (page <= 0) {
             return;
         }
-        playVideo(page);
     }
 
 
     private void releaseVideo(int index) {
-        View itemView = recyclerView.getChildAt(0);
-        final JZVideoPlayerStandard jzVideoPlayerStandard = itemView.findViewById(R.id.videoplayer);
-        jzVideoPlayerStandard.release();
+        View itemView = recyclerView.getChildAt(index);
+        JZVideoPlayer jzvd = itemView.findViewById(R.id.videoplayer);
+        if (jzvd != null && JZUtils.dataSourceObjectsContainsUri(jzvd.dataSourceObjects, JZMediaManager.getCurrentDataSource())) {
+            JZVideoPlayer currentJzvd = JZVideoPlayerManager.getCurrentJzvd();
+            if (currentJzvd != null && currentJzvd.currentScreen != JZVideoPlayer.SCREEN_WINDOW_FULLSCREEN) {
+                JZVideoPlayer.releaseAllVideos();
+            }
+        }
+        // JZVideoPlayer.goOnPlayOnPause();
+//        jzVideoPlayerStandard.release();
     }
 
-    private void playVideo(int position) {
-        ((VideoListContract.Presenter) mPresenter).getPostList(aty, post_title, nickname, classification_id, position);
+    private void playVideo(int position, int flag) {
+        if (flag != 2) {
+            ((VideoListContract.Presenter) mPresenter).getPostList(aty, post_title, nickname, classification_id, position, flag);
+            return;
+        }
+        View itemView = recyclerView.getChildAt(position - 1);
+        final JZVideoPlayerStandard jzVideoPlayerStandard = itemView.findViewById(R.id.videoplayer);
+        jzVideoPlayerStandard.setUp(mAdapter.getItem(position - 1).getPicture(), JZVideoPlayerStandard.SCREEN_WINDOW_NORMAL, "");
+        jzVideoPlayerStandard.onEvent(JZUserAction.ON_CLICK_START_AUTO_COMPLETE);
+        jzVideoPlayerStandard.startVideo();
     }
 
 
@@ -126,14 +167,17 @@ public class VideoListActivity extends BaseActivity implements VideoListContract
             dismissLoadingDialog();
             return;
         }
-        mAdapter.clear();
-        mAdapter.addNewData(communityBean.getData().getResultX());
-//        View itemView = recyclerView.getChildAt(communityBean.getData().getCurrentPageNo() - 1);
-//        final JZVideoPlayerStandard jzVideoPlayerStandard = itemView.findViewById(R.id.videoplayer);
-//        jzVideoPlayerStandard.setUp(mAdapter.getItem(communityBean.getData().getCurrentPageNo() - 1).getPicture(), JZVideoPlayerStandard.SCREEN_WINDOW_NORMAL, "");
-//        JZVideoPlayer.setMediaInterface(new JZPLMediaPlayer());
-//        jzVideoPlayerStandard.onEvent(JZUserAction.ON_CLICK_START_AUTO_COMPLETE);
-//        jzVideoPlayerStandard.startVideo();
+        if (flag == 0) {
+            mAdapter.clear();
+            mAdapter.addNewData(communityBean.getData().getResultX());
+        } else if (flag == 1) {
+            mAdapter.addLastItem(communityBean.getData().getResultX().get(0));
+        }
+        View itemView = recyclerView.getChildAt(communityBean.getData().getCurrentPageNo() - 1);
+        final JZVideoPlayerStandard jzVideoPlayerStandard = itemView.findViewById(R.id.videoplayer);
+        jzVideoPlayerStandard.setUp(mAdapter.getItem(communityBean.getData().getCurrentPageNo() - 1).getPicture(), JZVideoPlayerStandard.SCREEN_WINDOW_NORMAL, "");
+        jzVideoPlayerStandard.onEvent(JZUserAction.ON_CLICK_START_AUTO_COMPLETE);
+        jzVideoPlayerStandard.startVideo();
     }
 
     @Override
@@ -144,5 +188,27 @@ public class VideoListActivity extends BaseActivity implements VideoListContract
             return;
         }
         ViewInject.toast(msg);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (JZVideoPlayer.backPress()) {
+            return;
+        }
+        super.onBackPressed();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        JZVideoPlayer.goOnPlayOnPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        JZVideoPlayer.releaseAllVideos();
+        mAdapter.clear();
+        mAdapter = null;
     }
 }

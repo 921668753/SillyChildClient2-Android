@@ -3,7 +3,7 @@ package com.sillykid.app.adapter.homepage.airporttransportation;
 import android.content.Context;
 
 import com.sillykid.app.R;
-import com.sillykid.app.entity.mall.moreclassification.MoreClassificationBean.DataBean;
+import com.sillykid.app.entity.homepage.airporttransportation.AirportCountryListBean.DataBean;
 
 import cn.bingoogolapple.androidcommon.adapter.BGAAdapterViewAdapter;
 import cn.bingoogolapple.androidcommon.adapter.BGAViewHolderHelper;
@@ -35,6 +35,6 @@ public class AirportTransportationClassificationListViewAdapter extends BGAAdapt
         /**
          * 名字
          */
-        helper.setText(R.id.tv_country, model.getName());
+        helper.setText(R.id.tv_country, model.getCountry_name());
     }
 }

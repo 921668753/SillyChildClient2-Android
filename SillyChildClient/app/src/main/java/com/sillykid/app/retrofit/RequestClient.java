@@ -707,6 +707,73 @@ public class RequestClient {
         HttpRequest.requestGetHttp(context, URLConstants.GOODSPRODUCTSPECLEFT, httpParams, false, listener);
     }
 
+
+    /**
+     * 城市与机场 - 获取国家列表
+     */
+    public static void getAirportCountryList(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        HttpRequest.requestGetHttp(context, URLConstants.AIRPOTCOUNTRYLIST, httpParams, false, listener);
+    }
+
+    /**
+     * 城市与机场 - 通过国家编号获取城市与机场信息
+     */
+    public static void getAirportByCountryId(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        HttpRequest.requestGetHttp(context, URLConstants.AIRPOTBYCOUNTRYID, httpParams, false, listener);
+    }
+
+    /**
+     * 接机产品 - 通过机场的编号来获取产品信息
+     */
+    public static void getProductByAirportId(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        HttpRequest.requestGetHttp(context, URLConstants.PRODUCTBYAIRPORTID, httpParams, false, listener);
+    }
+
+    /**
+     * 接机产品 - 通过产品编号获取车辆服务信息
+     */
+    public static void getProductDetails(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        HttpRequest.requestGetHttp(context, URLConstants.PRODUCTDETAILS, httpParams, false, listener);
+    }
+
+
+    /**
+     * 接机产品 - 用户填写接机预定信息
+     */
+    public static void postAddRequirements(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        doServer(context, new TokenCallback() {
+            @Override
+            public void execute() {
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
+                if (StringUtils.isEmpty(cookies)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("Cookie", cookies);
+                HttpRequest.requestPostFORMHttp(context, URLConstants.ADDREQUIREMENTS, httpParams, listener);
+            }
+        }, listener);
+    }
+
+
+    /**
+     * 接机产品 ---支付订单
+     */
+    public static void getTravelOrderDetail(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        doServer(context, new TokenCallback() {
+            @Override
+            public void execute() {
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
+                if (StringUtils.isEmpty(cookies)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("Cookie", cookies);
+                HttpRequest.requestGetHttp(context, URLConstants.TRAVELORDERDETAIL, httpParams, listener);
+            }
+        }, listener);
+    }
+
     /**
      * 得到地区的热门城市
      */

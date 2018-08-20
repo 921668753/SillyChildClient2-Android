@@ -14,6 +14,7 @@ import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.myview.NoScrollGridView;
 import com.sillykid.app.R;
 import com.sillykid.app.adapter.homepage.airporttransportation.SelectProductAirportTransportationViewAdapter;
+import com.sillykid.app.entity.homepage.airporttransportation.SelectProductAirportTransportationBean;
 import com.sillykid.app.entity.mall.moreclassification.MoreClassificationBean;
 import com.sillykid.app.loginregister.LoginActivity;
 
@@ -24,7 +25,6 @@ import java.util.List;
  * 选择产品----接送机
  */
 public class SelectProductAirportTransportationActivity extends BaseActivity implements SelectProductAirportTransportationContract.View, AdapterView.OnItemClickListener {
-
 
     @BindView(id = R.id.tv_selectProductName)
     private TextView tv_selectProductName;
@@ -48,20 +48,22 @@ public class SelectProductAirportTransportationActivity extends BaseActivity imp
 
     @BindView(id = R.id.tv_button, click = true)
     private TextView tv_button;
+    private int type = 0;
 
     @Override
     public void setRootView() {
         setContentView(R.layout.activity_selectproductairporttransportation);
     }
 
-
     @Override
     public void initData() {
         super.initData();
         mPresenter = new SelectProductAirportTransportationPresenter(this);
         mAdapter = new SelectProductAirportTransportationViewAdapter(this);
+        int airport_id = getIntent().getIntExtra("airport_id", 0);
+        type = getIntent().getIntExtra("type", 0);
         showLoadingDialog(getString(R.string.dataLoad));
-        // ((SelectProductAirportTransportationContract.Presenter) mPresenter).getClassification();
+        ((SelectProductAirportTransportationContract.Presenter) mPresenter).getProductByAirportId(airport_id, type);
     }
 
     @Override
@@ -98,22 +100,23 @@ public class SelectProductAirportTransportationActivity extends BaseActivity imp
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent intent = new Intent(aty, PriceInformationActivity.class);
-        intent.putExtra("cat", mAdapter.getItem(position).getCat_id());
+        intent.putExtra("product_id", mAdapter.getItem(position).getId());
+        intent.putExtra("type", type);
         showActivity(aty, intent);
     }
 
     @Override
     public void getSuccess(String success, int flag) {
-        MoreClassificationBean moreClassificationBean = (MoreClassificationBean) JsonUtil.getInstance().json2Obj(success, MoreClassificationBean.class);
-        List<MoreClassificationBean.DataBean> moreClassificationList = moreClassificationBean.getData();
-        if (moreClassificationList == null && moreClassificationList.size() <= 0) {
+        SelectProductAirportTransportationBean selectProductAirportTransportationBean = (SelectProductAirportTransportationBean) JsonUtil.getInstance().json2Obj(success, SelectProductAirportTransportationBean.class);
+        List<SelectProductAirportTransportationBean.DataBean> selectProductAirportTransportationList = selectProductAirportTransportationBean.getData();
+        if (selectProductAirportTransportationList == null || selectProductAirportTransportationList.size() <= 0) {
             errorMsg(getString(R.string.noProduct), 0);
             return;
         }
         gv_productAirportTransportation.setVisibility(View.VISIBLE);
         ll_commonError.setVisibility(View.GONE);
         mAdapter.clear();
-       // mAdapter.addNewData(moreClassificationList);
+        mAdapter.addNewData(selectProductAirportTransportationList);
         dismissLoadingDialog();
     }
 

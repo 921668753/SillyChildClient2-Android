@@ -18,19 +18,36 @@ public class AirportTransportationClassificationPresenter implements AirportTran
         mView.setPresenter(this);
     }
 
+
     @Override
-    public void getClassification(int cat_id, int flag) {
+    public void getAirportCountryList() {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        httpParams.put("cat_id", cat_id);
-        RequestClient.getClassification(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
+        RequestClient.getAirportCountryList(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
-                mView.getSuccess(response, flag);
+                mView.getSuccess(response, 0);
             }
 
             @Override
             public void onFailure(String msg) {
-                mView.errorMsg(msg, flag);
+                mView.errorMsg(msg, 0);
+            }
+        });
+    }
+
+    @Override
+    public void getAirportByCountryId(int country_id) {
+        HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
+        httpParams.put("country_id", country_id);
+        RequestClient.getAirportByCountryId(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
+            @Override
+            public void onSuccess(String response) {
+                mView.getSuccess(response, 1);
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                mView.errorMsg(msg, 1);
             }
         });
     }

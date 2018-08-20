@@ -141,6 +141,7 @@
 
 
             <TextView
+                android:id="@+id/tv_containsService"
                 style="@style/MatchWrap"
                 android:paddingLeft="@dimen/dimen21"
                 android:paddingTop="@dimen/dimen16"
@@ -156,6 +157,7 @@
                 android:layout_marginRight="@dimen/dimen27"
                 android:layout_marginTop="@dimen/dimen16"
                 android:horizontalSpacing="@dimen/dimen27"
+                android:listSelector="@android:color/transparent"
                 android:numColumns="3"
                 android:overScrollMode="never"
                 android:scrollbars="none"
@@ -194,18 +196,17 @@
                 android:textSize="@dimen/textsize14" />
 
 
-            <EditText
-                android:id="@+id/et_remark"
+            <TextView
+                android:id="@+id/tv_remark"
                 style="@style/MatchWrap"
                 android:background="@color/whiteColors"
                 android:gravity="left"
                 android:hint="@string/particularRequirement"
-                android:minHeight="@dimen/dimen172"
                 android:paddingBottom="@dimen/dimen15"
                 android:paddingLeft="@dimen/dimen21"
                 android:paddingRight="@dimen/dimen21"
                 android:paddingTop="@dimen/dimen15"
-                android:textColor="@color/textColor"
+                android:textColor="@color/hintColors"
                 android:textColorHint="@color/hintColors"
                 android:textCursorDrawable="@drawable/shape_cursor"
                 android:textSize="@dimen/textsize14" />

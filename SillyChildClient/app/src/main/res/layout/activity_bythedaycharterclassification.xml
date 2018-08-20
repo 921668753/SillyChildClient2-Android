@@ -18,6 +18,8 @@
             android:layout_width="@dimen/dimen100"
             android:layout_height="match_parent"
             android:background="@color/whiteColors"
+            android:divider="@null"
+            android:listSelector="@android:color/transparent"
             android:scrollbars="none"
             tools:listitem="@layout/item_countries" />
 

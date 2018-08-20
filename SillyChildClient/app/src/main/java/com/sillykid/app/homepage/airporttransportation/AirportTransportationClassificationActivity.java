@@ -15,9 +15,8 @@ import com.common.cklibrary.utils.JsonUtil;
 import com.sillykid.app.R;
 import com.sillykid.app.adapter.homepage.airporttransportation.AirportTransportationClassificationGridViewAdapter;
 import com.sillykid.app.adapter.homepage.airporttransportation.AirportTransportationClassificationListViewAdapter;
-import com.sillykid.app.entity.mall.moreclassification.ClassificationBean;
-import com.sillykid.app.entity.mall.moreclassification.MoreClassificationBean;
-import com.sillykid.app.mall.moreclassification.MoreClassificationContract;
+import com.sillykid.app.entity.homepage.airporttransportation.AirportByCountryIdBean;
+import com.sillykid.app.entity.homepage.airporttransportation.AirportCountryListBean;
 
 import java.util.List;
 
@@ -32,16 +31,16 @@ public class AirportTransportationClassificationActivity extends BaseActivity im
     @BindView(id = R.id.gv_countriesClassification)
     private GridView gv_countriesClassification;
 
-
     private AirportTransportationClassificationListViewAdapter mListViewAdapter = null;
 
     private AirportTransportationClassificationGridViewAdapter mGridViewAdapter = null;
 
-    private List<MoreClassificationBean.DataBean> moreClassificationList;
+    private List<AirportCountryListBean.DataBean> airportCountryList;
 
-    private MoreClassificationBean.DataBean moreClassificationBean = null;
+    private AirportCountryListBean.DataBean airportCountryBean = null;
 
     private String title = "";
+    private int type = 0;
 
 
     @Override
@@ -56,20 +55,19 @@ public class AirportTransportationClassificationActivity extends BaseActivity im
         mListViewAdapter = new AirportTransportationClassificationListViewAdapter(this);
         mGridViewAdapter = new AirportTransportationClassificationGridViewAdapter(this);
         title = getIntent().getStringExtra("title");
+        type = getIntent().getIntExtra("type", 0);
     }
 
     @Override
     public void initWidget() {
         super.initWidget();
         ActivityTitleUtils.initToolbar(aty, title, true, R.id.titlebar);
-
         lv_countries.setAdapter(mListViewAdapter);
         lv_countries.setOnItemClickListener(this);
         gv_countriesClassification.setAdapter(mGridViewAdapter);
         gv_countriesClassification.setOnItemClickListener(this);
         showLoadingDialog(getString(R.string.dataLoad));
-        ((AirportTransportationClassificationContract.Presenter) mPresenter).getClassification(0, 0);
-
+        ((AirportTransportationClassificationContract.Presenter) mPresenter).getAirportCountryList();
     }
 
     @Override
@@ -78,7 +76,9 @@ public class AirportTransportationClassificationActivity extends BaseActivity im
             selectClassification(position);
         } else if (adapterView.getId() == R.id.gv_countriesClassification) {
             Intent intent = new Intent(aty, SelectProductAirportTransportationActivity.class);
-            intent.putExtra("cat", mGridViewAdapter.getItem(position).getCat_id());
+            intent.putExtra("airport_id", mGridViewAdapter.getItem(position).getAirport_id());
+            intent.putExtra("name", mGridViewAdapter.getItem(position).getCountry_name() + mGridViewAdapter.getItem(position).getRegion_name() + mGridViewAdapter.getItem(position).getAirport_name() + title);
+            intent.putExtra("type", type);
             showActivity(aty, intent);
         }
     }
@@ -91,15 +91,15 @@ public class AirportTransportationClassificationActivity extends BaseActivity im
     @Override
     public void getSuccess(String success, int flag) {
         if (flag == 0) {
-            MoreClassificationBean moreClassificationBean = (MoreClassificationBean) JsonUtil.getInstance().json2Obj(success, MoreClassificationBean.class);
-            moreClassificationList = moreClassificationBean.getData();
-            if (moreClassificationList != null && moreClassificationList.size() > 0) {
+            AirportCountryListBean airportCountryListBean = (AirportCountryListBean) JsonUtil.getInstance().json2Obj(success, AirportCountryListBean.class);
+            airportCountryList = airportCountryListBean.getData();
+            if (airportCountryListBean != null && airportCountryList.size() > 0) {
                 selectClassification(0);
             }
         } else if (flag == 1) {
-            ClassificationBean classificationBean = (ClassificationBean) JsonUtil.getInstance().json2Obj(success, ClassificationBean.class);
+            AirportByCountryIdBean airportByCountryIdBean = (AirportByCountryIdBean) JsonUtil.getInstance().json2Obj(success, AirportByCountryIdBean.class);
             mGridViewAdapter.clear();
-            mGridViewAdapter.addNewData(classificationBean.getData());
+            mGridViewAdapter.addNewData(airportByCountryIdBean.getData());
             dismissLoadingDialog();
         }
     }
@@ -110,17 +110,17 @@ public class AirportTransportationClassificationActivity extends BaseActivity im
      * @param position
      */
     private void selectClassification(int position) {
-        for (int i = 0; i < moreClassificationList.size(); i++) {
+        for (int i = 0; i < airportCountryList.size(); i++) {
             if (position == i || position == i && position == 0) {
-                moreClassificationBean = moreClassificationList.get(i);
-                moreClassificationBean.setIsSelected(1);
-                ((MoreClassificationContract.Presenter) mPresenter).getClassification(moreClassificationBean.getCat_id(), 1);
+                airportCountryBean = airportCountryList.get(i);
+                airportCountryBean.setIsSelected(1);
+                ((AirportTransportationClassificationContract.Presenter) mPresenter).getAirportByCountryId(airportCountryBean.getCountry_id());
             } else {
-                moreClassificationList.get(i).setIsSelected(0);
+                airportCountryList.get(i).setIsSelected(0);
             }
         }
         mListViewAdapter.clear();
-        mListViewAdapter.addNewData(moreClassificationList);
+        mListViewAdapter.addNewData(airportCountryList);
     }
 
     @Override

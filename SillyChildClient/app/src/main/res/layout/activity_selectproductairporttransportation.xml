@@ -8,6 +8,16 @@
 
     <include layout="@layout/common_title" />
 
+    <TextView
+        android:id="@+id/tv_selectProductName"
+        style="@style/Match45"
+        android:layout_marginTop="@dimen/dimen6"
+        android:background="@color/whiteColors"
+        android:gravity="center"
+        android:paddingRight="@dimen/dimen22"
+        android:text="日本东京成田机场接机"
+        android:textColor="@color/textColor"
+        android:textSize="@dimen/textsize14" />
 
     <ScrollView
         style="@style/MatchMatch"
@@ -16,17 +26,6 @@
         <LinearLayout
             style="@style/MatchMatch"
             android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_selectProductName"
-                style="@style/Match45"
-                android:layout_marginTop="@dimen/dimen6"
-                android:background="@color/whiteColors"
-                android:gravity="center"
-                android:paddingRight="@dimen/dimen22"
-                android:text="日本东京成田机场接机"
-                android:textColor="@color/textColor"
-                android:textSize="@dimen/textsize14" />
 
             <com.common.cklibrary.utils.myview.NoScrollGridView
                 android:id="@+id/gv_productAirportTransportation"

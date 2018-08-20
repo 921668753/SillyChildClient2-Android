@@ -14,14 +14,39 @@
 
 
     <TextView
-        android:id="@+id/tv_classificationName"
         style="@style/MatchMatch"
+        android:background="@color/black50" />
+
+
+    <LinearLayout
+        style="@style/WrapWrap"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:gravity="center"
-        android:paddingLeft="@dimen/dimen9"
-        android:paddingRight="@dimen/dimen9"
-        android:text="刚果民主共和国"
-        android:textColor="@color/whiteColors"
-        android:textSize="@dimen/textsize13" />
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_classificationName"
+            style="@style/WrapWrap"
+            android:gravity="center"
+            android:paddingLeft="@dimen/dimen9"
+            android:paddingRight="@dimen/dimen9"
+            android:text="刚果民主共和国"
+            android:textColor="@color/whiteColors"
+            android:textSize="@dimen/textsize13" />
+
+        <TextView
+            android:id="@+id/tv_airportName"
+            style="@style/WrapWrap"
+            android:gravity="center"
+            android:paddingLeft="@dimen/dimen9"
+            android:paddingRight="@dimen/dimen9"
+            android:text="刚果民主共和国"
+            android:textColor="@color/whiteColors"
+            android:textSize="@dimen/textsize13"
+            android:visibility="gone" />
+
+    </LinearLayout>
 
 
 </RelativeLayout>

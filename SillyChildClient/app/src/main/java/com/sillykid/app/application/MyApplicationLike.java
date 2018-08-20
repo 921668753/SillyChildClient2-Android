@@ -11,7 +11,7 @@ import android.util.Log;
 
 import com.baidu.mapapi.SDKInitializer;
 import com.common.cklibrary.common.StringConstants;
-import com.common.cklibrary.utils.GlideCatchUtil;
+import com.common.cklibrary.utils.glide.GlideCatchUtil;
 import com.kymjs.common.FileUtils;
 import com.kymjs.common.PreferenceHelper;
 import com.kymjs.common.StringUtils;

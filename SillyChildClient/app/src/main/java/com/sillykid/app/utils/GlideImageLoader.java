@@ -19,15 +19,14 @@ import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
 import com.common.cklibrary.R;
 import com.common.cklibrary.common.GlideApp;
-import com.common.cklibrary.utils.GlideCatchUtil;
-import com.common.cklibrary.utils.GlideCircleTransform;
-import com.common.cklibrary.utils.GlideRoundTransform;
+import com.common.cklibrary.utils.glide.GlideCatchUtil;
+import com.common.cklibrary.utils.glide.GlideCircleTransform;
+import com.common.cklibrary.utils.glide.GlideRoundTransform;
+import com.common.cklibrary.utils.glide.RoundCornersTransformation;
 import com.lzy.imagepicker.loader.ImageLoader;
 
 
 import java.io.File;
-
-import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 /**
  * 加载图片工具类
@@ -270,18 +269,18 @@ public class GlideImageLoader implements ImageLoader {
         return null;
     }
 
-    public static Drawable zoomDrawable(Drawable drawable, int w, int h) {
-        int width = drawable.getIntrinsicWidth();
-        int height = drawable.getIntrinsicHeight();
-        Bitmap oldbmp = drawableToBitmap(drawable);
-        Matrix matrix = new Matrix();
-        float scaleWidth = ((float) w / width);
-        float scaleHeight = ((float) h / height);
-        matrix.postScale(scaleWidth, scaleHeight);
-        Bitmap newbmp = Bitmap.createBitmap(oldbmp, 0, 0, width, height,
-                matrix, true);
-        return new BitmapDrawable(null, newbmp);
-    }
+//    public static Drawable zoomDrawable(Drawable drawable, int w, int h) {
+//        int width = drawable.getIntrinsicWidth();
+//        int height = drawable.getIntrinsicHeight();
+//        Bitmap oldbmp = drawableToBitmap(drawable);
+//        Matrix matrix = new Matrix();
+//        float scaleWidth = ((float) w / width);
+//        float scaleHeight = ((float) h / height);
+//        matrix.postScale(scaleWidth, scaleHeight);
+//        Bitmap newbmp = Bitmap.createBitmap(oldbmp, 0, 0, width, height,
+//                matrix, true);
+//        return new BitmapDrawable(null, newbmp);
+//    }
 
     public static Bitmap drawableToBitmap(Drawable drawable) {
         int width = drawable.getIntrinsicWidth();
@@ -303,7 +302,7 @@ public class GlideImageLoader implements ImageLoader {
         options.error(R.mipmap.default_image)
                 .fallback(R.mipmap.default_image)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .bitmapTransform(new RoundedCornersTransformation(context, radius, bottom, RoundedCornersTransformation.CornerType.TOP))
+                .transform(new RoundCornersTransformation(context, radius, RoundCornersTransformation.CornerType.TOP))
                 //   .skipMemoryCache(true)//设置跳过内存缓存
                 .dontAnimate();//没有任何淡入淡出效果
         Glide.with(context)

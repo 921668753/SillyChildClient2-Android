@@ -188,13 +188,13 @@ public class CommunityClassificationFragment extends BaseFragment implements Com
             intent.putExtra("id", mAdapter.getItem(position).getId());
             intent.putExtra("title", mAdapter.getItem(position).getPost_title());
             aty.showActivity(aty, intent);
-        } else if (mAdapter.getItem(position).getType() == 2 && itemSelected == 1) {//视频
-            Intent intent = new Intent(aty, VideoListActivity.class);
-            intent.putExtra("id", mAdapter.getItem(position).getId());
-            intent.putExtra("totalPageNumber", totalPageNumber);
-            intent.putExtra("position", position);
-            intent.putExtra("classification_id", classification_id);
-            aty.showActivity(aty, intent);
+//        } else if (mAdapter.getItem(position).getType() == 2 && itemSelected == 1) {//视频
+//            Intent intent = new Intent(aty, VideoListActivity.class);
+//            intent.putExtra("id", mAdapter.getItem(position).getId());
+//            intent.putExtra("totalPageNumber", totalPageNumber);
+//            intent.putExtra("position", position);
+//            intent.putExtra("classification_id", classification_id);
+//            aty.showActivity(aty, intent);
         } else if (mAdapter.getItem(position).getType() == 2) {//视频
             Intent intent = new Intent(aty, DynamicVideoDetailsActivity.class);
             intent.putExtra("id", mAdapter.getItem(position).getId());

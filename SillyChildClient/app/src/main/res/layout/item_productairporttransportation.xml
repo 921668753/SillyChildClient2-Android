@@ -39,41 +39,43 @@
         android:orientation="horizontal"
         android:paddingBottom="@dimen/dimen9">
 
-        <TextView
-            style="@style/WrapWrap"
-            android:paddingLeft="@dimen/dimen7"
-            android:text="@string/canSitUp"
-            android:textColor="@color/hintColors"
-            android:textSize="@dimen/textsize9" />
+        <!--<TextView-->
+        <!--style="@style/WrapWrap"-->
+        <!--android:paddingLeft="@dimen/dimen7"-->
+        <!--android:text="@string/canSitUp"-->
+        <!--android:textColor="@color/hintColors"-->
+        <!--android:textSize="@dimen/textsize9" />-->
 
         <TextView
             android:id="@+id/tv_people"
             style="@style/WrapWrap"
+            android:paddingLeft="@dimen/dimen7"
             android:text="6"
             android:textColor="@color/hintColors"
             android:textSize="@dimen/textsize9" />
 
-        <TextView
-            style="@style/WrapWrap"
-            android:text="@string/people"
-            android:textColor="@color/hintColors"
-            android:textSize="@dimen/textsize9" />
+        <!--<TextView-->
+        <!--style="@style/WrapWrap"-->
+        <!--android:text="@string/people"-->
+        <!--android:textColor="@color/hintColors"-->
+        <!--android:textSize="@dimen/textsize9" />-->
 
         <TextView
             android:id="@+id/tv_bookingNum"
             style="@style/AutoWrap"
             android:gravity="right"
             android:paddingLeft="@dimen/dimen7"
+            android:paddingRight="@dimen/dimen7"
             android:text="126"
             android:textColor="@color/hintColors"
             android:textSize="@dimen/textsize9" />
 
-        <TextView
-            style="@style/WrapWrap"
-            android:paddingRight="@dimen/dimen7"
-            android:text="@string/booking"
-            android:textColor="@color/hintColors"
-            android:textSize="@dimen/textsize9" />
+        <!--<TextView-->
+        <!--style="@style/WrapWrap"-->
+        <!--android:paddingRight="@dimen/dimen7"-->
+        <!--android:text="@string/booking"-->
+        <!--android:textColor="@color/hintColors"-->
+        <!--android:textSize="@dimen/textsize9" />-->
 
     </LinearLayout>
 

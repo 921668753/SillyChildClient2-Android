@@ -14,7 +14,8 @@ public interface AirportPickupContract {
         /**
          * 提交订单信息
          */
-        void post(int page, String sort_field, String sort_type);
+        void postAddRequirements(int product_id, String flight_number, String delivery_location, String flight_arrival_time, String contact, String contact_number,
+                                 String audit_number, String children_number, String baggage_number, String remarks, int passenger_number1, int baggage_number1);
     }
 
     interface View extends BaseView<Presenter, String> {

@@ -19,18 +19,18 @@ public class PriceInformationPresenter implements PriceInformationContract.Prese
     }
 
     @Override
-    public void getClassification(int cat_id, int flag) {
+    public void getProductDetails(int product_id) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        httpParams.put("cat_id", cat_id);
-        RequestClient.getClassification(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
+        httpParams.put("product_id", product_id);
+        RequestClient.getProductDetails(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
-                mView.getSuccess(response, flag);
+                mView.getSuccess(response, 0);
             }
 
             @Override
             public void onFailure(String msg) {
-                mView.errorMsg(msg, flag);
+                mView.errorMsg(msg, 0);
             }
         });
     }

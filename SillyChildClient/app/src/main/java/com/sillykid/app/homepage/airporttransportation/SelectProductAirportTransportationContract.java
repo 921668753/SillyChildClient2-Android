@@ -14,7 +14,7 @@ public interface SelectProductAirportTransportationContract {
         /**
          * 获取分类
          */
-        void getClassification(int cat_id, int flag);
+        void getProductByAirportId(int airport_id, int category);
     }
 
     interface View extends BaseView<Presenter, String> {

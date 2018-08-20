@@ -3,7 +3,7 @@ package com.sillykid.app.adapter.homepage.airporttransportation;
 import android.content.Context;
 
 import com.sillykid.app.R;
-import com.sillykid.app.entity.mall.moreclassification.ClassificationBean.DataBean;
+import com.sillykid.app.entity.homepage.airporttransportation.SelectProductAirportTransportationBean.DataBean;
 import com.sillykid.app.utils.GlideImageLoader;
 
 
@@ -26,31 +26,30 @@ public class SelectProductAirportTransportationViewAdapter extends BGAAdapterVie
         /**
          * 图片
          */
-        GlideImageLoader.glideOrdinaryLoader(mContext, model.getImage(), helper.getImageView(R.id.img_selectProductAirport), R.mipmap.placeholderfigure);
-
+        GlideImageLoader.glideLoader(mContext, model.getMain_picture(), helper.getImageView(R.id.img_selectProductAirport), 10, 0, R.mipmap.placeholderfigure);
 
         /**
          * 名字
          */
-        helper.setText(R.id.tv_name, model.getName());
+        helper.setText(R.id.tv_name, model.getProduct_name());
 
 
         /**
          * 车辆名字
          */
-        helper.setText(R.id.tv_vehicleName, model.getName());
+        helper.setText(R.id.tv_vehicleName, model.getModel());
 
 
         /**
          * 人数
          */
-        helper.setText(R.id.tv_people, model.getName());
+        helper.setText(R.id.tv_people, model.getPassenger_number());
 
 
         /**
          * 预定次数
          */
-        helper.setText(R.id.tv_bookingNum, model.getName());
+        helper.setText(R.id.tv_bookingNum, model.getOrder_number());
 
     }
 }

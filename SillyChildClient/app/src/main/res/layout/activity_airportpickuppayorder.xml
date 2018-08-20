@@ -151,7 +151,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/et_adult"
+                            android:id="@+id/tv_adult"
                             style="@style/MatchAuto"
                             android:background="@android:color/transparent"
                             android:digits="@string/number0"
@@ -168,10 +168,10 @@
                     </LinearLayout>
 
                     <!--<ImageView-->
-                        <!--android:layout_width="@dimen/dimen13"-->
-                        <!--android:layout_height="@dimen/dimen7"-->
-                        <!--android:layout_marginTop="@dimen/dimen5"-->
-                        <!--android:src="@mipmap/downarrow" />-->
+                    <!--android:layout_width="@dimen/dimen13"-->
+                    <!--android:layout_height="@dimen/dimen7"-->
+                    <!--android:layout_marginTop="@dimen/dimen5"-->
+                    <!--android:src="@mipmap/downarrow" />-->
 
                 </LinearLayout>
 
@@ -194,7 +194,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/et_children"
+                            android:id="@+id/tv_children"
                             style="@style/MatchAuto"
                             android:background="@android:color/transparent"
                             android:digits="@string/number0"
@@ -211,10 +211,10 @@
                     </LinearLayout>
 
                     <!--<ImageView-->
-                        <!--android:layout_width="@dimen/dimen13"-->
-                        <!--android:layout_height="@dimen/dimen7"-->
-                        <!--android:layout_marginTop="@dimen/dimen5"-->
-                        <!--android:src="@mipmap/downarrow" />-->
+                    <!--android:layout_width="@dimen/dimen13"-->
+                    <!--android:layout_height="@dimen/dimen7"-->
+                    <!--android:layout_marginTop="@dimen/dimen5"-->
+                    <!--android:src="@mipmap/downarrow" />-->
 
                 </LinearLayout>
             </LinearLayout>
@@ -243,7 +243,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/et_luggage"
+                            android:id="@+id/tv_luggage"
                             style="@style/MatchAuto"
                             android:background="@android:color/transparent"
                             android:digits="@string/number0"
@@ -346,7 +346,6 @@
                 android:text="京东包车景点简介京东包车景点简介京东包车景点简介京东包车景点简介京东包车景点简介京东包车景点简介京东包车景点简介京东包车景点简介"
                 android:textColor="@color/hintColors"
                 android:textSize="@dimen/textsize12" />
-
 
             <TextView
                 style="@style/MatchWrap"

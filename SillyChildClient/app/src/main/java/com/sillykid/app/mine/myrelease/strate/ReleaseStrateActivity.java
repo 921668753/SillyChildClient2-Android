@@ -1,8 +1,6 @@
 package com.sillykid.app.mine.myrelease.strate;
 
 import android.content.Intent;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
@@ -20,17 +18,14 @@ import com.common.cklibrary.common.StringConstants;
 import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.ActivityTitleUtils;
 import com.common.cklibrary.utils.BitmapCoreUtil;
-import com.common.cklibrary.utils.DataCleanManager;
-import com.common.cklibrary.utils.GlideCatchUtil;
+import com.common.cklibrary.utils.glide.GlideCatchUtil;
 import com.common.cklibrary.utils.JsonUtil;
 import com.google.gson.Gson;
 import com.kymjs.common.PreferenceHelper;
 import com.lzy.imagepicker.ImagePicker;
 import com.lzy.imagepicker.bean.ImageItem;
 import com.lzy.imagepicker.ui.ImageGridActivity;
-import com.lzy.imagepicker.ui.ImagePreviewDelActivity;
 import com.lzy.imagepicker.view.CropImageView;
-import com.nanchen.compresshelper.FileUtil;
 import com.sillykid.app.R;
 import com.sillykid.app.adapter.ImagePickerAdapter.OnRecyclerViewItemClickListener;
 import com.sillykid.app.constant.NumericConstants;

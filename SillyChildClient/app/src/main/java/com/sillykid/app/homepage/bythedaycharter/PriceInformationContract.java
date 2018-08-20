@@ -14,7 +14,7 @@ public interface PriceInformationContract {
         /**
          * 获取分类
          */
-        void getClassification(int cat_id, int flag);
+        void getProductDetails(int product_id);
     }
 
     interface View extends BaseView<Presenter, String> {

@@ -35,6 +35,7 @@
     <string name="number0">0123456789</string>
     <string name="alphanumeric">ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789</string>
     <string name="alphanumeric1">ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_0123456789</string>
+    <string name="alphanumeric2">ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789</string>
     <string name="accountNumber">帐号</string>
     <string name="accountErroe">帐号错误</string>
     <string name="hintAccountText">请输入号码</string>
@@ -206,8 +207,13 @@
     <string name="journeyEnds">行程结束送达地</string>
     <string name="fillPlaceService">填写送达地点</string>
     <string name="contact">联系人</string>
+    <string name="ContactName1">请填写联系人姓名</string>
     <string name="ContactName">联系人姓名</string>
     <string name="ContactNumber">联系人电话</string>
+    <string name="ContactNumber1">请填写联系人电话</string>
+    <string name="adult3">请选择成人数</string>
+    <string name="adult4">成人和儿童总人数超过乘客人数</string>
+    <string name="luggage2">行李数超过汽车所能携带行李数</string>
     <string name="dueDemand">预定需求</string>
     <string name="adult1">成人：</string>
     <string name="children1">儿童：</string>
@@ -519,7 +525,7 @@
     <string name="pleaseAddLuggage">请添加行李个数</string>
     <string name="flightNumber">航班号</string>
     <string name="inputFlightNumber">填写航班号</string>
-    <string name="pleaseEnterFlightNumber">请输入航班号</string>
+    <string name="pleaseEnterFlightNumber">请填写航班号</string>
     <string name="pickUpAtAirport">接机机场</string>
     <string name="inputAirport">输入机场名称</string>
     <string name="inputAirport1">请输入机场名称</string>
@@ -539,6 +545,9 @@
     <string name="flightArrivalTime">航班到达时间</string>
     <string name="fillYourInformation">填写您的信息</string>
 
+    <string name="year">年</string>
+    <string name="month">月</string>
+    <string name="hour">时</string>
 
     <string name="fillDepartureTime">填写出发时间</string>
     <string name="selectDepartureTime">请选择出发时间</string>
@@ -548,6 +557,7 @@
     <string name="actualPayment1">实际支付：</string>
     <string name="fillDestination">填写目的地</string>
     <string name="selectEstimatedArrivalTimeFlight">请选择航班预计到达时间</string>
+    <string name="selectEstimatedArrivalTimeFlight1">航班预计到达时间应大于当前时间</string>
     <string name="selectiveServiceCity">选择送达城市：</string>
     <string name="travelConfiguration">出行配置：</string>
     <string name="booking">次预订</string>
@@ -563,6 +573,10 @@
     <string name="serviceHours">服务时长（时/天）</string>
     <string name="serviceMileage">服务里程（公里/天）</string>
     <string name="servicePolicy">服务政策</string>
+
+    <string name="pickUpNumber">接机人数</string>
+    <string name="baggageNumber1">行李件数</string>
+
 
     <!--首页   单次接送-->
     <string name="vehicleTime">用车时间</string>

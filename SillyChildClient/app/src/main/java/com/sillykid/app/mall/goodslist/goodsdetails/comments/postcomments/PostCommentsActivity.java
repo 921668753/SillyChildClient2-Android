@@ -20,7 +20,7 @@ import com.common.cklibrary.common.StringConstants;
 import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.ActivityTitleUtils;
 import com.common.cklibrary.utils.BitmapCoreUtil;
-import com.common.cklibrary.utils.GlideCatchUtil;
+import com.common.cklibrary.utils.glide.GlideCatchUtil;
 import com.common.cklibrary.utils.JsonUtil;
 import com.kymjs.common.PreferenceHelper;
 import com.lzy.imagepicker.ImagePicker;

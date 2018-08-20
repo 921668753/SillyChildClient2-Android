@@ -36,6 +36,8 @@ import com.sillykid.app.constant.StringNewConstants;
 import com.sillykid.app.entity.main.HomePageBean;
 import com.sillykid.app.entity.main.HomePageBean.DataBean.BannerListBean;
 import com.sillykid.app.homepage.BannerDetailsActivity;
+import com.sillykid.app.homepage.airporttransportation.AirportTransportationClassificationActivity;
+import com.sillykid.app.homepage.bythedaycharter.ByTheDayCharterClassificationActivity;
 import com.sillykid.app.homepage.hotvideo.HotVideoActivity;
 import com.sillykid.app.homepage.hotvideo.VideoDetailsActivity;
 import com.sillykid.app.homepage.message.MessageActivity;
@@ -210,13 +212,15 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
                 ((HomePageContract.Presenter) mPresenter).getIsLogin(aty, 1);
                 break;
             case R.id.ll_airportPickup:
-                Intent intent = new Intent(aty, GoodsListActivity.class);
-                intent.putExtra("cat", 480);
+                Intent intent = new Intent(aty, AirportTransportationClassificationActivity.class);
+                intent.putExtra("title", getString(R.string.airportPickup));
+                intent.putExtra("type", 1);
                 aty.showActivity(aty, intent);
                 break;
             case R.id.ll_byTheDay:
-                Intent intent1 = new Intent(aty, GoodsListActivity.class);
-                intent1.putExtra("cat", 483);
+                Intent intent1 = new Intent(aty, ByTheDayCharterClassificationActivity.class);
+                intent1.putExtra("title", getString(R.string.byTheDay));
+                intent1.putExtra("type", 3);
                 aty.showActivity(aty, intent1);
                 break;
             case R.id.ll_privateOrdering:
@@ -225,8 +229,9 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
                 aty.showActivity(aty, intent2);
                 break;
             case R.id.ll_airportDropOff:
-                Intent intent3 = new Intent(aty, GoodsListActivity.class);
-                intent3.putExtra("cat", 482);
+                Intent intent3 = new Intent(aty, AirportTransportationClassificationActivity.class);
+                intent3.putExtra("title", getString(R.string.airportDropOff));
+                intent3.putExtra("type", 2);
                 aty.showActivity(aty, intent3);
                 break;
             case R.id.ll_hotVideo:

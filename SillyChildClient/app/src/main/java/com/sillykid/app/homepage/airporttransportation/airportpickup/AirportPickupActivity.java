@@ -1,24 +1,30 @@
 package com.sillykid.app.homepage.airporttransportation.airportpickup;
 
 
+import android.content.Intent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
 import com.bigkoo.pickerview.builder.TimePickerBuilder;
-import com.bigkoo.pickerview.listener.CustomListener;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.bigkoo.pickerview.view.TimePickerView;
 import com.common.cklibrary.common.BaseActivity;
 import com.common.cklibrary.common.BindView;
+import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.ActivityTitleUtils;
+import com.common.cklibrary.utils.JsonUtil;
 import com.sillykid.app.R;
+import com.sillykid.app.entity.homepage.airporttransportation.airportpickup.AirportPickupBean;
+import com.sillykid.app.entity.homepage.airporttransportation.airportpickup.PeopleBean;
+import com.sillykid.app.loginregister.LoginActivity;
 import com.sillykid.app.utils.DataUtil;
+import com.sillykid.app.utils.GlideImageLoader;
 import com.sillykid.app.utils.SoftKeyboardUtils;
 
 import java.util.ArrayList;
@@ -29,7 +35,10 @@ import java.util.List;
 /**
  * 接机---订单信息
  */
-public class AirportPickupActivity extends BaseActivity {
+public class AirportPickupActivity extends BaseActivity implements AirportPickupContract.View {
+
+    @BindView(id = R.id.img_airportPickup)
+    private ImageView img_airportPickup;
 
     @BindView(id = R.id.tv_selectProduct)
     private TextView tv_selectProduct;
@@ -78,6 +87,12 @@ public class AirportPickupActivity extends BaseActivity {
 
     @BindView(id = R.id.tv_submitOrder, click = true)
     private TextView tv_submitOrder;
+    private int baggage_number = 0;
+    private int passenger_number = 0;
+    private int baggage_number1 = 0;
+    private int adult_number = 0;
+    private int children_number = 0;
+    private int product_id = 0;
 
 
     @Override
@@ -89,9 +104,12 @@ public class AirportPickupActivity extends BaseActivity {
     @Override
     public void initData() {
         super.initData();
-
+        mPresenter = new AirportPickupPresenter(this);
+        baggage_number = getIntent().getIntExtra("baggage_number", 0);
+        passenger_number = getIntent().getIntExtra("passenger_number", 0);
+        product_id = getIntent().getIntExtra("product_id", 0);
         initCustomTimePicker();
-        initOptions();
+        initOptions(passenger_number, baggage_number);
     }
 
     /**
@@ -112,7 +130,7 @@ public class AirportPickupActivity extends BaseActivity {
         Calendar startDate = Calendar.getInstance();
         startDate.set(birthdaycalendar.get(Calendar.YEAR), birthdaycalendar.get(Calendar.MONTH), birthdaycalendar.get(Calendar.DAY_OF_MONTH));
         Calendar endDate = Calendar.getInstance();
-        endDate.set(birthdaycalendar.get(Calendar.YEAR) + 99, birthdaycalendar.get(Calendar.MONTH), birthdaycalendar.get(Calendar.DAY_OF_MONTH));
+        endDate.set(birthdaycalendar.get(Calendar.YEAR) + 1, birthdaycalendar.get(Calendar.MONTH), birthdaycalendar.get(Calendar.DAY_OF_MONTH));
         //时间选择器 ，自定义布局
         pvCustomTime = new TimePickerBuilder(this, new OnTimeSelectListener() {
             @Override
@@ -122,29 +140,9 @@ public class AirportPickupActivity extends BaseActivity {
             }
         })
                 .setRangDate(startDate, endDate)
-                .setLayoutRes(R.layout.pickerview_custom_time, new CustomListener() {
-                    @Override
-                    public void customLayout(View v) {
-                        final Button btnSubmit = (Button) v.findViewById(R.id.btnSubmit);
-                        Button btnCancel = (Button) v.findViewById(R.id.btnCancel);
-                        btnSubmit.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                pvCustomTime.returnData();
-                                pvCustomTime.dismiss();
-                            }
-                        });
-                        btnCancel.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                pvCustomTime.dismiss();
-                            }
-                        });
-                    }
-                })
                 .setContentTextSize(18)
                 .setType(new boolean[]{true, true, true, true, true, false})
-                .setLabel("年", "月", "日", "时", "分", "秒")
+                .setLabel(getString(R.string.year), getString(R.string.month), getString(R.string.day), getString(R.string.hour), getString(R.string.minute), getString(R.string.seconds))
                 .setTextXOffset(0, 0, 0, 40, 0, -40)
                 .isCenterLabel(false) //是否只显示中间选中项的label文字，false则每项item全部都带有label。
                 .setDividerColor(0xFFd5d5d5)
@@ -152,16 +150,20 @@ public class AirportPickupActivity extends BaseActivity {
     }
 
 
-    private void initOptions() {
-        List<String> list = new ArrayList<String>();
-        for (int i = 0; i < 10; i++) {
-            list.add(i + 1 + "");
+    private void initOptions(int passenger_number, int baggage_number) {
+        List<PeopleBean> list = new ArrayList<PeopleBean>();
+        for (int i = 0; i < passenger_number; i++) {
+            PeopleBean peopleBean = new PeopleBean();
+            peopleBean.setNum(i + 1);
+            peopleBean.setName(i + 1 + getString(R.string.people));
+            list.add(peopleBean);
         }
         adultOptions = new OptionsPickerBuilder(aty, new OnOptionsSelectListener() {
             @Override
             public void onOptionsSelect(int options1, int option2, int options3, View v) {
                 //返回的分别是三个级别的选中位置
-                ((TextView) v).setText(list.get(options1));
+                adult_number = list.get(options1).getNum();
+                ((TextView) v).setText(list.get(options1).getPickerViewText());
             }
         }).build();
         adultOptions.setPicker(list);
@@ -169,18 +171,27 @@ public class AirportPickupActivity extends BaseActivity {
             @Override
             public void onOptionsSelect(int options1, int option2, int options3, View v) {
                 //返回的分别是三个级别的选中位置
-                ((TextView) v).setText(list.get(options1));
+                children_number = list.get(options1).getNum();
+                ((TextView) v).setText(list.get(options1).getPickerViewText());
             }
         }).build();
         childrenOptions.setPicker(list);
+        List<PeopleBean> list1 = new ArrayList<PeopleBean>();
+        for (int i = 0; i < baggage_number; i++) {
+            PeopleBean peopleBean = new PeopleBean();
+            peopleBean.setNum(i + 1);
+            peopleBean.setName(i + 1 + getString(R.string.jian));
+            list1.add(peopleBean);
+        }
         luggageOptions = new OptionsPickerBuilder(aty, new OnOptionsSelectListener() {
             @Override
             public void onOptionsSelect(int options1, int option2, int options3, View v) {
                 //返回的分别是三个级别的选中位置
-                ((TextView) v).setText(list.get(options1));
+                baggage_number1 = list1.get(options1).getNum();
+                ((TextView) v).setText(list1.get(options1).getPickerViewText());
             }
         }).build();
-        luggageOptions.setPicker(list);
+        luggageOptions.setPicker(list1);
     }
 
 
@@ -188,6 +199,9 @@ public class AirportPickupActivity extends BaseActivity {
     public void initWidget() {
         super.initWidget();
         ActivityTitleUtils.initToolbar(aty, getString(R.string.airportPickup), true, R.id.titlebar);
+        GlideImageLoader.glideOrdinaryLoader(aty, getIntent().getStringExtra("picture"), img_airportPickup, R.mipmap.placeholderfigure2);
+        tv_selectProduct.setText(getIntent().getStringExtra("title"));
+        tv_travelConfiguration.setText(getString(R.string.pickUpNumber) + passenger_number + getString(R.string.people) + "  " + getString(R.string.baggageNumber1) + baggage_number + getString(R.string.jian));
     }
 
     @Override
@@ -211,11 +225,39 @@ public class AirportPickupActivity extends BaseActivity {
                 luggageOptions.show(tv_luggage);
                 break;
             case R.id.tv_submitOrder:
-
-
+                ((AirportPickupContract.Presenter) mPresenter).postAddRequirements(product_id, et_flightNumber.getText().toString().trim(), et_deliveredSite.getText().toString().trim(),
+                        String.valueOf(timeDeparture), et_contact.getText().toString().trim(), et_contactWay.getText().toString().trim(), String.valueOf(adult_number), String.valueOf(children_number),
+                        String.valueOf(baggage_number1), et_remark.getText().toString().trim(), passenger_number, baggage_number);
                 break;
         }
     }
 
 
+    @Override
+    public void setPresenter(AirportPickupContract.Presenter presenter) {
+        mPresenter = presenter;
+    }
+
+    @Override
+    public void getSuccess(String success, int flag) {
+        dismissLoadingDialog();
+        AirportPickupBean airportPickupBean = (AirportPickupBean) JsonUtil.getInstance().json2Obj(success, AirportPickupBean.class);
+        Intent intent = new Intent(aty, AirportPickupPayOrderActivity.class);
+        intent.putExtra("requirement_id", airportPickupBean.getData().getRequirement_id());
+        intent.putExtra("baggage_passenger", getString(R.string.pickUpNumber) + "≤" + passenger_number + "  " + getString(R.string.baggageNumber1) + "≤" + baggage_number);
+        intent.putExtra("title", getIntent().getStringExtra("title"));
+        intent.putExtra("picture", getIntent().getStringExtra("picture"));
+
+        showActivity(aty, intent);
+    }
+
+    @Override
+    public void errorMsg(String msg, int flag) {
+        dismissLoadingDialog();
+        if (isLogin(msg)) {
+            showActivity(aty, LoginActivity.class);
+            return;
+        }
+        ViewInject.toast(msg);
+    }
 }

@@ -1,12 +1,10 @@
-package com.common.cklibrary.utils;
+package com.common.cklibrary.utils.glide;
 
 import android.content.Context;
 import android.os.Looper;
-import android.util.Log;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.Target;
-import com.common.cklibrary.R;
 import com.common.cklibrary.common.KJActivityStack;
 import com.common.cklibrary.common.StringConstants;
 import com.kymjs.common.FileUtils;

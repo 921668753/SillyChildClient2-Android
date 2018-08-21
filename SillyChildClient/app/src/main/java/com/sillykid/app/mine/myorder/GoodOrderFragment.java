@@ -36,14 +36,14 @@ public class GoodOrderFragment extends BaseFragment {
     private TextView tv_good_obligation1;
 
 
-    @BindView(id = R.id.ll_good_send, click = true)
-    private LinearLayout ll_good_send;
+    @BindView(id = R.id.ll_goodSend, click = true)
+    private LinearLayout ll_goodSend;
 
-    @BindView(id = R.id.tv_good_send)
-    private TextView tv_good_send;
+    @BindView(id = R.id.tv_goodSend)
+    private TextView tv_goodSend;
 
-    @BindView(id = R.id.tv_good_send1)
-    private TextView tv_good_send1;
+    @BindView(id = R.id.tv_goodSend1)
+    private TextView tv_goodSend1;
 
 
     @BindView(id = R.id.ll_good_wait, click = true)
@@ -93,7 +93,7 @@ public class GoodOrderFragment extends BaseFragment {
     private BaseFragment afterSaleGoodFragment;
     private BaseFragment allGoodFragment;
 
-    private int chageIcon = 20;
+    private int chageIcon = 10;
 
 
     @Override
@@ -111,17 +111,28 @@ public class GoodOrderFragment extends BaseFragment {
         completedGoodFragment = new CompletedGoodFragment();
         afterSaleGoodFragment = new AfterSaleGoodFragment();
         allGoodFragment = new AllGoodFragment();
-        chageIcon = aty.getIntent().getIntExtra("chageIcon", 20);
+        chageIcon = aty.getIntent().getIntExtra("chageGoodIcon", 10);
     }
 
     @Override
     protected void initWidget(View parentView) {
         super.initWidget(parentView);
-        cleanColors(20);
-        changeFragment(obligationGoodFragment);
-        chageIcon = 20;
-
-
+        if (chageIcon == 10) {
+            chageIcon = 10;
+        } else if (chageIcon == 11) {
+            chageIcon = 11;
+        } else if (chageIcon == 12) {
+            chageIcon = 12;
+        } else if (chageIcon == 13) {
+            chageIcon = 13;
+        } else if (chageIcon == 14) {
+            chageIcon = 14;
+        } else if (chageIcon == 15) {
+            chageIcon = 15;
+        } else {
+            chageIcon = 10;
+        }
+        cleanColors(chageIcon);
     }
 
     public void changeFragment(BaseFragment targetFragment) {
@@ -133,37 +144,30 @@ public class GoodOrderFragment extends BaseFragment {
         super.widgetClick(v);
         switch (v.getId()) {
             case R.id.ll_good_obligation:
-                cleanColors(20);
-                changeFragment(obligationGoodFragment);
-                chageIcon = 20;
+                chageIcon = 10;
+                cleanColors(chageIcon);
                 break;
-            case R.id.ll_good_send:
-                cleanColors(21);
-                changeFragment(sendGoodsGoodFragment);
-                chageIcon = 21;
+            case R.id.ll_goodSend:
+                chageIcon = 11;
+                cleanColors(chageIcon);
                 break;
             case R.id.ll_good_wait:
-                cleanColors(22);
-                changeFragment(waitGoodsGoodFragment);
-                chageIcon = 22;
+                chageIcon = 12;
+                cleanColors(chageIcon);
                 break;
             case R.id.ll_good_completed:
-                cleanColors(23);
-                changeFragment(completedGoodFragment);
-                chageIcon = 23;
+                chageIcon = 13;
+                cleanColors(chageIcon);
                 break;
             case R.id.ll_good_afterSale:
-                cleanColors(24);
-                changeFragment(afterSaleGoodFragment);
-                chageIcon = 24;
+                chageIcon = 14;
+                cleanColors(chageIcon);
                 break;
             case R.id.ll_good_all:
-                cleanColors(25);
-                changeFragment(allGoodFragment);
-                chageIcon = 25;
+                chageIcon = 15;
+                cleanColors(chageIcon);
                 break;
         }
-
     }
 
     /**
@@ -172,35 +176,41 @@ public class GoodOrderFragment extends BaseFragment {
     @SuppressWarnings("deprecation")
     public void cleanColors(int chageIcon) {
         tv_good_obligation.setTextColor(getResources().getColor(R.color.textColor));
-        tv_good_obligation1.setTextColor(getResources().getColor(R.color.whiteColors));
-        tv_good_send.setTextColor(getResources().getColor(R.color.textColor));
-        tv_good_send1.setTextColor(getResources().getColor(R.color.whiteColors));
+        tv_good_obligation1.setBackgroundColor(getResources().getColor(R.color.whiteColors));
+        tv_goodSend.setTextColor(getResources().getColor(R.color.textColor));
+        tv_goodSend1.setBackgroundColor(getResources().getColor(R.color.whiteColors));
         tv_good_wait.setTextColor(getResources().getColor(R.color.textColor));
-        tv_good_wait1.setTextColor(getResources().getColor(R.color.whiteColors));
+        tv_good_wait1.setBackgroundColor(getResources().getColor(R.color.whiteColors));
         tv_good_completed.setTextColor(getResources().getColor(R.color.textColor));
-        tv_good_completed1.setTextColor(getResources().getColor(R.color.whiteColors));
+        tv_good_completed1.setBackgroundColor(getResources().getColor(R.color.whiteColors));
         tv_good_afterSale.setTextColor(getResources().getColor(R.color.textColor));
-        tv_good_afterSale1.setTextColor(getResources().getColor(R.color.whiteColors));
+        tv_good_afterSale1.setBackgroundColor(getResources().getColor(R.color.whiteColors));
         tv_good_all.setTextColor(getResources().getColor(R.color.textColor));
-        tv_good_all1.setTextColor(getResources().getColor(R.color.whiteColors));
-        if (chageIcon == 20) {
+        tv_good_all1.setBackgroundColor(getResources().getColor(R.color.whiteColors));
+        if (chageIcon == 10) {
             tv_good_obligation.setTextColor(getResources().getColor(R.color.greenColors));
-            tv_good_obligation1.setTextColor(getResources().getColor(R.color.greenColors));
-        } else if (chageIcon == 21) {
-            tv_good_send.setTextColor(getResources().getColor(R.color.greenColors));
-            tv_good_send.setTextColor(getResources().getColor(R.color.greenColors));
-        } else if (chageIcon == 22) {
+            tv_good_obligation1.setBackgroundColor(getResources().getColor(R.color.greenColors));
+            changeFragment(obligationGoodFragment);
+        } else if (chageIcon == 11) {
+            tv_goodSend.setTextColor(getResources().getColor(R.color.greenColors));
+            tv_goodSend1.setBackgroundColor(getResources().getColor(R.color.greenColors));
+            changeFragment(sendGoodsGoodFragment);
+        } else if (chageIcon == 12) {
             tv_good_wait.setTextColor(getResources().getColor(R.color.greenColors));
-            tv_good_wait1.setTextColor(getResources().getColor(R.color.greenColors));
-        } else if (chageIcon == 23) {
+            tv_good_wait1.setBackgroundColor(getResources().getColor(R.color.greenColors));
+            changeFragment(waitGoodsGoodFragment);
+        } else if (chageIcon == 13) {
             tv_good_completed.setTextColor(getResources().getColor(R.color.greenColors));
-            tv_good_completed1.setTextColor(getResources().getColor(R.color.greenColors));
-        } else if (chageIcon == 24) {
+            tv_good_completed1.setBackgroundColor(getResources().getColor(R.color.greenColors));
+            changeFragment(completedGoodFragment);
+        } else if (chageIcon == 14) {
             tv_good_afterSale.setTextColor(getResources().getColor(R.color.greenColors));
-            tv_good_afterSale1.setTextColor(getResources().getColor(R.color.greenColors));
-        } else if (chageIcon == 25) {
+            tv_good_afterSale1.setBackgroundColor(getResources().getColor(R.color.greenColors));
+            changeFragment(afterSaleGoodFragment);
+        } else if (chageIcon == 15) {
             tv_good_all.setTextColor(getResources().getColor(R.color.greenColors));
-            tv_good_all1.setTextColor(getResources().getColor(R.color.greenColors));
+            tv_good_all1.setBackgroundColor(getResources().getColor(R.color.greenColors));
+            changeFragment(allGoodFragment);
         }
     }
 }

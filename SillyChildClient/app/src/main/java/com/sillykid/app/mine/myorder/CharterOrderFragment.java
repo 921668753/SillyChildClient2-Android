@@ -80,7 +80,7 @@ public class CharterOrderFragment extends BaseFragment {
         evaluateCharterFragment = new EvaluateCharterFragment();
         completedCharterFragment = new CompletedCharterFragment();
         allCharterFragment = new AllCharterFragment();
-        chageIcon = aty.getIntent().getIntExtra("chageIcon", 0);
+        chageIcon = aty.getIntent().getIntExtra("chageCharterIcon", 20);
     }
 
     @Override
@@ -98,23 +98,23 @@ public class CharterOrderFragment extends BaseFragment {
         super.widgetClick(v);
         switch (v.getId()) {
             case R.id.ll_obligation:
-                chageIcon = 0;
+                chageIcon = 20;
                 cleanColors(chageIcon);
                 break;
             case R.id.ll_ongoing:
-                chageIcon = 1;
+                chageIcon = 21;
                 cleanColors(chageIcon);
                 break;
             case R.id.ll_evaluate:
-                chageIcon = 2;
+                chageIcon = 22;
                 cleanColors(chageIcon);
                 break;
             case R.id.ll_completed:
-                chageIcon = 3;
+                chageIcon = 23;
                 cleanColors(chageIcon);
                 break;
             case R.id.ll_all:
-                chageIcon = 4;
+                chageIcon = 24;
                 cleanColors(chageIcon);
                 break;
         }
@@ -142,23 +142,23 @@ public class CharterOrderFragment extends BaseFragment {
         tv_all.setTextColor(getResources().getColor(R.color.textColor));
         tv_all1.setBackgroundResource(R.color.whiteColors);
 
-        if (chageIcon == 0) {
+        if (chageIcon == 20) {
             tv_obligation.setTextColor(getResources().getColor(R.color.greenColors));
             tv_obligation1.setBackgroundResource(R.color.greenColors);
             changeFragment(obligationCharterFragment);
-        } else if (chageIcon == 1) {
+        } else if (chageIcon == 21) {
             tv_ongoing.setTextColor(getResources().getColor(R.color.greenColors));
             tv_ongoing1.setBackgroundResource(R.color.greenColors);
             changeFragment(ongoingCharterFragment);
-        } else if (chageIcon == 2) {
+        } else if (chageIcon == 22) {
             tv_evaluate.setTextColor(getResources().getColor(R.color.greenColors));
             tv_evaluate.setBackgroundResource(R.color.greenColors);
             changeFragment(evaluateCharterFragment);
-        } else if (chageIcon == 3) {
+        } else if (chageIcon == 23) {
             tv_completed.setTextColor(getResources().getColor(R.color.greenColors));
             tv_completed.setBackgroundResource(R.color.greenColors);
             changeFragment(completedCharterFragment);
-        } else if (chageIcon == 4) {
+        } else if (chageIcon == 24) {
             tv_all.setTextColor(getResources().getColor(R.color.greenColors));
             tv_all.setBackgroundResource(R.color.greenColors);
             changeFragment(allCharterFragment);

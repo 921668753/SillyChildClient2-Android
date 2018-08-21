@@ -35,11 +35,10 @@ public class MyOrderActivity extends BaseActivity {
     @BindView(id = R.id.ll_charterOrder, click = true)
     private LinearLayout ll_charterOrder;
 
-
-    @BindView(id = R.id.tv_charterOrder, click = true)
+    @BindView(id = R.id.tv_charterOrder)
     private TextView tv_charterOrder;
 
-    @BindView(id = R.id.tv_charterOrder1, click = true)
+    @BindView(id = R.id.tv_charterOrder1)
     private TextView tv_charterOrder1;
 
     private BaseFragment baseFragment;
@@ -64,17 +63,14 @@ public class MyOrderActivity extends BaseActivity {
         super.initWidget();
         initTitle();
         if (chageIcon == 0) {
-            cleanColors(0);
-            changeFragment(baseFragment);
             chageIcon = 0;
+            cleanColors(chageIcon);
         } else if (chageIcon == 1) {
-            cleanColors(1);
-            changeFragment(baseFragment1);
             chageIcon = 1;
+            cleanColors(chageIcon);
         } else {
-            cleanColors(0);
-            changeFragment(baseFragment);
             chageIcon = 0;
+            cleanColors(chageIcon);
         }
 
     }
@@ -154,18 +150,21 @@ public class MyOrderActivity extends BaseActivity {
     @SuppressWarnings("deprecation")
     public void cleanColors(int chageIcon) {
         tv_goodOrder.setTextColor(getResources().getColor(R.color.textColor));
-        tv_goodOrder1.setTextColor(getResources().getColor(R.color.whiteColors));
+        tv_goodOrder1.setBackgroundColor(getResources().getColor(R.color.whiteColors));
         tv_charterOrder.setTextColor(getResources().getColor(R.color.textColor));
-        tv_charterOrder1.setTextColor(getResources().getColor(R.color.whiteColors));
+        tv_charterOrder1.setBackgroundColor(getResources().getColor(R.color.whiteColors));
         if (chageIcon == 0) {
             tv_goodOrder.setTextColor(getResources().getColor(R.color.greenColors));
-            tv_goodOrder1.setTextColor(getResources().getColor(R.color.greenColors));
+            tv_goodOrder1.setBackgroundColor(getResources().getColor(R.color.greenColors));
+            changeFragment(baseFragment);
         } else if (chageIcon == 1) {
             tv_charterOrder.setTextColor(getResources().getColor(R.color.greenColors));
-            tv_charterOrder1.setTextColor(getResources().getColor(R.color.greenColors));
+            tv_charterOrder1.setBackgroundColor(getResources().getColor(R.color.greenColors));
+            changeFragment(baseFragment1);
         } else {
             tv_goodOrder.setTextColor(getResources().getColor(R.color.greenColors));
-            tv_goodOrder1.setTextColor(getResources().getColor(R.color.greenColors));
+            tv_goodOrder1.setBackgroundColor(getResources().getColor(R.color.greenColors));
+            changeFragment(baseFragment);
         }
     }
 }

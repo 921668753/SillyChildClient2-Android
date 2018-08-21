@@ -95,9 +95,6 @@ public class AirportPickupPayOrderActivity extends BaseActivity implements Airpo
     public void initWidget() {
         super.initWidget();
         ActivityTitleUtils.initToolbar(aty, getString(R.string.airportPickup), true, R.id.titlebar);
-        GlideImageLoader.glideOrdinaryLoader(aty, getIntent().getStringExtra("picture"), img_airportPickup, R.mipmap.placeholderfigure2);
-        tv_airportName.setText(getIntent().getStringExtra("title"));
-        tv_travelConfiguration.setText(getIntent().getStringExtra("baggage_passenger"));
     }
 
     @Override
@@ -122,6 +119,9 @@ public class AirportPickupPayOrderActivity extends BaseActivity implements Airpo
     public void getSuccess(String success, int flag) {
         dismissLoadingDialog();
         AirportPickupPayOrderBean airportPickupPayOrderBean = (AirportPickupPayOrderBean) JsonUtil.getInstance().json2Obj(success, AirportPickupPayOrderBean.class);
+        GlideImageLoader.glideOrdinaryLoader(aty, airportPickupPayOrderBean.getData().getMain_picture(), img_airportPickup, R.mipmap.placeholderfigure2);
+        tv_airportName.setText(airportPickupPayOrderBean.getData().getTitle());
+        tv_travelConfiguration.setText(airportPickupPayOrderBean.getData().getSubtitle_title());
         tv_flightNumber.setText(airportPickupPayOrderBean.getData().getFlight_number());
         tv_deliveredSite.setText(airportPickupPayOrderBean.getData().getDelivery_location());
         tv_flightArrivalTime.setText(airportPickupPayOrderBean.getData().getFlight_arrival_time());
@@ -130,7 +130,9 @@ public class AirportPickupPayOrderActivity extends BaseActivity implements Airpo
         tv_luggage.setText(airportPickupPayOrderBean.getData().getBaggage_number() + "");
         tv_contact.setText(airportPickupPayOrderBean.getData().getContact());
         tv_contactWay.setText(airportPickupPayOrderBean.getData().getContact_number());
-
+        tv_priceDescription.setText(airportPickupPayOrderBean.getData().getPrice_description());
+        tv_dueThat.setText(airportPickupPayOrderBean.getData().getSchedule_description());
+        tv_remark.setText(airportPickupPayOrderBean.getData().getRemarks());
     }
 
     @Override

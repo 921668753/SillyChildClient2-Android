@@ -8,27 +8,39 @@ public class AirportPickupPayOrderBean extends BaseResult<AirportPickupPayOrderB
     public class DataBean {
         /**
          * audit_number : 1
-         * flight_number : AZ123
-         * order_number : SHZ20180820181332911389435
-         * product_id : 1
-         * contact : 土豆丝
-         * delivery_location : 啦啦啦
-         * children_number : 1
+         * flight_number : AA123
+         * order_number : SHZ20180821092104560785905
+         * main_picture : http://img.shahaizhi.com/%28null%291530269095
+         * title : 东京成田机场接机
+         * delivery_location : 上海
          * baggage_number : 1
          * contact_number : 17051335257
-         * remarks :
-         * flight_arrival_time : 2018-08-20 20:12
+         * schedule_description : 预定说明
+         * price : 2400.00
+         * product_id : 1
+         * contact : CK
+         * price_description : 价格说明
+         * subtitle_title : 接机人数<=1    行李件数1
+         * children_number : 1
+         * remarks : 你好
+         * flight_arrival_time : 2018-08-24 09:19
          */
 
         private int audit_number;
         private String flight_number;
         private String order_number;
-        private int product_id;
-        private String contact;
+        private String main_picture;
+        private String title;
         private String delivery_location;
-        private int children_number;
         private int baggage_number;
         private String contact_number;
+        private String schedule_description;
+        private String price;
+        private int product_id;
+        private String contact;
+        private String price_description;
+        private String subtitle_title;
+        private int children_number;
         private String remarks;
         private String flight_arrival_time;
 
@@ -56,20 +68,20 @@ public class AirportPickupPayOrderBean extends BaseResult<AirportPickupPayOrderB
             this.order_number = order_number;
         }
 
-        public int getProduct_id() {
-            return product_id;
+        public String getMain_picture() {
+            return main_picture;
         }
 
-        public void setProduct_id(int product_id) {
-            this.product_id = product_id;
+        public void setMain_picture(String main_picture) {
+            this.main_picture = main_picture;
         }
 
-        public String getContact() {
-            return contact;
+        public String getTitle() {
+            return title;
         }
 
-        public void setContact(String contact) {
-            this.contact = contact;
+        public void setTitle(String title) {
+            this.title = title;
         }
 
         public String getDelivery_location() {
@@ -78,14 +90,6 @@ public class AirportPickupPayOrderBean extends BaseResult<AirportPickupPayOrderB
 
         public void setDelivery_location(String delivery_location) {
             this.delivery_location = delivery_location;
-        }
-
-        public int getChildren_number() {
-            return children_number;
-        }
-
-        public void setChildren_number(int children_number) {
-            this.children_number = children_number;
         }
 
         public int getBaggage_number() {
@@ -102,6 +106,62 @@ public class AirportPickupPayOrderBean extends BaseResult<AirportPickupPayOrderB
 
         public void setContact_number(String contact_number) {
             this.contact_number = contact_number;
+        }
+
+        public String getSchedule_description() {
+            return schedule_description;
+        }
+
+        public void setSchedule_description(String schedule_description) {
+            this.schedule_description = schedule_description;
+        }
+
+        public String getPrice() {
+            return price;
+        }
+
+        public void setPrice(String price) {
+            this.price = price;
+        }
+
+        public int getProduct_id() {
+            return product_id;
+        }
+
+        public void setProduct_id(int product_id) {
+            this.product_id = product_id;
+        }
+
+        public String getContact() {
+            return contact;
+        }
+
+        public void setContact(String contact) {
+            this.contact = contact;
+        }
+
+        public String getPrice_description() {
+            return price_description;
+        }
+
+        public void setPrice_description(String price_description) {
+            this.price_description = price_description;
+        }
+
+        public String getSubtitle_title() {
+            return subtitle_title;
+        }
+
+        public void setSubtitle_title(String subtitle_title) {
+            this.subtitle_title = subtitle_title;
+        }
+
+        public int getChildren_number() {
+            return children_number;
+        }
+
+        public void setChildren_number(int children_number) {
+            this.children_number = children_number;
         }
 
         public String getRemarks() {

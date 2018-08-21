@@ -201,7 +201,7 @@ public class AirportPickupActivity extends BaseActivity implements AirportPickup
         ActivityTitleUtils.initToolbar(aty, getString(R.string.airportPickup), true, R.id.titlebar);
         GlideImageLoader.glideOrdinaryLoader(aty, getIntent().getStringExtra("picture"), img_airportPickup, R.mipmap.placeholderfigure2);
         tv_selectProduct.setText(getIntent().getStringExtra("title"));
-        tv_travelConfiguration.setText(getString(R.string.pickUpNumber) + passenger_number + getString(R.string.people) + "  " + getString(R.string.baggageNumber1) + baggage_number + getString(R.string.jian));
+        tv_travelConfiguration.setText(getString(R.string.pickUpNumber) + "≤" + passenger_number + "  " + getString(R.string.baggageNumber1) + "≤" + baggage_number);
     }
 
     @Override

@@ -5,92 +5,7 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
-    <!--<RelativeLayout-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="@dimen/dimen44"-->
-    <!--android:background="@color/whiteColors">-->
-    <!--<ImageView-->
-    <!--android:id="@+id/iv_back"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:src="@mipmap/back"-->
-    <!--android:paddingLeft="@dimen/dimen15"-->
-    <!--android:paddingRight="@dimen/dimen15"/>-->
-
-    <!--<LinearLayout-->
-    <!--style="@style/WrapMatch"-->
-    <!--android:orientation="horizontal"-->
-    <!--android:layout_centerHorizontal="true"-->
-    <!--android:gravity="bottom">-->
-    <!--<LinearLayout-->
-    <!--android:id="@+id/ll_order_charter"-->
-    <!--style="@style/WrapMatch"-->
-    <!--android:orientation="vertical"-->
-    <!--android:gravity="bottom">-->
-    <!--<TextView-->
-    <!--android:id="@+id/tv_charterorder"-->
-    <!--style="@style/WrapWrap"-->
-    <!--android:text="@string/charterOrder"-->
-    <!--android:textColor="@color/textColor"-->
-    <!--android:textSize="@dimen/textsize15"/>-->
-    <!--<View-->
-    <!--android:id="@+id/v_charterorder"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="@dimen/dimen2"-->
-    <!--android:background="@color/textColor"-->
-    <!--android:layout_marginTop="@dimen/dimen13"/>-->
-
-    <!--</LinearLayout>-->
-    <!--<LinearLayout-->
-    <!--android:id="@+id/ll_order_homestay"-->
-    <!--style="@style/WrapMatch"-->
-    <!--android:orientation="vertical"-->
-    <!--android:gravity="bottom"-->
-    <!--android:layout_marginLeft="@dimen/dimen25">-->
-    <!--<TextView-->
-    <!--android:id="@+id/tv_homestayorder"-->
-    <!--style="@style/WrapWrap"-->
-    <!--android:text="@string/homestayOrder"-->
-    <!--android:textColor="@color/hintColors"-->
-    <!--android:textSize="@dimen/textsize15"/>-->
-    <!--<View-->
-    <!--android:id="@+id/v_homestayorder"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="@dimen/dimen2"-->
-    <!--android:background="@android:color/transparent"-->
-    <!--android:layout_marginTop="@dimen/dimen13"/>-->
-
-    <!--</LinearLayout>-->
-    <!--<LinearLayout-->
-    <!--android:id="@+id/ll_order_good"-->
-    <!--style="@style/WrapMatch"-->
-    <!--android:orientation="vertical"-->
-    <!--android:gravity="bottom"-->
-    <!--android:layout_marginLeft="@dimen/dimen25">-->
-    <!--<TextView-->
-    <!--android:id="@+id/tv_goodorder"-->
-    <!--style="@style/WrapWrap"-->
-    <!--android:text="@string/goodOrder"-->
-    <!--android:textColor="@color/hintColors"-->
-    <!--android:textSize="@dimen/textsize15"/>-->
-    <!--<View-->
-    <!--android:id="@+id/v_goodorder"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="@dimen/dimen2"-->
-    <!--android:background="@android:color/transparent"-->
-    <!--android:layout_marginTop="@dimen/dimen13"/>-->
-
-    <!--</LinearLayout>-->
-
-    <!--</LinearLayout>-->
-
-    <!--</RelativeLayout>-->
-
     <include layout="@layout/common_title" />
-
-    <View style="@style/DividerWidth" />
-
-
 
     <LinearLayout
         style="@style/Match45"
@@ -147,10 +62,9 @@
 
     </LinearLayout>
 
-    <!--<include layout="@layout/order_topbar" />-->
-
     <FrameLayout
         android:id="@+id/order_content"
-        style="@style/MatchMatch" />
+        style="@style/MatchMatch"
+        android:layout_marginTop="@dimen/dimen6" />
 
 </LinearLayout>

@@ -7,26 +7,23 @@ import android.widget.TextView;
 
 import com.common.cklibrary.common.BaseActivity;
 import com.common.cklibrary.common.BindView;
-import com.common.cklibrary.common.StringConstants;
 import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.ActivityTitleUtils;
 import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.MathUtil;
 import com.common.cklibrary.utils.TimeCount;
-import com.kymjs.common.PreferenceHelper;
 import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
-import com.sillykid.app.entity.mine.myorder.OrderDetailBean;
 import com.sillykid.app.entity.mine.mywallet.recharge.AlipayBean;
 import com.sillykid.app.entity.mine.mywallet.recharge.WeChatPayBean;
+import com.sillykid.app.homepage.airporttransportation.paymentorder.payresult.PayTravelCompleteActivity;
 import com.sillykid.app.loginregister.LoginActivity;
-import com.sillykid.app.mine.myshoppingcart.makesureorder.payresult.PayCompleteActivity;
 import com.sillykid.app.utils.PayUtils;
 
 /**
  * 支付订单
  */
-public class PaymentOrderActivity extends BaseActivity implements PaymentOrderContract.View, TimeCount.TimeCountCallBack {
+public class PaymentTravelOrderActivity extends BaseActivity implements PaymentTravelOrderContract.View, TimeCount.TimeCountCallBack {
 
     @BindView(id = R.id.tv_waitingPayment)
     public TextView tv_waitingPayment;
@@ -72,7 +69,7 @@ public class PaymentOrderActivity extends BaseActivity implements PaymentOrderCo
     @BindView(id = R.id.tv_confirmPayment, click = true)
     public TextView tv_confirmPayment;
 
-    private String order_id;
+    private int order_id;
 
     private TimeCount time;
 
@@ -82,6 +79,9 @@ public class PaymentOrderActivity extends BaseActivity implements PaymentOrderCo
 
     private int type = 0;
 
+    private String order_number = "";
+    private String pay_amount = "";
+
     @Override
     public void setRootView() {
         setContentView(R.layout.activity_paymentorder);
@@ -90,16 +90,14 @@ public class PaymentOrderActivity extends BaseActivity implements PaymentOrderCo
     @Override
     public void initData() {
         super.initData();
-        mPresenter = new PaymentOrderPresenter(this);
-        order_id = getIntent().getStringExtra("order_id");
+        mPresenter = new PaymentTravelOrderPresenter(this);
+        order_id = getIntent().getIntExtra("order_id", 0);
+        order_number = getIntent().getStringExtra("order_number");
+        pay_amount = getIntent().getStringExtra("pay_amount");
         type = getIntent().getIntExtra("type", 0);
         payUtils = new PayUtils(this);
         showLoadingDialog(getString(R.string.dataLoad));
-        if (type == 1) {
-            getSuccess("", 2);
-        } else {
-            ((PaymentOrderContract.Presenter) mPresenter).getOrderDetails(order_id);
-        }
+        ((PaymentTravelOrderContract.Presenter) mPresenter).getMyWallet();
     }
 
 
@@ -141,7 +139,7 @@ public class PaymentOrderActivity extends BaseActivity implements PaymentOrderCo
                 break;
             case R.id.tv_confirmPayment:
                 showLoadingDialog(getString(R.string.paymentLoad));
-                ((PaymentOrderContract.Presenter) mPresenter).getOnlinePay(order_id, pay_type);
+                ((PaymentTravelOrderContract.Presenter) mPresenter).getOnlinePay(order_id, pay_type);
                 break;
         }
     }
@@ -159,7 +157,7 @@ public class PaymentOrderActivity extends BaseActivity implements PaymentOrderCo
 
 
     @Override
-    public void setPresenter(PaymentOrderContract.Presenter presenter) {
+    public void setPresenter(PaymentTravelOrderContract.Presenter presenter) {
         mPresenter = presenter;
     }
 
@@ -167,14 +165,12 @@ public class PaymentOrderActivity extends BaseActivity implements PaymentOrderCo
     public void getSuccess(String success, int flag) {
         dismissLoadingDialog();
         if (flag == 0) {
-            OrderDetailBean orderDetailBean = (OrderDetailBean) JsonUtil.getInstance().json2Obj(success, OrderDetailBean.class);
-            long last_time = StringUtils.toLong(orderDetailBean.getData().getLastTime()) - StringUtils.toLong(orderDetailBean.getData().getNowTime());
+            long last_time = StringUtils.toLong(getIntent().getStringExtra("end_time")) - StringUtils.toLong(getIntent().getStringExtra("start_time"));
             time = new TimeCount(last_time * 1000, 1000);
             time.setTimeCountCallBack(this);
             time.start();
-            tv_money.setText(MathUtil.keepTwo(StringUtils.toDouble(orderDetailBean.getData().getNeed_pay_money())));
-            String balance = PreferenceHelper.readString(aty, StringConstants.FILENAME, "balance");
-            tv_currentBalance.setText(MathUtil.keepTwo(StringUtils.toDouble(balance)));
+            tv_money.setText(MathUtil.keepTwo(StringUtils.toDouble(pay_amount)));
+            tv_currentBalance.setText(success);
             if (StringUtils.toDouble(tv_money.getText().toString().trim()) > StringUtils.toDouble(tv_currentBalance.getText().toString().trim())) {
                 clearImg(img_weChatPay);
                 pay_type = "weixin";
@@ -239,14 +235,24 @@ public class PaymentOrderActivity extends BaseActivity implements PaymentOrderCo
      * @param order_status 1成功 0失败
      */
     public void jumpPayComplete(int order_status) {
-        Intent intent = new Intent(aty, PayCompleteActivity.class);
+        Intent intent = new Intent(aty, PayTravelCompleteActivity.class);
         intent.putExtra("order_status", order_status);
         intent.putExtra("order_id", order_id);
+        intent.putExtra("order_number", order_number);
+        intent.putExtra("pay_amount", pay_amount);
         showActivity(aty, intent);
     }
 
-    public String getOrderId() {
+    public int getOrderId() {
         return order_id;
+    }
+
+    public String getOrderNumber() {
+        return order_number;
+    }
+
+    public String getPayAmount() {
+        return pay_amount;
     }
 
 

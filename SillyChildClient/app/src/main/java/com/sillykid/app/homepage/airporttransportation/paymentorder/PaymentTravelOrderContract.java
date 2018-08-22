@@ -1,6 +1,8 @@
 package com.sillykid.app.homepage.airporttransportation.paymentorder;
 
 
+import android.content.Context;
+
 import com.common.cklibrary.common.BasePresenter;
 import com.common.cklibrary.common.BaseView;
 
@@ -8,19 +10,19 @@ import com.common.cklibrary.common.BaseView;
  * Created by Administrator on 2017/2/15.
  */
 
-public interface PaymentOrderContract {
+public interface PaymentTravelOrderContract {
 
     interface Presenter extends BasePresenter {
 
         /**
-         * 获取订单详情
+         * 获取钱包余额
          */
-        void getOrderDetails(String orderId);
+        void getMyWallet();
 
         /**
          * 订单支付信息接口
          */
-        void getOnlinePay(String order_id, String pay_type);
+        void getOnlinePay(int order_id, String pay_type);
     }
 
     interface View extends BaseView<Presenter, String> {

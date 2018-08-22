@@ -14,11 +14,11 @@ import com.common.cklibrary.utils.MathUtil;
 import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
 import com.sillykid.app.entity.homepage.airporttransportation.airportpickup.AirportPickupPayOrderBean;
+import com.sillykid.app.entity.homepage.airporttransportation.airportpickup.CreateTravelOrderBean;
+import com.sillykid.app.homepage.airporttransportation.paymentorder.PaymentTravelOrderActivity;
 import com.sillykid.app.mine.mywallet.coupons.CouponsActivity;
 import com.sillykid.app.utils.GlideImageLoader;
 
-import static com.sillykid.app.constant.NumericConstants.RESULT_CODE_BASKET_ADD;
-import static com.sillykid.app.constant.NumericConstants.RESULT_CODE_BASKET_MINUS;
 import static com.sillykid.app.constant.NumericConstants.RESULT_CODE_GET;
 
 /**
@@ -88,6 +88,9 @@ public class AirportPickupPayOrderActivity extends BaseActivity implements Airpo
 
     private int bonusid = 0;
 
+    private int product_id = 0;
+    private String order_number = "";
+
 
     @Override
     public void setRootView() {
@@ -121,7 +124,7 @@ public class AirportPickupPayOrderActivity extends BaseActivity implements Airpo
                 break;
             case R.id.tv_confirmPayment:
                 showLoadingDialog(getString(R.string.submissionLoad));
-
+                ((AirportPickupPayOrderContract.Presenter) mPresenter).createTravelOrder(product_id, order_number, bonusid);
                 break;
         }
     }
@@ -136,7 +139,6 @@ public class AirportPickupPayOrderActivity extends BaseActivity implements Airpo
     public void getSuccess(String success, int flag) {
         dismissLoadingDialog();
         if (flag == 0) {
-
             AirportPickupPayOrderBean airportPickupPayOrderBean = (AirportPickupPayOrderBean) JsonUtil.getInstance().json2Obj(success, AirportPickupPayOrderBean.class);
             GlideImageLoader.glideOrdinaryLoader(aty, airportPickupPayOrderBean.getData().getMain_picture(), img_airportPickup, R.mipmap.placeholderfigure2);
             tv_airportName.setText(airportPickupPayOrderBean.getData().getTitle());
@@ -151,7 +153,11 @@ public class AirportPickupPayOrderActivity extends BaseActivity implements Airpo
             tv_contactWay.setText(airportPickupPayOrderBean.getData().getContact_number());
             tv_priceDescription.setText(airportPickupPayOrderBean.getData().getPrice_description());
             tv_dueThat.setText(airportPickupPayOrderBean.getData().getSchedule_description());
-            tv_remark.setText(airportPickupPayOrderBean.getData().getRemarks());
+            if (StringUtils.isEmpty(airportPickupPayOrderBean.getData().getRemarks())) {
+                tv_remark.setText(getString(R.string.noRemark));
+            } else {
+                tv_remark.setText(airportPickupPayOrderBean.getData().getRemarks());
+            }
             totalPrice = airportPickupPayOrderBean.getData().getPrice();
             tv_orderMoney.setText(getString(R.string.renminbi) + totalPrice);
             if (airportPickupPayOrderBean.getData().getChildren_number() != 0) {
@@ -159,10 +165,22 @@ public class AirportPickupPayOrderActivity extends BaseActivity implements Airpo
             } else {
                 tv_vouchers.setText(getString(R.string.renminbi) + "0.00");
             }
+            tv_actualPayment.setText(getString(R.string.renminbi) + totalPrice);
+            order_number = airportPickupPayOrderBean.getData().getOrder_number();
+            product_id = airportPickupPayOrderBean.getData().getProduct_id();
         } else if (flag == 1) {
-
-
-
+            CreateTravelOrderBean createTravelOrderBean = (CreateTravelOrderBean) JsonUtil.getInstance().json2Obj(success, CreateTravelOrderBean.class);
+            /**
+             * 发送消息
+             */
+            Intent intent = new Intent(aty, PaymentTravelOrderActivity.class);
+            intent.putExtra("order_id", createTravelOrderBean.getData().getOrder_id());
+            intent.putExtra("type", 1);
+            intent.putExtra("end_time", createTravelOrderBean.getData().getEnd_time());
+            intent.putExtra("start_time", createTravelOrderBean.getData().getStart_time());
+            intent.putExtra("pay_amount", createTravelOrderBean.getData().getPay_amount());
+            intent.putExtra("order_number", order_number);
+            skipActivity(aty, intent);
         }
     }
 

@@ -16,6 +16,11 @@ public interface AirportPickupPayOrderContract {
          */
         void getTravelOrderDetail(int requirement_id);
 
+        /**
+         * 创建订单
+         */
+        void createTravelOrder(int product_id, String order_number, int bonus_id);
+
     }
 
     interface View extends BaseView<Presenter, String> {

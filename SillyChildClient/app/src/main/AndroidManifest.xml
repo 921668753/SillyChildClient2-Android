@@ -190,6 +190,16 @@
             android:name=".homepage.airporttransportation.airportpickup.AirportPickupPayOrderActivity"
             android:screenOrientation="portrait" />
 
+        <!--首页   接机产品 - 支付订单-->
+        <activity
+            android:name=".homepage.airporttransportation.paymentorder.PaymentTravelOrderActivity"
+            android:screenOrientation="portrait" />
+
+        <!--首页   接机产品 - 支付完成/支付失败-->
+        <activity
+            android:name=".homepage.airporttransportation.paymentorder.payresult.PayTravelCompleteActivity"
+            android:screenOrientation="portrait" />
+
         <!--首页   - 送机信息-->
         <activity
             android:name=".homepage.airporttransportation.airportdropoff.AirportDropOffActivity"

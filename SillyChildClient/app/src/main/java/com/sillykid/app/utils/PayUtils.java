@@ -2,7 +2,10 @@ package com.sillykid.app.utils;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
@@ -10,16 +13,13 @@ import android.util.Log;
 
 import com.alipay.sdk.app.PayTask;
 import com.common.cklibrary.common.KJActivityStack;
-import com.common.cklibrary.common.StringConstants;
 import com.common.cklibrary.common.ViewInject;
-import com.kymjs.common.PreferenceHelper;
 import com.kymjs.common.StringUtils;
 
+import com.sillykid.app.homepage.airporttransportation.paymentorder.PaymentTravelOrderActivity;
 import com.unionpay.UPPayAssistEx;
 import com.sillykid.app.R;
 import com.sillykid.app.entity.PayResult;
-import com.sillykid.app.homepage.chartercustom.routes.CheckstandActivity;
-import com.sillykid.app.homepage.chartercustom.routes.PaySuccessActivity;
 import com.sillykid.app.mine.myshoppingcart.makesureorder.PaymentOrderActivity;
 import com.sillykid.app.mine.mywallet.mybankcard.dialog.SubmitBouncedDialog;
 import com.sillykid.app.mine.mywallet.recharge.RechargeActivity;
@@ -54,6 +54,10 @@ public class PayUtils {
      */
 
     public void doPay(String orderParam) {
+        if (!checkAliPayInstalled(context)) {
+            ViewInject.toast(context.getString(R.string.alipayappinstalled));
+            return;
+        }
         final String payInfo = orderParam;
         Log.d("payInfo", payInfo);
         Runnable payRunnable = new Runnable() {
@@ -94,6 +98,8 @@ public class PayUtils {
                                 ((RechargeActivity) context).jumpPayComplete(1);
                             } else if (context.getClass().getName().contains("PaymentOrderActivity")) {
                                 ((PaymentOrderActivity) context).jumpPayComplete(1);
+                            } else if (context.getClass().getName().contains("PaymentTravelOrderActivity")) {
+                                ((PaymentTravelOrderActivity) context).jumpPayComplete(1);
                             }
                         }
 //                        else if (TextUtils.equals(resultStatus, "4000")) {// 系统异常
@@ -124,11 +130,13 @@ public class PayUtils {
 //                            ViewInject.toast(KJActivityStack.create().topActivity().getString(R.string.alipay_system_exception));
 //                        }
                         else {
-                          //  ViewInject.toast(KJActivityStack.create().topActivity().getString(R.string.pay_error));
+                            //  ViewInject.toast(KJActivityStack.create().topActivity().getString(R.string.pay_error));
                             if (context.getClass().getName().contains("RechargeActivity")) {
                                 ((RechargeActivity) context).jumpPayComplete(0);
                             } else if (context.getClass().getName().contains("PaymentOrderActivity")) {
                                 ((PaymentOrderActivity) context).jumpPayComplete(0);
+                            } else if (context.getClass().getName().contains("PaymentTravelOrderActivity")) {
+                                ((PaymentTravelOrderActivity) context).jumpPayComplete(0);
                             }
                         }
                     } else {
@@ -138,6 +146,21 @@ public class PayUtils {
             }
         }
     };
+
+
+    /**
+     * 检测是否安装支付宝
+     *
+     * @param context
+     * @return
+     */
+    public static boolean checkAliPayInstalled(Context context) {
+        Uri uri = Uri.parse("alipays://platformapi/startApp");
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        ComponentName componentName = intent.resolveActivity(context.getPackageManager());
+        return componentName != null;
+    }
+
 
     /**
      * 微信支付
@@ -164,7 +187,7 @@ public class PayUtils {
             request.sign = paySign;
             msgApi.sendReq(request);
         } else {
-            ViewInject.toast(KJActivityStack.create().topActivity().getString(R.string.wxappinstalled));
+            ViewInject.toast(context.getString(R.string.wxappinstalled));
         }
     }
 

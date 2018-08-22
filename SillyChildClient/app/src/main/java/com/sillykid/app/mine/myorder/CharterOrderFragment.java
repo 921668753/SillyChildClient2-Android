@@ -152,15 +152,15 @@ public class CharterOrderFragment extends BaseFragment {
             changeFragment(ongoingCharterFragment);
         } else if (chageIcon == 22) {
             tv_evaluate.setTextColor(getResources().getColor(R.color.greenColors));
-            tv_evaluate.setBackgroundResource(R.color.greenColors);
+            tv_evaluate1.setBackgroundResource(R.color.greenColors);
             changeFragment(evaluateCharterFragment);
         } else if (chageIcon == 23) {
             tv_completed.setTextColor(getResources().getColor(R.color.greenColors));
-            tv_completed.setBackgroundResource(R.color.greenColors);
+            tv_completed1.setBackgroundResource(R.color.greenColors);
             changeFragment(completedCharterFragment);
-        } else if (chageIcon == 24) {
+        } else {
             tv_all.setTextColor(getResources().getColor(R.color.greenColors));
-            tv_all.setBackgroundResource(R.color.greenColors);
+            tv_all1.setBackgroundResource(R.color.greenColors);
             changeFragment(allCharterFragment);
         }
     }

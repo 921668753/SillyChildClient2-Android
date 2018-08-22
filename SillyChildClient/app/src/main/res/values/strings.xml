@@ -123,6 +123,7 @@
     <string name="payment_succeed">恭喜您，支付成功！</string>
     <string name="alipay_succeed">支付成功</string>
     <string name="wxappinstalled">请先安装微信再进行支付</string>
+    <string name="alipayappinstalled">请先安装支付宝再进行支付</string>
 
     <!--充值 充值成功 -->
     <string name="rechargeSuccess">充值成功</string>
@@ -274,7 +275,7 @@
     <string name="seating">座位数：</string>
     <string name="customerName">客户姓名：</string>
     <string name="contactWay2">联系方式：</string>
-
+    <string name="noRemark">暂无备注</string>
 
     <string name="notAvailable">暂无</string>
     <string name="noti_text_expression">有新的消息</string>

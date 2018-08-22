@@ -23,6 +23,8 @@ import android.util.Log;
 import com.common.cklibrary.common.BaseActivity;
 import com.common.cklibrary.common.KJActivityStack;
 import com.sillykid.app.BuildConfig;
+import com.sillykid.app.homepage.airporttransportation.paymentorder.PaymentTravelOrderActivity;
+import com.sillykid.app.homepage.airporttransportation.paymentorder.payresult.PayTravelCompleteActivity;
 import com.sillykid.app.mine.myshoppingcart.makesureorder.PaymentOrderActivity;
 import com.sillykid.app.mine.myshoppingcart.makesureorder.payresult.PayCompleteActivity;
 import com.sillykid.app.mine.mywallet.recharge.RechargeActivity;
@@ -63,19 +65,9 @@ public class WXPayEntryActivity extends BaseActivity implements IWXAPIEventHandl
         Log.d("pay", "toString=" + resp.toString());
         if (resp.getType() == ConstantsAPI.COMMAND_PAY_BY_WX) {
             if (resp.errCode == BaseResp.ErrCode.ERR_OK) {
-//                if (KJActivityStack.create().findActivity(RechargeActivity.class) != null) {
-//                    ViewInject.toast(getString(R.string.alipay_succeed));
-//                } else if (KJActivityStack.create().findActivity(PaymentOrderActivity.class) != null) {
                 jumpPayComplete(1);
-                //   }
-//            } else if (resp.errCode == BaseResp.ErrCode.ERR_USER_CANCEL) {
-//                ViewInject.toast(getString(R.string.alipay_order_cancel));
             } else {
-//                if (KJActivityStack.create().findActivity(RechargeActivity.class) != null) {
-//                    ViewInject.toast(getString(R.string.alipay_order_error));
-//                } else if (KJActivityStack.create().findActivity(PaymentOrderActivity.class) != null) {
                 jumpPayComplete(0);
-                //   }
             }
             finish();
         }
@@ -100,6 +92,14 @@ public class WXPayEntryActivity extends BaseActivity implements IWXAPIEventHandl
             //   Intent intent = new Intent(aty, PayCompleteActivity.class);
             jumpintent.putExtra("order_status", order_status);
             jumpintent.putExtra("order_id", ((PaymentOrderActivity) context).getOrderId());
+            showActivity(this, jumpintent);
+        } else if (KJActivityStack.create().findActivity(PaymentTravelOrderActivity.class) != null) {
+            Intent jumpintent = new Intent(this, PayTravelCompleteActivity.class);
+            Activity context = KJActivityStack.create().findActivity(PaymentTravelOrderActivity.class);
+            jumpintent.putExtra("order_status", order_status);
+            jumpintent.putExtra("order_id", ((PaymentTravelOrderActivity) context).getOrderId());
+            jumpintent.putExtra("order_number", ((PaymentTravelOrderActivity) context).getOrderNumber());
+            jumpintent.putExtra("pay_amount", ((PaymentTravelOrderActivity) context).getPayAmount());
             showActivity(this, jumpintent);
         }
     }

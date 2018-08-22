@@ -189,6 +189,13 @@ public class URLConstants {
      */
     public static String TRAVELORDERDETAIL = APIURL + "products/get_travel_order_detail.do";
 
+
+    /**
+     * 支付订单 - 创建订单
+     */
+    public static String CREATETRAVEORDER = APIURL + "products/create_travel_order.do";
+
+
     /**
      * 获取系统消息首页
      */

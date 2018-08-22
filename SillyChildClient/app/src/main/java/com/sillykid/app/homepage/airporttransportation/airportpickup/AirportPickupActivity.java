@@ -225,6 +225,7 @@ public class AirportPickupActivity extends BaseActivity implements AirportPickup
                 luggageOptions.show(tv_luggage);
                 break;
             case R.id.tv_submitOrder:
+                showLoadingDialog(getString(R.string.submissionLoad));
                 ((AirportPickupContract.Presenter) mPresenter).postAddRequirements(product_id, et_flightNumber.getText().toString().trim(), et_deliveredSite.getText().toString().trim(),
                         String.valueOf(timeDeparture), et_contact.getText().toString().trim(), et_contactWay.getText().toString().trim(), String.valueOf(adult_number), String.valueOf(children_number),
                         String.valueOf(baggage_number1), et_remark.getText().toString().trim(), passenger_number, baggage_number);
@@ -247,7 +248,6 @@ public class AirportPickupActivity extends BaseActivity implements AirportPickup
         intent.putExtra("baggage_passenger", getString(R.string.pickUpNumber) + "≤" + passenger_number + "  " + getString(R.string.baggageNumber1) + "≤" + baggage_number);
         intent.putExtra("title", getIntent().getStringExtra("title"));
         intent.putExtra("picture", getIntent().getStringExtra("picture"));
-
         showActivity(aty, intent);
     }
 

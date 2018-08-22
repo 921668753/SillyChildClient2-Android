@@ -38,4 +38,27 @@ public class AirportPickupPayOrderPresenter implements AirportPickupPayOrderCont
             }
         });
     }
+
+    @Override
+    public void createTravelOrder(int product_id, String order_number, int bonus_id) {
+        HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
+        httpParams.put("product_id", product_id);
+        httpParams.put("order_number", order_number);
+        if (bonus_id != 0) {
+            httpParams.put("bonus_id", bonus_id);
+        }
+        RequestClient.postCreateTravelOrder(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
+            @Override
+            public void onSuccess(String response) {
+                mView.getSuccess(response, 1);
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                mView.errorMsg(msg, 1);
+            }
+        });
+
+
+    }
 }

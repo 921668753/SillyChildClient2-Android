@@ -775,6 +775,25 @@ public class RequestClient {
     }
 
     /**
+     * 支付订单 - 创建订单
+     */
+    public static void postCreateTravelOrder(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        doServer(context, new TokenCallback() {
+            @Override
+            public void execute() {
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
+                if (StringUtils.isEmpty(cookies)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("Cookie", cookies);
+                HttpRequest.requestGetHttp(context, URLConstants.CREATETRAVEORDER, httpParams, listener);
+            }
+        }, listener);
+    }
+
+
+    /**
      * 得到地区的热门城市
      */
     public static void getChildHotCity(HttpParams httpParams, int id, ResponseListener<String> listener) {

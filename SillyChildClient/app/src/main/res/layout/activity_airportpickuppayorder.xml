@@ -389,15 +389,12 @@
                 style="@style/MatchWrap"
                 android:background="@color/whiteColors"
                 android:gravity="left"
-                android:hint="@string/remark1"
                 android:paddingBottom="@dimen/dimen10"
                 android:paddingLeft="@dimen/dimen17"
                 android:paddingRight="@dimen/dimen17"
                 android:paddingTop="@dimen/dimen10"
-                android:text="备注备注备注备注备注备注备注备注备注备注备注备注备注不在不在包治百病在不在不不准备 不准备不准备在不准备在备注不在不在备注不在不在部部长不在不在备注不治之症做做做做做做做做做做做做计算机价格家具价格家男男女女给你呢禁"
+                android:text=""
                 android:textColor="@color/hintColors"
-                android:textColorHint="@color/hintColors"
-                android:textCursorDrawable="@drawable/shape_cursor"
                 android:textSize="@dimen/textsize12" />
 
             <LinearLayout

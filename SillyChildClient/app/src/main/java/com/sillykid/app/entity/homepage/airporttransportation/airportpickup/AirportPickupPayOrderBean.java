@@ -8,8 +8,8 @@ public class AirportPickupPayOrderBean extends BaseResult<AirportPickupPayOrderB
     public class DataBean {
         /**
          * audit_number : 1
-         * flight_number : AZ123456
-         * order_number : SHZ20180821212317421279890
+         * flight_number : CA123456
+         * order_number : SHZ2018082213432813780027
          * main_picture : http://img.shahaizhi.com/%28null%291530269095
          * title : 东京成田机场接机
          * delivery_location : 上海
@@ -18,13 +18,12 @@ public class AirportPickupPayOrderBean extends BaseResult<AirportPickupPayOrderB
          * schedule_description : 预定说明
          * price : 2400.00
          * product_id : 1
-         * contact : ck
+         * contact : 安
          * price_description : 价格说明
-         * order_id : 21
          * subtitle_title : 接机人数≤6    行李件数≤2
          * children_number : 1
          * remarks :
-         * flight_arrival_time : 2018-08-23 21:22
+         * flight_arrival_time : 2018-08-25 13:35
          */
 
         private int audit_number;
@@ -40,7 +39,6 @@ public class AirportPickupPayOrderBean extends BaseResult<AirportPickupPayOrderB
         private int product_id;
         private String contact;
         private String price_description;
-        private int order_id;
         private String subtitle_title;
         private int children_number;
         private String remarks;
@@ -148,14 +146,6 @@ public class AirportPickupPayOrderBean extends BaseResult<AirportPickupPayOrderB
 
         public void setPrice_description(String price_description) {
             this.price_description = price_description;
-        }
-
-        public int getOrder_id() {
-            return order_id;
-        }
-
-        public void setOrder_id(int order_id) {
-            this.order_id = order_id;
         }
 
         public String getSubtitle_title() {

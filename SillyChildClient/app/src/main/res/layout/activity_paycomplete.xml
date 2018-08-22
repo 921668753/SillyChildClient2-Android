@@ -91,6 +91,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_consignee"
             style="@style/MatchWrap"
             android:orientation="horizontal"
             android:paddingLeft="@dimen/dimen15"
@@ -124,6 +125,7 @@
 
 
         <LinearLayout
+            android:id="@+id/ll_deliveryAddress"
             style="@style/MatchWrap"
             android:orientation="horizontal"
             android:paddingLeft="@dimen/dimen15"

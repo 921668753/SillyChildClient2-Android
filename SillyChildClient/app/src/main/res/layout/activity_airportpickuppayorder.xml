@@ -426,7 +426,6 @@
                     android:textColor="@color/fF5656Colors"
                     android:textSize="@dimen/textsize15" />
 
-
             </LinearLayout>
 
             <LinearLayout

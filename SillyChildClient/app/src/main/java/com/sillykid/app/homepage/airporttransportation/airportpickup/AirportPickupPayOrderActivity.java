@@ -1,5 +1,6 @@
 package com.sillykid.app.homepage.airporttransportation.airportpickup;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -9,9 +10,16 @@ import com.common.cklibrary.common.BindView;
 import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.ActivityTitleUtils;
 import com.common.cklibrary.utils.JsonUtil;
+import com.common.cklibrary.utils.MathUtil;
+import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
 import com.sillykid.app.entity.homepage.airporttransportation.airportpickup.AirportPickupPayOrderBean;
+import com.sillykid.app.mine.mywallet.coupons.CouponsActivity;
 import com.sillykid.app.utils.GlideImageLoader;
+
+import static com.sillykid.app.constant.NumericConstants.RESULT_CODE_BASKET_ADD;
+import static com.sillykid.app.constant.NumericConstants.RESULT_CODE_BASKET_MINUS;
+import static com.sillykid.app.constant.NumericConstants.RESULT_CODE_GET;
 
 /**
  * 接机---支付订单
@@ -76,6 +84,10 @@ public class AirportPickupPayOrderActivity extends BaseActivity implements Airpo
 
     private int requirement_id = 0;
 
+    private String totalPrice = "0";
+
+    private int bonusid = 0;
+
 
     @Override
     public void setRootView() {
@@ -102,9 +114,14 @@ public class AirportPickupPayOrderActivity extends BaseActivity implements Airpo
         super.widgetClick(v);
         switch (v.getId()) {
             case R.id.tv_vouchers:
-
+                Intent intent1 = new Intent(aty, CouponsActivity.class);
+                intent1.putExtra("type", -1);
+                intent1.putExtra("money", totalPrice);
+                startActivityForResult(intent1, RESULT_CODE_GET);
                 break;
             case R.id.tv_confirmPayment:
+                showLoadingDialog(getString(R.string.submissionLoad));
+
                 break;
         }
     }
@@ -118,22 +135,58 @@ public class AirportPickupPayOrderActivity extends BaseActivity implements Airpo
     @Override
     public void getSuccess(String success, int flag) {
         dismissLoadingDialog();
-        AirportPickupPayOrderBean airportPickupPayOrderBean = (AirportPickupPayOrderBean) JsonUtil.getInstance().json2Obj(success, AirportPickupPayOrderBean.class);
-        GlideImageLoader.glideOrdinaryLoader(aty, airportPickupPayOrderBean.getData().getMain_picture(), img_airportPickup, R.mipmap.placeholderfigure2);
-        tv_airportName.setText(airportPickupPayOrderBean.getData().getTitle());
-        tv_travelConfiguration.setText(airportPickupPayOrderBean.getData().getSubtitle_title());
-        tv_flightNumber.setText(airportPickupPayOrderBean.getData().getFlight_number());
-        tv_deliveredSite.setText(airportPickupPayOrderBean.getData().getDelivery_location());
-        tv_flightArrivalTime.setText(airportPickupPayOrderBean.getData().getFlight_arrival_time());
-        tv_adult.setText(airportPickupPayOrderBean.getData().getAudit_number() + "");
-        tv_children.setText(airportPickupPayOrderBean.getData().getChildren_number() + "");
-        tv_luggage.setText(airportPickupPayOrderBean.getData().getBaggage_number() + "");
-        tv_contact.setText(airportPickupPayOrderBean.getData().getContact());
-        tv_contactWay.setText(airportPickupPayOrderBean.getData().getContact_number());
-        tv_priceDescription.setText(airportPickupPayOrderBean.getData().getPrice_description());
-        tv_dueThat.setText(airportPickupPayOrderBean.getData().getSchedule_description());
-        tv_remark.setText(airportPickupPayOrderBean.getData().getRemarks());
+        if (flag == 0) {
+
+            AirportPickupPayOrderBean airportPickupPayOrderBean = (AirportPickupPayOrderBean) JsonUtil.getInstance().json2Obj(success, AirportPickupPayOrderBean.class);
+            GlideImageLoader.glideOrdinaryLoader(aty, airportPickupPayOrderBean.getData().getMain_picture(), img_airportPickup, R.mipmap.placeholderfigure2);
+            tv_airportName.setText(airportPickupPayOrderBean.getData().getTitle());
+            tv_travelConfiguration.setText(airportPickupPayOrderBean.getData().getSubtitle_title());
+            tv_flightNumber.setText(airportPickupPayOrderBean.getData().getFlight_number());
+            tv_deliveredSite.setText(airportPickupPayOrderBean.getData().getDelivery_location());
+            tv_flightArrivalTime.setText(airportPickupPayOrderBean.getData().getFlight_arrival_time());
+            tv_adult.setText(airportPickupPayOrderBean.getData().getAudit_number() + "");
+            tv_children.setText(airportPickupPayOrderBean.getData().getChildren_number() + "");
+            tv_luggage.setText(airportPickupPayOrderBean.getData().getBaggage_number() + "");
+            tv_contact.setText(airportPickupPayOrderBean.getData().getContact());
+            tv_contactWay.setText(airportPickupPayOrderBean.getData().getContact_number());
+            tv_priceDescription.setText(airportPickupPayOrderBean.getData().getPrice_description());
+            tv_dueThat.setText(airportPickupPayOrderBean.getData().getSchedule_description());
+            tv_remark.setText(airportPickupPayOrderBean.getData().getRemarks());
+            totalPrice = airportPickupPayOrderBean.getData().getPrice();
+            tv_orderMoney.setText(getString(R.string.renminbi) + totalPrice);
+            if (airportPickupPayOrderBean.getData().getChildren_number() != 0) {
+                tv_vouchers.setText(airportPickupPayOrderBean.getData().getChildren_number() + getString(R.string.usable1) + getString(R.string.usable));
+            } else {
+                tv_vouchers.setText(getString(R.string.renminbi) + "0.00");
+            }
+        } else if (flag == 1) {
+
+
+
+        }
     }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RESULT_CODE_GET && resultCode == RESULT_OK) {
+            String money = data.getStringExtra("money");
+            bonusid = data.getIntExtra("id", 0);
+            tv_vouchers.setText(getString(R.string.renminbi) + "-" + MathUtil.keepTwo(StringUtils.toDouble(money)));
+            tv_actualPayment.setText(calculationTotal());
+        }
+    }
+
+    /**
+     * 计算合计
+     */
+    private String calculationTotal() {
+        double total = 0;
+        total = StringUtils.toDouble(tv_orderMoney.getText().toString().trim().substring(1)) + StringUtils.toDouble(tv_vouchers.getText().toString().trim().substring(1));
+        return MathUtil.keepTwo(total);
+    }
+
 
     @Override
     public void errorMsg(String msg, int flag) {

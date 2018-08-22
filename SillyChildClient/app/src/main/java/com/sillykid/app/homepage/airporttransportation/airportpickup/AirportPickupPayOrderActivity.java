@@ -76,6 +76,10 @@ public class AirportPickupPayOrderActivity extends BaseActivity implements Airpo
     @BindView(id = R.id.tv_vouchers, click = true)
     private TextView tv_vouchers;
 
+    @BindView(id = R.id.img_right)
+    private ImageView img_right;
+
+
     @BindView(id = R.id.tv_actualPayment)
     private TextView tv_actualPayment;
 
@@ -161,9 +165,10 @@ public class AirportPickupPayOrderActivity extends BaseActivity implements Airpo
             totalPrice = airportPickupPayOrderBean.getData().getPrice();
             tv_orderMoney.setText(getString(R.string.renminbi) + totalPrice);
             if (airportPickupPayOrderBean.getData().getChildren_number() != 0) {
-                tv_vouchers.setText(airportPickupPayOrderBean.getData().getChildren_number() + getString(R.string.usable1) + getString(R.string.usable));
+                tv_vouchers.setText(airportPickupPayOrderBean.getData().getChildren_number() + getString(R.string.usable1));
             } else {
                 tv_vouchers.setText(getString(R.string.renminbi) + "0.00");
+                img_right.setVisibility(View.GONE);
             }
             tv_actualPayment.setText(getString(R.string.renminbi) + totalPrice);
             order_number = airportPickupPayOrderBean.getData().getOrder_number();

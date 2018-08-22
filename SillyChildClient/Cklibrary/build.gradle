@@ -139,20 +139,9 @@ dependencies {
      *   https://github.com/dueeeke/dkplayer
      * 视频播放器
      */
-    //  # 必选，可兼容市面上绝大部分设备
-    api 'com.github.dueeeke.dkplayer:dkplayer-java:2.5.2'
-    api 'com.github.dueeeke.dkplayer:dkplayer-armv7a:2.5.2'
+    //  # 必选，可兼容市面上绝大部分
 
-    //  # 可选，用于兼容一些其他的CPU架构
-    api 'com.github.dueeeke.dkplayer:dkplayer-armv5:2.5.2'
-    api 'com.github.dueeeke.dkplayer:dkplayer-arm64:2.5.2'
-    api 'com.github.dueeeke.dkplayer:dkplayer-x86:2.5.2'
-    api 'com.github.dueeeke.dkplayer:dkplayer-x86_64:2.5.2'
 
-    //  # 可选，里面包含StandardVideoController的实现
-    api 'com.github.dueeeke.dkplayer:dkplayer-ui:2.5.2'
-
-    api 'com.github.castorflex.verticalviewpager:library:19.0.1'
     /**
      * https://github.com/Othershe/CalendarView
      * 日历控件

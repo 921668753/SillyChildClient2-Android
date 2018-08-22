@@ -11,6 +11,10 @@ import com.common.cklibrary.common.BindView;
 import com.common.cklibrary.common.KJActivityStack;
 import com.common.cklibrary.utils.ActivityTitleUtils;
 import com.sillykid.app.R;
+import com.sillykid.app.homepage.airporttransportation.AirportTransportationClassificationActivity;
+import com.sillykid.app.homepage.airporttransportation.PriceInformationActivity;
+import com.sillykid.app.homepage.airporttransportation.SelectProductAirportTransportationActivity;
+import com.sillykid.app.homepage.airporttransportation.airportpickup.AirportPickupActivity;
 import com.sillykid.app.homepage.airporttransportation.paymentorder.PaymentTravelOrderActivity;
 import com.sillykid.app.main.MainActivity;
 import com.sillykid.app.mine.myorder.MyOrderActivity;
@@ -102,6 +106,10 @@ public class PayTravelCompleteActivity extends BaseActivity {
         super.widgetClick(v);
         switch (v.getId()) {
             case R.id.tv_checkOrder:
+                KJActivityStack.create().finishActivity(AirportPickupActivity.class);
+                KJActivityStack.create().finishActivity(AirportTransportationClassificationActivity.class);
+                KJActivityStack.create().finishActivity(PriceInformationActivity.class);
+                KJActivityStack.create().finishActivity(SelectProductAirportTransportationActivity.class);
                 Intent intent = new Intent(aty, MyOrderActivity.class);
                 if (getIntent().getIntExtra("order_status", 0) == 1) {
                     intent.putExtra("newChageIcon", 1);

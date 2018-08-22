@@ -38,6 +38,7 @@ import com.sillykid.app.entity.main.HomePageBean.DataBean.BannerListBean;
 import com.sillykid.app.homepage.BannerDetailsActivity;
 import com.sillykid.app.homepage.airporttransportation.AirportTransportationClassificationActivity;
 import com.sillykid.app.homepage.bythedaycharter.ByTheDayCharterClassificationActivity;
+import com.sillykid.app.homepage.bythedaycharter.SelectDateActivity;
 import com.sillykid.app.homepage.hotvideo.HotVideoActivity;
 import com.sillykid.app.homepage.hotvideo.VideoDetailsActivity;
 import com.sillykid.app.homepage.message.MessageActivity;
@@ -224,7 +225,8 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
                 aty.showActivity(aty, intent1);
                 break;
             case R.id.ll_privateOrdering:
-                Intent intent2 = new Intent(aty, PrivateCustomActivity.class);
+                Intent intent2 = new Intent(aty, SelectDateActivity.class);
+              //  Intent intent2 = new Intent(aty, PrivateCustomActivity.class);
                 // intent1.putExtra("newChageIcon", 2);
                 aty.showActivity(aty, intent2);
                 break;

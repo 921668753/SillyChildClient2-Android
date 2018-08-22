@@ -211,6 +211,10 @@
             android:name=".homepage.airporttransportation.airportdropoff.AirportDropOffPayOrderActivity"
             android:screenOrientation="portrait" />
 
+        <!--首页   按天包车 - 选择日期-->
+        <activity
+            android:name=".homepage.bythedaycharter.SelectDateActivity"
+            android:screenOrientation="portrait" />
 
         <!--首页   更多分类-->
         <activity

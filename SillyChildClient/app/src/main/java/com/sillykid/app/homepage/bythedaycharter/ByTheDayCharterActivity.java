@@ -1,6 +1,5 @@
 package com.sillykid.app.homepage.bythedaycharter;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
@@ -16,8 +15,6 @@ import com.common.cklibrary.common.BindView;
 import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.ActivityTitleUtils;
 import com.common.cklibrary.utils.JsonUtil;
-import com.luck.picture.lib.rxbus2.Subscribe;
-import com.luck.picture.lib.rxbus2.ThreadMode;
 import com.sillykid.app.R;
 import com.sillykid.app.entity.homepage.airporttransportation.airportpickup.AirportPickupBean;
 import com.sillykid.app.entity.homepage.airporttransportation.airportpickup.PeopleBean;
@@ -26,12 +23,9 @@ import com.sillykid.app.utils.DataUtil;
 import com.sillykid.app.utils.GlideImageLoader;
 import com.sillykid.app.utils.SoftKeyboardUtils;
 import com.sillykid.app.utils.custompicker.bean.DayTimeEntity;
-import com.sillykid.app.utils.custompicker.bean.UpdataCalendar;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import io.rong.eventbus.EventBus;
 
 import static com.sillykid.app.constant.NumericConstants.RESULT_CODE_GET;
 

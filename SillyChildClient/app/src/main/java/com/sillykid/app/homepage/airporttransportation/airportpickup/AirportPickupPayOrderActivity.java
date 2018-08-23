@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.common.cklibrary.common.BaseActivity;
 import com.common.cklibrary.common.BindView;
+import com.common.cklibrary.common.KJActivityStack;
 import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.ActivityTitleUtils;
 import com.common.cklibrary.utils.JsonUtil;
@@ -15,8 +16,12 @@ import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
 import com.sillykid.app.entity.homepage.airporttransportation.airportpickup.AirportPickupPayOrderBean;
 import com.sillykid.app.entity.homepage.airporttransportation.airportpickup.CreateTravelOrderBean;
+import com.sillykid.app.homepage.airporttransportation.AirportTransportationClassificationActivity;
+import com.sillykid.app.homepage.airporttransportation.PriceInformationActivity;
+import com.sillykid.app.homepage.airporttransportation.SelectProductAirportTransportationActivity;
 import com.sillykid.app.homepage.airporttransportation.paymentorder.PaymentTravelOrderActivity;
 import com.sillykid.app.mine.mywallet.coupons.CouponsActivity;
+import com.sillykid.app.utils.DataUtil;
 import com.sillykid.app.utils.GlideImageLoader;
 
 import static com.sillykid.app.constant.NumericConstants.RESULT_CODE_GET;
@@ -43,7 +48,6 @@ public class AirportPickupPayOrderActivity extends BaseActivity implements Airpo
 
     @BindView(id = R.id.tv_flightArrivalTime)
     private TextView tv_flightArrivalTime;
-
 
     @BindView(id = R.id.tv_adult)
     private TextView tv_adult;
@@ -149,7 +153,7 @@ public class AirportPickupPayOrderActivity extends BaseActivity implements Airpo
             tv_travelConfiguration.setText(airportPickupPayOrderBean.getData().getSubtitle_title());
             tv_flightNumber.setText(airportPickupPayOrderBean.getData().getFlight_number());
             tv_deliveredSite.setText(airportPickupPayOrderBean.getData().getDelivery_location());
-            tv_flightArrivalTime.setText(airportPickupPayOrderBean.getData().getFlight_arrival_time());
+            tv_flightArrivalTime.setText(DataUtil.formatData(StringUtils.toLong(airportPickupPayOrderBean.getData().getFlight_arrival_time()), "yyyy-MM-dd HH:mm"));
             tv_adult.setText(airportPickupPayOrderBean.getData().getAudit_number() + "");
             tv_children.setText(airportPickupPayOrderBean.getData().getChildren_number() + "");
             tv_luggage.setText(airportPickupPayOrderBean.getData().getBaggage_number() + "");
@@ -164,16 +168,21 @@ public class AirportPickupPayOrderActivity extends BaseActivity implements Airpo
             }
             totalPrice = airportPickupPayOrderBean.getData().getPrice();
             tv_orderMoney.setText(getString(R.string.renminbi) + totalPrice);
-            if (airportPickupPayOrderBean.getData().getChildren_number() != 0) {
-                tv_vouchers.setText(airportPickupPayOrderBean.getData().getChildren_number() + getString(R.string.usable1));
+            if (airportPickupPayOrderBean.getData().getBonus_number() != 0) {
+                tv_vouchers.setText(airportPickupPayOrderBean.getData().getBonus_number() + getString(R.string.usable1));
             } else {
                 tv_vouchers.setText(getString(R.string.renminbi) + "0.00");
                 img_right.setVisibility(View.GONE);
+                tv_vouchers.setOnClickListener(null);
             }
             tv_actualPayment.setText(getString(R.string.renminbi) + totalPrice);
             order_number = airportPickupPayOrderBean.getData().getOrder_number();
             product_id = airportPickupPayOrderBean.getData().getProduct_id();
         } else if (flag == 1) {
+            KJActivityStack.create().finishActivity(AirportPickupActivity.class);
+            KJActivityStack.create().finishActivity(AirportTransportationClassificationActivity.class);
+            KJActivityStack.create().finishActivity(PriceInformationActivity.class);
+            KJActivityStack.create().finishActivity(SelectProductAirportTransportationActivity.class);
             CreateTravelOrderBean createTravelOrderBean = (CreateTravelOrderBean) JsonUtil.getInstance().json2Obj(success, CreateTravelOrderBean.class);
             /**
              * 发送消息
@@ -207,6 +216,9 @@ public class AirportPickupPayOrderActivity extends BaseActivity implements Airpo
     private String calculationTotal() {
         double total = 0;
         total = StringUtils.toDouble(tv_orderMoney.getText().toString().trim().substring(1)) + StringUtils.toDouble(tv_vouchers.getText().toString().trim().substring(1));
+        if (total <= 0) {
+            total = 0;
+        }
         return MathUtil.keepTwo(total);
     }
 

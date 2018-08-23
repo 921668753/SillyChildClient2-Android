@@ -170,9 +170,19 @@ public class URLConstants {
     public static String AIRPOTBYCOUNTRYID = APIURL + "airport/get_airport_by_countryId.do";
 
     /**
+     * 包车服务 - 获取城市包车列表
+     */
+    public static String REGIONBYCOUNTRYID = APIURL + "airport/get_region.do";
+
+    /**
      * 城市与机场 - 通过国家编号获取城市与机场信息
      */
     public static String PRODUCTBYAIRPORTID = APIURL + "products/get_product_by_airport_id.do";
+
+    /**
+     * 包车服务 - 通过城市的编号来获取产品信息
+     */
+    public static String PRODUCTBYREGION = APIURL + "products/get_product_by_region.do";
 
     /**
      * 城市与机场 - 通过国家编号获取城市与机场信息
@@ -180,9 +190,15 @@ public class URLConstants {
     public static String PRODUCTDETAILS = APIURL + "products/get_product_details.do";
 
     /**
-     * 城市与机场 - 通过国家编号获取城市与机场信息
+     * 接机产品 - 用户填写接机预定信息
      */
     public static String ADDREQUIREMENTS = APIURL + "products/add_requirements.do";
+
+    /**
+     * 包车服务 - 用户填写包车需求
+     */
+    public static String ADDCARREQUIREMENTS = APIURL + "products/add_car_requirements.do";
+
 
     /**
      * 接机---支付订单

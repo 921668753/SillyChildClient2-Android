@@ -723,11 +723,26 @@ public class RequestClient {
     }
 
     /**
+     * 包车服务 - 获取城市包车列表
+     */
+    public static void getRegionByCountryId(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        HttpRequest.requestGetHttp(context, URLConstants.REGIONBYCOUNTRYID, httpParams, false, listener);
+    }
+
+    /**
      * 接机产品 - 通过机场的编号来获取产品信息
      */
     public static void getProductByAirportId(Context context, HttpParams httpParams, ResponseListener<String> listener) {
         HttpRequest.requestGetHttp(context, URLConstants.PRODUCTBYAIRPORTID, httpParams, false, listener);
     }
+
+    /**
+     * 包车服务 - 通过城市的编号来获取产品信息
+     */
+    public static void getProductByRegion(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        HttpRequest.requestGetHttp(context, URLConstants.PRODUCTBYREGION, httpParams, false, listener);
+    }
+
 
     /**
      * 接机产品 - 通过产品编号获取车辆服务信息
@@ -751,6 +766,24 @@ public class RequestClient {
                 }
                 httpParams.putHeaders("Cookie", cookies);
                 HttpRequest.requestPostFORMHttp(context, URLConstants.ADDREQUIREMENTS, httpParams, listener);
+            }
+        }, listener);
+    }
+
+    /**
+     * 包车服务 - 用户填写包车需求
+     */
+    public static void postAddCarRequirements(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        doServer(context, new TokenCallback() {
+            @Override
+            public void execute() {
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
+                if (StringUtils.isEmpty(cookies)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("Cookie", cookies);
+                HttpRequest.requestPostFORMHttp(context, URLConstants.ADDCARREQUIREMENTS, httpParams, listener);
             }
         }, listener);
     }
@@ -787,7 +820,7 @@ public class RequestClient {
                     return;
                 }
                 httpParams.putHeaders("Cookie", cookies);
-                HttpRequest.requestGetHttp(context, URLConstants.CREATETRAVEORDER, httpParams, listener);
+                HttpRequest.requestPostFORMHttp(context, URLConstants.CREATETRAVEORDER, httpParams, listener);
             }
         }, listener);
     }

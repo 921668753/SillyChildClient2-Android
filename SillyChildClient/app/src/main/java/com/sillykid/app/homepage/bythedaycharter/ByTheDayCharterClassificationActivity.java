@@ -13,19 +13,18 @@ import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.ActivityTitleUtils;
 import com.common.cklibrary.utils.JsonUtil;
 import com.sillykid.app.R;
-import com.sillykid.app.adapter.homepage.airporttransportation.AirportTransportationClassificationGridViewAdapter;
 import com.sillykid.app.adapter.homepage.airporttransportation.AirportTransportationClassificationListViewAdapter;
+import com.sillykid.app.adapter.homepage.bythedaycharter.ByTheDayCharterClassificationGridViewAdapter;
 import com.sillykid.app.entity.homepage.airporttransportation.AirportByCountryIdBean;
 import com.sillykid.app.entity.homepage.airporttransportation.AirportCountryListBean;
-import com.sillykid.app.homepage.airporttransportation.AirportTransportationClassificationContract;
-import com.sillykid.app.homepage.airporttransportation.AirportTransportationClassificationPresenter;
+import com.sillykid.app.entity.homepage.bythedaycharter.RegionByCountryIdBean;
 
 import java.util.List;
 
 /**
  * 按天包车分类
  */
-public class ByTheDayCharterClassificationActivity extends BaseActivity implements AirportTransportationClassificationContract.View, AdapterView.OnItemClickListener {
+public class ByTheDayCharterClassificationActivity extends BaseActivity implements ByTheDayCharterClassificationContract.View, AdapterView.OnItemClickListener {
 
     @BindView(id = R.id.lv_countries)
     private ListView lv_countries;
@@ -35,7 +34,7 @@ public class ByTheDayCharterClassificationActivity extends BaseActivity implemen
 
     private AirportTransportationClassificationListViewAdapter mListViewAdapter = null;
 
-    private AirportTransportationClassificationGridViewAdapter mGridViewAdapter = null;
+    private ByTheDayCharterClassificationGridViewAdapter mGridViewAdapter = null;
 
     private List<AirportCountryListBean.DataBean> airportCountryList;
 
@@ -52,9 +51,9 @@ public class ByTheDayCharterClassificationActivity extends BaseActivity implemen
     @Override
     public void initData() {
         super.initData();
-        mPresenter = new AirportTransportationClassificationPresenter(this);
+        mPresenter = new ByTheDayCharterClassificationPresenter(this);
         mListViewAdapter = new AirportTransportationClassificationListViewAdapter(this);
-        mGridViewAdapter = new AirportTransportationClassificationGridViewAdapter(this);
+        mGridViewAdapter = new ByTheDayCharterClassificationGridViewAdapter(this);
         title = getIntent().getStringExtra("title");
         type = getIntent().getIntExtra("type", 0);
     }
@@ -68,7 +67,7 @@ public class ByTheDayCharterClassificationActivity extends BaseActivity implemen
         gv_countriesClassification.setAdapter(mGridViewAdapter);
         gv_countriesClassification.setOnItemClickListener(this);
         showLoadingDialog(getString(R.string.dataLoad));
-        ((AirportTransportationClassificationContract.Presenter) mPresenter).getAirportCountryList();
+        ((ByTheDayCharterClassificationContract.Presenter) mPresenter).getAirportCountryList();
     }
 
     @Override
@@ -77,15 +76,15 @@ public class ByTheDayCharterClassificationActivity extends BaseActivity implemen
             selectClassification(position);
         } else if (adapterView.getId() == R.id.gv_countriesClassification) {
             Intent intent = new Intent(aty, SelectProductActivity.class);
-            intent.putExtra("airport_id", mGridViewAdapter.getItem(position).getAirport_id());
-            intent.putExtra("name", mGridViewAdapter.getItem(position).getCountry_name() + mGridViewAdapter.getItem(position).getRegion_name() + mGridViewAdapter.getItem(position).getAirport_name() + title);
+            intent.putExtra("region_id", mGridViewAdapter.getItem(position).getRegion_id());
+            intent.putExtra("name", mGridViewAdapter.getItem(position).getCountry_name() + mGridViewAdapter.getItem(position).getRegion_name());
             intent.putExtra("type", type);
             showActivity(aty, intent);
         }
     }
 
     @Override
-    public void setPresenter(AirportTransportationClassificationContract.Presenter presenter) {
+    public void setPresenter(ByTheDayCharterClassificationContract.Presenter presenter) {
         mPresenter = presenter;
     }
 
@@ -98,9 +97,9 @@ public class ByTheDayCharterClassificationActivity extends BaseActivity implemen
                 selectClassification(0);
             }
         } else if (flag == 1) {
-            AirportByCountryIdBean airportByCountryIdBean = (AirportByCountryIdBean) JsonUtil.getInstance().json2Obj(success, AirportByCountryIdBean.class);
+            RegionByCountryIdBean regionByCountryIdBean = (RegionByCountryIdBean) JsonUtil.getInstance().json2Obj(success, RegionByCountryIdBean.class);
             mGridViewAdapter.clear();
-            mGridViewAdapter.addNewData(airportByCountryIdBean.getData());
+            mGridViewAdapter.addNewData(regionByCountryIdBean.getData());
             dismissLoadingDialog();
         }
     }
@@ -115,7 +114,7 @@ public class ByTheDayCharterClassificationActivity extends BaseActivity implemen
             if (position == i || position == i && position == 0) {
                 airportCountryBean = airportCountryList.get(i);
                 airportCountryBean.setIsSelected(1);
-                ((AirportTransportationClassificationContract.Presenter) mPresenter).getAirportByCountryId(airportCountryBean.getCountry_id());
+                ((ByTheDayCharterClassificationContract.Presenter) mPresenter).getRegionByCountryId(airportCountryBean.getCountry_id());
             } else {
                 airportCountryList.get(i).setIsSelected(0);
             }

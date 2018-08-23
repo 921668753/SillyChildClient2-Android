@@ -47,11 +47,10 @@
                 <TextView
                     android:id="@+id/tv_travelTime"
                     style="@style/AutoWrap"
-                    android:lineSpacingExtra="@dimen/dimen6"
-                    android:paddingBottom="@dimen/dimen13"
-                    android:paddingTop="@dimen/dimen12"
-                    android:text="2018-05-15    2018-05-15
-2018-05-15    2018-05-15"
+                    android:paddingBottom="@dimen/dimen14"
+                    android:paddingLeft="@dimen/dimen10"
+                    android:paddingTop="@dimen/dimen14"
+                    android:text="@string/selectDate"
                     android:textColor="@color/hintColors"
                     android:textSize="@dimen/textsize13" />
 
@@ -86,10 +85,8 @@
                 android:id="@+id/et_journeyBegins"
                 style="@style/Match44"
                 android:background="@color/whiteColors"
-                android:digits="@string/number0"
                 android:gravity="center_vertical"
                 android:hint="@string/fillPlaceDeparture"
-                android:inputType="phone"
                 android:paddingLeft="@dimen/dimen17"
                 android:paddingRight="@dimen/dimen17"
                 android:singleLine="true"
@@ -126,10 +123,8 @@
                 android:id="@+id/et_journeyEnds"
                 style="@style/Match44"
                 android:background="@color/whiteColors"
-                android:digits="@string/number0"
                 android:gravity="center_vertical"
                 android:hint="@string/fillPlaceService"
-                android:inputType="phone"
                 android:paddingLeft="@dimen/dimen17"
                 android:paddingRight="@dimen/dimen17"
                 android:singleLine="true"
@@ -252,7 +247,6 @@
 
             </LinearLayout>
 
-
             <LinearLayout
                 style="@style/MatchWrap"
                 android:background="@color/whiteColors"
@@ -260,6 +254,7 @@
                 android:paddingTop="@dimen/dimen17">
 
                 <LinearLayout
+                    android:id="@+id/ll_adult"
                     style="@style/AutoWrap"
                     android:layout_marginLeft="@dimen/dimen17"
                     android:gravity="center_vertical"
@@ -276,17 +271,14 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/et_adult"
+                            android:id="@+id/tv_adult"
                             style="@style/MatchAuto"
                             android:background="@android:color/transparent"
-                            android:digits="@string/number0"
                             android:gravity="center"
-                            android:inputType="number"
                             android:singleLine="true"
                             android:text="@string/pleaseSelect"
                             android:textColor="@color/textColor"
-                            android:textCursorDrawable="@drawable/shape_cursor"
-                            android:textSize="@dimen/textsize12" />
+                            android:textSize="@dimen/textsize15" />
 
                         <TextView style="@style/DividerWidth" />
 
@@ -295,12 +287,12 @@
                     <ImageView
                         android:layout_width="@dimen/dimen13"
                         android:layout_height="@dimen/dimen7"
-                        android:layout_marginTop="@dimen/dimen5"
                         android:src="@mipmap/downarrow" />
 
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/ll_children"
                     style="@style/AutoWrap"
                     android:layout_marginLeft="@dimen/dimen52"
                     android:layout_marginRight="@dimen/dimen40"
@@ -319,17 +311,14 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/et_children"
+                            android:id="@+id/tv_children"
                             style="@style/MatchAuto"
                             android:background="@android:color/transparent"
-                            android:digits="@string/number0"
                             android:gravity="center"
-                            android:inputType="number"
                             android:singleLine="true"
                             android:text="@string/pleaseSelect"
                             android:textColor="@color/textColor"
-                            android:textCursorDrawable="@drawable/shape_cursor"
-                            android:textSize="@dimen/textsize12" />
+                            android:textSize="@dimen/textsize15" />
 
                         <TextView style="@style/DividerWidth" />
 
@@ -338,7 +327,6 @@
                     <ImageView
                         android:layout_width="@dimen/dimen13"
                         android:layout_height="@dimen/dimen7"
-                        android:layout_marginTop="@dimen/dimen5"
                         android:src="@mipmap/downarrow" />
 
                 </LinearLayout>
@@ -352,6 +340,7 @@
                 android:paddingTop="@dimen/dimen25">
 
                 <LinearLayout
+                    android:id="@+id/ll_luggage"
                     style="@style/AutoWrap"
                     android:layout_marginLeft="@dimen/dimen17"
                     android:gravity="center_vertical"
@@ -368,17 +357,14 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/et_luggage"
+                            android:id="@+id/tv_luggage"
                             style="@style/MatchAuto"
                             android:background="@android:color/transparent"
-                            android:digits="@string/number0"
                             android:gravity="center"
-                            android:inputType="number"
                             android:singleLine="true"
                             android:text="@string/pleaseSelect"
                             android:textColor="@color/textColor"
-                            android:textCursorDrawable="@drawable/shape_cursor"
-                            android:textSize="@dimen/textsize12" />
+                            android:textSize="@dimen/textsize15" />
 
                         <TextView style="@style/DividerWidth" />
 
@@ -387,7 +373,6 @@
                     <ImageView
                         android:layout_width="@dimen/dimen13"
                         android:layout_height="@dimen/dimen7"
-                        android:layout_marginTop="@dimen/dimen5"
                         android:src="@mipmap/downarrow" />
                 </LinearLayout>
 
@@ -399,7 +384,6 @@
 
                 </LinearLayout>
             </LinearLayout>
-
 
             <EditText
                 android:id="@+id/et_remark"

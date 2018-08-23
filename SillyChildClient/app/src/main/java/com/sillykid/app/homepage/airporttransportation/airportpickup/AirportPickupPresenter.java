@@ -64,7 +64,7 @@ public class AirportPickupPresenter implements AirportPickupContract.Presenter {
         httpParams.put("product_id", product_id);
         httpParams.put("flight_number", flight_number);
         httpParams.put("delivery_location", delivery_location);
-        httpParams.put("flight_arrival_time", DataUtil.formatData(StringUtils.toLong(flight_arrival_time), "yyyy-MM-dd HH:mm"));
+        httpParams.put("flight_arrival_time", flight_arrival_time);
         httpParams.put("contact", contact);
         httpParams.put("contact_number", contact_number);
         httpParams.put("audit_number", audit_number);

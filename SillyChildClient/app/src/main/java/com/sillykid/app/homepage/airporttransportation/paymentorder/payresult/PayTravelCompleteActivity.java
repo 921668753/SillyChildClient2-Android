@@ -106,10 +106,6 @@ public class PayTravelCompleteActivity extends BaseActivity {
         super.widgetClick(v);
         switch (v.getId()) {
             case R.id.tv_checkOrder:
-                KJActivityStack.create().finishActivity(AirportPickupActivity.class);
-                KJActivityStack.create().finishActivity(AirportTransportationClassificationActivity.class);
-                KJActivityStack.create().finishActivity(PriceInformationActivity.class);
-                KJActivityStack.create().finishActivity(SelectProductAirportTransportationActivity.class);
                 Intent intent = new Intent(aty, MyOrderActivity.class);
                 if (getIntent().getIntExtra("order_status", 0) == 1) {
                     intent.putExtra("newChageIcon", 1);

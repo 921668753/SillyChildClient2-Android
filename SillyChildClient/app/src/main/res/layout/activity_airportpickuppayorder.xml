@@ -116,7 +116,6 @@
                 android:textColor="@color/hintColors"
                 android:textSize="@dimen/textsize13" />
 
-
             <TextView
                 style="@style/MatchWrap"
                 android:layout_marginTop="@dimen/dimen6"
@@ -126,7 +125,6 @@
                 android:text="@string/dueDemand"
                 android:textColor="@color/textColor"
                 android:textSize="@dimen/textsize15" />
-
 
             <LinearLayout
                 style="@style/MatchWrap"
@@ -274,7 +272,6 @@
 
                 </LinearLayout>
             </LinearLayout>
-
 
             <TextView
                 style="@style/MatchWrap"

@@ -93,7 +93,6 @@
                 android:textColor="@color/hintColors"
                 android:textSize="@dimen/textsize13" />
 
-
             <TextView
                 style="@style/MatchWrap"
                 android:layout_marginTop="@dimen/dimen6"
@@ -103,7 +102,6 @@
                 android:text="@string/dueDemand"
                 android:textColor="@color/textColor"
                 android:textSize="@dimen/textsize15" />
-
 
             <LinearLayout
                 style="@style/MatchWrap"
@@ -128,7 +126,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/et_adult"
+                            android:id="@+id/tv_adult"
                             style="@style/MatchAuto"
                             android:background="@android:color/transparent"
                             android:digits="@string/number0"
@@ -145,10 +143,10 @@
                     </LinearLayout>
 
                     <!--<ImageView-->
-                        <!--android:layout_width="@dimen/dimen13"-->
-                        <!--android:layout_height="@dimen/dimen7"-->
-                        <!--android:layout_marginTop="@dimen/dimen5"-->
-                        <!--android:src="@mipmap/downarrow" />-->
+                    <!--android:layout_width="@dimen/dimen13"-->
+                    <!--android:layout_height="@dimen/dimen7"-->
+                    <!--android:layout_marginTop="@dimen/dimen5"-->
+                    <!--android:src="@mipmap/downarrow" />-->
 
                 </LinearLayout>
 
@@ -171,7 +169,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/et_children"
+                            android:id="@+id/tv_children"
                             style="@style/MatchAuto"
                             android:background="@android:color/transparent"
                             android:digits="@string/number0"
@@ -188,10 +186,10 @@
                     </LinearLayout>
 
                     <!--<ImageView-->
-                        <!--android:layout_width="@dimen/dimen13"-->
-                        <!--android:layout_height="@dimen/dimen7"-->
-                        <!--android:layout_marginTop="@dimen/dimen5"-->
-                        <!--android:src="@mipmap/downarrow" />-->
+                    <!--android:layout_width="@dimen/dimen13"-->
+                    <!--android:layout_height="@dimen/dimen7"-->
+                    <!--android:layout_marginTop="@dimen/dimen5"-->
+                    <!--android:src="@mipmap/downarrow" />-->
 
                 </LinearLayout>
             </LinearLayout>
@@ -220,7 +218,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/et_luggage"
+                            android:id="@+id/tv_luggage"
                             style="@style/MatchAuto"
                             android:background="@android:color/transparent"
                             android:digits="@string/number0"
@@ -237,10 +235,10 @@
                     </LinearLayout>
 
                     <!--<ImageView-->
-                        <!--android:layout_width="@dimen/dimen13"-->
-                        <!--android:layout_height="@dimen/dimen7"-->
-                        <!--android:layout_marginTop="@dimen/dimen5"-->
-                        <!--android:src="@mipmap/downarrow" />-->
+                    <!--android:layout_width="@dimen/dimen13"-->
+                    <!--android:layout_height="@dimen/dimen7"-->
+                    <!--android:layout_marginTop="@dimen/dimen5"-->
+                    <!--android:src="@mipmap/downarrow" />-->
                 </LinearLayout>
 
                 <LinearLayout
@@ -423,20 +421,30 @@
                     android:textColor="@color/textColor"
                     android:textSize="@dimen/textsize15" />
 
+
                 <TextView
                     android:id="@+id/tv_vouchers"
                     style="@style/AutoWrap"
                     android:gravity="right"
                     android:paddingLeft="@dimen/dimen10"
-                    android:paddingRight="@dimen/dimen17"
                     android:singleLine="true"
                     android:text="￥-50.00"
-                    android:textColor="@color/fF5656Colors"
-                    android:textSize="@dimen/textsize15" />
+                    android:textColor="@color/tabColors"
+                    android:textSize="@dimen/textsize14" />
+
+                <ImageView
+                    android:id="@+id/img_right"
+                    android:layout_width="@dimen/dimen6"
+                    android:layout_height="@dimen/dimen11"
+                    android:layout_marginLeft="@dimen/dimen9"
+                    android:src="@mipmap/order_right_arrow" />
+
+                <TextView
+                    android:layout_width="@dimen/dimen17"
+                    android:layout_height="@dimen/dimen1" />
 
 
             </LinearLayout>
-
 
         </LinearLayout>
 

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/MatchMatch"
     android:background="@color/background"
     android:fitsSystemWindows="true"
@@ -8,8 +7,8 @@
 
     <include layout="@layout/common_title" />
 
-
     <TextView
+        android:id="@+id/tv_chooseTimeNeedServe"
         style="@style/MatchWrap"
         android:layout_marginTop="@dimen/dimen6"
         android:background="@color/whiteColors"
@@ -76,26 +75,10 @@
             android:textSize="@dimen/textsize12" />
     </LinearLayout>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        style="@style/MatchMatch"
+        android:layout_marginTop="@dimen/dimen6"
+        android:background="@color/whiteColors" />
 
 </LinearLayout>

@@ -191,6 +191,7 @@
     <string name="peopleWatch">人观看</string>
     <string name="video">视频</string>
 
+
     <!--首页   精品线路-->
     <string name="hotRecommended">热门推荐</string>
     <string name="selectCity">选择城市</string>
@@ -204,8 +205,10 @@
     <string name="travelTime3">行程时间</string>
     <string name="travelTime2">行程时间：</string>
     <string name="journeyBegins">行程出发开始地</string>
+    <string name="journeyBegins1">请填写行程出发开始地</string>
     <string name="fillPlaceDeparture">填写出发地点</string>
     <string name="journeyEnds">行程结束送达地</string>
+    <string name="journeyEnds1">请填写行程结束送达地</string>
     <string name="fillPlaceService">填写送达地点</string>
     <string name="contact">联系人</string>
     <string name="ContactName1">请填写联系人姓名</string>
@@ -223,6 +226,9 @@
     <!--选择日期-->
     <string name="selectDate">选择日期</string>
     <string name="chooseTimeNeedServe">选择您需要服务的时间</string>
+    <string name="startTime">开始时间：</string>
+    <string name="endTime">结束时间：</string>
+    <string name="today">今天</string>
     <string name="day">日</string>
     <string name="one">一</string>
     <string name="two">二</string>
@@ -531,6 +537,7 @@
     <string name="inputAirport">输入机场名称</string>
     <string name="inputAirport1">请输入机场名称</string>
     <string name="deliveredSite">送达地点</string>
+    <string name="fillPlaceDeparture1">请填写出发地点</string>
     <string name="pleaseDeliveredSite">请填写送达地点</string>
     <string name="pleaseSelectDeparturePoint">请选择出发地点</string>
     <string name="pleaseSelectDepartureTime">请选择预计出发时间</string>
@@ -551,7 +558,10 @@
     <string name="hour">时</string>
 
     <string name="fillDepartureTime">填写出发时间</string>
+    <string name="travelTime4">请选择行程时间</string>
+    <string name="travelTime5">行程时间开始时间应大于当前时间</string>
     <string name="selectDepartureTime">请选择出发时间</string>
+    <string name="selectDepartureTime1">出发时间应大于当前时间</string>
     <string name="priceDescription">价格说明</string>
     <string name="dueThat">预定说明</string>
     <string name="vouchers">抵用券</string>
@@ -577,6 +587,7 @@
 
     <string name="pickUpNumber">接机人数</string>
     <string name="baggageNumber1">行李件数</string>
+    <string name="numberSendMachine">送机人数</string>
 
 
     <!--首页   单次接送-->

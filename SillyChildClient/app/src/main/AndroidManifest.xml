@@ -169,6 +169,16 @@
             android:name=".homepage.bythedaycharter.PriceInformationActivity"
             android:screenOrientation="portrait" />
 
+        <!--首页   按天包车-->
+        <activity
+            android:name=".homepage.bythedaycharter.ByTheDayCharterActivity"
+            android:screenOrientation="portrait" />
+
+        <!--首页   按天包车支付订单-->
+        <activity
+            android:name=".homepage.bythedaycharter.ByTheDayCharterPayOrderActivity"
+            android:screenOrientation="portrait" />
+
         <!--首页   接机产品 - 通过机场的编号来获取产品信息-->
         <activity
             android:name=".homepage.airporttransportation.SelectProductAirportTransportationActivity"

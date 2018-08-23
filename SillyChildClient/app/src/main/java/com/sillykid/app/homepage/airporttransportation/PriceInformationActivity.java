@@ -131,12 +131,16 @@ public class PriceInformationActivity extends BaseActivity implements PriceInfor
         super.widgetClick(v);
         switch (v.getId()) {
             case R.id.tv_nextStep:
+                if (priceInformationBean == null || priceInformationBean.getData() == null || StringUtils.isEmpty(priceInformationBean.getData().getTitle())) {
+                    return;
+                }
                 Intent intent = new Intent();
                 if (type == 1) {
                     intent.setClass(aty, AirportPickupActivity.class);
                 } else {
                     intent.setClass(aty, AirportDropOffActivity.class);
                 }
+                intent.putExtra("airport_name", priceInformationBean.getData().getAirport_name());
                 intent.putExtra("title", priceInformationBean.getData().getTitle());
                 intent.putExtra("baggage_number", priceInformationBean.getData().getBaggage_number());
                 intent.putExtra("passenger_number", priceInformationBean.getData().getPassenger_number());

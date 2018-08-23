@@ -43,7 +43,7 @@
                 android:paddingBottom="@dimen/dimen10"
                 android:paddingLeft="@dimen/dimen17"
                 android:paddingRight="@dimen/dimen17"
-                android:text="京东包车景点简介京东包车景点简介京东包车景点简介京东包车景点简介京东包车景点简介京东包车景点简介京东包车景点简介京东包车景点简介"
+                android:text="--"
                 android:textColor="@color/hintColors"
                 android:textSize="@dimen/textsize12" />
 
@@ -67,7 +67,7 @@
                 android:paddingBottom="@dimen/dimen10"
                 android:paddingLeft="@dimen/dimen17"
                 android:paddingRight="@dimen/dimen17"
-                android:text="京东包车景点简介京东包车景点简介京东包车景点简介京东包车景点简介京东包车景点简介京东包车景点简介京东包车景点简介京东包车景点简介"
+                android:text="--"
                 android:textColor="@color/hintColors"
                 android:textSize="@dimen/textsize12" />
 
@@ -91,11 +91,7 @@
                 android:paddingBottom="@dimen/dimen10"
                 android:paddingLeft="@dimen/dimen17"
                 android:paddingRight="@dimen/dimen17"
-                android:text="1.京东包车景点简介京东包车景点
-
-2.京东包车景点简介京东包车景点
-
-3.京东包车景点简介京东包车景点"
+                android:text="--"
                 android:textColor="@color/hintColors"
                 android:textSize="@dimen/textsize12" />
 
@@ -140,7 +136,7 @@
                             android:gravity="center"
                             android:inputType="number"
                             android:singleLine="true"
-                            android:text="1"
+                            android:text="0"
                             android:textColor="@color/textColor"
                             android:textCursorDrawable="@drawable/shape_cursor"
                             android:textSize="@dimen/textsize12" />
@@ -183,7 +179,7 @@
                             android:gravity="center"
                             android:inputType="number"
                             android:singleLine="true"
-                            android:text="1"
+                            android:text="0"
                             android:textColor="@color/textColor"
                             android:textCursorDrawable="@drawable/shape_cursor"
                             android:textSize="@dimen/textsize12" />
@@ -232,7 +228,7 @@
                             android:gravity="center"
                             android:inputType="number"
                             android:singleLine="true"
-                            android:text="1"
+                            android:text="0"
                             android:textColor="@color/textColor"
                             android:textCursorDrawable="@drawable/shape_cursor"
                             android:textSize="@dimen/textsize12" />
@@ -279,8 +275,7 @@
                     android:lineSpacingExtra="@dimen/dimen6"
                     android:paddingBottom="@dimen/dimen13"
                     android:paddingTop="@dimen/dimen12"
-                    android:text="2018-05-15    2018-05-15
-2018-05-15    2018-05-15"
+                    android:text="--"
                     android:textColor="@color/hintColors"
                     android:textSize="@dimen/textsize13" />
 
@@ -306,7 +301,7 @@
                 android:paddingBottom="@dimen/dimen10"
                 android:paddingLeft="@dimen/dimen17"
                 android:paddingRight="@dimen/dimen17"
-                android:text="柳倾城"
+                android:text="--"
                 android:textColor="@color/hintColors"
                 android:textSize="@dimen/textsize13" />
 
@@ -330,7 +325,7 @@
                 android:paddingBottom="@dimen/dimen10"
                 android:paddingLeft="@dimen/dimen17"
                 android:paddingRight="@dimen/dimen17"
-                android:text="18000215301"
+                android:text="--"
                 android:textColor="@color/hintColors"
                 android:textSize="@dimen/textsize13" />
 
@@ -354,7 +349,7 @@
                 android:paddingLeft="@dimen/dimen17"
                 android:paddingRight="@dimen/dimen17"
                 android:paddingTop="@dimen/dimen10"
-                android:text="备注备注备注备注备注备注备注备注备注备注备注备注备注不在不在包治百病在不在不不准备 不准备不准备在不准备在备注不在不在备注不在不在部部长不在不在备注不治之症做做做做做做做做做做做做计算机价格家具价格家男男女女给你呢禁"
+                android:text="--"
                 android:textColor="@color/hintColors"
                 android:textColorHint="@color/hintColors"
                 android:textCursorDrawable="@drawable/shape_cursor"
@@ -382,7 +377,7 @@
                     android:paddingLeft="@dimen/dimen10"
                     android:paddingRight="@dimen/dimen17"
                     android:singleLine="true"
-                    android:text="￥600.00"
+                    android:text="￥0.00"
                     android:textColor="@color/fF5656Colors"
                     android:textSize="@dimen/textsize15" />
 
@@ -411,7 +406,7 @@
                     android:paddingLeft="@dimen/dimen10"
                     android:paddingRight="@dimen/dimen17"
                     android:singleLine="true"
-                    android:text="X4"
+                    android:text="X0"
                     android:textColor="@color/textColor"
                     android:textSize="@dimen/textsize15" />
 
@@ -439,7 +434,7 @@
                     android:paddingLeft="@dimen/dimen10"
                     android:paddingRight="@dimen/dimen17"
                     android:singleLine="true"
-                    android:text="￥2400.00"
+                    android:text="￥0.00"
                     android:textColor="@color/fF5656Colors"
                     android:textSize="@dimen/textsize15" />
 
@@ -461,16 +456,27 @@
                     android:textColor="@color/textColor"
                     android:textSize="@dimen/textsize15" />
 
+
                 <TextView
                     android:id="@+id/tv_vouchers"
                     style="@style/AutoWrap"
                     android:gravity="right"
                     android:paddingLeft="@dimen/dimen10"
-                    android:paddingRight="@dimen/dimen17"
                     android:singleLine="true"
-                    android:text="￥-50.00"
-                    android:textColor="@color/fF5656Colors"
-                    android:textSize="@dimen/textsize15" />
+                    android:text="￥0.00"
+                    android:textColor="@color/tabColors"
+                    android:textSize="@dimen/textsize14" />
+
+                <ImageView
+                    android:id="@+id/img_right"
+                    android:layout_width="@dimen/dimen6"
+                    android:layout_height="@dimen/dimen11"
+                    android:layout_marginLeft="@dimen/dimen9"
+                    android:src="@mipmap/order_right_arrow" />
+
+                <TextView
+                    android:layout_width="@dimen/dimen17"
+                    android:layout_height="@dimen/dimen1" />
 
 
             </LinearLayout>
@@ -499,7 +505,7 @@
         <TextView
             android:id="@+id/tv_actualPayment"
             style="@style/AutoWrap"
-            android:text="￥2350.00"
+            android:text="￥0.00"
             android:textColor="@color/fF5656Colors"
             android:textSize="@dimen/textsize17"
             android:textStyle="bold" />

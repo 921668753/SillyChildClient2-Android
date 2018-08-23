@@ -288,6 +288,9 @@ public class MakeSureOrderActivity extends BaseActivity implements MakeSureOrder
         double total = 0;
         total = StringUtils.toDouble(tv_goodsMoney.getText().toString().trim().substring(1)) + StringUtils.toDouble(tv_freightMoney.getText().toString().trim().substring(1))
                 + StringUtils.toDouble(tv_couponsMoney.getText().toString().trim().substring(1)) + StringUtils.toDouble(tv_preferentialActivities.getText().toString().trim().substring(1));
+        if (total <= 0) {
+            total = 0;
+        }
         return MathUtil.keepTwo(total);
     }
 

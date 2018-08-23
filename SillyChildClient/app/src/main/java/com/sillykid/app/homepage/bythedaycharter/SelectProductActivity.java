@@ -15,8 +15,6 @@ import com.common.cklibrary.utils.myview.NoScrollGridView;
 import com.sillykid.app.R;
 import com.sillykid.app.adapter.homepage.airporttransportation.SelectProductAirportTransportationViewAdapter;
 import com.sillykid.app.entity.homepage.airporttransportation.SelectProductAirportTransportationBean;
-import com.sillykid.app.homepage.airporttransportation.SelectProductAirportTransportationContract;
-import com.sillykid.app.homepage.airporttransportation.SelectProductAirportTransportationPresenter;
 import com.sillykid.app.loginregister.LoginActivity;
 
 import java.util.List;
@@ -25,7 +23,7 @@ import java.util.List;
 /**
  * 选择产品
  */
-public class SelectProductActivity extends BaseActivity implements SelectProductAirportTransportationContract.View, AdapterView.OnItemClickListener {
+public class SelectProductActivity extends BaseActivity implements SelectProductContract.View, AdapterView.OnItemClickListener {
 
     @BindView(id = R.id.tv_selectProductName)
     private TextView tv_selectProductName;
@@ -51,6 +49,7 @@ public class SelectProductActivity extends BaseActivity implements SelectProduct
     private TextView tv_button;
 
     private int type = 0;
+    private int region_id = 0;
 
     @Override
     public void setRootView() {
@@ -61,12 +60,12 @@ public class SelectProductActivity extends BaseActivity implements SelectProduct
     @Override
     public void initData() {
         super.initData();
-        mPresenter = new SelectProductAirportTransportationPresenter(this);
+        mPresenter = new SelectProductPresenter(this);
         mAdapter = new SelectProductAirportTransportationViewAdapter(this);
-        int airport_id = getIntent().getIntExtra("airport_id", 0);
+        region_id = getIntent().getIntExtra("region_id", 0);
         type = getIntent().getIntExtra("type", 0);
         showLoadingDialog(getString(R.string.dataLoad));
-        ((SelectProductAirportTransportationContract.Presenter) mPresenter).getProductByAirportId(airport_id, type);
+        ((SelectProductContract.Presenter) mPresenter).getProductByRegion(region_id, type);
     }
 
     @Override
@@ -78,9 +77,8 @@ public class SelectProductActivity extends BaseActivity implements SelectProduct
         gv_productAirportTransportation.setOnItemClickListener(this);
     }
 
-
     @Override
-    public void setPresenter(SelectProductAirportTransportationContract.Presenter presenter) {
+    public void setPresenter(SelectProductContract.Presenter presenter) {
         mPresenter = presenter;
     }
 
@@ -91,7 +89,7 @@ public class SelectProductActivity extends BaseActivity implements SelectProduct
             case R.id.tv_button:
                 if (tv_button.getText().toString().contains(getString(R.string.retry))) {
                     showLoadingDialog(getString(R.string.dataLoad));
-                    // ((SelectProductAirportTransportationContract.Presenter) mPresenter).getClassification();
+                    ((SelectProductContract.Presenter) mPresenter).getProductByRegion(region_id, type);
                     return;
                 }
                 showActivity(aty, LoginActivity.class);

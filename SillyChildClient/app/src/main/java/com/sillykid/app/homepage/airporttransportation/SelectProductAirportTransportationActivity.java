@@ -49,6 +49,7 @@ public class SelectProductAirportTransportationActivity extends BaseActivity imp
     @BindView(id = R.id.tv_button, click = true)
     private TextView tv_button;
     private int type = 0;
+    private int airport_id = 0;
 
     @Override
     public void setRootView() {
@@ -60,7 +61,7 @@ public class SelectProductAirportTransportationActivity extends BaseActivity imp
         super.initData();
         mPresenter = new SelectProductAirportTransportationPresenter(this);
         mAdapter = new SelectProductAirportTransportationViewAdapter(this);
-        int airport_id = getIntent().getIntExtra("airport_id", 0);
+        airport_id = getIntent().getIntExtra("airport_id", 0);
         type = getIntent().getIntExtra("type", 0);
         showLoadingDialog(getString(R.string.dataLoad));
         ((SelectProductAirportTransportationContract.Presenter) mPresenter).getProductByAirportId(airport_id, type);
@@ -88,7 +89,7 @@ public class SelectProductAirportTransportationActivity extends BaseActivity imp
             case R.id.tv_button:
                 if (tv_button.getText().toString().contains(getString(R.string.retry))) {
                     showLoadingDialog(getString(R.string.dataLoad));
-                    // ((SelectProductAirportTransportationContract.Presenter) mPresenter).getClassification();
+                    ((SelectProductAirportTransportationContract.Presenter) mPresenter).getProductByAirportId(airport_id, type);
                     return;
                 }
                 showActivity(aty, LoginActivity.class);

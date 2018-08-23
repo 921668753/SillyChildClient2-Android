@@ -206,7 +206,7 @@ dependencies {
     // compile 'cn.rongcloud.android:RedPacket:2.8.6'
 
     //融云-----start-----
-    compile project(':IMKit')
+    compile project(path: ':IMKit')
 
     //    compile project(':IMLib')
 

@@ -17,16 +17,6 @@
             style="@style/MatchMatch"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tv_productName"
-                style="@style/Match45"
-                android:layout_marginTop="@dimen/dimen6"
-                android:background="@color/whiteColors"
-                android:gravity="center"
-                android:text="日本东京成田机场接机"
-                android:textColor="@color/textColor"
-                android:textSize="@dimen/textsize16" />
-
             <cn.bingoogolapple.bgabanner.BGABanner
                 android:id="@+id/banner_ad"
                 android:layout_width="match_parent"
@@ -141,6 +131,7 @@
 
 
             <TextView
+                android:id="@+id/tv_containsService"
                 style="@style/MatchWrap"
                 android:paddingLeft="@dimen/dimen21"
                 android:paddingTop="@dimen/dimen16"
@@ -156,6 +147,7 @@
                 android:layout_marginRight="@dimen/dimen27"
                 android:layout_marginTop="@dimen/dimen16"
                 android:horizontalSpacing="@dimen/dimen27"
+                android:listSelector="@android:color/transparent"
                 android:numColumns="3"
                 android:overScrollMode="never"
                 android:scrollbars="none"
@@ -301,20 +293,17 @@
                 android:textSize="@dimen/textsize14" />
 
 
-            <EditText
-                android:id="@+id/et_remark"
+            <TextView
+                android:id="@+id/tv_remark"
                 style="@style/MatchWrap"
                 android:background="@color/whiteColors"
                 android:gravity="left"
                 android:hint="@string/particularRequirement"
-                android:minHeight="@dimen/dimen172"
                 android:paddingBottom="@dimen/dimen15"
                 android:paddingLeft="@dimen/dimen21"
                 android:paddingRight="@dimen/dimen21"
                 android:paddingTop="@dimen/dimen15"
-                android:textColor="@color/textColor"
-                android:textColorHint="@color/hintColors"
-                android:textCursorDrawable="@drawable/shape_cursor"
+                android:textColor="@color/hintColors"
                 android:textSize="@dimen/textsize14" />
 
 

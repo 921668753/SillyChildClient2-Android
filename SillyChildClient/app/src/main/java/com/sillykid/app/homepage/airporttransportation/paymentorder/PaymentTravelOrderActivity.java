@@ -3,6 +3,7 @@ package com.sillykid.app.homepage.airporttransportation.paymentorder;
 import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.common.cklibrary.common.BaseActivity;
@@ -35,21 +36,31 @@ public class PaymentTravelOrderActivity extends BaseActivity implements PaymentT
      */
     @BindView(id = R.id.tv_currentBalance)
     public TextView tv_currentBalance;
-
     @BindView(id = R.id.img_currentBalance, click = true)
     public ImageView img_currentBalance;
+    @BindView(id = R.id.tv_divider)
+    public TextView tv_divider;
+
 
     /**
      * 微信
      */
+    @BindView(id = R.id.ll_weChatPay)
+    public LinearLayout ll_weChatPay;
     @BindView(id = R.id.img_weChatPay, click = true)
     public ImageView img_weChatPay;
+    @BindView(id = R.id.tv_divider1)
+    public TextView tv_divider1;
 
     /**
      * 支付宝
      */
+    @BindView(id = R.id.ll_alipayToPay)
+    public LinearLayout ll_alipayToPay;
     @BindView(id = R.id.img_alipay, click = true)
     public ImageView img_alipay;
+    @BindView(id = R.id.tv_divider2)
+    public TextView tv_divider2;
 
     /**
      * 银联
@@ -177,6 +188,12 @@ public class PaymentTravelOrderActivity extends BaseActivity implements PaymentT
             } else {
                 clearImg(img_currentBalance);
                 pay_type = "qianbao";
+            }
+            if (StringUtils.toDouble(pay_amount) <= 0) {
+                tv_divider.setVisibility(View.GONE);
+                ll_weChatPay.setVisibility(View.GONE);
+                tv_divider1.setVisibility(View.GONE);
+                ll_alipayToPay.setVisibility(View.GONE);
             }
         } else if (flag == 1) {
             if (pay_type.contains("qianbao")) {

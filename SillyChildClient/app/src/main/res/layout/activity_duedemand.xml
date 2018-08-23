@@ -269,7 +269,7 @@
                 android:divider="@color/background"
                 android:dividerHeight="@dimen/dimen1"
                 android:scrollbars="none"
-                tools:listitem="@layout/item_duedemand" />
+                tools:listitem="@layout/item_chooseduedemand" />
 
 
             <LinearLayout

@@ -24,6 +24,7 @@ public class PriceInformationBean extends BaseResult<PriceInformationBean.DataBe
          */
 
         private String service_description;
+        private String airport_name;
         private String passenger;
         private String price;
         private int passenger_number;
@@ -41,6 +42,14 @@ public class PriceInformationBean extends BaseResult<PriceInformationBean.DataBe
 
         public void setService_description(String service_description) {
             this.service_description = service_description;
+        }
+
+        public String getAirport_name() {
+            return airport_name;
+        }
+
+        public void setAirport_name(String airport_name) {
+            this.airport_name = airport_name;
         }
 
         public String getPassenger() {

@@ -81,8 +81,8 @@
 
             </LinearLayout>
 
-            <EditText
-                android:id="@+id/et_deliveredAirport"
+            <TextView
+                android:id="@+id/tv_deliveredAirport"
                 style="@style/MatchWrap"
                 android:background="@color/whiteColors"
                 android:hint="@string/fillServiceAirport"
@@ -91,9 +91,8 @@
                 android:paddingRight="@dimen/dimen17"
                 android:paddingTop="@dimen/dimen12"
                 android:singleLine="true"
-                android:textColor="@color/textColor"
+                android:textColor="@color/hintColors"
                 android:textColorHint="@color/hintColors"
-                android:textCursorDrawable="@drawable/shape_cursor"
                 android:textSize="@dimen/textsize13" />
 
 
@@ -257,7 +256,6 @@
                 android:textCursorDrawable="@drawable/shape_cursor"
                 android:textSize="@dimen/textsize13" />
 
-
             <LinearLayout
                 style="@style/MatchWrap"
                 android:layout_marginTop="@dimen/dimen6"
@@ -308,14 +306,11 @@
                             android:id="@+id/tv_adult"
                             style="@style/MatchAuto"
                             android:background="@android:color/transparent"
-                            android:digits="@string/number0"
                             android:gravity="center"
-                            android:inputType="number"
                             android:singleLine="true"
                             android:text="@string/pleaseSelect"
                             android:textColor="@color/textColor"
-                            android:textCursorDrawable="@drawable/shape_cursor"
-                            android:textSize="@dimen/textsize12" />
+                            android:textSize="@dimen/textsize15" />
 
                         <TextView style="@style/DividerWidth" />
 
@@ -324,7 +319,6 @@
                     <ImageView
                         android:layout_width="@dimen/dimen13"
                         android:layout_height="@dimen/dimen7"
-                        android:layout_marginTop="@dimen/dimen5"
                         android:src="@mipmap/downarrow" />
 
                 </LinearLayout>
@@ -352,14 +346,11 @@
                             android:id="@+id/tv_children"
                             style="@style/MatchAuto"
                             android:background="@android:color/transparent"
-                            android:digits="@string/number0"
                             android:gravity="center"
-                            android:inputType="number"
                             android:singleLine="true"
                             android:text="@string/pleaseSelect"
                             android:textColor="@color/textColor"
-                            android:textCursorDrawable="@drawable/shape_cursor"
-                            android:textSize="@dimen/textsize12" />
+                            android:textSize="@dimen/textsize15" />
 
                         <TextView style="@style/DividerWidth" />
 
@@ -368,7 +359,6 @@
                     <ImageView
                         android:layout_width="@dimen/dimen13"
                         android:layout_height="@dimen/dimen7"
-                        android:layout_marginTop="@dimen/dimen5"
                         android:src="@mipmap/downarrow" />
 
                 </LinearLayout>
@@ -402,14 +392,11 @@
                             android:id="@+id/tv_luggage"
                             style="@style/MatchAuto"
                             android:background="@android:color/transparent"
-                            android:digits="@string/number0"
                             android:gravity="center"
-                            android:inputType="number"
                             android:singleLine="true"
                             android:text="@string/pleaseSelect"
                             android:textColor="@color/textColor"
-                            android:textCursorDrawable="@drawable/shape_cursor"
-                            android:textSize="@dimen/textsize12" />
+                            android:textSize="@dimen/textsize15" />
 
                         <TextView style="@style/DividerWidth" />
 
@@ -418,7 +405,6 @@
                     <ImageView
                         android:layout_width="@dimen/dimen13"
                         android:layout_height="@dimen/dimen7"
-                        android:layout_marginTop="@dimen/dimen5"
                         android:src="@mipmap/downarrow" />
                 </LinearLayout>
 
@@ -449,7 +435,7 @@
                 android:textSize="@dimen/textsize15" />
 
             <TextView
-                android:id="@+id/submitOrder"
+                android:id="@+id/tv_submitOrder"
                 style="@style/Match40"
                 android:layout_marginBottom="@dimen/dimen20"
                 android:layout_marginLeft="@dimen/dimen100"

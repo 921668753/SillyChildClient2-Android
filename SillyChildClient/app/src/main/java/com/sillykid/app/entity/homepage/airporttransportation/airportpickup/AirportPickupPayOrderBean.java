@@ -25,9 +25,9 @@ public class AirportPickupPayOrderBean extends BaseResult<AirportPickupPayOrderB
          * remarks :
          * flight_arrival_time : 2018-08-25 13:35
          */
-
         private int audit_number;
         private String flight_number;
+        private String airport_name;
         private String order_number;
         private String main_picture;
         private String title;
@@ -41,6 +41,7 @@ public class AirportPickupPayOrderBean extends BaseResult<AirportPickupPayOrderB
         private String price_description;
         private String subtitle_title;
         private int children_number;
+        private int bonus_number;
         private String remarks;
         private String flight_arrival_time;
 
@@ -58,6 +59,14 @@ public class AirportPickupPayOrderBean extends BaseResult<AirportPickupPayOrderB
 
         public void setFlight_number(String flight_number) {
             this.flight_number = flight_number;
+        }
+
+        public String getAirport_name() {
+            return airport_name;
+        }
+
+        public void setAirport_name(String airport_name) {
+            this.airport_name = airport_name;
         }
 
         public String getOrder_number() {
@@ -162,6 +171,14 @@ public class AirportPickupPayOrderBean extends BaseResult<AirportPickupPayOrderB
 
         public void setChildren_number(int children_number) {
             this.children_number = children_number;
+        }
+
+        public int getBonus_number() {
+            return bonus_number;
+        }
+
+        public void setBonus_number(int bonus_number) {
+            this.bonus_number = bonus_number;
         }
 
         public String getRemarks() {

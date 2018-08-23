@@ -14,8 +14,8 @@ import com.common.cklibrary.utils.MathUtil;
 import com.common.cklibrary.utils.myview.NoScrollGridView;
 import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
-import com.sillykid.app.adapter.homepage.airporttransportation.PriceInformationViewAdapter;
-import com.sillykid.app.entity.homepage.airporttransportation.PriceInformationBean;
+import com.sillykid.app.adapter.homepage.bythedaycharter.PriceInformationViewAdapter;
+import com.sillykid.app.entity.homepage.bythedaycharter.PriceInformationBean;
 import com.sillykid.app.loginregister.LoginActivity;
 import com.sillykid.app.utils.GlideImageLoader;
 
@@ -27,8 +27,6 @@ import cn.bingoogolapple.bgabanner.BGABanner;
  * 价格信息
  */
 public class PriceInformationActivity extends BaseActivity implements PriceInformationContract.View, BGABanner.Delegate<ImageView, String>, BGABanner.Adapter<ImageView, String> {
-    @BindView(id = R.id.tv_productName)
-    private TextView tv_productName;
 
     /**
      * 轮播图
@@ -50,6 +48,16 @@ public class PriceInformationActivity extends BaseActivity implements PriceInfor
 
     @BindView(id = R.id.gv_containsService)
     private NoScrollGridView gv_containsService;
+
+    @BindView(id = R.id.tv_serviceHours)
+    private TextView tv_serviceHours;
+
+    @BindView(id = R.id.tv_serviceMileage)
+    private TextView tv_serviceMileage;
+
+
+    @BindView(id = R.id.tv_compensationChangeBack)
+    private TextView tv_compensationChangeBack;
 
 
     @BindView(id = R.id.tv_serviceDescription)
@@ -171,7 +179,6 @@ public class PriceInformationActivity extends BaseActivity implements PriceInfor
         dismissLoadingDialog();
         if (flag == 0) {
             priceInformationBean = (PriceInformationBean) JsonUtil.getInstance().json2Obj(success, PriceInformationBean.class);
-            tv_productName.setText(priceInformationBean.getData().getTitle());
             if (priceInformationBean.getData().getPicture() != null && priceInformationBean.getData().getPicture().size() > 0) {
                 mForegroundBanner.setVisibility(View.VISIBLE);
                 processLogic(priceInformationBean.getData().getPicture());
@@ -190,9 +197,11 @@ public class PriceInformationActivity extends BaseActivity implements PriceInfor
                 tv_containsService.setVisibility(View.GONE);
                 gv_containsService.setVisibility(View.GONE);
             }
+            tv_serviceHours.setText(priceInformationBean.getData().getService_duration());
+            tv_serviceMileage.setText(priceInformationBean.getData().getService_mileage());
+            tv_compensationChangeBack.setText(priceInformationBean.getData().getService_policy());
             tv_serviceDescription.setText(priceInformationBean.getData().getService_description());
             tv_remark.setText(priceInformationBean.getData().getService_note());
-
         }
     }
 

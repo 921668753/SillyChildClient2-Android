@@ -107,9 +107,12 @@
 
             </LinearLayout>
 
-            <TextView style="@style/DividerWidth" />
+            <TextView
+                android:id="@+id/tv_divider"
+                style="@style/DividerWidth" />
 
             <LinearLayout
+                android:id="@+id/ll_weChatPay"
                 style="@style/MatchWrap"
                 android:background="@color/whiteColors"
                 android:gravity="center_vertical"
@@ -139,9 +142,12 @@
 
             </LinearLayout>
 
-            <TextView style="@style/DividerWidth" />
+            <TextView
+                android:id="@+id/tv_divider1"
+                style="@style/DividerWidth" />
 
             <LinearLayout
+                android:id="@+id/ll_alipayToPay"
                 style="@style/MatchWrap"
                 android:background="@color/whiteColors"
                 android:gravity="center_vertical"
@@ -173,6 +179,7 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/tv_divider2"
                 style="@style/DividerWidth"
                 android:visibility="gone" />
 

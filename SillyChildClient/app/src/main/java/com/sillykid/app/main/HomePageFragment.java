@@ -225,9 +225,8 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
                 aty.showActivity(aty, intent1);
                 break;
             case R.id.ll_privateOrdering:
-                Intent intent2 = new Intent(aty, SelectDateActivity.class);
-              //  Intent intent2 = new Intent(aty, PrivateCustomActivity.class);
-                // intent1.putExtra("newChageIcon", 2);
+                Intent intent2 = new Intent(aty, PrivateCustomActivity.class);
+              //   intent1.putExtra("newChageIcon", 2);
                 aty.showActivity(aty, intent2);
                 break;
             case R.id.ll_airportDropOff:

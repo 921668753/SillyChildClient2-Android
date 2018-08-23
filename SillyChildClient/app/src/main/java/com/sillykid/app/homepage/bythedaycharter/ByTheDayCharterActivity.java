@@ -45,8 +45,8 @@ public class ByTheDayCharterActivity extends BaseActivity implements ByTheDayCha
 
     @BindView(id = R.id.tv_travelTime, click = true)
     private TextView tv_travelTime;
-    private long travel_start_time = 1535019920;
-    private long travel_end_time = 1535119920;
+    private long travel_start_time = 0;
+    private long travel_end_time = 0;
 
     @BindView(id = R.id.et_journeyBegins)
     private EditText et_journeyBegins;

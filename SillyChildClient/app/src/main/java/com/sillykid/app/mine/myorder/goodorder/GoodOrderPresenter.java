@@ -2,17 +2,10 @@ package com.sillykid.app.mine.myorder.goodorder;
 
 import android.content.Context;
 
-import com.common.cklibrary.common.KJActivityStack;
-import com.common.cklibrary.common.StringConstants;
-import com.common.cklibrary.utils.JsonUtil;
-import com.common.cklibrary.utils.MathUtil;
 import com.common.cklibrary.utils.httputil.HttpUtilParams;
 import com.common.cklibrary.utils.httputil.ResponseListener;
-import com.kymjs.common.PreferenceHelper;
 import com.kymjs.common.StringUtils;
 import com.kymjs.rxvolley.client.HttpParams;
-import com.sillykid.app.entity.mine.myorder.GoodOrderBean.DataBean.ResultBean;
-import com.sillykid.app.entity.mine.mywallet.MyWalletBean;
 import com.sillykid.app.retrofit.RequestClient;
 
 /**

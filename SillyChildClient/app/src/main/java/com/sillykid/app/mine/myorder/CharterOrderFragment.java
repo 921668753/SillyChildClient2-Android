@@ -22,6 +22,7 @@ import com.sillykid.app.mine.myorder.charterorder.OngoingCharterFragment;
  */
 
 public class CharterOrderFragment extends BaseFragment {
+
     private MyOrderActivity aty;
 
     @BindView(id = R.id.ll_obligation, click = true)

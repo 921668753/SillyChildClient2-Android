@@ -1,7 +1,6 @@
-package com.sillykid.app.entity.mine.myorder;
+package com.sillykid.app.entity.mine.myorder.goodorder.orderdetails;
 
 import com.common.cklibrary.entity.BaseResult;
-import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 

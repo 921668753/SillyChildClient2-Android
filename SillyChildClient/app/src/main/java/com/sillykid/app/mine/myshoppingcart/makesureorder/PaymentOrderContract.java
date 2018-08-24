@@ -1,11 +1,8 @@
 package com.sillykid.app.mine.myshoppingcart.makesureorder;
 
 
-import android.content.Context;
-
 import com.common.cklibrary.common.BasePresenter;
 import com.common.cklibrary.common.BaseView;
-import com.sillykid.app.entity.mine.myorder.GoodOrderBean.DataBean.ResultBean;
 
 /**
  * Created by Administrator on 2017/2/15.

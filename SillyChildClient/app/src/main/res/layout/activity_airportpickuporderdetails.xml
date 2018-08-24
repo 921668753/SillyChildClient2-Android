@@ -38,6 +38,7 @@
                     android:textSize="@dimen/textsize10" />
 
                 <TextView
+                    android:id="@+id/tv_orderNumber"
                     style="@style/WrapWrap"
                     android:layout_marginRight="@dimen/dimen18"
                     android:text="201707050236"
@@ -64,6 +65,7 @@
 
 
                 <TextView
+                    android:id="@+id/tv_serviceDate"
                     style="@style/MatchWrap"
                     android:layout_marginLeft="@dimen/dimen5"
                     android:layout_marginRight="@dimen/dimen17"
@@ -91,6 +93,7 @@
 
 
                 <TextView
+                    android:id="@+id/tv_airportPickupLocation"
                     style="@style/MatchWrap"
                     android:layout_marginLeft="@dimen/dimen5"
                     android:layout_marginRight="@dimen/dimen17"
@@ -117,6 +120,7 @@
 
 
                 <TextView
+                    android:id="@+id/tv_flightNumberSign"
                     style="@style/MatchWrap"
                     android:layout_marginLeft="@dimen/dimen5"
                     android:layout_marginRight="@dimen/dimen17"
@@ -143,6 +147,7 @@
 
 
                 <TextView
+                    android:id="@+id/tv_destination"
                     style="@style/MatchWrap"
                     android:layout_marginLeft="@dimen/dimen5"
                     android:layout_marginRight="@dimen/dimen17"
@@ -168,6 +173,7 @@
 
 
                 <TextView
+                    android:id="@+id/tv_passengersNumber"
                     style="@style/MatchWrap"
                     android:layout_marginLeft="@dimen/dimen5"
                     android:layout_marginRight="@dimen/dimen17"
@@ -194,6 +200,7 @@
 
 
                 <TextView
+                    android:id="@+id/tv_bags"
                     style="@style/MatchWrap"
                     android:layout_marginLeft="@dimen/dimen5"
                     android:layout_marginRight="@dimen/dimen17"
@@ -209,7 +216,8 @@
                 android:layout_marginTop="@dimen/dimen1"
                 android:background="@color/whiteColors"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
 
                 <TextView
@@ -242,6 +250,7 @@
                 android:textSize="@dimen/textsize14" />
 
             <TextView
+                android:id="@+id/tv_userNote"
                 style="@style/MatchWrap"
                 android:background="@color/whiteColors"
                 android:paddingBottom="@dimen/dimen13"
@@ -267,6 +276,7 @@
                     android:textSize="@dimen/textsize15" />
 
                 <TextView
+                    android:id="@+id/tv_orderPriceNoSign"
                     style="@style/AutoWrap"
                     android:gravity="right"
                     android:paddingLeft="@dimen/dimen10"
@@ -296,6 +306,7 @@
 
 
                 <TextView
+                    android:id="@+id/tv_vouchers"
                     style="@style/AutoWrap"
                     android:gravity="right"
                     android:paddingLeft="@dimen/dimen10"
@@ -329,6 +340,7 @@
             android:textSize="@dimen/textsize15" />
 
         <TextView
+            android:id="@+id/tv_actualPayment"
             style="@style/AutoWrap"
             android:text="￥2350.00"
             android:textColor="@color/fF5656Colors"
@@ -336,6 +348,7 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/tv_confirmPayment"
             android:layout_width="@dimen/dimen126"
             android:layout_height="match_parent"
             android:background="@color/fF5656Colors"

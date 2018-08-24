@@ -23,6 +23,8 @@ import com.sillykid.app.adapter.main.community.CommunityViewAdapter;
 import com.sillykid.app.community.dynamic.DynamicDetailsActivity;
 import com.sillykid.app.constant.NumericConstants;
 import com.sillykid.app.entity.main.community.CommunityBean;
+import com.sillykid.app.homepage.boutiqueline.BoutiqueLineActivity;
+import com.sillykid.app.homepage.boutiqueline.selectcity.SelectCityActivity;
 import com.sillykid.app.loginregister.LoginActivity;
 import com.sillykid.app.main.MainActivity;
 import com.sillykid.app.utils.GlideImageLoader;
@@ -36,16 +38,20 @@ import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 
 import static android.app.Activity.RESULT_OK;
 import static com.sillykid.app.constant.NumericConstants.REQUEST_CODE;
+import static com.sillykid.app.constant.NumericConstants.RESULT_CODE_GET;
 
 /**
  * 热门推荐列表
  */
 public class HotRecommendedFragment extends BaseFragment implements CommunityClassificationContract.View, BGARefreshLayout.BGARefreshLayoutDelegate, BGAOnRVItemClickListener {
 
-    private MainActivity aty;
+    private BoutiqueLineActivity aty;
 
     @BindView(id = R.id.mRefreshLayout)
     private BGARefreshLayout mRefreshLayout;
+
+    @BindView(id = R.id.ll_selectCity, click = true)
+    private LinearLayout ll_selectCity;
 
 
     @BindView(id = R.id.rv)
@@ -98,7 +104,7 @@ public class HotRecommendedFragment extends BaseFragment implements CommunityCla
 
     @Override
     protected View inflaterView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
-        aty = (MainActivity) getActivity();
+        aty = (BoutiqueLineActivity) getActivity();
         return View.inflate(aty, R.layout.fragment_hotrecommended, null);
     }
 
@@ -133,7 +139,7 @@ public class HotRecommendedFragment extends BaseFragment implements CommunityCla
         //设置item之间的间隔
         recyclerview.addItemDecoration(spacesItemDecoration);
         recyclerview.setAdapter(mAdapter);
-    //    layoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);//不设置的话，图片闪烁错位，有可能有整列错位的情况。
+        //    layoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);//不设置的话，图片闪烁错位，有可能有整列错位的情况。
         mAdapter.setOnRVItemClickListener(this);
         recyclerview.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -148,6 +154,9 @@ public class HotRecommendedFragment extends BaseFragment implements CommunityCla
     public void widgetClick(View v) {
         super.widgetClick(v);
         switch (v.getId()) {
+            case R.id.ll_selectCity:
+                aty.showActivityForResult(aty, SelectCityActivity.class, RESULT_CODE_GET);
+                break;
             case R.id.tv_button:
                 if (tv_button.getText().toString().contains(getString(R.string.retry))) {
                     mRefreshLayout.beginRefreshing();
@@ -313,7 +322,7 @@ public class HotRecommendedFragment extends BaseFragment implements CommunityCla
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {// 如果等于1
+        if (requestCode == RESULT_CODE_GET && resultCode == RESULT_OK) {// 如果等于1
 //            keyword = data.getStringExtra("keyword");
 ////            mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
 ////            showLoadingDialog(getString(R.string.dataLoad));

@@ -17,7 +17,7 @@ import com.common.cklibrary.utils.TimeCount;
 import com.kymjs.common.PreferenceHelper;
 import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
-import com.sillykid.app.entity.mine.myorder.OrderDetailBean;
+import com.sillykid.app.entity.mine.myorder.goodorder.orderdetails.OrderDetailBean;
 import com.sillykid.app.entity.mine.mywallet.recharge.AlipayBean;
 import com.sillykid.app.entity.mine.mywallet.recharge.WeChatPayBean;
 import com.sillykid.app.loginregister.LoginActivity;

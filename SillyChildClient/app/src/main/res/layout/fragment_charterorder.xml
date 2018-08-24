@@ -124,6 +124,7 @@
 
     <FrameLayout
         android:id="@+id/fl_charterOrder"
-        style="@style/MatchMatch" />
+        style="@style/MatchMatch"
+        android:layout_marginTop="@dimen/dimen6" />
 
 </LinearLayout>

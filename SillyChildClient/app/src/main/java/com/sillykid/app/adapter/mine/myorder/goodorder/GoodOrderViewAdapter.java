@@ -1,4 +1,4 @@
-package com.sillykid.app.adapter.mine.myorder;
+package com.sillykid.app.adapter.mine.myorder.goodorder;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,8 +8,8 @@ import android.widget.ImageView;
 import com.common.cklibrary.utils.MathUtil;
 import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
-import com.sillykid.app.entity.mine.myorder.GoodOrderBean.DataBean.ResultBean;
-import com.sillykid.app.entity.mine.myorder.GoodOrderBean.DataBean.ResultBean.OrderItemsBean;
+import com.sillykid.app.entity.mine.myorder.goodorder.GoodOrderBean.DataBean.ResultBean;
+import com.sillykid.app.entity.mine.myorder.goodorder.GoodOrderBean.DataBean.ResultBean.OrderItemsBean;
 import com.sillykid.app.mine.myorder.goodorder.aftersalesdetails.AfterSalesDetailsActivity;
 import com.sillykid.app.mine.myorder.goodorder.aftersalesdetails.ApplyAfterSalesActivity;
 import com.sillykid.app.utils.DataUtil;

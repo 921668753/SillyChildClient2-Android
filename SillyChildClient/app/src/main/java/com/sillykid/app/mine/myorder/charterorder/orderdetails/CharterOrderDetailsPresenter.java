@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.text.TextUtils;
 
+import com.common.cklibrary.common.KJActivityStack;
 import com.common.cklibrary.common.StringConstants;
 import com.common.cklibrary.utils.httputil.HttpUtilParams;
 import com.common.cklibrary.utils.httputil.ResponseListener;
@@ -31,10 +32,10 @@ public class CharterOrderDetailsPresenter implements CharterOrderDetailsContract
     }
 
     @Override
-    public void getCharterOrderDetails(String air_id) {
+    public void getCharterOrderDetails(String order_number) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        httpParams.put("air_id",air_id);
-        RequestClient.postCharterOrderInfo(httpParams, new ResponseListener<String>() {
+        httpParams.put("order_number", order_number);
+        RequestClient.getCharterOrderDetails(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
                 mView.getSuccess(response, 0);
@@ -49,31 +50,31 @@ public class CharterOrderDetailsPresenter implements CharterOrderDetailsContract
 
     @Override
     public void CallPhone(CharterOrderDetailsActivity aty, String phone) {
-        if (TextUtils.isEmpty(phone)||phone.length() < 5) {
+        if (TextUtils.isEmpty(phone) || phone.length() < 5) {
             mView.errorMsg(aty.getResources().getString(R.string.noPhone), 1);
             return;
         }
-        jumpintent=new Intent(Intent.ACTION_DIAL);
+        jumpintent = new Intent(Intent.ACTION_DIAL);
         data = Uri.parse("tel:" + phone);
         jumpintent.setData(data);
-        aty.showActivity(aty,jumpintent);
+        aty.showActivity(aty, jumpintent);
     }
 
     @Override
-    public void toPay(CharterOrderDetailsActivity aty, String orderid, String paymoney,String paymoneyfmt) {
+    public void toPay(CharterOrderDetailsActivity aty, String orderid, String paymoney, String paymoneyfmt) {
         if (TextUtils.isEmpty(orderid) || TextUtils.isEmpty(paymoney)) {
             mView.errorMsg(aty.getResources().getString(R.string.doNotPay), 1);
             return;
         }
-        jumpintent=new Intent(aty,CheckstandActivity.class);
-        jumpintent.putExtra("orderid",orderid);
-        jumpintent.putExtra("paymoney",paymoney);
+        jumpintent = new Intent(aty, CheckstandActivity.class);
+        jumpintent.putExtra("orderid", orderid);
+        jumpintent.putExtra("paymoney", paymoney);
         jumpintent.putExtra("paymoneyfmt", paymoneyfmt);
-        aty.showActivity(aty,jumpintent);
+        aty.showActivity(aty, jumpintent);
     }
 
     @Override
-    public void toChart(CharterOrderDetailsActivity aty, String hxusername,String nickname,String defaultnickname,String avatar) {
+    public void toChart(CharterOrderDetailsActivity aty, String hxusername, String nickname, String defaultnickname, String avatar) {
 //        if (TextUtils.isEmpty(hxusername)) {
 //            mView.errorMsg(aty.getResources().getString(R.string.doNotChat), 1);
 //            return;
@@ -97,7 +98,7 @@ public class CharterOrderDetailsPresenter implements CharterOrderDetailsContract
     }
 
     @Override
-    public void toEvaluate(CharterOrderDetailsActivity aty, String air_id,int type,String line_id,String seller_id) {
+    public void toEvaluate(CharterOrderDetailsActivity aty, String air_id, int type, String line_id, String seller_id) {
         jumpintent = new Intent(aty, PostEvaluationActivity.class);
         jumpintent.putExtra("air_id", air_id);
         jumpintent.putExtra("type", type);
@@ -108,14 +109,14 @@ public class CharterOrderDetailsPresenter implements CharterOrderDetailsContract
 
     @Override
     public void toRouteDetail(CharterOrderDetailsActivity aty, String line_id) {
-        if (TextUtils.isEmpty(line_id)){
+        if (TextUtils.isEmpty(line_id)) {
             mView.errorMsg(aty.getResources().getString(R.string.noLineId), 0);
             return;
         }
-        jumpintent=new Intent(aty, RouteDetailsActivity.class);
-        jumpintent.putExtra("line_id",line_id);
-        jumpintent.putExtra("orderDetailTag",true);
-        aty.showActivity(aty,jumpintent);
+        jumpintent = new Intent(aty, RouteDetailsActivity.class);
+        jumpintent.putExtra("line_id", line_id);
+        jumpintent.putExtra("orderDetailTag", true);
+        aty.showActivity(aty, jumpintent);
     }
 
     @Override
@@ -126,14 +127,14 @@ public class CharterOrderDetailsPresenter implements CharterOrderDetailsContract
     }
 
     @Override
-    public void orderConfirmCompleted(CharterOrderDetailsActivity aty,String id,int flag) {
+    public void orderConfirmCompleted(CharterOrderDetailsActivity aty, String id, int flag) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        String location=PreferenceHelper.readString(aty, StringConstants.FILENAME, "location");
-        if (!TextUtils.isEmpty(location)){
-            String[] strarry=location.trim().split(",");
-            if (strarry!=null&&strarry.length==2){
-                httpParams.put("work_pointlng",strarry[0]);
-                httpParams.put("work_pointlat",strarry[1]);
+        String location = PreferenceHelper.readString(aty, StringConstants.FILENAME, "location");
+        if (!TextUtils.isEmpty(location)) {
+            String[] strarry = location.trim().split(",");
+            if (strarry != null && strarry.length == 2) {
+                httpParams.put("work_pointlng", strarry[0]);
+                httpParams.put("work_pointlat", strarry[1]);
             }
         }
         httpParams.put("id", id);
@@ -151,9 +152,9 @@ public class CharterOrderDetailsPresenter implements CharterOrderDetailsContract
     }
 
     @Override
-    public void delPackOrder (String air_id) {
+    public void delPackOrder(String air_id) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        httpParams.put("air_id",air_id);
+        httpParams.put("air_id", air_id);
         RequestClient.delPackOrderHttp(httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
@@ -168,9 +169,9 @@ public class CharterOrderDetailsPresenter implements CharterOrderDetailsContract
     }
 
     @Override
-    public void articleInfo (int type,int flag) {//flag:无特殊原因为：5,6
+    public void articleInfo(int type, int flag) {//flag:无特殊原因为：5,6
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        httpParams.put("type",type);
+        httpParams.put("type", type);
         RequestClient.delPackOrderHttp(httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {

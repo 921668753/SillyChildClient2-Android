@@ -23,8 +23,8 @@ import com.sillykid.app.adapter.main.community.CommunityViewAdapter;
 import com.sillykid.app.community.dynamic.DynamicDetailsActivity;
 import com.sillykid.app.constant.NumericConstants;
 import com.sillykid.app.entity.main.community.CommunityBean;
+import com.sillykid.app.homepage.boutiqueline.BoutiqueLineActivity;
 import com.sillykid.app.loginregister.LoginActivity;
-import com.sillykid.app.main.MainActivity;
 import com.sillykid.app.utils.GlideImageLoader;
 import com.sillykid.app.utils.SpacesItemDecoration;
 
@@ -42,7 +42,7 @@ import static com.sillykid.app.constant.NumericConstants.REQUEST_CODE;
  */
 public class CitySelectionFragment extends BaseFragment implements CommunityClassificationContract.View, BGARefreshLayout.BGARefreshLayoutDelegate, BGAOnRVItemClickListener {
 
-    private MainActivity aty;
+    private BoutiqueLineActivity aty;
 
     @BindView(id = R.id.mRefreshLayout)
     private BGARefreshLayout mRefreshLayout;
@@ -98,7 +98,7 @@ public class CitySelectionFragment extends BaseFragment implements CommunityClas
 
     @Override
     protected View inflaterView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
-        aty = (MainActivity) getActivity();
+        aty = (BoutiqueLineActivity) getActivity();
         return View.inflate(aty, R.layout.fragment_communityclassification, null);
     }
 

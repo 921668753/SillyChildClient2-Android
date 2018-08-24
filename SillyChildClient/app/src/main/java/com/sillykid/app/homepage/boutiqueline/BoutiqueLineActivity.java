@@ -67,6 +67,7 @@ public class BoutiqueLineActivity extends BaseActivity {
     public void initWidget() {
         super.initWidget();
         initTitle();
+        cleanColors(chageIcon);
     }
 
     /**
@@ -130,9 +131,11 @@ public class BoutiqueLineActivity extends BaseActivity {
         super.widgetClick(v);
         switch (v.getId()) {
             case R.id.ll_chosecity:
+                chageIcon = 0;
                 cleanColors(chageIcon);
                 break;
             case R.id.ll_hotRecommended:
+                chageIcon = 1;
                 cleanColors(chageIcon);
                 break;
             default:
@@ -147,20 +150,20 @@ public class BoutiqueLineActivity extends BaseActivity {
     @SuppressWarnings("deprecation")
     public void cleanColors(int chageIcon) {
         tv_chosecity.setTextColor(getResources().getColor(R.color.textColor));
-        tv_chosecity1.setTextColor(getResources().getColor(R.color.whiteColors));
+        tv_chosecity1.setBackgroundColor(getResources().getColor(R.color.whiteColors));
         tv_hotRecommended.setTextColor(getResources().getColor(R.color.textColor));
-        tv_hotRecommended1.setTextColor(getResources().getColor(R.color.whiteColors));
+        tv_hotRecommended1.setBackgroundColor(getResources().getColor(R.color.whiteColors));
         if (chageIcon == 0) {
             tv_chosecity.setTextColor(getResources().getColor(R.color.greenColors));
-            tv_chosecity1.setTextColor(getResources().getColor(R.color.greenColors));
+            tv_chosecity1.setBackgroundColor(getResources().getColor(R.color.greenColors));
             changeFragment(contentFragment);
         } else if (chageIcon == 1) {
             tv_hotRecommended.setTextColor(getResources().getColor(R.color.greenColors));
-            tv_hotRecommended1.setTextColor(getResources().getColor(R.color.greenColors));
+            tv_hotRecommended1.setBackgroundColor(getResources().getColor(R.color.greenColors));
             changeFragment(contentFragment1);
         } else {
             tv_chosecity.setTextColor(getResources().getColor(R.color.greenColors));
-            tv_chosecity1.setTextColor(getResources().getColor(R.color.greenColors));
+            tv_chosecity1.setBackgroundColor(getResources().getColor(R.color.greenColors));
             changeFragment(contentFragment);
         }
     }

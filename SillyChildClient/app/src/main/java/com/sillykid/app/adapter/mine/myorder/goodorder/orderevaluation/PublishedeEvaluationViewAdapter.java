@@ -1,4 +1,4 @@
-package com.sillykid.app.adapter.mine.myorder.orderevaluation;
+package com.sillykid.app.adapter.mine.myorder.goodorder.orderevaluation;
 
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;

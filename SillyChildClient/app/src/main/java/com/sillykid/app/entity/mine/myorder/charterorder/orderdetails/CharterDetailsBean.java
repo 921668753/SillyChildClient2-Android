@@ -1,4 +1,4 @@
-package com.sillykid.app.entity;
+package com.sillykid.app.entity.mine.myorder.charterorder.orderdetails;
 
 import com.common.cklibrary.entity.BaseResult;
 

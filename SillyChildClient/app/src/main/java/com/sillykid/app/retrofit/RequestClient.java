@@ -730,6 +730,13 @@ public class RequestClient {
     }
 
     /**
+     * 精品线路 - 获取精品线路城市列表
+     */
+    public static void getRouteRegion(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        HttpRequest.requestGetHttp(context, URLConstants.ROUTEREGION, httpParams, false, listener);
+    }
+
+    /**
      * 接机产品 - 通过机场的编号来获取产品信息
      */
     public static void getProductByAirportId(Context context, HttpParams httpParams, ResponseListener<String> listener) {
@@ -2516,6 +2523,58 @@ public class RequestClient {
             }
         }, listener);
     }
+
+
+    /**
+     * 包车服务 - 分页查询用户提交的订单
+     */
+    public static void getChartOrderList(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        Log.d("tag", "getChartOrderList");
+        doServer(context, new TokenCallback() {
+            @Override
+            public void execute() {
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
+                if (StringUtils.isEmpty(cookies)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("Cookie", cookies);
+                HttpRequest.requestGetHttp(context, URLConstants.CHARTORDERLIST, httpParams, listener);
+            }
+        }, listener);
+    }
+
+
+    /**
+     * 订单列表 - 查询订单详细信息
+     */
+    public static void getCharterOrderDetails(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        Log.d("tag", "getCharterOrderDetails");
+        doServer(context, new TokenCallback() {
+            @Override
+            public void execute() {
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
+                if (StringUtils.isEmpty(cookies)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("Cookie", cookies);
+                HttpRequest.requestGetHttp(context, URLConstants.CHARTERORDERDETAILS, httpParams, listener);
+            }
+        }, listener);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     /**

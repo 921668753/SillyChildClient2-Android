@@ -1,32 +1,37 @@
 package com.sillykid.app.homepage.message.dialog;
 
+import android.app.Notification;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.common.cklibrary.common.BaseDialog;
+import com.common.cklibrary.common.StringConstants;
 import com.common.cklibrary.common.ViewInject;
+import com.kymjs.common.PreferenceHelper;
 import com.sillykid.app.R;
 
+import cn.jpush.android.api.BasicPushNotificationBuilder;
+import cn.jpush.android.api.JPushInterface;
 import io.rong.imkit.RongIM;
 import io.rong.imlib.RongIMClient;
 import io.rong.imlib.RongIMClient.OperationCallback;
-import io.rong.imlib.model.Conversation;
 
 /**
  * 消息设置弹框
  */
 public class MessageSettingDialog extends BaseDialog implements View.OnClickListener {
 
-    private String mTargetId;
-    private Conversation.ConversationType mConversationType;
-    private Conversation.ConversationNotificationStatus conversationNotificationStatus1;
-    private TextView tv_messageFree;
+    private ImageView img_IMMessages;
+    private ImageView img_systemMessages;
+    private boolean isIMMessages = true;
 
+    private boolean isSystemMessages = false;
 
     public MessageSettingDialog(@NonNull Context context) {
         super(context, R.style.MyDialog);
@@ -45,26 +50,42 @@ public class MessageSettingDialog extends BaseDialog implements View.OnClickList
     }
 
     private void initView() {
-        tv_messageFree = (TextView) findViewById(R.id.tv_messageFree);
-        tv_messageFree.setOnClickListener(this);
-        TextView tv_deleteSession = (TextView) findViewById(R.id.tv_deleteSession);
-        tv_deleteSession.setVisibility(View.GONE);
-        TextView tv_divider = (TextView) findViewById(R.id.tv_divider);
-        tv_divider.setVisibility(View.GONE);
-        TextView tv_clearMessages = (TextView) findViewById(R.id.tv_clearMessages);
-        tv_clearMessages.setOnClickListener(this);
+        img_IMMessages = (ImageView) findViewById(R.id.img_IMMessages);
+        img_IMMessages.setOnClickListener(this);
+        img_systemMessages = (ImageView) findViewById(R.id.img_systemMessages);
+        img_systemMessages.setOnClickListener(this);
         TextView tv_cancel = (TextView) findViewById(R.id.tv_cancel);
         tv_cancel.setOnClickListener(this);
+
     }
 
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.tv_messageFree:
-                RongIM.getInstance().setNotificationQuietHours("00:00:00", 1440, new OperationCallback() {
+            case R.id.img_IMMessages:
+                if (isIMMessages) {
+                    RongIM.getInstance().removeNotificationQuietHours(new OperationCallback() {
+                        @Override
+                        public void onSuccess() {
+                            isIMMessages = false;
+                            img_IMMessages.setImageResource(R.mipmap.messages_turnoff);
+                            ViewInject.toast(mContext.getString(R.string.successfullySet));
+                            dismiss();
+                        }
+
+                        @Override
+                        public void onError(RongIMClient.ErrorCode errorCode) {
+                            ViewInject.toast(mContext.getString(R.string.setupFailed));
+                        }
+                    });
+                    return;
+                }
+                RongIM.getInstance().setNotificationQuietHours("00:00:00", 1439, new OperationCallback() {
                     @Override
                     public void onSuccess() {
+                        isIMMessages = true;
+                        img_IMMessages.setImageResource(R.mipmap.messages_turnon);
                         ViewInject.toast(mContext.getString(R.string.successfullySet));
                         dismiss();
                     }
@@ -75,27 +96,53 @@ public class MessageSettingDialog extends BaseDialog implements View.OnClickList
                     }
                 });
                 break;
-            case R.id.tv_clearMessages:
-                RongIM.getInstance().removeNotificationQuietHours(new OperationCallback() {
-                    @Override
-                    public void onSuccess() {
-                        ViewInject.toast(mContext.getString(R.string.successfullySet));
-                        dismiss();
-                    }
-
-                    @Override
-                    public void onError(RongIMClient.ErrorCode errorCode) {
-                        ViewInject.toast(mContext.getString(R.string.setupFailed));
-                    }
-                });
+            case R.id.img_systemMessages:
+                if (isSystemMessages) {
+                    JPushInterface.setSilenceTime(mContext, 0, 0, 23, 59);
+                    img_systemMessages.setImageResource(R.mipmap.messages_turnon);
+                    isSystemMessages = false;
+                    PreferenceHelper.write(mContext, StringConstants.FILENAME, "isSystemMessages", isSystemMessages);
+                    dismiss();
+                    return;
+                }
+                JPushInterface.setSilenceTime(mContext, 0, 0, 0, 1);
+                img_systemMessages.setImageResource(R.mipmap.messages_turnoff);
+                isSystemMessages = true;
+                PreferenceHelper.write(mContext, StringConstants.FILENAME, "isSystemMessages", isSystemMessages);
+                dismiss();
                 break;
-//            case R.id.tv_clearMessages:
-//
-//                break;
             case R.id.tv_cancel:
                 dismiss();
                 break;
         }
     }
 
+
+    @Override
+    public void show() {
+        super.show();
+        isSystemMessages = PreferenceHelper.readBoolean(mContext, StringConstants.FILENAME, "isSystemMessages", true);
+        if (isSystemMessages) {
+            img_systemMessages.setImageResource(R.mipmap.messages_turnon);
+        } else {
+            img_systemMessages.setImageResource(R.mipmap.messages_turnoff);
+        }
+        RongIM.getInstance().getNotificationQuietHours(new RongIMClient.GetNotificationQuietHoursCallback() {
+            @Override
+            public void onSuccess(String s, int i) {
+                if (i > 0) {
+                    isIMMessages = true;
+                    img_IMMessages.setImageResource(R.mipmap.messages_turnon);
+                } else {
+                    isIMMessages = false;
+                    img_IMMessages.setImageResource(R.mipmap.messages_turnoff);
+                }
+            }
+
+            @Override
+            public void onError(RongIMClient.ErrorCode errorCode) {
+
+            }
+        });
+    }
 }

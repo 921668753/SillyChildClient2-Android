@@ -1,5 +1,6 @@
 package com.sillykid.app.mine.myorder.charterorder;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.text.TextUtils;
@@ -8,6 +9,7 @@ import com.common.cklibrary.common.StringConstants;
 import com.common.cklibrary.utils.httputil.HttpUtilParams;
 import com.common.cklibrary.utils.httputil.ResponseListener;
 import com.kymjs.common.PreferenceHelper;
+import com.kymjs.common.StringUtils;
 import com.kymjs.rxvolley.client.HttpParams;
 import com.sillykid.app.R;
 import com.sillykid.app.homepage.chartercustom.routes.CheckstandActivity;
@@ -33,21 +35,24 @@ public class CharterOrderPresenter implements CharterOrderContract.Presenter {
 
 
     @Override
-    public void getChartOrder(String status, int page) {
+    public void getChartOrder(Context context, String status, int page) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        httpParams.put("status", status);
-        httpParams.put("p", page);
-//        RequestClient.getOrderList(httpParams, new ResponseListener<String>() {
-//            @Override
-//            public void onSuccess(String response) {
-//                mView.getSuccess(response, 0);
-//            }
-//
-//            @Override
-//            public void onFailure(String msg) {
-//                mView.errorMsg(msg, 0);
-//            }
-//        });
+        if (!StringUtils.isEmpty(status)) {
+            httpParams.put("status", status);
+        }
+        httpParams.put("pageno", page);
+        httpParams.put("pagesize", 5);
+        RequestClient.getChartOrderList(context, httpParams, new ResponseListener<String>() {
+            @Override
+            public void onSuccess(String response) {
+                mView.getSuccess(response, 0);
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                mView.errorMsg(msg, 0);
+            }
+        });
     }
 
     @Override
@@ -63,7 +68,7 @@ public class CharterOrderPresenter implements CharterOrderContract.Presenter {
     }
 
     @Override
-    public void toPay(MyOrderActivity aty, String orderid, String paymoney,String paymoneyfmt) {
+    public void toPay(MyOrderActivity aty, String orderid, String paymoney, String paymoneyfmt) {
         if (TextUtils.isEmpty(orderid) || TextUtils.isEmpty(paymoney)) {
             mView.errorMsg(aty.getResources().getString(R.string.doNotPay), 1);
             return;
@@ -76,7 +81,7 @@ public class CharterOrderPresenter implements CharterOrderContract.Presenter {
     }
 
     @Override
-    public void toChart(MyOrderActivity aty, String hxusername, String nickname,String defaultnickname, String avatar) {
+    public void toChart(MyOrderActivity aty, String hxusername, String nickname, String defaultnickname, String avatar) {
 //        if (TextUtils.isEmpty(hxusername)) {
 //            mView.errorMsg(aty.getResources().getString(R.string.doNotChat), 1);
 //            return;
@@ -100,7 +105,7 @@ public class CharterOrderPresenter implements CharterOrderContract.Presenter {
     }
 
     @Override
-    public void toEvaluate(MyOrderActivity aty, String air_id,int type,String line_id,String seller_id) {
+    public void toEvaluate(MyOrderActivity aty, String air_id, int type, String line_id, String seller_id) {
         jumpintent = new Intent(aty, PostEvaluationActivity.class);
         jumpintent.putExtra("air_id", air_id);
         jumpintent.putExtra("type", type);
@@ -124,14 +129,14 @@ public class CharterOrderPresenter implements CharterOrderContract.Presenter {
     }
 
     @Override
-    public void orderConfirmCompleted(MyOrderActivity aty,String id,int flag) {
+    public void orderConfirmCompleted(MyOrderActivity aty, String id, int flag) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        String location=PreferenceHelper.readString(aty, StringConstants.FILENAME, "location");
-        if (!TextUtils.isEmpty(location)){
-            String[] strarry=location.trim().split(",");
-            if (strarry!=null&&strarry.length==2){
-                httpParams.put("work_pointlng",strarry[0]);
-                httpParams.put("work_pointlat",strarry[1]);
+        String location = PreferenceHelper.readString(aty, StringConstants.FILENAME, "location");
+        if (!TextUtils.isEmpty(location)) {
+            String[] strarry = location.trim().split(",");
+            if (strarry != null && strarry.length == 2) {
+                httpParams.put("work_pointlng", strarry[0]);
+                httpParams.put("work_pointlat", strarry[1]);
             }
         }
         httpParams.put("id", id);
@@ -149,7 +154,7 @@ public class CharterOrderPresenter implements CharterOrderContract.Presenter {
     }
 
     @Override
-    public void getOrderAround () {
+    public void getOrderAround() {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
         RequestClient.getOrderAroundHttp(httpParams, new ResponseListener<String>() {
             @Override
@@ -165,9 +170,9 @@ public class CharterOrderPresenter implements CharterOrderContract.Presenter {
     }
 
     @Override
-    public void delPackOrder (String air_id) {
+    public void delPackOrder(String air_id) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        httpParams.put("air_id",air_id);
+        httpParams.put("air_id", air_id);
         RequestClient.delPackOrderHttp(httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {

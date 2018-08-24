@@ -21,6 +21,7 @@
     <string name="attentionLoad">关注中&#8230;</string>
     <string name="cancelCttentionLoad">取消关注中&#8230;</string>
     <string name="reportLoad">举报中&#8230;</string>
+    <string name="customerServiceLoad">连接客服中&#8230;</string>
     <!--Dialog-->
 
     <!--公共的-->
@@ -507,6 +508,7 @@
     <string name="adult">成人</string>
     <string name="children">儿童</string>
     <string name="bags">行李数</string>
+    <string name="bags2">件行李</string>
     <string name="number">个数</string>
     <string name="dimension">尺寸</string>
     <string name="inch30">30寸</string>
@@ -1510,6 +1512,8 @@
 
 
     <!--融云start-->
+    <string name="IMMessagesNotDisturb">互动消息免打扰</string>
+    <string name="systemMessagesNotDisturb">系统消息免打扰</string>
     <string name="clearSessionMessage">清空该会话消息</string>
     <string name="deleteSession">删除该会话</string>
     <string name="messageFree">消息免打扰</string>

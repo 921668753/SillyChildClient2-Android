@@ -19,8 +19,8 @@ import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.RefreshLayoutUtil;
 import com.kymjs.common.PreferenceHelper;
 import com.sillykid.app.R;
-import com.sillykid.app.adapter.CharterOrderAdapter;
-import com.sillykid.app.entity.CharterOrderBean;
+import com.sillykid.app.adapter.mine.myorder.charterorder.CharterOrderAdapter;
+import com.sillykid.app.entity.mine.myorder.charterorder.CharterOrderBean;
 import com.sillykid.app.loginregister.LoginActivity;
 import com.sillykid.app.mine.myorder.MyOrderActivity;
 import com.sillykid.app.mine.myorder.charterorder.CharterOrderContract;
@@ -56,7 +56,7 @@ public class EvaluateHomestayFragment extends BaseFragment implements AdapterVie
     private TextView tv_hintText;
 
     private CharterOrderBean charterOrderBean;
-    private List<CharterOrderBean.ResultBean.ListBean> databean;
+   // private List<CharterOrderBean.ResultBean.ListBean> databean;
 
     @Override
     protected View inflaterView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -137,16 +137,16 @@ public class EvaluateHomestayFragment extends BaseFragment implements AdapterVie
             dismissLoadingDialog();
             return;
         }
-        if (charterOrderBean.getData().getList() == null || charterOrderBean.getData().getList().size() == 0) {
-            ll_commonError.setVisibility(View.VISIBLE);
-            tv_hintText.setText(getString(R.string.youNo));
-            dismissLoadingDialog();
-            return;
-        }
-        ll_commonError.setVisibility(View.GONE);
-        mAdapter.clear();
-        databean=charterOrderBean.getData().getList();
-        mAdapter.addNewData(databean);
+//        if (charterOrderBean.getData().getList() == null || charterOrderBean.getData().getList().size() == 0) {
+//            ll_commonError.setVisibility(View.VISIBLE);
+//            tv_hintText.setText(getString(R.string.youNo));
+//            dismissLoadingDialog();
+//            return;
+//        }
+//        ll_commonError.setVisibility(View.GONE);
+//        mAdapter.clear();
+//        databean=charterOrderBean.getData().getList();
+//        mAdapter.addNewData(databean);
 
         dismissLoadingDialog();
 

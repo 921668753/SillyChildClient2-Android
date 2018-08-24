@@ -18,8 +18,10 @@ import com.common.cklibrary.common.BaseActivity;
 import com.common.cklibrary.common.BaseFragment;
 import com.common.cklibrary.common.BindView;
 import com.common.cklibrary.common.KJActivityStack;
+import com.common.cklibrary.common.StringConstants;
 import com.common.cklibrary.common.ViewInject;
 import com.kymjs.common.Log;
+import com.kymjs.common.PreferenceHelper;
 import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
 import com.sillykid.app.homepage.message.interactivemessage.imuitl.RongCloudEvent;
@@ -118,6 +120,12 @@ public class MainActivity extends BaseActivity implements MainContract.View {
         contentFragment3 = new ActivitiesFragment();
         contentFragment4 = new MineFragment();
         chageIcon = getIntent().getIntExtra("chageIcon", 0);
+
+        mMessageReceiver = new MessageReceiver();
+        IntentFilter filter = new IntentFilter();
+        filter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
+        filter.addAction(MESSAGE_RECEIVED_ACTION);
+        registerReceiver(mMessageReceiver, filter);
         registerMessageReceiver();  //   极光推送 used for receive msg
         ((MainContract.Presenter) mPresenter).getChatManagerListener();
 
@@ -248,11 +256,6 @@ public class MainActivity extends BaseActivity implements MainContract.View {
 
 
     public void registerMessageReceiver() {
-        mMessageReceiver = new MessageReceiver();
-        IntentFilter filter = new IntentFilter();
-        filter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
-        filter.addAction(MESSAGE_RECEIVED_ACTION);
-        registerReceiver(mMessageReceiver, filter);
         //极光推送 定制声音、震动、闪灯等 Notification 样式。
         BasicPushNotificationBuilder builder = new BasicPushNotificationBuilder(MainActivity.this);
 //        builder.statusBarDrawable = R.mipmap.ic_launcher;
@@ -262,6 +265,10 @@ public class MainActivity extends BaseActivity implements MainContract.View {
                 | Notification.DEFAULT_VIBRATE
                 | Notification.DEFAULT_LIGHTS;  // 设置为铃声、震动、呼吸灯闪烁都要
         JPushInterface.setPushNotificationBuilder(1, builder);
+        boolean isSystemMessages = PreferenceHelper.readBoolean(aty, StringConstants.FILENAME, "isSystemMessages", true);
+        if (isSystemMessages) {
+            JPushInterface.setSilenceTime(aty, 0, 0, 0, 1);
+        }
     }
 
 

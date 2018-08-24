@@ -141,8 +141,6 @@ public class DueDemandActivity extends BaseActivity {
     }
 
 
-
-
     private void initOptions() {
         List<String> list = new ArrayList<String>();
         for (int i = 0; i < 10; i++) {
@@ -173,7 +171,6 @@ public class DueDemandActivity extends BaseActivity {
         }).build();
         luggageOptions.setPicker(list);
     }
-
 
 
     @Override
@@ -208,24 +205,6 @@ public class DueDemandActivity extends BaseActivity {
                 break;
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

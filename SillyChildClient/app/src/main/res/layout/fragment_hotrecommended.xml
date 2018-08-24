@@ -5,6 +5,7 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/ll_selectCity"
         style="@style/Match45"
         android:layout_marginTop="@dimen/dimen6"
         android:background="@color/whiteColors"

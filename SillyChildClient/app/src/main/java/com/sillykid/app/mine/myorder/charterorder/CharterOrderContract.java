@@ -1,5 +1,7 @@
 package com.sillykid.app.mine.myorder.charterorder;
 
+import android.content.Context;
+
 import com.common.cklibrary.common.BasePresenter;
 import com.common.cklibrary.common.BaseView;
 import com.sillykid.app.mine.myorder.MyOrderActivity;
@@ -13,9 +15,9 @@ import java.io.File;
 public interface CharterOrderContract {
     interface Presenter extends BasePresenter {
         /**
-         * 获取用户信息
+         * 获取订单信息
          */
-        void getChartOrder(String type, int page);
+        void getChartOrder(Context context, String status, int page);
 
         /**
          * 打电话
@@ -41,18 +43,22 @@ public interface CharterOrderContract {
          * 查看订单详情
          */
         void toDetails(MyOrderActivity aty, String air_id);
+
         /**
          * 查看评价
          */
         void toSeeEvaluate(MyOrderActivity aty, String air_id);
+
         /**
          * 确认结束订单
          */
-        void orderConfirmCompleted(MyOrderActivity aty,String id,int flag);
+        void orderConfirmCompleted(MyOrderActivity aty, String id, int flag);
+
         /**
          * 获取订单列表的数量统计信息
          */
         void getOrderAround();
+
         /**
          * 删除未付款的订单
          */

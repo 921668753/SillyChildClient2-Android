@@ -16,33 +16,51 @@
             android:background="@drawable/shape_clearcache"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tv_messageFree"
+            <LinearLayout
                 style="@style/Match45"
-                android:gravity="center"
-                android:text="@string/messageFree"
-                android:textColor="@color/textColor"
-                android:textSize="@dimen/textsize15" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/dimen17">
+
+                <TextView
+                    style="@style/AutoWrap"
+                    android:text="@string/IMMessagesNotDisturb"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+
+
+                <ImageView
+                    android:id="@+id/img_IMMessages"
+                    android:layout_width="@dimen/dimen59"
+                    android:layout_height="@dimen/dimen27"
+                    android:layout_marginRight="@dimen/dimen17"
+                    android:src="@mipmap/messages_turnoff" />
+
+            </LinearLayout>
 
             <TextView style="@style/DividerWidth" />
 
-            <TextView
-                android:id="@+id/tv_deleteSession"
+            <LinearLayout
                 style="@style/Match45"
-                android:gravity="center"
-                android:text="@string/deleteSession"
-                android:textColor="@color/fF0000Colors"
-                android:textSize="@dimen/textsize15" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/dimen17">
 
-            <TextView style="@style/DividerWidth" />
+                <TextView
+                    style="@style/AutoWrap"
+                    android:text="@string/systemMessagesNotDisturb"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
 
-            <TextView
-                android:id="@+id/tv_clearMessages"
-                style="@style/Match45"
-                android:gravity="center"
-                android:text="@string/clearSessionMessage"
-                android:textColor="@color/fF0000Colors"
-                android:textSize="@dimen/textsize15" />
+
+                <ImageView
+                    android:id="@+id/img_systemMessages"
+                    android:layout_width="@dimen/dimen59"
+                    android:layout_height="@dimen/dimen27"
+                    android:layout_marginRight="@dimen/dimen17"
+                    android:src="@mipmap/messages_turnoff" />
+
+            </LinearLayout>
 
         </LinearLayout>
 

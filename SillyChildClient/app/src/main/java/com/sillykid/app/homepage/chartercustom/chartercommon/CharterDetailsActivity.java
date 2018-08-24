@@ -17,7 +17,7 @@ import com.kymjs.common.PreferenceHelper;
 import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
 import com.sillykid.app.mine.sharingceremony.dialog.ShareBouncedDialog;
-import com.sillykid.app.entity.CharterDetailsBean;
+import com.sillykid.app.entity.mine.myorder.charterorder.orderdetails.CharterDetailsBean;
 import com.sillykid.app.homepage.chartercustom.bytheday.ByTheDayActivity;
 import com.sillykid.app.homepage.chartercustom.transfer.TransferActivity;
 import com.sillykid.app.loginregister.LoginActivity;

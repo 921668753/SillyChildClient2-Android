@@ -21,11 +21,11 @@ import com.lzy.imagepicker.ui.ImagePreviewDelActivity;
 import com.lzy.imagepicker.view.CropImageView;
 import com.sillykid.app.R;
 import com.sillykid.app.adapter.ImagePickerAdapter;
-import com.sillykid.app.adapter.mine.myorder.orderevaluation.PublishedeEvaluationViewAdapter;
+import com.sillykid.app.adapter.mine.myorder.goodorder.orderevaluation.PublishedeEvaluationViewAdapter;
 import com.sillykid.app.entity.mine.myorder.goodorder.orderevaluation.PublishedeEvaluationBean.DataBean.MemberCommentExtsBean;
 import com.sillykid.app.constant.NumericConstants;
-import com.sillykid.app.entity.mine.myorder.OrderDetailBean;
-import com.sillykid.app.entity.mine.myorder.OrderDetailBean.DataBeanX.ItemListBean;
+import com.sillykid.app.entity.mine.myorder.goodorder.orderdetails.OrderDetailBean;
+import com.sillykid.app.entity.mine.myorder.goodorder.orderdetails.OrderDetailBean.DataBeanX.ItemListBean;
 import com.sillykid.app.loginregister.LoginActivity;
 import com.sillykid.app.utils.SpacesItemDecoration;
 

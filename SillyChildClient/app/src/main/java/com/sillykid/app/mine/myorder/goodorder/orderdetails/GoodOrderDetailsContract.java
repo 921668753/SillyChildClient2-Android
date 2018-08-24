@@ -4,7 +4,6 @@ import android.content.Context;
 
 import com.common.cklibrary.common.BasePresenter;
 import com.common.cklibrary.common.BaseView;
-import com.sillykid.app.entity.mine.myorder.GoodOrderBean;
 
 /**
  * Created by ruitu on 2016/9/24.

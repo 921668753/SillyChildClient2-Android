@@ -1,4 +1,4 @@
-package com.sillykid.app.entity.mine.myorder;
+package com.sillykid.app.entity.mine.myorder.goodorder;
 
 import com.common.cklibrary.entity.BaseResult;
 import com.google.gson.annotations.SerializedName;

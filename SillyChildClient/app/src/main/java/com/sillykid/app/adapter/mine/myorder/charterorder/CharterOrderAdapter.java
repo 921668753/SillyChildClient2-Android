@@ -1,12 +1,12 @@
-package com.sillykid.app.adapter;
+package com.sillykid.app.adapter.mine.myorder.charterorder;
 
 import android.content.Context;
 import android.view.View;
-import android.widget.ImageView;
 
+import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
-import com.sillykid.app.constant.NumericConstants;
-import com.sillykid.app.entity.CharterOrderBean.ResultBean.ListBean;
+import com.sillykid.app.entity.mine.myorder.charterorder.CharterOrderBean.DataBean.ResultBean;
+import com.sillykid.app.utils.DataUtil;
 import com.sillykid.app.utils.GlideImageLoader;
 
 import cn.bingoogolapple.androidcommon.adapter.BGAAdapterViewAdapter;
@@ -17,7 +17,7 @@ import cn.bingoogolapple.androidcommon.adapter.BGAViewHolderHelper;
  * Created by Admin on 2017/8/15.
  */
 
-public class CharterOrderAdapter extends BGAAdapterViewAdapter<ListBean> {
+public class CharterOrderAdapter extends BGAAdapterViewAdapter<ResultBean> {
 
     public CharterOrderAdapter(Context context) {
         super(context, R.layout.item_charterorder);
@@ -34,12 +34,12 @@ public class CharterOrderAdapter extends BGAAdapterViewAdapter<ListBean> {
     }
 
     @Override
-    public void fillData(BGAViewHolderHelper viewHolderHelper, int position, ListBean listBean) {
+    public void fillData(BGAViewHolderHelper viewHolderHelper, int position, ResultBean model) {
 
-        viewHolderHelper.setText(R.id.tv_orderNumber, listBean.getOrder_sn());
+        viewHolderHelper.setText(R.id.tv_orderNumber, model.getOrder_number());
 
-        switch (listBean.getStatusX()) {
-            case NumericConstants.NoPay://待付款
+        switch (model.getStatus()) {
+            case 0://待付款
                 viewHolderHelper.setText(R.id.tv_charterStatus, R.string.obligation);
                 viewHolderHelper.setVisibility(R.id.tv_confirmPayment, View.VISIBLE);
                 viewHolderHelper.setVisibility(R.id.tv_callUp, View.GONE);
@@ -47,7 +47,7 @@ public class CharterOrderAdapter extends BGAAdapterViewAdapter<ListBean> {
                 viewHolderHelper.setVisibility(R.id.tv_appraiseOrder, View.GONE);
                 viewHolderHelper.setVisibility(R.id.tv_additionalComments, View.GONE);
                 break;
-            case NumericConstants.SendOrder://进行中
+            case 1://进行中
                 viewHolderHelper.setText(R.id.tv_charterStatus, R.string.ongoing);
                 viewHolderHelper.setVisibility(R.id.tv_confirmPayment, View.GONE);
                 viewHolderHelper.setVisibility(R.id.tv_callUp, View.VISIBLE);
@@ -55,7 +55,7 @@ public class CharterOrderAdapter extends BGAAdapterViewAdapter<ListBean> {
                 viewHolderHelper.setVisibility(R.id.tv_appraiseOrder, View.GONE);
                 viewHolderHelper.setVisibility(R.id.tv_additionalComments, View.GONE);
                 break;
-            case NumericConstants.WaiteOrder://待评价
+            case 2://待评价
                 viewHolderHelper.setText(R.id.tv_charterStatus, R.string.evaluate);
                 viewHolderHelper.setVisibility(R.id.tv_confirmPayment, View.GONE);
                 viewHolderHelper.setVisibility(R.id.tv_callUp, View.GONE);
@@ -63,7 +63,7 @@ public class CharterOrderAdapter extends BGAAdapterViewAdapter<ListBean> {
                 viewHolderHelper.setVisibility(R.id.tv_appraiseOrder, View.VISIBLE);
                 viewHolderHelper.setVisibility(R.id.tv_additionalComments, View.GONE);
                 break;
-            case NumericConstants.CompletedInDeatil://已完成
+            case 3://已完成
                 viewHolderHelper.setText(R.id.tv_charterStatus, R.string.completed);
                 viewHolderHelper.setVisibility(R.id.tv_confirmPayment, View.GONE);
                 viewHolderHelper.setVisibility(R.id.tv_callUp, View.GONE);
@@ -73,14 +73,23 @@ public class CharterOrderAdapter extends BGAAdapterViewAdapter<ListBean> {
                 break;
             default:
                 break;
+        }
+        GlideImageLoader.glideOrdinaryLoader(mContext, model.getMain_picture(), viewHolderHelper.getImageView(R.id.img_charterOrder), R.mipmap.placeholderfigure1);
+        viewHolderHelper.setText(R.id.tv_title, model.getTitle());
+        if (model.getProduct_set_cd() == 1 || model.getProduct_set_cd() == 2) {
+            viewHolderHelper.setText(R.id.tv_serviceTime, DataUtil.formatData(StringUtils.toLong(model.getService_start_time()), "yyyy-MM-dd HH:mm"));
+        } else if (model.getProduct_set_cd() == 3) {
+            viewHolderHelper.setText(R.id.tv_serviceTime, DataUtil.formatData(StringUtils.toLong(model.getService_start_time()),
+                    "yyyy" + mContext.getString(R.string.year) + "MM" + mContext.getString(R.string.month) + "dd" + mContext.getString(R.string.day)) +
+                    "-" + DataUtil.formatData(StringUtils.toLong(model.getService_start_time()),
+                    "yyyy" + mContext.getString(R.string.year) + "MM" + mContext.getString(R.string.month) + "dd" + mContext.getString(R.string.day)));
+        } else if (model.getProduct_set_cd() == 4) {
 
         }
-
-        GlideImageLoader.glideLoader(mContext, listBean.getAvatar(), (ImageView) viewHolderHelper.getView(R.id.img_charterOrder), 0, R.mipmap.avatar);
-        viewHolderHelper.setText(R.id.tv_title, R.string.needpayWithSymbol);
-        viewHolderHelper.setText(R.id.tv_serviceTime, mContext.getString(R.string.serviceTime));
-        viewHolderHelper.setText(R.id.tv_serviceCompany, mContext.getString(R.string.serviceCompany));
-        viewHolderHelper.setText(R.id.tv_orderMoney, mContext.getString(R.string.renminbi));
-        viewHolderHelper.setText(R.id.tv_money, mContext.getString(R.string.renminbi));
+        viewHolderHelper.setText(R.id.tv_serviceCompany, model.getService_director());
+        viewHolderHelper.setText(R.id.tv_orderMoney, mContext.getString(R.string.renminbi) + model.getOrder_amount());
+        viewHolderHelper.setText(R.id.tv_money, mContext.getString(R.string.renminbi) + model.getPay_amount());
     }
+
+
 }

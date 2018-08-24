@@ -43,6 +43,7 @@
         android:background="@color/whiteColors"
         android:orientation="horizontal"
         android:paddingBottom="@dimen/dimen16"
+        android:paddingLeft="@dimen/dimen18"
         android:paddingRight="@dimen/dimen18"
         android:paddingTop="@dimen/dimen16">
 

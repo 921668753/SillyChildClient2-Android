@@ -28,6 +28,7 @@ import com.common.cklibrary.utils.RefreshLayoutUtil;
 import com.common.cklibrary.utils.myview.HorizontalListView;
 import com.kymjs.common.PreferenceHelper;
 import com.kymjs.common.StringUtils;
+import com.sillykid.app.BuildConfig;
 import com.sillykid.app.R;
 import com.sillykid.app.adapter.main.homepage.BoutiqueLineViewAdapter;
 import com.sillykid.app.adapter.main.homepage.HotVideoViewAdapter;
@@ -37,16 +38,15 @@ import com.sillykid.app.entity.main.HomePageBean;
 import com.sillykid.app.entity.main.HomePageBean.DataBean.BannerListBean;
 import com.sillykid.app.homepage.BannerDetailsActivity;
 import com.sillykid.app.homepage.airporttransportation.AirportTransportationClassificationActivity;
+import com.sillykid.app.homepage.boutiqueline.BoutiqueLineActivity;
 import com.sillykid.app.homepage.bythedaycharter.ByTheDayCharterClassificationActivity;
-import com.sillykid.app.homepage.bythedaycharter.SelectDateActivity;
 import com.sillykid.app.homepage.hotvideo.HotVideoActivity;
 import com.sillykid.app.homepage.hotvideo.VideoDetailsActivity;
 import com.sillykid.app.homepage.message.MessageActivity;
+import com.sillykid.app.homepage.message.interactivemessage.imuitl.RongIMUtil;
 import com.sillykid.app.homepage.privatecustom.PrivateCustomActivity;
 import com.sillykid.app.loginregister.LoginActivity;
-import com.sillykid.app.mall.goodslist.GoodsListActivity;
 import com.sillykid.app.mall.goodslist.goodsdetails.GoodsDetailsActivity;
-import com.sillykid.app.mine.vipemergencycall.VipEmergencyCallActivity;
 import com.sillykid.app.receivers.MainCallBack;
 import com.sillykid.app.receivers.MainReceiver;
 import com.sillykid.app.services.MainService;
@@ -58,6 +58,8 @@ import cn.bingoogolapple.androidcommon.adapter.BGADivider;
 import cn.bingoogolapple.androidcommon.adapter.BGAOnRVItemClickListener;
 import cn.bingoogolapple.bgabanner.BGABanner;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
+import io.rong.imkit.RongIM;
+import io.rong.imlib.model.Conversation;
 import pub.devrel.easypermissions.EasyPermissions;
 
 /**
@@ -207,7 +209,8 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
         super.widgetClick(v);
         switch (v.getId()) {
             case R.id.img_customerService:
-                aty.showActivity(aty, VipEmergencyCallActivity.class);
+                showLoadingDialog(getString(R.string.customerServiceLoad));
+                ((HomePageContract.Presenter) mPresenter).getIsLogin(aty, 2);
                 break;
             case R.id.rl_message:
                 ((HomePageContract.Presenter) mPresenter).getIsLogin(aty, 1);
@@ -226,7 +229,7 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
                 break;
             case R.id.ll_privateOrdering:
                 Intent intent2 = new Intent(aty, PrivateCustomActivity.class);
-              //   intent1.putExtra("newChageIcon", 2);
+                //   intent1.putExtra("newChageIcon", 2);
                 aty.showActivity(aty, intent2);
                 break;
             case R.id.ll_airportDropOff:
@@ -240,8 +243,8 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
                 break;
             case R.id.ll_boutiqueLine:
             case R.id.ll_boutiqueLine1:
-                Intent intent4 = new Intent(aty, GoodsListActivity.class);
-                intent4.putExtra("cat", 484);
+                Intent intent4 = new Intent(aty, BoutiqueLineActivity.class);
+                // intent4.putExtra("cat", 484);
                 aty.showActivity(aty, intent4);
                 break;
             default:
@@ -282,6 +285,10 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
             dismissLoadingDialog();
             //  tv_tag.setVisibility(View.GONE);
             aty.showActivity(aty, MessageActivity.class);
+        } else if (flag == 2) {
+            RongIMUtil.connectRongIM(aty);
+            dismissLoadingDialog();
+            RongIM.getInstance().startConversation(aty, Conversation.ConversationType.CUSTOMER_SERVICE, BuildConfig.RONGYUN_KEFU, getString(R.string.sillyChildCustomerService));
         }
         dismissLoadingDialog();
 

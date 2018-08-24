@@ -12,7 +12,7 @@ public interface CharterOrderDetailsContract {
         /**
          * 获取包车订单详情
          */
-        void getCharterOrderDetails(String air_id);
+        void getCharterOrderDetails(String order_number);
 
         /**
          * 打电话

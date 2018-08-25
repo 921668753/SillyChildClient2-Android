@@ -27,6 +27,7 @@ import com.sillykid.app.mine.myorder.charterorder.orderdetails.AirportDropOffOrd
 import com.sillykid.app.mine.myorder.charterorder.orderdetails.AirportPickupOrderDetailsActivity;
 import com.sillykid.app.mine.myorder.charterorder.orderdetails.CharterOrderDetailsActivity;
 import com.sillykid.app.mine.myorder.charterorder.orderdetails.PrivateCustomOrderDetailsActivity;
+import com.sillykid.app.mine.myorder.charterorder.orderevaluation.AdditionalCommentsActivity;
 
 import cn.bingoogolapple.androidcommon.adapter.BGAOnItemChildClickListener;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
@@ -116,15 +117,6 @@ public class CompletedCharterFragment extends BaseFragment implements AdapterVie
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-//        if (charterOrderFragment.getChageIcon() == 4) {
-//            mRefreshLayout.beginRefreshing();
-//        }
-    }
-
-
-    @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         Intent intent = new Intent();
         if (mAdapter.getItem(i).getProduct_set_cd() == 1) {
@@ -134,9 +126,9 @@ public class CompletedCharterFragment extends BaseFragment implements AdapterVie
         } else if (mAdapter.getItem(i).getProduct_set_cd() == 3) {
             intent.setClass(aty, CharterOrderDetailsActivity.class);
         } else if (mAdapter.getItem(i).getProduct_set_cd() == 4) {
-            //  intent.setClass(aty, AirportPickupOrderDetailsActivity.class);
-        } else if (mAdapter.getItem(i).getProduct_set_cd() == 5) {
             intent.setClass(aty, PrivateCustomOrderDetailsActivity.class);
+        } else if (mAdapter.getItem(i).getProduct_set_cd() == 5) {
+            //  intent.setClass(aty, AirportPickupOrderDetailsActivity.class);
         }
         intent.putExtra("order_number", mAdapter.getItem(i).getOrder_number());
         aty.showActivity(aty, intent);
@@ -145,23 +137,15 @@ public class CompletedCharterFragment extends BaseFragment implements AdapterVie
     @Override
     public void onItemChildClick(ViewGroup parent, View childView, int position) {
         switch (childView.getId()) {
-            case R.id.tv_confirmPayment:
-
-                break;
-            case R.id.tv_callUp:
-
-                break;
-            case R.id.tv_sendPrivateChat:
-
-
-                break;
-            case R.id.tv_appraiseOrder:
-
-
-                break;
             case R.id.tv_additionalComments:
-
-
+                Intent intent2 = new Intent(aty, AdditionalCommentsActivity.class);
+                intent2.putExtra("order_id", mAdapter.getItem(position).getOrder_id());
+//                intent1.putExtra("order_number", bean.getOrder_number());
+//                intent1.putExtra("pay_amount", bean.getPay_amount());
+//                intent1.putExtra("type", bean.getProduct_set_cd());
+//                intent1.putExtra("start_time", bean.getStart_time());
+//                intent1.putExtra("end_time", bean.getEnd_time());
+                aty.showActivity(aty, intent2);
                 break;
         }
     }
@@ -228,19 +212,6 @@ public class CompletedCharterFragment extends BaseFragment implements AdapterVie
                 mAdapter.addMoreData(charterOrderBean.getData().getResultX());
             }
             dismissLoadingDialog();
-
-
-        } else if (flag == 2) {//确认结束订单
-
-        } else if (flag == 3) {
-//            charterOrderAngleBean = (CharterOrderAngleBean) JsonUtil.getInstance().json2Obj(success, CharterOrderAngleBean.class);
-//            ((CharterOrderContract.Presenter) mPresenter).getChartOrder(StringNewConstants.All, mMorePageNumber);
-        } else if (flag == 4) {//删除订单成功
-
-
-        } else {
-
-
         }
     }
 
@@ -279,12 +250,9 @@ public class CompletedCharterFragment extends BaseFragment implements AdapterVie
                 tv_hintText.setText(msg);
                 tv_button.setText(getString(R.string.retry));
             }
-        } else if (flag == 1) {
-            dismissLoadingDialog();
-            ViewInject.toast(msg);
-            return;
         }
     }
+
     /**
      * 在接收消息的时候，选择性接收消息：
      */
@@ -297,5 +265,10 @@ public class CompletedCharterFragment extends BaseFragment implements AdapterVie
         }
     }
 
-
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mAdapter.clear();
+        mAdapter = null;
+    }
 }

@@ -1,7 +1,10 @@
 package com.sillykid.app.mine.myorder.charterorder;
 
+import android.Manifest;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,26 +20,35 @@ import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.RefreshLayoutUtil;
 import com.common.cklibrary.utils.rx.MsgEvent;
+import com.kymjs.common.Log;
 import com.sillykid.app.R;
 import com.sillykid.app.adapter.mine.myorder.charterorder.CharterOrderAdapter;
 import com.sillykid.app.constant.NumericConstants;
 import com.sillykid.app.entity.mine.myorder.charterorder.CharterOrderBean;
+import com.sillykid.app.homepage.message.interactivemessage.imuitl.RongIMUtil;
 import com.sillykid.app.loginregister.LoginActivity;
 import com.sillykid.app.mine.myorder.MyOrderActivity;
+import com.sillykid.app.mine.myorder.charterorder.dialog.ServicePhoneDialog;
 import com.sillykid.app.mine.myorder.charterorder.orderdetails.AirportDropOffOrderDetailsActivity;
 import com.sillykid.app.mine.myorder.charterorder.orderdetails.AirportPickupOrderDetailsActivity;
 import com.sillykid.app.mine.myorder.charterorder.orderdetails.CharterOrderDetailsActivity;
 import com.sillykid.app.mine.myorder.charterorder.orderdetails.PrivateCustomOrderDetailsActivity;
 
+import java.util.List;
+
 import cn.bingoogolapple.androidcommon.adapter.BGAOnItemChildClickListener;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
+import io.rong.imkit.RongIM;
+import io.rong.imlib.model.Conversation;
+import pub.devrel.easypermissions.AfterPermissionGranted;
+import pub.devrel.easypermissions.EasyPermissions;
 
 /**
  * 我的订单----包车订单---进行中
  * Created by Administrator on 2017/9/2.
  */
 
-public class OngoingCharterFragment extends BaseFragment implements AdapterView.OnItemClickListener, BGARefreshLayout.BGARefreshLayoutDelegate, CharterOrderContract.View, BGAOnItemChildClickListener {
+public class OngoingCharterFragment extends BaseFragment implements AdapterView.OnItemClickListener, EasyPermissions.PermissionCallbacks, BGARefreshLayout.BGARefreshLayoutDelegate, CharterOrderContract.View, BGAOnItemChildClickListener {
 
     private MyOrderActivity aty;
 
@@ -77,6 +89,8 @@ public class OngoingCharterFragment extends BaseFragment implements AdapterView.
     private boolean isShowLoadingMore = false;
 
     private String status = "1";
+    private CharterOrderBean.DataBean.ResultBean bean;
+    private ServicePhoneDialog servicePhoneDialog = null;
 
     @Override
     protected View inflaterView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -116,15 +130,6 @@ public class OngoingCharterFragment extends BaseFragment implements AdapterView.
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-//        if (charterOrderFragment.getChageIcon() == 4) {
-//            mRefreshLayout.beginRefreshing();
-//        }
-    }
-
-
-    @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         Intent intent = new Intent();
         if (mAdapter.getItem(i).getProduct_set_cd() == 1) {
@@ -134,9 +139,9 @@ public class OngoingCharterFragment extends BaseFragment implements AdapterView.
         } else if (mAdapter.getItem(i).getProduct_set_cd() == 3) {
             intent.setClass(aty, CharterOrderDetailsActivity.class);
         } else if (mAdapter.getItem(i).getProduct_set_cd() == 4) {
-            //  intent.setClass(aty, AirportPickupOrderDetailsActivity.class);
-        } else if (mAdapter.getItem(i).getProduct_set_cd() == 5) {
             intent.setClass(aty, PrivateCustomOrderDetailsActivity.class);
+        } else if (mAdapter.getItem(i).getProduct_set_cd() == 5) {
+            //  intent.setClass(aty, AirportPickupOrderDetailsActivity.class);
         }
         intent.putExtra("order_number", mAdapter.getItem(i).getOrder_number());
         aty.showActivity(aty, intent);
@@ -144,24 +149,13 @@ public class OngoingCharterFragment extends BaseFragment implements AdapterView.
 
     @Override
     public void onItemChildClick(ViewGroup parent, View childView, int position) {
+        bean = mAdapter.getItem(position);
         switch (childView.getId()) {
-            case R.id.tv_confirmPayment:
-
-                break;
             case R.id.tv_callUp:
-
+                choiceLocationWrapper();
                 break;
             case R.id.tv_sendPrivateChat:
-
-
-                break;
-            case R.id.tv_appraiseOrder:
-
-
-                break;
-            case R.id.tv_additionalComments:
-
-
+                ((CharterOrderContract.Presenter) mPresenter).getIsLogin(aty, 2);
                 break;
         }
     }
@@ -228,19 +222,9 @@ public class OngoingCharterFragment extends BaseFragment implements AdapterView.
                 mAdapter.addMoreData(charterOrderBean.getData().getResultX());
             }
             dismissLoadingDialog();
-
-
-        } else if (flag == 2) {//确认结束订单
-
-        } else if (flag == 3) {
-//            charterOrderAngleBean = (CharterOrderAngleBean) JsonUtil.getInstance().json2Obj(success, CharterOrderAngleBean.class);
-//            ((CharterOrderContract.Presenter) mPresenter).getChartOrder(StringNewConstants.All, mMorePageNumber);
-        } else if (flag == 4) {//删除订单成功
-
-
-        } else {
-
-
+        } else if (flag == 2) {
+            RongIMUtil.connectRongIM(aty);
+            RongIM.getInstance().startConversation(aty, Conversation.ConversationType.PRIVATE, bean.getRong_id(), bean.getService_director());
         }
     }
 
@@ -279,10 +263,13 @@ public class OngoingCharterFragment extends BaseFragment implements AdapterView.
                 tv_hintText.setText(msg);
                 tv_button.setText(getString(R.string.retry));
             }
-        } else if (flag == 1) {
+        } else if (flag == 1 || flag == 2) {
             dismissLoadingDialog();
+            if (isLogin(msg)) {
+                aty.showActivity(aty, LoginActivity.class);
+                return;
+            }
             ViewInject.toast(msg);
-            return;
         }
     }
 
@@ -292,10 +279,57 @@ public class OngoingCharterFragment extends BaseFragment implements AdapterView.
     @Override
     public void callMsgEvent(MsgEvent msgEvent) {
         super.callMsgEvent(msgEvent);
-        if (((String) msgEvent.getData()).equals("RxBusLoginEvent") && mPresenter != null || ((String) msgEvent.getData()).equals("RxBusLogOutEvent") && mPresenter != null) {
+        if (((String) msgEvent.getData()).equals("RxBusLoginEvent") && mPresenter != null || ((String) msgEvent.getData()).equals("RxBusLogOutEvent") && mPresenter != null ||
+                ((String) msgEvent.getData()).equals("RxBusPayTravelCompleteEvent") && mPresenter != null) {
             mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
             ((CharterOrderContract.Presenter) mPresenter).getChartOrder(aty, status, mMorePageNumber);
         }
     }
 
+    @AfterPermissionGranted(NumericConstants.READ_AND_WRITE_CODE)
+    private void choiceLocationWrapper() {
+        String[] perms = {Manifest.permission.CALL_PHONE};
+        if (EasyPermissions.hasPermissions(aty, perms)) {
+            if (servicePhoneDialog == null) {
+                servicePhoneDialog = new ServicePhoneDialog(aty);
+            }
+            if (servicePhoneDialog != null && !servicePhoneDialog.isShowing()) {
+                servicePhoneDialog.show();
+                servicePhoneDialog.setPhone(bean.getPhone());
+            }
+            return;
+        }
+        EasyPermissions.requestPermissions(this, getString(R.string.callSwitch), NumericConstants.READ_AND_WRITE_CODE, perms);
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        // EasyPermissions handles the request result.
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+    }
+
+    @Override
+    public void onPermissionsGranted(int requestCode, List<String> perms) {
+        Log.d("tag", "onPermissionsDenied:" + requestCode + ":" + perms.size());
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, List<String> perms) {
+        if (requestCode == NumericConstants.READ_AND_WRITE_CODE) {
+            ViewInject.toast(getString(R.string.callPermission));
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (servicePhoneDialog != null && servicePhoneDialog.isShowing()) {
+            servicePhoneDialog.cancel();
+        }
+        servicePhoneDialog = null;
+        mAdapter.clear();
+        mAdapter = null;
+    }
 }

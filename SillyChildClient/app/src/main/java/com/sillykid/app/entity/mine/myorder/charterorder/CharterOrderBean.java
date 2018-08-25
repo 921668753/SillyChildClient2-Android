@@ -17,8 +17,8 @@ public class CharterOrderBean extends BaseResult<CharterOrderBean.DataBean> {
          * currentPageNo : 1
          * draw : 0
          * pageSize : 5
-         * result : [{"order_id":140,"order_number":"SHZ20180823182432723276108","product_set_cd":3,"product_set_name":"包车","pay_status":1,"status":2,"main_picture":"http://img.shahaizhi.com/%28null%291530269095","service_start_time":1535019920,"service_end_time":1535119920,"title":"东京室内一日包车","order_amount":"0.01","pay_amount":"0.01","dis_amount":"0.00","service_director":"傻孩志"}]
-         * totalCount : 1
+         * result : [{"order_id":152,"order_number":"SHZ20180824164236428865589","product_set_cd":3,"product_set_name":"包车","pay_status":1,"status":1,"main_picture":"http://img.shahaizhi.com/%28null%291530269095","service_start_time":1542211200,"service_end_time":1543420800,"title":"东京室内一日包车","phone":"18550875927","rong_id":"G14","order_amount":"0.15","pay_amount":"0.15","dis_amount":"0.00","service_director":"傻孩志"},{"order_id":151,"order_number":"SHZ20180824164119700999259","product_set_cd":2,"product_set_name":"送机","pay_status":1,"status":1,"main_picture":"http://img.shahaizhi.com/%28null%291530269095","service_start_time":"1535272849","title":"成田机场送机","phone":"18550875927","rong_id":"G14","order_amount":"0.01","pay_amount":"0.01","dis_amount":"0.00","service_director":"傻孩志"},{"order_id":150,"order_number":"SHZ20180824164009445013613","product_set_cd":1,"product_set_name":"接机","pay_status":1,"status":1,"main_picture":"http://img.shahaizhi.com/%28null%291530269095","service_start_time":"1535186362","title":"成田机场接机","phone":"18550875927","rong_id":"G14","order_amount":"0.01","pay_amount":"0.01","dis_amount":"0.00","service_director":"傻孩志"}]
+         * totalCount : 3
          * totalPageCount : 1
          */
 
@@ -80,18 +80,20 @@ public class CharterOrderBean extends BaseResult<CharterOrderBean.DataBean> {
 
         public class ResultBean {
             /**
-             * order_id : 140
-             * order_number : SHZ20180823182432723276108
+             * order_id : 152
+             * order_number : SHZ20180824164236428865589
              * product_set_cd : 3
              * product_set_name : 包车
              * pay_status : 1
-             * status : 2
+             * status : 1
              * main_picture : http://img.shahaizhi.com/%28null%291530269095
-             * service_start_time : 1535019920
-             * service_end_time : 1535119920
+             * service_start_time : 1542211200
+             * service_end_time : 1543420800
              * title : 东京室内一日包车
-             * order_amount : 0.01
-             * pay_amount : 0.01
+             * phone : 18550875927
+             * rong_id : G14
+             * order_amount : 0.15
+             * pay_amount : 0.15
              * dis_amount : 0.00
              * service_director : 傻孩志
              */
@@ -106,7 +108,11 @@ public class CharterOrderBean extends BaseResult<CharterOrderBean.DataBean> {
             private String service_start_time;
             private String service_end_time;
             private String title;
+            private String phone;
+            private String rong_id;
             private String order_amount;
+            private String start_time;
+            private String end_time;
             private String pay_amount;
             private String dis_amount;
             private String service_director;
@@ -191,6 +197,22 @@ public class CharterOrderBean extends BaseResult<CharterOrderBean.DataBean> {
                 this.title = title;
             }
 
+            public String getPhone() {
+                return phone;
+            }
+
+            public void setPhone(String phone) {
+                this.phone = phone;
+            }
+
+            public String getRong_id() {
+                return rong_id;
+            }
+
+            public void setRong_id(String rong_id) {
+                this.rong_id = rong_id;
+            }
+
             public String getOrder_amount() {
                 return order_amount;
             }
@@ -221,6 +243,22 @@ public class CharterOrderBean extends BaseResult<CharterOrderBean.DataBean> {
 
             public void setService_director(String service_director) {
                 this.service_director = service_director;
+            }
+
+            public String getStart_time() {
+                return start_time;
+            }
+
+            public void setStart_time(String start_time) {
+                this.start_time = start_time;
+            }
+
+            public String getEnd_time() {
+                return end_time;
+            }
+
+            public void setEnd_time(String end_time) {
+                this.end_time = end_time;
             }
         }
     }

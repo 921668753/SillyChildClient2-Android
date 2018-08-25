@@ -18,7 +18,7 @@ public interface PrivateCustomContract {
         /**
          * 用户填写定制要求
          */
-        void postAddCustomized(long travel_time, String destination, String play_days, int travel_preference, int repast_preference, int stay_preference, String remark);
+        void postAddCustomized(long travel_time, String destination, String play_days, String travel_preference, String repast_preference, String stay_preference, String remark);
 
     }
 

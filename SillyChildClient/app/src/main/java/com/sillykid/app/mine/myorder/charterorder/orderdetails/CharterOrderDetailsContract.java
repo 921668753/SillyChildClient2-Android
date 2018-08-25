@@ -1,5 +1,7 @@
 package com.sillykid.app.mine.myorder.charterorder.orderdetails;
 
+import android.content.Context;
+
 import com.common.cklibrary.common.BasePresenter;
 import com.common.cklibrary.common.BaseView;
 
@@ -15,45 +17,14 @@ public interface CharterOrderDetailsContract {
         void getCharterOrderDetails(String order_number);
 
         /**
-         * 打电话
+         * 获取私人定制单的详细信息
          */
-        void CallPhone(CharterOrderDetailsActivity aty, String phone);
+        void getCustomizeOrderDetail(String order_number);
 
         /**
-         * 确认付款
+         * 获取会员登录状态
          */
-        void toPay(CharterOrderDetailsActivity aty, String orderid, String paymoney, String paymoneyfmt);
-
-        /**
-         * 发私聊
-         */
-        void toChart(CharterOrderDetailsActivity aty, String hxusername, String nickname, String defaultnickname, String avatar);
-
-        /**
-         * 去评价
-         */
-        void toEvaluate(CharterOrderDetailsActivity aty, String air_id, int type, String line_id, String seller_id);
-        /**
-         * 查看线路详情
-         */
-        void toRouteDetail(CharterOrderDetailsActivity aty, String line_id);
-        /**
-         * 查看评价
-         */
-        void toSeeEvaluate(CharterOrderDetailsActivity aty, String air_id);
-        /**
-         * 确认结束订单
-         */
-        void orderConfirmCompleted(CharterOrderDetailsActivity aty,String id,int flag);
-        /**
-         * 删除未付款的订单
-         */
-        void delPackOrder(String air_id);
-        /**
-         * 费用说明和退改政策
-         */
-        void articleInfo (int type,int flag);
-
+        void getIsLogin(Context context, int flag);
     }
 
     interface View extends BaseView<Presenter, String> {

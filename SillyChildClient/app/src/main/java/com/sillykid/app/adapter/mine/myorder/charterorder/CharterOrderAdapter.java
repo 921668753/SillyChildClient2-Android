@@ -71,19 +71,27 @@ public class CharterOrderAdapter extends BGAAdapterViewAdapter<ResultBean> {
                 viewHolderHelper.setVisibility(R.id.tv_appraiseOrder, View.GONE);
                 viewHolderHelper.setVisibility(R.id.tv_additionalComments, View.VISIBLE);
                 break;
+            case 4://已完成
+                viewHolderHelper.setText(R.id.tv_charterStatus, R.string.closed);
+                viewHolderHelper.setVisibility(R.id.tv_confirmPayment, View.GONE);
+                viewHolderHelper.setVisibility(R.id.tv_callUp, View.GONE);
+                viewHolderHelper.setVisibility(R.id.tv_sendPrivateChat, View.GONE);
+                viewHolderHelper.setVisibility(R.id.tv_appraiseOrder, View.GONE);
+                viewHolderHelper.setVisibility(R.id.tv_additionalComments, View.GONE);
+                break;
             default:
                 break;
         }
         GlideImageLoader.glideOrdinaryLoader(mContext, model.getMain_picture(), viewHolderHelper.getImageView(R.id.img_charterOrder), R.mipmap.placeholderfigure1);
         viewHolderHelper.setText(R.id.tv_title, model.getTitle());
-        if (model.getProduct_set_cd() == 1 || model.getProduct_set_cd() == 2) {
+        if (model.getProduct_set_cd() == 1 || model.getProduct_set_cd() == 2 || model.getProduct_set_cd() == 4) {
             viewHolderHelper.setText(R.id.tv_serviceTime, DataUtil.formatData(StringUtils.toLong(model.getService_start_time()), "yyyy-MM-dd HH:mm"));
         } else if (model.getProduct_set_cd() == 3) {
             viewHolderHelper.setText(R.id.tv_serviceTime, DataUtil.formatData(StringUtils.toLong(model.getService_start_time()),
                     "yyyy" + mContext.getString(R.string.year) + "MM" + mContext.getString(R.string.month) + "dd" + mContext.getString(R.string.day)) +
                     "-" + DataUtil.formatData(StringUtils.toLong(model.getService_start_time()),
                     "yyyy" + mContext.getString(R.string.year) + "MM" + mContext.getString(R.string.month) + "dd" + mContext.getString(R.string.day)));
-        } else if (model.getProduct_set_cd() == 4) {
+        } else if (model.getProduct_set_cd() == 5) {
 
         }
         viewHolderHelper.setText(R.id.tv_serviceCompany, model.getService_director());

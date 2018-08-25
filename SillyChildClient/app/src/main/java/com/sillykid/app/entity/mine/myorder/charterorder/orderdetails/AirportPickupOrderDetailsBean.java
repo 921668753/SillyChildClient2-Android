@@ -4,7 +4,6 @@ import com.common.cklibrary.entity.BaseResult;
 
 public class AirportPickupOrderDetailsBean extends BaseResult<AirportPickupOrderDetailsBean.DataBean> {
 
-
     public class DataBean {
         /**
          * service_time : 1535186362
@@ -24,7 +23,12 @@ public class AirportPickupOrderDetailsBean extends BaseResult<AirportPickupOrder
          * remarks : 暂无备注
          * status : 1
          */
-
+        private String start_time;
+        private String end_time;
+        private String phone;
+        private int order_id;
+        private String service_director;
+        private String rong_id;
         private String service_time;
         private String category_name;
         private int audit_number;
@@ -41,6 +45,48 @@ public class AirportPickupOrderDetailsBean extends BaseResult<AirportPickupOrder
         private int children_number;
         private String remarks;
         private int status;
+
+
+
+        public String getRong_id() {
+            return rong_id;
+        }
+
+        public void setRong_id(String rong_id) {
+            this.rong_id = rong_id;
+        }
+
+        public String getStart_time() {
+            return start_time;
+        }
+
+        public void setStart_time(String start_time) {
+            this.start_time = start_time;
+        }
+
+        public String getEnd_time() {
+            return end_time;
+        }
+
+        public void setEnd_time(String end_time) {
+            this.end_time = end_time;
+        }
+
+        public String getPhone() {
+            return phone;
+        }
+
+        public void setPhone(String phone) {
+            this.phone = phone;
+        }
+
+        public int getOrder_id() {
+            return order_id;
+        }
+
+        public void setOrder_id(int order_id) {
+            this.order_id = order_id;
+        }
 
         public String getService_time() {
             return service_time;
@@ -168,6 +214,14 @@ public class AirportPickupOrderDetailsBean extends BaseResult<AirportPickupOrder
 
         public void setStatus(int status) {
             this.status = status;
+        }
+
+        public String getService_director() {
+            return service_director;
+        }
+
+        public void setService_director(String service_director) {
+            this.service_director = service_director;
         }
     }
 }

@@ -10,6 +10,8 @@ import com.common.cklibrary.common.BaseActivity;
 import com.common.cklibrary.common.BindView;
 import com.common.cklibrary.common.KJActivityStack;
 import com.common.cklibrary.utils.ActivityTitleUtils;
+import com.common.cklibrary.utils.rx.MsgEvent;
+import com.common.cklibrary.utils.rx.RxBus;
 import com.sillykid.app.R;
 import com.sillykid.app.homepage.airporttransportation.AirportTransportationClassificationActivity;
 import com.sillykid.app.homepage.airporttransportation.PriceInformationActivity;
@@ -83,6 +85,10 @@ public class PayTravelCompleteActivity extends BaseActivity {
             initTitle(getString(R.string.paySuccess));
             tv_payStatus.setText(getString(R.string.alipay_succeed));
             KJActivityStack.create().finishActivity(PaymentTravelOrderActivity.class);
+            /**
+             * 发送消息
+             */
+            RxBus.getInstance().post(new MsgEvent<String>("RxBusPayTravelCompleteEvent"));
         } else {
             initTitle(getString(R.string.pay_error));
             img_pay.setImageResource(R.mipmap.pay_failure_icon);

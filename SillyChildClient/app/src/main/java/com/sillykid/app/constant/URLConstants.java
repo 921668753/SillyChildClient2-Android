@@ -631,6 +631,11 @@ public class URLConstants {
     public static String CHARTERORDERDETAILS = APIURL + "travelorder/get_travel_order_detail.do";
 
     /**
+     * 包车服务 - 获取私人定制单的详细信息
+     */
+    public static String CUSTOMIZEORDERDETAILS = APIURL + "travelorder/get_customize_order_detail.do";
+
+    /**
      * 提交意见反馈
      */
     public static String ADVICEPOST = SERVERURL + "api/member/advice/post.do";

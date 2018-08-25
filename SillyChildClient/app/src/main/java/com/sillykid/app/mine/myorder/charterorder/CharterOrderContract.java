@@ -19,50 +19,11 @@ public interface CharterOrderContract {
          */
         void getChartOrder(Context context, String status, int page);
 
-        /**
-         * 打电话
-         */
-        void CallPhone(MyOrderActivity aty, String phone);
 
         /**
-         * 确认付款
+         * 获取会员登录状态
          */
-        void toPay(MyOrderActivity aty, String orderid, String paymoney, String paymoneyfmt);
-
-        /**
-         * 发私聊
-         */
-        void toChart(MyOrderActivity aty, String hxusername, String nickname, String defaultnickname, String avatar);
-
-        /**
-         * 去评价
-         */
-        void toEvaluate(MyOrderActivity aty, String air_id, int type, String line_id, String seller_id);
-
-        /**
-         * 查看订单详情
-         */
-        void toDetails(MyOrderActivity aty, String air_id);
-
-        /**
-         * 查看评价
-         */
-        void toSeeEvaluate(MyOrderActivity aty, String air_id);
-
-        /**
-         * 确认结束订单
-         */
-        void orderConfirmCompleted(MyOrderActivity aty, String id, int flag);
-
-        /**
-         * 获取订单列表的数量统计信息
-         */
-        void getOrderAround();
-
-        /**
-         * 删除未付款的订单
-         */
-        void delPackOrder(String air_id);
+        void getIsLogin(Context context, int flag);
     }
 
     interface View extends BaseView<Presenter, String> {

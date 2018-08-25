@@ -96,11 +96,11 @@ public class PrivateCustomActivity extends BaseActivity implements PrivateCustom
     private List<RepastListBean> repast_list;
     private List<StayListBean> stay_list;
 
-    private int travel_preference = 0;
+    private String travel_preference;
 
-    private int repast_preference = 0;
+    private String repast_preference;
 
-    private int stay_preference = 0;
+    private String stay_preference;
 
     @Override
     public void setRootView() {
@@ -202,7 +202,7 @@ public class PrivateCustomActivity extends BaseActivity implements PrivateCustom
             @Override
             public void onOptionsSelect(int options1, int option2, int options3, View v) {
                 //返回的分别是三个级别的选中位置
-                travel_preference = travel_list.get(options1).getId();
+                travel_preference = travel_list.get(options1).getPreference_name();
                 ((TextView) v).setText(travel_list.get(options1).getPreference_name());
             }
         }).build();
@@ -219,7 +219,7 @@ public class PrivateCustomActivity extends BaseActivity implements PrivateCustom
             @Override
             public void onOptionsSelect(int options1, int option2, int options3, View v) {
                 //返回的分别是三个级别的选中位置
-                repast_preference = repast_list.get(options1).getId();
+                repast_preference = repast_list.get(options1).getPreference_name();
                 ((TextView) v).setText(repast_list.get(options1).getPreference_name());
             }
         }).build();
@@ -237,7 +237,7 @@ public class PrivateCustomActivity extends BaseActivity implements PrivateCustom
             @Override
             public void onOptionsSelect(int options1, int option2, int options3, View v) {
                 //返回的分别是三个级别的选中位置
-                stay_preference = stay_list.get(options1).getId();
+                stay_preference = stay_list.get(options1).getPreference_name();
                 ((TextView) v).setText(stay_list.get(options1).getPreference_name());
             }
         }).build();

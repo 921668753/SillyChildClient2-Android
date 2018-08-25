@@ -2565,16 +2565,24 @@ public class RequestClient {
     }
 
 
-
-
-
-
-
-
-
-
-
-
+    /**
+     * 订单列表 - 获取私人定制单的详细信息
+     */
+    public static void getCustomizeOrderDetail(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        Log.d("tag", "getCustomizeOrderDetail");
+        doServer(context, new TokenCallback() {
+            @Override
+            public void execute() {
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
+                if (StringUtils.isEmpty(cookies)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("Cookie", cookies);
+                HttpRequest.requestGetHttp(context, URLConstants.CUSTOMIZEORDERDETAILS, httpParams, listener);
+            }
+        }, listener);
+    }
 
 
     /**

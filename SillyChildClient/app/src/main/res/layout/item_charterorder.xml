@@ -142,7 +142,6 @@
 
     </LinearLayout>
 
-
     <LinearLayout
         style="@style/MatchWrap"
         android:background="@color/whiteColors"

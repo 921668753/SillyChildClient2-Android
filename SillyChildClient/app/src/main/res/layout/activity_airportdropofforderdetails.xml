@@ -41,7 +41,7 @@
                     android:id="@+id/tv_orderNumber"
                     style="@style/WrapWrap"
                     android:layout_marginRight="@dimen/dimen18"
-                    android:text="201707050236"
+                    android:text="--"
                     android:textColor="@color/textColor"
                     android:textSize="@dimen/textsize10" />
 
@@ -69,7 +69,7 @@
                     style="@style/MatchWrap"
                     android:layout_marginLeft="@dimen/dimen5"
                     android:layout_marginRight="@dimen/dimen17"
-                    android:text="2017-07-01  周日 16:00"
+                    android:text="--"
                     android:textColor="@color/hintColors"
                     android:textSize="@dimen/textsize13" />
 
@@ -97,7 +97,7 @@
                     style="@style/MatchWrap"
                     android:layout_marginLeft="@dimen/dimen5"
                     android:layout_marginRight="@dimen/dimen17"
-                    android:text="京都及周边"
+                    android:text="--"
                     android:textColor="@color/hintColors"
                     android:textSize="@dimen/textsize13" />
 
@@ -129,7 +129,7 @@
                     style="@style/MatchWrap"
                     android:layout_marginLeft="@dimen/dimen5"
                     android:layout_marginRight="@dimen/dimen17"
-                    android:text="成都机场"
+                    android:text="--"
                     android:textColor="@color/hintColors"
                     android:textSize="@dimen/textsize13" />
 
@@ -157,7 +157,7 @@
                     style="@style/MatchWrap"
                     android:layout_marginLeft="@dimen/dimen5"
                     android:layout_marginRight="@dimen/dimen17"
-                    android:text="2成人  0儿童"
+                    android:text="--"
                     android:textColor="@color/hintColors"
                     android:textSize="@dimen/textsize13" />
 
@@ -184,7 +184,7 @@
                     style="@style/MatchWrap"
                     android:layout_marginLeft="@dimen/dimen5"
                     android:layout_marginRight="@dimen/dimen17"
-                    android:text="3件行李"
+                    android:text="--"
                     android:textColor="@color/hintColors"
                     android:textSize="@dimen/textsize13" />
 
@@ -237,7 +237,7 @@
                 android:paddingLeft="@dimen/dimen17"
                 android:paddingRight="@dimen/dimen17"
                 android:paddingTop="@dimen/dimen14"
-                android:text="如果你无法简洁的表达你的想法，那只说明你还不够了解它。——阿尔伯特 爱因斯坦"
+                android:text="--"
                 android:textColor="@color/hintColors"
                 android:textSize="@dimen/textsize12" />
 
@@ -262,10 +262,9 @@
                     android:paddingLeft="@dimen/dimen10"
                     android:paddingRight="@dimen/dimen17"
                     android:singleLine="true"
-                    android:text="￥600.00"
+                    android:text="￥0.00"
                     android:textColor="@color/fF5656Colors"
                     android:textSize="@dimen/textsize15" />
-
 
             </LinearLayout>
 
@@ -292,25 +291,54 @@
                     android:paddingLeft="@dimen/dimen10"
                     android:paddingRight="@dimen/dimen17"
                     android:singleLine="true"
-                    android:text="￥-50.00"
+                    android:text="￥0.00"
                     android:textColor="@color/fF5656Colors"
                     android:textSize="@dimen/textsize15" />
 
 
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/ll_actualPayment"
+                style="@style/Match45"
+                android:layout_marginBottom="@dimen/dimen1"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginLeft="@dimen/dimen17"
+                    android:text="@string/actualPayment"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    android:id="@+id/tv_actualPayment1"
+                    style="@style/AutoWrap"
+                    android:gravity="right"
+                    android:paddingLeft="@dimen/dimen10"
+                    android:paddingRight="@dimen/dimen17"
+                    android:singleLine="true"
+                    android:text="￥0.00"
+                    android:textColor="@color/fF5656Colors"
+                    android:textSize="@dimen/textsize15" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
     </ScrollView>
 
     <LinearLayout
+        android:id="@+id/ll_confirmPayment"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen55"
         android:layout_marginTop="@dimen/dimen2"
         android:background="@color/whiteColors"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="gone">
 
         <TextView
             style="@style/WrapWrap"
@@ -322,7 +350,7 @@
         <TextView
             android:id="@+id/tv_actualPayment"
             style="@style/AutoWrap"
-            android:text="￥2350.00"
+            android:text="￥0.00"
             android:textColor="@color/fF5656Colors"
             android:textSize="@dimen/textsize17"
             android:textStyle="bold" />
@@ -337,5 +365,72 @@
             android:textColor="@color/whiteColors"
             android:textSize="@dimen/textsize15" />
     </LinearLayout>
+
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:background="@color/whiteColors"
+        android:gravity="right"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_callUp"
+            android:layout_width="@dimen/dimen80"
+            android:layout_height="@dimen/dimen29"
+            android:layout_marginBottom="@dimen/dimen10"
+            android:layout_marginRight="@dimen/dimen10"
+            android:layout_marginTop="@dimen/dimen15"
+            android:background="@drawable/shape_confirmpayment"
+            android:gravity="center"
+            android:text="@string/callUp"
+            android:textColor="@color/whiteColors"
+            android:textSize="@dimen/textsize12"
+            android:visibility="gone" />
+
+
+        <TextView
+            android:id="@+id/tv_sendPrivateChat"
+            android:layout_width="@dimen/dimen80"
+            android:layout_height="@dimen/dimen29"
+            android:layout_marginBottom="@dimen/dimen10"
+            android:layout_marginRight="@dimen/dimen10"
+            android:layout_marginTop="@dimen/dimen15"
+            android:background="@drawable/shape_confirmpayment"
+            android:gravity="center"
+            android:text="@string/sendPrivateChat"
+            android:textColor="@color/whiteColors"
+            android:textSize="@dimen/textsize12"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tv_appraiseOrder"
+            android:layout_width="@dimen/dimen93"
+            android:layout_height="@dimen/dimen29"
+            android:layout_marginBottom="@dimen/dimen10"
+            android:layout_marginRight="@dimen/dimen10"
+            android:layout_marginTop="@dimen/dimen15"
+            android:background="@drawable/shape_confirmpayment"
+            android:gravity="center"
+            android:text="@string/appraiseOrder"
+            android:textColor="@color/whiteColors"
+            android:textSize="@dimen/textsize12"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tv_additionalComments"
+            android:layout_width="@dimen/dimen93"
+            android:layout_height="@dimen/dimen29"
+            android:layout_marginBottom="@dimen/dimen10"
+            android:layout_marginRight="@dimen/dimen10"
+            android:layout_marginTop="@dimen/dimen15"
+            android:background="@drawable/shape_confirmpayment"
+            android:gravity="center"
+            android:text="@string/additionalComments"
+            android:textColor="@color/whiteColors"
+            android:textSize="@dimen/textsize12"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
 
 </LinearLayout>

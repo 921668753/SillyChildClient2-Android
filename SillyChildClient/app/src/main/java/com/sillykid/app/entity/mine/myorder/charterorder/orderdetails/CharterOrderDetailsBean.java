@@ -27,7 +27,13 @@ public class CharterOrderDetailsBean extends BaseResult<CharterOrderDetailsBean.
          * remarks : 暂无备注
          * status : 1
          */
-
+        private int category;
+        private String start_time;
+        private String end_time;
+        private String phone;
+        private int order_id;
+        private String service_director;
+        private String rong_id;
         private String category_name;
         private int audit_number;
         private String travel_start_time;
@@ -43,6 +49,62 @@ public class CharterOrderDetailsBean extends BaseResult<CharterOrderDetailsBean.
         private int children_number;
         private String remarks;
         private int status;
+
+        public int getCategory() {
+            return category;
+        }
+
+        public void setCategory(int category) {
+            this.category = category;
+        }
+
+        public String getStart_time() {
+            return start_time;
+        }
+
+        public void setStart_time(String start_time) {
+            this.start_time = start_time;
+        }
+
+        public String getEnd_time() {
+            return end_time;
+        }
+
+        public void setEnd_time(String end_time) {
+            this.end_time = end_time;
+        }
+
+        public String getPhone() {
+            return phone;
+        }
+
+        public void setPhone(String phone) {
+            this.phone = phone;
+        }
+
+        public int getOrder_id() {
+            return order_id;
+        }
+
+        public void setOrder_id(int order_id) {
+            this.order_id = order_id;
+        }
+
+        public String getService_director() {
+            return service_director;
+        }
+
+        public void setService_director(String service_director) {
+            this.service_director = service_director;
+        }
+
+        public String getRong_id() {
+            return rong_id;
+        }
+
+        public void setRong_id(String rong_id) {
+            this.rong_id = rong_id;
+        }
 
         public String getCategory_name() {
             return category_name;

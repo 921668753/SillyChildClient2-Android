@@ -659,7 +659,7 @@
             android:name=".mine.myorder.charterorder.orderdetails.CharterOrderDetailsActivity"
             android:screenOrientation="portrait" />
 
-        <!--我的   我的订单  送机机订单详情-->
+        <!--我的   我的订单  私人定制订单详情-->
         <activity
             android:name=".mine.myorder.charterorder.orderdetails.PrivateCustomOrderDetailsActivity"
             android:screenOrientation="portrait" />
@@ -835,7 +835,7 @@
         <!--我的   VIP紧急电话-->
         <activity
             android:name=".mine.vipemergencycall.VipEmergencyCallActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"/>
 
 
         <!-- Bugly升级SDK配置开始  -->

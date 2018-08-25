@@ -127,6 +127,8 @@
                     style="@style/MatchMatch"
                     android:background="@color/whiteColors"
                     android:gravity="center_vertical"
+                    android:digits="@string/number0"
+                    android:inputType="number"
                     android:hint="@string/playNumberDays1"
                     android:paddingLeft="@dimen/dimen10"
                     android:paddingRight="@dimen/dimen33"

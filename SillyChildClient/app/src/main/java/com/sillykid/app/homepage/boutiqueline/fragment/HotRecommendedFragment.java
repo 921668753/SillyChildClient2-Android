@@ -100,6 +100,8 @@ public class HotRecommendedFragment extends BaseFragment implements CommunityCla
     private List<CommunityBean.DataBean.ResultBean> list = null;
 
     private CommunityViewAdapter mAdapter;
+    private int region_id = 0;
+    private String region_name = "";
 
 
     @Override
@@ -323,11 +325,9 @@ public class HotRecommendedFragment extends BaseFragment implements CommunityCla
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RESULT_CODE_GET && resultCode == RESULT_OK) {// 如果等于1
-//            keyword = data.getStringExtra("keyword");
-////            mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
-////            showLoadingDialog(getString(R.string.dataLoad));
-////            ((GoodsListContract.Presenter) mPresenter).getGoodsList(mMorePageNumber, cat, sort, keyword, mark);
-//            mRefreshLayout.beginRefreshing();
+            region_id = data.getIntExtra("region_id", 0);
+            region_name = data.getStringExtra("region_name");
+           mRefreshLayout.beginRefreshing();
         }
     }
 

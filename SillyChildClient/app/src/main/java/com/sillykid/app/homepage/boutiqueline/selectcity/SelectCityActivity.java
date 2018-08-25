@@ -76,11 +76,13 @@ public class SelectCityActivity extends BaseActivity implements SelectCityContra
         if (adapterView.getId() == R.id.lv_countries) {
             selectClassification(position);
         } else if (adapterView.getId() == R.id.gv_countriesClassification) {
-            Intent intent = new Intent(aty, SelectProductActivity.class);
+            Intent intent = new Intent();
             intent.putExtra("region_id", mGridViewAdapter.getItem(position).getRegion_id());
-            intent.putExtra("name", mGridViewAdapter.getItem(position).getCountry_name() + mGridViewAdapter.getItem(position).getRegion_name());
+            intent.putExtra("region_name", mGridViewAdapter.getItem(position).getCountry_name() + mGridViewAdapter.getItem(position).getRegion_name());
             intent.putExtra("type", type);
-            showActivity(aty, intent);
+            // 设置结果 结果码，一个数据
+            setResult(RESULT_OK, intent);
+            finish();
         }
     }
 

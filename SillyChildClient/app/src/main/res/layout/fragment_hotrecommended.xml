@@ -20,6 +20,7 @@
             android:textSize="@dimen/textsize15" />
 
         <TextView
+            android:id="@+id/tv_selectCity"
             style="@style/AutoWrap"
             android:layout_marginLeft="@dimen/dimen15"
             android:gravity="right"
@@ -60,7 +61,7 @@
                     android:paddingLeft="@dimen/dimen2"
                     android:paddingRight="@dimen/dimen2"
                     android:scrollbars="none"
-                    tools:listitem="@layout/item_mystrategy" />
+                    tools:listitem="@layout/item_boutiqueline" />
 
             </RelativeLayout>
 

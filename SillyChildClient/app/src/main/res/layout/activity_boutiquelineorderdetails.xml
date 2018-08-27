@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title" />
+
+
+    <ScrollView
+        style="@style/MatchAuto"
+        android:scrollbars="none">
+
+        <LinearLayout
+            style="@style/MatchMatch"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen37"
+                android:layout_marginTop="@dimen/dimen6"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/AutoWrap"
+                    android:layout_marginLeft="@dimen/dimen17"
+                    android:text="@string/orderInformation"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize14" />
+
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:text="@string/orderNumber1"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize10" />
+
+                <TextView
+                    android:id="@+id/tv_orderNumber"
+                    style="@style/WrapWrap"
+                    android:layout_marginRight="@dimen/dimen18"
+                    android:text="--"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize10" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:layout_marginTop="@dimen/dimen1"
+                android:background="@color/whiteColors"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/dimen12"
+                android:paddingTop="@dimen/dimen12">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginLeft="@dimen/dimen17"
+                    android:text="@string/serviceDate1"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize13" />
+
+
+                <TextView
+                    android:id="@+id/tv_serviceDate"
+                    style="@style/MatchWrap"
+                    android:layout_marginLeft="@dimen/dimen5"
+                    android:layout_marginRight="@dimen/dimen17"
+                    android:text="--"
+                    android:textColor="@color/hintColors"
+                    android:textSize="@dimen/textsize13" />
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen37"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/dimen17"
+                android:paddingRight="@dimen/dimen17"
+                android:text="线路标题"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize13" />
+
+            <LinearLayout
+                style="@style/Match37"
+                android:layout_marginTop="@dimen/dimen1"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginLeft="@dimen/dimen17"
+                    android:text="@string/passengersNumber2"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize13" />
+
+                <TextView
+                    android:id="@+id/tv_passengersNumber"
+                    style="@style/MatchWrap"
+                    android:layout_marginLeft="@dimen/dimen5"
+                    android:layout_marginRight="@dimen/dimen17"
+                    android:text="--"
+                    android:textColor="@color/hintColors"
+                    android:textSize="@dimen/textsize13" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/Match37"
+                android:layout_marginTop="@dimen/dimen1"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginLeft="@dimen/dimen17"
+                    android:text="@string/bags1"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize13" />
+
+
+                <TextView
+                    android:id="@+id/tv_bags"
+                    style="@style/MatchWrap"
+                    android:layout_marginLeft="@dimen/dimen5"
+                    android:layout_marginRight="@dimen/dimen17"
+                    android:text="--"
+                    android:textColor="@color/hintColors"
+                    android:textSize="@dimen/textsize13" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/Match37"
+                android:layout_marginTop="@dimen/dimen1"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginLeft="@dimen/dimen17"
+                    android:text="@string/expectedWalk"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize13" />
+
+
+                <TextView
+                    style="@style/MatchWrap"
+                    android:layout_marginLeft="@dimen/dimen5"
+                    android:layout_marginRight="@dimen/dimen17"
+                    android:text="30km"
+                    android:textColor="@color/hintColors"
+                    android:textSize="@dimen/textsize13" />
+
+            </LinearLayout>
+
+
+            <TextView
+                style="@style/MatchWrap"
+                android:layout_marginTop="@dimen/dimen6"
+                android:background="@color/whiteColors"
+                android:paddingLeft="@dimen/dimen17"
+                android:paddingTop="@dimen/dimen15"
+                android:text="@string/userNote"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize14" />
+
+            <TextView
+                android:id="@+id/tv_userNote"
+                style="@style/MatchWrap"
+                android:background="@color/whiteColors"
+                android:paddingBottom="@dimen/dimen13"
+                android:paddingLeft="@dimen/dimen17"
+                android:paddingRight="@dimen/dimen17"
+                android:paddingTop="@dimen/dimen14"
+                android:text="--"
+                android:textColor="@color/hintColors"
+                android:textSize="@dimen/textsize12" />
+
+            <LinearLayout
+                style="@style/Match45"
+                android:layout_marginTop="@dimen/dimen6"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginLeft="@dimen/dimen17"
+                    android:text="@string/orderPrice"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    android:id="@+id/tv_orderPriceNoSign"
+                    style="@style/AutoWrap"
+                    android:gravity="right"
+                    android:paddingLeft="@dimen/dimen10"
+                    android:paddingRight="@dimen/dimen17"
+                    android:singleLine="true"
+                    android:text="￥0.00"
+                    android:textColor="@color/fF5656Colors"
+                    android:textSize="@dimen/textsize15" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/Match45"
+                android:layout_marginBottom="@dimen/dimen1"
+                android:layout_marginTop="@dimen/dimen1"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginLeft="@dimen/dimen17"
+                    android:text="@string/vouchers1"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+
+
+                <TextView
+                    android:id="@+id/tv_vouchers"
+                    style="@style/AutoWrap"
+                    android:gravity="right"
+                    android:paddingLeft="@dimen/dimen10"
+                    android:paddingRight="@dimen/dimen17"
+                    android:singleLine="true"
+                    android:text="￥0.00"
+                    android:textColor="@color/fF5656Colors"
+                    android:textSize="@dimen/textsize15" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_actualPayment"
+                style="@style/Match45"
+                android:layout_marginBottom="@dimen/dimen1"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginLeft="@dimen/dimen17"
+                    android:text="@string/actualPayment1"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    android:id="@+id/tv_actualPayment1"
+                    style="@style/AutoWrap"
+                    android:gravity="right"
+                    android:paddingLeft="@dimen/dimen10"
+                    android:paddingRight="@dimen/dimen17"
+                    android:singleLine="true"
+                    android:text="￥0.00"
+                    android:textColor="@color/fF5656Colors"
+                    android:textSize="@dimen/textsize15" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/ll_confirmPayment"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen55"
+        android:layout_marginTop="@dimen/dimen2"
+        android:background="@color/whiteColors"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <TextView
+            style="@style/WrapWrap"
+            android:layout_marginLeft="@dimen/dimen17"
+            android:text="@string/actualPayment1"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize15" />
+
+        <TextView
+            android:id="@+id/tv_actualPayment"
+            style="@style/AutoWrap"
+            android:text="￥0.00"
+            android:textColor="@color/fF5656Colors"
+            android:textSize="@dimen/textsize17"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_confirmPayment"
+            android:layout_width="@dimen/dimen126"
+            android:layout_height="match_parent"
+            android:background="@color/fF5656Colors"
+            android:gravity="center"
+            android:text="@string/confirmPayment"
+            android:textColor="@color/whiteColors"
+            android:textSize="@dimen/textsize15" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:background="@color/whiteColors"
+        android:gravity="right"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_callUp"
+            android:layout_width="@dimen/dimen80"
+            android:layout_height="@dimen/dimen29"
+            android:layout_marginBottom="@dimen/dimen10"
+            android:layout_marginRight="@dimen/dimen10"
+            android:layout_marginTop="@dimen/dimen15"
+            android:background="@drawable/shape_confirmpayment"
+            android:gravity="center"
+            android:text="@string/callUp"
+            android:textColor="@color/whiteColors"
+            android:textSize="@dimen/textsize12"
+            android:visibility="gone" />
+
+
+        <TextView
+            android:id="@+id/tv_sendPrivateChat"
+            android:layout_width="@dimen/dimen80"
+            android:layout_height="@dimen/dimen29"
+            android:layout_marginBottom="@dimen/dimen10"
+            android:layout_marginRight="@dimen/dimen10"
+            android:layout_marginTop="@dimen/dimen15"
+            android:background="@drawable/shape_confirmpayment"
+            android:gravity="center"
+            android:text="@string/sendPrivateChat"
+            android:textColor="@color/whiteColors"
+            android:textSize="@dimen/textsize12"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tv_appraiseOrder"
+            android:layout_width="@dimen/dimen93"
+            android:layout_height="@dimen/dimen29"
+            android:layout_marginBottom="@dimen/dimen10"
+            android:layout_marginRight="@dimen/dimen10"
+            android:layout_marginTop="@dimen/dimen15"
+            android:background="@drawable/shape_confirmpayment"
+            android:gravity="center"
+            android:text="@string/appraiseOrder"
+            android:textColor="@color/whiteColors"
+            android:textSize="@dimen/textsize12"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tv_additionalComments"
+            android:layout_width="@dimen/dimen93"
+            android:layout_height="@dimen/dimen29"
+            android:layout_marginBottom="@dimen/dimen10"
+            android:layout_marginRight="@dimen/dimen10"
+            android:layout_marginTop="@dimen/dimen15"
+            android:background="@drawable/shape_confirmpayment"
+            android:gravity="center"
+            android:text="@string/additionalComments"
+            android:textColor="@color/whiteColors"
+            android:textSize="@dimen/textsize12"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

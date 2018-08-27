@@ -25,7 +25,7 @@ import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
 import com.sillykid.app.adapter.CompanyGuideViewAdapter;
 import com.sillykid.app.adapter.CharterCustomClassificationViewAdaper;
-import com.sillykid.app.adapter.BoutiqueLineViewAdapter;
+import com.sillykid.app.adapter.homepage.boutiqueline.BoutiqueLineViewAdapter;
 import com.sillykid.app.entity.FindDriverBean;
 import com.sillykid.app.entity.PackLineBean.ResultBean.BannerBean;
 import com.sillykid.app.entity.PackLineBean;
@@ -116,7 +116,7 @@ public class CharterCustomActivity extends BaseActivity implements AdapterView.O
         super.initData();
         initBanner();
         charterCustomClassificationViewAdaper = new CharterCustomClassificationViewAdaper(this);
-        charterCustomViewAdapter = new BoutiqueLineViewAdapter(this);
+       // charterCustomViewAdapter = new BoutiqueLineViewAdapter(this);
         companyGuideViewAdapter = new CompanyGuideViewAdapter(this);
         mPresenter = new CharterCustomPresenter(this);
     }
@@ -133,7 +133,7 @@ public class CharterCustomActivity extends BaseActivity implements AdapterView.O
         tv_title.setText(getString(R.string.charterCustom));
         gv_chartercustom.setAdapter(charterCustomClassificationViewAdaper);
         gv_chartercustom.setOnItemClickListener(this);
-        lv_selectLine.setAdapter(charterCustomViewAdapter);
+     //   lv_selectLine.setAdapter(charterCustomViewAdapter);
         lv_selectLine.setOnItemClickListener(this);
         lv_localGuide.setAdapter(companyGuideViewAdapter);
         lv_localGuide.setOnItemClickListener(this);
@@ -199,10 +199,10 @@ public class CharterCustomActivity extends BaseActivity implements AdapterView.O
             }
         } else if (adapterView.getId() == R.id.lv_selectLine) {
             Intent intent = new Intent(aty, RouteDetailsActivity.class);
-            intent.putExtra("seller_id", charterCustomViewAdapter.getItem(i).getSeller_id());
-            intent.putExtra("line_id", charterCustomViewAdapter.getItem(i).getLine_id() + "");
-            intent.putExtra("line_title", charterCustomViewAdapter.getItem(i).getLine_title());
-            intent.putExtra("line_price", charterCustomViewAdapter.getItem(i).getLine_price());
+//            intent.putExtra("seller_id", charterCustomViewAdapter.getItem(i).getSeller_id());
+//            intent.putExtra("line_id", charterCustomViewAdapter.getItem(i).getLine_id() + "");
+//            intent.putExtra("line_title", charterCustomViewAdapter.getItem(i).getLine_title());
+//            intent.putExtra("line_price", charterCustomViewAdapter.getItem(i).getLine_price());
             showActivity(aty, intent);
         } else if (adapterView.getId() == R.id.lv_localGuide) {
             Intent intent = new Intent(aty, CompanyGuideDetailsActivity.class);
@@ -240,7 +240,7 @@ public class CharterCustomActivity extends BaseActivity implements AdapterView.O
                 ll_selectLine.setVisibility(View.VISIBLE);
                 lv_selectLine.setVisibility(View.VISIBLE);
                 charterCustomViewAdapter.clear();
-                charterCustomViewAdapter.addNewData(charterCustomBean.getData().getLine());
+           //     charterCustomViewAdapter.addNewData(charterCustomBean.getData().getLine());
             }
             if (charterCustomBean.getData().getDriver() == null || charterCustomBean.getData().getDriver().size() == 0 || charterCustomBean.getData().getDriver().isEmpty()) {
                 ll_localGuide.setVisibility(View.GONE);

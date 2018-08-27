@@ -3,6 +3,7 @@ package com.sillykid.app.homepage.airporttransportation;
 import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.common.cklibrary.common.BaseActivity;
@@ -18,6 +19,7 @@ import com.sillykid.app.adapter.homepage.airporttransportation.PriceInformationV
 import com.sillykid.app.entity.homepage.airporttransportation.PriceInformationBean;
 import com.sillykid.app.homepage.airporttransportation.airportdropoff.AirportDropOffActivity;
 import com.sillykid.app.homepage.airporttransportation.airportpickup.AirportPickupActivity;
+import com.sillykid.app.homepage.airporttransportation.comments.CharterCommentsActivity;
 import com.sillykid.app.loginregister.LoginActivity;
 import com.sillykid.app.utils.GlideImageLoader;
 
@@ -61,6 +63,9 @@ public class PriceInformationActivity extends BaseActivity implements PriceInfor
     @BindView(id = R.id.tv_remark)
     private TextView tv_remark;
 
+    @BindView(id = R.id.ll_userEvaluation, click = true)
+    private LinearLayout ll_userEvaluation;
+
     @BindView(id = R.id.tv_nextStep, click = true)
     private TextView tv_nextStep;
 
@@ -70,7 +75,6 @@ public class PriceInformationActivity extends BaseActivity implements PriceInfor
     private PriceInformationViewAdapter mAdapter;
 
     private PriceInformationBean priceInformationBean;
-
 
     @Override
     public void setRootView() {
@@ -130,25 +134,30 @@ public class PriceInformationActivity extends BaseActivity implements PriceInfor
     public void widgetClick(View v) {
         super.widgetClick(v);
         switch (v.getId()) {
+            case R.id.ll_userEvaluation:
+                Intent intent = new Intent(aty, CharterCommentsActivity.class);
+                intent.putExtra("product_id", product_id);
+                showActivity(aty, intent);
+                break;
             case R.id.tv_nextStep:
                 if (priceInformationBean == null || priceInformationBean.getData() == null || StringUtils.isEmpty(priceInformationBean.getData().getTitle())) {
                     return;
                 }
-                Intent intent = new Intent();
+                Intent intent1 = new Intent();
                 if (type == 1) {
-                    intent.setClass(aty, AirportPickupActivity.class);
+                    intent1.setClass(aty, AirportPickupActivity.class);
                 } else {
-                    intent.setClass(aty, AirportDropOffActivity.class);
+                    intent1.setClass(aty, AirportDropOffActivity.class);
                 }
-                intent.putExtra("airport_name", priceInformationBean.getData().getAirport_name());
-                intent.putExtra("title", priceInformationBean.getData().getTitle());
-                intent.putExtra("baggage_number", priceInformationBean.getData().getBaggage_number());
-                intent.putExtra("passenger_number", priceInformationBean.getData().getPassenger_number());
+                intent1.putExtra("airport_name", priceInformationBean.getData().getAirport_name());
+                intent1.putExtra("title", priceInformationBean.getData().getTitle());
+                intent1.putExtra("baggage_number", priceInformationBean.getData().getBaggage_number());
+                intent1.putExtra("passenger_number", priceInformationBean.getData().getPassenger_number());
                 if (priceInformationBean.getData().getPicture() != null && priceInformationBean.getData().getPicture().size() > 0) {
-                    intent.putExtra("picture", priceInformationBean.getData().getPicture().get(0));
+                    intent1.putExtra("picture", priceInformationBean.getData().getPicture().get(0));
                 }
-                intent.putExtra("product_id", product_id);
-                showActivity(aty, intent);
+                intent1.putExtra("product_id", product_id);
+                showActivity(aty, intent1);
                 break;
         }
     }

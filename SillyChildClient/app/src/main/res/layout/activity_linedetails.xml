@@ -33,6 +33,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/dimen45"
             android:padding="@dimen/dimen14"
+            android:visibility="gone"
             android:src="@mipmap/dynamicdetails_collection1" />
 
         <ImageView
@@ -259,12 +260,12 @@
                 tools:listitem="@layout/item_dynamicdetails" />
 
             <TextView
-                android:id="@+id/tv_release"
+                android:id="@+id/tv_reservationsNow"
                 style="@style/Match40"
-                android:layout_marginBottom="@dimen/dimen40"
-                android:layout_marginLeft="@dimen/dimen79"
-                android:layout_marginRight="@dimen/dimen79"
-                android:layout_marginTop="@dimen/dimen36"
+                android:layout_marginBottom="@dimen/dimen25"
+                android:layout_marginLeft="@dimen/dimen100"
+                android:layout_marginRight="@dimen/dimen100"
+                android:layout_marginTop="@dimen/dimen22"
                 android:background="@drawable/shape_charter1"
                 android:gravity="center"
                 android:text="@string/reservationsNow"

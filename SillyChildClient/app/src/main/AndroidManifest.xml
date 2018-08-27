@@ -664,6 +664,17 @@
             android:name=".mine.myorder.charterorder.orderdetails.PrivateCustomOrderDetailsActivity"
             android:screenOrientation="portrait" />
 
+        <!--我的   我的订单  精品线路订单详情-->
+        <activity
+            android:name=".mine.myorder.charterorder.orderdetails.BoutiqueLineOrderDetailsActivity"
+            android:screenOrientation="portrait" />
+
+        <!--我的   我的订单  发表评价-->
+        <activity
+            android:name=".mine.myorder.charterorder.orderevaluation.CommentActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" />
+
         <!--我的   我的发布-->
         <activity
             android:name=".mine.myrelease.MyReleaseActivity"
@@ -835,7 +846,7 @@
         <!--我的   VIP紧急电话-->
         <activity
             android:name=".mine.vipemergencycall.VipEmergencyCallActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
 
         <!-- Bugly升级SDK配置开始  -->

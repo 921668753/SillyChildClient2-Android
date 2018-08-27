@@ -259,16 +259,9 @@ public class MainActivity extends BaseActivity implements MainContract.View {
         //极光推送 定制声音、震动、闪灯等 Notification 样式。
         BasicPushNotificationBuilder builder = new BasicPushNotificationBuilder(MainActivity.this);
 //        builder.statusBarDrawable = R.mipmap.ic_launcher;
-        builder.notificationFlags = Notification.FLAG_AUTO_CANCEL
-                | Notification.FLAG_SHOW_LIGHTS;  //设置为自动消失和呼吸灯闪烁
-        builder.notificationDefaults = Notification.DEFAULT_SOUND
-                | Notification.DEFAULT_VIBRATE
-                | Notification.DEFAULT_LIGHTS;  // 设置为铃声、震动、呼吸灯闪烁都要
+        builder.notificationFlags = Notification.FLAG_AUTO_CANCEL | Notification.FLAG_SHOW_LIGHTS;  //设置为自动消失和呼吸灯闪烁
+        builder.notificationDefaults = Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE | Notification.DEFAULT_LIGHTS;  // 设置为铃声、震动、呼吸灯闪烁都要
         JPushInterface.setPushNotificationBuilder(1, builder);
-        boolean isSystemMessages = PreferenceHelper.readBoolean(aty, StringConstants.FILENAME, "isSystemMessages", true);
-        if (isSystemMessages) {
-            JPushInterface.setSilenceTime(aty, 0, 0, 0, 1);
-        }
     }
 
 

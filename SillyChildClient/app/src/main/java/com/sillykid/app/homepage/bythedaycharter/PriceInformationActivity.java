@@ -16,6 +16,7 @@ import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
 import com.sillykid.app.adapter.homepage.bythedaycharter.PriceInformationViewAdapter;
 import com.sillykid.app.entity.homepage.bythedaycharter.PriceInformationBean;
+import com.sillykid.app.homepage.airporttransportation.comments.CharterCommentsActivity;
 import com.sillykid.app.loginregister.LoginActivity;
 import com.sillykid.app.utils.GlideImageLoader;
 
@@ -135,17 +136,22 @@ public class PriceInformationActivity extends BaseActivity implements PriceInfor
     public void widgetClick(View v) {
         super.widgetClick(v);
         switch (v.getId()) {
-            case R.id.tv_nextStep:
-                Intent intent = new Intent();
-                intent.setClass(aty, ByTheDayCharterActivity.class);
-                intent.putExtra("title", priceInformationBean.getData().getTitle());
-                intent.putExtra("baggage_number", priceInformationBean.getData().getBaggage_number());
-                intent.putExtra("passenger_number", priceInformationBean.getData().getPassenger_number());
-                if (priceInformationBean.getData().getPicture() != null && priceInformationBean.getData().getPicture().size() > 0) {
-                    intent.putExtra("picture", priceInformationBean.getData().getPicture().get(0));
-                }
+            case R.id.ll_userEvaluation:
+                Intent intent = new Intent(aty, CharterCommentsActivity.class);
                 intent.putExtra("product_id", product_id);
                 showActivity(aty, intent);
+                break;
+            case R.id.tv_nextStep:
+                Intent intent1 = new Intent();
+                intent1.setClass(aty, ByTheDayCharterActivity.class);
+                intent1.putExtra("title", priceInformationBean.getData().getTitle());
+                intent1.putExtra("baggage_number", priceInformationBean.getData().getBaggage_number());
+                intent1.putExtra("passenger_number", priceInformationBean.getData().getPassenger_number());
+                if (priceInformationBean.getData().getPicture() != null && priceInformationBean.getData().getPicture().size() > 0) {
+                    intent1.putExtra("picture", priceInformationBean.getData().getPicture().get(0));
+                }
+                intent1.putExtra("product_id", product_id);
+                showActivity(aty, intent1);
                 break;
         }
     }

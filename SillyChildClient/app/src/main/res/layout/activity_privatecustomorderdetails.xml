@@ -273,7 +273,7 @@
                 <TextView
                     style="@style/WrapWrap"
                     android:layout_marginLeft="@dimen/dimen17"
-                    android:text="@string/orderPriceNoSign"
+                    android:text="@string/orderPrice"
                     android:textColor="@color/textColor"
                     android:textSize="@dimen/textsize15" />
 
@@ -302,7 +302,7 @@
                 <TextView
                     style="@style/WrapWrap"
                     android:layout_marginLeft="@dimen/dimen17"
-                    android:text="@string/vouchers"
+                    android:text="@string/vouchers1"
                     android:textColor="@color/textColor"
                     android:textSize="@dimen/textsize15" />
 
@@ -332,7 +332,7 @@
                 <TextView
                     style="@style/WrapWrap"
                     android:layout_marginLeft="@dimen/dimen17"
-                    android:text="@string/actualPayment"
+                    android:text="@string/actualPayment1"
                     android:textColor="@color/textColor"
                     android:textSize="@dimen/textsize15" />
 

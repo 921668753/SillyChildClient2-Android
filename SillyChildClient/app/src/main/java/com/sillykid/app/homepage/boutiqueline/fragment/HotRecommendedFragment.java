@@ -17,16 +17,14 @@ import com.common.cklibrary.common.BindView;
 import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.RefreshLayoutUtil;
-import com.common.cklibrary.utils.rx.MsgEvent;
 import com.sillykid.app.R;
-import com.sillykid.app.adapter.main.community.CommunityViewAdapter;
-import com.sillykid.app.community.dynamic.DynamicDetailsActivity;
+import com.sillykid.app.adapter.homepage.boutiqueline.BoutiqueLineViewAdapter;
 import com.sillykid.app.constant.NumericConstants;
-import com.sillykid.app.entity.main.community.CommunityBean;
+import com.sillykid.app.entity.homepage.boutiqueline.fragment.BoutiqueLineBean;
 import com.sillykid.app.homepage.boutiqueline.BoutiqueLineActivity;
+import com.sillykid.app.homepage.boutiqueline.LineDetailsActivity;
 import com.sillykid.app.homepage.boutiqueline.selectcity.SelectCityActivity;
 import com.sillykid.app.loginregister.LoginActivity;
-import com.sillykid.app.main.MainActivity;
 import com.sillykid.app.utils.GlideImageLoader;
 import com.sillykid.app.utils.SpacesItemDecoration;
 
@@ -37,13 +35,12 @@ import cn.bingoogolapple.androidcommon.adapter.BGAOnRVItemClickListener;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 
 import static android.app.Activity.RESULT_OK;
-import static com.sillykid.app.constant.NumericConstants.REQUEST_CODE;
 import static com.sillykid.app.constant.NumericConstants.RESULT_CODE_GET;
 
 /**
  * 热门推荐列表
  */
-public class HotRecommendedFragment extends BaseFragment implements CommunityClassificationContract.View, BGARefreshLayout.BGARefreshLayoutDelegate, BGAOnRVItemClickListener {
+public class HotRecommendedFragment extends BaseFragment implements BoutiqueLineContract.View, BGARefreshLayout.BGARefreshLayoutDelegate, BGAOnRVItemClickListener {
 
     private BoutiqueLineActivity aty;
 
@@ -53,6 +50,8 @@ public class HotRecommendedFragment extends BaseFragment implements CommunityCla
     @BindView(id = R.id.ll_selectCity, click = true)
     private LinearLayout ll_selectCity;
 
+    @BindView(id = R.id.tv_selectCity)
+    private TextView tv_selectCity;
 
     @BindView(id = R.id.rv)
     private RecyclerView recyclerview;
@@ -89,20 +88,17 @@ public class HotRecommendedFragment extends BaseFragment implements CommunityCla
 
     private SpacesItemDecoration spacesItemDecoration = null;
 
-    private int classification_id = 0;
-
-    private String post_title = "";
-
-    private String nickname = "";
+    private int is_recommand = 1;
 
     private Thread thread = null;
 
-    private List<CommunityBean.DataBean.ResultBean> list = null;
+    private List<BoutiqueLineBean.DataBean.ResultBean> list = null;
 
-    private CommunityViewAdapter mAdapter;
+    private BoutiqueLineViewAdapter mAdapter;
+
     private int region_id = 0;
-    private String region_name = "";
 
+    private String region_name = "";
 
     @Override
     protected View inflaterView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -114,10 +110,10 @@ public class HotRecommendedFragment extends BaseFragment implements CommunityCla
     @Override
     protected void initData() {
         super.initData();
-        list = new ArrayList<CommunityBean.DataBean.ResultBean>();
-        mPresenter = new CommunityClassificationPresenter(this);
+        list = new ArrayList<BoutiqueLineBean.DataBean.ResultBean>();
+        mPresenter = new BoutiqueLinePresenter(this);
         spacesItemDecoration = new SpacesItemDecoration(7, 14);
-        mAdapter = new CommunityViewAdapter(recyclerview);
+        mAdapter = new BoutiqueLineViewAdapter(recyclerview);
     }
 
 
@@ -157,7 +153,9 @@ public class HotRecommendedFragment extends BaseFragment implements CommunityCla
         super.widgetClick(v);
         switch (v.getId()) {
             case R.id.ll_selectCity:
-                aty.showActivityForResult(aty, SelectCityActivity.class, RESULT_CODE_GET);
+                Intent intent = new Intent(aty, SelectCityActivity.class);
+                startActivityForResult(intent,RESULT_CODE_GET);
+             //   showActivityForResult(aty, SelectCityActivity.class, RESULT_CODE_GET);
                 break;
             case R.id.tv_button:
                 if (tv_button.getText().toString().contains(getString(R.string.retry))) {
@@ -170,31 +168,11 @@ public class HotRecommendedFragment extends BaseFragment implements CommunityCla
     }
 
 
-    public void setClassificationId(int classification_id1) {
-        classification_id = classification_id1;
-//        if (mRefreshLayout != null) {
-//            mRefreshLayout.beginRefreshing();
-//        }
-    }
-
     @Override
     public void onRVItemClick(ViewGroup parent, View itemView, int position) {
-        if (mAdapter.getItem(position).getType() == 1) {//动态
-            Intent intent = new Intent(aty, DynamicDetailsActivity.class);
-            intent.putExtra("id", mAdapter.getItem(position).getId());
-            intent.putExtra("title", mAdapter.getItem(position).getPost_title());
-            aty.showActivity(aty, intent);
-        } else if (mAdapter.getItem(position).getType() == 2) {//视频
-            Intent intent = new Intent(aty, DynamicDetailsActivity.class);
-            intent.putExtra("id", mAdapter.getItem(position).getId());
-            intent.putExtra("title", mAdapter.getItem(position).getPost_title());
-            aty.showActivity(aty, intent);
-        } else if (mAdapter.getItem(position).getType() == 3) {//攻略
-            Intent intent = new Intent(aty, DynamicDetailsActivity.class);
-            intent.putExtra("id", mAdapter.getItem(position).getId());
-            intent.putExtra("title", mAdapter.getItem(position).getPost_title());
-            aty.showActivity(aty, intent);
-        }
+        Intent intent = new Intent(aty, LineDetailsActivity.class);
+        intent.putExtra("id", mAdapter.getItem(position).getId());
+        aty.showActivity(aty, intent);
     }
 
     @Override
@@ -202,7 +180,7 @@ public class HotRecommendedFragment extends BaseFragment implements CommunityCla
         mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
         mRefreshLayout.endRefreshing();
         showLoadingDialog(getString(R.string.dataLoad));
-        ((CommunityClassificationContract.Presenter) mPresenter).getPostList(aty, post_title, nickname, classification_id, mMorePageNumber);
+        ((BoutiqueLineContract.Presenter) mPresenter).getRouteList(aty, region_id, is_recommand, mMorePageNumber);
     }
 
     @Override
@@ -218,12 +196,12 @@ public class HotRecommendedFragment extends BaseFragment implements CommunityCla
             return false;
         }
         showLoadingDialog(getString(R.string.dataLoad));
-        ((CommunityClassificationContract.Presenter) mPresenter).getPostList(aty, post_title, nickname, classification_id, mMorePageNumber);
+        ((BoutiqueLineContract.Presenter) mPresenter).getRouteList(aty, region_id, is_recommand, mMorePageNumber);
         return true;
     }
 
     @Override
-    public void setPresenter(CommunityClassificationContract.Presenter presenter) {
+    public void setPresenter(BoutiqueLineContract.Presenter presenter) {
         mPresenter = presenter;
     }
 
@@ -233,15 +211,15 @@ public class HotRecommendedFragment extends BaseFragment implements CommunityCla
         ll_commonError.setVisibility(View.GONE);
         mRefreshLayout.setVisibility(View.VISIBLE);
         mRefreshLayout.setPullDownRefreshEnable(true);
-        CommunityBean communityBean = (CommunityBean) JsonUtil.getInstance().json2Obj(success, CommunityBean.class);
-        if (communityBean.getData() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
-                communityBean.getData().getResultX() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
-                communityBean.getData().getResultX().size() <= 0 && mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
-            errorMsg(getString(R.string.noMovement), 1);
+        BoutiqueLineBean boutiqueLineBean = (BoutiqueLineBean) JsonUtil.getInstance().json2Obj(success, BoutiqueLineBean.class);
+        if (boutiqueLineBean.getData() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
+                boutiqueLineBean.getData().getResult() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
+                boutiqueLineBean.getData().getResult().size() <= 0 && mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
+            errorMsg(getString(R.string.noBoutiqueLine), 0);
             return;
-        } else if (communityBean.getData() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
-                communityBean.getData().getResultX() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
-                communityBean.getData().getResultX().size() <= 0 && mMorePageNumber > NumericConstants.START_PAGE_NUMBER) {
+        } else if (boutiqueLineBean.getData() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
+                boutiqueLineBean.getData().getResult() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
+                boutiqueLineBean.getData().getResult().size() <= 0 && mMorePageNumber > NumericConstants.START_PAGE_NUMBER) {
             ViewInject.toast(getString(R.string.noMoreData));
             isShowLoadingMore = false;
             dismissLoadingDialog();
@@ -256,16 +234,16 @@ public class HotRecommendedFragment extends BaseFragment implements CommunityCla
             @Override
             public void run() {
                 list.clear();
-                for (int i = 0; i < communityBean.getData().getResultX().size(); i++) {
-                    Bitmap bitmap = GlideImageLoader.load(aty, communityBean.getData().getResultX().get(i).getPicture());
+                for (int i = 0; i < boutiqueLineBean.getData().getResult().size(); i++) {
+                    Bitmap bitmap = GlideImageLoader.load(aty, boutiqueLineBean.getData().getResult().get(i).getMain_picture());
                     if (bitmap != null) {
-                        communityBean.getData().getResultX().get(i).setHeight(bitmap.getHeight());
-                        communityBean.getData().getResultX().get(i).setWidth(bitmap.getWidth());
+                        boutiqueLineBean.getData().getResult().get(i).setHeight(bitmap.getHeight());
+                        boutiqueLineBean.getData().getResult().get(i).setWidth(bitmap.getWidth());
                     }
-                    list.add(communityBean.getData().getResultX().get(i));
+                    list.add(boutiqueLineBean.getData().getResult().get(i));
                 }
-                mMorePageNumber = communityBean.getData().getCurrentPageNo();
-                totalPageNumber = communityBean.getData().getTotalPageCount();
+                mMorePageNumber = boutiqueLineBean.getData().getCurrentPageNo();
+                totalPageNumber = boutiqueLineBean.getData().getTotalPageCount();
                 aty.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -310,7 +288,7 @@ public class HotRecommendedFragment extends BaseFragment implements CommunityCla
             img_err.setImageResource(R.mipmap.no_network);
             tv_hintText.setText(msg);
             tv_button.setText(getString(R.string.retry));
-        } else if (msg.contains(getString(R.string.noMovement))) {
+        } else if (msg.contains(getString(R.string.noBoutiqueLine))) {
             img_err.setImageResource(R.mipmap.no_data);
             tv_hintText.setText(msg);
             tv_button.setVisibility(View.GONE);
@@ -327,22 +305,11 @@ public class HotRecommendedFragment extends BaseFragment implements CommunityCla
         if (requestCode == RESULT_CODE_GET && resultCode == RESULT_OK) {// 如果等于1
             region_id = data.getIntExtra("region_id", 0);
             region_name = data.getStringExtra("region_name");
-           mRefreshLayout.beginRefreshing();
-        }
-    }
-
-    /**
-     * 在接收消息的时候，选择性接收消息：
-     */
-    @Override
-    public void callMsgEvent(MsgEvent msgEvent) {
-        super.callMsgEvent(msgEvent);
-        if (((String) msgEvent.getData()).equals("RxBusLoginEvent") && mPresenter != null || ((String) msgEvent.getData()).equals("RxBusCommunityClassificationFragmentEvent") && mPresenter != null) {
+            tv_selectCity.setText(region_name);
             mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
-            ((CommunityClassificationContract.Presenter) mPresenter).getPostList(aty, post_title, nickname, classification_id, mMorePageNumber);
+            ((BoutiqueLineContract.Presenter) mPresenter).getRouteList(aty, region_id, is_recommand, mMorePageNumber);
         }
     }
-
 
     @Override
     public void onDestroy() {

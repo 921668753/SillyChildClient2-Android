@@ -24,6 +24,7 @@ import com.sillykid.app.homepage.message.interactivemessage.imuitl.RongIMUtil;
 import com.sillykid.app.loginregister.LoginActivity;
 import com.sillykid.app.mine.myorder.charterorder.dialog.ServicePhoneDialog;
 import com.sillykid.app.mine.myorder.charterorder.orderevaluation.AdditionalCommentsActivity;
+import com.sillykid.app.mine.myorder.charterorder.orderevaluation.CommentActivity;
 import com.sillykid.app.utils.DataUtil;
 
 import java.util.List;
@@ -137,13 +138,8 @@ public class CharterOrderDetailsActivity extends BaseActivity implements EasyPer
                 ((CharterOrderDetailsContract.Presenter) mPresenter).getIsLogin(aty, 2);
                 break;
             case R.id.tv_appraiseOrder:
-                Intent intent1 = new Intent(aty, PaymentTravelOrderActivity.class);
-                intent1.putExtra("order_id", charterOrderDetailsBean.getData().getOrder_id());
-//                intent1.putExtra("order_number", bean.getOrder_number());
-//                intent1.putExtra("pay_amount", bean.getPay_amount());
-//                intent1.putExtra("type", bean.getProduct_set_cd());
-//                intent1.putExtra("start_time", bean.getStart_time());
-//                intent1.putExtra("end_time", bean.getEnd_time());
+                Intent intent1 = new Intent(aty, CommentActivity.class);
+                intent1.putExtra("order_number", order_number);
                 showActivity(aty, intent1);
                 break;
             case R.id.tv_additionalComments:
@@ -286,7 +282,7 @@ public class CharterOrderDetailsActivity extends BaseActivity implements EasyPer
     @Override
     public void callMsgEvent(MsgEvent msgEvent) {
         super.callMsgEvent(msgEvent);
-        if (((String) msgEvent.getData()).equals("RxBusPayTravelCompleteEvent") && mPresenter != null) {
+        if (((String) msgEvent.getData()).equals("RxBusPayTravelCompleteEvent") && mPresenter != null || ((String) msgEvent.getData()).equals("RxBusCharterCommentEvent") && mPresenter != null) {
             ((CharterOrderDetailsContract.Presenter) mPresenter).getCharterOrderDetails(order_number);
         }
     }

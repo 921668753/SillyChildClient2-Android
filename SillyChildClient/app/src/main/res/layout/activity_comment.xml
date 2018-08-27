@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:a_zhon="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title" />
+
+    <ScrollView
+        style="@style/MatchMatch"
+        android:scrollbars="none">
+
+        <LinearLayout
+            style="@style/MatchMatch"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/Match45"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/dimen30"
+                android:text="@string/orderInformation"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize15" />
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:background="@color/whiteColors"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/img_picture"
+                    android:layout_width="@dimen/dimen80"
+                    android:layout_height="@dimen/dimen65"
+                    android:layout_marginBottom="@dimen/dimen18"
+                    android:layout_marginLeft="@dimen/dimen30"
+                    android:layout_marginTop="@dimen/dimen18"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/placeholderfigure" />
+
+
+                <LinearLayout
+                    style="@style/MatchMatch"
+                    android:layout_marginBottom="@dimen/dimen18"
+                    android:layout_marginLeft="@dimen/dimen17"
+                    android:layout_marginRight="@dimen/dimen21"
+                    android:layout_marginTop="@dimen/dimen18"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_title"
+                        style="@style/MatchAuto"
+                        android:text="一叶子面膜一叶子面膜"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/textsize13" />
+
+
+                    <TextView
+                        android:id="@+id/tv_orderMoney"
+                        style="@style/MatchWrap"
+                        android:text="￥0.00"
+                        android:textColor="@color/fF5656Colors"
+                        android:textSize="@dimen/textsize13" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:layout_marginTop="@dimen/dimen6"
+                android:background="@color/whiteColors"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/dimen32"
+                android:paddingTop="@dimen/dimen15">
+
+                <ImageView
+                    android:layout_width="@dimen/dimen24"
+                    android:layout_height="@dimen/dimen20"
+                    android:src="@mipmap/department_pilot_rating" />
+
+                <TextView
+                    style="@style/WrapMatch"
+                    android:layout_marginLeft="@dimen/dimen8"
+                    android:gravity="center_vertical"
+                    android:text="@string/guideScoring"
+                    android:textColor="@color/tabColors"
+                    android:textSize="@dimen/textsize14" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/dimen24">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:paddingLeft="@dimen/dimen30"
+                    android:text="@string/degreeOnTime"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize14" />
+
+                <com.azhong.ratingbar.RatingBar
+                    android:id="@+id/rb_degreeOnTime"
+                    style="@style/WrapWrap"
+                    android:background="@color/whiteColors"
+                    android:paddingLeft="@dimen/dimen7"
+                    android:paddingRight="@dimen/dimen15"
+                    android:stepSize="1"
+                    a_zhon:clickable="true"
+                    a_zhon:image_height="@dimen/dimen24"
+                    a_zhon:image_padding="@dimen/dimen3"
+                    a_zhon:image_width="@dimen/dimen24"
+                    a_zhon:star="0"
+                    a_zhon:star_count="5"
+                    a_zhon:star_img="@mipmap/img_real_stars"
+                    a_zhon:unstar_img="@mipmap/img_empty_stars" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/dimen20"
+                android:paddingTop="@dimen/dimen20">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:paddingLeft="@dimen/dimen30"
+                    android:text="@string/reasonableDistance"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize14" />
+
+                <com.azhong.ratingbar.RatingBar
+                    android:id="@+id/rb_reasonableDistance"
+                    style="@style/WrapWrap"
+                    android:background="@color/whiteColors"
+                    android:paddingLeft="@dimen/dimen7"
+                    android:paddingRight="@dimen/dimen15"
+                    android:stepSize="1"
+                    a_zhon:clickable="true"
+                    a_zhon:image_height="@dimen/dimen24"
+                    a_zhon:image_padding="@dimen/dimen3"
+                    a_zhon:image_width="@dimen/dimen24"
+                    a_zhon:star="0"
+                    a_zhon:star_count="5"
+                    a_zhon:star_img="@mipmap/img_real_stars"
+                    a_zhon:unstar_img="@mipmap/img_empty_stars" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/dimen24">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:paddingLeft="@dimen/dimen30"
+                    android:text="@string/serviceAttitude"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize14" />
+
+                <com.azhong.ratingbar.RatingBar
+                    android:id="@+id/rb_serviceAttitude"
+                    style="@style/WrapWrap"
+                    android:background="@color/whiteColors"
+                    android:paddingLeft="@dimen/dimen7"
+                    android:paddingRight="@dimen/dimen15"
+                    android:stepSize="1"
+                    a_zhon:clickable="true"
+                    a_zhon:image_height="@dimen/dimen24"
+                    a_zhon:image_padding="@dimen/dimen3"
+                    a_zhon:image_width="@dimen/dimen24"
+                    a_zhon:star="0"
+                    a_zhon:star_count="5"
+                    a_zhon:star_img="@mipmap/img_real_stars"
+                    a_zhon:unstar_img="@mipmap/img_empty_stars" />
+
+            </LinearLayout>
+
+
+            <EditText
+                android:id="@+id/et_remark"
+                style="@style/MatchWrap"
+                android:layout_marginTop="@dimen/dimen6"
+                android:background="@color/whiteColors"
+                android:gravity="left"
+                android:hint="@string/satisfiedProduct"
+                android:minHeight="@dimen/dimen75"
+                android:paddingBottom="@dimen/dimen15"
+                android:paddingLeft="@dimen/dimen30"
+                android:paddingRight="@dimen/dimen30"
+                android:paddingTop="@dimen/dimen22"
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/hintColors"
+                android:textCursorDrawable="@drawable/shape_cursor"
+                android:textSize="@dimen/textsize14" />
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                style="@style/MatchWrap"
+                android:layout_marginBottom="@dimen/dimen5"
+                android:background="@color/whiteColors"
+                android:choiceMode="singleChoice"
+                android:divider="@null"
+                android:fadingEdge="none"
+                android:listSelector="@android:color/transparent"
+                android:overScrollMode="never"
+                android:paddingBottom="@dimen/dimen19"
+                android:paddingLeft="@dimen/dimen30"
+                android:paddingRight="@dimen/dimen30"
+                android:paddingTop="@dimen/dimen10"
+                android:scrollbarStyle="outsideOverlay"
+                app:layoutManager="android.support.v7.widget.GridLayoutManager"
+                app:spanCount="3"
+                tools:listitem="@layout/item_chooseimage" />
+
+            <TextView
+                android:id="@+id/tv_comment"
+                style="@style/Match40"
+                android:layout_marginBottom="@dimen/dimen89"
+                android:layout_marginLeft="@dimen/dimen101"
+                android:layout_marginRight="@dimen/dimen101"
+                android:layout_marginTop="@dimen/dimen44"
+                android:background="@drawable/shape_charter1"
+                android:gravity="center"
+                android:text="@string/submit"
+                android:textColor="@color/whiteColors"
+                android:textSize="@dimen/textsize15" />
+
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

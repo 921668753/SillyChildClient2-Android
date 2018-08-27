@@ -6,10 +6,35 @@
 
     <ImageView
         android:id="@+id/img_boutiqueLine"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen160"
-        android:scaleType="fitXY"
-        android:src="@mipmap/ic_launcher" />
+        style="@style/MatchWrap"
+        android:adjustViewBounds="true"
+        android:paddingLeft="@dimen/dimen1"
+        android:paddingRight="@dimen/dimen1"
+        android:paddingTop="@dimen/dimen1"
+        android:src="@mipmap/placeholderfigure" />
+
+
+    <TextView
+        android:id="@+id/tv_boutiqueLineTitle"
+        style="@style/MatchWrap"
+        android:paddingBottom="@dimen/dimen6"
+        android:paddingLeft="@dimen/dimen7"
+        android:paddingRight="@dimen/dimen7"
+        android:paddingTop="@dimen/dimen10"
+        android:text="意大利豪华10日游意大利豪华10日游意大利豪华10日游意大利豪华10日游意大利豪华10日游意大利豪华10日游"
+        android:textColor="@color/textColor"
+        android:textSize="@dimen/textsize11" />
+
+    <TextView
+        android:id="@+id/tv_subtitle"
+        style="@style/MatchWrap"
+        android:paddingBottom="@dimen/dimen10"
+        android:paddingLeft="@dimen/dimen7"
+        android:paddingRight="@dimen/dimen7"
+        android:text="线路简介线路简介线路简介线路简介线路简介"
+        android:textColor="@color/hintColors"
+        android:textSize="@dimen/textsize11" />
+
 
     <LinearLayout
         style="@style/MatchWrap"
@@ -17,66 +42,23 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/tv_boutiqueLine"
+            android:id="@+id/tv_money"
             style="@style/AutoWrap"
             android:paddingBottom="@dimen/dimen10"
-            android:paddingLeft="@dimen/dimen10"
-            android:paddingTop="@dimen/dimen10"
-            android:text="意大利豪华10日游意大利豪华10日游意大利豪华10日游意大利豪华10日游意大利豪华10日游意大利豪华10日游"
-            android:textColor="@color/textColor"
-            android:textSize="@dimen/textsize12" />
-
-        <ImageView
-            android:layout_width="@dimen/dimen32"
-            android:layout_height="@dimen/dimen32"
-            android:padding="@dimen/dimen10"
-            android:scaleType="fitXY"
-            android:src="@mipmap/ic_arrow" />
+            android:paddingLeft="@dimen/dimen7"
+            android:text="--"
+            android:textColor="@color/lightRedColors"
+            android:textSize="@dimen/textsize11" />
 
         <TextView
-            android:id="@+id/tv_collectionNum"
+            android:id="@+id/tv_score"
             style="@style/WrapWrap"
-            android:maxWidth="@dimen/dimen30"
-            android:paddingRight="@dimen/dimen10"
+            android:paddingBottom="@dimen/dimen8"
+            android:paddingRight="@dimen/dimen7"
             android:singleLine="true"
-            android:text="500"
-            android:textColor="@color/textColor"
-            android:textSize="@dimen/textsize12" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        style="@style/MatchWrap"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <TextView
-            style="@style/AutoWrap"
-            android:paddingBottom="@dimen/dimen10"
-            android:paddingLeft="@dimen/dimen10"
-            android:text="@string/circuitProfileSummary"
-            android:textColor="@color/textColor"
-            android:textSize="@dimen/textsize12" />
-
-        <ImageView
-            android:layout_width="@dimen/dimen32"
-            android:layout_height="@dimen/dimen22"
-            android:paddingBottom="@dimen/dimen10"
-            android:paddingLeft="@dimen/dimen10"
-            android:paddingRight="@dimen/dimen10"
-            android:scaleType="fitXY"
-            android:src="@mipmap/ic_arrow" />
-
-        <TextView
-            android:id="@+id/tv_zanNum"
-            style="@style/WrapWrap"
-            android:maxWidth="@dimen/dimen30"
-            android:paddingBottom="@dimen/dimen10"
-            android:paddingRight="@dimen/dimen10"
-            android:singleLine="true"
-            android:text="500"
-            android:textColor="@color/textColor"
-            android:textSize="@dimen/textsize12" />
+            android:text="--"
+            android:textColor="@color/lightRedColors"
+            android:textSize="@dimen/textsize11" />
 
     </LinearLayout>
 

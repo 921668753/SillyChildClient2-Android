@@ -737,6 +737,25 @@ public class RequestClient {
     }
 
     /**
+     * 精品线路 - 获取精品线路商品列表
+     */
+    public static void getRouteList(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        HttpRequest.requestGetHttp(context, URLConstants.ROUTELIST, httpParams, false, listener);
+    }
+
+    /**
+     * 精品线路 - 线路详情
+     */
+    public static void getProductLineDetails(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
+        if (!StringUtils.isEmpty(cookies)) {
+            httpParams.putHeaders("Cookie", cookies);
+        }
+        HttpRequest.requestGetHttp(context, URLConstants.PRODUCTLINEDETAILS, httpParams, false, listener);
+    }
+
+
+    /**
      * 接机产品 - 通过机场的编号来获取产品信息
      */
     public static void getProductByAirportId(Context context, HttpParams httpParams, ResponseListener<String> listener) {
@@ -2580,6 +2599,45 @@ public class RequestClient {
                 }
                 httpParams.putHeaders("Cookie", cookies);
                 HttpRequest.requestGetHttp(context, URLConstants.CUSTOMIZEORDERDETAILS, httpParams, listener);
+            }
+        }, listener);
+    }
+
+    /**
+     * 订单列表 - 获取要评价的商品信息
+     */
+    public static void getReviewProduct(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        Log.d("tag", "getReviewProduct");
+        doServer(context, new TokenCallback() {
+            @Override
+            public void execute() {
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
+                if (StringUtils.isEmpty(cookies)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("Cookie", cookies);
+                HttpRequest.requestGetHttp(context, URLConstants.REVIEWPRODUCT, httpParams, listener);
+            }
+        }, listener);
+    }
+
+
+    /**
+     * 订单列表 - 添加商品评价
+     */
+    public static void postAddProductReview(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        Log.d("tag", "postAddProductReview");
+        doServer(context, new TokenCallback() {
+            @Override
+            public void execute() {
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
+                if (StringUtils.isEmpty(cookies)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("Cookie", cookies);
+                HttpRequest.requestPostFORMHttp(context, URLConstants.ADDPRODUCTREVIEW, httpParams, listener);
             }
         }, listener);
     }

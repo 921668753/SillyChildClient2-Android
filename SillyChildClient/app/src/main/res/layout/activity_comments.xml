@@ -60,7 +60,6 @@
             android:textSize="@dimen/textsize13" />
     </LinearLayout>
 
-    <!--android:text="@string/afterReview"-->
 
     <FrameLayout
         android:id="@+id/main_content"

@@ -180,6 +180,16 @@ public class URLConstants {
     public static String ROUTEREGION = APIURL + "airport/get_route_region.do";
 
     /**
+     * 精品线路 - 获取精品线路商品列表
+     */
+    public static String ROUTELIST = APIURL + "products/get_route_list.do";
+
+    /**
+     * 精品线路 - 获取精品线路商品列表
+     */
+    public static String PRODUCTLINEDETAILS = APIURL + "products/get_product_details.do";
+
+    /**
      * 城市与机场 - 通过国家编号获取城市与机场信息
      */
     public static String PRODUCTBYAIRPORTID = APIURL + "products/get_product_by_airport_id.do";
@@ -634,6 +644,16 @@ public class URLConstants {
      * 包车服务 - 获取私人定制单的详细信息
      */
     public static String CUSTOMIZEORDERDETAILS = APIURL + "travelorder/get_customize_order_detail.do";
+
+    /**
+     * 包车服务 - 获取要评价的商品信息
+     */
+    public static String REVIEWPRODUCT = APIURL + "travelorder/get_review_product.do";
+
+    /**
+     * 包车服务 - 添加商品评价
+     */
+    public static String ADDPRODUCTREVIEW = APIURL + "evaluation/add_product_review.do";
 
     /**
      * 提交意见反馈

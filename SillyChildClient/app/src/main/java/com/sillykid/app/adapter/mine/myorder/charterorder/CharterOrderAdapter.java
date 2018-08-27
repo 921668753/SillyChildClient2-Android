@@ -93,6 +93,12 @@ public class CharterOrderAdapter extends BGAAdapterViewAdapter<ResultBean> {
                     "yyyy" + mContext.getString(R.string.year) + "MM" + mContext.getString(R.string.month) + "dd" + mContext.getString(R.string.day)));
         } else if (model.getProduct_set_cd() == 5) {
 
+
+
+
+
+
+
         }
         viewHolderHelper.setText(R.id.tv_serviceCompany, model.getService_director());
         viewHolderHelper.setText(R.id.tv_orderMoney, mContext.getString(R.string.renminbi) + model.getOrder_amount());

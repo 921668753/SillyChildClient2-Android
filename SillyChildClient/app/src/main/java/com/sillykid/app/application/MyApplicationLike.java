@@ -123,7 +123,7 @@ public class MyApplicationLike extends DefaultApplicationLike {
      * 极光推送所需
      */
     private void initJPushInterface() {
-        JPushInterface.setDebugMode(true);    // 设置开启日志,发布时请关闭日志
+        JPushInterface.setDebugMode(false);    // 设置开启日志,发布时请关闭日志
         JPushInterface.init(getApplication());            // 初始化 JPush
         JPushInterface.initCrashHandler(getApplication());// JPush开启CrashLog上报
         JPushInterface.getRegistrationID(getApplication());//获取设备RegistrationID   注：每个设备只有一个

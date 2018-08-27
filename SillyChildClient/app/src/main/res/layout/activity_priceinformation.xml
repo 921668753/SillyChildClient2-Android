@@ -211,6 +211,54 @@
                 android:textCursorDrawable="@drawable/shape_cursor"
                 android:textSize="@dimen/textsize14" />
 
+            <LinearLayout
+                android:id="@+id/ll_userEvaluation"
+                style="@style/MatchWrap"
+                android:layout_marginTop="@dimen/dimen6"
+                android:background="@color/whiteColors"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/dimen24">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginBottom="@dimen/dimen10"
+                    android:layout_marginTop="@dimen/dimen10"
+                    android:text="@string/userEvaluation"
+                    android:textColor="@color/tabColors"
+                    android:textSize="@dimen/textsize13" />
+
+                <LinearLayout
+                    style="@style/AutoMatch"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_userEvaluationNum"
+                        style="@style/AutoMatch"
+                        android:gravity="right|center_vertical"
+                        android:paddingRight="@dimen/dimen3"
+                        android:text="366条评价"
+                        android:textColor="@color/tabColors"
+                        android:textSize="@dimen/textsize12" />
+
+                    <ImageView
+                        style="@style/Image610"
+                        android:layout_marginRight="@dimen/dimen31"
+                        android:src="@mipmap/arrow1" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <com.common.cklibrary.utils.myview.ChildListView
+                android:id="@+id/clv_userEvaluation"
+                style="@style/MatchWrap"
+                android:layout_marginBottom="@dimen/dimen20"
+                android:layout_marginTop="@dimen/dimen6"
+                android:divider="@color/background"
+                android:dividerHeight="@dimen/dimen3"
+                android:overScrollMode="never"
+                android:scrollbars="none"
+                tools:listitem="@layout/item_userevaluation" />
 
             <TextView
                 android:id="@+id/tv_nextStep"

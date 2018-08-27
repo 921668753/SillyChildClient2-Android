@@ -5,14 +5,14 @@ import android.content.Context;
 import com.common.cklibrary.common.BasePresenter;
 import com.common.cklibrary.common.BaseView;
 
-public interface CommunityClassificationContract {
+public interface BoutiqueLineContract {
 
     interface Presenter extends BasePresenter {
 
         /**
-         * 获取帖子列表
+         * 精品线路 - 获取精品线路商品列表
          */
-        void getPostList(Context context, String post_title, String nickname, int classification_id, int pageno);
+        void getRouteList(Context context, int region_id, int is_recommand, int pageno);
 
     }
 

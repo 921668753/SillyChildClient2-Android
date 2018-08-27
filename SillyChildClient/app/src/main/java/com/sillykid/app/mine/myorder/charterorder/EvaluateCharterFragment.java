@@ -28,6 +28,7 @@ import com.sillykid.app.mine.myorder.charterorder.orderdetails.AirportDropOffOrd
 import com.sillykid.app.mine.myorder.charterorder.orderdetails.AirportPickupOrderDetailsActivity;
 import com.sillykid.app.mine.myorder.charterorder.orderdetails.CharterOrderDetailsActivity;
 import com.sillykid.app.mine.myorder.charterorder.orderdetails.PrivateCustomOrderDetailsActivity;
+import com.sillykid.app.mine.myorder.charterorder.orderevaluation.CommentActivity;
 
 import cn.bingoogolapple.androidcommon.adapter.BGAOnItemChildClickListener;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
@@ -138,13 +139,8 @@ public class EvaluateCharterFragment extends BaseFragment implements AdapterView
     public void onItemChildClick(ViewGroup parent, View childView, int position) {
         switch (childView.getId()) {
             case R.id.tv_appraiseOrder:
-                Intent intent1 = new Intent(aty, PaymentTravelOrderActivity.class);
-                intent1.putExtra("order_id", mAdapter.getItem(position).getOrder_id());
-//                intent1.putExtra("order_number", bean.getOrder_number());
-//                intent1.putExtra("pay_amount", bean.getPay_amount());
-//                intent1.putExtra("type", bean.getProduct_set_cd());
-//                intent1.putExtra("start_time", bean.getStart_time());
-//                intent1.putExtra("end_time", bean.getEnd_time());
+                Intent intent1 = new Intent(aty, CommentActivity.class);
+                intent1.putExtra("order_number", mAdapter.getItem(position).getOrder_number());
                 aty.showActivity(aty, intent1);
                 break;
         }
@@ -259,7 +255,8 @@ public class EvaluateCharterFragment extends BaseFragment implements AdapterView
     @Override
     public void callMsgEvent(MsgEvent msgEvent) {
         super.callMsgEvent(msgEvent);
-        if (((String) msgEvent.getData()).equals("RxBusLoginEvent") && mPresenter != null || ((String) msgEvent.getData()).equals("RxBusLogOutEvent") && mPresenter != null) {
+        if (((String) msgEvent.getData()).equals("RxBusLoginEvent") && mPresenter != null || ((String) msgEvent.getData()).equals("RxBusLogOutEvent") && mPresenter != null ||
+                ((String) msgEvent.getData()).equals("RxBusCharterCommentEvent") && mPresenter != null) {
             mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
             ((CharterOrderContract.Presenter) mPresenter).getChartOrder(aty, status, mMorePageNumber);
         }

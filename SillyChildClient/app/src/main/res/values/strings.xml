@@ -223,6 +223,10 @@
     <string name="adult1">成人：</string>
     <string name="children1">儿童：</string>
     <string name="luggage1">行李：</string>
+    <string name="selectedLines">已选线路</string>
+    <string name="serviceVehicle">服务车辆</string>
+
+
 
     <!--选择日期-->
     <string name="selectDate">选择日期</string>
@@ -567,6 +571,7 @@
     <string name="priceDescription">价格说明</string>
     <string name="dueThat">预定说明</string>
     <string name="vouchers">抵用券</string>
+    <string name="vouchers1">抵用券：</string>
     <string name="actualPayment1">实际支付：</string>
     <string name="fillDestination">填写目的地</string>
     <string name="selectEstimatedArrivalTimeFlight">请选择航班预计到达时间</string>
@@ -721,7 +726,7 @@
     <string name="noMovement">亲，还没有任何动态哟~</string>
     <string name="noSearchArticle">亲，还没有搜索到任何动态哟~</string>
     <string name="noSearchPeople">亲，还没有搜索到任何人哟~</string>
-
+    <string name="noBoutiqueLine">亲，还没有任何线路哟~</string>
 
     <!--商城-->
     <string name="checkProduct">输入您正在找的商品</string>
@@ -1376,6 +1381,13 @@
     <string name="charterCity">包车城市：</string>
     <string name="haveMoreExperienceUsing">有更多的使用心得，分享给他们吧</string>
     <string name="comment1">发表评论</string>
+    <string name="satisfiedProduct">亲，你对这个商品满意吗？\n你的评价会帮助我们选择更好的商品哦~</string>
+    <string name="degreeOnTime">准时程度</string>
+    <string name="reasonableDistance">路程合理</string>
+
+    <string name="degreeOnTime1">请对准时程度进行评分</string>
+    <string name="reasonableDistance1">请对路程合理度进行评分</string>
+    <string name="serviceAttitude1">请对服务态度进行评分</string>
 
 
     <!-- 个人中心 我的订单  订单详情-->

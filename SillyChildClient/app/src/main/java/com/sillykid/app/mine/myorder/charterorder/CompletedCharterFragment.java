@@ -259,7 +259,8 @@ public class CompletedCharterFragment extends BaseFragment implements AdapterVie
     @Override
     public void callMsgEvent(MsgEvent msgEvent) {
         super.callMsgEvent(msgEvent);
-        if (((String) msgEvent.getData()).equals("RxBusLoginEvent") && mPresenter != null || ((String) msgEvent.getData()).equals("RxBusLogOutEvent") && mPresenter != null) {
+        if (((String) msgEvent.getData()).equals("RxBusLoginEvent") && mPresenter != null || ((String) msgEvent.getData()).equals("RxBusLogOutEvent") && mPresenter != null ||
+                ((String) msgEvent.getData()).equals("RxBusCharterCommentEvent") && mPresenter != null) {
             mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
             ((CharterOrderContract.Presenter) mPresenter).getChartOrder(aty, status, mMorePageNumber);
         }

@@ -1,6 +1,5 @@
 package com.sillykid.app.homepage.message.dialog;
 
-import android.app.Notification;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,12 +10,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.common.cklibrary.common.BaseDialog;
-import com.common.cklibrary.common.StringConstants;
 import com.common.cklibrary.common.ViewInject;
-import com.kymjs.common.PreferenceHelper;
 import com.sillykid.app.R;
 
-import cn.jpush.android.api.BasicPushNotificationBuilder;
 import cn.jpush.android.api.JPushInterface;
 import io.rong.imkit.RongIM;
 import io.rong.imlib.RongIMClient;
@@ -98,17 +94,15 @@ public class MessageSettingDialog extends BaseDialog implements View.OnClickList
                 break;
             case R.id.img_systemMessages:
                 if (isSystemMessages) {
-                    JPushInterface.setSilenceTime(mContext, 0, 0, 23, 59);
+                    JPushInterface.resumePush(mContext);
                     img_systemMessages.setImageResource(R.mipmap.messages_turnon);
                     isSystemMessages = false;
-                    PreferenceHelper.write(mContext, StringConstants.FILENAME, "isSystemMessages", isSystemMessages);
                     dismiss();
                     return;
                 }
-                JPushInterface.setSilenceTime(mContext, 0, 0, 0, 1);
+                JPushInterface.stopPush(mContext);
                 img_systemMessages.setImageResource(R.mipmap.messages_turnoff);
                 isSystemMessages = true;
-                PreferenceHelper.write(mContext, StringConstants.FILENAME, "isSystemMessages", isSystemMessages);
                 dismiss();
                 break;
             case R.id.tv_cancel:
@@ -121,7 +115,7 @@ public class MessageSettingDialog extends BaseDialog implements View.OnClickList
     @Override
     public void show() {
         super.show();
-        isSystemMessages = PreferenceHelper.readBoolean(mContext, StringConstants.FILENAME, "isSystemMessages", true);
+        isSystemMessages = JPushInterface.isPushStopped(mContext);
         if (isSystemMessages) {
             img_systemMessages.setImageResource(R.mipmap.messages_turnon);
         } else {

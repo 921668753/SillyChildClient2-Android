@@ -1,6 +1,5 @@
 package com.sillykid.app.mine.myrelease.mydynamic;
 
-
 import android.Manifest;
 import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
@@ -9,7 +8,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
@@ -33,7 +31,6 @@ import com.sillykid.app.adapter.mine.myrelease.mydynamic.GridImageAdapter;
 import com.sillykid.app.entity.community.dynamic.DynamicDetailsBean;
 import com.sillykid.app.entity.main.community.ClassificationListBean;
 import com.sillykid.app.loginregister.LoginActivity;
-import com.sillykid.app.mine.mycollection.CollectionContract;
 import com.sillykid.app.mine.mycollection.dialog.DeleteCollectionDialog;
 import com.sillykid.app.utils.SoftKeyboardUtils;
 
@@ -144,8 +141,7 @@ public class ReleaseDynamicActivity extends BaseActivity implements ReleaseDynam
                 if (aBoolean) {
                     PictureFileUtils.deleteCacheDirFile(ReleaseDynamicActivity.this);
                 } else {
-                    Toast.makeText(ReleaseDynamicActivity.this,
-                            getString(R.string.picture_jurisdiction), Toast.LENGTH_SHORT).show();
+                    ViewInject.toast(getString(R.string.picture_jurisdiction));
                 }
             }
 

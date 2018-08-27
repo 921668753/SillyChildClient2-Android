@@ -62,6 +62,8 @@ public class LineDetailsPayOrderActivity extends BaseActivity {
     @Override
     public void initData() {
         super.initData();
+
+
     }
 
     @Override

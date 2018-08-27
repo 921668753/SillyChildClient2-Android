@@ -35,6 +35,7 @@ import com.sillykid.app.mine.myorder.charterorder.orderdetails.AirportPickupOrde
 import com.sillykid.app.mine.myorder.charterorder.orderdetails.CharterOrderDetailsActivity;
 import com.sillykid.app.mine.myorder.charterorder.orderdetails.PrivateCustomOrderDetailsActivity;
 import com.sillykid.app.mine.myorder.charterorder.orderevaluation.AdditionalCommentsActivity;
+import com.sillykid.app.mine.myorder.charterorder.orderevaluation.CommentActivity;
 
 import java.util.List;
 
@@ -163,13 +164,8 @@ public class AllCharterFragment extends BaseFragment implements AdapterView.OnIt
                 ((CharterOrderContract.Presenter) mPresenter).getIsLogin(aty, 2);
                 break;
             case R.id.tv_appraiseOrder:
-                Intent intent1 = new Intent(aty, PaymentTravelOrderActivity.class);
-                intent1.putExtra("order_id", bean.getOrder_id());
-//                intent1.putExtra("order_number", bean.getOrder_number());
-//                intent1.putExtra("pay_amount", bean.getPay_amount());
-//                intent1.putExtra("type", bean.getProduct_set_cd());
-//                intent1.putExtra("start_time", bean.getStart_time());
-//                intent1.putExtra("end_time", bean.getEnd_time());
+                Intent intent1 = new Intent(aty, CommentActivity.class);
+                intent1.putExtra("order_number", bean.getOrder_number());
                 aty.showActivity(aty, intent1);
                 break;
             case R.id.tv_additionalComments:
@@ -314,7 +310,7 @@ public class AllCharterFragment extends BaseFragment implements AdapterView.OnIt
     public void callMsgEvent(MsgEvent msgEvent) {
         super.callMsgEvent(msgEvent);
         if (((String) msgEvent.getData()).equals("RxBusLoginEvent") && mPresenter != null || ((String) msgEvent.getData()).equals("RxBusLogOutEvent") && mPresenter != null ||
-                ((String) msgEvent.getData()).equals("RxBusPayTravelCompleteEvent") && mPresenter != null) {
+                ((String) msgEvent.getData()).equals("RxBusPayTravelCompleteEvent") && mPresenter != null || ((String) msgEvent.getData()).equals("RxBusCharterCommentEvent") && mPresenter != null) {
             mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
             ((CharterOrderContract.Presenter) mPresenter).getChartOrder(aty, status, mMorePageNumber);
         }
@@ -326,7 +322,7 @@ public class AllCharterFragment extends BaseFragment implements AdapterView.OnIt
         String[] perms = {Manifest.permission.CALL_PHONE};
         if (EasyPermissions.hasPermissions(aty, perms)) {
             if (servicePhoneDialog == null) {
-                servicePhoneDialog = new ServicePhoneDialog(aty) ;
+                servicePhoneDialog = new ServicePhoneDialog(aty);
             }
             if (servicePhoneDialog != null && !servicePhoneDialog.isShowing()) {
                 servicePhoneDialog.show();

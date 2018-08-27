@@ -4,35 +4,31 @@ import android.content.Context;
 
 import com.common.cklibrary.utils.httputil.HttpUtilParams;
 import com.common.cklibrary.utils.httputil.ResponseListener;
-import com.kymjs.common.StringUtils;
 import com.kymjs.rxvolley.client.HttpParams;
 import com.sillykid.app.retrofit.RequestClient;
 
-public class CommunityClassificationPresenter implements CommunityClassificationContract.Presenter {
+public class BoutiqueLinePresenter implements BoutiqueLineContract.Presenter {
 
-    private CommunityClassificationContract.View mView;
+    private BoutiqueLineContract.View mView;
 
-    public CommunityClassificationPresenter(CommunityClassificationContract.View view) {
+    public BoutiqueLinePresenter(BoutiqueLineContract.View view) {
         mView = view;
         mView.setPresenter(this);
     }
 
 
     @Override
-    public void getPostList(Context context, String post_title, String nickname, int classification_id, int pageno) {
+    public void getRouteList(Context context, int region_id, int is_recommand, int pageno) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        if (!StringUtils.isEmpty(post_title)) {
-            httpParams.put("post_title", post_title);
+        if (region_id > 0) {
+            httpParams.put("region_id", region_id);
         }
-        if (!StringUtils.isEmpty(nickname)) {
-            httpParams.put("nickname", nickname);
-        }
-        if (classification_id > 0) {
-            httpParams.put("classification_id", classification_id);
+        if (is_recommand == 1) {
+            httpParams.put("is_recommand", is_recommand);
         }
         httpParams.put("pageno", pageno);
         httpParams.put("pagesize", 10);
-        RequestClient.getPostList(context, httpParams, new ResponseListener<String>() {
+        RequestClient.getRouteList(context, httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
                 mView.getSuccess(response, 0);

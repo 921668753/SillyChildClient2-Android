@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/MatchMatch"
     android:background="@color/background"
@@ -15,6 +16,245 @@
         <LinearLayout
             style="@style/MatchMatch"
             android:orientation="vertical">
+
+
+            <TextView
+                style="@style/MatchWrap"
+                android:layout_marginBottom="@dimen/dimen12"
+                android:layout_marginLeft="@dimen/dimen31"
+                android:layout_marginTop="@dimen/dimen12"
+                android:text="@string/selectedLines"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize15" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen161"
+                android:scaleType="fitXY"
+                android:src="@mipmap/placeholderfigure" />
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:background="@color/whiteColors"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/AutoMatch"
+                    android:layout_marginLeft="@dimen/dimen15"
+                    android:paddingTop="@dimen/dimen15"
+                    android:text="【芭提雅三天六晚自由行】"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+
+                <LinearLayout
+                    style="@style/WrapMatch"
+                    android:layout_marginRight="@dimen/dimen21"
+                    android:gravity="right"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/dimen100"
+                        android:layout_height="@dimen/dimen13"
+                        android:layout_marginLeft="@dimen/dimen10"
+                        android:layout_marginTop="@dimen/dimen19"
+                        android:src="@mipmap/arrow" />
+
+                    <TextView
+                        style="@style/WrapWrap"
+                        android:layout_marginBottom="@dimen/dimen11"
+                        android:layout_marginTop="@dimen/dimen11"
+                        android:text="4.8分"
+                        android:textColor="@color/fF5656Colors"
+                        android:textSize="@dimen/textsize12" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/MatchWrap"
+                android:layout_marginBottom="@dimen/dimen12"
+                android:layout_marginLeft="@dimen/dimen31"
+                android:layout_marginTop="@dimen/dimen12"
+                android:text="@string/serviceVehicle"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize15" />
+
+
+            <cn.bingoogolapple.bgabanner.BGABanner
+                android:id="@+id/banner_ad"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen143"
+                android:layout_marginTop="@dimen/dimen6"
+                android:background="@mipmap/placeholderfigure2"
+                android:scaleType="fitXY"
+                app:banner_isNeedShowIndicatorOnOnlyOnePage="true"
+                app:banner_pageChangeDuration="2000"
+                app:banner_pointAutoPlayAble="false"
+                app:banner_pointContainerBackground="@android:color/transparent"
+                app:banner_pointDrawable="@drawable/bga_banner_selector_point"
+                app:banner_pointTopBottomMargin="@dimen/dimen6"
+                app:banner_transitionEffect="alpha" />
+
+
+            <LinearLayout
+                style="@style/Match45"
+                android:layout_marginTop="@dimen/dimen6"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/dimen25"
+                    android:layout_height="@dimen/dimen19"
+                    android:layout_marginLeft="@dimen/dimen17"
+                    android:src="@mipmap/img_modelcar" />
+
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginLeft="@dimen/dimen11"
+                    android:text="@string/modelCar"
+                    android:textSize="@dimen/textsize14" />
+
+
+                <TextView
+                    android:id="@+id/tv_modelCar"
+                    style="@style/AutoWrap"
+                    android:gravity="right"
+                    android:paddingRight="@dimen/dimen26"
+                    android:text="丰田阿尔法"
+                    android:textColor="@color/hintColors"
+                    android:textSize="@dimen/textsize14" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                style="@style/Match45"
+                android:layout_marginTop="@dimen/dimen1"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/dimen25"
+                    android:layout_height="@dimen/dimen19"
+                    android:layout_marginLeft="@dimen/dimen17"
+                    android:src="@mipmap/img_cantakenumber" />
+
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginLeft="@dimen/dimen11"
+                    android:text="@string/canTakeNumber"
+                    android:textSize="@dimen/textsize14" />
+
+
+                <TextView
+                    android:id="@+id/tv_canTakeNumber"
+                    style="@style/AutoWrap"
+                    android:gravity="right"
+                    android:paddingRight="@dimen/dimen26"
+                    android:text="5人2行李"
+                    android:textColor="@color/hintColors"
+                    android:textSize="@dimen/textsize14" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                style="@style/Match45"
+                android:layout_marginTop="@dimen/dimen1"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/dimen25"
+                    android:layout_height="@dimen/dimen19"
+                    android:layout_marginLeft="@dimen/dimen17"
+                    android:src="@mipmap/img_carprices" />
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginLeft="@dimen/dimen11"
+                    android:text="@string/carPrices"
+                    android:textSize="@dimen/textsize14" />
+
+                <TextView
+                    android:id="@+id/tv_carPrices"
+                    style="@style/AutoWrap"
+                    android:gravity="right"
+                    android:paddingRight="@dimen/dimen26"
+                    android:text="2450.00"
+                    android:textColor="@color/hintColors"
+                    android:textSize="@dimen/textsize14" />
+
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/tv_containsService"
+                style="@style/MatchWrap"
+                android:paddingLeft="@dimen/dimen21"
+                android:paddingTop="@dimen/dimen16"
+                android:text="@string/containsService"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize14" />
+
+            <com.common.cklibrary.utils.myview.NoScrollGridView
+                android:id="@+id/gv_containsService"
+                style="@style/MatchWrap"
+                android:layout_marginBottom="@dimen/dimen19"
+                android:layout_marginLeft="@dimen/dimen27"
+                android:layout_marginRight="@dimen/dimen27"
+                android:layout_marginTop="@dimen/dimen16"
+                android:horizontalSpacing="@dimen/dimen27"
+                android:listSelector="@android:color/transparent"
+                android:numColumns="3"
+                android:overScrollMode="never"
+                android:scrollbars="none"
+                android:verticalSpacing="@dimen/dimen24"
+                tools:listitem="@layout/item_containsservice" />
+
+            <TextView
+                style="@style/MatchWrap"
+                android:paddingBottom="@dimen/dimen8"
+                android:paddingLeft="@dimen/dimen21"
+                android:text="@string/servicePolicy"
+                android:textColor="@color/tabColors"
+                android:textSize="@dimen/textsize14" />
+
+            <LinearLayout
+                style="@style/Match45"
+                android:layout_marginTop="@dimen/dimen1"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/dimen25"
+                    android:layout_height="@dimen/dimen19"
+                    android:layout_marginLeft="@dimen/dimen17"
+                    android:src="@mipmap/img_compensationchangeback" />
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginLeft="@dimen/dimen11"
+                    android:text="@string/compensationChangeBack"
+                    android:textSize="@dimen/textsize14" />
+
+                <TextView
+                    android:id="@+id/tv_compensationChangeBack"
+                    style="@style/AutoWrap"
+                    android:gravity="right"
+                    android:paddingRight="@dimen/dimen26"
+                    android:text="不支持退订"
+                    android:textColor="@color/greenColors"
+                    android:textSize="@dimen/textsize14" />
+
+            </LinearLayout>
 
             <LinearLayout
                 style="@style/MatchWrap"

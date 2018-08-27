@@ -15,8 +15,10 @@ import com.bigkoo.pickerview.view.TimePickerView;
 import com.common.cklibrary.common.BaseActivity;
 import com.common.cklibrary.common.BindView;
 import com.common.cklibrary.utils.ActivityTitleUtils;
+import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.myview.ChildListView;
 import com.sillykid.app.R;
+import com.sillykid.app.entity.homepage.boutiqueline.DueDemandBean;
 import com.sillykid.app.utils.DataUtil;
 import com.sillykid.app.utils.SoftKeyboardUtils;
 
@@ -28,7 +30,7 @@ import java.util.List;
 /**
  * 预定需求
  */
-public class DueDemandActivity extends BaseActivity {
+public class DueDemandActivity extends BaseActivity implements DueDemandContract.View {
 
     @BindView(id = R.id.ll_adult, click = true)
     private LinearLayout ll_adult;
@@ -69,6 +71,7 @@ public class DueDemandActivity extends BaseActivity {
 
     @BindView(id = R.id.tv_submitOrder, click = true)
     private TextView tv_submitOrder;
+    private int product_id = 0;
 
     @Override
     public void setRootView() {
@@ -78,7 +81,10 @@ public class DueDemandActivity extends BaseActivity {
     @Override
     public void initData() {
         super.initData();
-
+        product_id = getIntent().getIntExtra("product_id", 0);
+        mPresenter = new DueDemandPresenter(this);
+        showLoadingDialog(getString(R.string.dataLoad));
+        ((DueDemandContract.Presenter) mPresenter).getProductDetails(product_id);
         initCustomTimePicker();
         initOptions();
     }
@@ -207,4 +213,27 @@ public class DueDemandActivity extends BaseActivity {
     }
 
 
+    @Override
+    public void setPresenter(DueDemandContract.Presenter presenter) {
+        mPresenter = presenter;
+    }
+
+    @Override
+    public void getSuccess(String success, int flag) {
+        dismissLoadingDialog();
+        DueDemandBean dueDemandBean = (DueDemandBean) JsonUtil.getInstance().json2Obj(success, DueDemandBean.class);
+
+
+
+
+
+
+
+
+    }
+
+    @Override
+    public void errorMsg(String msg, int flag) {
+        dismissLoadingDialog();
+    }
 }

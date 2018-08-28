@@ -378,13 +378,24 @@
                     style="@style/AutoWrap"
                     android:gravity="right"
                     android:paddingLeft="@dimen/dimen10"
-                    android:paddingRight="@dimen/dimen17"
                     android:singleLine="true"
                     android:text="￥0.00"
-                    android:textColor="@color/fF5656Colors"
-                    android:textSize="@dimen/textsize15" />
+                    android:textColor="@color/tabColors"
+                    android:textSize="@dimen/textsize14" />
+
+                <ImageView
+                    android:id="@+id/img_right"
+                    android:layout_width="@dimen/dimen6"
+                    android:layout_height="@dimen/dimen11"
+                    android:layout_marginLeft="@dimen/dimen9"
+                    android:src="@mipmap/order_right_arrow" />
+
+                <TextView
+                    android:layout_width="@dimen/dimen17"
+                    android:layout_height="@dimen/dimen1" />
 
             </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 
@@ -404,6 +415,7 @@
             android:textSize="@dimen/textsize15" />
 
         <TextView
+            android:id="@+id/tv_actualPayment"
             style="@style/AutoWrap"
             android:text="￥0.00"
             android:textColor="@color/fF5656Colors"

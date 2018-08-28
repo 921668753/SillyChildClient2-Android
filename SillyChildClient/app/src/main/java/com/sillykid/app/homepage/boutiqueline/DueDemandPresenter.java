@@ -68,10 +68,11 @@ public class DueDemandPresenter implements DueDemandContract.Presenter {
         }
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
         httpParams.put("product_id", product_id);
-        httpParams.put("flight_number", "");
         httpParams.put("delivery_location", "");
-        httpParams.put("flight_arrival_time", flight_arrival_time);
+        httpParams.put("place_of_departure", "");
+        httpParams.put("days", "");
         httpParams.put("travel_start_time", flight_arrival_time);
+        httpParams.put("travel_end_time", "");
         httpParams.put("contact", contact);
         httpParams.put("contact_number", contact_number);
         httpParams.put("audit_number", audit_number);

@@ -180,9 +180,6 @@ public class ByTheDayCharterPayOrderActivity extends BaseActivity implements ByT
             KJActivityStack.create().finishActivity(PriceInformationActivity.class);
             KJActivityStack.create().finishActivity(SelectProductActivity.class);
             CreateTravelOrderBean createTravelOrderBean = (CreateTravelOrderBean) JsonUtil.getInstance().json2Obj(success, CreateTravelOrderBean.class);
-            /**
-             * 发送消息
-             */
             Intent intent = new Intent(aty, PaymentTravelOrderActivity.class);
             intent.putExtra("order_id", createTravelOrderBean.getData().getOrder_id());
             intent.putExtra("type", 1);

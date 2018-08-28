@@ -69,7 +69,7 @@ public class CharterOrderAdapter extends BGAAdapterViewAdapter<ResultBean> {
                 viewHolderHelper.setVisibility(R.id.tv_callUp, View.GONE);
                 viewHolderHelper.setVisibility(R.id.tv_sendPrivateChat, View.GONE);
                 viewHolderHelper.setVisibility(R.id.tv_appraiseOrder, View.GONE);
-                viewHolderHelper.setVisibility(R.id.tv_additionalComments, View.VISIBLE);
+                viewHolderHelper.setVisibility(R.id.tv_additionalComments, View.GONE);
                 break;
             case 4://已完成
                 viewHolderHelper.setText(R.id.tv_charterStatus, R.string.closed);

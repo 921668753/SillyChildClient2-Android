@@ -26,6 +26,7 @@ import com.sillykid.app.loginregister.LoginActivity;
 import com.sillykid.app.mine.myorder.MyOrderActivity;
 import com.sillykid.app.mine.myorder.charterorder.orderdetails.AirportDropOffOrderDetailsActivity;
 import com.sillykid.app.mine.myorder.charterorder.orderdetails.AirportPickupOrderDetailsActivity;
+import com.sillykid.app.mine.myorder.charterorder.orderdetails.BoutiqueLineOrderDetailsActivity;
 import com.sillykid.app.mine.myorder.charterorder.orderdetails.CharterOrderDetailsActivity;
 import com.sillykid.app.mine.myorder.charterorder.orderdetails.PrivateCustomOrderDetailsActivity;
 
@@ -130,7 +131,7 @@ public class ObligationCharterFragment extends BaseFragment implements AdapterVi
         } else if (mAdapter.getItem(i).getProduct_set_cd() == 4) {
             intent.setClass(aty, PrivateCustomOrderDetailsActivity.class);
         } else if (mAdapter.getItem(i).getProduct_set_cd() == 5) {
-            //  intent.setClass(aty, AirportPickupOrderDetailsActivity.class);
+            intent.setClass(aty, BoutiqueLineOrderDetailsActivity.class);
         }
         intent.putExtra("order_number", mAdapter.getItem(i).getOrder_number());
         aty.showActivity(aty, intent);

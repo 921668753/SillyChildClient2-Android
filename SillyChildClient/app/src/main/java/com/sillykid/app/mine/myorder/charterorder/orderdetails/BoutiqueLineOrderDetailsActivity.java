@@ -39,7 +39,6 @@ import pub.devrel.easypermissions.EasyPermissions;
  */
 public class BoutiqueLineOrderDetailsActivity extends BaseActivity implements EasyPermissions.PermissionCallbacks, CharterOrderDetailsContract.View {
 
-
     @BindView(id = R.id.tv_orderNumber)
     private TextView tv_orderNumber;
 
@@ -247,7 +246,7 @@ public class BoutiqueLineOrderDetailsActivity extends BaseActivity implements Ea
                 tv_callUp.setVisibility(View.GONE);
                 tv_sendPrivateChat.setVisibility(View.GONE);
                 tv_appraiseOrder.setVisibility(View.GONE);
-                tv_additionalComments.setVisibility(View.VISIBLE);
+                tv_additionalComments.setVisibility(View.GONE);
             } else if (airportPickupOrderDetailsBean.getData().getStatus() == 4) {
                 ll_actualPayment.setVisibility(View.VISIBLE);
                 ll_confirmPayment.setVisibility(View.GONE);

@@ -20,7 +20,9 @@ import com.sillykid.app.entity.homepage.airporttransportation.PriceInformationBe
 import com.sillykid.app.homepage.airporttransportation.airportdropoff.AirportDropOffActivity;
 import com.sillykid.app.homepage.airporttransportation.airportpickup.AirportPickupActivity;
 import com.sillykid.app.homepage.airporttransportation.comments.CharterCommentsActivity;
+import com.sillykid.app.homepage.airporttransportation.dialog.CompensationChangeBackDialog;
 import com.sillykid.app.loginregister.LoginActivity;
+import com.sillykid.app.utils.DataUtil;
 import com.sillykid.app.utils.GlideImageLoader;
 
 import java.util.List;
@@ -63,8 +65,43 @@ public class PriceInformationActivity extends BaseActivity implements PriceInfor
     @BindView(id = R.id.tv_remark)
     private TextView tv_remark;
 
+    @BindView(id = R.id.ll_compensationChangeBack, click = true)
+    private LinearLayout ll_compensationChangeBack;
+    @BindView(id = R.id.tv_compensationChangeBack)
+    private TextView tv_compensationChangeBack;
+
     @BindView(id = R.id.ll_userEvaluation, click = true)
     private LinearLayout ll_userEvaluation;
+    @BindView(id = R.id.tv_userEvaluationNum)
+    private TextView tv_userEvaluationNum;
+
+    @BindView(id = R.id.ll_userevaluation1)
+    private LinearLayout ll_userevaluation1;
+
+    @BindView(id = R.id.img_head)
+    private ImageView img_head;
+
+    @BindView(id = R.id.tv_nickName)
+    private TextView tv_nickName;
+
+    @BindView(id = R.id.img_satisfactionLevel)
+    private ImageView img_satisfactionLevel;
+
+    @BindView(id = R.id.tv_content)
+    private TextView tv_content;
+
+    @BindView(id = R.id.tv_time)
+    private TextView tv_time;
+
+    @BindView(id = R.id.ll_giveLike, click = true)
+    private LinearLayout ll_giveLike;
+
+    @BindView(id = R.id.img_giveLike)
+    private ImageView img_giveLike;
+
+    @BindView(id = R.id.tv_zanNum)
+    private TextView tv_zanNum;
+
 
     @BindView(id = R.id.tv_nextStep, click = true)
     private TextView tv_nextStep;
@@ -75,6 +112,7 @@ public class PriceInformationActivity extends BaseActivity implements PriceInfor
     private PriceInformationViewAdapter mAdapter;
 
     private PriceInformationBean priceInformationBean;
+    private CompensationChangeBackDialog compensationChangeBackDialog;
 
     @Override
     public void setRootView() {
@@ -90,7 +128,13 @@ public class PriceInformationActivity extends BaseActivity implements PriceInfor
         mAdapter = new PriceInformationViewAdapter(this);
         showLoadingDialog(getString(R.string.dataLoad));
         ((PriceInformationContract.Presenter) mPresenter).getProductDetails(product_id);
+        initDialog();
     }
+
+    private void initDialog() {
+        compensationChangeBackDialog = new CompensationChangeBackDialog(this);
+    }
+
 
     @Override
     public void initWidget() {
@@ -134,10 +178,23 @@ public class PriceInformationActivity extends BaseActivity implements PriceInfor
     public void widgetClick(View v) {
         super.widgetClick(v);
         switch (v.getId()) {
+            case R.id.ll_compensationChangeBack:
+                if (compensationChangeBackDialog == null) {
+                    initDialog();
+                }
+                if (compensationChangeBackDialog != null && !compensationChangeBackDialog.isShowing()) {
+                    compensationChangeBackDialog.show();
+                    compensationChangeBackDialog.setText(priceInformationBean.getData().getService_policy_content());
+                }
+                break;
             case R.id.ll_userEvaluation:
                 Intent intent = new Intent(aty, CharterCommentsActivity.class);
                 intent.putExtra("product_id", product_id);
                 showActivity(aty, intent);
+                break;
+            case R.id.ll_giveLike:
+                showLoadingDialog(getString(R.string.dataLoad));
+                ((PriceInformationContract.Presenter) mPresenter).postAddCommentLike(priceInformationBean.getData().getReview_list().get(0).getId(), 3);
                 break;
             case R.id.tv_nextStep:
                 if (priceInformationBean == null || priceInformationBean.getData() == null || StringUtils.isEmpty(priceInformationBean.getData().getTitle())) {
@@ -200,7 +257,7 @@ public class PriceInformationActivity extends BaseActivity implements PriceInfor
             }
             tv_modelCar.setText(priceInformationBean.getData().getModel());
             tv_canTakeNumber.setText(priceInformationBean.getData().getPassenger());
-            tv_carPrices.setText(MathUtil.keepTwo(StringUtils.toDouble(priceInformationBean.getData().getPrice())));
+            tv_carPrices.setText(getString(R.string.renminbi) + MathUtil.keepTwo(StringUtils.toDouble(priceInformationBean.getData().getPrice())));
             if (priceInformationBean.getData() != null && priceInformationBean.getData().getService() != null && priceInformationBean.getData().getService().size() > 0) {
                 gv_containsService.setVisibility(View.VISIBLE);
                 tv_containsService.setVisibility(View.VISIBLE);
@@ -212,7 +269,58 @@ public class PriceInformationActivity extends BaseActivity implements PriceInfor
             }
             tv_serviceDescription.setText(priceInformationBean.getData().getService_description());
             tv_remark.setText(priceInformationBean.getData().getService_note());
-
+            tv_compensationChangeBack.setText(priceInformationBean.getData().getService_policy());
+            tv_userEvaluationNum.setText(priceInformationBean.getData().getReview_count() + getString(R.string.comments1));
+            if (priceInformationBean.getData().getReview_list() != null && priceInformationBean.getData().getReview_list().size() > 0) {
+                ll_userevaluation1.setVisibility(View.VISIBLE);
+                GlideImageLoader.glideLoader(this, priceInformationBean.getData().getReview_list().get(0).getFace(), img_head, 0, R.mipmap.avatar);
+                tv_content.setText(priceInformationBean.getData().getReview_list().get(0).getContent());
+                tv_time.setText(DataUtil.formatData(StringUtils.toLong(priceInformationBean.getData().getReview_list().get(0).getCreate_time()), "yyyy.MM.dd"));
+                tv_zanNum.setText(priceInformationBean.getData().getReview_list().get(0).getLike_number() + "");
+                switch (priceInformationBean.getData().getReview_list().get(0).getSatisfaction_level()) {
+                    case 1:
+                        img_satisfactionLevel.setImageResource(R.mipmap.comment_star_one);
+                        break;
+                    case 2:
+                        img_satisfactionLevel.setImageResource(R.mipmap.comment_star_two);
+                        break;
+                    case 3:
+                        img_satisfactionLevel.setImageResource(R.mipmap.comment_star_three);
+                        break;
+                    case 4:
+                        img_satisfactionLevel.setImageResource(R.mipmap.comment_star_four);
+                        break;
+                    case 5:
+                        img_satisfactionLevel.setImageResource(R.mipmap.comment_star_five);
+                        break;
+                }
+                if (priceInformationBean.getData().getReview_list().get(0).isIs_like()) {
+                    img_giveLike.setImageResource(R.mipmap.dynamic_zan1);
+                    tv_zanNum.setTextColor(getResources().getColor(R.color.greenColors));
+                } else {
+                    img_giveLike.setImageResource(R.mipmap.dynamic_zan);
+                    //       tv_zanNum.setText(getString(R.string.giveLike));
+                    tv_zanNum.setTextColor(getResources().getColor(R.color.tabColors));
+                }
+            } else {
+                ll_userevaluation1.setVisibility(View.GONE);
+            }
+        } else if (flag == 1) {
+            if (priceInformationBean.getData().getReview_list().get(0).isIs_like()) {
+                tv_zanNum.setText(priceInformationBean.getData().getReview_list().get(0).getLike_number() - 1 + "");
+                priceInformationBean.getData().getReview_list().get(0).setLike_number(StringUtils.toInt(tv_zanNum.getText().toString(), 0));
+                priceInformationBean.getData().getReview_list().get(0).setIs_like(false);
+                img_giveLike.setImageResource(R.mipmap.dynamic_zan);
+                tv_zanNum.setTextColor(getResources().getColor(R.color.tabColors));
+                ViewInject.toast(getString(R.string.cancelZanSuccess));
+            } else {
+                tv_zanNum.setText(priceInformationBean.getData().getReview_list().get(0).getLike_number() + 1 + "");
+                priceInformationBean.getData().getReview_list().get(0).setLike_number(StringUtils.toInt(tv_zanNum.getText().toString(), 0));
+                priceInformationBean.getData().getReview_list().get(0).setIs_like(true);
+                img_giveLike.setImageResource(R.mipmap.dynamic_zan1);
+                tv_zanNum.setTextColor(getResources().getColor(R.color.greenColors));
+                ViewInject.toast(getString(R.string.zanSuccess));
+            }
         }
     }
 
@@ -245,4 +353,12 @@ public class PriceInformationActivity extends BaseActivity implements PriceInfor
         ViewInject.toast(msg);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (compensationChangeBackDialog != null && compensationChangeBackDialog.isShowing()) {
+            compensationChangeBackDialog.cancel();
+        }
+        compensationChangeBackDialog = null;
+    }
 }

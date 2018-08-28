@@ -25,7 +25,7 @@ public class PriceInformationBean extends BaseResult<PriceInformationBean.DataBe
          * model : 丰田阿尔法
          * service_policy : 不支持退订
          */
-
+        private String service_policy_content;
         private String service_description;
         private String service_mileage;
         private int passenger_number;
@@ -40,6 +40,16 @@ public class PriceInformationBean extends BaseResult<PriceInformationBean.DataBe
         private String service_policy;
         private List<String> picture;
         private List<ServiceBean> service;
+        private List<ReviewListBean> review_list;
+        private int review_count;
+
+        public int getReview_count() {
+            return review_count;
+        }
+
+        public void setReview_count(int review_count) {
+            this.review_count = review_count;
+        }
 
         public String getService_description() {
             return service_description;
@@ -153,6 +163,22 @@ public class PriceInformationBean extends BaseResult<PriceInformationBean.DataBe
             this.service = service;
         }
 
+        public String getService_policy_content() {
+            return service_policy_content;
+        }
+
+        public void setService_policy_content(String service_policy_content) {
+            this.service_policy_content = service_policy_content;
+        }
+
+        public List<ReviewListBean> getReview_list() {
+            return review_list;
+        }
+
+        public void setReview_list(List<ReviewListBean> review_list) {
+            this.review_list = review_list;
+        }
+
         public class ServiceBean {
             /**
              * is_show : 1
@@ -176,6 +202,89 @@ public class PriceInformationBean extends BaseResult<PriceInformationBean.DataBe
 
             public void setName(String name) {
                 this.name = name;
+            }
+        }
+
+        public class ReviewListBean {
+            /**
+             * content : 评论的内容
+             * satisfaction_level : 5
+             * nickname : 天若有情
+             * face : http://img.shahaizhi.com/FleRaZdDvarW8yR3IOxH0Ti-LqZ2
+             * like_number : 0
+             * is_like : false
+             */
+            private String create_time;
+            private int id;
+            private String content;
+            private int satisfaction_level;
+            private String nickname;
+            private String face;
+            private int like_number;
+            private boolean is_like;
+
+            public String getCreate_time() {
+                return create_time;
+            }
+
+            public void setCreate_time(String create_time) {
+                this.create_time = create_time;
+            }
+
+            public int getId() {
+                return id;
+            }
+
+            public void setId(int id) {
+                this.id = id;
+            }
+
+            public String getContent() {
+                return content;
+            }
+
+            public void setContent(String content) {
+                this.content = content;
+            }
+
+            public int getSatisfaction_level() {
+                return satisfaction_level;
+            }
+
+            public void setSatisfaction_level(int satisfaction_level) {
+                this.satisfaction_level = satisfaction_level;
+            }
+
+            public String getNickname() {
+                return nickname;
+            }
+
+            public void setNickname(String nickname) {
+                this.nickname = nickname;
+            }
+
+            public String getFace() {
+                return face;
+            }
+
+            public void setFace(String face) {
+                this.face = face;
+            }
+
+            public int getLike_number() {
+                return like_number;
+            }
+
+            public void setLike_number(int like_number) {
+                this.like_number = like_number;
+            }
+
+            public boolean isIs_like() {
+                return is_like;
+            }
+
+            public void setIs_like(boolean is_like) {
+                this.is_like = is_like;
             }
         }
     }

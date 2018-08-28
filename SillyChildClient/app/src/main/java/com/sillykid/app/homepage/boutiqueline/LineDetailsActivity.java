@@ -5,17 +5,26 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.common.cklibrary.common.BaseActivity;
 import com.common.cklibrary.common.BindView;
 import com.common.cklibrary.common.StringConstants;
 import com.common.cklibrary.common.ViewInject;
+import com.common.cklibrary.utils.JsonUtil;
+import com.common.cklibrary.utils.myview.WebViewLayout;
+import com.hedgehog.ratingbar.RatingBar;
 import com.kymjs.common.PreferenceHelper;
+import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
 import com.sillykid.app.constant.URLConstants;
+import com.sillykid.app.entity.homepage.boutiqueline.LineDetailsBean;
+import com.sillykid.app.homepage.airporttransportation.comments.CharterCommentsActivity;
 import com.sillykid.app.loginregister.LoginActivity;
 import com.sillykid.app.mine.sharingceremony.dialog.ShareBouncedDialog;
+import com.sillykid.app.utils.DataUtil;
+import com.sillykid.app.utils.GlideImageLoader;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.UMShareListener;
@@ -23,17 +32,68 @@ import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.media.UMImage;
 import com.umeng.socialize.media.UMWeb;
 
-import static com.sillykid.app.constant.NumericConstants.REQUEST_CODE;
-
 
 /**
  * 线路详情
  */
 public class LineDetailsActivity extends BaseActivity implements LineDetailsContract.View {
 
+
+    @BindView(id = R.id.img_back, click = true)
+    private ImageView img_back;
+
     @BindView(id = R.id.img_share, click = true)
     private ImageView img_share;
 
+    @BindView(id = R.id.img_picture)
+    private ImageView img_picture;
+
+    @BindView(id = R.id.tv_title)
+    private TextView tv_title;
+
+    @BindView(id = R.id.ratingbar)
+    private RatingBar ratingbar;
+
+    @BindView(id = R.id.tv_ratingbar)
+    private TextView tv_ratingbar;
+
+    @BindView(id = R.id.tv_experienceBrightSpot)
+    private TextView tv_experienceBrightSpot;
+
+    @BindView(id = R.id.web_view)
+    private WebViewLayout web_view;
+
+    @BindView(id = R.id.ll_userEvaluation, click = true)
+    private LinearLayout ll_userEvaluation;
+    @BindView(id = R.id.tv_userEvaluationNum)
+    private TextView tv_userEvaluationNum;
+
+    @BindView(id = R.id.ll_userevaluation1)
+    private LinearLayout ll_userevaluation1;
+
+    @BindView(id = R.id.img_head)
+    private ImageView img_head;
+
+    @BindView(id = R.id.tv_nickName)
+    private TextView tv_nickName;
+
+    @BindView(id = R.id.img_satisfactionLevel)
+    private ImageView img_satisfactionLevel;
+
+    @BindView(id = R.id.tv_content)
+    private TextView tv_content;
+
+    @BindView(id = R.id.tv_time)
+    private TextView tv_time;
+
+    @BindView(id = R.id.ll_giveLike, click = true)
+    private LinearLayout ll_giveLike;
+
+    @BindView(id = R.id.img_giveLike)
+    private ImageView img_giveLike;
+
+    @BindView(id = R.id.tv_zanNum)
+    private TextView tv_zanNum;
 
     @BindView(id = R.id.tv_reservationsNow, click = true)
     private TextView tv_reservationsNow;
@@ -41,6 +101,10 @@ public class LineDetailsActivity extends BaseActivity implements LineDetailsCont
     private ShareBouncedDialog shareBouncedDialog = null;
 
     private int product_id = 0;
+    private String smallImg;
+    private String product_name;
+    private String subtitle;
+    private LineDetailsBean lineDetailsBean;
 
     @Override
     public void setRootView() {
@@ -53,8 +117,15 @@ public class LineDetailsActivity extends BaseActivity implements LineDetailsCont
         product_id = getIntent().getIntExtra("id", 0);
         mPresenter = new LineDetailsPresenter(this);
         showLoadingDialog(getString(R.string.dataLoad));
-        ((LineDetailsContract.Presenter) mPresenter).getProductDetails(product_id);
+        ((LineDetailsContract.Presenter) mPresenter).getRouteDetail(product_id);
+    }
+
+
+    @Override
+    public void initWidget() {
+        super.initWidget();
         initShareBouncedDialog();
+        web_view.setTitleVisibility(false);
     }
 
     /**
@@ -70,16 +141,12 @@ public class LineDetailsActivity extends BaseActivity implements LineDetailsCont
     }
 
     @Override
-    public void initWidget() {
-        super.initWidget();
-
-
-    }
-
-    @Override
     public void widgetClick(View v) {
         super.widgetClick(v);
         switch (v.getId()) {
+            case R.id.img_back:
+                finish();
+                break;
             case R.id.img_share:
                 //分享
                 if (shareBouncedDialog == null) {
@@ -89,10 +156,21 @@ public class LineDetailsActivity extends BaseActivity implements LineDetailsCont
                     shareBouncedDialog.show();
                 }
                 break;
+            case R.id.ll_userEvaluation:
+                Intent intent1 = new Intent(aty, CharterCommentsActivity.class);
+                intent1.putExtra("product_id", product_id);
+                showActivity(aty, intent1);
+                break;
+            case R.id.ll_giveLike:
+                showLoadingDialog(getString(R.string.dataLoad));
+                ((LineDetailsContract.Presenter) mPresenter).postAddCommentLike(lineDetailsBean.getData().getReview_list().get(0).getId(), 3);
+                break;
             case R.id.tv_reservationsNow:
-                //分享
                 Intent intent = new Intent(aty, DueDemandActivity.class);
                 intent.putExtra("product_id", product_id);
+                intent.putExtra("product_name", product_name);
+                intent.putExtra("recommended", tv_ratingbar.getText().toString());
+                intent.putExtra("smallImg", smallImg);
                 showActivity(aty, intent);
                 break;
         }
@@ -105,6 +183,71 @@ public class LineDetailsActivity extends BaseActivity implements LineDetailsCont
 
     @Override
     public void getSuccess(String success, int flag) {
+        if (flag == 0) {
+            lineDetailsBean = (LineDetailsBean) JsonUtil.getInstance().json2Obj(success, LineDetailsBean.class);
+            smallImg = lineDetailsBean.getData().getMain_picture();
+            GlideImageLoader.glideOrdinaryLoader(this, smallImg, img_picture, R.mipmap.placeholderfigure);
+            product_name = lineDetailsBean.getData().getProduct_name();
+            tv_title.setText(product_name);
+            ratingbar.setStar((float) StringUtils.toDouble(lineDetailsBean.getData().getRecommended()));
+            tv_ratingbar.setText(lineDetailsBean.getData().getRecommended() + getString(R.string.minute));
+            subtitle = lineDetailsBean.getData().getSubtitle();
+            tv_experienceBrightSpot.setText(subtitle);
+            String code = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><title></title></head><body>" + lineDetailsBean.getData().getProduct_description()
+                    + "</body></html>";
+            web_view.loadDataWithBaseURL("baseurl", code, "text/html", "utf-8", null);
+            tv_userEvaluationNum.setText(lineDetailsBean.getData().getReview_count() + getString(R.string.comments1));
+            if (lineDetailsBean.getData().getReview_list() != null && lineDetailsBean.getData().getReview_list().size() > 0) {
+                ll_userevaluation1.setVisibility(View.VISIBLE);
+                GlideImageLoader.glideLoader(this, lineDetailsBean.getData().getReview_list().get(0).getFace(), img_head, 0, R.mipmap.avatar);
+                tv_content.setText(lineDetailsBean.getData().getReview_list().get(0).getContent());
+                tv_time.setText(DataUtil.formatData(StringUtils.toLong(lineDetailsBean.getData().getReview_list().get(0).getCreate_time()), "yyyy.MM.dd"));
+                tv_zanNum.setText(lineDetailsBean.getData().getReview_list().get(0).getLike_number() + "");
+                switch (lineDetailsBean.getData().getReview_list().get(0).getSatisfaction_level()) {
+                    case 1:
+                        img_satisfactionLevel.setImageResource(R.mipmap.comment_star_one);
+                        break;
+                    case 2:
+                        img_satisfactionLevel.setImageResource(R.mipmap.comment_star_two);
+                        break;
+                    case 3:
+                        img_satisfactionLevel.setImageResource(R.mipmap.comment_star_three);
+                        break;
+                    case 4:
+                        img_satisfactionLevel.setImageResource(R.mipmap.comment_star_four);
+                        break;
+                    case 5:
+                        img_satisfactionLevel.setImageResource(R.mipmap.comment_star_five);
+                        break;
+                }
+                if (lineDetailsBean.getData().getReview_list().get(0).isIs_like()) {
+                    img_giveLike.setImageResource(R.mipmap.dynamic_zan1);
+                    tv_zanNum.setTextColor(getResources().getColor(R.color.greenColors));
+                } else {
+                    img_giveLike.setImageResource(R.mipmap.dynamic_zan);
+                    //       tv_zanNum.setText(getString(R.string.giveLike));
+                    tv_zanNum.setTextColor(getResources().getColor(R.color.tabColors));
+                }
+            } else {
+                ll_userevaluation1.setVisibility(View.GONE);
+            }
+        } else if (flag == 1) {
+            if (lineDetailsBean.getData().getReview_list().get(0).isIs_like()) {
+                tv_zanNum.setText(lineDetailsBean.getData().getReview_list().get(0).getLike_number() - 1 + "");
+                lineDetailsBean.getData().getReview_list().get(0).setLike_number(StringUtils.toInt(tv_zanNum.getText().toString(), 0));
+                lineDetailsBean.getData().getReview_list().get(0).setIs_like(false);
+                img_giveLike.setImageResource(R.mipmap.dynamic_zan);
+                tv_zanNum.setTextColor(getResources().getColor(R.color.tabColors));
+                ViewInject.toast(getString(R.string.cancelZanSuccess));
+            } else {
+                tv_zanNum.setText(lineDetailsBean.getData().getReview_list().get(0).getLike_number() + 1 + "");
+                lineDetailsBean.getData().getReview_list().get(0).setLike_number(StringUtils.toInt(tv_zanNum.getText().toString(), 0));
+                lineDetailsBean.getData().getReview_list().get(0).setIs_like(true);
+                img_giveLike.setImageResource(R.mipmap.dynamic_zan1);
+                tv_zanNum.setTextColor(getResources().getColor(R.color.greenColors));
+                ViewInject.toast(getString(R.string.zanSuccess));
+            }
+        }
         dismissLoadingDialog();
 
 
@@ -125,19 +268,19 @@ public class LineDetailsActivity extends BaseActivity implements LineDetailsCont
      * SHARE_MEDIA.QQ
      */
     public void umShare(SHARE_MEDIA platform) {
-//        UMImage thumb = new UMImage(this, smallImg);
-//        String invite_code = PreferenceHelper.readString(aty, StringConstants.FILENAME, "invite_code", "");
-//        String url = URLConstants.REGISTERHTML + invite_code;
-//        UMWeb web = new UMWeb(url);
-////        web.setTitle(title);//标题
-////        web.setThumb(thumb);  //缩略图
-////        web.setDescription(brief);
-//        new ShareAction(aty).setPlatform(platform)
-////                .withText("hello")
-////                .withMedia(thumb)
-//                .withMedia(web)
-//                .setCallback(umShareListener)
-//                .share();
+        UMImage thumb = new UMImage(this, smallImg);
+        String invite_code = PreferenceHelper.readString(aty, StringConstants.FILENAME, "invite_code", "");
+        String url = URLConstants.REGISTERHTML + invite_code;
+        UMWeb web = new UMWeb(url);
+        web.setTitle(product_name);//标题
+        web.setThumb(thumb);  //缩略图
+        web.setDescription(subtitle);
+        new ShareAction(aty).setPlatform(platform)
+//                .withText("hello")
+//                .withMedia(thumb)
+                .withMedia(web)
+                .setCallback(umShareListener)
+                .share();
     }
 
     private UMShareListener umShareListener = new UMShareListener() {

@@ -69,6 +69,8 @@ public class LineDetailsPayOrderActivity extends BaseActivity {
     @Override
     public void initWidget() {
         super.initWidget();
+
+
     }
 
     @Override

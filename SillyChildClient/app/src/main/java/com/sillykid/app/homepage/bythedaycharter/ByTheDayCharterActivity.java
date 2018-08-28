@@ -233,4 +233,11 @@ public class ByTheDayCharterActivity extends BaseActivity implements ByTheDayCha
         ViewInject.toast(msg);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        adultOptions = null;
+        childrenOptions = null;
+        luggageOptions = null;
+    }
 }

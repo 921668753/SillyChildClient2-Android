@@ -19,8 +19,8 @@ public class URLConstants {
      */
     // public static String SERVERURL = "http://xiaowei.local.keiousoft.com/";
 
-    public static String SERVERURL = "http://192.168.1.247:8080/";
-    //    public static String SERVERURL = "http://user.api.shahaizhi.com/";
+//    public static String SERVERURL = "http://192.168.1.247:8080/";
+    public static String SERVERURL = "http://user.api.shahaizhi.com/";
     public static String SERVERURL1 = "http://www.shahaizhi.tech/";
 
     /**
@@ -190,6 +190,11 @@ public class URLConstants {
     public static String PRODUCTLINEDETAILS = APIURL + "products/get_product_details.do";
 
     /**
+     * 精品线路 - 线路详细信息
+     */
+    public static String ROUTEDETAIL = APIURL + "products/get_route_detail.do";
+
+    /**
      * 城市与机场 - 通过国家编号获取城市与机场信息
      */
     public static String PRODUCTBYAIRPORTID = APIURL + "products/get_product_by_airport_id.do";
@@ -205,9 +210,19 @@ public class URLConstants {
     public static String PRODUCTDETAILS = APIURL + "products/get_product_details.do";
 
     /**
+     * 接机产品 -  获取某商品的评价列表
+     */
+    public static String EVALUATIONPAGE = APIURL + "evaluation/get_evaluation_page.do";
+
+    /**
      * 接机产品 - 用户填写接机预定信息
      */
     public static String ADDREQUIREMENTS = APIURL + "products/add_requirements.do";
+
+    /**
+     * 精品线路 - 用户填写线路需求
+     */
+    public static String ADDROUTEREQUIREMENTS = APIURL + "products/add_route_requirement.do";
 
     /**
      * 包车服务 - 用户填写包车需求

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/MatchMatch"
-    android:background="@color/black01"
-    android:gravity="center">
+    android:background="@color/black01">
+
 
     <LinearLayout
         style="@style/MatchWrap"
-        android:layout_marginBottom="@dimen/dimen40"
-        android:layout_marginTop="@dimen/dimen40"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="@dimen/dimen40"
         android:background="@drawable/shape_picturesourceacncel"
         android:orientation="vertical">
-
 
         <RelativeLayout
             style="@style/MatchWrap"
@@ -44,6 +44,4 @@
             android:layout_marginBottom="@dimen/dimen15" />
 
     </LinearLayout>
-
-
 </RelativeLayout>

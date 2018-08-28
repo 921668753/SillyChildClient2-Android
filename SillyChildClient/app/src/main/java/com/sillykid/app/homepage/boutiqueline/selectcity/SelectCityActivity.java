@@ -55,14 +55,14 @@ public class SelectCityActivity extends BaseActivity implements SelectCityContra
         mPresenter = new SelectCityPresenter(this);
         mListViewAdapter = new AirportTransportationClassificationListViewAdapter(this);
         mGridViewAdapter = new SelectCityGridViewAdapter(this);
-        title = getIntent().getStringExtra("title");
+        // title = getIntent().getStringExtra("title");
         type = getIntent().getIntExtra("type", 0);
     }
 
     @Override
     public void initWidget() {
         super.initWidget();
-        ActivityTitleUtils.initToolbar(aty, title, true, R.id.titlebar);
+        ActivityTitleUtils.initToolbar(aty, getString(R.string.selectCity), true, R.id.titlebar);
         lv_countries.setAdapter(mListViewAdapter);
         lv_countries.setOnItemClickListener(this);
         gv_countriesClassification.setAdapter(mGridViewAdapter);

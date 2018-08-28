@@ -260,4 +260,13 @@ public class AirportPickupActivity extends BaseActivity implements AirportPickup
         }
         ViewInject.toast(msg);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        pvCustomTime = null;
+        adultOptions = null;
+        childrenOptions = null;
+        luggageOptions = null;
+    }
 }

@@ -72,6 +72,14 @@
     <string name="failedCloudInformation1">获取融云信息失败,请用账号密码登录</string>
 
 
+
+
+
+
+
+
+
+
     <!--选择国家或地区-->
     <string name="selectCountry">选择国家或地区</string>
 
@@ -196,7 +204,8 @@
     <!--首页   精品线路-->
     <string name="hotRecommended">热门推荐</string>
     <string name="selectCity">选择城市</string>
-
+    <string name="selectTravelDate">选择行程日期</string>
+    <string name="selectTravelDate1">请选择行程日期</string>
 
     <!--活动-->
     <string name="contactWay3">联系方式</string>

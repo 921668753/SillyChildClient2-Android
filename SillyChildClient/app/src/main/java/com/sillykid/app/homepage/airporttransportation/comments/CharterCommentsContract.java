@@ -17,7 +17,12 @@ public interface CharterCommentsContract {
         /**
          * 获取评论列表
          */
-        void getCommentList(Context context, int goodsid, int onlyimage, int page);
+        void getCommentList(Context context, int product_id, int onlyimage, int page);
+
+        /**
+         * 给评论点赞
+         */
+        void postAddCommentLike(int id, int type);
 
     }
 

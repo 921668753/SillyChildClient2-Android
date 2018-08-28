@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:hedgehog="http://schemas.android.com/apk/res-auto"
     style="@style/MatchMatch"
     android:background="@color/background"
     android:fitsSystemWindows="true"
@@ -12,11 +12,11 @@
         android:gravity="center_vertical">
 
         <ImageView
+            android:id="@+id/img_back"
             android:layout_width="@dimen/dimen45"
             android:layout_height="@dimen/dimen45"
             android:padding="@dimen/dimen15"
             android:src="@mipmap/back" />
-
 
         <TextView
             style="@style/WrapWrap"
@@ -33,8 +33,8 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/dimen45"
             android:padding="@dimen/dimen14"
-            android:visibility="gone"
-            android:src="@mipmap/dynamicdetails_collection1" />
+            android:src="@mipmap/dynamicdetails_collection1"
+            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/img_share"
@@ -57,6 +57,7 @@
             android:orientation="vertical">
 
             <ImageView
+                android:id="@+id/img_picture"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimen147"
                 android:layout_marginTop="@dimen/dimen6"
@@ -69,6 +70,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/tv_title"
                     style="@style/AutoMatch"
                     android:layout_marginLeft="@dimen/dimen15"
                     android:paddingTop="@dimen/dimen9"
@@ -81,23 +83,55 @@
                     android:gravity="right"
                     android:orientation="vertical">
 
-                    <ImageView
-                        android:layout_width="@dimen/dimen100"
-                        android:layout_height="@dimen/dimen13"
-                        android:layout_marginLeft="@dimen/dimen10"
-                        android:layout_marginTop="@dimen/dimen13"
-                        android:src="@mipmap/arrow" />
+                    <!--<ImageView-->
+                    <!--android:id="@+id/img_recommended"-->
+                    <!--android:layout_width="@dimen/dimen100"-->
+                    <!--android:layout_height="@dimen/dimen13"-->
+                    <!--android:layout_marginLeft="@dimen/dimen10"-->
+                    <!--android:layout_marginTop="@dimen/dimen13"-->
+                    <!--android:scaleType="fitXY"-->
+                    <!--android:src="@mipmap/comment_star_one" />-->
+
+                    <com.hedgehog.ratingbar.RatingBar
+                        android:id="@+id/ratingbar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dimen21"
+                        android:layout_marginTop="@dimen/dimen10"
+                        hedgehog:clickable="false"
+                        hedgehog:starCount="5"
+                        hedgehog:starEmpty="@mipmap/img_empty_stars"
+                        hedgehog:starFill="@mipmap/img_real_stars"
+                        hedgehog:starHalf="@mipmap/half_star"
+                        hedgehog:starImageHeight="@dimen/dimen21"
+                        hedgehog:starImagePadding="@dimen/dimen4"
+                        hedgehog:starImageWidth="@dimen/dimen21" />
+
+                    <!--<com.azhong.ratingbar.RatingBar-->
+                    <!--android:id="@+id/rb_recommended"-->
+                    <!--style="@style/WrapWrap"-->
+                    <!--android:background="@color/whiteColors"-->
+                    <!--android:paddingLeft="@dimen/dimen10"-->
+                    <!--android:layout_marginTop="@dimen/dimen9"-->
+                    <!--android:stepSize="0.1"-->
+                    <!--a_zhon:clickable="false"-->
+                    <!--a_zhon:image_height="@dimen/dimen24"-->
+                    <!--a_zhon:image_padding="@dimen/dimen5"-->
+                    <!--a_zhon:image_width="@dimen/dimen24"-->
+                    <!--a_zhon:star="0"-->
+                    <!--a_zhon:star_count="5"-->
+                    <!--a_zhon:star_img="@mipmap/img_real_stars"-->
+                    <!--a_zhon:unstar_img="@mipmap/img_empty_stars" />-->
 
                     <TextView
+                        android:id="@+id/tv_ratingbar"
                         style="@style/WrapWrap"
                         android:layout_marginBottom="@dimen/dimen8"
-                        android:layout_marginTop="@dimen/dimen13"
+                        android:layout_marginTop="@dimen/dimen8"
                         android:text="4.8分"
                         android:textColor="@color/fF5656Colors"
                         android:textSize="@dimen/textsize12" />
 
                 </LinearLayout>
-
 
             </LinearLayout>
 
@@ -113,6 +147,7 @@
                 android:textSize="@dimen/textsize15" />
 
             <TextView
+                android:id="@+id/tv_experienceBrightSpot"
                 style="@style/MatchWrap"
                 android:background="@color/whiteColors"
                 android:paddingBottom="@dimen/dimen13"
@@ -132,88 +167,15 @@
                 android:textColor="@color/textColor"
                 android:textSize="@dimen/textsize15" />
 
-            <TextView
+            <com.common.cklibrary.utils.myview.WebViewLayout
+                android:id="@+id/web_view"
                 style="@style/MatchWrap"
-                android:layout_marginTop="@dimen/dimen6"
-                android:background="@color/whiteColors"
-                android:gravity="center"
-                android:paddingBottom="@dimen/dimen8"
-                android:paddingTop="@dimen/dimen8"
-                android:text="第一天"
-                android:textColor="@color/textColor" />
-
-            <LinearLayout
-                style="@style/MatchWrap"
-                android:background="@color/whiteColors"
-                android:orientation="horizontal"
-                android:paddingTop="@dimen/dimen8">
-
-                <TextView
-                    style="@style/WrapWrap"
-                    android:paddingLeft="@dimen/dimen15"
-                    android:paddingRight="@dimen/dimen11"
-                    android:text="@string/linePaper"
-                    android:textColor="@color/tabColors"
-                    android:textSize="@dimen/textsize13" />
-
-
-                <TextView
-                    style="@style/AutoWrap"
-                    android:paddingBottom="@dimen/dimen11"
-                    android:paddingRight="@dimen/dimen15"
-                    android:text="体验亮点体验亮点体验亮点体验亮点体验亮点体验亮点体验亮点体验亮点体验亮点体验亮点体验亮点体验亮点"
-                    android:textColor="@color/hintColors"
-                    android:textSize="@dimen/textsize13" />
-
-
-            </LinearLayout>
-
-            <TextView
-                style="@style/MatchWrap"
-                android:layout_marginTop="@dimen/dimen1"
-                android:background="@color/whiteColors"
-                android:gravity="center"
-                android:paddingBottom="@dimen/dimen14"
-                android:paddingTop="@dimen/dimen13"
-                android:text="第一站"
-                android:textColor="@color/textColor"
-                android:textSize="@dimen/textsize15" />
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen147"
-                android:background="@color/whiteColors"
-                android:paddingLeft="@dimen/dimen15"
-                android:paddingRight="@dimen/dimen15"
-                android:scaleType="fitXY"
-                android:src="@mipmap/placeholderfigure" />
-
-
-            <TextView
-                style="@style/MatchWrap"
-                android:background="@color/whiteColors"
-                android:paddingBottom="@dimen/dimen10"
-                android:paddingLeft="@dimen/dimen15"
-                android:paddingRight="@dimen/dimen15"
-                android:paddingTop="@dimen/dimen15"
-                android:text="【芭提雅三天六晚自由行】"
-                android:textColor="@color/textColor"
-                android:textSize="@dimen/textsize15" />
-
-            <TextView
-                style="@style/MatchWrap"
-                android:background="@color/whiteColors"
-                android:paddingBottom="@dimen/dimen14"
-                android:paddingLeft="@dimen/dimen19"
-                android:paddingRight="@dimen/dimen19"
-                android:text="美丽的东南亚海岛风情，给你带来不一样的体验。"
-                android:textColor="@color/hintColors"
-                android:textSize="@dimen/textsize12" />
-
+                android:layout_marginTop="@dimen/dimen6" />
 
             <LinearLayout
                 android:id="@+id/ll_userEvaluation"
                 style="@style/MatchWrap"
+                android:layout_marginBottom="@dimen/dimen6"
                 android:layout_marginTop="@dimen/dimen6"
                 android:background="@color/whiteColors"
                 android:orientation="horizontal"
@@ -249,15 +211,17 @@
 
             </LinearLayout>
 
-            <com.common.cklibrary.utils.myview.ChildListView
-                android:id="@+id/clv_dynamicDetails"
-                style="@style/MatchWrap"
-                android:layout_marginBottom="@dimen/dimen20"
-                android:layout_marginTop="@dimen/dimen6"
-                android:divider="@android:color/transparent"
-                android:overScrollMode="never"
-                android:scrollbars="none"
-                tools:listitem="@layout/item_dynamicdetails" />
+            <include layout="@layout/item_userevaluation" />
+
+            <!--<com.common.cklibrary.utils.myview.ChildListView-->
+            <!--android:id="@+id/clv_dynamicDetails"-->
+            <!--style="@style/MatchWrap"-->
+            <!--android:layout_marginBottom="@dimen/dimen20"-->
+            <!--android:layout_marginTop="@dimen/dimen6"-->
+            <!--android:divider="@android:color/transparent"-->
+            <!--android:overScrollMode="never"-->
+            <!--android:scrollbars="none"-->
+            <!--tools:listitem="@layout/item_dynamicdetails" />-->
 
             <TextView
                 android:id="@+id/tv_reservationsNow"

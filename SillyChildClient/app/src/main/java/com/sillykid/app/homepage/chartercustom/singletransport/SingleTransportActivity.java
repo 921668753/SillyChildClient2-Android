@@ -1,6 +1,5 @@
 package com.sillykid.app.homepage.chartercustom.singletransport;
 
-import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -18,7 +17,7 @@ import com.common.cklibrary.utils.JsonUtil;
 import com.kymjs.common.PreferenceHelper;
 import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
-import com.sillykid.app.dialog.chartercustom.CompensationChangeBackDialog;
+import com.sillykid.app.homepage.airporttransportation.dialog.CompensationChangeBackDialog;
 import com.sillykid.app.dialog.chartercustom.CostsThatDialog;
 import com.sillykid.app.entity.AirportDropOffBean;
 import com.sillykid.app.entity.CarInfoBean;
@@ -28,10 +27,8 @@ import com.sillykid.app.entity.VehicleTypeBean;
 import com.sillykid.app.loginregister.LoginActivity;
 import com.sillykid.app.utils.SoftKeyboardUtils;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import cn.bingoogolapple.titlebar.BGATitleBar;
@@ -452,7 +449,7 @@ public class SingleTransportActivity extends BaseActivity implements SingleTrans
            // showActivity(aty, OverleafActivity.class);
         } else if (flag == 3) {
             UnsubscribeCostBean unsubscribeCostBean = (UnsubscribeCostBean) JsonUtil.getInstance().json2Obj(success, UnsubscribeCostBean.class);
-            compensationChangeBackDialog = new CompensationChangeBackDialog(this, unsubscribeCostBean.getData().getPolicy().getContent());
+        //    compensationChangeBackDialog = new CompensationChangeBackDialog(this, unsubscribeCostBean.getData().getPolicy().getContent());
             compensationChangeBackDialog.setCanceledOnTouchOutside(false);
             costsThatDialog = new CostsThatDialog(this, unsubscribeCostBean.getData().getExplain().getContent());
             costsThatDialog.setCanceledOnTouchOutside(false);

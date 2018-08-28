@@ -34,4 +34,22 @@ public class PriceInformationPresenter implements PriceInformationContract.Prese
             }
         });
     }
+
+    @Override
+    public void postAddCommentLike(int id, int type) {
+        HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
+        httpParams.put("comment_id", id);
+        httpParams.put("type", type);
+        RequestClient.postAddCommentLike(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
+            @Override
+            public void onSuccess(String response) {
+                mView.getSuccess(response, 1);
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                mView.errorMsg(msg, 1);
+            }
+        });
+    }
 }

@@ -52,7 +52,7 @@ public class ByTheDayCharterPresenter implements ByTheDayCharterContract.Present
             mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.adult3), 0);
             return;
         }
-        if (StringUtils.toInt(audit_number, 0) > 0 && StringUtils.toInt(audit_number, 0) + StringUtils.toInt(children_number, 0) > passenger_number1 - 1) {
+        if (StringUtils.toInt(audit_number, 0) > 0 && StringUtils.toInt(audit_number, 0) + StringUtils.toInt(children_number, 0) > passenger_number1) {
             mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.adult4), 0);
             return;
         }

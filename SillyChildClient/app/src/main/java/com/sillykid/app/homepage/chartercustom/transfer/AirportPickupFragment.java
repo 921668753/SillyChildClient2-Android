@@ -17,7 +17,7 @@ import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.JsonUtil;
 import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
-import com.sillykid.app.dialog.chartercustom.CompensationChangeBackDialog;
+import com.sillykid.app.homepage.airporttransportation.dialog.CompensationChangeBackDialog;
 import com.sillykid.app.dialog.chartercustom.CostsThatDialog;
 import com.sillykid.app.entity.AirportDropOffBean;
 import com.sillykid.app.entity.CarBrandBean;
@@ -200,7 +200,7 @@ public class AirportPickupFragment extends BaseFragment implements AirportPickup
         String costCompensation = aty.getIntent().getStringExtra("costCompensation");
         String costCompensationLevel = aty.getIntent().getStringExtra("costCompensationLevel");
         tv_compensationChangeBack.setText(costCompensationLevel);
-        compensationChangeBackDialog = new CompensationChangeBackDialog(aty, costCompensation);
+     //   compensationChangeBackDialog = new CompensationChangeBackDialog(aty, costCompensation);
         compensationChangeBackDialog.setCanceledOnTouchOutside(false);
         costsThatDialog = new CostsThatDialog(aty, costStatement);
         costsThatDialog.setCanceledOnTouchOutside(false);

@@ -13,7 +13,7 @@ import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.ActivityTitleUtils;
 import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
-import com.sillykid.app.dialog.chartercustom.CompensationChangeBackDialog;
+import com.sillykid.app.homepage.airporttransportation.dialog.CompensationChangeBackDialog;
 import com.sillykid.app.dialog.chartercustom.CostsThatDialog;
 import com.sillykid.app.homepage.chartercustom.routes.CheckstandActivity;
 import com.sillykid.app.loginregister.LoginActivity;
@@ -149,7 +149,7 @@ public class CustomizationConfirmOrderActivity extends BaseActivity implements C
         String costStatement = aty.getIntent().getStringExtra("cost_statement");
         String costCompensation = aty.getIntent().getStringExtra("cost_compensation");
         tv_compensationChangeBack.setText(changeBack(costCompensation));
-        compensationChangeBackDialog = new CompensationChangeBackDialog(this, costCompensation);
+    //    compensationChangeBackDialog = new CompensationChangeBackDialog(this, costCompensation);
         compensationChangeBackDialog.setCanceledOnTouchOutside(false);
         costsThatDialog = new CostsThatDialog(this, costStatement);
         costsThatDialog.setCanceledOnTouchOutside(false);

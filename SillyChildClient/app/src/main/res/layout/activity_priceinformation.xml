@@ -134,7 +134,7 @@
                     android:gravity="right"
                     android:paddingRight="@dimen/dimen26"
                     android:text="2450.00"
-                    android:textColor="@color/textColor"
+                    android:textColor="@color/fF4848Colors"
                     android:textSize="@dimen/textsize14" />
 
             </LinearLayout>
@@ -169,9 +169,51 @@
                 style="@style/MatchWrap"
                 android:paddingBottom="@dimen/dimen8"
                 android:paddingLeft="@dimen/dimen21"
+                android:text="@string/servicePolicy"
+                android:textColor="@color/tabColors"
+                android:textSize="@dimen/textsize14" />
+
+            <LinearLayout
+                android:id="@+id/ll_compensationChangeBack"
+                style="@style/Match45"
+                android:layout_marginTop="@dimen/dimen1"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/dimen25"
+                    android:layout_height="@dimen/dimen19"
+                    android:layout_marginLeft="@dimen/dimen17"
+                    android:src="@mipmap/img_compensationchangeback" />
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginLeft="@dimen/dimen11"
+                    android:text="@string/compensationChangeBack"
+                    android:textSize="@dimen/textsize14" />
+
+                <TextView
+                    android:id="@+id/tv_compensationChangeBack"
+                    style="@style/AutoWrap"
+                    android:gravity="right"
+                    android:paddingRight="@dimen/dimen26"
+                    android:text="不支持退订"
+                    android:textColor="@color/fF4848Colors"
+                    android:textSize="@dimen/textsize14" />
+
+            </LinearLayout>
+
+
+            <TextView
+                style="@style/MatchWrap"
+                android:paddingBottom="@dimen/dimen10"
+                android:paddingLeft="@dimen/dimen21"
+                android:paddingTop="@dimen/dimen10"
                 android:text="@string/serviceDescription"
                 android:textColor="@color/tabColors"
                 android:textSize="@dimen/textsize14" />
+
 
             <TextView
                 android:id="@+id/tv_serviceDescription"
@@ -190,7 +232,7 @@
                 style="@style/MatchWrap"
                 android:paddingBottom="@dimen/dimen8"
                 android:paddingLeft="@dimen/dimen21"
-                android:paddingTop="@dimen/dimen19"
+                android:paddingTop="@dimen/dimen8"
                 android:text="@string/serviceNote"
                 android:textColor="@color/tabColors"
                 android:textSize="@dimen/textsize14" />
@@ -214,6 +256,7 @@
             <LinearLayout
                 android:id="@+id/ll_userEvaluation"
                 style="@style/MatchWrap"
+                android:layout_marginBottom="@dimen/dimen6"
                 android:layout_marginTop="@dimen/dimen6"
                 android:background="@color/whiteColors"
                 android:orientation="horizontal"
@@ -249,16 +292,18 @@
 
             </LinearLayout>
 
-            <com.common.cklibrary.utils.myview.ChildListView
-                android:id="@+id/clv_userEvaluation"
-                style="@style/MatchWrap"
-                android:layout_marginBottom="@dimen/dimen20"
-                android:layout_marginTop="@dimen/dimen6"
-                android:divider="@color/background"
-                android:dividerHeight="@dimen/dimen3"
-                android:overScrollMode="never"
-                android:scrollbars="none"
-                tools:listitem="@layout/item_userevaluation" />
+            <include layout="@layout/item_userevaluation" />
+
+            <!--<com.common.cklibrary.utils.myview.ChildListView-->
+            <!--android:id="@+id/clv_userEvaluation"-->
+            <!--style="@style/MatchWrap"-->
+            <!--android:layout_marginBottom="@dimen/dimen20"-->
+            <!--android:layout_marginTop="@dimen/dimen6"-->
+            <!--android:divider="@color/background"-->
+            <!--android:dividerHeight="@dimen/dimen3"-->
+            <!--android:overScrollMode="never"-->
+            <!--android:scrollbars="none"-->
+            <!--tools:listitem="@layout/item_userevaluation" />-->
 
             <TextView
                 android:id="@+id/tv_nextStep"

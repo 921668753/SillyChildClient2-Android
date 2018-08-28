@@ -754,6 +754,16 @@ public class RequestClient {
         HttpRequest.requestGetHttp(context, URLConstants.PRODUCTLINEDETAILS, httpParams, false, listener);
     }
 
+    /**
+     * 精品线路 - 线路详细信息
+     */
+    public static void getRouteDetail(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
+        if (!StringUtils.isEmpty(cookies)) {
+            httpParams.putHeaders("Cookie", cookies);
+        }
+        HttpRequest.requestGetHttp(context, URLConstants.ROUTEDETAIL, httpParams, false, listener);
+    }
 
     /**
      * 接机产品 - 通过机场的编号来获取产品信息
@@ -774,7 +784,24 @@ public class RequestClient {
      * 接机产品 - 通过产品编号获取车辆服务信息
      */
     public static void getProductDetails(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
+        if (!StringUtils.isEmpty(cookies)) {
+            httpParams.putHeaders("Cookie", cookies);
+        }
         HttpRequest.requestGetHttp(context, URLConstants.PRODUCTDETAILS, httpParams, false, listener);
+    }
+
+
+    /**
+     * 社区----获取帖子评论列表
+     */
+    public static void getEvaluationPage(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        Log.d("tag", "getPostComment");
+        String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
+        if (!StringUtils.isEmpty(cookies)) {
+            httpParams.putHeaders("Cookie", cookies);
+        }
+        HttpRequest.requestGetHttp(context, URLConstants.EVALUATIONPAGE, httpParams, listener);
     }
 
 
@@ -792,6 +819,25 @@ public class RequestClient {
                 }
                 httpParams.putHeaders("Cookie", cookies);
                 HttpRequest.requestPostFORMHttp(context, URLConstants.ADDREQUIREMENTS, httpParams, listener);
+            }
+        }, listener);
+    }
+
+
+    /**
+     * 精品线路 - 用户填写线路需求
+     */
+    public static void postAddRouteRequirements(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        doServer(context, new TokenCallback() {
+            @Override
+            public void execute() {
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
+                if (StringUtils.isEmpty(cookies)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("Cookie", cookies);
+                HttpRequest.requestPostFORMHttp(context, URLConstants.ADDROUTEREQUIREMENTS, httpParams, listener);
             }
         }, listener);
     }

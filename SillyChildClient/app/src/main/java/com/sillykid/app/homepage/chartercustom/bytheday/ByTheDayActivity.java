@@ -15,7 +15,7 @@ import com.common.cklibrary.utils.JsonUtil;
 import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
 import com.sillykid.app.dialog.CalendarControlByTheDayBouncedDialog;
-import com.sillykid.app.dialog.chartercustom.CompensationChangeBackDialog;
+import com.sillykid.app.homepage.airporttransportation.dialog.CompensationChangeBackDialog;
 import com.sillykid.app.dialog.chartercustom.CostsThatDialog;
 import com.sillykid.app.entity.AirportDropOffBean;
 import com.sillykid.app.entity.CarBrandBean;
@@ -214,7 +214,7 @@ public class ByTheDayActivity extends BaseActivity implements ByTheDayContract.V
         String costCompensation = aty.getIntent().getStringExtra("costCompensation");
         String costCompensationLevel = aty.getIntent().getStringExtra("costCompensationLevel");
         tv_compensationChangeBack.setText(costCompensationLevel);
-        compensationChangeBackDialog = new CompensationChangeBackDialog(this, costCompensation);
+     //   compensationChangeBackDialog = new CompensationChangeBackDialog(this, costCompensation);
         compensationChangeBackDialog.setCanceledOnTouchOutside(false);
         costsThatDialog = new CostsThatDialog(this, costStatement);
         costsThatDialog.setCanceledOnTouchOutside(false);

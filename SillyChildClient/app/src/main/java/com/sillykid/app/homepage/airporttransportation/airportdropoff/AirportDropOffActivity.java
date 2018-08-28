@@ -259,4 +259,13 @@ public class AirportDropOffActivity extends BaseActivity implements AirportDropO
         }
         ViewInject.toast(msg);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        pvCustomTime = null;
+        adultOptions = null;
+        childrenOptions = null;
+        luggageOptions = null;
+    }
 }

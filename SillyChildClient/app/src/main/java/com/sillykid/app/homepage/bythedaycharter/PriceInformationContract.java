@@ -15,6 +15,11 @@ public interface PriceInformationContract {
          * 获取分类
          */
         void getProductDetails(int product_id);
+
+        /**
+         * 给评论点赞
+         */
+        void postAddCommentLike(int id, int type);
     }
 
     interface View extends BaseView<Presenter, String> {

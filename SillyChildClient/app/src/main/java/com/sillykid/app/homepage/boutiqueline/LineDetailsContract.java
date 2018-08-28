@@ -10,8 +10,13 @@ public interface LineDetailsContract {
         /**
          * 精品线路 - 线路详情
          */
-        void getProductDetails(int product_id);
+        void getRouteDetail(int product_id);
 
+
+        /**
+         * 给评论点赞
+         */
+        void postAddCommentLike(int id, int type);
     }
 
     interface View extends BaseView<Presenter, String> {

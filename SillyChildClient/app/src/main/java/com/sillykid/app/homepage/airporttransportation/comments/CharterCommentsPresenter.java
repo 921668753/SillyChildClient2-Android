@@ -2,6 +2,7 @@ package com.sillykid.app.homepage.airporttransportation.comments;
 
 import android.content.Context;
 
+import com.common.cklibrary.common.KJActivityStack;
 import com.common.cklibrary.utils.httputil.HttpUtilParams;
 import com.common.cklibrary.utils.httputil.ResponseListener;
 import com.kymjs.rxvolley.client.HttpParams;
@@ -21,12 +22,13 @@ public class CharterCommentsPresenter implements CharterCommentsContract.Present
     }
 
     @Override
-    public void getCommentList(Context context, int goodsid, int onlyimage, int page) {
+    public void getCommentList(Context context, int product_id, int onlyimage, int page) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        httpParams.put("goodsid", goodsid);
+        httpParams.put("product_id", product_id);
         httpParams.put("onlyimage", onlyimage);
         httpParams.put("page", page);
-        RequestClient.getCommentList(context, httpParams, new ResponseListener<String>() {
+        httpParams.put("pagesize", 10);
+        RequestClient.getEvaluationPage(context, httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
                 mView.getSuccess(response, 0);
@@ -35,6 +37,24 @@ public class CharterCommentsPresenter implements CharterCommentsContract.Present
             @Override
             public void onFailure(String msg) {
                 mView.errorMsg(msg, 0);
+            }
+        });
+    }
+
+    @Override
+    public void postAddCommentLike(int id, int type) {
+        HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
+        httpParams.put("comment_id", id);
+        httpParams.put("type", type);
+        RequestClient.postAddCommentLike(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
+            @Override
+            public void onSuccess(String response) {
+                mView.getSuccess(response, 1);
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                mView.errorMsg(msg, 1);
             }
         });
     }

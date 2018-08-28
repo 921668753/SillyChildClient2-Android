@@ -16,10 +16,10 @@ public class LineDetailsPresenter implements LineDetailsContract.Presenter {
     }
 
     @Override
-    public void getProductDetails(int product_id) {
+    public void getRouteDetail(int product_id) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
         httpParams.put("product_id", product_id);
-        RequestClient.getProductLineDetails(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
+        RequestClient.getRouteDetail(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
                 mView.getSuccess(response, 0);
@@ -28,6 +28,25 @@ public class LineDetailsPresenter implements LineDetailsContract.Presenter {
             @Override
             public void onFailure(String msg) {
                 mView.errorMsg(msg, 0);
+            }
+        });
+    }
+
+
+    @Override
+    public void postAddCommentLike(int id, int type) {
+        HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
+        httpParams.put("comment_id", id);
+        httpParams.put("type", type);
+        RequestClient.postAddCommentLike(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
+            @Override
+            public void onSuccess(String response) {
+                mView.getSuccess(response, 1);
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                mView.errorMsg(msg, 1);
             }
         });
     }

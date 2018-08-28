@@ -215,6 +215,11 @@
             android:name=".homepage.airporttransportation.PriceInformationActivity"
             android:screenOrientation="portrait" />
 
+        <!--首页   接机产品 - 评论-->
+        <activity
+            android:name=".homepage.airporttransportation.comments.CharterCommentsActivity"
+            android:screenOrientation="portrait" />
+
         <!--首页   接机产品 - 订单信息-->
         <activity
             android:name=".homepage.airporttransportation.airportpickup.AirportPickupActivity"

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_userevaluation1"
     style="@style/MatchWrap"
     android:background="@color/whiteColors"
     android:orientation="vertical">
@@ -11,30 +13,32 @@
         android:orientation="horizontal">
 
         <ImageView
+            android:id="@+id/img_head"
             android:layout_width="@dimen/dimen25"
             android:layout_height="@dimen/dimen25"
             android:layout_marginLeft="@dimen/dimen17"
             android:src="@mipmap/avatar" />
 
         <TextView
+            android:id="@+id/tv_nickName"
             style="@style/AutoWrap"
             android:layout_marginLeft="@dimen/dimen6"
             android:text="用户昵称"
             android:textColor="@color/textColor"
-            android:textSize="@dimen/textsize11" />
+            android:textSize="@dimen/textsize10" />
 
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/dimen14"
+            android:id="@+id/img_satisfactionLevel"
+            style="@style/WrapWrap"
             android:layout_marginRight="@dimen/dimen29"
-            android:src="@mipmap/back" />
-
+            android:src="@mipmap/comment_star_one" />
 
     </LinearLayout>
 
 
     <TextView
+        android:id="@+id/tv_content"
         style="@style/MatchWrap"
         android:paddingBottom="@dimen/dimen10"
         android:paddingLeft="@dimen/dimen30"
@@ -44,17 +48,32 @@
         android:textColor="@color/tabColors"
         android:textSize="@dimen/textsize12" />
 
+    <com.common.cklibrary.utils.myview.NoScrollGridView
+        android:id="@+id/gv_imgComments"
+        style="@style/MatchWrap"
+        android:layout_marginBottom="@dimen/dimen10"
+        android:layout_marginLeft="@dimen/dimen29"
+        android:layout_marginRight="@dimen/dimen29"
+        android:background="@color/whiteColors"
+        android:horizontalSpacing="@dimen/dimen15"
+        android:numColumns="3"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        android:verticalSpacing="@dimen/dimen10"
+        android:visibility="gone"
+        tools:listitem="@layout/item_imgcomment" />
+
     <LinearLayout
         style="@style/MatchWrap"
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/tv_time"
             style="@style/AutoWrap"
             android:paddingLeft="@dimen/dimen30"
             android:text="2018.03.06"
             android:textColor="@color/hintColors"
             android:textSize="@dimen/textsize9" />
-
 
         <LinearLayout
             android:id="@+id/ll_giveLike"

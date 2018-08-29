@@ -10,7 +10,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.azhong.ratingbar.RatingBar;
 import com.common.cklibrary.common.BaseActivity;
 import com.common.cklibrary.common.BindView;
 import com.common.cklibrary.common.StringConstants;
@@ -20,6 +19,7 @@ import com.common.cklibrary.utils.ActivityTitleUtils;
 import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.rx.MsgEvent;
 import com.common.cklibrary.utils.rx.RxBus;
+import com.klavor.widget.RatingBar;
 import com.kymjs.common.FileUtils;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
@@ -213,7 +213,7 @@ public class CommentActivity extends BaseActivity implements CommentContract.Vie
         switch (v.getId()) {
             case R.id.tv_comment:
                 showLoadingDialog(getString(R.string.submissionLoad));
-                ((CommentContract.Presenter) mPresenter).postAddProductReview(order_number, rb_degreeOnTime.getStar(), rb_reasonableDistance.getStar(), rb_serviceAttitude.getStar(),
+                ((CommentContract.Presenter) mPresenter).postAddProductReview(order_number, (int) rb_degreeOnTime.getRating(), (int) rb_reasonableDistance.getRating(), (int) rb_serviceAttitude.getRating(),
                         et_remark.getText().toString().trim(), selectList);
                 break;
         }

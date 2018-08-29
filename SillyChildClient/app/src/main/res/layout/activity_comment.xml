@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:a_zhon="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/MatchMatch"
@@ -41,7 +40,6 @@
                     android:scaleType="fitXY"
                     android:src="@mipmap/placeholderfigure" />
 
-
                 <LinearLayout
                     style="@style/MatchMatch"
                     android:layout_marginBottom="@dimen/dimen18"
@@ -57,7 +55,6 @@
                         android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize13" />
 
-
                     <TextView
                         android:id="@+id/tv_orderMoney"
                         style="@style/MatchWrap"
@@ -66,7 +63,6 @@
                         android:textSize="@dimen/textsize13" />
 
                 </LinearLayout>
-
 
             </LinearLayout>
 
@@ -110,21 +106,19 @@
                     android:textColor="@color/textColor"
                     android:textSize="@dimen/textsize14" />
 
-                <com.azhong.ratingbar.RatingBar
+                <com.klavor.widget.RatingBar
                     android:id="@+id/rb_degreeOnTime"
-                    style="@style/WrapWrap"
-                    android:background="@color/whiteColors"
-                    android:paddingLeft="@dimen/dimen7"
-                    android:paddingRight="@dimen/dimen15"
-                    android:stepSize="1"
-                    a_zhon:clickable="true"
-                    a_zhon:image_height="@dimen/dimen24"
-                    a_zhon:image_padding="@dimen/dimen3"
-                    a_zhon:image_width="@dimen/dimen24"
-                    a_zhon:star="0"
-                    a_zhon:star_count="5"
-                    a_zhon:star_img="@mipmap/img_comment_real_stars"
-                    a_zhon:unstar_img="@mipmap/img_comment_empty_stars" />
+                    android:layout_width="@dimen/dimen170"
+                    android:layout_height="@dimen/dimen22"
+                    android:layout_marginLeft="@dimen/dimen16"
+                    android:layout_marginRight="@dimen/dimen15"
+                    app:isIndicator="false"
+                    app:numStars="5"
+                    app:progress="@mipmap/img_comment_empty_stars"
+                    app:progressed="@mipmap/img_comment_real_stars"
+                    app:spacing="@dimen/dimen10"
+                    app:stepSize="1" />
+
 
             </LinearLayout>
 
@@ -144,21 +138,18 @@
                     android:textColor="@color/textColor"
                     android:textSize="@dimen/textsize14" />
 
-                <com.azhong.ratingbar.RatingBar
+                <com.klavor.widget.RatingBar
                     android:id="@+id/rb_reasonableDistance"
-                    style="@style/WrapWrap"
-                    android:background="@color/whiteColors"
-                    android:paddingLeft="@dimen/dimen7"
-                    android:paddingRight="@dimen/dimen15"
-                    android:stepSize="1"
-                    a_zhon:clickable="true"
-                    a_zhon:image_height="@dimen/dimen24"
-                    a_zhon:image_padding="@dimen/dimen3"
-                    a_zhon:image_width="@dimen/dimen24"
-                    a_zhon:star="0"
-                    a_zhon:star_count="5"
-                    a_zhon:star_img="@mipmap/img_comment_real_stars"
-                    a_zhon:unstar_img="@mipmap/img_comment_empty_stars" />
+                    android:layout_width="@dimen/dimen170"
+                    android:layout_height="@dimen/dimen22"
+                    android:layout_marginLeft="@dimen/dimen16"
+                    android:layout_marginRight="@dimen/dimen15"
+                    app:isIndicator="false"
+                    app:numStars="5"
+                    app:progress="@mipmap/img_comment_empty_stars"
+                    app:progressed="@mipmap/img_comment_real_stars"
+                    app:spacing="@dimen/dimen10"
+                    app:stepSize="1" />
 
             </LinearLayout>
 
@@ -177,21 +168,18 @@
                     android:textColor="@color/textColor"
                     android:textSize="@dimen/textsize14" />
 
-                <com.azhong.ratingbar.RatingBar
+                <com.klavor.widget.RatingBar
                     android:id="@+id/rb_serviceAttitude"
-                    style="@style/WrapWrap"
-                    android:background="@color/whiteColors"
-                    android:paddingLeft="@dimen/dimen7"
-                    android:paddingRight="@dimen/dimen15"
-                    android:stepSize="1"
-                    a_zhon:clickable="true"
-                    a_zhon:image_height="@dimen/dimen24"
-                    a_zhon:image_padding="@dimen/dimen3"
-                    a_zhon:image_width="@dimen/dimen24"
-                    a_zhon:star="0"
-                    a_zhon:star_count="5"
-                    a_zhon:star_img="@mipmap/img_comment_real_stars"
-                    a_zhon:unstar_img="@mipmap/img_comment_empty_stars" />
+                    android:layout_width="@dimen/dimen170"
+                    android:layout_height="@dimen/dimen22"
+                    android:layout_marginLeft="@dimen/dimen16"
+                    android:layout_marginRight="@dimen/dimen15"
+                    app:isIndicator="false"
+                    app:numStars="5"
+                    app:progress="@mipmap/img_comment_empty_stars"
+                    app:progressed="@mipmap/img_comment_real_stars"
+                    app:spacing="@dimen/dimen10"
+                    app:stepSize="1" />
 
             </LinearLayout>
 

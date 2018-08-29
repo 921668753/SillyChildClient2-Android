@@ -23,7 +23,7 @@
             android:id="@+id/tv_nickName"
             style="@style/AutoWrap"
             android:layout_marginLeft="@dimen/dimen6"
-            android:text="用户昵称"
+            android:text="--"
             android:textColor="@color/textColor"
             android:textSize="@dimen/textsize10" />
 
@@ -44,7 +44,7 @@
         android:paddingLeft="@dimen/dimen30"
         android:paddingRight="@dimen/dimen30"
         android:paddingTop="@dimen/dimen10"
-        android:text="如果你无法表达的你的想法，那么说明你还不够了解它，如果你无法表达的你的想法。"
+        android:text="--"
         android:textColor="@color/tabColors"
         android:textSize="@dimen/textsize12" />
 

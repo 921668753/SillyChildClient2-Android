@@ -168,7 +168,7 @@
                 android:paddingBottom="@dimen/dimen13"
                 android:paddingLeft="@dimen/dimen17"
                 android:paddingRight="@dimen/dimen17"
-                android:text="体验亮点体验亮点体验亮点体验亮点体验亮点体验亮点体验亮点体验亮点体验亮点体验亮点体验亮点体验亮点"
+                android:text="--"
                 android:textColor="@color/hintColors"
                 android:textSize="@dimen/textsize13" />
 
@@ -214,7 +214,7 @@
                         style="@style/AutoMatch"
                         android:gravity="right|center_vertical"
                         android:paddingRight="@dimen/dimen3"
-                        android:text="366条评价"
+                        android:text="0条评价"
                         android:textColor="@color/tabColors"
                         android:textSize="@dimen/textsize12" />
 

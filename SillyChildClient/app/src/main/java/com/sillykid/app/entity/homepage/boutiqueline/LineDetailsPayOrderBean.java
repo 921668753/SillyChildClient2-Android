@@ -7,24 +7,19 @@ public class LineDetailsPayOrderBean extends BaseResult<LineDetailsPayOrderBean.
 
     public class DataBean {
         /**
-         * audit_number : 1
-         * travel_start_time : 1535019920
+         * audit_number : 3
+         * travel_start_time : 1535558400
          * pay_amount : 0.01
-         * order_number : SHZ20180823171629288429598
+         * order_number : SHZ20180829094046711710188
          * main_picture : http://img.shahaizhi.com/%28null%291530269095
-         * title : 东京包车景点简介
-         * delivery_location : fff
          * baggage_number : 0
          * contact_number : 17051335257
          * schedule_description : 预定说明
          * price : 0.01
-         * product_id : 3
-         * contact : hhg
-         * days : 1
-         * bonus_number : 1
-         * travel_end_time : 1535119920
+         * product_id : 4
+         * contact : df
+         * bonus_number : 0
          * price_description : 价格说明
-         * product_description : 这个是包车简单的描述信息
          * children_number : 0
          * remarks : 暂无备注
          */
@@ -34,19 +29,14 @@ public class LineDetailsPayOrderBean extends BaseResult<LineDetailsPayOrderBean.
         private String pay_amount;
         private String order_number;
         private String main_picture;
-        private String title;
-        private String delivery_location;
         private int baggage_number;
         private String contact_number;
         private String schedule_description;
         private String price;
         private int product_id;
         private String contact;
-        private String days;
         private int bonus_number;
-        private String travel_end_time;
         private String price_description;
-        private String product_description;
         private int children_number;
         private String remarks;
 
@@ -88,22 +78,6 @@ public class LineDetailsPayOrderBean extends BaseResult<LineDetailsPayOrderBean.
 
         public void setMain_picture(String main_picture) {
             this.main_picture = main_picture;
-        }
-
-        public String getTitle() {
-            return title;
-        }
-
-        public void setTitle(String title) {
-            this.title = title;
-        }
-
-        public String getDelivery_location() {
-            return delivery_location;
-        }
-
-        public void setDelivery_location(String delivery_location) {
-            this.delivery_location = delivery_location;
         }
 
         public int getBaggage_number() {
@@ -154,14 +128,6 @@ public class LineDetailsPayOrderBean extends BaseResult<LineDetailsPayOrderBean.
             this.contact = contact;
         }
 
-        public String getDays() {
-            return days;
-        }
-
-        public void setDays(String days) {
-            this.days = days;
-        }
-
         public int getBonus_number() {
             return bonus_number;
         }
@@ -170,28 +136,12 @@ public class LineDetailsPayOrderBean extends BaseResult<LineDetailsPayOrderBean.
             this.bonus_number = bonus_number;
         }
 
-        public String getTravel_end_time() {
-            return travel_end_time;
-        }
-
-        public void setTravel_end_time(String travel_end_time) {
-            this.travel_end_time = travel_end_time;
-        }
-
         public String getPrice_description() {
             return price_description;
         }
 
         public void setPrice_description(String price_description) {
             this.price_description = price_description;
-        }
-
-        public String getProduct_description() {
-            return product_description;
-        }
-
-        public void setProduct_description(String product_description) {
-            this.product_description = product_description;
         }
 
         public int getChildren_number() {

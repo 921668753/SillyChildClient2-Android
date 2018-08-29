@@ -135,7 +135,7 @@ public class LineDetailsPayOrderActivity extends BaseActivity implements LineDet
             tv_adult.setText(lineDetailsPayOrderBean.getData().getAudit_number() + "");
             tv_children.setText(lineDetailsPayOrderBean.getData().getChildren_number() + "");
             tv_luggage.setText(lineDetailsPayOrderBean.getData().getBaggage_number() + "");
-            tv_travelTime.setText(DataUtil.formatData(StringUtils.toLong(lineDetailsPayOrderBean.getData().getTravel_start_time()), "yyyy" + getString(R.string.year) + "MM" + getString(R.string.month) + "dd" + getString(R.string.day)));
+            tv_travelTime.setText(DataUtil.formatData(StringUtils.toLong(lineDetailsPayOrderBean.getData().getTravel_start_time()), "yyyy-MM-dd"));
             tv_contact.setText(lineDetailsPayOrderBean.getData().getContact());
             tv_contactWay.setText(lineDetailsPayOrderBean.getData().getContact_number());
             if (StringUtils.isEmpty(lineDetailsPayOrderBean.getData().getRemarks())) {

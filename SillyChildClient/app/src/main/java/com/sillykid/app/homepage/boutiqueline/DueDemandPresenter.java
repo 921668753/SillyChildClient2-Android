@@ -39,40 +39,36 @@ public class DueDemandPresenter implements DueDemandContract.Presenter {
     public void postAddRequirements(int product_id, String flight_arrival_time, String contact, String contact_number,
                                     String audit_number, String children_number, String baggage_number, String remarks, int passenger_number1, int baggage_number1) {
         if (StringUtils.toLong(flight_arrival_time) <= 0) {
-            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.selectTravelDate1), 0);
+            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.selectTravelDate1), 1);
             return;
         }
         if (StringUtils.toLong(flight_arrival_time) < System.currentTimeMillis() / 1000) {
-            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.selectEstimatedArrivalTimeFlight1), 0);
+            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.selectEstimatedArrivalTimeFlight1), 1);
             return;
         }
         if (StringUtils.isEmpty(contact)) {
-            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.ContactName1), 0);
+            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.ContactName1), 1);
             return;
         }
         if (StringUtils.isEmpty(contact_number)) {
-            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.ContactNumber1), 0);
+            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.ContactNumber1), 1);
             return;
         }
         if (StringUtils.toInt(audit_number, 0) <= 0) {
-            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.adult3), 0);
+            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.adult3), 1);
             return;
         }
         if (StringUtils.toInt(audit_number, 0) > 0 && StringUtils.toInt(audit_number, 0) + StringUtils.toInt(children_number, 0) > passenger_number1) {
-            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.adult4), 0);
+            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.adult4), 1);
             return;
         }
         if (StringUtils.toInt(baggage_number, 0) > baggage_number1) {
-            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.luggage2), 0);
+            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.luggage2), 1);
             return;
         }
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
         httpParams.put("product_id", product_id);
-        httpParams.put("delivery_location", "");
-        httpParams.put("place_of_departure", "");
-        httpParams.put("days", "");
         httpParams.put("travel_start_time", flight_arrival_time);
-        httpParams.put("travel_end_time", "");
         httpParams.put("contact", contact);
         httpParams.put("contact_number", contact_number);
         httpParams.put("audit_number", audit_number);
@@ -82,12 +78,12 @@ public class DueDemandPresenter implements DueDemandContract.Presenter {
         RequestClient.postAddRouteRequirements(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
-                mView.getSuccess(response, 0);
+                mView.getSuccess(response, 1);
             }
 
             @Override
             public void onFailure(String msg) {
-                mView.errorMsg(msg, 0);
+                mView.errorMsg(msg, 1);
             }
         });
     }

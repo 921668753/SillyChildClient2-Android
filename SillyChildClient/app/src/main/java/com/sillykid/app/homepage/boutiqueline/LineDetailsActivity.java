@@ -14,7 +14,7 @@ import com.common.cklibrary.common.StringConstants;
 import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.myview.WebViewLayout;
-import com.hedgehog.ratingbar.RatingBar;
+import com.klavor.widget.RatingBar;
 import com.kymjs.common.PreferenceHelper;
 import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
@@ -37,7 +37,6 @@ import com.umeng.socialize.media.UMWeb;
  * 线路详情
  */
 public class LineDetailsActivity extends BaseActivity implements LineDetailsContract.View {
-
 
     @BindView(id = R.id.img_back, click = true)
     private ImageView img_back;
@@ -116,8 +115,6 @@ public class LineDetailsActivity extends BaseActivity implements LineDetailsCont
         super.initData();
         product_id = getIntent().getIntExtra("id", 0);
         mPresenter = new LineDetailsPresenter(this);
-        showLoadingDialog(getString(R.string.dataLoad));
-        ((LineDetailsContract.Presenter) mPresenter).getRouteDetail(product_id);
     }
 
 
@@ -125,6 +122,8 @@ public class LineDetailsActivity extends BaseActivity implements LineDetailsCont
     public void initWidget() {
         super.initWidget();
         initShareBouncedDialog();
+        showLoadingDialog(getString(R.string.dataLoad));
+        ((LineDetailsContract.Presenter) mPresenter).getRouteDetail(product_id);
         web_view.setTitleVisibility(false);
     }
 
@@ -189,13 +188,15 @@ public class LineDetailsActivity extends BaseActivity implements LineDetailsCont
             GlideImageLoader.glideOrdinaryLoader(this, smallImg, img_picture, R.mipmap.placeholderfigure);
             product_name = lineDetailsBean.getData().getProduct_name();
             tv_title.setText(product_name);
-            ratingbar.setStar((float) StringUtils.toDouble(lineDetailsBean.getData().getRecommended()));
+            ratingbar.setRating((float) StringUtils.toDouble(lineDetailsBean.getData().getRecommended()));
+            ratingbar.refreshUI();
             tv_ratingbar.setText(lineDetailsBean.getData().getRecommended() + getString(R.string.minute));
             subtitle = lineDetailsBean.getData().getSubtitle();
             tv_experienceBrightSpot.setText(subtitle);
             String code = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><title></title></head><body>" + lineDetailsBean.getData().getProduct_description()
                     + "</body></html>";
-            web_view.loadDataWithBaseURL("baseurl", code, "text/html", "utf-8", null);
+            web_view.loadDataWithBaseURL(null, code, "text/html", "utf-8", null);
+            web_view.getWebView().setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
             tv_userEvaluationNum.setText(lineDetailsBean.getData().getReview_count() + getString(R.string.comments1));
             if (lineDetailsBean.getData().getReview_list() != null && lineDetailsBean.getData().getReview_list().size() > 0) {
                 ll_userevaluation1.setVisibility(View.VISIBLE);
@@ -231,6 +232,7 @@ public class LineDetailsActivity extends BaseActivity implements LineDetailsCont
             } else {
                 ll_userevaluation1.setVisibility(View.GONE);
             }
+
         } else if (flag == 1) {
             if (lineDetailsBean.getData().getReview_list().get(0).isIs_like()) {
                 tv_zanNum.setText(lineDetailsBean.getData().getReview_list().get(0).getLike_number() - 1 + "");

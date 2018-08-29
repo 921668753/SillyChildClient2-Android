@@ -123,8 +123,8 @@
                     a_zhon:image_width="@dimen/dimen24"
                     a_zhon:star="0"
                     a_zhon:star_count="5"
-                    a_zhon:star_img="@mipmap/img_real_stars"
-                    a_zhon:unstar_img="@mipmap/img_empty_stars" />
+                    a_zhon:star_img="@mipmap/img_comment_real_stars"
+                    a_zhon:unstar_img="@mipmap/img_comment_empty_stars" />
 
             </LinearLayout>
 
@@ -157,8 +157,8 @@
                     a_zhon:image_width="@dimen/dimen24"
                     a_zhon:star="0"
                     a_zhon:star_count="5"
-                    a_zhon:star_img="@mipmap/img_real_stars"
-                    a_zhon:unstar_img="@mipmap/img_empty_stars" />
+                    a_zhon:star_img="@mipmap/img_comment_real_stars"
+                    a_zhon:unstar_img="@mipmap/img_comment_empty_stars" />
 
             </LinearLayout>
 
@@ -190,8 +190,8 @@
                     a_zhon:image_width="@dimen/dimen24"
                     a_zhon:star="0"
                     a_zhon:star_count="5"
-                    a_zhon:star_img="@mipmap/img_real_stars"
-                    a_zhon:unstar_img="@mipmap/img_empty_stars" />
+                    a_zhon:star_img="@mipmap/img_comment_real_stars"
+                    a_zhon:unstar_img="@mipmap/img_comment_empty_stars" />
 
             </LinearLayout>
 

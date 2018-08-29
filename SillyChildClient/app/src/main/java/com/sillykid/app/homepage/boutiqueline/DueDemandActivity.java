@@ -2,34 +2,27 @@ package com.sillykid.app.homepage.boutiqueline;
 
 import android.content.Intent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
-import com.bigkoo.pickerview.builder.TimePickerBuilder;
-import com.bigkoo.pickerview.listener.CustomListener;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
-import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
-import com.bigkoo.pickerview.view.TimePickerView;
 import com.common.cklibrary.common.BaseActivity;
 import com.common.cklibrary.common.BindView;
 import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.ActivityTitleUtils;
 import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.MathUtil;
-import com.common.cklibrary.utils.myview.ChildListView;
 import com.common.cklibrary.utils.myview.NoScrollGridView;
-import com.hedgehog.ratingbar.RatingBar;
+import com.klavor.widget.RatingBar;
 import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
 import com.sillykid.app.adapter.homepage.boutiqueline.DueDemandViewAdapter;
 import com.sillykid.app.entity.homepage.airporttransportation.airportpickup.AirportPickupBean;
 import com.sillykid.app.entity.homepage.airporttransportation.airportpickup.PeopleBean;
 import com.sillykid.app.entity.homepage.boutiqueline.DueDemandBean;
-import com.sillykid.app.homepage.airporttransportation.airportpickup.AirportPickupPayOrderActivity;
 import com.sillykid.app.homepage.airporttransportation.dialog.CompensationChangeBackDialog;
 import com.sillykid.app.homepage.boutiqueline.dialog.CalendarControlBouncedDialog;
 import com.sillykid.app.loginregister.LoginActivity;
@@ -38,8 +31,6 @@ import com.sillykid.app.utils.GlideImageLoader;
 import com.sillykid.app.utils.SoftKeyboardUtils;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import cn.bingoogolapple.bgabanner.BGABanner;
@@ -175,7 +166,8 @@ public class DueDemandActivity extends BaseActivity implements DueDemandContract
         super.initWidget();
         ActivityTitleUtils.initToolbar(aty, getString(R.string.route2), true, R.id.titlebar);
         GlideImageLoader.glideOrdinaryLoader(this, getIntent().getStringExtra("smallImg"), img_picture, R.mipmap.placeholderfigure);
-        ratingbar.setStar((float) StringUtils.toDouble(getIntent().getStringExtra("recommended").substring(0, getIntent().getStringExtra("recommended").length() - 1)));
+        ratingbar.setRating((float) StringUtils.toDouble(getIntent().getStringExtra("recommended").substring(0, getIntent().getStringExtra("recommended").length() - 1)));
+        ratingbar.refreshUI();
         tv_title.setText(getIntent().getStringExtra("product_name"));
         tv_ratingbar.setText(getIntent().getStringExtra("recommended"));
         initBanner();
@@ -229,7 +221,12 @@ public class DueDemandActivity extends BaseActivity implements DueDemandContract
                 break;
             case R.id.tv_date:
                 SoftKeyboardUtils.packUpKeyboard(this);
-                calendarControlBouncedDialog.show();
+                if (calendarControlBouncedDialog == null) {
+                    initCalendarControlBouncedDialog();
+                }
+                if (calendarControlBouncedDialog != null && !calendarControlBouncedDialog.isShowing()) {
+                    calendarControlBouncedDialog.show();
+                }
                 break;
             case R.id.ll_adult:
                 SoftKeyboardUtils.packUpKeyboard(this);

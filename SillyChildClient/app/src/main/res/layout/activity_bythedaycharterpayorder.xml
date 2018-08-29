@@ -60,17 +60,20 @@
                 android:textColor="@color/textColor"
                 android:textSize="@dimen/textsize15" />
 
-            <TextView
-                android:id="@+id/tv_priceDescription"
-                style="@style/MatchWrap"
-                android:background="@color/whiteColors"
-                android:paddingBottom="@dimen/dimen10"
-                android:paddingLeft="@dimen/dimen17"
-                android:paddingRight="@dimen/dimen17"
-                android:text="--"
-                android:textColor="@color/hintColors"
-                android:textSize="@dimen/textsize12" />
+            <!--<TextView-->
+            <!--android:id="@+id/tv_priceDescription"-->
+            <!--style="@style/MatchWrap"-->
+            <!--android:background="@color/whiteColors"-->
+            <!--android:paddingBottom="@dimen/dimen10"-->
+            <!--android:paddingLeft="@dimen/dimen17"-->
+            <!--android:paddingRight="@dimen/dimen17"-->
+            <!--android:text="&#45;&#45;"-->
+            <!--android:textColor="@color/hintColors"-->
+            <!--android:textSize="@dimen/textsize12" />-->
 
+            <com.common.cklibrary.utils.myview.WebViewLayout
+                android:id="@+id/web_priceDescription"
+                style="@style/MatchWrap" />
 
             <TextView
                 style="@style/MatchWrap"
@@ -84,16 +87,20 @@
                 android:textColor="@color/textColor"
                 android:textSize="@dimen/textsize15" />
 
-            <TextView
-                android:id="@+id/tv_dueThat"
-                style="@style/MatchWrap"
-                android:background="@color/whiteColors"
-                android:paddingBottom="@dimen/dimen10"
-                android:paddingLeft="@dimen/dimen17"
-                android:paddingRight="@dimen/dimen17"
-                android:text="--"
-                android:textColor="@color/hintColors"
-                android:textSize="@dimen/textsize12" />
+            <!--<TextView-->
+            <!--android:id="@+id/tv_dueThat"-->
+            <!--style="@style/MatchWrap"-->
+            <!--android:background="@color/whiteColors"-->
+            <!--android:paddingBottom="@dimen/dimen10"-->
+            <!--android:paddingLeft="@dimen/dimen17"-->
+            <!--android:paddingRight="@dimen/dimen17"-->
+            <!--android:text="&#45;&#45;"-->
+            <!--android:textColor="@color/hintColors"-->
+            <!--android:textSize="@dimen/textsize12" />-->
+
+            <com.common.cklibrary.utils.myview.WebViewLayout
+                android:id="@+id/web_dueThat"
+                style="@style/MatchWrap" />
 
             <TextView
                 style="@style/MatchWrap"
@@ -255,26 +262,23 @@
 
 
             <LinearLayout
-                style="@style/MatchWrap"
+                style="@style/Match45"
                 android:layout_marginTop="@dimen/dimen6"
+                android:gravity="center_vertical"
                 android:background="@color/whiteColors"
                 android:orientation="horizontal">
 
                 <TextView
-                    style="@style/WrapMatch"
-                    android:layout_marginTop="@dimen/dimen13"
+                    style="@style/WrapWrap"
                     android:paddingLeft="@dimen/dimen17"
                     android:text="@string/travelTime2"
                     android:textColor="@color/textColor"
                     android:textSize="@dimen/textsize15" />
 
-
                 <TextView
                     android:id="@+id/tv_travelTime"
                     style="@style/AutoWrap"
                     android:lineSpacingExtra="@dimen/dimen6"
-                    android:paddingBottom="@dimen/dimen13"
-                    android:paddingTop="@dimen/dimen12"
                     android:text="--"
                     android:textColor="@color/hintColors"
                     android:textSize="@dimen/textsize13" />

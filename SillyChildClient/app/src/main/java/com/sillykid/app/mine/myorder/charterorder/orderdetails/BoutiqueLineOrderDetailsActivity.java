@@ -19,6 +19,7 @@ import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
 import com.sillykid.app.constant.NumericConstants;
 import com.sillykid.app.entity.mine.myorder.charterorder.orderdetails.AirportPickupOrderDetailsBean;
+import com.sillykid.app.entity.mine.myorder.charterorder.orderdetails.BoutiqueLineOrderDetailsBean;
 import com.sillykid.app.homepage.airporttransportation.paymentorder.PaymentTravelOrderActivity;
 import com.sillykid.app.homepage.message.interactivemessage.imuitl.RongIMUtil;
 import com.sillykid.app.loginregister.LoginActivity;
@@ -97,7 +98,7 @@ public class BoutiqueLineOrderDetailsActivity extends BaseActivity implements Ea
     private String order_number;
     private int order_id;
     private String phone;
-    private AirportPickupOrderDetailsBean airportPickupOrderDetailsBean;
+    private BoutiqueLineOrderDetailsBean boutiqueLineOrderDetailsBean;
 
 
     @Override
@@ -206,48 +207,48 @@ public class BoutiqueLineOrderDetailsActivity extends BaseActivity implements Ea
     public void getSuccess(String success, int flag) {
         dismissLoadingDialog();
         if (flag == 0) {
-            airportPickupOrderDetailsBean = (AirportPickupOrderDetailsBean) JsonUtil.getInstance().json2Obj(success, AirportPickupOrderDetailsBean.class);
-            tv_orderNumber.setText(airportPickupOrderDetailsBean.getData().getOrder_number());
-            tv_serviceDate.setText(DataUtil.formatData(StringUtils.toLong(airportPickupOrderDetailsBean.getData().getService_time()), "yyyy-MM-dd HH:mm"));
-            tv_title.setText(airportPickupOrderDetailsBean.getData().getDeparture());
-            tv_passengersNumber.setText(airportPickupOrderDetailsBean.getData().getAudit_number() + getString(R.string.adult) + "   " + airportPickupOrderDetailsBean.getData().getChildren_number() + getString(R.string.children));
-            tv_bags.setText(airportPickupOrderDetailsBean.getData().getBaggage_number() + getString(R.string.bags2));
-            tv_userNote.setText(airportPickupOrderDetailsBean.getData().getRemarks());
-            tv_orderPriceNoSign.setText(getString(R.string.renminbi) + airportPickupOrderDetailsBean.getData().getOrder_amount());
-            tv_vouchers.setText(getString(R.string.renminbi) + airportPickupOrderDetailsBean.getData().getDis_amount());
-            phone = airportPickupOrderDetailsBean.getData().getPhone();
-            order_id = airportPickupOrderDetailsBean.getData().getOrder_id();
-            tv_actualPayment.setText(getString(R.string.renminbi) + airportPickupOrderDetailsBean.getData().getPay_amount());
-            tv_actualPayment1.setText(getString(R.string.renminbi) + airportPickupOrderDetailsBean.getData().getPay_amount());
-            if (airportPickupOrderDetailsBean.getData().getStatus() == 0) {
+            boutiqueLineOrderDetailsBean = (BoutiqueLineOrderDetailsBean) JsonUtil.getInstance().json2Obj(success, BoutiqueLineOrderDetailsBean.class);
+            tv_orderNumber.setText(boutiqueLineOrderDetailsBean.getData().getOrder_number());
+            tv_serviceDate.setText(DataUtil.formatData(StringUtils.toLong(boutiqueLineOrderDetailsBean.getData().getService_time()), "yyyy-MM-dd"));
+            tv_title.setText(boutiqueLineOrderDetailsBean.getData().getTitle());
+            tv_passengersNumber.setText(boutiqueLineOrderDetailsBean.getData().getAudit_number() + getString(R.string.adult) + "   " + boutiqueLineOrderDetailsBean.getData().getChildren_number() + getString(R.string.children));
+            tv_bags.setText(boutiqueLineOrderDetailsBean.getData().getBaggage_number() + getString(R.string.bags2));
+            tv_userNote.setText(boutiqueLineOrderDetailsBean.getData().getRemarks());
+            tv_orderPriceNoSign.setText(getString(R.string.renminbi) + boutiqueLineOrderDetailsBean.getData().getOrder_amount());
+            tv_vouchers.setText(getString(R.string.renminbi) + boutiqueLineOrderDetailsBean.getData().getDis_amount());
+            phone = boutiqueLineOrderDetailsBean.getData().getPhone();
+            order_id = boutiqueLineOrderDetailsBean.getData().getOrder_id();
+            tv_actualPayment.setText(getString(R.string.renminbi) + boutiqueLineOrderDetailsBean.getData().getPay_amount());
+            tv_actualPayment1.setText(getString(R.string.renminbi) + boutiqueLineOrderDetailsBean.getData().getPay_amount());
+            if (boutiqueLineOrderDetailsBean.getData().getStatus() == 0) {
                 ll_actualPayment.setVisibility(View.GONE);
                 ll_confirmPayment.setVisibility(View.VISIBLE);
                 tv_callUp.setVisibility(View.GONE);
                 tv_sendPrivateChat.setVisibility(View.GONE);
                 tv_appraiseOrder.setVisibility(View.GONE);
                 tv_additionalComments.setVisibility(View.GONE);
-            } else if (airportPickupOrderDetailsBean.getData().getStatus() == 1) {
+            } else if (boutiqueLineOrderDetailsBean.getData().getStatus() == 1) {
                 ll_actualPayment.setVisibility(View.VISIBLE);
                 ll_confirmPayment.setVisibility(View.GONE);
                 tv_callUp.setVisibility(View.VISIBLE);
                 tv_sendPrivateChat.setVisibility(View.VISIBLE);
                 tv_appraiseOrder.setVisibility(View.GONE);
                 tv_additionalComments.setVisibility(View.GONE);
-            } else if (airportPickupOrderDetailsBean.getData().getStatus() == 2) {
+            } else if (boutiqueLineOrderDetailsBean.getData().getStatus() == 2) {
                 ll_actualPayment.setVisibility(View.VISIBLE);
                 ll_confirmPayment.setVisibility(View.GONE);
                 tv_callUp.setVisibility(View.GONE);
                 tv_sendPrivateChat.setVisibility(View.GONE);
                 tv_appraiseOrder.setVisibility(View.VISIBLE);
                 tv_additionalComments.setVisibility(View.GONE);
-            } else if (airportPickupOrderDetailsBean.getData().getStatus() == 3) {
+            } else if (boutiqueLineOrderDetailsBean.getData().getStatus() == 3) {
                 ll_actualPayment.setVisibility(View.VISIBLE);
                 ll_confirmPayment.setVisibility(View.GONE);
                 tv_callUp.setVisibility(View.GONE);
                 tv_sendPrivateChat.setVisibility(View.GONE);
                 tv_appraiseOrder.setVisibility(View.GONE);
                 tv_additionalComments.setVisibility(View.GONE);
-            } else if (airportPickupOrderDetailsBean.getData().getStatus() == 4) {
+            } else if (boutiqueLineOrderDetailsBean.getData().getStatus() == 4) {
                 ll_actualPayment.setVisibility(View.VISIBLE);
                 ll_confirmPayment.setVisibility(View.GONE);
                 tv_callUp.setVisibility(View.GONE);
@@ -259,14 +260,14 @@ public class BoutiqueLineOrderDetailsActivity extends BaseActivity implements Ea
             Intent intent = new Intent(aty, PaymentTravelOrderActivity.class);
             intent.putExtra("order_id", order_id);
             intent.putExtra("order_number", order_number);
-            intent.putExtra("pay_amount", airportPickupOrderDetailsBean.getData().getPay_amount());
-            intent.putExtra("type", airportPickupOrderDetailsBean.getData().getCategory());
-            intent.putExtra("start_time", airportPickupOrderDetailsBean.getData().getStart_time());
-            intent.putExtra("end_time", airportPickupOrderDetailsBean.getData().getEnd_time());
+            intent.putExtra("pay_amount", boutiqueLineOrderDetailsBean.getData().getPay_amount());
+            intent.putExtra("type", boutiqueLineOrderDetailsBean.getData().getCategory());
+            intent.putExtra("start_time", boutiqueLineOrderDetailsBean.getData().getStart_time());
+            intent.putExtra("end_time", boutiqueLineOrderDetailsBean.getData().getEnd_time());
             showActivity(aty, intent);
         } else if (flag == 2) {
             RongIMUtil.connectRongIM(aty);
-            RongIM.getInstance().startConversation(aty, Conversation.ConversationType.PRIVATE, airportPickupOrderDetailsBean.getData().getRong_id(), airportPickupOrderDetailsBean.getData().getService_director());
+            RongIM.getInstance().startConversation(aty, Conversation.ConversationType.PRIVATE, boutiqueLineOrderDetailsBean.getData().getRong_id(), boutiqueLineOrderDetailsBean.getData().getService_director());
         }
     }
 

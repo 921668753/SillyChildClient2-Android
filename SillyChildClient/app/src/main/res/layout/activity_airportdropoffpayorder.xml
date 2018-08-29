@@ -311,16 +311,21 @@
                 android:textColor="@color/textColor"
                 android:textSize="@dimen/textsize15" />
 
-            <TextView
-                android:id="@+id/tv_priceDescription"
-                style="@style/MatchWrap"
-                android:background="@color/whiteColors"
-                android:paddingBottom="@dimen/dimen10"
-                android:paddingLeft="@dimen/dimen17"
-                android:paddingRight="@dimen/dimen17"
-                android:text="京东包车景点简介京东包车景点简介京东包车景点简介京东包车景点简介京东包车景点简介京东包车景点简介京东包车景点简介京东包车景点简介"
-                android:textColor="@color/hintColors"
-                android:textSize="@dimen/textsize12" />
+            <!--<TextView-->
+            <!--android:id="@+id/tv_priceDescription"-->
+            <!--style="@style/MatchWrap"-->
+            <!--android:background="@color/whiteColors"-->
+            <!--android:paddingBottom="@dimen/dimen10"-->
+            <!--android:paddingLeft="@dimen/dimen17"-->
+            <!--android:paddingRight="@dimen/dimen17"-->
+            <!--android:text="京东包车景点简介京东包车景点简介京东包车景点简介京东包车景点简介京东包车景点简介京东包车景点简介京东包车景点简介京东包车景点简介"-->
+            <!--android:textColor="@color/hintColors"-->
+            <!--android:textSize="@dimen/textsize12" />-->
+
+
+            <com.common.cklibrary.utils.myview.WebViewLayout
+                android:id="@+id/web_priceDescription"
+                style="@style/MatchWrap" />
 
 
             <TextView
@@ -335,20 +340,25 @@
                 android:textColor="@color/textColor"
                 android:textSize="@dimen/textsize15" />
 
-            <TextView
-                android:id="@+id/tv_dueThat"
-                style="@style/MatchWrap"
-                android:background="@color/whiteColors"
-                android:paddingBottom="@dimen/dimen10"
-                android:paddingLeft="@dimen/dimen17"
-                android:paddingRight="@dimen/dimen17"
-                android:text="1.京东包车景点简介京东包车景点
+            <!--<TextView-->
+            <!--android:id="@+id/tv_dueThat"-->
+            <!--style="@style/MatchWrap"-->
+            <!--android:background="@color/whiteColors"-->
+            <!--android:paddingBottom="@dimen/dimen10"-->
+            <!--android:paddingLeft="@dimen/dimen17"-->
+            <!--android:paddingRight="@dimen/dimen17"-->
+            <!--android:text="1.京东包车景点简介京东包车景点-->
 
-2.京东包车景点简介京东包车景点
+            <!--2.京东包车景点简介京东包车景点-->
 
-3.京东包车景点简介京东包车景点"
-                android:textColor="@color/hintColors"
-                android:textSize="@dimen/textsize12" />
+            <!--3.京东包车景点简介京东包车景点"-->
+            <!--android:textColor="@color/hintColors"-->
+            <!--android:textSize="@dimen/textsize12" />-->
+
+            <com.common.cklibrary.utils.myview.WebViewLayout
+                android:id="@+id/web_dueThat"
+                style="@style/MatchWrap" />
+
 
             <TextView
                 style="@style/MatchWrap"

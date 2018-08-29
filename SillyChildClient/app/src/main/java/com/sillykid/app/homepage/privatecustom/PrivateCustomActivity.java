@@ -22,7 +22,9 @@ import com.sillykid.app.entity.homepage.privatecustom.CategoryListBean;
 import com.sillykid.app.entity.homepage.privatecustom.CategoryListBean.DataBean.RepastListBean;
 import com.sillykid.app.entity.homepage.privatecustom.CategoryListBean.DataBean.StayListBean;
 import com.sillykid.app.entity.homepage.privatecustom.CategoryListBean.DataBean.TravelListBean;
+import com.sillykid.app.homepage.boutiqueline.dialog.CalendarControlBouncedDialog;
 import com.sillykid.app.loginregister.LoginActivity;
+import com.sillykid.app.utils.DataUtil;
 import com.sillykid.app.utils.GlideImageLoader;
 import com.sillykid.app.utils.SoftKeyboardUtils;
 
@@ -91,7 +93,6 @@ public class PrivateCustomActivity extends BaseActivity implements PrivateCustom
 
     private long travel_time = 0;
 
-    private TimePickerView pvTime = null;
     private List<TravelListBean> travel_list;
     private List<RepastListBean> repast_list;
     private List<StayListBean> stay_list;
@@ -101,6 +102,8 @@ public class PrivateCustomActivity extends BaseActivity implements PrivateCustom
     private String repast_preference;
 
     private String stay_preference;
+
+    private CalendarControlBouncedDialog calendarControlBouncedDialog;
 
     @Override
     public void setRootView() {
@@ -121,7 +124,7 @@ public class PrivateCustomActivity extends BaseActivity implements PrivateCustom
     public void initWidget() {
         super.initWidget();
         initTitle();
-        selectTravelTime();
+        initCalendarControlBouncedDialog();
         selectTravelPreferences();
         selectRecommendRestaurant();
         selectRecommendedAccommodation();
@@ -142,7 +145,12 @@ public class PrivateCustomActivity extends BaseActivity implements PrivateCustom
         switch (v.getId()) {
             case R.id.ll_travelTime:
                 SoftKeyboardUtils.packUpKeyboard(this);
-                pvTime.show(tv_travelTime);
+                if (calendarControlBouncedDialog == null) {
+                    initCalendarControlBouncedDialog();
+                }
+                if (calendarControlBouncedDialog != null && !calendarControlBouncedDialog.isShowing()) {
+                    calendarControlBouncedDialog.show();
+                }
                 break;
             case R.id.ll_travelPreferences:
                 SoftKeyboardUtils.packUpKeyboard(this);
@@ -167,29 +175,15 @@ public class PrivateCustomActivity extends BaseActivity implements PrivateCustom
     /**
      * 选择出行时间
      */
-    @SuppressWarnings("unchecked")
-    private void selectTravelTime() {
-        //控制时间范围
-        boolean[] type = new boolean[]{true, true, true, false, false, false};
-        Calendar calendar = Calendar.getInstance();
-        Calendar startDate = Calendar.getInstance();
-        startDate.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
-        Calendar endDate = Calendar.getInstance();
-        endDate.set(calendar.get(Calendar.YEAR) + 1, calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
-        pvTime = null;
-        pvTime = new TimePickerBuilder(aty, new OnTimeSelectListener() {
+    private void initCalendarControlBouncedDialog() {
+        calendarControlBouncedDialog = new CalendarControlBouncedDialog(this) {
             @Override
-            public void onTimeSelect(Date date, View v) {//选中事件回调
-                if (date.getTime() < System.currentTimeMillis()) {
-                    ViewInject.toast(aty.getString(R.string.greateThanCurrentTime));
-                    return;
-                }
-                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-                travel_time = date.getTime() / 1000;
-                ((TextView) v).setText(format.format(date));
+            public void timeList(String dateStr) {
+                tv_travelTime.setText(dateStr);
+                travel_time = DataUtil.dateToStamp(dateStr + " 0:0:0");
             }
-        }).setType(type).setRangDate(startDate, endDate).setLabel("", "", "", "", "", "").build();
-        pvTime.setDate(calendar);
+        };
+        calendarControlBouncedDialog.setCanceledOnTouchOutside(false);
     }
 
 
@@ -278,5 +272,23 @@ public class PrivateCustomActivity extends BaseActivity implements PrivateCustom
             return;
         }
         ViewInject.toast(msg);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (calendarControlBouncedDialog != null && calendarControlBouncedDialog.isShowing()) {
+            calendarControlBouncedDialog.cancel();
+        }
+        calendarControlBouncedDialog = null;
+        travel_list.clear();
+        travel_list = null;
+        repast_list.clear();
+        repast_list = null;
+        stay_list.clear();
+        stay_list = null;
+        pvOptions = null;
+        pvOptions1 = null;
+        pvOptions2 = null;
     }
 }

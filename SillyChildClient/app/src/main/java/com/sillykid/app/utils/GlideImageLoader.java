@@ -1,5 +1,6 @@
 package com.sillykid.app.utils;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -225,6 +226,24 @@ public class GlideImageLoader implements ImageLoader {
                 .into(imageView);
     }
 
+
+    /**
+     * 图片上边圆角，下边直角
+     */
+    @SuppressLint("CheckResult")
+    public static void glideLoader(Context context, Object url, ImageView imageView, int raudio, int width, int height, int defaultimage) {
+        RequestOptions options = new RequestOptions();
+        options.error(defaultimage)
+                .fallback(defaultimage)//当url为空时，显示图片
+              //  .override(width, height)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)//缓存全尺寸
+                .transform(new RoundCornersTransformation(context, raudio, RoundCornersTransformation.CornerType.TOP))
+                .dontAnimate();//没有任何淡入淡出效果
+        Glide.with(context)
+                .load(url)
+                .apply(options)
+                .into(imageView);
+    }
 
     /**
      * 需要在子线程执行

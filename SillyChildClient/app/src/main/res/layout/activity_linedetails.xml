@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:hedgehog="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     style="@style/MatchMatch"
     android:background="@color/background"
     android:fitsSystemWindows="true"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context="com.sillykid.app.homepage.boutiqueline.LineDetailsActivity">
 
     <RelativeLayout
         style="@style/Match45"
@@ -75,6 +77,7 @@
                     android:layout_marginLeft="@dimen/dimen15"
                     android:paddingTop="@dimen/dimen9"
                     android:text="【芭提雅三天六晚自由行】"
+                    android:textColor="@color/textColor"
                     android:textSize="@dimen/textsize15" />
 
                 <LinearLayout
@@ -92,19 +95,31 @@
                     <!--android:scaleType="fitXY"-->
                     <!--android:src="@mipmap/comment_star_one" />-->
 
-                    <com.hedgehog.ratingbar.RatingBar
+                    <!--<com.hedgehog.ratingbar.RatingBar-->
+                    <!--android:id="@+id/ratingbar"-->
+                    <!--style="@style/WrapWrap"-->
+                    <!--android:layout_marginTop="@dimen/dimen10"-->
+                    <!--hedgehog:clickable="false"-->
+                    <!--hedgehog:starCount="5"-->
+                    <!--hedgehog:starImageSize="@dimen/dimen13"-->
+                    <!--hedgehog:starEmpty="@mipmap/img_empty_stars"-->
+                    <!--hedgehog:starFill="@mipmap/img_real_stars"-->
+                    <!--hedgehog:starHalf="@mipmap/half_star"-->
+                    <!--hedgehog:starImageHeight="@dimen/dimen21"-->
+                    <!--hedgehog:starImagePadding="@dimen/dimen8"-->
+                    <!--hedgehog:starImageWidth="@dimen/dimen21" />-->
+
+                    <com.klavor.widget.RatingBar
                         android:id="@+id/ratingbar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/dimen21"
-                        android:layout_marginTop="@dimen/dimen10"
-                        hedgehog:clickable="false"
-                        hedgehog:starCount="5"
-                        hedgehog:starEmpty="@mipmap/img_empty_stars"
-                        hedgehog:starFill="@mipmap/img_real_stars"
-                        hedgehog:starHalf="@mipmap/half_star"
-                        hedgehog:starImageHeight="@dimen/dimen21"
-                        hedgehog:starImagePadding="@dimen/dimen4"
-                        hedgehog:starImageWidth="@dimen/dimen21" />
+                        android:layout_width="@dimen/dimen112"
+                        android:layout_height="@dimen/dimen17"
+                        android:layout_marginTop="@dimen/dimen11"
+                        app:isIndicator="true"
+                        app:numStars="5"
+                        app:progress="@mipmap/img_empty_stars"
+                        app:progressed="@mipmap/img_real_stars"
+                        app:spacing="@dimen/dimen5"
+                        app:stepSize="0.1" />
 
                     <!--<com.azhong.ratingbar.RatingBar-->
                     <!--android:id="@+id/rb_recommended"-->

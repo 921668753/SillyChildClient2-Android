@@ -84,6 +84,7 @@ public class CharterOrderFragment extends BaseFragment {
         chageIcon = aty.getIntent().getIntExtra("chageCharterIcon", 20);
     }
 
+
     @Override
     protected void initWidget(View parentView) {
         super.initWidget(parentView);

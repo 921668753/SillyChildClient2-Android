@@ -3,6 +3,7 @@ package com.sillykid.app.homepage.airporttransportation.airportdropoff;
 import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.common.cklibrary.common.BaseActivity;
@@ -12,6 +13,7 @@ import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.ActivityTitleUtils;
 import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.MathUtil;
+import com.common.cklibrary.utils.myview.WebViewLayout;
 import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
 import com.sillykid.app.entity.homepage.airporttransportation.airportpickup.AirportPickupPayOrderBean;
@@ -59,11 +61,11 @@ public class AirportDropOffPayOrderActivity extends BaseActivity implements Airp
     @BindView(id = R.id.tv_contactWay)
     private TextView tv_contactWay;
 
-    @BindView(id = R.id.tv_priceDescription)
-    private TextView tv_priceDescription;
+    @BindView(id = R.id.web_priceDescription)
+    private WebViewLayout web_priceDescription;
 
-    @BindView(id = R.id.tv_dueThat)
-    private TextView tv_dueThat;
+    @BindView(id = R.id.web_dueThat)
+    private WebViewLayout web_dueThat;
 
     @BindView(id = R.id.tv_remark)
     private TextView tv_remark;
@@ -113,6 +115,8 @@ public class AirportDropOffPayOrderActivity extends BaseActivity implements Airp
     public void initWidget() {
         super.initWidget();
         ActivityTitleUtils.initToolbar(aty, getString(R.string.airportDropOff), true, R.id.titlebar);
+        web_priceDescription.setTitleVisibility(false);
+        web_dueThat.setTitleVisibility(false);
     }
 
     @Override
@@ -151,8 +155,14 @@ public class AirportDropOffPayOrderActivity extends BaseActivity implements Airp
             tv_luggage.setText(airportPickupPayOrderBean.getData().getBaggage_number() + "");
             tv_contact.setText(airportPickupPayOrderBean.getData().getContact());
             tv_contactWay.setText(airportPickupPayOrderBean.getData().getContact_number());
-            tv_priceDescription.setText(airportPickupPayOrderBean.getData().getPrice_description());
-            tv_dueThat.setText(airportPickupPayOrderBean.getData().getSchedule_description());
+            String price_description = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><title></title></head><body>" + airportPickupPayOrderBean.getData().getPrice_description()
+                    + "</body></html>";
+            web_priceDescription.loadDataWithBaseURL("baseurl", price_description, "text/html", "utf-8", null);
+            web_priceDescription.getWebView().setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+            String schedule_description = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><title></title></head><body>" + airportPickupPayOrderBean.getData().getSchedule_description()
+                    + "</body></html>";
+            web_dueThat.loadDataWithBaseURL("baseurl", schedule_description, "text/html", "utf-8", null);
+            web_dueThat.getWebView().setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
             if (StringUtils.isEmpty(airportPickupPayOrderBean.getData().getRemarks())) {
                 tv_remark.setText(getString(R.string.noRemark));
             } else {

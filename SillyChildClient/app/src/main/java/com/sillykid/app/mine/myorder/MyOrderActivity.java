@@ -97,8 +97,12 @@ public class MyOrderActivity extends BaseActivity {
         Log.d("newChageIcon", newChageIcon + "");
         if (newChageIcon == 0) {
             setSimulateClick(ll_goodOrder, 160, 100);
+            int chageCharterIcon = intent.getIntExtra("chageGoodIcon", 10);
+            ((GoodOrderFragment) baseFragment).cleanColors(chageCharterIcon);
         } else if (newChageIcon == 1) {
             setSimulateClick(ll_charterOrder, 160, 100);
+            int chageCharterIcon = intent.getIntExtra("chageCharterIcon", 20);
+            ((CharterOrderFragment) baseFragment1).cleanColors(chageCharterIcon);
         }
     }
 

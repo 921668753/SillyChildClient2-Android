@@ -304,6 +304,10 @@ public class WebViewLayout extends LinearLayout {
         return titleLeft;
     }
 
+    public WebView getWebView() {
+        return webView;
+    }
+
     public void setOnScrollChangedCallback(final OnScrollChangedCallback onScrollChangedCallback) {
         mOnScrollChangedCallback = onScrollChangedCallback;
     }

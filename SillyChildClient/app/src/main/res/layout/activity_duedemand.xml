@@ -45,6 +45,7 @@
                     android:layout_marginLeft="@dimen/dimen15"
                     android:paddingTop="@dimen/dimen9"
                     android:text="【芭提雅三天六晚自由行】"
+                    android:textColor="@color/textColor"
                     android:textSize="@dimen/textsize15" />
 
                 <LinearLayout
@@ -53,19 +54,17 @@
                     android:gravity="right"
                     android:orientation="vertical">
 
-                    <com.hedgehog.ratingbar.RatingBar
+                    <com.klavor.widget.RatingBar
                         android:id="@+id/ratingbar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/dimen21"
-                        android:layout_marginTop="@dimen/dimen10"
-                        hedgehog:clickable="false"
-                        hedgehog:starCount="5"
-                        hedgehog:starEmpty="@mipmap/img_empty_stars"
-                        hedgehog:starFill="@mipmap/img_real_stars"
-                        hedgehog:starHalf="@mipmap/half_star"
-                        hedgehog:starImageHeight="@dimen/dimen21"
-                        hedgehog:starImagePadding="@dimen/dimen4"
-                        hedgehog:starImageWidth="@dimen/dimen21" />
+                        android:layout_width="@dimen/dimen109"
+                        android:layout_height="@dimen/dimen17"
+                        android:layout_marginTop="@dimen/dimen11"
+                        app:isIndicator="true"
+                        app:numStars="5"
+                        app:progress="@mipmap/img_empty_stars"
+                        app:progressed="@mipmap/img_real_stars"
+                        app:spacing="@dimen/dimen5"
+                        app:stepSize="0.1" />
 
                     <TextView
                         android:id="@+id/tv_ratingbar"
@@ -95,10 +94,8 @@
                 android:id="@+id/banner_ad"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimen143"
-                android:layout_marginTop="@dimen/dimen6"
                 android:background="@mipmap/placeholderfigure2"
                 android:scaleType="fitXY"
-
                 app:banner_isNeedShowIndicatorOnOnlyOnePage="true"
                 app:banner_pageChangeDuration="2000"
                 app:banner_pointAutoPlayAble="false"

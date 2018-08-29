@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.common.cklibrary.common.BaseActivity;
@@ -13,6 +14,7 @@ import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.ActivityTitleUtils;
 import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.MathUtil;
+import com.common.cklibrary.utils.myview.WebViewLayout;
 import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
 import com.sillykid.app.entity.homepage.airporttransportation.airportpickup.CreateTravelOrderBean;
@@ -38,11 +40,11 @@ public class ByTheDayCharterPayOrderActivity extends BaseActivity implements ByT
     @BindView(id = R.id.tv_tourSpots1)
     private TextView tv_tourSpots1;
 
-    @BindView(id = R.id.tv_priceDescription)
-    private TextView tv_priceDescription;
+    @BindView(id = R.id.web_priceDescription)
+    private WebViewLayout web_priceDescription;
 
-    @BindView(id = R.id.tv_dueThat)
-    private TextView tv_dueThat;
+    @BindView(id = R.id.web_dueThat)
+    private WebViewLayout web_dueThat;
 
     @BindView(id = R.id.tv_adult)
     private TextView tv_adult;
@@ -112,6 +114,8 @@ public class ByTheDayCharterPayOrderActivity extends BaseActivity implements ByT
     public void initWidget() {
         super.initWidget();
         ActivityTitleUtils.initToolbar(aty, getString(R.string.paymentOrder), true, R.id.titlebar);
+        web_priceDescription.setTitleVisibility(false);
+        web_dueThat.setTitleVisibility(false);
     }
 
     @Override
@@ -145,8 +149,14 @@ public class ByTheDayCharterPayOrderActivity extends BaseActivity implements ByT
             GlideImageLoader.glideOrdinaryLoader(aty, byTheDayCharterPayOrderBean.getData().getMain_picture(), img_byTheDayCharter, R.mipmap.placeholderfigure2);
             tv_tourSpots.setText(byTheDayCharterPayOrderBean.getData().getTitle());
             tv_tourSpots1.setText(byTheDayCharterPayOrderBean.getData().getProduct_description());
-            tv_priceDescription.setText(byTheDayCharterPayOrderBean.getData().getPrice_description());
-            tv_dueThat.setText(byTheDayCharterPayOrderBean.getData().getSchedule_description());
+            String price_description = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><title></title></head><body>" + byTheDayCharterPayOrderBean.getData().getPrice_description()
+                    + "</body></html>";
+            web_priceDescription.loadDataWithBaseURL("baseurl", price_description, "text/html", "utf-8", null);
+            web_priceDescription.getWebView().setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+            String schedule_description = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><title></title></head><body>" + byTheDayCharterPayOrderBean.getData().getSchedule_description()
+                    + "</body></html>";
+            web_dueThat.loadDataWithBaseURL("baseurl", schedule_description, "text/html", "utf-8", null);
+            web_dueThat.getWebView().setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
             tv_adult.setText(byTheDayCharterPayOrderBean.getData().getAudit_number() + "");
             tv_children.setText(byTheDayCharterPayOrderBean.getData().getChildren_number() + "");
             tv_luggage.setText(byTheDayCharterPayOrderBean.getData().getBaggage_number() + "");

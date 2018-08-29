@@ -252,7 +252,7 @@ public class DueDemandActivity extends BaseActivity implements DueDemandContract
     @Override
     public void fillBannerItem(BGABanner banner, ImageView itemView, String model, int position) {
         //   GlideImageLoader.glideOrdinaryLoader(aty, model.getAd_code(), itemView);
-        itemView.setScaleType(ImageView.ScaleType.FIT_XY);
+        itemView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
         GlideImageLoader.glideOrdinaryLoader(aty, model, itemView, R.mipmap.placeholderfigure2);
     }
 

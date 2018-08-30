@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:zhy="http://schemas.android.com/apk/res-auto"
     style="@style/MatchMatch"
     android:background="@color/background"
     android:fitsSystemWindows="true"
@@ -29,24 +29,21 @@
                 android:layout_marginLeft="@dimen/dimen14"
                 android:src="@mipmap/community_search" />
 
-            <TextView
-                style="@style/WrapWrap"
-                android:layout_marginLeft="@dimen/dimen5"
-                android:text="@string/search"
-                android:textColor="@color/hintColors"
-                android:textSize="@dimen/textsize11" />
-
             <EditText
                 android:id="@+id/et_search"
                 style="@style/AutoMatch"
                 android:background="@android:color/transparent"
                 android:gravity="center_vertical"
-                android:paddingLeft="@dimen/dimen12"
+                android:hint="@string/cityDoWantGoTo"
+                android:imeOptions="actionSearch"
+                android:maxLength="20"
+                android:paddingLeft="@dimen/dimen7"
                 android:paddingRight="@dimen/dimen12"
                 android:singleLine="true"
-                android:textColorHint="@color/textColor"
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/hintColors"
                 android:textCursorDrawable="@drawable/shape_cursor"
-                android:textSize="@dimen/textsize11" />
+                android:textSize="@dimen/textsize12" />
 
         </LinearLayout>
 
@@ -57,58 +54,23 @@
             android:paddingLeft="@dimen/dimen12"
             android:paddingRight="@dimen/dimen12"
             android:text="@string/cancel"
-            android:textColor="@color/hintColors"
-            android:textSize="@dimen/textsize11" />
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize14" />
 
     </LinearLayout>
-
-
-    <LinearLayout
-        style="@style/MatchWrap"
-        android:layout_marginBottom="@dimen/dimen12"
-        android:layout_marginTop="@dimen/dimen17"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/tv_lookForSomeone"
-            style="@style/WrapWrap"
-            android:layout_marginLeft="@dimen/dimen12"
-            android:background="@color/whiteColors"
-            android:paddingBottom="@dimen/dimen7"
-            android:paddingLeft="@dimen/dimen17"
-            android:paddingRight="@dimen/dimen17"
-            android:paddingTop="@dimen/dimen7"
-            android:text="@string/lookForSomeone"
-            android:textColor="@color/textColor"
-            android:textSize="@dimen/textsize13" />
-
-        <TextView
-            android:id="@+id/tv_findArticl"
-            style="@style/WrapWrap"
-            android:layout_marginLeft="@dimen/dimen10"
-            android:background="@color/whiteColors"
-            android:paddingBottom="@dimen/dimen7"
-            android:paddingLeft="@dimen/dimen17"
-            android:paddingRight="@dimen/dimen17"
-            android:paddingTop="@dimen/dimen7"
-            android:text="@string/findArticle"
-            android:textColor="@color/textColor"
-            android:textSize="@dimen/textsize13" />
-
-    </LinearLayout>
-
 
     <LinearLayout
         android:id="@+id/ll_recentSearch"
         style="@style/MatchWrap"
+        android:layout_marginTop="@dimen/dimen6"
         android:background="@color/whiteColors"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingLeft="@dimen/dimen30">
+        android:paddingLeft="@dimen/dimen13">
 
         <TextView
             style="@style/AutoWrap"
-            android:paddingBottom="@dimen/dimen10"
+            android:paddingBottom="@dimen/dimen5"
             android:paddingTop="@dimen/dimen10"
             android:text="@string/recentSearch"
             android:textColor="@color/textColor"
@@ -117,9 +79,8 @@
         <ImageView
             android:id="@+id/img_delete"
             android:layout_width="@dimen/dimen43"
-            android:layout_height="@dimen/dimen25"
+            android:layout_height="@dimen/dimen20"
             android:layout_marginRight="@dimen/dimen10"
-            android:paddingBottom="@dimen/dimen5"
             android:paddingLeft="@dimen/dimen15"
             android:paddingRight="@dimen/dimen15"
             android:paddingTop="@dimen/dimen5"
@@ -128,13 +89,13 @@
 
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/lv_recentSearch"
-        style="@style/MatchMatch"
-        android:layout_marginTop="@dimen/dimen1"
-        android:divider="@color/background"
-        android:dividerHeight="@dimen/dimen1"
-        android:scrollbars="none"
-        tools:listitem="@layout/item_recentsearchcommunity" />
+    <com.zhy.view.flowlayout.TagFlowLayout
+        android:id="@+id/tfl_recentSearch"
+        style="@style/MatchWrap"
+        android:background="@color/whiteColors"
+        android:paddingLeft="@dimen/dimen5"
+        android:paddingBottom="@dimen/dimen7"
+        android:paddingRight="@dimen/dimen5"
+        zhy:max_select="1" />
 
 </LinearLayout>

@@ -773,6 +773,13 @@ public class RequestClient {
     }
 
     /**
+     * 搜索 - 获取某商品列表
+     */
+    public static void postProductByType(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        HttpRequest.requestPostFORMHttp(context, URLConstants.PRODUCTBYTYPE, httpParams, listener);
+    }
+
+    /**
      * 包车服务 - 通过城市的编号来获取产品信息
      */
     public static void getProductByRegion(Context context, HttpParams httpParams, ResponseListener<String> listener) {

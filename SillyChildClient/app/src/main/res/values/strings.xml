@@ -70,14 +70,7 @@
     <string name="loginErr1">获取用户信息失败，请重新登录</string>
     <string name="failedCloudInformation">获取融云信息失败</string>
     <string name="failedCloudInformation1">获取融云信息失败,请用账号密码登录</string>
-
-
-
-
-
-
-
-
+    <string name="cityDoWantGoTo">您想要去哪座城市</string>
 
 
     <!--选择国家或地区-->
@@ -234,7 +227,6 @@
     <string name="luggage1">行李：</string>
     <string name="selectedLines">已选线路</string>
     <string name="serviceVehicle">服务车辆</string>
-
 
 
     <!--选择日期-->

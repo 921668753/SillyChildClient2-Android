@@ -193,7 +193,7 @@
                 android:id="@+id/tv_content"
                 style="@style/MatchWrap"
                 android:background="@color/whiteColors"
-                android:paddingBottom="@dimen/dimen10"
+                android:paddingBottom="@dimen/dimen5"
                 android:paddingLeft="@dimen/dimen17"
                 android:paddingRight="@dimen/dimen17"
                 android:text="薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天"
@@ -204,9 +204,18 @@
                 android:id="@+id/ll_report1"
                 style="@style/MatchWrap"
                 android:background="@color/whiteColors"
-                android:gravity="right"
+                android:gravity="center"
                 android:orientation="horizontal"
-                android:visibility="gone">
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/tv_time"
+                    style="@style/AutoWrap"
+                    android:paddingBottom="@dimen/dimen10"
+                    android:paddingLeft="@dimen/dimen17"
+                    android:text="2011-12-10"
+                    android:textColor="@color/hintColors"
+                    android:textSize="@dimen/textsize11" />
 
                 <LinearLayout
                     android:id="@+id/ll_report"
@@ -216,8 +225,8 @@
                     android:paddingBottom="@dimen/dimen5"
                     android:paddingLeft="@dimen/dimen18"
                     android:paddingRight="@dimen/dimen18"
-                    android:paddingTop="@dimen/dimen5">
-
+                    android:paddingTop="@dimen/dimen5"
+                    android:visibility="gone">
 
                     <ImageView
                         android:layout_width="@dimen/dimen16"

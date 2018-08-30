@@ -20,6 +20,8 @@ import com.sillykid.app.R;
 import com.sillykid.app.entity.homepage.airporttransportation.airportpickup.CreateTravelOrderBean;
 import com.sillykid.app.entity.homepage.bythedaycharter.ByTheDayCharterPayOrderBean;
 import com.sillykid.app.homepage.airporttransportation.paymentorder.PaymentTravelOrderActivity;
+import com.sillykid.app.homepage.airporttransportation.search.ProductSearchActivity;
+import com.sillykid.app.homepage.airporttransportation.search.ProductSearchListActivity;
 import com.sillykid.app.mine.mywallet.coupons.CouponsActivity;
 import com.sillykid.app.utils.DataUtil;
 import com.sillykid.app.utils.GlideImageLoader;
@@ -187,6 +189,8 @@ public class ByTheDayCharterPayOrderActivity extends BaseActivity implements ByT
         } else if (flag == 1) {
             KJActivityStack.create().finishActivity(ByTheDayCharterActivity.class);
             KJActivityStack.create().finishActivity(ByTheDayCharterClassificationActivity.class);
+            KJActivityStack.create().finishActivity(ProductSearchListActivity.class);
+            KJActivityStack.create().finishActivity(ProductSearchActivity.class);
             KJActivityStack.create().finishActivity(PriceInformationActivity.class);
             KJActivityStack.create().finishActivity(SelectProductActivity.class);
             CreateTravelOrderBean createTravelOrderBean = (CreateTravelOrderBean) JsonUtil.getInstance().json2Obj(success, CreateTravelOrderBean.class);

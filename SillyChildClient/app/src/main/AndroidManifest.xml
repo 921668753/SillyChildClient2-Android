@@ -185,6 +185,16 @@
             android:name=".homepage.boutiqueline.LineDetailsPayOrderActivity"
             android:screenOrientation="portrait" />
 
+        <!--首页   产品搜索-->
+        <activity
+            android:name=".homepage.airporttransportation.search.ProductSearchActivity"
+            android:screenOrientation="portrait" />
+
+        <!--首页   产品搜索  搜索结果-->
+        <activity
+            android:name=".homepage.airporttransportation.search.ProductSearchListActivity"
+            android:screenOrientation="portrait" />
+
         <!--首页   选择产品-->
         <activity
             android:name=".homepage.bythedaycharter.SelectProductActivity"

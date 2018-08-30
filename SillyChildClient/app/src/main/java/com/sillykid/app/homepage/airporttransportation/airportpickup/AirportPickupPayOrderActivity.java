@@ -22,6 +22,8 @@ import com.sillykid.app.homepage.airporttransportation.AirportTransportationClas
 import com.sillykid.app.homepage.airporttransportation.PriceInformationActivity;
 import com.sillykid.app.homepage.airporttransportation.SelectProductAirportTransportationActivity;
 import com.sillykid.app.homepage.airporttransportation.paymentorder.PaymentTravelOrderActivity;
+import com.sillykid.app.homepage.airporttransportation.search.ProductSearchActivity;
+import com.sillykid.app.homepage.airporttransportation.search.ProductSearchListActivity;
 import com.sillykid.app.mine.mywallet.coupons.CouponsActivity;
 import com.sillykid.app.utils.DataUtil;
 import com.sillykid.app.utils.GlideImageLoader;
@@ -190,6 +192,8 @@ public class AirportPickupPayOrderActivity extends BaseActivity implements Airpo
             product_id = airportPickupPayOrderBean.getData().getProduct_id();
         } else if (flag == 1) {
             KJActivityStack.create().finishActivity(AirportPickupActivity.class);
+            KJActivityStack.create().finishActivity(ProductSearchListActivity.class);
+            KJActivityStack.create().finishActivity(ProductSearchActivity.class);
             KJActivityStack.create().finishActivity(AirportTransportationClassificationActivity.class);
             KJActivityStack.create().finishActivity(PriceInformationActivity.class);
             KJActivityStack.create().finishActivity(SelectProductAirportTransportationActivity.class);

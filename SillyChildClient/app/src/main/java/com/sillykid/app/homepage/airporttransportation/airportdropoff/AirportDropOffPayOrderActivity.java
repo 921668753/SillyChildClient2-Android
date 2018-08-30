@@ -23,6 +23,8 @@ import com.sillykid.app.homepage.airporttransportation.PriceInformationActivity;
 import com.sillykid.app.homepage.airporttransportation.SelectProductAirportTransportationActivity;
 import com.sillykid.app.homepage.airporttransportation.airportpickup.AirportPickupActivity;
 import com.sillykid.app.homepage.airporttransportation.paymentorder.PaymentTravelOrderActivity;
+import com.sillykid.app.homepage.airporttransportation.search.ProductSearchActivity;
+import com.sillykid.app.homepage.airporttransportation.search.ProductSearchListActivity;
 import com.sillykid.app.mine.mywallet.coupons.CouponsActivity;
 import com.sillykid.app.utils.DataUtil;
 import com.sillykid.app.utils.GlideImageLoader;
@@ -183,6 +185,8 @@ public class AirportDropOffPayOrderActivity extends BaseActivity implements Airp
         } else if (flag == 1) {
             KJActivityStack.create().finishActivity(AirportDropOffActivity.class);
             KJActivityStack.create().finishActivity(AirportTransportationClassificationActivity.class);
+            KJActivityStack.create().finishActivity(ProductSearchListActivity.class);
+            KJActivityStack.create().finishActivity(ProductSearchActivity.class);
             KJActivityStack.create().finishActivity(PriceInformationActivity.class);
             KJActivityStack.create().finishActivity(SelectProductAirportTransportationActivity.class);
             CreateTravelOrderBean createTravelOrderBean = (CreateTravelOrderBean) JsonUtil.getInstance().json2Obj(success, CreateTravelOrderBean.class);

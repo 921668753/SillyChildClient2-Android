@@ -17,12 +17,23 @@
         android:id="@+id/tv_strategy"
         style="@style/MatchWrap"
         android:layout_marginTop="@dimen/dimen12"
-        android:maxLines="3"
+        android:maxLines="2"
         android:paddingLeft="@dimen/dimen7"
         android:paddingRight="@dimen/dimen14"
         android:text="大阪3天2夜精选路线大阪3天2夜精选路线大阪3天2夜精选路线"
         android:textColor="@color/textColor"
         android:textSize="@dimen/textsize11" />
+
+    <TextView
+        android:id="@+id/tv_time"
+        style="@style/MatchWrap"
+        android:layout_marginTop="@dimen/dimen5"
+        android:paddingLeft="@dimen/dimen7"
+        android:singleLine="true"
+        android:text="2011-10-11"
+        android:textColor="@color/hintColors"
+        android:textSize="@dimen/textsize9"
+        android:visibility="gone" />
 
     <LinearLayout
         style="@style/MatchWrap"

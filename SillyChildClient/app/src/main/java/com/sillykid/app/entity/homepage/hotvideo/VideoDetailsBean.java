@@ -28,7 +28,7 @@ public class VideoDetailsBean extends BaseResult<VideoDetailsBean.DataBean> {
          * video_url : http://ovwiqces1.bkt.clouddn.com/lg80xQZKfudCwqqbpVDW8QVFdPqN
          * watch_number : 18
          */
-
+        private String create_time;
         private String collection_number;
         private String face;
         private int id;
@@ -46,6 +46,14 @@ public class VideoDetailsBean extends BaseResult<VideoDetailsBean.DataBean> {
         private String video_url;
         private int watch_number;
         private List<DynamicDetailsBean.DataBean.CommentBean> comment;
+
+        public String getCreate_time() {
+            return create_time;
+        }
+
+        public void setCreate_time(String create_time) {
+            this.create_time = create_time;
+        }
 
         public String getCollection_number() {
             return collection_number;

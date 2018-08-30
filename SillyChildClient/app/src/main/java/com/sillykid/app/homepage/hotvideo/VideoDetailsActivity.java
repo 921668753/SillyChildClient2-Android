@@ -96,6 +96,8 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
     @BindView(id = R.id.tv_zanNum)
     private TextView tv_zanNum;
 
+    @BindView(id = R.id.tv_time)
+    private TextView tv_time;
 
     @BindView(id = R.id.ll_collection, click = true)
     private LinearLayout ll_collection;
@@ -426,6 +428,7 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
             tv_content.setText(dynamicDetailsBean.getData().getVideo_description());
             tv_userEvaluationNum.setText(dynamicDetailsBean.getData().getReview_number() + getString(R.string.evaluation1));
             tv_zanNum.setText(dynamicDetailsBean.getData().getLike_number());
+            tv_time.setText(dynamicDetailsBean.getData().getCreate_time());
             if (is_like == 1) {
                 img_zan.setImageResource(R.mipmap.dynamicdetails_zan1);
                 tv_zan.setTextColor(getResources().getColor(R.color.greenColors));

@@ -99,8 +99,16 @@
             <LinearLayout
                 style="@style/MatchWrap"
                 android:background="@color/whiteColors"
-                android:gravity="right"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_time"
+                    style="@style/AutoWrap"
+                    android:paddingLeft="@dimen/dimen17"
+                    android:text="--"
+                    android:textColor="@color/hintColors"
+                    android:textSize="@dimen/textsize11" />
 
                 <LinearLayout
                     android:id="@+id/ll_report"

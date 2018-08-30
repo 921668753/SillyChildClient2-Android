@@ -58,7 +58,6 @@ import static com.sillykid.app.constant.NumericConstants.REQUEST_CODE;
  */
 public class DynamicVideoDetailsActivity extends BaseActivity implements DynamicDetailsContract.View, AdapterView.OnItemClickListener, BGAOnItemChildClickListener {
 
-
     @BindView(id = R.id.img_back, click = true)
     private ImageView img_back;
 
@@ -176,6 +175,8 @@ public class DynamicVideoDetailsActivity extends BaseActivity implements Dynamic
     @BindView(id = R.id.tv_zanNum1)
     private TextView tv_zanNum1;
 
+    @BindView(id = R.id.tv_time)
+    private TextView tv_time;
 
     @BindView(id = R.id.ll_collection1, click = true)
     private LinearLayout ll_collection1;
@@ -586,6 +587,7 @@ public class DynamicVideoDetailsActivity extends BaseActivity implements Dynamic
             tv_title.setText(title);
             smallImg = dynamicDetailsBean.getData().getList().get(0) + "?vframe/jpg/offset/0";
             user_id = dynamicDetailsBean.getData().getMember_id();
+            tv_time.setText(dynamicDetailsBean.getData().getCreate_time());
             GlideImageLoader.glideLoader(this, dynamicDetailsBean.getData().getFace(), img_head, 0, R.mipmap.avatar);
             tv_nickName.setText(dynamicDetailsBean.getData().getNickname());
             is_concern = dynamicDetailsBean.getData().getIs_concern();

@@ -106,13 +106,11 @@ public class KJActivityStack {
      * 结束指定的Activity(重载)
      */
     public void finishActivity(Class<?> cls) {
-
         for (int i = 0; i < activityStack.size(); i++) {
             if (activityStack.get(i) != null && activityStack.get(i).getClass().equals(cls)) {
                 finishActivity((Activity) activityStack.get(i));
-                i--;
+                break;
             }
-
         }
 
 

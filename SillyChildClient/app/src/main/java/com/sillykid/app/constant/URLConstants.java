@@ -200,6 +200,11 @@ public class URLConstants {
     public static String PRODUCTBYAIRPORTID = APIURL + "products/get_product_by_airport_id.do";
 
     /**
+     * 搜索 - 获取某商品列表
+     */
+    public static String PRODUCTBYTYPE = APIURL + "products/get_product_by_type.do";
+
+    /**
      * 包车服务 - 通过城市的编号来获取产品信息
      */
     public static String PRODUCTBYREGION = APIURL + "products/get_product_by_region.do";

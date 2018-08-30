@@ -17,13 +17,19 @@ import com.sillykid.app.adapter.homepage.airporttransportation.AirportTransporta
 import com.sillykid.app.adapter.homepage.airporttransportation.AirportTransportationClassificationListViewAdapter;
 import com.sillykid.app.entity.homepage.airporttransportation.AirportByCountryIdBean;
 import com.sillykid.app.entity.homepage.airporttransportation.AirportCountryListBean;
+import com.sillykid.app.homepage.airporttransportation.search.ProductSearchActivity;
 
 import java.util.List;
+
+import cn.bingoogolapple.titlebar.BGATitleBar;
 
 /**
  * 接送机分类
  */
 public class AirportTransportationClassificationActivity extends BaseActivity implements AirportTransportationClassificationContract.View, AdapterView.OnItemClickListener {
+
+    @BindView(id = R.id.titlebar)
+    private BGATitleBar titlebar;
 
     @BindView(id = R.id.lv_countries)
     private ListView lv_countries;
@@ -61,7 +67,26 @@ public class AirportTransportationClassificationActivity extends BaseActivity im
     @Override
     public void initWidget() {
         super.initWidget();
-        ActivityTitleUtils.initToolbar(aty, title, true, R.id.titlebar);
+        //  ActivityTitleUtils.initToolbar(aty, title, true, R.id.titlebar);
+        titlebar.setTitleText(title);
+        titlebar.setRightDrawable(getResources().getDrawable(R.mipmap.img_product_search));
+        BGATitleBar.SimpleDelegate simpleDelegate = new BGATitleBar.SimpleDelegate() {
+            @Override
+            public void onClickLeftCtv() {
+                super.onClickLeftCtv();
+                aty.finish();
+            }
+
+            @Override
+            public void onClickRightCtv() {
+                super.onClickRightCtv();
+                //分享
+                Intent intent = new Intent(aty, ProductSearchActivity.class);
+                intent.putExtra("type", type);
+                showActivity(aty, intent);
+            }
+        };
+        titlebar.setDelegate(simpleDelegate);
         lv_countries.setAdapter(mListViewAdapter);
         lv_countries.setOnItemClickListener(this);
         gv_countriesClassification.setAdapter(mGridViewAdapter);

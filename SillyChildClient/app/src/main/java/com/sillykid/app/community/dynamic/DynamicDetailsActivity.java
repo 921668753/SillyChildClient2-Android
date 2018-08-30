@@ -102,6 +102,9 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
     @BindView(id = R.id.tv_content)
     private TextView tv_content;
 
+    @BindView(id = R.id.tv_time)
+    private TextView tv_time;
+
     /**
      * 举报
      */
@@ -477,7 +480,7 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
                 JZVideoPlayer.setMediaInterface(new JZPLMediaPlayer());
                 smallImg = dynamicDetailsBean.getData().getList().get(0) + "?vframe/jpg/offset/0";
             }
-
+            tv_time.setText(dynamicDetailsBean.getData().getCreate_time());
             user_id = dynamicDetailsBean.getData().getMember_id();
             GlideImageLoader.glideLoader(this, dynamicDetailsBean.getData().getFace(), img_head, 0, R.mipmap.avatar);
             tv_nickName.setText(dynamicDetailsBean.getData().getNickname());

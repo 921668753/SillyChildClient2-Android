@@ -99,8 +99,8 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        style="@style/MatchWrap"
+        android:orientation="horizontal">
 
         <com.zhy.view.flowlayout.TagFlowLayout
             android:id="@+id/tfl_recentSearch"

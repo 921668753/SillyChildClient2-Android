@@ -1,35 +1,43 @@
-package com.sillykid.app.homepage.airporttransportation;
+package com.sillykid.app.homepage.airporttransportation.search;
 
 import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.common.cklibrary.common.BaseActivity;
 import com.common.cklibrary.common.BindView;
-import com.common.cklibrary.utils.ActivityTitleUtils;
 import com.common.cklibrary.utils.JsonUtil;
-import com.common.cklibrary.utils.myview.NoScrollGridView;
 import com.sillykid.app.R;
 import com.sillykid.app.adapter.homepage.airporttransportation.SelectProductAirportTransportationViewAdapter;
 import com.sillykid.app.entity.homepage.airporttransportation.SelectProductAirportTransportationBean;
+import com.sillykid.app.homepage.airporttransportation.PriceInformationActivity;
 import com.sillykid.app.loginregister.LoginActivity;
 
 import java.util.List;
 
+import static com.sillykid.app.constant.NumericConstants.REQUEST_CODE;
 
 /**
- * 选择产品----接送机
+ * 产品搜索---搜索结果
  */
-public class SelectProductAirportTransportationActivity extends BaseActivity implements SelectProductAirportTransportationContract.View, AdapterView.OnItemClickListener {
+public class ProductSearchListActivity extends BaseActivity implements ProductSearchListContract.View, AdapterView.OnItemClickListener {
 
-    @BindView(id = R.id.tv_selectProductName)
-    private TextView tv_selectProductName;
+    @BindView(id = R.id.ll_search, click = true)
+    private LinearLayout ll_search;
+
+    @BindView(id = R.id.tv_search)
+    private TextView tv_search;
+
+    @BindView(id = R.id.tv_cancel, click = true)
+    private TextView tv_cancel;
+
 
     @BindView(id = R.id.gv_productAirportTransportation)
-    private NoScrollGridView gv_productAirportTransportation;
+    private GridView gv_productAirportTransportation;
 
     private SelectProductAirportTransportationViewAdapter mAdapter;
 
@@ -47,48 +55,52 @@ public class SelectProductAirportTransportationActivity extends BaseActivity imp
 
     @BindView(id = R.id.tv_button, click = true)
     private TextView tv_button;
+
     private int type = 0;
-    private int airport_id = 0;
+    private String name = "";
 
     @Override
     public void setRootView() {
-        setContentView(R.layout.activity_selectproductairporttransportation);
+        setContentView(R.layout.activity_productsearchlist);
     }
 
     @Override
     public void initData() {
         super.initData();
-        mPresenter = new SelectProductAirportTransportationPresenter(this);
+        mPresenter = new ProductSearchListPresenter(this);
         mAdapter = new SelectProductAirportTransportationViewAdapter(this);
-        airport_id = getIntent().getIntExtra("airport_id", 0);
+        name = getIntent().getStringExtra("name");
         type = getIntent().getIntExtra("type", 0);
         showLoadingDialog(getString(R.string.dataLoad));
-        ((SelectProductAirportTransportationContract.Presenter) mPresenter).getProductByAirportId(airport_id, type);
+        ((ProductSearchListContract.Presenter) mPresenter).getProductByAirportId(name, type);
     }
+
 
     @Override
     public void initWidget() {
         super.initWidget();
-        ActivityTitleUtils.initToolbar(aty, getString(R.string.selectProduct), true, R.id.titlebar);
-        tv_selectProductName.setText(getIntent().getStringExtra("name"));
+        tv_search.setText(getIntent().getStringExtra("name"));
         gv_productAirportTransportation.setAdapter(mAdapter);
         gv_productAirportTransportation.setOnItemClickListener(this);
-    }
-
-
-    @Override
-    public void setPresenter(SelectProductAirportTransportationContract.Presenter presenter) {
-        mPresenter = presenter;
     }
 
     @Override
     public void widgetClick(View v) {
         super.widgetClick(v);
         switch (v.getId()) {
+            case R.id.ll_search:
+                Intent intent = new Intent(aty, ProductSearchActivity.class);
+                intent.putExtra("type", type);
+                intent.putExtra("tag", 1);
+                startActivityForResult(intent, REQUEST_CODE);
+                break;
+            case R.id.tv_cancel:
+                finish();
+                break;
             case R.id.tv_button:
                 if (tv_button.getText().toString().contains(getString(R.string.retry))) {
                     showLoadingDialog(getString(R.string.dataLoad));
-                    ((SelectProductAirportTransportationContract.Presenter) mPresenter).getProductByAirportId(airport_id, type);
+                    ((ProductSearchListContract.Presenter) mPresenter).getProductByAirportId(name, type);
                     return;
                 }
                 showActivity(aty, LoginActivity.class);
@@ -96,13 +108,28 @@ public class SelectProductAirportTransportationActivity extends BaseActivity imp
         }
     }
 
-
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent intent = new Intent(aty, PriceInformationActivity.class);
         intent.putExtra("product_id", mAdapter.getItem(position).getId());
         intent.putExtra("type", type);
         showActivity(aty, intent);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {// 如果等于1
+            name = data.getStringExtra("name");
+            tv_search.setText(name);
+            ((ProductSearchListContract.Presenter) mPresenter).getProductByAirportId(name, type);
+        }
+    }
+
+
+    @Override
+    public void setPresenter(ProductSearchListContract.Presenter presenter) {
+        mPresenter = presenter;
     }
 
     @Override
@@ -148,3 +175,4 @@ public class SelectProductAirportTransportationActivity extends BaseActivity imp
         }
     }
 }
+

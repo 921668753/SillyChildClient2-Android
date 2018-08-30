@@ -45,6 +45,8 @@ public class CommunityViewAdapter extends BGARecyclerViewAdapter<ResultBean> {
             GlideImageLoader.glideLoaderRaudio(mContext, model.getPicture() + "/w/" + lp.width + "/h/" + lp.height, imageView, 4, (int) lp.width, (int) lp.height, R.mipmap.placeholderfigure);
         }
 
+        helper.setText(R.id.tv_time, model.getCreate_time());
+
         helper.setText(R.id.tv_strategy, model.getPost_title());
 
         GlideImageLoader.glideLoader(mContext, model.getFace(), helper.getImageView(R.id.img_head), 0, R.mipmap.avatar);
@@ -56,7 +58,6 @@ public class CommunityViewAdapter extends BGARecyclerViewAdapter<ResultBean> {
         } else {
             helper.setText(R.id.tv_attentionNum, model.getClick_number());
         }
-
     }
 
 }

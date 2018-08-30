@@ -79,12 +79,24 @@
                 android:id="@+id/tv_content"
                 style="@style/MatchWrap"
                 android:background="@color/whiteColors"
-                android:paddingBottom="@dimen/dimen10"
+                android:paddingBottom="@dimen/dimen5"
                 android:paddingLeft="@dimen/dimen17"
                 android:paddingRight="@dimen/dimen17"
-                android:text="薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天薄荷色的夏天"
+                android:text="--"
                 android:textColor="@color/tabColors"
                 android:textSize="@dimen/textsize12" />
+
+
+            <TextView
+                android:id="@+id/tv_time"
+                style="@style/MatchWrap"
+                android:background="@color/whiteColors"
+                android:paddingBottom="@dimen/dimen10"
+                android:paddingLeft="@dimen/dimen17"
+                android:text="--"
+                android:textColor="@color/hintColors"
+                android:textSize="@dimen/textsize11" />
+
 
             <LinearLayout
                 android:id="@+id/ll_userEvaluation"

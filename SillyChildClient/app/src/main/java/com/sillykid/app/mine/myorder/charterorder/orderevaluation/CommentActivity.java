@@ -91,6 +91,7 @@ public class CommentActivity extends BaseActivity implements CommentContract.Vie
         order_number = getIntent().getStringExtra("order_number");
         mPresenter = new CommentPresenter(this);
         selectList = new ArrayList<>();
+        themeId = R.style.picture_default_style;
         adapter = new GridImageAdapter(CommentActivity.this, onAddPicClickListener);
         showLoadingDialog(getString(R.string.dataLoad));
         ((CommentContract.Presenter) mPresenter).getReviewProduct(order_number);
@@ -105,7 +106,6 @@ public class CommentActivity extends BaseActivity implements CommentContract.Vie
         adapter.setList(selectList);
         adapter.setSelectMax(maxSelectNum);
         recyclerView.setAdapter(adapter);
-        themeId = R.style.picture_default_style;
         adapter.setOnItemClickListener(new GridImageAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position, View v) {
@@ -272,6 +272,7 @@ public class CommentActivity extends BaseActivity implements CommentContract.Vie
     protected void onDestroy() {
         super.onDestroy();
         selectList.clear();
+        onAddPicClickListener = null;
         selectList = null;
         adapter = null;
     }

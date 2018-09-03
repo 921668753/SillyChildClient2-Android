@@ -11,7 +11,7 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         applicationId "com.sillykid.app"
         versionCode 55
-        versionName "1.0.0.18090318726"
+        versionName "1.0.0.1809031826"
         multiDexEnabled true
 
         aaptOptions.cruncherEnabled = false

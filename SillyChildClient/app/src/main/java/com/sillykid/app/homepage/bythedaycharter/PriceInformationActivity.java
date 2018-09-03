@@ -268,6 +268,7 @@ public class PriceInformationActivity extends BaseActivity implements PriceInfor
             if (priceInformationBean.getData().getReview_list() != null && priceInformationBean.getData().getReview_list().size() > 0) {
                 ll_userevaluation1.setVisibility(View.VISIBLE);
                 GlideImageLoader.glideLoader(this, priceInformationBean.getData().getReview_list().get(0).getFace(), img_head, 0, R.mipmap.avatar);
+                tv_nickName.setText(priceInformationBean.getData().getReview_list().get(0).getNickname());
                 tv_content.setText(priceInformationBean.getData().getReview_list().get(0).getContent());
                 tv_time.setText(DataUtil.formatData(StringUtils.toLong(priceInformationBean.getData().getReview_list().get(0).getCreate_time()), "yyyy.MM.dd"));
                 tv_zanNum.setText(priceInformationBean.getData().getReview_list().get(0).getLike_number() + "");

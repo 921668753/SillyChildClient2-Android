@@ -95,10 +95,6 @@ public class CharterOrderAdapter extends BGAAdapterViewAdapter<ResultBean> {
 
 
 
-
-
-
-
         }
         viewHolderHelper.setText(R.id.tv_serviceCompany, model.getService_director());
         viewHolderHelper.setText(R.id.tv_orderMoney, mContext.getString(R.string.renminbi) + model.getOrder_amount());

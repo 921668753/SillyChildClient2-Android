@@ -193,7 +193,7 @@ public class LineDetailsActivity extends BaseActivity implements LineDetailsCont
             tv_ratingbar.setText(lineDetailsBean.getData().getRecommended() + getString(R.string.minute));
             subtitle = lineDetailsBean.getData().getSubtitle();
             tv_experienceBrightSpot.setText(subtitle);
-            String code = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><title></title></head><body>" + lineDetailsBean.getData().getProduct_description()
+            String code = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" + lineDetailsBean.getData().getProduct_description()
                     + "</body></html>";
             web_view.loadDataWithBaseURL(null, code, "text/html", "utf-8", null);
             web_view.getWebView().setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
@@ -201,6 +201,7 @@ public class LineDetailsActivity extends BaseActivity implements LineDetailsCont
             if (lineDetailsBean.getData().getReview_list() != null && lineDetailsBean.getData().getReview_list().size() > 0) {
                 ll_userevaluation1.setVisibility(View.VISIBLE);
                 GlideImageLoader.glideLoader(this, lineDetailsBean.getData().getReview_list().get(0).getFace(), img_head, 0, R.mipmap.avatar);
+                tv_nickName.setText(lineDetailsBean.getData().getReview_list().get(0).getNickname());
                 tv_content.setText(lineDetailsBean.getData().getReview_list().get(0).getContent());
                 tv_time.setText(DataUtil.formatData(StringUtils.toLong(lineDetailsBean.getData().getReview_list().get(0).getCreate_time()), "yyyy.MM.dd"));
                 tv_zanNum.setText(lineDetailsBean.getData().getReview_list().get(0).getLike_number() + "");

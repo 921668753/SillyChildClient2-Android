@@ -151,11 +151,11 @@ public class ByTheDayCharterPayOrderActivity extends BaseActivity implements ByT
             GlideImageLoader.glideOrdinaryLoader(aty, byTheDayCharterPayOrderBean.getData().getMain_picture(), img_byTheDayCharter, R.mipmap.placeholderfigure2);
             tv_tourSpots.setText(byTheDayCharterPayOrderBean.getData().getTitle());
             tv_tourSpots1.setText(byTheDayCharterPayOrderBean.getData().getProduct_description());
-            String price_description = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><title></title></head><body>" + byTheDayCharterPayOrderBean.getData().getPrice_description()
+            String price_description = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" + byTheDayCharterPayOrderBean.getData().getPrice_description()
                     + "</body></html>";
             web_priceDescription.loadDataWithBaseURL("baseurl", price_description, "text/html", "utf-8", null);
             web_priceDescription.getWebView().setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-            String schedule_description = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><title></title></head><body>" + byTheDayCharterPayOrderBean.getData().getSchedule_description()
+            String schedule_description = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" + byTheDayCharterPayOrderBean.getData().getSchedule_description()
                     + "</body></html>";
             web_dueThat.loadDataWithBaseURL("baseurl", schedule_description, "text/html", "utf-8", null);
             web_dueThat.getWebView().setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));

@@ -18,7 +18,6 @@ import com.kymjs.common.Log;
 import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
 import com.sillykid.app.constant.NumericConstants;
-import com.sillykid.app.entity.mine.myorder.charterorder.orderdetails.AirportPickupOrderDetailsBean;
 import com.sillykid.app.entity.mine.myorder.charterorder.orderdetails.BoutiqueLineOrderDetailsBean;
 import com.sillykid.app.homepage.airporttransportation.paymentorder.PaymentTravelOrderActivity;
 import com.sillykid.app.homepage.message.interactivemessage.imuitl.RongIMUtil;

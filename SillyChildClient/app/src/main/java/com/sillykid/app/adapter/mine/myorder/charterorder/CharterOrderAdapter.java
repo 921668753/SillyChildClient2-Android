@@ -84,17 +84,15 @@ public class CharterOrderAdapter extends BGAAdapterViewAdapter<ResultBean> {
         }
         GlideImageLoader.glideOrdinaryLoader(mContext, model.getMain_picture(), viewHolderHelper.getImageView(R.id.img_charterOrder), R.mipmap.placeholderfigure1);
         viewHolderHelper.setText(R.id.tv_title, model.getTitle());
-        if (model.getProduct_set_cd() == 1 || model.getProduct_set_cd() == 2 || model.getProduct_set_cd() == 4) {
+        if (model.getProduct_set_cd() == 1 || model.getProduct_set_cd() == 2) {
             viewHolderHelper.setText(R.id.tv_serviceTime, DataUtil.formatData(StringUtils.toLong(model.getService_start_time()), "yyyy-MM-dd HH:mm"));
         } else if (model.getProduct_set_cd() == 3) {
             viewHolderHelper.setText(R.id.tv_serviceTime, DataUtil.formatData(StringUtils.toLong(model.getService_start_time()),
                     "yyyy" + mContext.getString(R.string.year) + "MM" + mContext.getString(R.string.month) + "dd" + mContext.getString(R.string.day)) +
                     "-" + DataUtil.formatData(StringUtils.toLong(model.getService_start_time()),
                     "yyyy" + mContext.getString(R.string.year) + "MM" + mContext.getString(R.string.month) + "dd" + mContext.getString(R.string.day)));
-        } else if (model.getProduct_set_cd() == 5) {
-
-
-
+        } else if (model.getProduct_set_cd() == 4 || model.getProduct_set_cd() == 5) {
+            viewHolderHelper.setText(R.id.tv_serviceTime, DataUtil.formatData(StringUtils.toLong(model.getService_start_time()), "yyyy-MM-dd"));
         }
         viewHolderHelper.setText(R.id.tv_serviceCompany, model.getService_director());
         viewHolderHelper.setText(R.id.tv_orderMoney, mContext.getString(R.string.renminbi) + model.getOrder_amount());

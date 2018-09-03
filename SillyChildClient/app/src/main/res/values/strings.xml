@@ -1,7 +1,6 @@
 <resources>
-    <string name="app_name">傻孩志</string>
+    <string name="app_name">傻孩子</string>
     <string name="applicationId">com.sillykid.app</string>
-
 
     <!--网络请求-->
     <!--Dialog-->
@@ -100,8 +99,8 @@
     <string name="testGetCode">获取验证码</string>
     <string name="clickFinish">点击完成代表您同意</string>
     <string name="myagreement">点击注册即表示您同意</string>
-    <string name="agreement">《傻孩志注册协议》</string>
-    <string name="agreement1">傻孩志注册协议</string>
+    <string name="agreement">《傻孩子注册协议》</string>
+    <string name="agreement1">傻孩子注册协议</string>
     <string name="determine">确定</string>
 
     <!--忘加密码-->
@@ -151,7 +150,7 @@
     <string name="clickAgainExitProgram">再按一次退出程序</string>
 
     <!--首页-->
-    <string name="sillyChild">傻孩志</string>
+    <string name="sillyChild">傻孩子</string>
     <string name="visa">签证</string>
     <string name="strategy">攻略</string>
     <string name="route2">线路</string>
@@ -202,7 +201,7 @@
 
     <!--活动-->
     <string name="contactWay3">联系方式</string>
-    <string name="sillyChildNum">傻孩志号</string>
+    <string name="sillyChildNum">傻孩子号</string>
 
     <!--按天包车-->
     <string name="travelTime3">行程时间</string>
@@ -267,7 +266,7 @@
     <string name="system_is_regist">系统正在自动为您注册用户…</string>
     <string name="is_contact_customer">正在联系客服，请稍等…</string>
     <string name="visitors">访客</string>
-    <string name="sillyChildCustomerService">傻孩志客服</string>
+    <string name="sillyChildCustomerService">傻孩子客服</string>
     <string name="toQuote">待后台输入报价</string>
     <string name="clickSeeDetails">点击查看详细信息</string>
 
@@ -1235,8 +1234,8 @@
     <string name="invitationCode">邀请码</string>
     <string name="activityRules">活动规则</string>
     <string name="noHaveApplyCode">缺少邀请码，无法分享，您可移步至客服</string>
-    <string name="welcomSilly">您的朋友邀请您使用傻孩志并给您发了一个大红包  </string>
-    <string name="sillyChildMyHands">傻孩志在手天下我有</string>
+    <string name="welcomSilly">您的朋友邀请您使用傻孩子并给您发了一个大红包  </string>
+    <string name="sillyChildMyHands">傻孩子在手天下我有</string>
 
 
     <!-- 我的  VIP紧急电话-->

@@ -297,7 +297,7 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
     @Override
     public void errorMsg(String msg, int flag) {
         dismissLoadingDialog();
-        if (flag == 1) {
+        if (flag == 1 || flag == 2) {
             if (isLogin(msg)) {
                 aty.showActivity(aty, LoginActivity.class);
                 return;

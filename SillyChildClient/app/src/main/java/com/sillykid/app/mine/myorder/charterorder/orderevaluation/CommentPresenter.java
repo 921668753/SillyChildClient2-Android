@@ -3,23 +3,17 @@ package com.sillykid.app.mine.myorder.charterorder.orderevaluation;
 
 import com.common.cklibrary.common.KJActivityStack;
 import com.common.cklibrary.common.StringConstants;
-import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.httputil.HttpUtilParams;
 import com.common.cklibrary.utils.httputil.ResponseListener;
-import com.kymjs.common.Log;
+import com.common.cklibrary.utils.httputil.ResponseProgressbarListener;
 import com.kymjs.common.PreferenceHelper;
 import com.kymjs.common.StringUtils;
 import com.kymjs.rxvolley.client.HttpParams;
 import com.luck.picture.lib.entity.LocalMedia;
-import com.qiniu.android.http.ResponseInfo;
-import com.qiniu.android.storage.UpCompletionHandler;
 import com.sillykid.app.R;
 import com.sillykid.app.retrofit.RequestClient;
-import com.sillykid.app.retrofit.uploadimg.UploadManagerUtil;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,49 +73,37 @@ public class CommentPresenter implements CommentContract.Presenter {
                 return;
             }
             listStr.add("");
-            String token = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "qiNiuToken");
             //参数 图片路径,图片名,token,成功的回调
             int finalI = i;
-            UploadManagerUtil.getInstance().getUploadManager().put(selectList.get(i).getPath(), null, token, new UpCompletionHandler() {
+            File file = new File(selectList.get(i).getPath());
+            RequestClient.upLoadImg(KJActivityStack.create().topActivity(), file, 1, new ResponseProgressbarListener<String>() {
                 @Override
-                public void complete(String key, ResponseInfo responseInfo, JSONObject jsonObject) {
-                    Log.d("ReadFragment", "key" + key + "responseInfo" + JsonUtil.obj2JsonString(responseInfo) + "jsObj:" + String.valueOf(jsonObject));
-                    if (responseInfo.isOK()) {
-                        String host = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "qiNiuImgHost");
-                        String headpicPath = null;
-                        try {
-                            headpicPath = host + jsonObject.getString("name");
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            KJActivityStack.create().topActivity().runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.failedUploadPicture), 1);
-                                    return;
-                                }
-                            });
-                            return;
-                        }
-                        int selectListSize = PreferenceHelper.readInt(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "selectListSize", 0);
-                        selectListSize = selectListSize + 1;
-                        PreferenceHelper.write(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "selectListSize", selectListSize);
-                        Log.i("ReadFragment", "complete: " + headpicPath);
-                        listStr.set(finalI, headpicPath);
-                        if (selectListSize == selectList.size()) {
-                            postAddProductReview1(order_number, time_degree, play_experience, service_attitude, content, listStr);
-                        }
-                        return;
+                public void onProgress(String progress) {
+                    //  mView.showLoadingDialog(KJActivityStack.create().topActivity().getString(R.string.crossLoad) + progress + "%");
+                }
+
+                @Override
+                public void onSuccess(String response) {
+                    listStr.set(finalI, response);
+                    int selectListSize = PreferenceHelper.readInt(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "selectListSize", 0);
+                    selectListSize = selectListSize + 1;
+                    PreferenceHelper.write(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "selectListSize", selectListSize);
+                    if (selectListSize == selectList.size()) {
+                        postAddProductReview1(order_number, time_degree, play_experience, service_attitude, content, listStr);
                     }
+                }
+
+                @Override
+                public void onFailure(String msg) {
                     KJActivityStack.create().topActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.failedUploadPicture), 1);
+                            mView.errorMsg(msg, 1);
                             return;
                         }
                     });
-                    return;
                 }
-            }, null);
+            });
         }
     }
 

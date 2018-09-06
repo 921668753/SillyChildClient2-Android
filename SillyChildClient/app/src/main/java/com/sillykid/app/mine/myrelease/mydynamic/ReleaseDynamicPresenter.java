@@ -181,46 +181,35 @@ public class ReleaseDynamicPresenter implements ReleaseDynamicContract.Presenter
             if (mediaType != 2) {
                 //参数 图片路径,图片名,token,成功的回调
                 int finalI = i;
-                UploadManagerUtil.getInstance().getUploadManager().put(selectList.get(i).getPath(), null, token, new UpCompletionHandler() {
+                File file = new File(selectList.get(i).getPath());
+                RequestClient.upLoadImg(KJActivityStack.create().topActivity(), file, 1, new ResponseProgressbarListener<String>() {
                     @Override
-                    public void complete(String key, ResponseInfo responseInfo, JSONObject jsonObject) {
-                        Log.d("ReadFragment", "key" + key + "responseInfo" + JsonUtil.obj2JsonString(responseInfo) + "jsObj:" + String.valueOf(jsonObject));
-                        if (responseInfo.isOK()) {
-                            String host = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "qiNiuImgHost");
-                            String headpicPath = null;
-                            try {
-                                headpicPath = host + jsonObject.getString("name");
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                                KJActivityStack.create().topActivity().runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.failedUploadPicture), 3);
-                                        return;
-                                    }
-                                });
-                                return;
-                            }
-                            int selectListSize = PreferenceHelper.readInt(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "selectListSize", 0);
-                            selectListSize = selectListSize + 1;
-                            PreferenceHelper.write(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "selectListSize", selectListSize);
-                            Log.i("ReadFragment", "complete: " + headpicPath);
-                            listStr.set(finalI, headpicPath);
-                            if (selectListSize == selectList.size()) {
-                                postAddPost1(post_title, listStr, mediaType, content, classification_id);
-                            }
-                            return;
+                    public void onProgress(String progress) {
+                        //  mView.showLoadingDialog(KJActivityStack.create().topActivity().getString(R.string.crossLoad) + progress + "%");
+                    }
+
+                    @Override
+                    public void onSuccess(String response) {
+                        listStr.set(finalI, response);
+                        int selectListSize = PreferenceHelper.readInt(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "selectListSize", 0);
+                        selectListSize = selectListSize + 1;
+                        PreferenceHelper.write(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "selectListSize", selectListSize);
+                        if (selectListSize == selectList.size()) {
+                            postAddPost1(post_title, listStr, mediaType, content, classification_id);
                         }
+                    }
+
+                    @Override
+                    public void onFailure(String msg) {
                         KJActivityStack.create().topActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.failedUploadPicture), 3);
+                                mView.errorMsg(msg, 3);
                                 return;
                             }
                         });
-                        return;
                     }
-                }, null);
+                });
             } else {
                 File file = new File(selectList.get(i).getPath());
                 int finalI1 = i;
@@ -341,48 +330,35 @@ public class ReleaseDynamicPresenter implements ReleaseDynamicContract.Presenter
                     }
                     continue;
                 }
-                String token = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "qiNiuToken");
                 int finalI = i;
-                UploadManagerUtil.getInstance().getUploadManager().put(selectList.get(i).getPath(), null, token, new UpCompletionHandler() {
+                File file = new File(selectList.get(i).getPath());
+                RequestClient.upLoadImg(KJActivityStack.create().topActivity(), file, 1, new ResponseProgressbarListener<String>() {
                     @Override
-                    public void complete(String key, ResponseInfo responseInfo, JSONObject jsonObject) {
-                        Log.d("ReadFragment", "key" + key + "responseInfo" + JsonUtil.obj2JsonString(responseInfo) + "jsObj:" + String.valueOf(jsonObject));
-                        if (responseInfo.isOK()) {
-                            String host = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "qiNiuImgHost");
-                            String headpicPath = null;
-                            try {
-                                headpicPath = host + jsonObject.getString("name");
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                                KJActivityStack.create().topActivity().runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.failedUploadPicture), 4);
-                                        return;
-                                    }
-                                });
-                                return;
-                            }
-                            int selectListSize = PreferenceHelper.readInt(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "selectListSize", 0);
-                            selectListSize = selectListSize + 1;
-                            PreferenceHelper.write(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "selectListSize", selectListSize);
-                            Log.i("ReadFragment", "complete: " + headpicPath);
-                            listStr.set(finalI, headpicPath);
-                            if (selectListSize == selectList.size()) {
-                                postEditPost1(post_title, listStr, mediaType, content, classification_id, post_id);
-                            }
-                            return;
+                    public void onProgress(String progress) {
+                        //  mView.showLoadingDialog(KJActivityStack.create().topActivity().getString(R.string.crossLoad) + progress + "%");
+                    }
+
+                    @Override
+                    public void onSuccess(String response) {
+                        listStr.set(finalI, response);
+                        int selectListSize = PreferenceHelper.readInt(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "selectListSize", 0);
+                        selectListSize = selectListSize + 1;
+                        PreferenceHelper.write(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "selectListSize", selectListSize);
+                        if (selectListSize == selectList.size()) {
+                            postEditPost1( post_title,  listStr,  mediaType,  content,  classification_id,  post_id);
                         }
+                    }
+
+                    @Override
+                    public void onFailure(String msg) {
                         KJActivityStack.create().topActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.failedUploadPicture), 4);
-                                return;
+                                mView.errorMsg(msg, 4);
                             }
                         });
-                        return;
                     }
-                }, null);
+                });
             } else {
                 String viodeStr = selectList.get(i).getPath();
                 if (!StringUtils.isEmpty(viodeStr) && viodeStr.startsWith("http")) {

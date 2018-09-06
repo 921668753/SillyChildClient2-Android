@@ -27,8 +27,8 @@
     <string name="videoPathError">视频路径错误</string>
     <string name="imagePathError">图片路径错误</string>
     <string name="noData">没有数据</string>
-    <string name="failedUploadPicture">上传图片失败，请重试</string>
-    <string name="failedUploadVideo">上传视频失败，请重试</string>
+    <string name="failedUploadPicture">上传失败，请重试</string>
+    <string name="failedUploadVideo">上传失败，请重试</string>
 
     <!--登录-->
     <string name="login">登录</string>

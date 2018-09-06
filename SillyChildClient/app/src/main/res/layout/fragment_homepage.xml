@@ -73,7 +73,6 @@
         </RelativeLayout>
     </RelativeLayout>
 
-
     <cn.bingoogolapple.refreshlayout.BGARefreshLayout
         android:id="@+id/mRefreshLayout"
         style="@style/MatchMatch">

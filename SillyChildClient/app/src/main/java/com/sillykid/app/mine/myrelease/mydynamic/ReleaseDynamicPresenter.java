@@ -177,7 +177,6 @@ public class ReleaseDynamicPresenter implements ReleaseDynamicContract.Presenter
                 return;
             }
             listStr.add("");
-            String token = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "qiNiuToken");
             if (mediaType != 2) {
                 //参数 图片路径,图片名,token,成功的回调
                 int finalI = i;

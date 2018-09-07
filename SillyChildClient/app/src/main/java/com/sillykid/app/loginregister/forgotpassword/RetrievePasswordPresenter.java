@@ -34,7 +34,8 @@ public class RetrievePasswordPresenter implements RetrievePasswordContract.Prese
 //            return;
 //        }
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        httpParams.put("mobile", "00" + countryCode + phone);
+        httpParams.put("mobile", phone);
+        httpParams.put("country_code", countryCode);
         RequestClient.postSendFindCode(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {

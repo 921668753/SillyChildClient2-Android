@@ -11,7 +11,6 @@ import com.common.cklibrary.utils.httputil.ResponseListener;
 import com.kymjs.common.PreferenceHelper;
 import com.kymjs.common.StringUtils;
 import com.kymjs.rxvolley.client.HttpParams;
-import com.qiniu.android.utils.UrlSafeBase64;
 import com.sillykid.app.BuildConfig;
 import com.sillykid.app.R;
 import com.sillykid.app.entity.BaiDuInfo;
@@ -19,12 +18,6 @@ import com.sillykid.app.entity.application.RongCloudBean;
 import com.sillykid.app.entity.loginregister.LoginBean;
 import com.sillykid.app.homepage.message.interactivemessage.imuitl.UserUtil;
 import com.sillykid.app.retrofit.RequestClient;
-
-import org.json.JSONObject;
-
-import javax.crypto.Mac;
-import javax.crypto.SecretKey;
-import javax.crypto.spec.SecretKeySpec;
 
 import cn.jpush.android.api.JPushInterface;
 import io.rong.imkit.RongIM;
@@ -59,7 +52,8 @@ public class BindingPhonePresenter implements BindingPhoneContract.Presenter {
 //        }
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
         // Map<String, Object> map = new HashMap<String, Object>();
-        httpParams.put("phone", "00" + countryCode + phone);
+        httpParams.put("phone", phone);
+        httpParams.put("country_code", countryCode);
 //        String codeI = String.valueOf(System.currentTimeMillis());
 //        String codeId = CipherUtils.md5(codeI.substring(2, codeI.length() - 1));
 //        httpParams.put("codeId", codeId);

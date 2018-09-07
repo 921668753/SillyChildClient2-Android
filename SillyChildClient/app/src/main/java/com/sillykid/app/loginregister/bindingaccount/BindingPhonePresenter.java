@@ -48,18 +48,18 @@ public class BindingPhonePresenter implements BindingPhoneContract.Presenter {
     }
 
     @Override
-    public void postCode(String phone, String opt) {
+    public void postCode(String phone, String countryCode, String opt) {
         if (StringUtils.isEmpty(phone)) {
             mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.hintPhoneText), 0);
             return;
         }
-        if (phone.length() != 11) {
-            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.hintPhoneText1), 0);
-            return;
-        }
+//        if (phone.length() != 11) {
+//            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.hintPhoneText1), 0);
+//            return;
+//        }
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
         // Map<String, Object> map = new HashMap<String, Object>();
-        httpParams.put("phone", phone);
+        httpParams.put("phone", "00" + countryCode + phone);
 //        String codeI = String.valueOf(System.currentTimeMillis());
 //        String codeId = CipherUtils.md5(codeI.substring(2, codeI.length() - 1));
 //        httpParams.put("codeId", codeId);
@@ -89,10 +89,10 @@ public class BindingPhonePresenter implements BindingPhoneContract.Presenter {
             return;
         }
 
-        if (phone.length() != 11) {
-            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.hintPhoneText1), 0);
-            return;
-        }
+//        if (phone.length() != 11) {
+//            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.hintPhoneText1), 0);
+//            return;
+//        }
 
         if (StringUtils.isEmpty(code)) {
             mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.errorCode), 0);
@@ -181,7 +181,7 @@ public class BindingPhonePresenter implements BindingPhoneContract.Presenter {
                     RongIM.getInstance().setCurrentUserInfo(userInfo);
                     RongIM.getInstance().setMessageAttachedUserInfo(true);
                     mView.getSuccess("", 2);
-             //       postBaiDuInfo();
+                    //       postBaiDuInfo();
                     return;
                 }
                 mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.loginErr1), 1);

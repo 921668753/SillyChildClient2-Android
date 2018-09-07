@@ -71,11 +71,8 @@
     <string name="failedCloudInformation1">获取融云信息失败,请用账号密码登录</string>
     <string name="cityDoWantGoTo">您想要去哪座城市</string>
 
-
-
-
     <!--选择国家或地区-->
-    <string name="selectCountry">选择国家或地区</string>
+    <string name="selectCountryCode">选择国家区号</string>
 
     <!--注册-->
     <string name="registerPhone">手机号注册</string>
@@ -797,8 +794,8 @@
     <string name="sales">销量</string>
 
     <!--活动-->
-    <string name="bargain">特价商品</string>
-    <string name="productl">当季热销</string>
+    <string name="bargain">热门活动</string>
+    <string name="productl">往期活动</string>
 
 
     <!--商城   评价-->

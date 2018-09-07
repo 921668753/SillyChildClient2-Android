@@ -88,7 +88,7 @@ public class CitySelectionFragment extends BaseFragment implements BoutiqueLineC
 
     private SpacesItemDecoration spacesItemDecoration = null;
 
-    private int is_recommand = 0;
+    private int is_recommand = 1;
 
     private Thread thread = null;
 
@@ -154,7 +154,7 @@ public class CitySelectionFragment extends BaseFragment implements BoutiqueLineC
         switch (v.getId()) {
             case R.id.ll_selectCity:
                 Intent intent = new Intent(aty, SelectCityActivity.class);
-                startActivityForResult(intent,RESULT_CODE_GET);
+                startActivityForResult(intent, RESULT_CODE_GET);
                 break;
             case R.id.tv_button:
                 if (tv_button.getText().toString().contains(getString(R.string.retry))) {

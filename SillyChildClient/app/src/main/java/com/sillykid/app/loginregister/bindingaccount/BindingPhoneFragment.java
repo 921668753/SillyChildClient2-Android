@@ -20,7 +20,7 @@ import com.kymjs.common.PreferenceHelper;
 import com.sillykid.app.R;
 import com.sillykid.app.entity.loginregister.LoginBean;
 import com.sillykid.app.loginregister.LoginActivity;
-import com.sillykid.app.loginregister.SelectCountryActivity;
+import com.sillykid.app.loginregister.SelectCountryCodeActivity;
 import com.sillykid.app.loginregister.register.RegistrationAgreementActivity;
 
 import static android.app.Activity.RESULT_OK;
@@ -117,7 +117,7 @@ public class BindingPhoneFragment extends BaseFragment implements BindingContrac
         super.widgetClick(v);
         switch (v.getId()) {
             case R.id.ll_areaCode:
-                Intent intent = new Intent(aty, SelectCountryActivity.class);
+                Intent intent = new Intent(aty, SelectCountryCodeActivity.class);
                 startActivityForResult(intent, 1);
 //                aty.showActivity(aty, intent);
                 break;

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.common.cklibrary.common.BaseActivity;
@@ -11,6 +12,9 @@ import com.common.cklibrary.common.BindView;
 import com.common.cklibrary.common.ViewInject;
 import com.sillykid.app.R;
 import com.sillykid.app.homepage.message.interactivemessage.imuitl.UserUtil;
+import com.sillykid.app.loginregister.SelectCountryCodeActivity;
+
+import static com.sillykid.app.constant.NumericConstants.REQUEST_CODE;
 
 /**
  * 找回密码
@@ -25,10 +29,15 @@ public class RetrievePasswordActivity extends BaseActivity implements RetrievePa
      */
     private TimeCount time;
 
+    @BindView(id = R.id.img_back, click = true)
+    private ImageView img_back;
 
     /**
      * 手机号
      */
+    @BindView(id = R.id.tv_countryCode, click = true)
+    private TextView tv_countryCode;
+
     @BindView(id = R.id.et_accountNumber)
     private EditText et_accountNumber;
     /**
@@ -78,14 +87,20 @@ public class RetrievePasswordActivity extends BaseActivity implements RetrievePa
         time = new TimeCount(60000, 1000);// 构造CountDownTimer对象
     }
 
-
     @Override
     public void widgetClick(View v) {
         super.widgetClick(v);
         switch (v.getId()) {
+            case R.id.img_back:
+                finish();
+                break;
+            case R.id.tv_countryCode:
+                Intent intent = new Intent(aty, SelectCountryCodeActivity.class);
+                startActivityForResult(intent, REQUEST_CODE);
+                break;
             case R.id.tv_code:
                 showLoadingDialog(getString(R.string.sendingLoad));
-                ((RetrievePasswordContract.Presenter) mPresenter).postCode(et_accountNumber.getText().toString(), opt);
+                ((RetrievePasswordContract.Presenter) mPresenter).postCode(et_accountNumber.getText().toString(), tv_countryCode.getText().toString().substring(1), opt);
                 break;
             case R.id.tv_determine:
                 tv_determine.setEnabled(false);
@@ -161,11 +176,11 @@ public class RetrievePasswordActivity extends BaseActivity implements RetrievePa
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1 && resultCode == RESULT_OK) {// 如果等于1
+        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {// 如果等于1
             // 说明是我们的那次请求
             // 目的：区分请求，不同的请求要做不同的处理
-//            areaCode = data.getStringExtra("areaCode");
-//            tv_areaCode.setText("+" + areaCode);
+            String areaCode = data.getStringExtra("areaCode");
+            tv_countryCode.setText("+" + areaCode);
         }
 
     }

@@ -43,6 +43,7 @@
                         android:layout_marginTop="@dimen/dimen10"
                         android:background="@mipmap/home_search_bar_bg"
                         android:focusable="true"
+                        android:visibility="gone"
                         android:focusableInTouchMode="true"
                         android:gravity="center_vertical"
                         android:orientation="horizontal">
@@ -70,8 +71,9 @@
 
                     <cn.bingoogolapple.bgabanner.BGABanner
                         android:id="@+id/banner_ad"
+                        android:layout_marginTop="@dimen/dimen5"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/dimen166"
+                        android:layout_height="@dimen/dimen200"
                         android:background="@mipmap/placeholderfigure"
                         app:banner_pageChangeDuration="2000"
                         app:banner_pointAutoPlayAble="false"

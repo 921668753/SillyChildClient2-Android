@@ -49,15 +49,15 @@ public class LoginPresenter implements LoginContract.Presenter {
     }
 
     @Override
-    public void postToLogin(String phone, String pwd) {
+    public void postToLogin(String phone, String countryCode, String pwd) {
         if (StringUtils.isEmpty(phone)) {
             mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.hintAccountText), 0);
             return;
         }
-        if (phone.length() != 11) {
-            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.inputPhone), 0);
-            return;
-        }
+//        if (phone.length() != 11) {
+//            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.inputPhone), 0);
+//            return;
+//        }
         if (StringUtils.isEmpty(pwd)) {
             mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.hintPasswordText), 0);
             return;

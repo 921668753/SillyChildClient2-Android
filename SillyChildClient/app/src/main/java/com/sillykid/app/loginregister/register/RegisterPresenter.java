@@ -41,17 +41,17 @@ public class RegisterPresenter implements RegisterContract.Presenter {
     }
 
     @Override
-    public void postCode(String phone, String opt) {
+    public void postCode(String phone, String countryCode, String opt) {
         if (StringUtils.isEmpty(phone)) {
             mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.hintPhoneText), 0);
             return;
         }
-        if (phone.length() != 11) {
-            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.hintPhoneText1), 0);
-            return;
-        }
+//        if (phone.length() != 11) {
+//            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.hintPhoneText1), 0);
+//            return;
+//        }
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        httpParams.put("mobile", phone);
+        httpParams.put("mobile", "00" + countryCode + phone);
         RequestClient.postCaptcha(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
@@ -103,10 +103,10 @@ public class RegisterPresenter implements RegisterContract.Presenter {
             mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.hintPhoneText), 0);
             return;
         }
-        if (phone.length() != 11) {
-            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.hintPhoneText1), 0);
-            return;
-        }
+//        if (phone.length() != 11) {
+//            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.hintPhoneText1), 0);
+//            return;
+//        }
 //        } else {
 //            if (StringUtils.isEmpty(phone)) {
 //                mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.hintEmailText), 0);
@@ -230,7 +230,7 @@ public class RegisterPresenter implements RegisterContract.Presenter {
             public void onFailure(String msg) {
                 Log.d("BaiDuYun", "onFailure");
                 mView.getSuccess("", 2);
-              //  mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.failedCloudInformation1), 1);
+                //  mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.failedCloudInformation1), 1);
             }
         });
     }
@@ -249,7 +249,7 @@ public class RegisterPresenter implements RegisterContract.Presenter {
                     RongIM.getInstance().setMessageAttachedUserInfo(true);
                     mView.getSuccess("", 2);
 //                    postBaiDuInfo();
-                  return;
+                    return;
                 }
                 mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.failedCloudInformation1), 1);
             }

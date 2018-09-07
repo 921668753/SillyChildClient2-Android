@@ -154,6 +154,26 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/ll_boutiqueLine"
+                            style="@style/AutoMatch"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="@dimen/dimen40"
+                                android:layout_height="@dimen/dimen55"
+                                android:src="@mipmap/hp_fine_lines" />
+
+                            <TextView
+                                style="@style/WrapWrap"
+                                android:layout_marginTop="@dimen/dimen9"
+                                android:text="@string/boutiqueLine"
+                                android:textColor="@color/textColor"
+                                android:textSize="@dimen/textsize12" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:id="@+id/ll_privateOrdering"
                             style="@style/AutoMatch"
                             android:gravity="center"
@@ -174,25 +194,6 @@
 
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:id="@+id/ll_boutiqueLine"
-                            style="@style/AutoMatch"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="@dimen/dimen34"
-                                android:layout_height="@dimen/dimen48"
-                                android:src="@mipmap/hp_fine_lines" />
-
-                            <TextView
-                                style="@style/WrapWrap"
-                                android:layout_marginTop="@dimen/dimen9"
-                                android:text="@string/boutiqueLine"
-                                android:textColor="@color/textColor"
-                                android:textSize="@dimen/textsize12" />
-
-                        </LinearLayout>
 
                         <LinearLayout
                             android:id="@+id/ll_airportDropOff"

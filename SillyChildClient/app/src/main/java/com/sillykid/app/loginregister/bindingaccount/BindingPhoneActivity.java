@@ -16,12 +16,15 @@ import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.rx.MsgEvent;
 import com.common.cklibrary.utils.rx.RxBus;
 import com.kymjs.common.PreferenceHelper;
+import com.sillykid.app.loginregister.SelectCountryCodeActivity;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.umeng.analytics.MobclickAgent;
 import com.sillykid.app.R;
 import com.sillykid.app.entity.loginregister.LoginBean;
 import com.sillykid.app.loginregister.LoginActivity;
 import com.sillykid.app.loginregister.register.RegistrationAgreementActivity;
+
+import static com.sillykid.app.constant.NumericConstants.REQUEST_CODE;
 
 /**
  * 注册
@@ -52,6 +55,8 @@ public class BindingPhoneActivity extends BaseActivity implements BindingPhoneCo
     /**
      * 手机号
      */
+    @BindView(id = R.id.tv_countryCode, click = true)
+    private TextView tv_countryCode;
     @BindView(id = R.id.et_phone)
     private EditText et_phone;
     /**
@@ -102,9 +107,13 @@ public class BindingPhoneActivity extends BaseActivity implements BindingPhoneCo
             case R.id.img_back:
                 finish();
                 break;
+            case R.id.tv_countryCode:
+                Intent intent = new Intent(aty, SelectCountryCodeActivity.class);
+                startActivityForResult(intent, REQUEST_CODE);
+                break;
             case R.id.tv_code:
                 showLoadingDialog(getString(R.string.sendingLoad));
-                ((BindingPhoneContract.Presenter) mPresenter).postCode(et_phone.getText().toString(), opt);
+                ((BindingPhoneContract.Presenter) mPresenter).postCode(et_phone.getText().toString(), tv_countryCode.getText().toString().substring(1), opt);
                 break;
             case R.id.tv_binding:
                 tv_binding.setEnabled(false);
@@ -195,11 +204,12 @@ public class BindingPhoneActivity extends BaseActivity implements BindingPhoneCo
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1 && resultCode == RESULT_OK) {// 如果等于1
+        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {// 如果等于1
             // 说明是我们的那次请求
             // 目的：区分请求，不同的请求要做不同的处理
-//            countroy_code = data.getStringExtra("areaCode");
-//            tv_areaCode.setText("+" + countroy_code);
+            String areaCode = data.getStringExtra("areaCode");
+            tv_countryCode.setText("+" + areaCode);
         }
+
     }
 }

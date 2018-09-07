@@ -42,50 +42,43 @@ public class HomePageBean extends BaseResult<HomePageBean.DataBean> {
         public class GoodsListBean {
             /**
              * small : http://img.shahaizhi.com//attachment//store/5/goods/2018/6/26/14//35413158.jpg
+             * brief : 美丽的东南亚海岛风情，给你带来不一样的体验。
              * big : http://img.shahaizhi.com//attachment//store/5/goods/2018/6/26/14//35413158.jpg
              * thumbnail : http://img.shahaizhi.com/attachment//store/5/goods/2018/6/26/14//35413158.jpg
              * original : http://img.shahaizhi.com//attachment//store/5/goods/2018/6/26/14//35413158.jpg
              * buy_count : 3
              * goods_id : 30
              * brand_name :
-             * is_size : 1
+             * is_size : 0
              * store : 100
              * goods_tag :
              * price : 4999
              * name : 曼芭七日游
              * store_name :
              * sn : 004
+             * collect_number : 0
              * view_count : 0
              * mktprice : 5899
-             * brief :
              */
 
             private String small;
+            private String brief;
             private String big;
             private String thumbnail;
             private String original;
-            private String buy_count;
+            private int buy_count;
             private int goods_id;
             private String brand_name;
-            private String collect_number;
             private int is_size;
             private int store;
             private String goods_tag;
-            private int price;
+            private String price;
             private String name;
             private String store_name;
             private String sn;
+            private String collect_number;
             private int view_count;
-            private int mktprice;
-            private String brief;
-
-            public String getCollect_number() {
-                return collect_number;
-            }
-
-            public void setCollect_number(String collect_number) {
-                this.collect_number = collect_number;
-            }
+            private String mktprice;
 
             public String getSmall() {
                 return small;
@@ -93,6 +86,14 @@ public class HomePageBean extends BaseResult<HomePageBean.DataBean> {
 
             public void setSmall(String small) {
                 this.small = small;
+            }
+
+            public String getBrief() {
+                return brief;
+            }
+
+            public void setBrief(String brief) {
+                this.brief = brief;
             }
 
             public String getBig() {
@@ -119,11 +120,11 @@ public class HomePageBean extends BaseResult<HomePageBean.DataBean> {
                 this.original = original;
             }
 
-            public String getBuy_count() {
+            public int getBuy_count() {
                 return buy_count;
             }
 
-            public void setBuy_count(String buy_count) {
+            public void setBuy_count(int buy_count) {
                 this.buy_count = buy_count;
             }
 
@@ -167,11 +168,11 @@ public class HomePageBean extends BaseResult<HomePageBean.DataBean> {
                 this.goods_tag = goods_tag;
             }
 
-            public int getPrice() {
+            public String getPrice() {
                 return price;
             }
 
-            public void setPrice(int price) {
+            public void setPrice(String price) {
                 this.price = price;
             }
 
@@ -199,6 +200,14 @@ public class HomePageBean extends BaseResult<HomePageBean.DataBean> {
                 this.sn = sn;
             }
 
+            public String getCollect_number() {
+                return collect_number;
+            }
+
+            public void setCollect_number(String collect_number) {
+                this.collect_number = collect_number;
+            }
+
             public int getView_count() {
                 return view_count;
             }
@@ -207,27 +216,19 @@ public class HomePageBean extends BaseResult<HomePageBean.DataBean> {
                 this.view_count = view_count;
             }
 
-            public int getMktprice() {
+            public String getMktprice() {
                 return mktprice;
             }
 
-            public void setMktprice(int mktprice) {
+            public void setMktprice(String mktprice) {
                 this.mktprice = mktprice;
-            }
-
-            public String getBrief() {
-                return brief;
-            }
-
-            public void setBrief(String brief) {
-                this.brief = brief;
             }
         }
 
         public class BannerListBean {
             /**
              * id : 1
-             * image_url : http://ovwiqces1.bkt.clouddn.com/ltGRKvaWVSMlXQu0hYqNGS7xzqHm
+             * image_url : http://img.shahaizhi.com/FtErx-MvIjJRgzlmY8CMuhQfazIs?imageMogr2/auto-orient/thumbnail/!20p/blur/1x0
              * image_link_url : http://www.shahaizhi.com
              * create_time : 2018-07-30 11:47:30
              * create_name : admin
@@ -292,12 +293,12 @@ public class HomePageBean extends BaseResult<HomePageBean.DataBean> {
 
         public class VideoListBean {
             /**
-             * id : 1
-             * video_url : http://ovwiqces1.bkt.clouddn.com/lg80xQZKfudCwqqbpVDW8QVFdPqN
-             * video_image : http://ovwiqces1.bkt.clouddn.com/FmmFKBC8Jrrlt0TUNoAtpQ-ZoORa
-             * create_time : 2018-07-08 13:18:14
-             * video_title : 傻孩志在土耳其
-             * video_description : 本视频内容由樱蓝公司提供
+             * id : 4
+             * video_url : http://img.shahaizhi.com/390eea494f2aee4e7a2b0318ff80cae2.mp4
+             * video_image : http://img.shahaizhi.com/390eea494f2aee4e7a2b0318ff80cae2.mp4?vframe/jpg/offset/0
+             * create_time : 2018-08-29 10:03:20
+             * video_title : 傻孩志
+             * video_description : 傻孩志在摩洛哥
              * is_recommend : 1
              */
 
@@ -306,9 +307,17 @@ public class HomePageBean extends BaseResult<HomePageBean.DataBean> {
             private String video_image;
             private String create_time;
             private String video_title;
-            private String video_description;
             private String statusL;
+            private String video_description;
             private int is_recommend;
+
+            public String getStatusL() {
+                return statusL;
+            }
+
+            public void setStatusL(String statusL) {
+                this.statusL = statusL;
+            }
 
             public int getId() {
                 return id;
@@ -356,14 +365,6 @@ public class HomePageBean extends BaseResult<HomePageBean.DataBean> {
 
             public void setVideo_description(String video_description) {
                 this.video_description = video_description;
-            }
-
-            public String getStatusL() {
-                return statusL;
-            }
-
-            public void setStatusL(String statusL) {
-                this.statusL = statusL;
             }
 
             public int getIs_recommend() {

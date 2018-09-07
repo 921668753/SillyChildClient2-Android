@@ -10,6 +10,7 @@
     <LinearLayout
         style="@style/Match45"
         android:layout_marginTop="@dimen/dimen6"
+        android:visibility="gone"
         android:background="@color/whiteColors"
         android:orientation="horizontal">
 
@@ -59,7 +60,6 @@
                 android:background="@color/greenColors" />
 
         </LinearLayout>
-
 
     </LinearLayout>
 

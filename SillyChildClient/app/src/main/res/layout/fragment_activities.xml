@@ -43,10 +43,10 @@
                         android:layout_marginTop="@dimen/dimen10"
                         android:background="@mipmap/home_search_bar_bg"
                         android:focusable="true"
-                        android:visibility="gone"
                         android:focusableInTouchMode="true"
                         android:gravity="center_vertical"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:visibility="gone">
 
                         <ImageView
                             android:layout_width="@dimen/dimen14"
@@ -71,9 +71,9 @@
 
                     <cn.bingoogolapple.bgabanner.BGABanner
                         android:id="@+id/banner_ad"
-                        android:layout_marginTop="@dimen/dimen5"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/dimen200"
+                        android:layout_marginTop="@dimen/dimen5"
                         android:background="@mipmap/placeholderfigure"
                         app:banner_pageChangeDuration="2000"
                         app:banner_pointAutoPlayAble="false"
@@ -95,6 +95,7 @@
                             android:layout_width="@dimen/dimen79"
                             android:layout_height="@dimen/dimen25"
                             android:background="@mipmap/activity_box"
+                            android:gravity="center_vertical"
                             android:paddingLeft="@dimen/dimen8"
                             android:text="@string/bargain"
                             android:textColor="@color/whiteColors"
@@ -176,9 +177,9 @@
                     style="@style/MatchWrap"
                     android:layout_below="@id/ll_product1"
                     android:layout_marginTop="@dimen/dimen5"
+                    android:background="@android:color/transparent"
                     android:paddingLeft="@dimen/dimen2"
                     android:paddingRight="@dimen/dimen2"
-                    android:background="@android:color/transparent"
                     tools:listitem="@layout/item_mallhomepage" />
 
             </RelativeLayout>

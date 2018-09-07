@@ -111,6 +111,12 @@ dependencies {
     //   compile 'cn.bingoogolapple:bga-flowlayout:1.0.0@aar'
 
     /**
+     *  https://github.com/Sugarya/SpinnerLayout
+     * SpinnerLayout
+     */
+    compile 'com.sugarya:spinnerlayout:0.2.20'
+
+    /**
      * 自定义评分控件
      */
     api project(':widget')

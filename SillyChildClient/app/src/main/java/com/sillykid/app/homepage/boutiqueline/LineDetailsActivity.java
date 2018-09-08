@@ -273,7 +273,7 @@ public class LineDetailsActivity extends BaseActivity implements LineDetailsCont
                 break;
             case R.id.tv_paymentOrder:
                 showLoadingDialog(getString(R.string.submissionLoad));
-                ((DueDemandContract.Presenter) mPresenter).postAddRequirements(product_id, String.valueOf(timeDeparture),
+                ((LineDetailsContract.Presenter) mPresenter).postAddRequirements(product_id, String.valueOf(timeDeparture),
                         et_contact.getText().toString().trim(), et_contactWay.getText().toString().trim(), String.valueOf(adult_number), String.valueOf(children_number),
                         String.valueOf(baggage_number1), et_remark.getText().toString().trim(), passenger_number, baggage_number);
                 break;

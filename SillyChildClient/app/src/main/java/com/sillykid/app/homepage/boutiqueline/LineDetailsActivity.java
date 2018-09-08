@@ -8,29 +8,41 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
+import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
+import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.common.cklibrary.common.BaseActivity;
 import com.common.cklibrary.common.BindView;
 import com.common.cklibrary.common.StringConstants;
 import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.JsonUtil;
+import com.common.cklibrary.utils.MathUtil;
 import com.common.cklibrary.utils.myview.WebViewLayout;
 import com.klavor.widget.RatingBar;
 import com.kymjs.common.PreferenceHelper;
 import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
 import com.sillykid.app.constant.URLConstants;
+import com.sillykid.app.entity.homepage.airporttransportation.airportpickup.AirportPickupBean;
+import com.sillykid.app.entity.homepage.airporttransportation.airportpickup.PeopleBean;
 import com.sillykid.app.entity.homepage.boutiqueline.LineDetailsBean;
 import com.sillykid.app.homepage.airporttransportation.comments.CharterCommentsActivity;
+import com.sillykid.app.homepage.airporttransportation.dialog.CompensationChangeBackDialog;
+import com.sillykid.app.homepage.boutiqueline.dialog.CalendarControlBouncedDialog;
 import com.sillykid.app.loginregister.LoginActivity;
 import com.sillykid.app.mine.sharingceremony.dialog.ShareBouncedDialog;
 import com.sillykid.app.utils.DataUtil;
 import com.sillykid.app.utils.GlideImageLoader;
+import com.sillykid.app.utils.SoftKeyboardUtils;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.UMShareListener;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.media.UMImage;
 import com.umeng.socialize.media.UMWeb;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -94,16 +106,65 @@ public class LineDetailsActivity extends BaseActivity implements LineDetailsCont
     @BindView(id = R.id.tv_zanNum)
     private TextView tv_zanNum;
 
-    @BindView(id = R.id.tv_reservationsNow, click = true)
-    private TextView tv_reservationsNow;
+    @BindView(id = R.id.tv_paymentOrder, click = true)
+    private TextView tv_paymentOrder;
 
     private ShareBouncedDialog shareBouncedDialog = null;
+
+
+    @BindView(id = R.id.ll_compensationChangeBack, click = true)
+    private LinearLayout ll_compensationChangeBack;
+    @BindView(id = R.id.tv_compensationChangeBack)
+    private TextView tv_compensationChangeBack;
+
+    @BindView(id = R.id.tv_date, click = true)
+    private TextView tv_date;
+    private long timeDeparture = 0;
+
+    @BindView(id = R.id.et_contact)
+    private TextView et_contact;
+
+    @BindView(id = R.id.et_contactWay)
+    private TextView et_contactWay;
+
+    @BindView(id = R.id.ll_adult, click = true)
+    private LinearLayout ll_adult;
+    @BindView(id = R.id.tv_adult)
+    private TextView tv_adult;
+    private OptionsPickerView adultOptions = null;
+
+
+    @BindView(id = R.id.ll_luggage, click = true)
+    private LinearLayout ll_luggage;
+    @BindView(id = R.id.tv_luggage)
+    private TextView tv_luggage;
+    private OptionsPickerView luggageOptions = null;
+
+    @BindView(id = R.id.tv_packagePrice)
+    private TextView tv_packagePrice;
+
+    @BindView(id = R.id.tv_orderPriceNoSign)
+    private TextView tv_orderPriceNoSign;
+
+    @BindView(id = R.id.et_remark)
+    private TextView et_remark;
+
 
     private int product_id = 0;
     private String smallImg;
     private String product_name;
     private String subtitle;
     private LineDetailsBean lineDetailsBean;
+
+    private int baggage_number = 0;
+    private int passenger_number = 0;
+    private int baggage_number1 = 0;
+    private int adult_number = 0;
+    private int children_number = 0;
+    private CompensationChangeBackDialog compensationChangeBackDialog;
+    private CalendarControlBouncedDialog calendarControlBouncedDialog;
+    private String price = "";
+
 
     @Override
     public void setRootView() {
@@ -115,8 +176,28 @@ public class LineDetailsActivity extends BaseActivity implements LineDetailsCont
         super.initData();
         product_id = getIntent().getIntExtra("id", 0);
         mPresenter = new LineDetailsPresenter(this);
+        initCalendarControlBouncedDialog();
+        initDialog();
     }
 
+    /**
+     * 选择时间的控件
+     */
+    private void initCalendarControlBouncedDialog() {
+        calendarControlBouncedDialog = new CalendarControlBouncedDialog(this) {
+            @Override
+            public void timeList(String dateStr) {
+                tv_date.setText(dateStr);
+                timeDeparture = DataUtil.dateToStamp(dateStr + " 0:0:0");
+            }
+        };
+        calendarControlBouncedDialog.setCanceledOnTouchOutside(false);
+    }
+
+
+    private void initDialog() {
+        compensationChangeBackDialog = new CompensationChangeBackDialog(this);
+    }
 
     @Override
     public void initWidget() {
@@ -164,13 +245,37 @@ public class LineDetailsActivity extends BaseActivity implements LineDetailsCont
                 showLoadingDialog(getString(R.string.dataLoad));
                 ((LineDetailsContract.Presenter) mPresenter).postAddCommentLike(lineDetailsBean.getData().getReview_list().get(0).getId(), 3);
                 break;
-            case R.id.tv_reservationsNow:
-                Intent intent = new Intent(aty, DueDemandActivity.class);
-                intent.putExtra("product_id", product_id);
-                intent.putExtra("product_name", product_name);
-                intent.putExtra("recommended", tv_ratingbar.getText().toString());
-                intent.putExtra("smallImg", smallImg);
-                showActivity(aty, intent);
+            case R.id.ll_compensationChangeBack:
+                if (compensationChangeBackDialog == null) {
+                    initDialog();
+                }
+                if (compensationChangeBackDialog != null && !compensationChangeBackDialog.isShowing()) {
+                    compensationChangeBackDialog.show();
+                    compensationChangeBackDialog.setText(lineDetailsBean.getData().getService_policy_content());
+                }
+                break;
+            case R.id.tv_date:
+                SoftKeyboardUtils.packUpKeyboard(this);
+                if (calendarControlBouncedDialog == null) {
+                    initCalendarControlBouncedDialog();
+                }
+                if (calendarControlBouncedDialog != null && !calendarControlBouncedDialog.isShowing()) {
+                    calendarControlBouncedDialog.show();
+                }
+                break;
+            case R.id.ll_adult:
+                SoftKeyboardUtils.packUpKeyboard(this);
+                adultOptions.show(tv_adult);
+                break;
+            case R.id.ll_luggage:
+                SoftKeyboardUtils.packUpKeyboard(this);
+                luggageOptions.show(tv_luggage);
+                break;
+            case R.id.tv_paymentOrder:
+                showLoadingDialog(getString(R.string.submissionLoad));
+                ((DueDemandContract.Presenter) mPresenter).postAddRequirements(product_id, String.valueOf(timeDeparture),
+                        et_contact.getText().toString().trim(), et_contactWay.getText().toString().trim(), String.valueOf(adult_number), String.valueOf(children_number),
+                        String.valueOf(baggage_number1), et_remark.getText().toString().trim(), passenger_number, baggage_number);
                 break;
         }
     }
@@ -230,6 +335,13 @@ public class LineDetailsActivity extends BaseActivity implements LineDetailsCont
                     //       tv_zanNum.setText(getString(R.string.giveLike));
                     tv_zanNum.setTextColor(getResources().getColor(R.color.tabColors));
                 }
+                tv_compensationChangeBack.setText(lineDetailsBean.getData().getService_policy_title());
+                price = lineDetailsBean.getData().getPrice();
+                tv_packagePrice.setText(lineDetailsBean.getData().getPrice() + getString(R.string.yuanPerson));
+                tv_orderPriceNoSign.setText("0.00" + getString(R.string.yuan));
+                passenger_number = lineDetailsBean.getData().getPassenger_number();
+                baggage_number = lineDetailsBean.getData().getBaggage_number();
+                initOptions(passenger_number, baggage_number);
             } else {
                 ll_userevaluation1.setVisibility(View.GONE);
             }
@@ -250,10 +362,52 @@ public class LineDetailsActivity extends BaseActivity implements LineDetailsCont
                 tv_zanNum.setTextColor(getResources().getColor(R.color.greenColors));
                 ViewInject.toast(getString(R.string.zanSuccess));
             }
+        } else if (flag == 2) {
+            AirportPickupBean airportPickupBean = (AirportPickupBean) JsonUtil.getInstance().json2Obj(success, AirportPickupBean.class);
+            Intent intent = new Intent(aty, LineDetailsPayOrderActivity.class);
+            intent.putExtra("requirement_id", airportPickupBean.getData().getRequirement_id());
+            intent.putExtra("baggage_passenger", getString(R.string.pickUpNumber) + "≤" + passenger_number + "  " + getString(R.string.baggageNumber1) + "≤" + baggage_number);
+            intent.putExtra("title", getIntent().getStringExtra("title"));
+            intent.putExtra("picture", getIntent().getStringExtra("picture"));
+            showActivity(aty, intent);
         }
         dismissLoadingDialog();
+    }
 
-
+    private void initOptions(int passenger_number, int baggage_number) {
+        List<PeopleBean> list = new ArrayList<PeopleBean>();
+        for (int i = 0; i < passenger_number; i++) {
+            PeopleBean peopleBean = new PeopleBean();
+            peopleBean.setNum(i + 1);
+            peopleBean.setName(i + 1 + getString(R.string.people));
+            list.add(peopleBean);
+        }
+        adultOptions = new OptionsPickerBuilder(aty, new OnOptionsSelectListener() {
+            @Override
+            public void onOptionsSelect(int options1, int option2, int options3, View v) {
+                //返回的分别是三个级别的选中位置
+                adult_number = list.get(options1).getNum();
+                ((TextView) v).setText(list.get(options1).getPickerViewText());
+                tv_orderPriceNoSign.setText(MathUtil.keepTwo(adult_number * StringUtils.toDouble(price)) + getString(R.string.yuan));
+            }
+        }).build();
+        adultOptions.setPicker(list);
+        List<PeopleBean> list1 = new ArrayList<PeopleBean>();
+        for (int i = 0; i < baggage_number; i++) {
+            PeopleBean peopleBean = new PeopleBean();
+            peopleBean.setNum(i + 1);
+            peopleBean.setName(i + 1 + getString(R.string.jian));
+            list1.add(peopleBean);
+        }
+        luggageOptions = new OptionsPickerBuilder(aty, new OnOptionsSelectListener() {
+            @Override
+            public void onOptionsSelect(int options1, int option2, int options3, View v) {
+                //返回的分别是三个级别的选中位置
+                baggage_number1 = list1.get(options1).getNum();
+                ((TextView) v).setText(list1.get(options1).getPickerViewText());
+            }
+        }).build();
+        luggageOptions.setPicker(list1);
     }
 
     @Override
@@ -341,6 +495,14 @@ public class LineDetailsActivity extends BaseActivity implements LineDetailsCont
             shareBouncedDialog.cancel();
         }
         shareBouncedDialog = null;
+        if (compensationChangeBackDialog != null && compensationChangeBackDialog.isShowing()) {
+            compensationChangeBackDialog.cancel();
+        }
+        compensationChangeBackDialog = null;
+        if (calendarControlBouncedDialog != null && calendarControlBouncedDialog.isShowing()) {
+            calendarControlBouncedDialog.cancel();
+        }
+        calendarControlBouncedDialog = null;
 //        webViewLayout.removeAllViews();
 //        webViewLayout = null;
     }

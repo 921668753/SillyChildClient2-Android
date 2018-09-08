@@ -1407,6 +1407,8 @@
     <string name="modelCar">车型</string>
     <string name="baggageNumber">行李个数</string>
     <string name="note">备注信息</string>
+    <string name="packagePrice">套餐价格：</string>
+    <string name="yuanPerson">元/人</string>
     <string name="orderPriceNoSign">订单价格</string>
     <string name="specialDiscount">优惠折扣</string>
     <string name="needpay">需付款</string>

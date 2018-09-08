@@ -23,9 +23,9 @@ public class BoutiqueLinePresenter implements BoutiqueLineContract.Presenter {
         if (region_id > 0) {
             httpParams.put("region_id", region_id);
         }
-        if (is_recommand == 1) {
-            httpParams.put("is_recommand", is_recommand);
-        }
+//        if (is_recommand == 1) {
+//            httpParams.put("is_recommand", is_recommand);
+//        }
         httpParams.put("pageno", pageno);
         httpParams.put("pagesize", 10);
         RequestClient.getRouteList(context, httpParams, new ResponseListener<String>() {

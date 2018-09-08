@@ -21,14 +21,50 @@ public class LineDetailsBean extends BaseResult<LineDetailsBean.DataBean> {
          */
 
         private int id;
+        private int baggage_number;
+        private int passenger_number;
         private String main_picture;
         private String product_name;
         private String subtitle;
         private String recommended;
         private String product_description;
+        private String service_policy_content;
+        private String service_policy_title;
         private String price;
         private int review_count;
         private List<ReviewListBean> review_list;
+
+        public int getBaggage_number() {
+            return baggage_number;
+        }
+
+        public void setBaggage_number(int baggage_number) {
+            this.baggage_number = baggage_number;
+        }
+
+        public int getPassenger_number() {
+            return passenger_number;
+        }
+
+        public void setPassenger_number(int passenger_number) {
+            this.passenger_number = passenger_number;
+        }
+
+        public String getService_policy_content() {
+            return service_policy_content;
+        }
+
+        public void setService_policy_content(String service_policy_content) {
+            this.service_policy_content = service_policy_content;
+        }
+
+        public String getService_policy_title() {
+            return service_policy_title;
+        }
+
+        public void setService_policy_title(String service_policy_title) {
+            this.service_policy_title = service_policy_title;
+        }
 
         public int getId() {
             return id;

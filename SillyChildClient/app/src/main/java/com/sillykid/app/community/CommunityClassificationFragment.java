@@ -23,7 +23,6 @@ import com.sillykid.app.R;
 import com.sillykid.app.adapter.main.community.CommunityViewAdapter;
 import com.sillykid.app.community.dynamic.DynamicDetailsActivity;
 import com.sillykid.app.community.dynamic.DynamicVideoDetailsActivity;
-import com.sillykid.app.community.videolist.VideoListActivity;
 import com.sillykid.app.constant.NumericConstants;
 import com.sillykid.app.entity.main.community.CommunityBean;
 import com.sillykid.app.loginregister.LoginActivity;
@@ -104,7 +103,7 @@ public class CommunityClassificationFragment extends BaseFragment implements Com
     private List<CommunityBean.DataBean.ResultBean> list = null;
 
     private CommunityViewAdapter mAdapter;
-    private int itemSelected = 0;
+    private int selectPosition = 0;
 
 
     @Override
@@ -160,7 +159,7 @@ public class CommunityClassificationFragment extends BaseFragment implements Com
         super.widgetClick(v);
         switch (v.getId()) {
             case R.id.tv_newTrends:
-                aty.showActivity(aty, ReleaseDynamicActivity.class);
+                ((CommunityClassificationContract.Presenter) mPresenter).getIsLogin(aty, 4);
                 break;
             case R.id.tv_button:
                 if (tv_button.getText().toString().contains(getString(R.string.retry))) {
@@ -175,7 +174,7 @@ public class CommunityClassificationFragment extends BaseFragment implements Com
 
     public void setClassificationId(int classification_id1, int itemSelected1) {
         classification_id = classification_id1;
-        itemSelected = itemSelected1;
+        selectPosition = itemSelected1;
 //        if (mRefreshLayout != null) {
 //            mRefreshLayout.beginRefreshing();
 //        }
@@ -183,11 +182,9 @@ public class CommunityClassificationFragment extends BaseFragment implements Com
 
     @Override
     public void onRVItemClick(ViewGroup parent, View itemView, int position) {
+        selectPosition = position;
         if (mAdapter.getItem(position).getType() == 1) {//动态
-            Intent intent = new Intent(aty, DynamicDetailsActivity.class);
-            intent.putExtra("id", mAdapter.getItem(position).getId());
-            intent.putExtra("title", mAdapter.getItem(position).getPost_title());
-            aty.showActivity(aty, intent);
+            ((CommunityClassificationContract.Presenter) mPresenter).getIsLogin(aty, 1);
 //        } else if (mAdapter.getItem(position).getType() == 2 && itemSelected == 1) {//视频
 //            Intent intent = new Intent(aty, VideoListActivity.class);
 //            intent.putExtra("id", mAdapter.getItem(position).getId());
@@ -196,15 +193,9 @@ public class CommunityClassificationFragment extends BaseFragment implements Com
 //            intent.putExtra("classification_id", classification_id);
 //            aty.showActivity(aty, intent);
         } else if (mAdapter.getItem(position).getType() == 2) {//视频
-            Intent intent = new Intent(aty, DynamicVideoDetailsActivity.class);
-            intent.putExtra("id", mAdapter.getItem(position).getId());
-            intent.putExtra("title", mAdapter.getItem(position).getPost_title());
-            aty.showActivity(aty, intent);
+            ((CommunityClassificationContract.Presenter) mPresenter).getIsLogin(aty, 2);
         } else if (mAdapter.getItem(position).getType() == 3) {//攻略
-            Intent intent = new Intent(aty, DynamicDetailsActivity.class);
-            intent.putExtra("id", mAdapter.getItem(position).getId());
-            intent.putExtra("title", mAdapter.getItem(position).getPost_title());
-            aty.showActivity(aty, intent);
+            ((CommunityClassificationContract.Presenter) mPresenter).getIsLogin(aty, 3);
         }
     }
 
@@ -240,98 +231,125 @@ public class CommunityClassificationFragment extends BaseFragment implements Com
 
     @Override
     public void getSuccess(String success, int flag) {
-        isShowLoadingMore = true;
-        rl_top.setVisibility(View.VISIBLE);
-        // aty.contentFragment1.setTVnewTrendsVisible();
-        ll_commonError.setVisibility(View.GONE);
-        mRefreshLayout.setVisibility(View.VISIBLE);
-        mRefreshLayout.setPullDownRefreshEnable(true);
-        CommunityBean communityBean = (CommunityBean) JsonUtil.getInstance().json2Obj(success, CommunityBean.class);
-        if (communityBean.getData() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
-                communityBean.getData().getResultX() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
-                communityBean.getData().getResultX().size() <= 0 && mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
-            errorMsg(getString(R.string.noMovement), 1);
-            return;
-        } else if (communityBean.getData() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
-                communityBean.getData().getResultX() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
-                communityBean.getData().getResultX().size() <= 0 && mMorePageNumber > NumericConstants.START_PAGE_NUMBER) {
-            ViewInject.toast(getString(R.string.noMoreData));
-            isShowLoadingMore = false;
-            dismissLoadingDialog();
-            mRefreshLayout.endLoadingMore();
-            return;
-        }
-        if (thread != null && !thread.isAlive()) {
-            thread.interrupted();
-        }
-        thread = null;
-        thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                list.clear();
-                for (int i = 0; i < communityBean.getData().getResultX().size(); i++) {
-                    Bitmap bitmap = GlideImageLoader.load(aty, communityBean.getData().getResultX().get(i).getPicture());
-                    if (bitmap != null) {
-                        communityBean.getData().getResultX().get(i).setHeight(bitmap.getHeight());
-                        communityBean.getData().getResultX().get(i).setWidth(bitmap.getWidth());
-                    }
-                    list.add(communityBean.getData().getResultX().get(i));
-                }
-                mMorePageNumber = communityBean.getData().getCurrentPageNo();
-                totalPageNumber = communityBean.getData().getTotalPageCount();
-                aty.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
-                            mRefreshLayout.endRefreshing();
-                            mAdapter.clear();
-                            mAdapter.addNewData(list);
-                        } else {
-                            mRefreshLayout.endLoadingMore();
-                            mAdapter.addMoreData(list);
-                        }
-                        dismissLoadingDialog();
-                    }
-                });
+        if (flag == 0) {
+            isShowLoadingMore = true;
+            rl_top.setVisibility(View.VISIBLE);
+            // aty.contentFragment1.setTVnewTrendsVisible();
+            ll_commonError.setVisibility(View.GONE);
+            mRefreshLayout.setVisibility(View.VISIBLE);
+            mRefreshLayout.setPullDownRefreshEnable(true);
+            CommunityBean communityBean = (CommunityBean) JsonUtil.getInstance().json2Obj(success, CommunityBean.class);
+            if (communityBean.getData() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
+                    communityBean.getData().getResultX() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
+                    communityBean.getData().getResultX().size() <= 0 && mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
+                errorMsg(getString(R.string.noMovement), 1);
+                return;
+            } else if (communityBean.getData() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
+                    communityBean.getData().getResultX() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
+                    communityBean.getData().getResultX().size() <= 0 && mMorePageNumber > NumericConstants.START_PAGE_NUMBER) {
+                ViewInject.toast(getString(R.string.noMoreData));
+                isShowLoadingMore = false;
+                dismissLoadingDialog();
+                mRefreshLayout.endLoadingMore();
+                return;
             }
-        });
-        thread.start();
+            if (thread != null && !thread.isAlive()) {
+                thread.interrupted();
+            }
+            thread = null;
+            thread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    list.clear();
+                    for (int i = 0; i < communityBean.getData().getResultX().size(); i++) {
+                        Bitmap bitmap = GlideImageLoader.load(aty, communityBean.getData().getResultX().get(i).getPicture());
+                        if (bitmap != null) {
+                            communityBean.getData().getResultX().get(i).setHeight(bitmap.getHeight());
+                            communityBean.getData().getResultX().get(i).setWidth(bitmap.getWidth());
+                        }
+                        list.add(communityBean.getData().getResultX().get(i));
+                    }
+                    mMorePageNumber = communityBean.getData().getCurrentPageNo();
+                    totalPageNumber = communityBean.getData().getTotalPageCount();
+                    aty.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
+                                mRefreshLayout.endRefreshing();
+                                mAdapter.clear();
+                                mAdapter.addNewData(list);
+                            } else {
+                                mRefreshLayout.endLoadingMore();
+                                mAdapter.addMoreData(list);
+                            }
+                            dismissLoadingDialog();
+                        }
+                    });
+                }
+            });
+            thread.start();
+        } else if (flag == 1) {
+            Intent intent = new Intent(aty, DynamicDetailsActivity.class);
+            intent.putExtra("id", mAdapter.getItem(selectPosition).getId());
+            intent.putExtra("title", mAdapter.getItem(selectPosition).getPost_title());
+            aty.showActivity(aty, intent);
+        } else if (flag == 2) {
+            Intent intent = new Intent(aty, DynamicVideoDetailsActivity.class);
+            intent.putExtra("id", mAdapter.getItem(selectPosition).getId());
+            intent.putExtra("title", mAdapter.getItem(selectPosition).getPost_title());
+            aty.showActivity(aty, intent);
+        } else if (flag == 3) {
+            Intent intent = new Intent(aty, DynamicDetailsActivity.class);
+            intent.putExtra("id", mAdapter.getItem(selectPosition).getId());
+            intent.putExtra("title", mAdapter.getItem(selectPosition).getPost_title());
+            aty.showActivity(aty, intent);
+        } else if (flag == 4) {
+            aty.showActivity(aty, ReleaseDynamicActivity.class);
+        }
     }
 
     @Override
     public void errorMsg(String msg, int flag) {
         dismissLoadingDialog();
-        isShowLoadingMore = false;
-        rl_top.setVisibility(View.GONE);
-        if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
-            mRefreshLayout.endRefreshing();
-        } else {
-            mRefreshLayout.endLoadingMore();
-        }
-        mRefreshLayout.setPullDownRefreshEnable(false);
-        //  aty.contentFragment1.setTVnewTrendsGone();
-        mRefreshLayout.setVisibility(View.GONE);
-        ll_commonError.setVisibility(View.VISIBLE);
-        tv_hintText.setVisibility(View.VISIBLE);
-        tv_button.setVisibility(View.VISIBLE);
-        if (isLogin(msg)) {
-            img_err.setImageResource(R.mipmap.no_login);
-            tv_hintText.setVisibility(View.GONE);
-            tv_button.setText(getString(R.string.login));
-            aty.showActivity(aty, LoginActivity.class);
-            return;
-        } else if (msg.contains(getString(R.string.checkNetwork))) {
-            img_err.setImageResource(R.mipmap.no_network);
-            tv_hintText.setText(msg);
-            tv_button.setText(getString(R.string.retry));
-        } else if (msg.contains(getString(R.string.noMovement))) {
-            img_err.setImageResource(R.mipmap.no_data);
-            tv_hintText.setText(msg);
-            tv_button.setVisibility(View.GONE);
-        } else {
-            img_err.setImageResource(R.mipmap.no_data);
-            tv_hintText.setText(msg);
-            tv_button.setText(getString(R.string.retry));
+        if (flag == 0) {
+            isShowLoadingMore = false;
+            rl_top.setVisibility(View.GONE);
+            if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
+                mRefreshLayout.endRefreshing();
+            } else {
+                mRefreshLayout.endLoadingMore();
+            }
+            mRefreshLayout.setPullDownRefreshEnable(false);
+            //  aty.contentFragment1.setTVnewTrendsGone();
+            mRefreshLayout.setVisibility(View.GONE);
+            ll_commonError.setVisibility(View.VISIBLE);
+            tv_hintText.setVisibility(View.VISIBLE);
+            tv_button.setVisibility(View.VISIBLE);
+            if (isLogin(msg)) {
+                img_err.setImageResource(R.mipmap.no_login);
+                tv_hintText.setVisibility(View.GONE);
+                tv_button.setText(getString(R.string.login));
+                aty.showActivity(aty, LoginActivity.class);
+                return;
+            } else if (msg.contains(getString(R.string.checkNetwork))) {
+                img_err.setImageResource(R.mipmap.no_network);
+                tv_hintText.setText(msg);
+                tv_button.setText(getString(R.string.retry));
+            } else if (msg.contains(getString(R.string.noMovement))) {
+                img_err.setImageResource(R.mipmap.no_data);
+                tv_hintText.setText(msg);
+                tv_button.setVisibility(View.GONE);
+            } else {
+                img_err.setImageResource(R.mipmap.no_data);
+                tv_hintText.setText(msg);
+                tv_button.setText(getString(R.string.retry));
+            }
+        } else if (flag == 1 || flag == 2 || flag == 3 || flag == 4) {
+            if (isLogin(msg)) {
+                aty.showActivity(aty, LoginActivity.class);
+                return;
+            }
+            ViewInject.toast(msg);
         }
     }
 

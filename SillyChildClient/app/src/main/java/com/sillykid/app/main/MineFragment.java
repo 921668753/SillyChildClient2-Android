@@ -209,7 +209,7 @@ public class MineFragment extends BaseFragment implements MineContract.View, Vie
                 break;
 
             case R.id.ll_vipEmergencyCall:
-                aty.showActivity(aty, VipEmergencyCallActivity.class);
+                ((MineContract.Presenter) mPresenter).getIsLogin(aty, 11);
                 break;
 
 
@@ -277,6 +277,8 @@ public class MineFragment extends BaseFragment implements MineContract.View, Vie
             aty.showActivity(aty, MyFansActivity.class);
         } else if (flag == 10) {
             aty.showActivity(aty, MyReleaseActivity.class);
+        } else if (flag == 11) {
+            aty.showActivity(aty, VipEmergencyCallActivity.class);
         }
         dismissLoadingDialog();
     }

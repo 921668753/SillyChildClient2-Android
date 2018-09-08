@@ -212,55 +212,55 @@ public class HotRecommendedFragment extends BaseFragment implements BoutiqueLine
         mRefreshLayout.setVisibility(View.VISIBLE);
         mRefreshLayout.setPullDownRefreshEnable(true);
         BoutiqueLineBean boutiqueLineBean = (BoutiqueLineBean) JsonUtil.getInstance().json2Obj(success, BoutiqueLineBean.class);
-        if (boutiqueLineBean.getData() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
-                boutiqueLineBean.getData().getResult() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
-                boutiqueLineBean.getData().getResult().size() <= 0 && mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
-            errorMsg(getString(R.string.noBoutiqueLine), 0);
-            return;
-        } else if (boutiqueLineBean.getData() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
-                boutiqueLineBean.getData().getResult() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
-                boutiqueLineBean.getData().getResult().size() <= 0 && mMorePageNumber > NumericConstants.START_PAGE_NUMBER) {
-            ViewInject.toast(getString(R.string.noMoreData));
-            isShowLoadingMore = false;
-            dismissLoadingDialog();
-            mRefreshLayout.endLoadingMore();
-            return;
-        }
-        if (thread != null && !thread.isAlive()) {
-            thread.interrupted();
-        }
-        thread = null;
-        thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                list.clear();
-                for (int i = 0; i < boutiqueLineBean.getData().getResult().size(); i++) {
-                    Bitmap bitmap = GlideImageLoader.load(aty, boutiqueLineBean.getData().getResult().get(i).getMain_picture());
-                    if (bitmap != null) {
-                        boutiqueLineBean.getData().getResult().get(i).setHeight(bitmap.getHeight());
-                        boutiqueLineBean.getData().getResult().get(i).setWidth(bitmap.getWidth());
-                    }
-                    list.add(boutiqueLineBean.getData().getResult().get(i));
-                }
-                mMorePageNumber = boutiqueLineBean.getData().getCurrentPageNo();
-                totalPageNumber = boutiqueLineBean.getData().getTotalPageCount();
-                aty.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
-                            mRefreshLayout.endRefreshing();
-                            mAdapter.clear();
-                            mAdapter.addNewData(list);
-                        } else {
-                            mRefreshLayout.endLoadingMore();
-                            mAdapter.addMoreData(list);
-                        }
-                        dismissLoadingDialog();
-                    }
-                });
-            }
-        });
-        thread.start();
+//        if (boutiqueLineBean.getData() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
+//                boutiqueLineBean.getData().getResult() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
+//                boutiqueLineBean.getData().getResult().size() <= 0 && mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
+//            errorMsg(getString(R.string.noBoutiqueLine), 0);
+//            return;
+//        } else if (boutiqueLineBean.getData() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
+//                boutiqueLineBean.getData().getResult() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
+//                boutiqueLineBean.getData().getResult().size() <= 0 && mMorePageNumber > NumericConstants.START_PAGE_NUMBER) {
+//            ViewInject.toast(getString(R.string.noMoreData));
+//            isShowLoadingMore = false;
+//            dismissLoadingDialog();
+//            mRefreshLayout.endLoadingMore();
+//            return;
+//        }
+//        if (thread != null && !thread.isAlive()) {
+//            thread.interrupted();
+//        }
+//        thread = null;
+//        thread = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                list.clear();
+//                for (int i = 0; i < boutiqueLineBean.getData().getResult().size(); i++) {
+//                    Bitmap bitmap = GlideImageLoader.load(aty, boutiqueLineBean.getData().getResult().get(i).getMain_picture());
+//                    if (bitmap != null) {
+//                        boutiqueLineBean.getData().getResult().get(i).setHeight(bitmap.getHeight());
+//                        boutiqueLineBean.getData().getResult().get(i).setWidth(bitmap.getWidth());
+//                    }
+//                    list.add(boutiqueLineBean.getData().getResult().get(i));
+//                }
+//                mMorePageNumber = boutiqueLineBean.getData().getCurrentPageNo();
+//                totalPageNumber = boutiqueLineBean.getData().getTotalPageCount();
+//                aty.runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
+//                            mRefreshLayout.endRefreshing();
+//                            mAdapter.clear();
+//                            mAdapter.addNewData(list);
+//                        } else {
+//                            mRefreshLayout.endLoadingMore();
+//                            mAdapter.addMoreData(list);
+//                        }
+//                        dismissLoadingDialog();
+//                    }
+//                });
+//            }
+//        });
+//        thread.start();
 
     }
 

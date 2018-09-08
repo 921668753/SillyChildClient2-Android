@@ -156,6 +156,8 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
     private Intent intentservice;
 
     private MainReceiver mainReceiver;
+    private int videoPosition = 0;
+    private int goodsPosition = 0;
 
     @Override
     protected View inflaterView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -216,36 +218,23 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
                 ((HomePageContract.Presenter) mPresenter).getIsLogin(aty, 1);
                 break;
             case R.id.ll_airportPickup:
-                Intent intent = new Intent(aty, AirportTransportationClassificationActivity.class);
-                intent.putExtra("title", getString(R.string.airportPickup));
-                intent.putExtra("type", 1);
-                aty.showActivity(aty, intent);
+                ((HomePageContract.Presenter) mPresenter).getIsLogin(aty, 5);
                 break;
             case R.id.ll_byTheDay:
-                Intent intent1 = new Intent(aty, ByTheDayCharterClassificationActivity.class);
-                intent1.putExtra("title", getString(R.string.byTheDay));
-                intent1.putExtra("type", 3);
-                aty.showActivity(aty, intent1);
+                ((HomePageContract.Presenter) mPresenter).getIsLogin(aty, 6);
                 break;
             case R.id.ll_privateOrdering:
-                Intent intent2 = new Intent(aty, PrivateCustomActivity.class);
-                //   intent1.putExtra("newChageIcon", 2);
-                aty.showActivity(aty, intent2);
+                ((HomePageContract.Presenter) mPresenter).getIsLogin(aty, 7);
                 break;
             case R.id.ll_airportDropOff:
-                Intent intent3 = new Intent(aty, AirportTransportationClassificationActivity.class);
-                intent3.putExtra("title", getString(R.string.airportDropOff));
-                intent3.putExtra("type", 2);
-                aty.showActivity(aty, intent3);
+                ((HomePageContract.Presenter) mPresenter).getIsLogin(aty, 8);
                 break;
             case R.id.ll_hotVideo:
-                aty.showActivity(aty, HotVideoActivity.class);
+                ((HomePageContract.Presenter) mPresenter).getIsLogin(aty, 9);
                 break;
             case R.id.ll_boutiqueLine:
             case R.id.ll_boutiqueLine1:
-                Intent intent4 = new Intent(aty, BoutiqueLineActivity.class);
-                // intent4.putExtra("cat", 484);
-                aty.showActivity(aty, intent4);
+                ((HomePageContract.Presenter) mPresenter).getIsLogin(aty, 10);
                 break;
             default:
                 break;
@@ -289,6 +278,42 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
             RongIMUtil.connectRongIM(aty);
             dismissLoadingDialog();
             RongIM.getInstance().startConversation(aty, Conversation.ConversationType.CUSTOMER_SERVICE, BuildConfig.RONGYUN_KEFU, getString(R.string.sillyChildCustomerService));
+        } else if (flag == 3) {
+            Intent intent = new Intent(aty, VideoDetailsActivity.class);
+            intent.putExtra("id", hotVideoViewAdapter.getItem(videoPosition).getId());
+            intent.putExtra("title", hotVideoViewAdapter.getItem(videoPosition).getVideo_title());
+            aty.showActivity(aty, intent);
+        } else if (flag == 4) {
+            Intent intent = new Intent(aty, GoodsDetailsActivity.class);
+            intent.putExtra("goodName", boutiqueLineViewAdapter.getItem(goodsPosition).getName());
+            intent.putExtra("goodsid", boutiqueLineViewAdapter.getItem(goodsPosition).getGoods_id());
+            aty.showActivity(aty, intent);
+        } else if (flag == 5) {
+            Intent intent = new Intent(aty, AirportTransportationClassificationActivity.class);
+            intent.putExtra("title", getString(R.string.airportPickup));
+            intent.putExtra("type", 1);
+            aty.showActivity(aty, intent);
+        } else if (flag == 6) {
+            Intent intent1 = new Intent(aty, ByTheDayCharterClassificationActivity.class);
+            intent1.putExtra("title", getString(R.string.byTheDay));
+            intent1.putExtra("type", 3);
+            aty.showActivity(aty, intent1);
+        } else if (flag == 7) {
+            Intent intent2 = new Intent(aty, PrivateCustomActivity.class);
+            //   intent1.putExtra("newChageIcon", 2);
+            aty.showActivity(aty, intent2);
+        } else if (flag == 8) {
+            Intent intent3 = new Intent(aty, AirportTransportationClassificationActivity.class);
+            intent3.putExtra("title", getString(R.string.airportDropOff));
+            intent3.putExtra("type", 2);
+            aty.showActivity(aty, intent3);
+        } else if (flag == 9) {
+            aty.showActivity(aty, HotVideoActivity.class);
+        } else if (flag == 10) {
+            Intent intent4 = new Intent(aty, BoutiqueLineActivity.class);
+            // intent4.putExtra("cat", 484);
+            aty.showActivity(aty, intent4);
+
         }
         dismissLoadingDialog();
 
@@ -297,7 +322,7 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
     @Override
     public void errorMsg(String msg, int flag) {
         dismissLoadingDialog();
-        if (flag == 1 || flag == 2) {
+        if (flag == 1 || flag == 2 || flag == 3 || flag == 4 || flag == 5 || flag == 6 || flag == 7 || flag == 8 || flag == 9 || flag == 10) {
             if (isLogin(msg)) {
                 aty.showActivity(aty, LoginActivity.class);
                 return;
@@ -380,11 +405,9 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        videoPosition = i;
         if (adapterView.getId() == R.id.hlv_hotVideo) {
-            Intent intent = new Intent(aty, VideoDetailsActivity.class);
-            intent.putExtra("id", hotVideoViewAdapter.getItem(i).getId());
-            intent.putExtra("title", hotVideoViewAdapter.getItem(i).getVideo_title());
-            aty.showActivity(aty, intent);
+            ((HomePageContract.Presenter) mPresenter).getIsLogin(aty, 3);
         }
     }
 
@@ -420,10 +443,8 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
 
     @Override
     public void onRVItemClick(ViewGroup parent, View itemView, int position) {
-        Intent intent = new Intent(aty, GoodsDetailsActivity.class);
-        intent.putExtra("goodName", boutiqueLineViewAdapter.getItem(position).getName());
-        intent.putExtra("goodsid", boutiqueLineViewAdapter.getItem(position).getGoods_id());
-        aty.showActivity(aty, intent);
+        goodsPosition = position;
+        ((HomePageContract.Presenter) mPresenter).getIsLogin(aty, 4);
     }
 
     @Override

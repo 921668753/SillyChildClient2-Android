@@ -43,8 +43,6 @@ import pub.devrel.easypermissions.EasyPermissions;
 
 public class StartPageActivity extends BaseInstrumentedActivity implements StartPageContract.View, EasyPermissions.PermissionCallbacks {
     private StartPageContract.Presenter mPresenter;
-    private LocationClient mLocationClient;
-    private MyLocationListener myListener;
 
     /**
      * 高德定位
@@ -61,12 +59,6 @@ public class StartPageActivity extends BaseInstrumentedActivity implements Start
     public void initData() {
         super.initData();
         mPresenter = new StartPagePresenter(this);
-//        mLocationClient = new LocationClient(aty.getApplicationContext());
-//        myListener = new MyLocationListener();
-//        //声明LocationClient类
-//        mLocationClient.registerLocationListener(myListener);
-//        //注册监听函数
-//        ((StartPageContract.Presenter) mPresenter).initLocation(aty, mLocationClient);
     }
 
     @Override

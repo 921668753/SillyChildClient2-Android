@@ -172,15 +172,15 @@
                 android:textColor="@color/hintColors"
                 android:textSize="@dimen/textsize13" />
 
-            <TextView
-                style="@style/Match45"
-                android:layout_marginTop="@dimen/dimen6"
-                android:background="@color/whiteColors"
-                android:gravity="center_vertical"
-                android:paddingLeft="@dimen/dimen17"
-                android:text="@string/detailsLine"
-                android:textColor="@color/textColor"
-                android:textSize="@dimen/textsize15" />
+            <!--<TextView-->
+                <!--style="@style/Match45"-->
+                <!--android:layout_marginTop="@dimen/dimen6"-->
+                <!--android:background="@color/whiteColors"-->
+                <!--android:gravity="center_vertical"-->
+                <!--android:paddingLeft="@dimen/dimen17"-->
+                <!--android:text="@string/detailsLine"-->
+                <!--android:textColor="@color/textColor"-->
+                <!--android:textSize="@dimen/textsize15" />-->
 
             <com.common.cklibrary.utils.myview.WebViewLayout
                 android:id="@+id/web_view"
@@ -237,6 +237,24 @@
             <!--android:overScrollMode="never"-->
             <!--android:scrollbars="none"-->
             <!--tools:listitem="@layout/item_dynamicdetails" />-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             <TextView
                 android:id="@+id/tv_reservationsNow"

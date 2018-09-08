@@ -1,6 +1,7 @@
 package com.sillykid.app.entity.homepage.boutiqueline.fragment;
 
 import com.common.cklibrary.entity.BaseResult;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ public class BoutiqueLineBean extends BaseResult<BoutiqueLineBean.DataBean> {
          * currentPageNo : 1
          * draw : 0
          * pageSize : 10
-         * result : [{"id":4,"main_picture":"http://img.shahaizhi.com/%28null%291530269095","product_name":"大阪3天2夜精选路线","subtitle":"这个是副标题","price":0.01,"recommended":"4.8"}]
+         * result : [{"id":4,"main_picture":"http://img.shahaizhi.com/%28null%291530269095","product_name":"大阪3天2夜精选路线","subtitle":"体验亮点体验亮点体验亮点体验亮点体验亮点体验亮点 体验亮点体验亮点体验亮点体验亮点体验亮点体验亮点","price":"0.01","recommended":"4.8","size":true}]
          * totalCount : 1
          * totalPageCount : 1
          */
@@ -22,7 +23,8 @@ public class BoutiqueLineBean extends BaseResult<BoutiqueLineBean.DataBean> {
         private int pageSize;
         private int totalCount;
         private int totalPageCount;
-        private List<ResultBean> result;
+        @SerializedName("result")
+        private List<ResultBean> resultX;
 
         public int getCurrentPageNo() {
             return currentPageNo;
@@ -64,12 +66,12 @@ public class BoutiqueLineBean extends BaseResult<BoutiqueLineBean.DataBean> {
             this.totalPageCount = totalPageCount;
         }
 
-        public List<ResultBean> getResult() {
-            return result;
+        public List<ResultBean> getResultX() {
+            return resultX;
         }
 
-        public void setResult(List<ResultBean> result) {
-            this.result = result;
+        public void setResultX(List<ResultBean> resultX) {
+            this.resultX = resultX;
         }
 
         public class ResultBean {
@@ -77,9 +79,10 @@ public class BoutiqueLineBean extends BaseResult<BoutiqueLineBean.DataBean> {
              * id : 4
              * main_picture : http://img.shahaizhi.com/%28null%291530269095
              * product_name : 大阪3天2夜精选路线
-             * subtitle : 这个是副标题
+             * subtitle : 体验亮点体验亮点体验亮点体验亮点体验亮点体验亮点 体验亮点体验亮点体验亮点体验亮点体验亮点体验亮点
              * price : 0.01
              * recommended : 4.8
+             * size : true
              */
 
             private int id;
@@ -88,8 +91,7 @@ public class BoutiqueLineBean extends BaseResult<BoutiqueLineBean.DataBean> {
             private String subtitle;
             private String price;
             private String recommended;
-            private int height;
-            private int width;
+            private boolean size;
 
             public int getId() {
                 return id;
@@ -139,20 +141,12 @@ public class BoutiqueLineBean extends BaseResult<BoutiqueLineBean.DataBean> {
                 this.recommended = recommended;
             }
 
-            public int getHeight() {
-                return height;
+            public boolean isSize() {
+                return size;
             }
 
-            public void setHeight(int height) {
-                this.height = height;
-            }
-
-            public int getWidth() {
-                return width;
-            }
-
-            public void setWidth(int width) {
-                this.width = width;
+            public void setSize(boolean size) {
+                this.size = size;
             }
         }
     }

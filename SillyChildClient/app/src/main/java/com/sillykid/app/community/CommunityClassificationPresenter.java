@@ -45,5 +45,19 @@ public class CommunityClassificationPresenter implements CommunityClassification
         });
     }
 
+    @Override
+    public void getIsLogin(Context context, int flag) {
+        HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
+        RequestClient.getIsLogin(context, httpParams, new ResponseListener<String>() {
+            @Override
+            public void onSuccess(String response) {
+                mView.getSuccess(response, flag);
+            }
 
+            @Override
+            public void onFailure(String msg) {
+                mView.errorMsg(msg, 1);
+            }
+        });
+    }
 }

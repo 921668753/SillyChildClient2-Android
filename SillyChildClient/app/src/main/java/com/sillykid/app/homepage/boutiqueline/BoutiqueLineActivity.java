@@ -74,7 +74,7 @@ public class BoutiqueLineActivity extends BaseActivity {
      * 设置标题
      */
     public void initTitle() {
-        ActivityTitleUtils.initToolbar(aty, getString(R.string.route2), true, R.id.titlebar);
+        ActivityTitleUtils.initToolbar(aty, getString(R.string.boutiqueLine), true, R.id.titlebar);
     }
 
 

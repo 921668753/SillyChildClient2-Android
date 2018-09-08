@@ -1,5 +1,7 @@
 package com.sillykid.app.main;
 
+import android.content.Context;
+
 import com.common.cklibrary.common.KJActivityStack;
 import com.common.cklibrary.utils.httputil.HttpUtilParams;
 import com.common.cklibrary.utils.httputil.ResponseListener;
@@ -58,6 +60,22 @@ public class CommunityPresenter implements CommunityContract.Presenter {
             @Override
             public void onFailure(String msg) {
                 mView.errorMsg(msg, 1);
+            }
+        });
+    }
+
+    @Override
+    public void getIsLogin(Context context, int flag) {
+        HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
+        RequestClient.getIsLogin(context, httpParams, new ResponseListener<String>() {
+            @Override
+            public void onSuccess(String response) {
+                mView.getSuccess(response, flag);
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                mView.errorMsg(msg, flag);
             }
         });
     }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/MatchWrap"
     android:background="@color/whiteColors"
     android:gravity="center_vertical"
@@ -11,9 +12,9 @@
         android:id="@+id/img_boutiQueLine"
         android:layout_width="@dimen/dimen117"
         android:layout_height="@dimen/dimen97"
-        android:scaleType="fitXY"
         android:layout_marginBottom="@dimen/dimen16"
         android:layout_marginTop="@dimen/dimen16"
+        android:scaleType="fitXY"
         android:src="@mipmap/placeholderfigure" />
 
     <LinearLayout
@@ -70,16 +71,28 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="@dimen/dimen27"
-                android:layout_height="match_parent"
-                android:gravity="center"
+                style="@style/WrapMatch"
+                android:gravity="center|right"
                 android:orientation="vertical">
 
-                <ImageView
-                    android:layout_width="@dimen/dimen13"
-                    android:layout_height="@dimen/dimen13"
-                    android:layout_marginTop="@dimen/dimen3"
-                    android:src="@mipmap/hp_collection" />
+                <!--<ImageView-->
+                <!--android:id="@+id/img_collection"-->
+                <!--android:layout_width="@dimen/dimen13"-->
+                <!--android:layout_height="@dimen/dimen13"-->
+                <!--android:layout_marginTop="@dimen/dimen3"-->
+                <!--android:src="@mipmap/hp_collection" />-->
+
+                <com.klavor.widget.RatingBar
+                    android:id="@+id/ratingbar"
+                    android:layout_width="@dimen/dimen112"
+                    android:layout_height="@dimen/dimen17"
+                    android:layout_marginTop="@dimen/dimen11"
+                    app:isIndicator="true"
+                    app:numStars="5"
+                    app:progress="@mipmap/img_empty_stars"
+                    app:progressed="@mipmap/img_real_stars"
+                    app:spacing="@dimen/dimen5"
+                    app:stepSize="0.1" />
 
                 <TextView
                     android:id="@+id/tv_collectionNum"
@@ -88,7 +101,7 @@
                     android:singleLine="true"
                     android:text="189"
                     android:textColor="@color/fF5656Colors"
-                    android:textSize="@dimen/textsize8" />
+                    android:textSize="@dimen/textsize9" />
 
             </LinearLayout>
 

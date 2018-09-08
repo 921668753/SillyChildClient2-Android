@@ -1,6 +1,7 @@
 package com.sillykid.app.main;
 
 import android.app.Activity;
+import android.content.Context;
 
 import com.baidu.location.LocationClient;
 import com.common.cklibrary.common.BasePresenter;
@@ -23,6 +24,10 @@ public interface CommunityContract {
          */
         void getPostList(String post_title, String nickname, int classification_id, int pageno);
 
+        /**
+         * 获取会员登录状态
+         */
+        void getIsLogin(Context context, int flag);
     }
 
     interface View extends BaseView<Presenter, String> {

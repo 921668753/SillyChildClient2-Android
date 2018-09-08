@@ -1,10 +1,9 @@
 package com.sillykid.app.homepage.boutiqueline.fragment;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,12 +24,8 @@ import com.sillykid.app.homepage.boutiqueline.BoutiqueLineActivity;
 import com.sillykid.app.homepage.boutiqueline.LineDetailsActivity;
 import com.sillykid.app.homepage.boutiqueline.selectcity.SelectCityActivity;
 import com.sillykid.app.loginregister.LoginActivity;
-import com.sillykid.app.utils.GlideImageLoader;
-import com.sillykid.app.utils.SpacesItemDecoration;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import cn.bingoogolapple.androidcommon.adapter.BGADivider;
 import cn.bingoogolapple.androidcommon.adapter.BGAOnRVItemClickListener;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 
@@ -86,13 +81,7 @@ public class CitySelectionFragment extends BaseFragment implements BoutiqueLineC
      */
     private boolean isShowLoadingMore = false;
 
-    private SpacesItemDecoration spacesItemDecoration = null;
-
     private int is_recommand = 1;
-
-    private Thread thread = null;
-
-    private List<BoutiqueLineBean.DataBean.ResultBean> list = null;
 
     private BoutiqueLineViewAdapter mAdapter;
 
@@ -110,12 +99,9 @@ public class CitySelectionFragment extends BaseFragment implements BoutiqueLineC
     @Override
     protected void initData() {
         super.initData();
-        list = new ArrayList<BoutiqueLineBean.DataBean.ResultBean>();
         mPresenter = new BoutiqueLinePresenter(this);
-        spacesItemDecoration = new SpacesItemDecoration(7, 14);
         mAdapter = new BoutiqueLineViewAdapter(recyclerview);
     }
-
 
     @Override
     protected void initWidget(View parentView) {
@@ -129,23 +115,18 @@ public class CitySelectionFragment extends BaseFragment implements BoutiqueLineC
      * 设置RecyclerView控件部分属性
      */
     private void initRecyclerView() {
-        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
-        layoutManager.setAutoMeasureEnabled(true);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(aty);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerview.setLayoutManager(layoutManager);
-        recyclerview.setHasFixedSize(true);
-        recyclerview.setNestedScrollingEnabled(false);
         //设置item之间的间隔
-        recyclerview.addItemDecoration(spacesItemDecoration);
+        recyclerview.addItemDecoration(BGADivider.newShapeDivider()
+                .setStartSkipCount(1)
+                .setSizeDp(1)
+                .setColorResource(R.color.background, false));
+        recyclerview.setNestedScrollingEnabled(false);
         recyclerview.setAdapter(mAdapter);
         //    layoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);//不设置的话，图片闪烁错位，有可能有整列错位的情况。
         mAdapter.setOnRVItemClickListener(this);
-        recyclerview.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-                layoutManager.invalidateSpanAssignments();
-            }
-        });
     }
 
     @Override
@@ -212,55 +193,30 @@ public class CitySelectionFragment extends BaseFragment implements BoutiqueLineC
         mRefreshLayout.setPullDownRefreshEnable(true);
         BoutiqueLineBean boutiqueLineBean = (BoutiqueLineBean) JsonUtil.getInstance().json2Obj(success, BoutiqueLineBean.class);
         if (boutiqueLineBean.getData() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
-                boutiqueLineBean.getData().getResult() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
-                boutiqueLineBean.getData().getResult().size() <= 0 && mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
+                boutiqueLineBean.getData().getResultX() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
+                boutiqueLineBean.getData().getResultX().size() <= 0 && mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
             errorMsg(getString(R.string.noBoutiqueLine), 0);
             return;
         } else if (boutiqueLineBean.getData() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
-                boutiqueLineBean.getData().getResult() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
-                boutiqueLineBean.getData().getResult().size() <= 0 && mMorePageNumber > NumericConstants.START_PAGE_NUMBER) {
+                boutiqueLineBean.getData().getResultX() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
+                boutiqueLineBean.getData().getResultX().size() <= 0 && mMorePageNumber > NumericConstants.START_PAGE_NUMBER) {
             ViewInject.toast(getString(R.string.noMoreData));
             isShowLoadingMore = false;
             dismissLoadingDialog();
             mRefreshLayout.endLoadingMore();
             return;
         }
-        if (thread != null && !thread.isAlive()) {
-            thread.interrupted();
+        mMorePageNumber = boutiqueLineBean.getData().getCurrentPageNo();
+        totalPageNumber = boutiqueLineBean.getData().getTotalPageCount();
+        if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
+            mRefreshLayout.endRefreshing();
+            mAdapter.clear();
+            mAdapter.addNewData(boutiqueLineBean.getData().getResultX());
+        } else {
+            mRefreshLayout.endLoadingMore();
+            mAdapter.addMoreData(boutiqueLineBean.getData().getResultX());
         }
-        thread = null;
-        thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                list.clear();
-                for (int i = 0; i < boutiqueLineBean.getData().getResult().size(); i++) {
-                    Bitmap bitmap = GlideImageLoader.load(aty, boutiqueLineBean.getData().getResult().get(i).getMain_picture());
-                    if (bitmap != null) {
-                        boutiqueLineBean.getData().getResult().get(i).setHeight(bitmap.getHeight());
-                        boutiqueLineBean.getData().getResult().get(i).setWidth(bitmap.getWidth());
-                    }
-                    list.add(boutiqueLineBean.getData().getResult().get(i));
-                }
-                mMorePageNumber = boutiqueLineBean.getData().getCurrentPageNo();
-                totalPageNumber = boutiqueLineBean.getData().getTotalPageCount();
-                aty.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
-                            mRefreshLayout.endRefreshing();
-                            mAdapter.clear();
-                            mAdapter.addNewData(list);
-                        } else {
-                            mRefreshLayout.endLoadingMore();
-                            mAdapter.addMoreData(list);
-                        }
-                        dismissLoadingDialog();
-                    }
-                });
-            }
-        });
-        thread.start();
-
+        dismissLoadingDialog();
     }
 
     @Override
@@ -313,12 +269,6 @@ public class CitySelectionFragment extends BaseFragment implements BoutiqueLineC
     @Override
     public void onDestroy() {
         super.onDestroy();
-        list.clear();
-        list = null;
-        if (thread != null) {
-            thread.interrupted();
-        }
-        thread = null;
         mAdapter.clear();
         mAdapter = null;
     }

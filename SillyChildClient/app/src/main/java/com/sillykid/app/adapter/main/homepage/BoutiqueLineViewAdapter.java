@@ -61,12 +61,14 @@ public class BoutiqueLineViewAdapter extends BGARecyclerViewAdapter<GoodsListBea
         /**
          * 收藏数
          */
-        viewHolderHelper.setText(R.id.tv_collectionNum, listBean.getCollect_number());
+        viewHolderHelper.setVisibility(R.id.ll_attentionNum, View.VISIBLE);
+        viewHolderHelper.setVisibility(R.id.ll_collection, View.GONE);
+        viewHolderHelper.setText(R.id.tv_attentionNum, listBean.getCollect_number());
 
         /**
          * 关注数
          */
-        viewHolderHelper.setVisibility(R.id.tv_attentionNum, View.GONE);
+        //   viewHolderHelper.setVisibility(R.id.tv_attentionNum, View.GONE);
 //        viewHolderHelper.setText(R.id.tv_attentionNum, listBean.getPraiseNum());
 
     }

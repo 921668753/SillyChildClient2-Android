@@ -47,17 +47,26 @@
             android:orientation="horizontal">
 
             <LinearLayout
+                android:id="@+id/ll_attentionNum"
                 android:layout_width="@dimen/dimen37"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:visibility="gone">
 
+                <!--<ImageView-->
+                <!--android:layout_width="@dimen/dimen13"-->
+                <!--android:layout_height="@dimen/dimen12"-->
+                <!--android:layout_marginTop="@dimen/dimen3"-->
+                <!--android:src="@mipmap/hp_attention" />-->
+
                 <ImageView
+                    android:id="@+id/img_collection"
                     android:layout_width="@dimen/dimen13"
-                    android:layout_height="@dimen/dimen12"
+                    android:layout_height="@dimen/dimen13"
                     android:layout_marginTop="@dimen/dimen3"
-                    android:src="@mipmap/hp_attention" />
+                    android:src="@mipmap/hp_collection" />
+
 
                 <TextView
                     android:id="@+id/tv_attentionNum"
@@ -71,6 +80,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/ll_collection"
                 style="@style/WrapMatch"
                 android:gravity="center|right"
                 android:orientation="vertical">

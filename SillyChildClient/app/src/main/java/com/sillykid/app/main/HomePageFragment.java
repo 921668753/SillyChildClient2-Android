@@ -2,6 +2,7 @@ package com.sillykid.app.main;
 
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
@@ -59,7 +60,9 @@ import cn.bingoogolapple.androidcommon.adapter.BGAOnRVItemClickListener;
 import cn.bingoogolapple.bgabanner.BGABanner;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 import io.rong.imkit.RongIM;
+import io.rong.imlib.RongIMClient;
 import io.rong.imlib.model.Conversation;
+import io.rong.imlib.model.UserInfo;
 import pub.devrel.easypermissions.EasyPermissions;
 
 /**
@@ -278,6 +281,7 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
             RongIMUtil.connectRongIM(aty);
             dismissLoadingDialog();
             RongIM.getInstance().startConversation(aty, Conversation.ConversationType.CUSTOMER_SERVICE, BuildConfig.RONGYUN_KEFU, getString(R.string.sillyChildCustomerService));
+            RongIM.getInstance().setConversationToTop(Conversation.ConversationType.CUSTOMER_SERVICE, BuildConfig.RONGYUN_KEFU, true);
         } else if (flag == 3) {
             Intent intent = new Intent(aty, VideoDetailsActivity.class);
             intent.putExtra("id", hotVideoViewAdapter.getItem(videoPosition).getId());

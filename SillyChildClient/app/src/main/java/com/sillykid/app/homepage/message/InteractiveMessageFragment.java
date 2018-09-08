@@ -16,7 +16,6 @@ import com.common.cklibrary.common.BindView;
 import com.common.cklibrary.utils.rx.MsgEvent;
 import com.sillykid.app.R;
 import com.sillykid.app.loginregister.LoginActivity;
-import com.sillykid.app.main.MainActivity;
 
 import io.rong.imkit.fragment.ConversationListFragment;
 import io.rong.imlib.model.Conversation;
@@ -97,6 +96,7 @@ public class InteractiveMessageFragment extends BaseFragment implements Interact
             ConversationListFragment conversationListFragment = new ConversationListFragment();
             Uri uri = Uri.parse("rong://" + getActivity().getApplicationInfo().packageName).buildUpon()
                     .appendPath("conversationlist")
+                    .appendQueryParameter(Conversation.ConversationType.CUSTOMER_SERVICE.getName(), "false") //设置私聊会话是否聚合显示
                     .appendQueryParameter(Conversation.ConversationType.PRIVATE.getName(), "false") //设置私聊会话是否聚合显示
                     .build();
             conversationListFragment.setUri(uri);

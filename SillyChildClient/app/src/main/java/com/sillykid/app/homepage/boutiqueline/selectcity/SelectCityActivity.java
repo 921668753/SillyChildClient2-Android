@@ -4,7 +4,10 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.common.cklibrary.common.BaseActivity;
 import com.common.cklibrary.common.BindView;
@@ -14,11 +17,8 @@ import com.common.cklibrary.utils.JsonUtil;
 import com.sillykid.app.R;
 import com.sillykid.app.adapter.homepage.airporttransportation.AirportTransportationClassificationListViewAdapter;
 import com.sillykid.app.adapter.homepage.boutiqueline.selectcity.SelectCityGridViewAdapter;
-import com.sillykid.app.adapter.homepage.bythedaycharter.ByTheDayCharterClassificationGridViewAdapter;
 import com.sillykid.app.entity.homepage.airporttransportation.AirportCountryListBean;
 import com.sillykid.app.entity.homepage.boutiqueline.selectcity.SelectCityBean;
-import com.sillykid.app.entity.homepage.bythedaycharter.RegionByCountryIdBean;
-import com.sillykid.app.homepage.bythedaycharter.SelectProductActivity;
 
 import java.util.List;
 
@@ -32,6 +32,21 @@ public class SelectCityActivity extends BaseActivity implements SelectCityContra
 
     @BindView(id = R.id.gv_countriesClassification)
     private GridView gv_countriesClassification;
+
+    /**
+     * 错误提示页
+     */
+    @BindView(id = R.id.ll_commonError)
+    private LinearLayout ll_commonError;
+
+    @BindView(id = R.id.img_err)
+    private ImageView img_err;
+
+    @BindView(id = R.id.tv_hintText)
+    private TextView tv_hintText;
+
+    @BindView(id = R.id.tv_button, click = true)
+    private TextView tv_button;
 
     private AirportTransportationClassificationListViewAdapter mListViewAdapter = null;
 
@@ -72,6 +87,18 @@ public class SelectCityActivity extends BaseActivity implements SelectCityContra
     }
 
     @Override
+    public void widgetClick(View v) {
+        super.widgetClick(v);
+        switch (v.getId()) {
+            case R.id.tv_button:
+                if (tv_button.getText().toString().contains(getString(R.string.retry))) {
+                    ((SelectCityContract.Presenter) mPresenter).getRouteRegion(airportCountryBean.getCountry_id());
+                }
+                break;
+        }
+    }
+
+    @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
         if (adapterView.getId() == R.id.lv_countries) {
             selectClassification(position);
@@ -101,6 +128,12 @@ public class SelectCityActivity extends BaseActivity implements SelectCityContra
             }
         } else if (flag == 1) {
             SelectCityBean selectCityBean = (SelectCityBean) JsonUtil.getInstance().json2Obj(success, SelectCityBean.class);
+            if (selectCityBean.getData() == null || selectCityBean.getData().size() <= 0) {
+                errorMsg(getString(R.string.noData), 1);
+                return;
+            }
+            ll_commonError.setVisibility(View.GONE);
+            gv_countriesClassification.setVisibility(View.VISIBLE);
             mGridViewAdapter.clear();
             mGridViewAdapter.addNewData(selectCityBean.getData());
             dismissLoadingDialog();
@@ -129,6 +162,24 @@ public class SelectCityActivity extends BaseActivity implements SelectCityContra
     @Override
     public void errorMsg(String msg, int flag) {
         dismissLoadingDialog();
+        if (flag == 1) {
+            ll_commonError.setVisibility(View.VISIBLE);
+            gv_countriesClassification.setVisibility(View.GONE);
+            if (msg.contains(getString(R.string.checkNetwork))) {
+                img_err.setImageResource(R.mipmap.no_network);
+                tv_hintText.setText(msg);
+                tv_button.setText(getString(R.string.retry));
+            } else if (msg.contains(getString(R.string.noData))) {
+                img_err.setImageResource(R.mipmap.no_data);
+                tv_hintText.setText(msg);
+                tv_button.setVisibility(View.GONE);
+            } else {
+                img_err.setImageResource(R.mipmap.no_data);
+                tv_hintText.setText(msg);
+                tv_button.setText(getString(R.string.retry));
+            }
+            return;
+        }
         ViewInject.toast(msg);
     }
 

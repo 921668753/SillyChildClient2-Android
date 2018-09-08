@@ -23,7 +23,6 @@ public class BannerDetailsActivity extends BaseActivity {
         setContentView(R.layout.activity_bannerdetails);
     }
 
-
     @Override
     public void initWidget() {
         super.initWidget();

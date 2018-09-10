@@ -110,12 +110,21 @@ public class CharterOrderBean extends BaseResult<CharterOrderBean.DataBean> {
             private String title;
             private String phone;
             private String rong_id;
+            private int service_director_state;
             private String order_amount;
             private String start_time;
             private String end_time;
             private String pay_amount;
             private String dis_amount;
             private String service_director;
+
+            public int getService_director_state() {
+                return service_director_state;
+            }
+
+            public void setService_director_state(int service_director_state) {
+                this.service_director_state = service_director_state;
+            }
 
             public int getOrder_id() {
                 return order_id;

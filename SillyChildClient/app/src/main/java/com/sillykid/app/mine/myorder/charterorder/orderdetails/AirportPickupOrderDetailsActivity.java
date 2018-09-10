@@ -103,6 +103,7 @@ public class AirportPickupOrderDetailsActivity extends BaseActivity implements E
     private int order_id;
     private String phone;
     private AirportPickupOrderDetailsBean airportPickupOrderDetailsBean;
+    private int service_director_state = 0;
 
     @Override
     public void setRootView() {
@@ -114,6 +115,7 @@ public class AirportPickupOrderDetailsActivity extends BaseActivity implements E
         super.initData();
         mPresenter = new CharterOrderDetailsPresenter(this);
         order_number = getIntent().getStringExtra("order_number");
+        service_director_state = getIntent().getIntExtra("service_director_state", 0);
         showLoadingDialog(getString(R.string.dataLoad));
         ((CharterOrderDetailsContract.Presenter) mPresenter).getCharterOrderDetails(order_number);
     }
@@ -228,6 +230,13 @@ public class AirportPickupOrderDetailsActivity extends BaseActivity implements E
             if (airportPickupOrderDetailsBean.getData().getStatus() == 0) {
                 ll_actualPayment.setVisibility(View.GONE);
                 ll_confirmPayment.setVisibility(View.VISIBLE);
+                tv_callUp.setVisibility(View.GONE);
+                tv_sendPrivateChat.setVisibility(View.GONE);
+                tv_appraiseOrder.setVisibility(View.GONE);
+                tv_additionalComments.setVisibility(View.GONE);
+            } else if (airportPickupOrderDetailsBean.getData().getStatus() == 1 && service_director_state == 0) {
+                ll_actualPayment.setVisibility(View.VISIBLE);
+                ll_confirmPayment.setVisibility(View.GONE);
                 tv_callUp.setVisibility(View.GONE);
                 tv_sendPrivateChat.setVisibility(View.GONE);
                 tv_appraiseOrder.setVisibility(View.GONE);

@@ -98,6 +98,7 @@ public class BoutiqueLineOrderDetailsActivity extends BaseActivity implements Ea
     private int order_id;
     private String phone;
     private BoutiqueLineOrderDetailsBean boutiqueLineOrderDetailsBean;
+    private int service_director_state = 0;
 
 
     @Override
@@ -110,6 +111,7 @@ public class BoutiqueLineOrderDetailsActivity extends BaseActivity implements Ea
         super.initData();
         mPresenter = new CharterOrderDetailsPresenter(this);
         order_number = getIntent().getStringExtra("order_number");
+        service_director_state = getIntent().getIntExtra("service_director_state", 0);
         showLoadingDialog(getString(R.string.dataLoad));
         ((CharterOrderDetailsContract.Presenter) mPresenter).getCharterOrderDetails(order_number);
     }
@@ -226,7 +228,14 @@ public class BoutiqueLineOrderDetailsActivity extends BaseActivity implements Ea
                 tv_sendPrivateChat.setVisibility(View.GONE);
                 tv_appraiseOrder.setVisibility(View.GONE);
                 tv_additionalComments.setVisibility(View.GONE);
-            } else if (boutiqueLineOrderDetailsBean.getData().getStatus() == 1) {
+            } else if (boutiqueLineOrderDetailsBean.getData().getStatus() == 1 && service_director_state == 0) {
+                ll_actualPayment.setVisibility(View.VISIBLE);
+                ll_confirmPayment.setVisibility(View.GONE);
+                tv_callUp.setVisibility(View.GONE);
+                tv_sendPrivateChat.setVisibility(View.GONE);
+                tv_appraiseOrder.setVisibility(View.GONE);
+                tv_additionalComments.setVisibility(View.GONE);
+            } else if (boutiqueLineOrderDetailsBean.getData().getStatus() == 1 && service_director_state == 1) {
                 ll_actualPayment.setVisibility(View.VISIBLE);
                 ll_confirmPayment.setVisibility(View.GONE);
                 tv_callUp.setVisibility(View.VISIBLE);

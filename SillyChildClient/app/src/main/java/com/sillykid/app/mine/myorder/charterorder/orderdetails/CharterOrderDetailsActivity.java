@@ -96,6 +96,7 @@ public class CharterOrderDetailsActivity extends BaseActivity implements EasyPer
     private ServicePhoneDialog servicePhoneDialog = null;
     private String order_number;
     private CharterOrderDetailsBean charterOrderDetailsBean;
+    private int service_director_state = 0;
 
     @Override
     public void setRootView() {
@@ -107,6 +108,7 @@ public class CharterOrderDetailsActivity extends BaseActivity implements EasyPer
         super.initData();
         mPresenter = new CharterOrderDetailsPresenter(this);
         order_number = getIntent().getStringExtra("order_number");
+        service_director_state = getIntent().getIntExtra("service_director_state", 0);
         showLoadingDialog(getString(R.string.dataLoad));
         ((CharterOrderDetailsContract.Presenter) mPresenter).getCharterOrderDetails(order_number);
     }
@@ -222,7 +224,14 @@ public class CharterOrderDetailsActivity extends BaseActivity implements EasyPer
                 tv_sendPrivateChat.setVisibility(View.GONE);
                 tv_appraiseOrder.setVisibility(View.GONE);
                 tv_additionalComments.setVisibility(View.GONE);
-            } else if (charterOrderDetailsBean.getData().getStatus() == 1) {
+            } else if (charterOrderDetailsBean.getData().getStatus() == 1 && service_director_state == 0) {
+                ll_actualPayment.setVisibility(View.VISIBLE);
+                ll_confirmPayment.setVisibility(View.GONE);
+                tv_callUp.setVisibility(View.GONE);
+                tv_sendPrivateChat.setVisibility(View.GONE);
+                tv_appraiseOrder.setVisibility(View.GONE);
+                tv_additionalComments.setVisibility(View.GONE);
+            } else if (charterOrderDetailsBean.getData().getStatus() == 1 && service_director_state == 1) {
                 ll_actualPayment.setVisibility(View.VISIBLE);
                 ll_confirmPayment.setVisibility(View.GONE);
                 tv_callUp.setVisibility(View.VISIBLE);

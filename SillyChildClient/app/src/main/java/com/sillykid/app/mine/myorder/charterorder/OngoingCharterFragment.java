@@ -143,6 +143,7 @@ public class OngoingCharterFragment extends BaseFragment implements AdapterView.
         } else if (mAdapter.getItem(i).getProduct_set_cd() == 5) {
             intent.setClass(aty, BoutiqueLineOrderDetailsActivity.class);
         }
+        intent.putExtra("service_director_state", mAdapter.getItem(i).getService_director_state());
         intent.putExtra("order_number", mAdapter.getItem(i).getOrder_number());
         aty.showActivity(aty, intent);
     }

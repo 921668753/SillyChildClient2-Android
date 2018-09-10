@@ -50,10 +50,14 @@ public class CharterOrderAdapter extends BGAAdapterViewAdapter<ResultBean> {
             case 1://进行中
                 viewHolderHelper.setText(R.id.tv_charterStatus, R.string.ongoing);
                 viewHolderHelper.setVisibility(R.id.tv_confirmPayment, View.GONE);
-                viewHolderHelper.setVisibility(R.id.tv_callUp, View.VISIBLE);
-                viewHolderHelper.setVisibility(R.id.tv_sendPrivateChat, View.VISIBLE);
+                viewHolderHelper.setVisibility(R.id.tv_callUp, View.GONE);
+                viewHolderHelper.setVisibility(R.id.tv_sendPrivateChat, View.GONE);
                 viewHolderHelper.setVisibility(R.id.tv_appraiseOrder, View.GONE);
                 viewHolderHelper.setVisibility(R.id.tv_additionalComments, View.GONE);
+                if (model.getService_director_state() == 1) {
+                    viewHolderHelper.setVisibility(R.id.tv_callUp, View.VISIBLE);
+                    viewHolderHelper.setVisibility(R.id.tv_sendPrivateChat, View.VISIBLE);
+                }
                 break;
             case 2://待评价
                 viewHolderHelper.setText(R.id.tv_charterStatus, R.string.evaluate);
@@ -94,7 +98,11 @@ public class CharterOrderAdapter extends BGAAdapterViewAdapter<ResultBean> {
         } else if (model.getProduct_set_cd() == 4 || model.getProduct_set_cd() == 5) {
             viewHolderHelper.setText(R.id.tv_serviceTime, DataUtil.formatData(StringUtils.toLong(model.getService_start_time()), "yyyy-MM-dd"));
         }
-        viewHolderHelper.setText(R.id.tv_serviceCompany, model.getService_director());
+        if (model.getService_director_state() == 0 && model.getStatus() == 1) {
+            viewHolderHelper.setText(R.id.tv_serviceCompany, mContext.getString(R.string.singleWaitingList));
+        } else {
+            viewHolderHelper.setText(R.id.tv_serviceCompany, model.getService_director());
+        }
         viewHolderHelper.setText(R.id.tv_orderMoney, mContext.getString(R.string.renminbi) + model.getOrder_amount());
         viewHolderHelper.setText(R.id.tv_money, mContext.getString(R.string.renminbi) + model.getPay_amount());
     }

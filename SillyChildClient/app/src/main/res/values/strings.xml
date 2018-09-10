@@ -1363,6 +1363,7 @@
     <string name="doNotChat">数据缺失，无法发起私聊</string>
     <string name="doNotPay">订单信息缺失，无法发起支付</string>
     <string name="sendSingle">待派单</string>
+    <string name="singleWaitingList">司导待接单</string>
     <string name="sendSingleWaitingList">已派单待接单</string>
     <string name="orderFinishPrompt">您确定要结束该订单吗？请确认该订单所提供的服务已经完成。</string>
     <string name="saveCoordinate">为保证您的利益，系统记录您和司导的经纬度</string>

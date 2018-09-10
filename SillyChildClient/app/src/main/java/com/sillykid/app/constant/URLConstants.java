@@ -18,8 +18,8 @@ public class URLConstants {
      * 测试服务器地址URL
      */
     // public static String SERVERURL = "http://xiaowei.local.keiousoft.com/";
-    public static String SERVERURL = "http://192.168.1.247:8080/";
-    //  public static String SERVERURL = "http://user.api.shahaizhi.com/";
+//    public static String SERVERURL = "http://192.168.1.247:8080/";
+    public static String SERVERURL = "http://user.api.shahaizhi.com/";
     public static String SERVERURL1 = "http://www.shahaizhi.tech/";
 
     /**

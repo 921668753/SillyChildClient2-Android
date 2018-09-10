@@ -82,12 +82,10 @@ public class BindingPhonePresenter implements BindingPhoneContract.Presenter {
             mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.hintPhoneText), 0);
             return;
         }
-
-//        if (phone.length() != 11) {
-//            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.hintPhoneText1), 0);
-//            return;
-//        }
-
+        if (phone.startsWith("0")) {
+            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.hintPhoneText2), 0);
+            return;
+        }
         if (StringUtils.isEmpty(code)) {
             mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.errorCode), 0);
             return;

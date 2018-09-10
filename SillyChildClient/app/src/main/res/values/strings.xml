@@ -38,11 +38,12 @@
     <string name="alphanumeric2">ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789</string>
     <string name="accountNumber">帐号</string>
     <string name="accountErroe">帐号错误</string>
-    <string name="hintAccountText">请输入号码</string>
+    <string name="hintAccountText">请输入手机号码</string>
     <string name="inputPhone">请输入正确的帐号</string>
     <string name="password">密码</string>
     <string name="passwordErroe">密码错误</string>
     <string name="hintPasswordText">请输入字母数字或字符至少两种</string>
+    <string name="hintPasswordText5">请输入密码</string>
     <string name="hintPasswordText3">请输入确认密码</string>
     <string name="hintPasswordText4">请再次输入密码</string>
     <string name="hintPasswordText2">账号或密码错误</string>
@@ -77,6 +78,7 @@
     <!--注册-->
     <string name="registerPhone">手机号注册</string>
     <string name="hintPhoneText">请输入手机号</string>
+    <string name="hintPhoneText2">国际号码前无需加0</string>
     <string name="hintPhoneText1">请输入正确的手机号</string>
     <string name="registerMailBox">邮箱号注册</string>
     <string name="email">邮箱号</string>

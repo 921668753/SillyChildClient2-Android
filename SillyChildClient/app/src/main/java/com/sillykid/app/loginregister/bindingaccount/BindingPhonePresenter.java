@@ -46,10 +46,10 @@ public class BindingPhonePresenter implements BindingPhoneContract.Presenter {
             mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.hintPhoneText), 0);
             return;
         }
-//        if (phone.length() != 11) {
-//            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.hintPhoneText1), 0);
-//            return;
-//        }
+        if (!countryCode.equals("86") && phone.startsWith("0")) {
+            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.hintPhoneText2), 0);
+            return;
+        }
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
         // Map<String, Object> map = new HashMap<String, Object>();
         httpParams.put("phone", phone);

@@ -19,7 +19,6 @@
                 android:scaleType="fitXY"
                 android:src="@mipmap/loginbackground" />
 
-
             <LinearLayout
                 android:id="@+id/ll_login"
                 style="@style/MatchWrap"
@@ -114,7 +113,7 @@
                         android:hint="@string/hintPasswordText"
                         android:inputType="textPassword"
                         android:maxLength="20"
-                        android:paddingLeft="@dimen/dimen57"
+                        android:paddingLeft="@dimen/dimen10"
                         android:paddingTop="@dimen/dimen10"
                         android:singleLine="true"
                         android:textColorHint="@color/hintColors"
@@ -147,15 +146,31 @@
                     style="@style/DividerWidth"
                     android:layout_marginTop="@dimen/dimen3" />
 
-                <TextView
-                    android:id="@+id/tv_forgotPassword"
-                    style="@style/WrapWrap"
-                    android:layout_gravity="right"
-                    android:paddingBottom="@dimen/dimen20"
-                    android:paddingTop="@dimen/dimen20"
-                    android:text="@string/forgotPassword"
-                    android:textColor="@color/hintColors"
-                    android:textSize="@dimen/textsize13" />
+                <LinearLayout
+                    style="@style/MatchWrap"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_register"
+                        style="@style/WrapWrap"
+                        android:paddingBottom="@dimen/dimen20"
+                        android:paddingTop="@dimen/dimen20"
+                        android:text="@string/register1"
+                        android:textColor="@color/greenColors"
+                        android:textSize="@dimen/textsize13" />
+
+                    <TextView style="@style/AutoWrap" />
+
+                    <TextView
+                        android:id="@+id/tv_forgotPassword"
+                        style="@style/WrapWrap"
+                        android:paddingBottom="@dimen/dimen20"
+                        android:paddingTop="@dimen/dimen20"
+                        android:text="@string/forgotPassword"
+                        android:textColor="@color/hintColors"
+                        android:textSize="@dimen/textsize13" />
+
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/tv_login"
@@ -208,7 +223,8 @@
                 android:layout_below="@id/ll_thirdpartylogin"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/dimen34"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/dimen20">
 
 
                 <ImageView
@@ -228,31 +244,31 @@
             </LinearLayout>
 
 
-            <LinearLayout
-                android:id="@+id/ll_register"
-                style="@style/WrapWrap"
-                android:layout_below="@id/ll_thirdpartylogin1"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/dimen35"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:paddingBottom="@dimen/dimen25">
+            <!--<LinearLayout-->
+            <!--android:id="@+id/ll_register"-->
+            <!--style="@style/WrapWrap"-->
+            <!--android:layout_below="@id/ll_thirdpartylogin1"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:layout_marginTop="@dimen/dimen35"-->
+            <!--android:gravity="center"-->
+            <!--android:orientation="horizontal"-->
+            <!--android:paddingBottom="@dimen/dimen25">-->
 
 
-                <TextView
-                    style="@style/WrapWrap"
-                    android:text="@string/noAccount"
-                    android:textColor="@color/tabColors"
-                    android:textSize="@dimen/textsize13" />
+            <!--<TextView-->
+            <!--style="@style/WrapWrap"-->
+            <!--android:text="@string/noAccount"-->
+            <!--android:textColor="@color/tabColors"-->
+            <!--android:textSize="@dimen/textsize13" />-->
 
 
-                <TextView
-                    style="@style/WrapWrap"
-                    android:text="@string/register1"
-                    android:textColor="@color/loginBackgroundColors"
-                    android:textSize="@dimen/textsize13" />
+            <!--<TextView-->
+            <!--style="@style/WrapWrap"-->
+            <!--android:text="@string/register1"-->
+            <!--android:textColor="@color/loginBackgroundColors"-->
+            <!--android:textSize="@dimen/textsize13" />-->
 
-            </LinearLayout>
+            <!--</LinearLayout>-->
 
 
         </RelativeLayout>

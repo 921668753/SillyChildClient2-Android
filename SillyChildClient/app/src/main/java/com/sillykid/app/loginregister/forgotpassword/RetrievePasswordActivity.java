@@ -23,7 +23,6 @@ import static com.sillykid.app.constant.NumericConstants.REQUEST_CODE;
 
 public class RetrievePasswordActivity extends BaseActivity implements RetrievePasswordContract.View {
 
-
     /**
      * 倒计时内部类
      */

@@ -243,7 +243,7 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE && resultCode == RESULT_OK && data != null) {
             String areaCode = data.getStringExtra("areaCode");
-            tv_countryCode.setText(areaCode);
+            tv_countryCode.setText("+" + areaCode);
         }
     }
 }

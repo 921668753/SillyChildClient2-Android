@@ -46,7 +46,7 @@ public class LoginPresenter implements LoginContract.Presenter {
             mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.hintAccountText), 0);
             return;
         }
-        if (!countryCode.equals("86") && phone.startsWith("0")) {
+        if (phone.startsWith("0")) {
             mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.hintPhoneText2), 0);
             return;
         }

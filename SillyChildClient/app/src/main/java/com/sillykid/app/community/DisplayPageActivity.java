@@ -60,7 +60,6 @@ public class DisplayPageActivity extends BaseActivity implements DisplayPageCont
     @BindView(id = R.id.tv_synopsis)
     private TextView tv_synopsis;
 
-
     @BindView(id = R.id.tv_giveLike)
     private TextView tv_giveLike;
 

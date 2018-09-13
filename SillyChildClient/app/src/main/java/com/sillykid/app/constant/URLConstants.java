@@ -18,8 +18,8 @@ public class URLConstants {
      * 测试服务器地址URL
      */
     // public static String SERVERURL = "http://xiaowei.local.keiousoft.com/";
-    //  public static String SERVERURL = "http://192.168.1.247:8080/";
-    public static String SERVERURL = "http://user.api.shahaizhi.com/";
+    public static String SERVERURL = "http://192.168.1.247:8080/";
+    //    public static String SERVERURL = "http://user.api.shahaizhi.com/";
     public static String SERVERURL1 = "http://www.shahaizhi.tech/";
 
     /**
@@ -83,6 +83,16 @@ public class URLConstants {
      * 首页  活动
      */
     public static String ACTIVITYGOOD = APIURL + "goods/activity-goods.do";
+
+    /**
+     * 首页  活动
+     */
+    public static String PROCESSACTIVITY = APIURL + "activity/get_processing_activity.do";
+
+    /**
+     * 首页  往期精彩
+     */
+    public static String ALLACTIVITY = APIURL + "activity/get_all_activity.do";
 
     /**
      * 获取分类广告
@@ -157,6 +167,10 @@ public class URLConstants {
      */
     public static String GOODSPRODUCTSPECLEFT = APIURL + "goods/specs-left.do";
 
+    /**
+     * 首页---活动详情
+     */
+    public static String ACTIVITYDETAILS = SERVERURL1 + "dist/activity/activity_details.html?id=";
 
     /**
      * 城市与机场 - 获取国家列表

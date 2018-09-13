@@ -117,7 +117,7 @@ public class MainActivity extends BaseActivity implements MainContract.View {
         contentFragment = new HomePageFragment();
         contentFragment1 = new CommunityFragment();
         contentFragment2 = new MallFragment();
-        contentFragment3 = new ActivitiesFragment();
+        contentFragment3 = new ActivityFragment();
         contentFragment4 = new MineFragment();
         chageIcon = getIntent().getIntExtra("chageIcon", 0);
 

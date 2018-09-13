@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrap"
+    android:background="@color/whiteColors"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/img_picture"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen147"
+        android:layout_marginLeft="@dimen/dimen15"
+        android:layout_marginRight="@dimen/dimen15"
+        android:layout_marginTop="@dimen/dimen15"
+        android:src="@mipmap/placeholderfigure" />
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/AutoWrap"
+            android:layout_marginLeft="@dimen/dimen20"
+            android:text="【活动标题活动标题活动标题活动标题活动标题活动标题活动标题活动标题活动标题活动标题活动标题活动标题活动标题活动标题活动标题】"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize15" />
+
+        <TextView
+            android:id="@+id/tv_time"
+            style="@style/WrapWrap"
+            android:layout_marginLeft="@dimen/dimen15"
+            android:layout_marginRight="@dimen/dimen20"
+            android:text="2017-8-12"
+            android:textColor="@color/hintColors"
+            android:textSize="@dimen/textsize10" />
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_content"
+        style="@style/MatchWrap"
+        android:layout_marginBottom="@dimen/dimen11"
+        android:layout_marginLeft="@dimen/dimen20"
+        android:layout_marginRight="@dimen/dimen20"
+        android:layout_marginTop="@dimen/dimen10"
+        android:text="活动简介活动简介活动简介"
+        android:textColor="@color/hintColors"
+        android:textSize="@dimen/textsize12" />
+
+</LinearLayout>

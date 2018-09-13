@@ -565,6 +565,20 @@ public class RequestClient {
     }
 
     /**
+     * 首页 活动
+     */
+    public static void getProcessingActivity(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        HttpRequest.requestGetHttp(context, URLConstants.PROCESSACTIVITY, httpParams, false, listener);
+    }
+
+    /**
+     * 首页 往期精彩
+     */
+    public static void getAllActivity(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        HttpRequest.requestGetHttp(context, URLConstants.ALLACTIVITY, httpParams, false, listener);
+    }
+
+    /**
      * 首页---更多分类
      */
     public static void getClassification(Context context, HttpParams httpParams, ResponseListener<String> listener) {

@@ -1,4 +1,4 @@
-package com.sillykid.app.mine.sharingceremony;
+package com.sillykid.app.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +16,7 @@ import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
 import com.sillykid.app.constant.URLConstants;
 import com.sillykid.app.mine.sharingceremony.dialog.ShareBouncedDialog;
+import com.sillykid.app.utils.SoftKeyboardUtils;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.UMShareListener;
@@ -23,28 +24,32 @@ import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.media.UMImage;
 import com.umeng.socialize.media.UMWeb;
 
+import cn.bingoogolapple.titlebar.BGATitleBar;
+
 /**
- * 分享有礼
- * Created by Administrator on 2018/9/2.
+ * 活动详情
  */
-public class SharingCeremonyActivity extends BaseActivity implements WebViewLayout1.WebViewCallBack {
+public class ActivityDetailActivity extends BaseActivity implements WebViewLayout1.WebViewCallBack {
+
+    @BindView(id = R.id.titlebar)
+    private BGATitleBar titlebar;
 
     @BindView(id = R.id.web_viewlayout)
     private WebViewLayout1 webViewLayout;
 
-    private String invite_code;
+    private int id;
 
     private ShareBouncedDialog shareBouncedDialog = null;
 
     @Override
     public void setRootView() {
-        setContentView(R.layout.activity_sharingceremony);
+        setContentView(R.layout.activity_activitydetail);
     }
 
     @Override
     public void initData() {
         super.initData();
-        invite_code = PreferenceHelper.readString(aty, StringConstants.FILENAME, "invite_code");
+        id = getIntent().getIntExtra("id", 0);
         initShareBouncedDialog();
     }
 
@@ -63,31 +68,54 @@ public class SharingCeremonyActivity extends BaseActivity implements WebViewLayo
     @Override
     public void initWidget() {
         super.initWidget();
-        initTitle();
         webViewLayout.setTitleVisibility(false);
         webViewLayout.setWebViewCallBack(this);
-        String url = URLConstants.SHARE + invite_code;
+        String url = URLConstants.ACTIVITYDETAILS + id;
         if (!StringUtils.isEmpty(url)) {
             webViewLayout.loadUrl(url);
         }
+        initTitle();
     }
 
     /**
      * 设置标题
      */
     public void initTitle() {
-        ActivityTitleUtils.initToolbar(aty, getString(R.string.sharingCeremony), true, R.id.titlebar);
+        if (getIntent().getIntExtra("activity_state", 0) == 3) {
+            ActivityTitleUtils.initToolbar(aty, getIntent().getStringExtra("title"), true, R.id.titlebar);
+            return;
+        }
+        titlebar.setTitleText(getIntent().getStringExtra("title"));
+        titlebar.setRightDrawable(getResources().getDrawable(R.mipmap.product_details_share));
+        BGATitleBar.SimpleDelegate simpleDelegate = new BGATitleBar.SimpleDelegate() {
+            @Override
+            public void onClickLeftCtv() {
+                super.onClickLeftCtv();
+                SoftKeyboardUtils.packUpKeyboard(aty);
+                aty.finish();
+            }
+
+            @Override
+            public void onClickRightCtv() {
+                super.onClickRightCtv();
+                //分享
+                if (shareBouncedDialog == null) {
+                    initShareBouncedDialog();
+                }
+                if (shareBouncedDialog != null & !shareBouncedDialog.isShowing()) {
+                    shareBouncedDialog.show();
+                }
+            }
+        };
+        titlebar.setDelegate(simpleDelegate);
+
+        //   ActivityTitleUtils.initToolbar(aty, webViewLayout.getWebView().getTitle(), true, R.id.titlebar);
     }
 
     @Override
     public void backOnclick(String id) {
-        //分享
-        if (shareBouncedDialog == null) {
-            initShareBouncedDialog();
-        }
-        if (shareBouncedDialog != null & !shareBouncedDialog.isShowing()) {
-            shareBouncedDialog.show();
-        }
+
+
     }
 
     @Override
@@ -100,11 +128,11 @@ public class SharingCeremonyActivity extends BaseActivity implements WebViewLayo
      */
     public void umShare(SHARE_MEDIA platform) {
         UMImage thumb;
-        thumb = new UMImage(this, R.mipmap.android_template);
-        UMWeb web = new UMWeb(URLConstants.REGISTERHTML + invite_code);
-        web.setTitle(getString(R.string.sillyChildMyHands));//标题
+        thumb = new UMImage(this, getIntent().getStringExtra("main_picture"));
+        UMWeb web = new UMWeb(URLConstants.ACTIVITYDETAILS + id);
+        web.setTitle(getIntent().getStringExtra("title"));//标题
         web.setThumb(thumb);  //缩略图
-        web.setDescription(getString(R.string.welcomSilly));//描述
+        web.setDescription(getIntent().getStringExtra("subtitle"));//描述
         new ShareAction(aty).setPlatform(platform)
 //                .withText("hello")
                 .withMedia(web)

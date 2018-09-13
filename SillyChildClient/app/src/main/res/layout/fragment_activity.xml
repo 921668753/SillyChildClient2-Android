@@ -1,16 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     style="@style/MatchMatch"
     android:background="@color/background"
     android:orientation="vertical">
 
+    <TextView
+        style="@style/Match44"
+        android:background="@color/whiteColors"
+        android:gravity="center"
+        android:text="@string/activity"
+        android:textColor="@color/titletextcolors"
+        android:textSize="@dimen/textsize17" />
+
+    <cn.bingoogolapple.refreshlayout.BGARefreshLayout
+        android:id="@+id/mRefreshLayout"
+        style="@style/MatchMatch">
+
+        <com.common.cklibrary.utils.myview.ScrollInterceptScrollView
+            style="@style/MatchMatch"
+            android:background="@color/background"
+            android:scrollbars="none">
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:descendantFocusability="blocksDescendants"
+                android:orientation="vertical">
+
+                <cn.bingoogolapple.bgabanner.BGABanner
+                    android:id="@+id/banner_ad"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen200"
+                    android:layout_marginTop="@dimen/dimen5"
+                    android:background="@mipmap/placeholderfigure"
+                    app:banner_pageChangeDuration="2000"
+                    app:banner_pointAutoPlayAble="false"
+                    app:banner_pointContainerBackground="@android:color/transparent"
+                    app:banner_pointDrawable="@drawable/bga_banner_selector_point"
+                    app:banner_pointTopBottomMargin="2dp"
+                    app:banner_transitionEffect="alpha" />
+
+                <LinearLayout
+                    android:id="@+id/ll_product1"
+                    style="@style/MatchWrap"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/dimen8"
+                    android:paddingTop="@dimen/dimen8">
+
+                    <TextView
+                        android:layout_width="@dimen/dimen79"
+                        android:layout_height="@dimen/dimen25"
+                        android:background="@mipmap/popular_activities"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="@dimen/dimen10"
+                        android:text="@string/bargain"
+                        android:textColor="@color/whiteColors"
+                        android:textSize="@dimen/textsize13" />
+
+                    <TextView
+                        android:id="@+id/tv_productlSeeMore"
+                        style="@style/AutoWrap"
+                        android:layout_marginRight="@dimen/dimen5"
+                        android:gravity="right"
+                        android:text="@string/pastWonderful"
+                        android:textColor="@color/hintColors"
+                        android:textSize="@dimen/textsize12" />
+
+                    <ImageView
+                        style="@style/Image812"
+                        android:layout_marginRight="@dimen/dimen15"
+                        android:src="@mipmap/right_arrow" />
+
+                </LinearLayout>
+
+                <com.common.cklibrary.utils.myview.ChildListView
+                    android:id="@+id/clv_popularActivities"
+                    style="@style/MatchWrap"
+                    android:background="@android:color/transparent"
+                    android:paddingLeft="@dimen/dimen2"
+                    android:paddingRight="@dimen/dimen2"
+                    android:scrollbars="none"
+                    tools:listitem="@layout/item_popularactivities" />
+
+                <LinearLayout
+                    android:id="@+id/ll_commonError"
+                    style="@style/MatchWrap"
+                    android:background="@color/background"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:id="@+id/img_err"
+                        style="@style/MatchWrap"
+                        android:layout_marginTop="@dimen/dimen90"
+                        android:src="@mipmap/no_network" />
+
+                    <TextView
+                        android:id="@+id/tv_hintText"
+                        style="@style/WrapWrap"
+                        android:layout_marginTop="@dimen/dimen45"
+                        android:gravity="center"
+                        android:text="---"
+                        android:textColor="@color/titletextcolors"
+                        android:textSize="@dimen/textsize13" />
+
+                    <TextView
+                        android:id="@+id/tv_button"
+                        android:layout_width="@dimen/dimen130"
+                        android:layout_height="@dimen/dimen40"
+                        android:layout_marginBottom="@dimen/dimen45"
+                        android:layout_marginTop="@dimen/dimen45"
+                        android:background="@drawable/shape_login1"
+                        android:gravity="center"
+                        android:text="---"
+                        android:textColor="@color/whiteColors"
+                        android:textSize="@dimen/textsize15" />
+
+                </LinearLayout>
 
 
+            </LinearLayout>
 
+        </com.common.cklibrary.utils.myview.ScrollInterceptScrollView>
 
-
-
-
+    </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
 
 
 </LinearLayout>

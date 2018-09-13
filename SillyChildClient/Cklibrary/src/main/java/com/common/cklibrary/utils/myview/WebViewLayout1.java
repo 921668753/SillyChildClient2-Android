@@ -275,6 +275,10 @@ public class WebViewLayout1 extends LinearLayout {
         }
     }
 
+    public WebView getWebView() {
+        return webView;
+    }
+
     /**
      * 加载网页
      * created by ydy on 2016/7/15 10:14

@@ -234,6 +234,15 @@
             android:name=".homepage.airporttransportation.airportpickup.AirportPickupActivity"
             android:screenOrientation="portrait" />
 
+        <!--首页   往期精彩-->
+        <activity
+            android:name=".activity.PastWonderfulActivity"
+            android:screenOrientation="portrait" />
+
+        <!--首页   活动详情-->
+        <activity
+            android:name=".activity.ActivityDetailActivity"
+            android:screenOrientation="portrait" />
 
         <!--首页   接机产品 - 支付订单-->
         <activity

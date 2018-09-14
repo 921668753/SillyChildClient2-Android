@@ -10,8 +10,8 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         applicationId "com.sillykid.app"
-        versionCode 58
-        versionName "1.0.0.1809081846"
+        versionCode 60
+        versionName "1.0.0.1809141142"
         multiDexEnabled true
 
         aaptOptions.cruncherEnabled = false
@@ -178,8 +178,8 @@ dependencies {
      */
     compile 'com.azhon:ratingbar:1.3.0'
 //    compile 'com.github.CB-ysx:CBRatingBar:3.0.1'
-  //  compile 'com.parse:parse-android:1.13.1'
-   // compile 'com.hedgehog.ratingbar:app:1.1.2'
+    //  compile 'com.parse:parse-android:1.13.1'
+    // compile 'com.hedgehog.ratingbar:app:1.1.2'
     /**
      *               https://github.com/WuXiaolong/PullLoadMoreRecyclerView
      */

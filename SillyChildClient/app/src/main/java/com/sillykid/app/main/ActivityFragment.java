@@ -159,6 +159,7 @@ public class ActivityFragment extends BaseFragment implements ActivityContract.V
                 errorMsg(getString(R.string.serverReturnsDataError), 0);
                 return;
             }
+            ll_commonError.setVisibility(View.GONE);
             if (activityBean != null && activityBean.getData().getBanner_list().size() > 0) {
                 mForegroundBanner.setVisibility(View.VISIBLE);
                 processLogic(activityBean.getData().getBanner_list());
@@ -166,11 +167,12 @@ public class ActivityFragment extends BaseFragment implements ActivityContract.V
                 mForegroundBanner.setVisibility(View.GONE);
             }
             if (activityBean.getData().getActivity_list() == null || activityBean.getData().getActivity_list().size() <= 0) {
-                ll_product1.setVisibility(View.GONE);
+                //  ll_product1.setVisibility(View.GONE);
                 clv_popularActivities.setVisibility(View.GONE);
                 errorMsg(getString(R.string.noActivity), 0);
             } else {
-                ll_product1.setVisibility(View.VISIBLE);
+                //   ll_product1.setVisibility(View.VISIBLE);
+
                 clv_popularActivities.setVisibility(View.VISIBLE);
                 mAdapter.clear();
                 mAdapter.addNewData(activityBean.getData().getActivity_list());

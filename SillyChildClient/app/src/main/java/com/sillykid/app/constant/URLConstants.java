@@ -170,7 +170,7 @@ public class URLConstants {
     /**
      * 首页---活动详情
      */
-    public static String ACTIVITYDETAILS = SERVERURL1 + "dist/activity/activity_details.html?id=";
+    public static String ACTIVITYDETAILS = SERVERURL1 + "activity_share/activity_share.html?id=";
 
     /**
      * 城市与机场 - 获取国家列表

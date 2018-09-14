@@ -114,8 +114,9 @@ public class ActivityDetailActivity extends BaseActivity implements WebViewLayou
 
     @Override
     public void backOnclick(String id) {
-
-
+//        Intent intent = new Intent();
+//        setResult(RESULT_OK, intent);
+        finish();
     }
 
     @Override

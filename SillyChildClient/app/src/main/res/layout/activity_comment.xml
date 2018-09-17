@@ -13,11 +13,10 @@
         style="@style/MatchMatch"
         android:scrollbars="none">
 
-        <LinearLayout
-            style="@style/MatchMatch"
-            android:orientation="vertical">
+        <RelativeLayout style="@style/MatchMatch">
 
             <TextView
+                android:id="@+id/tv_orderInformation"
                 style="@style/Match45"
                 android:gravity="center_vertical"
                 android:paddingLeft="@dimen/dimen30"
@@ -26,7 +25,9 @@
                 android:textSize="@dimen/textsize15" />
 
             <LinearLayout
+                android:id="@+id/ll_orderInformation"
                 style="@style/MatchWrap"
+                android:layout_below="@id/tv_orderInformation"
                 android:background="@color/whiteColors"
                 android:orientation="horizontal">
 
@@ -68,7 +69,9 @@
 
 
             <LinearLayout
+                android:id="@+id/ll_guideScoring"
                 style="@style/MatchWrap"
+                android:layout_below="@id/ll_orderInformation"
                 android:layout_marginTop="@dimen/dimen6"
                 android:background="@color/whiteColors"
                 android:orientation="horizontal"
@@ -93,7 +96,9 @@
 
 
             <LinearLayout
+                android:id="@+id/ll_degreeOnTime"
                 style="@style/MatchWrap"
+                android:layout_below="@id/ll_guideScoring"
                 android:background="@color/whiteColors"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
@@ -124,7 +129,9 @@
 
 
             <LinearLayout
+                android:id="@+id/ll_reasonableDistance"
                 style="@style/MatchWrap"
+                android:layout_below="@id/ll_degreeOnTime"
                 android:background="@color/whiteColors"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
@@ -155,7 +162,9 @@
 
 
             <LinearLayout
+                android:id="@+id/ll_serviceAttitude"
                 style="@style/MatchWrap"
+                android:layout_below="@id/ll_reasonableDistance"
                 android:background="@color/whiteColors"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
@@ -187,6 +196,7 @@
             <EditText
                 android:id="@+id/et_remark"
                 style="@style/MatchWrap"
+                android:layout_below="@id/ll_serviceAttitude"
                 android:layout_marginTop="@dimen/dimen6"
                 android:background="@color/whiteColors"
                 android:gravity="left"
@@ -205,6 +215,7 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 style="@style/MatchWrap"
+                android:layout_below="@id/et_remark"
                 android:layout_marginBottom="@dimen/dimen5"
                 android:background="@color/whiteColors"
                 android:choiceMode="singleChoice"
@@ -221,9 +232,11 @@
                 app:spanCount="3"
                 tools:listitem="@layout/item_chooseimage" />
 
+
             <TextView
                 android:id="@+id/tv_comment"
                 style="@style/Match40"
+                android:layout_below="@id/recyclerView"
                 android:layout_marginBottom="@dimen/dimen89"
                 android:layout_marginLeft="@dimen/dimen101"
                 android:layout_marginRight="@dimen/dimen101"
@@ -234,7 +247,7 @@
                 android:textColor="@color/whiteColors"
                 android:textSize="@dimen/textsize15" />
 
-        </LinearLayout>
+        </RelativeLayout>
 
     </ScrollView>
 </LinearLayout>

@@ -166,15 +166,22 @@ public class AirportDropOffActivity extends BaseActivity implements AirportDropO
             }
         }).build();
         adultOptions.setPicker(list);
+        List<PeopleBean> childrenList = new ArrayList<PeopleBean>();
+        for (int i = 0; i < passenger_number; i++) {
+            PeopleBean peopleBean = new PeopleBean();
+            peopleBean.setNum(i );
+            peopleBean.setName(i  + getString(R.string.people));
+            childrenList.add(peopleBean);
+        }
         childrenOptions = new OptionsPickerBuilder(aty, new OnOptionsSelectListener() {
             @Override
             public void onOptionsSelect(int options1, int option2, int options3, View v) {
                 //返回的分别是三个级别的选中位置
-                children_number = list.get(options1).getNum();
-                ((TextView) v).setText(list.get(options1).getPickerViewText());
+                children_number = childrenList.get(options1).getNum();
+                ((TextView) v).setText(childrenList.get(options1).getPickerViewText());
             }
         }).build();
-        childrenOptions.setPicker(list);
+        childrenOptions.setPicker(childrenList);
         List<PeopleBean> list1 = new ArrayList<PeopleBean>();
         for (int i = 0; i < baggage_number; i++) {
             PeopleBean peopleBean = new PeopleBean();

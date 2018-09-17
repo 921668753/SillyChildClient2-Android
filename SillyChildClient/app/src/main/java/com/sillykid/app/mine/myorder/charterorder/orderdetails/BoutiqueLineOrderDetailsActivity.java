@@ -249,7 +249,7 @@ public class BoutiqueLineOrderDetailsActivity extends BaseActivity implements Ea
                 tv_sendPrivateChat.setVisibility(View.GONE);
                 tv_appraiseOrder.setVisibility(View.VISIBLE);
                 tv_additionalComments.setVisibility(View.GONE);
-            } else if (boutiqueLineOrderDetailsBean.getData().getStatus() == 3) {
+            } else if (boutiqueLineOrderDetailsBean.getData().getStatus() == 3 || boutiqueLineOrderDetailsBean.getData().getStatus() == 30) {
                 ll_actualPayment.setVisibility(View.VISIBLE);
                 ll_confirmPayment.setVisibility(View.GONE);
                 tv_callUp.setVisibility(View.GONE);

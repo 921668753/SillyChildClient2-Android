@@ -245,7 +245,7 @@ public class CharterOrderDetailsActivity extends BaseActivity implements EasyPer
                 tv_sendPrivateChat.setVisibility(View.GONE);
                 tv_appraiseOrder.setVisibility(View.VISIBLE);
                 tv_additionalComments.setVisibility(View.GONE);
-            } else if (charterOrderDetailsBean.getData().getStatus() == 3) {
+            } else if (charterOrderDetailsBean.getData().getStatus() == 3 || charterOrderDetailsBean.getData().getStatus() == 30) {
                 ll_actualPayment.setVisibility(View.VISIBLE);
                 ll_confirmPayment.setVisibility(View.GONE);
                 tv_callUp.setVisibility(View.GONE);

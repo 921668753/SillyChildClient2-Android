@@ -255,7 +255,7 @@ public class AirportPickupOrderDetailsActivity extends BaseActivity implements E
                 tv_sendPrivateChat.setVisibility(View.GONE);
                 tv_appraiseOrder.setVisibility(View.VISIBLE);
                 tv_additionalComments.setVisibility(View.GONE);
-            } else if (airportPickupOrderDetailsBean.getData().getStatus() == 3) {
+            } else if (airportPickupOrderDetailsBean.getData().getStatus() == 3 || airportPickupOrderDetailsBean.getData().getStatus() == 30) {
                 ll_actualPayment.setVisibility(View.VISIBLE);
                 ll_confirmPayment.setVisibility(View.GONE);
                 tv_callUp.setVisibility(View.GONE);

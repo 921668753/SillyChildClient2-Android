@@ -61,88 +61,12 @@ public class HomePageBean extends BaseResult<HomePageBean.DataBean> {
              * mktprice : 5899
              */
 
-            private String small;
-            private String brief;
-            private String big;
-            private String thumbnail;
-            private String original;
-            private int buy_count;
-            private int goods_id;
-            private String brand_name;
             private int is_size;
-            private int store;
-            private String goods_tag;
-            private String price;
-            private String name;
-            private String store_name;
-            private String sn;
-            private String collect_number;
-            private int view_count;
-            private String mktprice;
-
-            public String getSmall() {
-                return small;
-            }
-
-            public void setSmall(String small) {
-                this.small = small;
-            }
-
-            public String getBrief() {
-                return brief;
-            }
-
-            public void setBrief(String brief) {
-                this.brief = brief;
-            }
-
-            public String getBig() {
-                return big;
-            }
-
-            public void setBig(String big) {
-                this.big = big;
-            }
-
-            public String getThumbnail() {
-                return thumbnail;
-            }
-
-            public void setThumbnail(String thumbnail) {
-                this.thumbnail = thumbnail;
-            }
-
-            public String getOriginal() {
-                return original;
-            }
-
-            public void setOriginal(String original) {
-                this.original = original;
-            }
-
-            public int getBuy_count() {
-                return buy_count;
-            }
-
-            public void setBuy_count(int buy_count) {
-                this.buy_count = buy_count;
-            }
-
-            public int getGoods_id() {
-                return goods_id;
-            }
-
-            public void setGoods_id(int goods_id) {
-                this.goods_id = goods_id;
-            }
-
-            public String getBrand_name() {
-                return brand_name;
-            }
-
-            public void setBrand_name(String brand_name) {
-                this.brand_name = brand_name;
-            }
+            private String product_name;
+            private String main_picture;
+            private int product_id;
+            private String subtitle;
+            private String recommended;
 
             public int getIs_size() {
                 return is_size;
@@ -152,76 +76,44 @@ public class HomePageBean extends BaseResult<HomePageBean.DataBean> {
                 this.is_size = is_size;
             }
 
-            public int getStore() {
-                return store;
+            public String getProduct_name() {
+                return product_name;
             }
 
-            public void setStore(int store) {
-                this.store = store;
+            public void setProduct_name(String product_name) {
+                this.product_name = product_name;
             }
 
-            public String getGoods_tag() {
-                return goods_tag;
+            public String getMain_picture() {
+                return main_picture;
             }
 
-            public void setGoods_tag(String goods_tag) {
-                this.goods_tag = goods_tag;
+            public void setMain_picture(String main_picture) {
+                this.main_picture = main_picture;
             }
 
-            public String getPrice() {
-                return price;
+            public int getProduct_id() {
+                return product_id;
             }
 
-            public void setPrice(String price) {
-                this.price = price;
+            public void setProduct_id(int product_id) {
+                this.product_id = product_id;
             }
 
-            public String getName() {
-                return name;
+            public String getSubtitle() {
+                return subtitle;
             }
 
-            public void setName(String name) {
-                this.name = name;
+            public void setSubtitle(String subtitle) {
+                this.subtitle = subtitle;
             }
 
-            public String getStore_name() {
-                return store_name;
+            public String getRecommended() {
+                return recommended;
             }
 
-            public void setStore_name(String store_name) {
-                this.store_name = store_name;
-            }
-
-            public String getSn() {
-                return sn;
-            }
-
-            public void setSn(String sn) {
-                this.sn = sn;
-            }
-
-            public String getCollect_number() {
-                return collect_number;
-            }
-
-            public void setCollect_number(String collect_number) {
-                this.collect_number = collect_number;
-            }
-
-            public int getView_count() {
-                return view_count;
-            }
-
-            public void setView_count(int view_count) {
-                this.view_count = view_count;
-            }
-
-            public String getMktprice() {
-                return mktprice;
-            }
-
-            public void setMktprice(String mktprice) {
-                this.mktprice = mktprice;
+            public void setRecommended(String recommended) {
+                this.recommended = recommended;
             }
         }
 

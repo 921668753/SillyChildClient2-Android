@@ -39,6 +39,7 @@ import com.sillykid.app.entity.main.HomePageBean.DataBean.BannerListBean;
 import com.sillykid.app.homepage.BannerDetailsActivity;
 import com.sillykid.app.homepage.airporttransportation.AirportTransportationClassificationActivity;
 import com.sillykid.app.homepage.boutiqueline.BoutiqueLineActivity;
+import com.sillykid.app.homepage.boutiqueline.LineDetailsActivity;
 import com.sillykid.app.homepage.bythedaycharter.ByTheDayCharterClassificationActivity;
 import com.sillykid.app.homepage.hotvideo.HotVideoActivity;
 import com.sillykid.app.homepage.hotvideo.VideoDetailsActivity;
@@ -285,10 +286,16 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
             intent.putExtra("title", hotVideoViewAdapter.getItem(videoPosition).getVideo_title());
             aty.showActivity(aty, intent);
         } else if (flag == 4) {
-            Intent intent = new Intent(aty, GoodsDetailsActivity.class);
-            intent.putExtra("goodName", boutiqueLineViewAdapter.getItem(goodsPosition).getName());
-            intent.putExtra("goodsid", boutiqueLineViewAdapter.getItem(goodsPosition).getGoods_id());
+//            Intent intent = new Intent(aty, GoodsDetailsActivity.class);
+//            intent.putExtra("goodName", boutiqueLineViewAdapter.getItem(goodsPosition).getName());
+//            intent.putExtra("goodsid", boutiqueLineViewAdapter.getItem(goodsPosition).getGoods_id());
+//            aty.showActivity(aty, intent);
+
+            Intent intent = new Intent(aty, LineDetailsActivity.class);
+            intent.putExtra("id", boutiqueLineViewAdapter.getItem(goodsPosition).getProduct_id());
             aty.showActivity(aty, intent);
+
+
         } else if (flag == 5) {
             Intent intent = new Intent(aty, AirportTransportationClassificationActivity.class);
             intent.putExtra("title", getString(R.string.airportPickup));

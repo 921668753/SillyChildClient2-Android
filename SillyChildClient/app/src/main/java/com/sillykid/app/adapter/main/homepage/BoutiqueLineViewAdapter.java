@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 
+import com.klavor.widget.RatingBar;
 import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
 import com.sillykid.app.entity.main.HomePageBean.DataBean.GoodsListBean;
@@ -40,36 +41,35 @@ public class BoutiqueLineViewAdapter extends BGARecyclerViewAdapter<GoodsListBea
         /**
          * 图片
          */
-        GlideImageLoader.glideOrdinaryLoader(mContext, listBean.getThumbnail(), viewHolderHelper.getImageView(R.id.img_boutiQueLine), R.mipmap.placeholderfigure);
+        GlideImageLoader.glideOrdinaryLoader(mContext, listBean.getMain_picture(), viewHolderHelper.getImageView(R.id.img_boutiQueLine), R.mipmap.placeholderfigure);
 
         /**
          * 标题
          */
-        viewHolderHelper.setText(R.id.tv_boutiQueLine, listBean.getName());
+        viewHolderHelper.setText(R.id.tv_boutiQueLine, listBean.getProduct_name());
 
         /**
          * 简介
          */
-        if (listBean.getIs_size() == 0 && StringUtils.isEmpty(listBean.getBrief())) {
+        if (listBean.getIs_size() == 0 && StringUtils.isEmpty(listBean.getSubtitle())) {
             viewHolderHelper.setVisibility(R.id.tv_synopsis, View.GONE);
         } else {
             viewHolderHelper.setVisibility(R.id.tv_synopsis, View.VISIBLE);
-            viewHolderHelper.setText(R.id.tv_synopsis, listBean.getBrief());
+            viewHolderHelper.setText(R.id.tv_synopsis, listBean.getSubtitle());
         }
 
 
         /**
          * 收藏数
          */
-        viewHolderHelper.setVisibility(R.id.ll_attentionNum, View.VISIBLE);
-        viewHolderHelper.setVisibility(R.id.ll_collection, View.GONE);
-        viewHolderHelper.setText(R.id.tv_attentionNum, listBean.getCollect_number());
+        RatingBar ratingbar = (RatingBar) viewHolderHelper.getView(R.id.ratingbar);
+        ratingbar.setRating((float) StringUtils.toDouble(listBean.getRecommended()));
+        viewHolderHelper.setText(R.id.tv_collectionNum, listBean.getRecommended());
 
         /**
          * 关注数
          */
-        //   viewHolderHelper.setVisibility(R.id.tv_attentionNum, View.GONE);
-//        viewHolderHelper.setText(R.id.tv_attentionNum, listBean.getPraiseNum());
+        viewHolderHelper.setVisibility(R.id.tv_attentionNum, View.GONE);
 
     }
 

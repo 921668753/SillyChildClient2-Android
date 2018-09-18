@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrap">
+
+    <TextView
+        android:id="@+id/tv_city"
+        style="@style/MatchWrap"
+        android:layout_marginBottom="@dimen/dimen16"
+        android:layout_marginLeft="@dimen/dimen9"
+        android:layout_marginRight="@dimen/dimen9"
+        android:layout_marginTop="@dimen/dimen16"
+        android:gravity="center"
+        android:text="韩国"
+        android:textColor="@color/tabColors"
+        android:textSize="@dimen/textsize13"
+        android:textStyle="bold" />
+
+</RelativeLayout>

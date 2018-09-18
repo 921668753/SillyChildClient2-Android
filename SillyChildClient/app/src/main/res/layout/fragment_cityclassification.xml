@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:orientation="horizontal">
+
+    <ListView
+        android:id="@+id/lv_country"
+        style="@style/AutoMatch"
+        android:layout_marginLeft="@dimen/dimen6"
+        android:background="@color/whiteColors"
+        android:divider="@null"
+        android:listSelector="@android:color/transparent"
+        android:paddingTop="@dimen/dimen5"
+        android:scrollbars="none"
+        android:visibility="gone"
+        tools:listitem="@layout/item_country" />
+
+    <ListView
+        android:id="@+id/lv_city"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/dimen6"
+        android:layout_weight="1.65"
+        android:background="@color/whiteColors"
+        android:divider="@null"
+        android:listSelector="@android:color/transparent"
+        android:paddingTop="@dimen/dimen5"
+        android:scrollbars="none"
+        android:visibility="gone"
+        tools:listitem="@layout/item_countries" />
+
+    <LinearLayout
+        android:id="@+id/ll_commonError"
+        style="@style/MatchMatch"
+        android:background="@color/background"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/img_err"
+            style="@style/MatchWrap"
+            android:layout_marginTop="@dimen/dimen90"
+            android:src="@mipmap/no_network" />
+
+        <TextView
+            android:id="@+id/tv_hintText"
+            style="@style/WrapWrap"
+            android:layout_marginTop="@dimen/dimen45"
+            android:gravity="center"
+            android:text="---"
+            android:textColor="@color/titletextcolors"
+            android:textSize="@dimen/textsize13" />
+
+        <TextView
+            android:id="@+id/tv_button"
+            android:layout_width="@dimen/dimen130"
+            android:layout_height="@dimen/dimen40"
+            android:layout_marginTop="@dimen/dimen45"
+            android:background="@drawable/shape_login1"
+            android:gravity="center"
+            android:text="---"
+            android:textColor="@color/whiteColors"
+            android:textSize="@dimen/textsize15" />
+
+    </LinearLayout>
+</LinearLayout>

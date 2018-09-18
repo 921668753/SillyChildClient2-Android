@@ -43,27 +43,21 @@
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
-                <LinearLayout
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:paddingLeft="@dimen/dimen18"
+                    android:text="@string/travelTime"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize12" />
+
+                <TextView
+                    android:id="@+id/tv_travelTime"
                     style="@style/AutoWrap"
-                    android:orientation="vertical"
-                    android:paddingLeft="@dimen/dimen17">
-
-                    <TextView
-                        style="@style/WrapWrap"
-                        android:text="@string/travelTime"
-                        android:textColor="@color/textColor"
-                        android:textSize="@dimen/textsize12" />
-
-                    <TextView
-                        android:id="@+id/tv_travelTime"
-                        style="@style/WrapWrap"
-                        android:layout_marginTop="@dimen/dimen4"
-                        android:text="@string/selectTravelTime"
-                        android:textColor="@color/hintColors"
-                        android:textSize="@dimen/textsize9" />
-
-                </LinearLayout>
-
+                    android:paddingLeft="@dimen/dimen10"
+                    android:paddingRight="@dimen/dimen10"
+                    android:textColor="@color/hintColors"
+                    android:textSize="@dimen/textsize12" />
 
                 <ImageView
                     style="@style/Image610"
@@ -71,11 +65,11 @@
                     android:layout_marginRight="@dimen/dimen33"
                     android:src="@mipmap/arrow1" />
 
-
             </LinearLayout>
 
 
             <LinearLayout
+                android:id="@+id/ll_destination"
                 style="@style/Match45"
                 android:layout_marginTop="@dimen/dimen1"
                 android:background="@color/whiteColors"
@@ -90,24 +84,24 @@
                     android:textSize="@dimen/textsize12" />
 
 
-                <EditText
-                    android:id="@+id/et_destination"
-                    style="@style/MatchMatch"
-                    android:background="@color/whiteColors"
-                    android:gravity="center_vertical"
-                    android:hint="@string/pleaseFillDestination"
+                <TextView
+                    android:id="@+id/tv_destination"
+                    style="@style/AutoWrap"
                     android:paddingLeft="@dimen/dimen10"
-                    android:paddingRight="@dimen/dimen33"
-                    android:textColor="@color/textColor"
-                    android:textColorHint="@color/hintColors"
-                    android:textCursorDrawable="@drawable/shape_cursor"
+                    android:paddingRight="@dimen/dimen10"
+                    android:textColor="@color/hintColors"
                     android:textSize="@dimen/textsize12" />
 
-
+                <ImageView
+                    style="@style/Image610"
+                    android:layout_marginLeft="@dimen/dimen10"
+                    android:layout_marginRight="@dimen/dimen33"
+                    android:src="@mipmap/arrow1" />
             </LinearLayout>
 
 
             <LinearLayout
+                android:id="@+id/ll_playNumberDays"
                 style="@style/Match45"
                 android:layout_marginTop="@dimen/dimen1"
                 android:background="@color/whiteColors"
@@ -122,21 +116,19 @@
                     android:textSize="@dimen/textsize12" />
 
 
-                <EditText
-                    android:id="@+id/et_playNumberDays"
-                    style="@style/MatchMatch"
-                    android:background="@color/whiteColors"
-                    android:gravity="center_vertical"
-                    android:digits="@string/number0"
-                    android:inputType="number"
-                    android:hint="@string/playNumberDays1"
+                <TextView
+                    android:id="@+id/tv_playNumberDays"
+                    style="@style/AutoWrap"
                     android:paddingLeft="@dimen/dimen10"
-                    android:paddingRight="@dimen/dimen33"
-                    android:textColor="@color/textColor"
-                    android:textColorHint="@color/hintColors"
-                    android:textCursorDrawable="@drawable/shape_cursor"
+                    android:paddingRight="@dimen/dimen10"
+                    android:textColor="@color/hintColors"
                     android:textSize="@dimen/textsize12" />
 
+                <ImageView
+                    style="@style/Image610"
+                    android:layout_marginLeft="@dimen/dimen10"
+                    android:layout_marginRight="@dimen/dimen33"
+                    android:src="@mipmap/arrow1" />
 
             </LinearLayout>
 
@@ -148,7 +140,6 @@
                 android:background="@color/whiteColors"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
-
 
                 <TextView
                     style="@style/WrapWrap"

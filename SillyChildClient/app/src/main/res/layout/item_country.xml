@@ -1,18 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/shape_country"
-    android:orientation="vertical">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrap">
+
+    <TextView
+        android:id="@+id/tv_country"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen26"
+        android:layout_marginBottom="@dimen/dimen11"
+        android:layout_marginLeft="@dimen/dimen9"
+        android:layout_marginRight="@dimen/dimen9"
+        android:layout_marginTop="@dimen/dimen11"
+        android:background="@drawable/shape_followed1"
+        android:gravity="center"
+        android:text="韩国"
+        android:textColor="@color/whiteColors"
+        android:textSize="@dimen/textsize13" />
 
 
+    <ImageView
+        android:id="@+id/img_arrow"
+        style="@style/Image610"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/dimen20"
+        android:src="@mipmap/arrow" />
 
-
-
-
-
-
-
-
-
-</LinearLayout>
+</RelativeLayout>

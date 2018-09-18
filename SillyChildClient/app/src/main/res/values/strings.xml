@@ -627,6 +627,7 @@
     <string name="origin1">请填写出发地</string>
     <string name="pleaseFillDestination">请填写目的地</string>
     <string name="playNumberDays">游玩天数</string>
+    <string name="day1">天</string>
     <string name="playNumberDays1">请填写游玩天数</string>
     <string name="touristNumber">游客人数</string>
     <string name="touristNumber1">请选择游客人数</string>
@@ -638,6 +639,16 @@
     <string name="strokeModels">行程车型</string>
     <string name="customizedItinerary">定制行程</string>
     <string name="customizedItineraryS">定制行程成功</string>
+
+    <!--首页   私人定制   城市选择-->
+    <string name="recommended">推荐</string>
+    <string name="popularDestination">热门目的地</string>
+
+
+
+
+
+
 
 
     <!--首页   民宿预约-->

@@ -1032,6 +1032,26 @@ public class RequestClient {
 
     }
 
+    /**
+     * 首页----大洲与国家 - 获取大洲信息
+     */
+    public static void getCountryAreaList(Context context, HttpParams httpParams, final ResponseListener<String> listener) {
+        HttpRequest.requestGetHttp(context, URLConstants.COUNTRYAREALIST, httpParams, listener);
+    }
+
+    /**
+     * 首页----大洲与国家 - 获取大洲下面的数据
+     */
+    public static void getCountryAreaListByParentid(Context context, HttpParams httpParams, final ResponseListener<String> listener) {
+        HttpRequest.requestGetHttp(context, URLConstants.COUNTRYAREALISTBYPARENTID, httpParams, listener);
+    }
+
+    /**
+     * 首页----大洲与国家 - 获取用户搜索的城市
+     */
+    public static void getAreaByName(Context context, HttpParams httpParams, final ResponseListener<String> listener) {
+        HttpRequest.requestPostFORMHttp(context, URLConstants.AREABYNAME, httpParams, listener);
+    }
 
     /**
      * 社区----分类信息列表

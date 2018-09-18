@@ -1,5 +1,6 @@
 package com.sillykid.app.homepage.privatecustom;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -7,32 +8,30 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
-import com.bigkoo.pickerview.builder.TimePickerBuilder;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
-import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
-import com.bigkoo.pickerview.view.TimePickerView;
 import com.common.cklibrary.common.BaseActivity;
 import com.common.cklibrary.common.BindView;
 import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.ActivityTitleUtils;
 import com.common.cklibrary.utils.JsonUtil;
 import com.sillykid.app.R;
+import com.sillykid.app.entity.homepage.airporttransportation.airportpickup.PeopleBean;
 import com.sillykid.app.entity.homepage.privatecustom.CategoryListBean;
 import com.sillykid.app.entity.homepage.privatecustom.CategoryListBean.DataBean.RepastListBean;
 import com.sillykid.app.entity.homepage.privatecustom.CategoryListBean.DataBean.StayListBean;
 import com.sillykid.app.entity.homepage.privatecustom.CategoryListBean.DataBean.TravelListBean;
 import com.sillykid.app.homepage.boutiqueline.dialog.CalendarControlBouncedDialog;
+import com.sillykid.app.homepage.privatecustom.cityselect.CitySelectActivity;
 import com.sillykid.app.loginregister.LoginActivity;
 import com.sillykid.app.utils.DataUtil;
 import com.sillykid.app.utils.GlideImageLoader;
 import com.sillykid.app.utils.SoftKeyboardUtils;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
+
+import static com.sillykid.app.constant.NumericConstants.RESULT_CODE_GET;
 
 
 /**
@@ -52,11 +51,17 @@ public class PrivateCustomActivity extends BaseActivity implements PrivateCustom
     @BindView(id = R.id.tv_travelTime)
     private TextView tv_travelTime;
 
-    @BindView(id = R.id.et_destination)
-    private EditText et_destination;
+    @BindView(id = R.id.ll_destination, click = true)
+    private LinearLayout ll_destination;
 
-    @BindView(id = R.id.et_playNumberDays)
-    private EditText et_playNumberDays;
+    @BindView(id = R.id.tv_destination)
+    private TextView tv_destination;
+
+    @BindView(id = R.id.ll_playNumberDays, click = true)
+    private LinearLayout ll_playNumberDays;
+
+    @BindView(id = R.id.tv_playNumberDays)
+    private TextView tv_playNumberDays;
 
     @BindView(id = R.id.ll_travelPreferences, click = true)
     private LinearLayout ll_travelPreferences;
@@ -97,6 +102,8 @@ public class PrivateCustomActivity extends BaseActivity implements PrivateCustom
     private List<RepastListBean> repast_list;
     private List<StayListBean> stay_list;
 
+    private int day_number = 0;
+
     private String travel_preference;
 
     private String repast_preference;
@@ -104,6 +111,7 @@ public class PrivateCustomActivity extends BaseActivity implements PrivateCustom
     private String stay_preference;
 
     private CalendarControlBouncedDialog calendarControlBouncedDialog;
+    private OptionsPickerView dayOptions;
 
     @Override
     public void setRootView() {
@@ -125,6 +133,7 @@ public class PrivateCustomActivity extends BaseActivity implements PrivateCustom
         super.initWidget();
         initTitle();
         initCalendarControlBouncedDialog();
+        selectPlayNumberDays();
         selectTravelPreferences();
         selectRecommendRestaurant();
         selectRecommendedAccommodation();
@@ -152,6 +161,15 @@ public class PrivateCustomActivity extends BaseActivity implements PrivateCustom
                     calendarControlBouncedDialog.show();
                 }
                 break;
+            case R.id.ll_destination:
+                SoftKeyboardUtils.packUpKeyboard(this);
+                Intent intent = new Intent(this, CitySelectActivity.class);
+                startActivityForResult(intent, RESULT_CODE_GET);
+                break;
+            case R.id.ll_playNumberDays:
+                SoftKeyboardUtils.packUpKeyboard(this);
+                dayOptions.show(tv_playNumberDays);
+                break;
             case R.id.ll_travelPreferences:
                 SoftKeyboardUtils.packUpKeyboard(this);
                 pvOptions.show(tv_travelPreferences);
@@ -166,8 +184,8 @@ public class PrivateCustomActivity extends BaseActivity implements PrivateCustom
                 break;
             case R.id.tv_customizedItinerary:
                 showLoadingDialog(getString(R.string.submissionLoad));
-                ((PrivateCustomContract.Presenter) mPresenter).postAddCustomized(travel_time, et_destination.getText().toString().trim(),
-                        et_playNumberDays.getText().toString(), travel_preference, repast_preference, stay_preference, et_remark.getText().toString().trim());
+                ((PrivateCustomContract.Presenter) mPresenter).postAddCustomized(travel_time, tv_destination.getText().toString().trim(),
+                        String.valueOf(day_number), travel_preference, repast_preference, stay_preference, et_remark.getText().toString().trim());
                 break;
         }
     }
@@ -184,6 +202,30 @@ public class PrivateCustomActivity extends BaseActivity implements PrivateCustom
             }
         };
         calendarControlBouncedDialog.setCanceledOnTouchOutside(false);
+    }
+
+    /**
+     * 选择出行游玩天数
+     */
+    @SuppressWarnings("unchecked")
+    private void selectPlayNumberDays() {
+        List<PeopleBean> list = new ArrayList<PeopleBean>();
+        for (int i = 0; i < 30; i++) {
+            PeopleBean peopleBean = new PeopleBean();
+            peopleBean.setNum(i + 1);
+            peopleBean.setName(i + 1 + getString(R.string.day1));
+            list.add(peopleBean);
+        }
+        dayOptions = new OptionsPickerBuilder(aty, new OnOptionsSelectListener() {
+
+            @Override
+            public void onOptionsSelect(int options1, int option2, int options3, View v) {
+                //返回的分别是三个级别的选中位置
+                day_number = list.get(options1).getNum();
+                ((TextView) v).setText(list.get(options1).getPickerViewText());
+            }
+        }).build();
+        dayOptions.setPicker(list);
     }
 
 
@@ -272,6 +314,19 @@ public class PrivateCustomActivity extends BaseActivity implements PrivateCustom
             return;
         }
         ViewInject.toast(msg);
+    }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RESULT_CODE_GET && resultCode == RESULT_OK) {// 如果等于1
+            int country_id = data.getIntExtra("country_id", 0);
+            String country_name = data.getStringExtra("country_name");
+            int city_id = data.getIntExtra("city_id", 0);
+            String city_name = data.getStringExtra("city_name");
+            tv_destination.setText(country_name + " " + city_name);
+        }
     }
 
     @Override

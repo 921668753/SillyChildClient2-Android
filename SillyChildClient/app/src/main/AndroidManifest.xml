@@ -338,6 +338,21 @@
             android:screenOrientation="portrait" />
 
 
+        <!--首页   私人定制   城市选择-->
+        <activity
+            android:name=".homepage.privatecustom.cityselect.CitySelectActivity"
+            android:screenOrientation="portrait" />
+
+        <!--首页   私人定制   城市搜索-->
+        <activity
+            android:name=".homepage.privatecustom.cityselect.CitySearchActivity"
+            android:screenOrientation="portrait" />
+
+        <!--首页   私人定制   城市搜索   搜索结果-->
+        <activity
+            android:name=".homepage.privatecustom.cityselect.CitySearchListActivity"
+            android:screenOrientation="portrait" />
+
         <!--&lt;!&ndash;首页   客服过渡页&ndash;&gt;-->
         <!--<activity-->
         <!--android:name=".homepage.customerservice.OverleafActivity"-->

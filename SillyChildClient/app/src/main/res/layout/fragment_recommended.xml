@@ -21,7 +21,8 @@
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv"
-            style="@style/MatchWrap" />
+            android:paddingLeft="@dimen/dimen12"
+            style="@style/MatchMatch" />
 
         <com.common.cklibrary.utils.myview.IndexNewBar
             android:id="@+id/indexBar"

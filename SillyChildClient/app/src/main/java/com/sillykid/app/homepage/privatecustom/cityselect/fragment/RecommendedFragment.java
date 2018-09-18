@@ -2,6 +2,7 @@ package com.sillykid.app.homepage.privatecustom.cityselect.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -19,7 +20,7 @@ import com.sillykid.app.adapter.homepage.privatecustom.cityselect.fragment.Recom
 import com.sillykid.app.entity.homepage.privatecustom.cityselect.fragment.RecommendedBean;
 import com.sillykid.app.entity.homepage.privatecustom.cityselect.fragment.RecommendedBean.DataBean;
 import com.sillykid.app.homepage.privatecustom.cityselect.CitySelectActivity;
-import com.sillykid.app.utils.decoration.DividerItemDecoration;
+import com.sillykid.app.utils.SpacesItemDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,11 +45,9 @@ public class RecommendedFragment extends BaseFragment implements CityClassificat
 
     private GridLayoutManager mManager;
 
-    private SuspensionDecoration mDecoration;
+    //private SuspensionDecoration mDecoration;
 
-    private List<DataBean> mDatas = new ArrayList<DataBean>();
-
-    private DividerItemDecoration dividerItemDecoration;
+    private List<DataBean> mDatas;
 
 
     private int classification_id = 0;
@@ -62,11 +61,11 @@ public class RecommendedFragment extends BaseFragment implements CityClassificat
     @Override
     protected void initData() {
         super.initData();
+        mDatas = new ArrayList<DataBean>();
         mPresenter = new CityClassificationPresenter(this);
         mAdapter = new RecommendedViewAdapter(aty, mDatas);
-        mDecoration = new SuspensionDecoration(aty, mDatas);
+        //      mDecoration = new SuspensionDecoration(aty, mDatas);
         mManager = new GridLayoutManager(aty, 2);
-        dividerItemDecoration = new DividerItemDecoration(aty, DividerItemDecoration.VERTICAL_LIST);
     }
 
     @Override
@@ -89,10 +88,10 @@ public class RecommendedFragment extends BaseFragment implements CityClassificat
                 aty.finish();
             }
         });
-        mRv.addItemDecoration(mDecoration);
+        //   mRv.addItemDecoration(mDecoration);
         //如果add两个，那么按照先后顺序，依次渲染。
-        dividerItemDecoration.setOrientation(0);
-        mRv.addItemDecoration(dividerItemDecoration);
+        SpacesItemDecoration spacesItemDecoration = new SpacesItemDecoration(9, 11);
+        mRv.addItemDecoration(spacesItemDecoration);
         mIndexBar.setmPressedShowTextView(null)//设置HintTextView
                 .setNeedRealIndex(true)//设置需要真实的索引
                 .setmLayoutManager(mManager);//设置RecyclerView的LayoutManager
@@ -136,7 +135,7 @@ public class RecommendedFragment extends BaseFragment implements CityClassificat
         mAdapter.notifyDataSetChanged();
         mIndexBar.setmSourceDatas(list)//设置数据
                 .invalidate();
-        mDecoration.setmDatas(list);
+        //  mDecoration.setmDatas(list);
     }
 
     @Override

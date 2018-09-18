@@ -34,7 +34,7 @@ public class CitySelectClassificationListViewAdapter extends BGAAdapterViewAdapt
             helper.setTextColorRes(R.id.tv_country, R.color.whiteColors);
         }
 
-        if (!StringUtils.isEmpty(model.getName()) && model.getName().startsWith(mContext.getString(R.string.recommended))) {
+        if (!StringUtils.isEmpty(model.getName()) && model.getName().startsWith(mContext.getString(R.string.recommended)) && model.getIsSelected() == 0) {
             helper.setTextColorRes(R.id.tv_country, R.color.textColor);
             //设置为加粗
             helper.getTextView(R.id.tv_country).setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));

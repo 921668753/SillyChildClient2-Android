@@ -90,7 +90,7 @@ public class RecommendedFragment extends BaseFragment implements CityClassificat
         });
         //   mRv.addItemDecoration(mDecoration);
         //如果add两个，那么按照先后顺序，依次渲染。
-        SpacesItemDecoration spacesItemDecoration = new SpacesItemDecoration(9, 11);
+        SpacesItemDecoration spacesItemDecoration = new SpacesItemDecoration(8, 10);
         mRv.addItemDecoration(spacesItemDecoration);
         mIndexBar.setmPressedShowTextView(null)//设置HintTextView
                 .setNeedRealIndex(true)//设置需要真实的索引

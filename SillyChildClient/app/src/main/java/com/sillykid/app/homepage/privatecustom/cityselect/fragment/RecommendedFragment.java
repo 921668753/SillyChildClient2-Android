@@ -2,7 +2,6 @@ package com.sillykid.app.homepage.privatecustom.cityselect.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,7 +13,6 @@ import com.common.cklibrary.common.BindView;
 import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.myview.IndexNewBar;
-import com.mcxtzhang.indexlib.suspension.SuspensionDecoration;
 import com.sillykid.app.R;
 import com.sillykid.app.adapter.homepage.privatecustom.cityselect.fragment.RecommendedViewAdapter;
 import com.sillykid.app.entity.homepage.privatecustom.cityselect.fragment.RecommendedBean;
@@ -45,10 +43,7 @@ public class RecommendedFragment extends BaseFragment implements CityClassificat
 
     private GridLayoutManager mManager;
 
-    //private SuspensionDecoration mDecoration;
-
     private List<DataBean> mDatas;
-
 
     private int classification_id = 0;
 
@@ -64,7 +59,6 @@ public class RecommendedFragment extends BaseFragment implements CityClassificat
         mDatas = new ArrayList<DataBean>();
         mPresenter = new CityClassificationPresenter(this);
         mAdapter = new RecommendedViewAdapter(aty, mDatas);
-        //      mDecoration = new SuspensionDecoration(aty, mDatas);
         mManager = new GridLayoutManager(aty, 2);
     }
 

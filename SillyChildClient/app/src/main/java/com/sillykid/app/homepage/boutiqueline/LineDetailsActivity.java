@@ -335,17 +335,16 @@ public class LineDetailsActivity extends BaseActivity implements LineDetailsCont
                     //       tv_zanNum.setText(getString(R.string.giveLike));
                     tv_zanNum.setTextColor(getResources().getColor(R.color.tabColors));
                 }
-                tv_compensationChangeBack.setText(lineDetailsBean.getData().getService_policy_title());
-                price = lineDetailsBean.getData().getPrice();
-                tv_packagePrice.setText(lineDetailsBean.getData().getPrice() + getString(R.string.yuanPerson));
-                tv_orderPriceNoSign.setText("0.00" + getString(R.string.yuan));
-                passenger_number = lineDetailsBean.getData().getPassenger_number();
-                baggage_number = lineDetailsBean.getData().getBaggage_number();
-                initOptions(passenger_number, baggage_number);
             } else {
                 ll_userevaluation1.setVisibility(View.GONE);
             }
-
+            tv_compensationChangeBack.setText(lineDetailsBean.getData().getService_policy_title());
+            price = lineDetailsBean.getData().getPrice();
+            tv_packagePrice.setText(lineDetailsBean.getData().getPrice() + getString(R.string.yuanPerson));
+            tv_orderPriceNoSign.setText("0.00" + getString(R.string.yuan));
+            passenger_number = lineDetailsBean.getData().getPassenger_number();
+            baggage_number = lineDetailsBean.getData().getBaggage_number();
+            initOptions(passenger_number, baggage_number);
         } else if (flag == 1) {
             if (lineDetailsBean.getData().getReview_list().get(0).isIs_like()) {
                 tv_zanNum.setText(lineDetailsBean.getData().getReview_list().get(0).getLike_number() - 1 + "");

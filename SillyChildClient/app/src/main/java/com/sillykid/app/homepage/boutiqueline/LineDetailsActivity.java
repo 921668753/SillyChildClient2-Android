@@ -300,6 +300,38 @@ public class LineDetailsActivity extends BaseActivity implements LineDetailsCont
             tv_experienceBrightSpot.setText(subtitle);
             String code = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" + lineDetailsBean.getData().getProduct_description()
                     + "</body></html>";
+//            String code = "<!DOCTYPE html>\n" +
+//                    "<html lang=\"zh-CN\">\n" +
+//                    "<head>\n" +
+//                    "    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=gb2312\" />\n" +
+//                    "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no\">\n" +
+//                    "    <style>\n" +
+//                    "        html,body{\n" +
+//                    "            height:100%;\n" +
+//                    "            width:100%;\n" +
+//                    "            padding:0;\n" +
+//                    "            margin:0;\n" +
+//                    "        }\n" +
+//                    "        #content{\n" +
+//                    "            width:90%;\n" +
+//                    "            height:100%;\n" +
+//                    "            padding:0;\n" +
+//                    "            margin:10px auto;\n" +
+//                    "        }\n" +
+//                    "    </style>\n" +
+//                    "</head>\n" +
+//                    " \n<body id=content>" + lineDetailsBean.getData().getProduct_description() + "</body>\n" +
+//                    "    <script>\n" +
+//                    "        var imgs = document.getElementsByTagName('img');\n" +
+//                    "\n" +
+//                    "        for(var i in imgs)\n" +
+//                    "        {   \n" +
+//                    "            var img = imgs[i];\n" +
+//                    "            img.style.width='100%';\n" +
+//                    "            img.style.height='auto';\n" +
+//                    "        }\n" +
+//                    "    </script>\n" +
+//                    "</html>";
             web_view.loadDataWithBaseURL(null, code, "text/html", "utf-8", null);
             web_view.getWebView().setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
             tv_userEvaluationNum.setText(lineDetailsBean.getData().getReview_count() + getString(R.string.comments1));

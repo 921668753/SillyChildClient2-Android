@@ -275,21 +275,6 @@
             android:name=".homepage.bythedaycharter.SelectDateActivity"
             android:screenOrientation="portrait" />
 
-        <!--首页   精品线路 - 线路详情-->
-        <activity
-            android:name=".homepage.boutiqueline.LineDetailsActivity"
-            android:screenOrientation="portrait" />
-
-        <!--首页   精品线路 - 预定需求-->
-        <activity
-            android:name=".homepage.boutiqueline.DueDemandActivity"
-            android:screenOrientation="portrait" />
-
-        <!--首页   精品线路 - 支付订单-->
-        <activity
-            android:name=".homepage.boutiqueline.LineDetailsPayOrderActivity"
-            android:screenOrientation="portrait" />
-
         <!--首页   更多分类-->
         <activity
             android:name=".mall.moreclassification.MoreClassificationActivity"

@@ -221,12 +221,20 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
             finish();
         } else if (flag == 2) {
             LoginBean bean = (LoginBean) JsonUtil.getInstance().json2Obj(s, LoginBean.class);
+            if (bean == null || bean.getData() == null) {
+                errorMsg(getString(R.string.serverError), 0);
+                return;
+            }
             if (bean.getData().getResultX().contains("false")) {
                 errorMsg("4000", 0);
                 return;
             }
-            PreferenceHelper.write(aty, StringConstants.FILENAME, "face", bean.getData().getFace());
-            PreferenceHelper.write(aty, StringConstants.FILENAME, "username", bean.getData().getUsername());
+            if (!StringUtils.isEmpty(bean.getData().getFace())) {
+                PreferenceHelper.write(getApplicationContext(), StringConstants.FILENAME, "face", bean.getData().getFace());
+            }
+            if (!StringUtils.isEmpty(bean.getData().getUsername())) {
+                PreferenceHelper.write(getApplicationContext(), StringConstants.FILENAME, "username", bean.getData().getUsername());
+            }
             ((LoginContract.Presenter) mPresenter).loginRongYun(bean);
         }
     }

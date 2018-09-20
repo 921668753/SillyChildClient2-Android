@@ -622,6 +622,9 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
                     dynamicDetailsImgBean.setUrl(list.get(i));
                     list1.add(dynamicDetailsImgBean);
                 }
+                if (aty == null) {
+                    return;
+                }
                 aty.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {

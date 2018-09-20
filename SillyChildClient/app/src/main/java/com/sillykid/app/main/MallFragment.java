@@ -1,11 +1,8 @@
 package com.sillykid.app.main;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
@@ -50,8 +47,7 @@ import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
  * 商城首页
  * Created by Admin on 2017/8/10.
  */
-@SuppressLint("NewApi")
-public class MallFragment extends BaseFragment implements View.OnScrollChangeListener, AdapterView.OnItemClickListener, MallContract.View, BGABanner.Delegate<ImageView, AdvcatBean>, BGABanner.Adapter<ImageView, AdvcatBean>, BGARefreshLayout.BGARefreshLayoutDelegate, BGAOnRVItemClickListener {
+public class MallFragment extends BaseFragment implements ScrollInterceptScrollView.ScrollViewListener, AdapterView.OnItemClickListener, MallContract.View, BGABanner.Delegate<ImageView, AdvcatBean>, BGABanner.Adapter<ImageView, AdvcatBean>, BGARefreshLayout.BGARefreshLayoutDelegate, BGAOnRVItemClickListener {
 
     private MainActivity aty;
 
@@ -114,7 +110,6 @@ public class MallFragment extends BaseFragment implements View.OnScrollChangeLis
         return View.inflate(aty, R.layout.fragment_mall, null);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void initData() {
         super.initData();
@@ -131,7 +126,7 @@ public class MallFragment extends BaseFragment implements View.OnScrollChangeLis
     protected void initWidget(View parentView) {
         super.initWidget(parentView);
         initBanner();
-        sv_home.setOnScrollChangeListener(this);
+        sv_home.setScrollViewListener(this);
         gv_classification.setAdapter(homePageClassificationViewAdapter);
         gv_classification.setOnItemClickListener(this);
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
@@ -321,9 +316,8 @@ public class MallFragment extends BaseFragment implements View.OnScrollChangeLis
         return false;
     }
 
-
     @Override
-    public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+    public void onScrollChanged(ScrollInterceptScrollView scrollView, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
         if (scrollY <= 0) {
             ll_title1.setVisibility(View.VISIBLE);
             ll_title.setVisibility(View.GONE);
@@ -338,6 +332,7 @@ public class MallFragment extends BaseFragment implements View.OnScrollChangeLis
 //            et_search.setHintTextColor(getResources().getColor(R.color.hintColors));
         }
     }
+
 
     @Override
     public void onRVItemClick(ViewGroup parent, View itemView, int position) {
@@ -372,4 +367,6 @@ public class MallFragment extends BaseFragment implements View.OnScrollChangeLis
         }
         thread = null;
     }
+
+
 }

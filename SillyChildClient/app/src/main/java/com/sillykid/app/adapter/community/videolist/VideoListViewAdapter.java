@@ -10,9 +10,8 @@ import com.sillykid.app.utils.GlideImageLoader;
 
 import cn.bingoogolapple.androidcommon.adapter.BGARecyclerViewAdapter;
 import cn.bingoogolapple.androidcommon.adapter.BGAViewHolderHelper;
-import cn.jzvd.JZUserAction;
-import cn.jzvd.JZVideoPlayer;
-import cn.jzvd.JZVideoPlayerStandard;
+import cn.jzvd.JZDataSource;
+import cn.jzvd.JzvdStd;
 
 /**
  * 上下滑动切换视频  适配器
@@ -43,14 +42,16 @@ public class VideoListViewAdapter extends BGARecyclerViewAdapter<ResultBean> {
 
     @Override
     protected void fillData(BGAViewHolderHelper helper, int position, ResultBean model) {
-        JZVideoPlayerStandard jzVideoPlayerStandard = (JZVideoPlayerStandard) helper.getView(R.id.videoplayer);
+        JzvdStd jzVideoPlayerStandard = (JzvdStd) helper.getView(R.id.videoplayer);
         String url = model.getPicture().substring(0, model.getPicture().indexOf("?"));
-        jzVideoPlayerStandard.setUp(url, JZVideoPlayerStandard.SCREEN_WINDOW_NORMAL, "");
+        JZDataSource jzDataSource = new JZDataSource(url);
+        jzDataSource.looping = true;
+        jzVideoPlayerStandard.setUp(jzDataSource, JzvdStd.SCREEN_WINDOW_NORMAL);
         GlideImageLoader.glideOrdinaryLoader(mContext, model.getPicture(), jzVideoPlayerStandard.thumbImageView, R.mipmap.placeholderfigure);
         helper.setText(R.id.tv_zanNum1, model.getConcern_number());
         helper.setText(R.id.tv_collectionNum1, model.getConcern_number());
         helper.setText(R.id.tv_commentNum1, model.getConcern_number());
-        JZVideoPlayer.setMediaInterface(new JZPLMediaPlayer());
+        JzvdStd.setMediaInterface(new JZPLMediaPlayer());
 //        jzVideoPlayerStandard.onEvent(JZUserAction.ON_CLICK_START_AUTO_COMPLETE);
 //        jzVideoPlayerStandard.startVideo();
     }

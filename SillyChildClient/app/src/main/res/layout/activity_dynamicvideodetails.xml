@@ -22,7 +22,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimen166">
 
-                <cn.jzvd.JZVideoPlayerStandard
+                <cn.jzvd.JzvdStd
                     android:id="@+id/videoplayer"
                     style="@style/MatchMatch" />
 
@@ -457,7 +457,6 @@
             android:layout_marginRight="@dimen/dimen5"
             android:padding="@dimen/dimen14"
             android:src="@mipmap/img_more" />
-
 
     </LinearLayout>
 

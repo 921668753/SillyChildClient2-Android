@@ -47,9 +47,11 @@ import com.umeng.socialize.media.UMWeb;
 
 
 import cn.bingoogolapple.androidcommon.adapter.BGAOnItemChildClickListener;
+import cn.jzvd.JZMediaManager;
 import cn.jzvd.JZUserAction;
-import cn.jzvd.JZVideoPlayer;
-import cn.jzvd.JZVideoPlayerStandard;
+import cn.jzvd.Jzvd;
+import cn.jzvd.JzvdMgr;
+import cn.jzvd.JzvdStd;
 
 import static com.sillykid.app.constant.NumericConstants.REQUEST_CODE;
 
@@ -81,7 +83,7 @@ public class DynamicVideoDetailsActivity extends BaseActivity implements Dynamic
     private RelativeLayout rl_videoplayer;
 
     @BindView(id = R.id.videoplayer)
-    private JZVideoPlayerStandard jzVideoPlayerStandard;
+    private JzvdStd jzVideoPlayerStandard;
 
     @BindView(id = R.id.ll_author, click = true)
     private LinearLayout ll_author;
@@ -457,7 +459,7 @@ public class DynamicVideoDetailsActivity extends BaseActivity implements Dynamic
 
     @Override
     public void onBackPressed() {
-        if (JZVideoPlayer.backPress()) {
+        if (Jzvd.backPress()) {
             return;
         }
         super.onBackPressed();
@@ -519,7 +521,7 @@ public class DynamicVideoDetailsActivity extends BaseActivity implements Dynamic
     @Override
     public void onPause() {
         super.onPause();
-        JZVideoPlayer.goOnPlayOnPause();
+        Jzvd.goOnPlayOnPause();
     }
 
     @Override
@@ -575,11 +577,14 @@ public class DynamicVideoDetailsActivity extends BaseActivity implements Dynamic
     public void getSuccess(String success, int flag) {
         if (flag == 0) {
             DynamicDetailsBean dynamicDetailsBean = (DynamicDetailsBean) JsonUtil.getInstance().json2Obj(success, DynamicDetailsBean.class);
-            jzVideoPlayerStandard.setUp(dynamicDetailsBean.getData().getList().get(0), JZVideoPlayerStandard.SCREEN_WINDOW_NORMAL, "");
+            jzVideoPlayerStandard.setUp(dynamicDetailsBean.getData().getList().get(0), "", JzvdStd.SCREEN_WINDOW_NORMAL);
             GlideImageLoader.glideOrdinaryLoader(this, dynamicDetailsBean.getData().getList().get(0) + "?vframe/jpg/offset/0", jzVideoPlayerStandard.thumbImageView, R.mipmap.placeholderfigure);
-            JZVideoPlayer.setMediaInterface(new JZPLMediaPlayer());
-            jzVideoPlayerStandard.onEvent(JZUserAction.ON_CLICK_START_AUTO_COMPLETE);
-            jzVideoPlayerStandard.startVideo();
+            Jzvd.setMediaInterface(new JZPLMediaPlayer());
+            jzVideoPlayerStandard.startButton.performClick();
+            //这里只有开始播放时才生效
+//            jzVideoPlayerStandard.onPrepared();
+////            //跳转制定位置播放
+////            JZMediaManager.seekTo(0);
             ViewGroup.LayoutParams lp = jzVideoPlayerStandard.bottomContainer.getLayoutParams();
             lp.height = ll_bottom1.getHeight() + ll_content1.getHeight() + DensityUtils.dip2px(45);
             jzVideoPlayerStandard.bottomContainer.setLayoutParams(lp);
@@ -777,7 +782,7 @@ public class DynamicVideoDetailsActivity extends BaseActivity implements Dynamic
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        JZVideoPlayer.releaseAllVideos();
+        Jzvd.releaseAllVideos();
         UMShareAPI.get(this).release();
         if (thread != null) {
             thread.interrupted();

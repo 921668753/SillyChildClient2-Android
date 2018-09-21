@@ -1,10 +1,8 @@
 package com.sillykid.app.community.videolist;
 
-import android.annotation.SuppressLint;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.AbsListView;
 
 import com.common.cklibrary.common.BaseActivity;
 import com.common.cklibrary.common.BindView;
@@ -21,15 +19,14 @@ import com.sillykid.app.utils.layoutmanager.OnViewPagerListener;
 import cn.jzvd.JZMediaManager;
 import cn.jzvd.JZUserAction;
 import cn.jzvd.JZUtils;
-import cn.jzvd.JZVideoPlayer;
-import cn.jzvd.JZVideoPlayerManager;
-import cn.jzvd.JZVideoPlayerStandard;
+import cn.jzvd.Jzvd;
+import cn.jzvd.JzvdMgr;
+import cn.jzvd.JzvdStd;
 
 
 /**
  * 上下滑动切换视频
  */
-@SuppressLint("Registered")
 public class VideoListActivity extends BaseActivity implements VideoListContract.View, OnViewPagerListener {
 
     @BindView(id = R.id.recycler)
@@ -77,13 +74,13 @@ public class VideoListActivity extends BaseActivity implements VideoListContract
 
             @Override
             public void onChildViewDetachedFromWindow(View view) {
-                JZVideoPlayer jzvd = view.findViewById(R.id.videoplayer);
-                if (jzvd != null && JZUtils.dataSourceObjectsContainsUri(jzvd.dataSourceObjects, JZMediaManager.getCurrentDataSource())) {
-                    JZVideoPlayer currentJzvd = JZVideoPlayerManager.getCurrentJzvd();
-                    if (currentJzvd != null && currentJzvd.currentScreen != JZVideoPlayer.SCREEN_WINDOW_FULLSCREEN) {
-                        JZVideoPlayer.releaseAllVideos();
-                    }
-                }
+                Jzvd jzvd = view.findViewById(R.id.videoplayer);
+//                if (jzvd != null && JZUtils.dataSourceObjectsContainsUri(jzvd.dataSourceObjects, JZMediaManager.getCurrentDataSource())) {
+//                    JZVideoPlayer currentJzvd = JZVideoPlayerManager.getCurrentJzvd();
+//                    if (currentJzvd != null && currentJzvd.currentScreen != JZVideoPlayer.SCREEN_WINDOW_FULLSCREEN) {
+//                        JZVideoPlayer.releaseAllVideos();
+//                    }
+//                }
             }
         });
         playVideo(page + 1, 0);
@@ -127,13 +124,15 @@ public class VideoListActivity extends BaseActivity implements VideoListContract
 
     private void releaseVideo(int index) {
         View itemView = recyclerView.getChildAt(index);
-        JZVideoPlayer jzvd = itemView.findViewById(R.id.videoplayer);
-        if (jzvd != null && JZUtils.dataSourceObjectsContainsUri(jzvd.dataSourceObjects, JZMediaManager.getCurrentDataSource())) {
-            JZVideoPlayer currentJzvd = JZVideoPlayerManager.getCurrentJzvd();
-            if (currentJzvd != null && currentJzvd.currentScreen != JZVideoPlayer.SCREEN_WINDOW_FULLSCREEN) {
-                JZVideoPlayer.releaseAllVideos();
-            }
-        }
+        Jzvd jzvd = itemView.findViewById(R.id.videoplayer);
+        jzvd.release();
+
+//        if (jzvd != null && JZUtils.dataSourceObjectsContainsUri(jzvd.dataSourceObjects, JzvdMgr.getCurrentDataSource())) {
+//            Jzvd currentJzvd = JzvdMgr.getCurrentJzvd();
+//            if (currentJzvd != null && currentJzvd.currentScreen != Jzvd.SCREEN_WINDOW_FULLSCREEN) {
+//                Jzvd.releaseAllVideos();
+//            }
+//        }
         // JZVideoPlayer.goOnPlayOnPause();
 //        jzVideoPlayerStandard.release();
     }
@@ -144,8 +143,8 @@ public class VideoListActivity extends BaseActivity implements VideoListContract
             return;
         }
         View itemView = recyclerView.getChildAt(position - 1);
-        final JZVideoPlayerStandard jzVideoPlayerStandard = itemView.findViewById(R.id.videoplayer);
-        jzVideoPlayerStandard.setUp(mAdapter.getItem(position - 1).getPicture(), JZVideoPlayerStandard.SCREEN_WINDOW_NORMAL, "");
+        final JzvdStd jzVideoPlayerStandard = itemView.findViewById(R.id.videoplayer);
+        jzVideoPlayerStandard.setUp(mAdapter.getItem(position - 1).getPicture(), "", JzvdStd.SCREEN_WINDOW_NORMAL);
         jzVideoPlayerStandard.onEvent(JZUserAction.ON_CLICK_START_AUTO_COMPLETE);
         jzVideoPlayerStandard.startVideo();
     }
@@ -174,8 +173,8 @@ public class VideoListActivity extends BaseActivity implements VideoListContract
             mAdapter.addLastItem(communityBean.getData().getResultX().get(0));
         }
         View itemView = recyclerView.getChildAt(communityBean.getData().getCurrentPageNo() - 1);
-        final JZVideoPlayerStandard jzVideoPlayerStandard = itemView.findViewById(R.id.videoplayer);
-        jzVideoPlayerStandard.setUp(mAdapter.getItem(communityBean.getData().getCurrentPageNo() - 1).getPicture(), JZVideoPlayerStandard.SCREEN_WINDOW_NORMAL, "");
+        final Jzvd jzVideoPlayerStandard = itemView.findViewById(R.id.videoplayer);
+        jzVideoPlayerStandard.setUp(mAdapter.getItem(communityBean.getData().getCurrentPageNo() - 1).getPicture(),"", JzvdStd.SCREEN_WINDOW_NORMAL);
         jzVideoPlayerStandard.onEvent(JZUserAction.ON_CLICK_START_AUTO_COMPLETE);
         jzVideoPlayerStandard.startVideo();
     }
@@ -192,7 +191,7 @@ public class VideoListActivity extends BaseActivity implements VideoListContract
 
     @Override
     public void onBackPressed() {
-        if (JZVideoPlayer.backPress()) {
+        if (Jzvd.backPress()) {
             return;
         }
         super.onBackPressed();
@@ -201,13 +200,13 @@ public class VideoListActivity extends BaseActivity implements VideoListContract
     @Override
     protected void onPause() {
         super.onPause();
-        JZVideoPlayer.goOnPlayOnPause();
+        Jzvd.goOnPlayOnPause();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        JZVideoPlayer.releaseAllVideos();
+        Jzvd.releaseAllVideos();
         mAdapter.clear();
         mAdapter = null;
     }

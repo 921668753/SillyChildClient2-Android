@@ -20,8 +20,8 @@ import com.sillykid.app.homepage.homestaysubscribe.HomestayDetailsActivity;
 import com.sillykid.app.loginregister.LoginActivity;
 import com.sillykid.app.utils.GlideImageLoader;
 
-import cn.jzvd.JZVideoPlayer;
-import cn.jzvd.JZVideoPlayerStandard;
+import cn.jzvd.Jzvd;
+import cn.jzvd.JzvdStd;
 
 /**
  * 达人详情
@@ -36,7 +36,7 @@ public class LocalTalentDetailsActivity extends BaseActivity implements LocalTal
     private ImageView img_video;
 
     @BindView(id = R.id.videoplayer)
-    private JZVideoPlayerStandard videoplayer;
+    private JzvdStd videoplayer;
 
 
     @BindView(id = R.id.tv_name)
@@ -155,7 +155,7 @@ public class LocalTalentDetailsActivity extends BaseActivity implements LocalTal
 
     @Override
     public void onBackPressed() {
-        if (JZVideoPlayer.backPress()) {
+        if (Jzvd.backPress()) {
             return;
         }
         super.onBackPressed();
@@ -164,7 +164,7 @@ public class LocalTalentDetailsActivity extends BaseActivity implements LocalTal
     @Override
     protected void onPause() {
         super.onPause();
-        JZVideoPlayer.releaseAllVideos();
+        Jzvd.releaseAllVideos();
     }
 
     @Override
@@ -179,7 +179,7 @@ public class LocalTalentDetailsActivity extends BaseActivity implements LocalTal
             //  GlideImageLoader.glideOrdinaryLoader(aty, localTalentDetailsBean.getData().getCover_img(), img_video);
             if (!StringUtils.isEmpty(localTalentDetailsBean.getData().getVideo_url())) {
                 img_video.setVisibility(View.GONE);
-                videoplayer.setUp(localTalentDetailsBean.getData().getVideo_url(), JZVideoPlayerStandard.SCREEN_WINDOW_NORMAL, "");
+                videoplayer.setUp(localTalentDetailsBean.getData().getVideo_url(), "", Jzvd.SCREEN_WINDOW_NORMAL);
                 GlideImageLoader.glideOrdinaryLoader(aty, localTalentDetailsBean.getData().getCover_img(), videoplayer.thumbImageView, R.mipmap.placeholderfigure);
             } else {
                 img_video.setVisibility(View.VISIBLE);

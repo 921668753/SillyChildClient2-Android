@@ -42,8 +42,8 @@ import com.umeng.socialize.media.UMWeb;
 
 import cn.bingoogolapple.androidcommon.adapter.BGAOnItemChildClickListener;
 import cn.bingoogolapple.titlebar.BGATitleBar;
-import cn.jzvd.JZVideoPlayer;
-import cn.jzvd.JZVideoPlayerStandard;
+import cn.jzvd.Jzvd;
+import cn.jzvd.JzvdStd;
 
 import static com.sillykid.app.constant.NumericConstants.REQUEST_CODE;
 
@@ -56,7 +56,7 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
     private BGATitleBar titlebar;
 
     @BindView(id = R.id.videoplayer)
-    private JZVideoPlayerStandard jzVideoPlayerStandard;
+    private JzvdStd jzVideoPlayerStandard;
 
     @BindView(id = R.id.ll_author, click = true)
     private LinearLayout ll_author;
@@ -150,7 +150,7 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
 
     @Override
     public void onBackPressed() {
-        if (JZVideoPlayer.backPress()) {
+        if (Jzvd.backPress()) {
             return;
         }
         super.onBackPressed();
@@ -159,7 +159,7 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
     @Override
     protected void onPause() {
         super.onPause();
-        JZVideoPlayer.releaseAllVideos();
+        Jzvd.releaseAllVideos();
     }
 
     @Override
@@ -420,9 +420,9 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
             is_collect = dynamicDetailsBean.getData().getIs_collect();
             user_id = dynamicDetailsBean.getData().getMember_id();
             smallImg = dynamicDetailsBean.getData().getVideo_image();
-            jzVideoPlayerStandard.setUp(dynamicDetailsBean.getData().getVideo_url(), JZVideoPlayerStandard.SCREEN_WINDOW_NORMAL, "");
+            jzVideoPlayerStandard.setUp(dynamicDetailsBean.getData().getVideo_url(), "", JzvdStd.SCREEN_WINDOW_NORMAL);
             GlideImageLoader.glideOrdinaryLoader(this, smallImg, jzVideoPlayerStandard.thumbImageView, R.mipmap.placeholderfigure);
-            JZVideoPlayer.setMediaInterface(new JZPLMediaPlayer());
+            Jzvd.setMediaInterface(new JZPLMediaPlayer());
             GlideImageLoader.glideLoader(this, dynamicDetailsBean.getData().getFace(), img_head, 0, R.mipmap.avatar);
             tv_nickName.setText(dynamicDetailsBean.getData().getNickname());
             tv_content.setText(dynamicDetailsBean.getData().getVideo_description());
@@ -599,7 +599,7 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        JZVideoPlayer.releaseAllVideos();
+        Jzvd.releaseAllVideos();
         UMShareAPI.get(this).release();
         if (reportBouncedDialog != null) {
             reportBouncedDialog.cancel();

@@ -4,7 +4,7 @@
     style="@style/MatchMatch"
     android:background="@color/background"
     android:fitsSystemWindows="true"
-    tools:context="com.yinglan.scc.homepage.localtalent.LocalTalentDetailsActivity">
+    tools:context="com.sillykid.app.homepage.localtalent.LocalTalentDetailsActivity">
 
     <ScrollView
         style="@style/MatchMatch"
@@ -26,7 +26,7 @@
                 android:src="@mipmap/placeholderfigure"
                 android:visibility="gone" />
 
-            <cn.jzvd.JZVideoPlayerStandard
+            <cn.jzvd.JzvdStd
                 android:id="@+id/videoplayer"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimen209" />

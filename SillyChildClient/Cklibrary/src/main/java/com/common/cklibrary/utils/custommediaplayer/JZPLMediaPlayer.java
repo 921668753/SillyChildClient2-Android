@@ -19,7 +19,7 @@ import com.pili.pldroid.player.PLOnVideoSizeChangedListener;
 
 import cn.jzvd.JZMediaInterface;
 import cn.jzvd.JZMediaManager;
-import cn.jzvd.JZVideoPlayerManager;
+import cn.jzvd.JzvdMgr;
 
 
 /**
@@ -80,7 +80,7 @@ public class JZPLMediaPlayer extends JZMediaInterface implements PLOnPreparedLis
         //ijkMediaPlayer.setOnTimedTextListener(JZMediaIjkplayer.this);
 
         try {
-            ijkMediaPlayer.setDataSource(currentDataSource.toString());
+            ijkMediaPlayer.setDataSource(jzDataSource.getCurrentUrl().toString());
 //            ijkMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
             ijkMediaPlayer.setScreenOnWhilePlaying(true);
             ijkMediaPlayer.prepareAsync();
@@ -168,12 +168,12 @@ public class JZPLMediaPlayer extends JZMediaInterface implements PLOnPreparedLis
             return;
         }
         ijkMediaPlayer.start();
-        if (currentDataSource.toString().toLowerCase().contains("mp3")) {
+        if (jzDataSource.getCurrentUrl().toString().toLowerCase().contains("mp3")) {
             JZMediaManager.instance().mainThreadHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                    if (JZVideoPlayerManager.getCurrentJzvd() != null) {
-                        JZVideoPlayerManager.getCurrentJzvd().onPrepared();
+                    if (JzvdMgr.getCurrentJzvd() != null) {
+                        JzvdMgr.getCurrentJzvd().onPrepared();
                     }
                 }
             });
@@ -187,8 +187,8 @@ public class JZPLMediaPlayer extends JZMediaInterface implements PLOnPreparedLis
         JZMediaManager.instance().mainThreadHandler.post(new Runnable() {
             @Override
             public void run() {
-                if (JZVideoPlayerManager.getCurrentJzvd() != null) {
-                    JZVideoPlayerManager.getCurrentJzvd().onVideoSizeChanged();
+                if (JzvdMgr.getCurrentJzvd() != null) {
+                    JzvdMgr.getCurrentJzvd().onVideoSizeChanged();
                 }
             }
         });
@@ -200,8 +200,8 @@ public class JZPLMediaPlayer extends JZMediaInterface implements PLOnPreparedLis
         JZMediaManager.instance().mainThreadHandler.post(new Runnable() {
             @Override
             public void run() {
-                if (JZVideoPlayerManager.getCurrentJzvd() != null) {
-                    JZVideoPlayerManager.getCurrentJzvd().onAutoCompletion();
+                if (JzvdMgr.getCurrentJzvd() != null) {
+                    JzvdMgr.getCurrentJzvd().onAutoCompletion();
                 }
             }
         });
@@ -212,8 +212,8 @@ public class JZPLMediaPlayer extends JZMediaInterface implements PLOnPreparedLis
         JZMediaManager.instance().mainThreadHandler.post(new Runnable() {
             @Override
             public void run() {
-                if (JZVideoPlayerManager.getCurrentJzvd() != null) {
-                    JZVideoPlayerManager.getCurrentJzvd().onError(i, 0);
+                if (JzvdMgr.getCurrentJzvd() != null) {
+                    JzvdMgr.getCurrentJzvd().onError(i, 0);
                 }
             }
         });
@@ -225,11 +225,11 @@ public class JZPLMediaPlayer extends JZMediaInterface implements PLOnPreparedLis
         JZMediaManager.instance().mainThreadHandler.post(new Runnable() {
             @Override
             public void run() {
-                if (JZVideoPlayerManager.getCurrentJzvd() != null) {
+                if (JzvdMgr.getCurrentJzvd() != null) {
                     if (i == MediaPlayer.MEDIA_INFO_VIDEO_RENDERING_START) {
-                        JZVideoPlayerManager.getCurrentJzvd().onPrepared();
+                        JzvdMgr.getCurrentJzvd().onPrepared();
                     } else {
-                        JZVideoPlayerManager.getCurrentJzvd().onInfo(i, i1);
+                        JzvdMgr.getCurrentJzvd().onInfo(i, i1);
                     }
                 }
             }
@@ -241,8 +241,8 @@ public class JZPLMediaPlayer extends JZMediaInterface implements PLOnPreparedLis
         JZMediaManager.instance().mainThreadHandler.post(new Runnable() {
             @Override
             public void run() {
-                if (JZVideoPlayerManager.getCurrentJzvd() != null) {
-                    JZVideoPlayerManager.getCurrentJzvd().setBufferProgress(i);
+                if (JzvdMgr.getCurrentJzvd() != null) {
+                    JzvdMgr.getCurrentJzvd().setBufferProgress(i);
                 }
             }
         });
@@ -253,8 +253,8 @@ public class JZPLMediaPlayer extends JZMediaInterface implements PLOnPreparedLis
         JZMediaManager.instance().mainThreadHandler.post(new Runnable() {
             @Override
             public void run() {
-                if (JZVideoPlayerManager.getCurrentJzvd() != null) {
-                    JZVideoPlayerManager.getCurrentJzvd().onSeekComplete();
+                if (JzvdMgr.getCurrentJzvd() != null) {
+                    JzvdMgr.getCurrentJzvd().onSeekComplete();
                 }
             }
         });

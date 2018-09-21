@@ -18,7 +18,7 @@
             android:fillViewport="true"
             android:orientation="vertical">
 
-            <cn.jzvd.JZVideoPlayerStandard
+            <cn.jzvd.JzvdStd
                 android:id="@+id/videoplayer"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimen166"

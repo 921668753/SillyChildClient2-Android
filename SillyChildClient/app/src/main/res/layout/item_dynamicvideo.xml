@@ -3,7 +3,7 @@
     android:id="@+id/rl_videoplayer"
     style="@style/MatchMatch">
 
-    <cn.jzvd.JZVideoPlayerStandard
+    <cn.jzvd.JzvdStd
         android:id="@+id/videoplayer"
         style="@style/MatchMatch" />
 

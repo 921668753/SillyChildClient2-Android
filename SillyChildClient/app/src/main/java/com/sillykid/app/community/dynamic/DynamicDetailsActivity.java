@@ -59,8 +59,8 @@ import java.util.List;
 
 import cn.bingoogolapple.androidcommon.adapter.BGAOnItemChildClickListener;
 import cn.bingoogolapple.titlebar.BGATitleBar;
-import cn.jzvd.JZVideoPlayer;
-import cn.jzvd.JZVideoPlayerStandard;
+import cn.jzvd.Jzvd;
+import cn.jzvd.JzvdStd;
 
 import static com.sillykid.app.constant.NumericConstants.REQUEST_CODE;
 
@@ -73,7 +73,7 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
     private BGATitleBar titlebar;
 
     @BindView(id = R.id.videoplayer)
-    private JZVideoPlayerStandard jzVideoPlayerStandard;
+    private JzvdStd jzVideoPlayerStandard;
 
     /**
      * 轮播图
@@ -400,7 +400,7 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
 
     @Override
     public void onBackPressed() {
-        if (JZVideoPlayer.backPress()) {
+        if (Jzvd.backPress()) {
             return;
         }
         super.onBackPressed();
@@ -410,7 +410,7 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
     @Override
     public void onPause() {
         super.onPause();
-        JZVideoPlayer.releaseAllVideos();
+        Jzvd.releaseAllVideos();
     }
 
     @Override
@@ -475,9 +475,9 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
             } else {
                 rl_viewPager.setVisibility(View.GONE);
                 jzVideoPlayerStandard.setVisibility(View.VISIBLE);
-                jzVideoPlayerStandard.setUp(dynamicDetailsBean.getData().getList().get(0), JZVideoPlayerStandard.SCREEN_WINDOW_NORMAL, "");
+                jzVideoPlayerStandard.setUp(dynamicDetailsBean.getData().getList().get(0), "", JzvdStd.SCREEN_WINDOW_NORMAL);
                 GlideImageLoader.glideOrdinaryLoader(this, dynamicDetailsBean.getData().getList().get(0) + "?vframe/jpg/offset/0", jzVideoPlayerStandard.thumbImageView, R.mipmap.placeholderfigure);
-                JZVideoPlayer.setMediaInterface(new JZPLMediaPlayer());
+                Jzvd.setMediaInterface(new JZPLMediaPlayer());
                 smallImg = dynamicDetailsBean.getData().getList().get(0) + "?vframe/jpg/offset/0";
             }
             tv_time.setText(dynamicDetailsBean.getData().getCreate_time());

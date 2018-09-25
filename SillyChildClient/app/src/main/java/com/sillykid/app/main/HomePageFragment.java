@@ -47,7 +47,6 @@ import com.sillykid.app.homepage.message.MessageActivity;
 import com.sillykid.app.homepage.message.interactivemessage.imuitl.RongIMUtil;
 import com.sillykid.app.homepage.privatecustom.PrivateCustomActivity;
 import com.sillykid.app.loginregister.LoginActivity;
-import com.sillykid.app.mall.goodslist.goodsdetails.GoodsDetailsActivity;
 import com.sillykid.app.receivers.MainCallBack;
 import com.sillykid.app.receivers.MainReceiver;
 import com.sillykid.app.services.MainService;
@@ -252,7 +251,7 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
         if (flag == 0) {
             HomePageBean homePageBean = (HomePageBean) JsonUtil.getInstance().json2Obj(success, HomePageBean.class);
             processLogic(homePageBean.getData().getBanner_list());
-            if (homePageBean.getData().getVideo_list() != null && homePageBean.getData().getVideo_list().size() > 0) {
+            if (homePageBean.getData().getVideo_list() != null && homePageBean.getData().getVideo_list().size() > 0 && hotVideoViewAdapter != null) {
                 ll_hotVideo.setVisibility(View.VISIBLE);
                 hlv_hotVideo.setVisibility(View.VISIBLE);
                 hotVideoViewAdapter.clear();

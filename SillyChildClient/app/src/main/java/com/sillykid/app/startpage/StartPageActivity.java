@@ -100,8 +100,8 @@ public class StartPageActivity extends BaseInstrumentedActivity implements Start
         } else {
             jumpIntent.setClass(this, MainActivity.class);
             jumpIntent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-            jumpIntent.setAction("android.intent.action.MAIN");
-            jumpIntent.addCategory("android.intent.category.LAUNCHER");
+//            jumpIntent.setAction("android.intent.action.MAIN");
+//            jumpIntent.addCategory("android.intent.category.LAUNCHER");
             jumpIntent.putExtra("isShow", isShow);
         }
         skipActivity(this, jumpIntent);

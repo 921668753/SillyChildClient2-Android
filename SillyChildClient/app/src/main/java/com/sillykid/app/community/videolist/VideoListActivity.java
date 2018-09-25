@@ -145,8 +145,7 @@ public class VideoListActivity extends BaseActivity implements VideoListContract
         View itemView = recyclerView.getChildAt(position - 1);
         final JzvdStd jzVideoPlayerStandard = itemView.findViewById(R.id.videoplayer);
         jzVideoPlayerStandard.setUp(mAdapter.getItem(position - 1).getPicture(), "", JzvdStd.SCREEN_WINDOW_NORMAL);
-        jzVideoPlayerStandard.onEvent(JZUserAction.ON_CLICK_START_AUTO_COMPLETE);
-        jzVideoPlayerStandard.startVideo();
+        jzVideoPlayerStandard.startButton.performClick();
     }
 
 
@@ -175,8 +174,7 @@ public class VideoListActivity extends BaseActivity implements VideoListContract
         View itemView = recyclerView.getChildAt(communityBean.getData().getCurrentPageNo() - 1);
         final Jzvd jzVideoPlayerStandard = itemView.findViewById(R.id.videoplayer);
         jzVideoPlayerStandard.setUp(mAdapter.getItem(communityBean.getData().getCurrentPageNo() - 1).getPicture(),"", JzvdStd.SCREEN_WINDOW_NORMAL);
-        jzVideoPlayerStandard.onEvent(JZUserAction.ON_CLICK_START_AUTO_COMPLETE);
-        jzVideoPlayerStandard.startVideo();
+        jzVideoPlayerStandard.startButton.performClick();
     }
 
     @Override

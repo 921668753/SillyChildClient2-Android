@@ -3,7 +3,6 @@ package com.sillykid.app.adapter.community.videolist;
 import android.support.v7.widget.RecyclerView;
 
 import com.common.cklibrary.utils.custommediaplayer.JZPLMediaPlayer;
-import com.kymjs.common.Log;
 import com.sillykid.app.R;
 import com.sillykid.app.entity.main.community.CommunityBean.DataBean.ResultBean;
 import com.sillykid.app.utils.GlideImageLoader;
@@ -47,13 +46,13 @@ public class VideoListViewAdapter extends BGARecyclerViewAdapter<ResultBean> {
         String url = model.getPicture().substring(0, model.getPicture().indexOf("?"));
         JZDataSource jzDataSource = new JZDataSource(url);
         jzDataSource.looping = true;
+        Jzvd.SAVE_PROGRESS = false;
         jzVideoPlayerStandard.setUp(jzDataSource, JzvdStd.SCREEN_WINDOW_NORMAL);
         GlideImageLoader.glideOrdinaryLoader(mContext, model.getPicture(), jzVideoPlayerStandard.thumbImageView, R.mipmap.placeholderfigure);
         helper.setText(R.id.tv_zanNum1, model.getConcern_number());
         helper.setText(R.id.tv_collectionNum1, model.getConcern_number());
         helper.setText(R.id.tv_commentNum1, model.getConcern_number());
         JzvdStd.setMediaInterface(new JZPLMediaPlayer());
-        Jzvd.SAVE_PROGRESS = false;
 //        jzVideoPlayerStandard.onEvent(JZUserAction.ON_CLICK_START_AUTO_COMPLETE);
 //        jzVideoPlayerStandard.startVideo();
     }

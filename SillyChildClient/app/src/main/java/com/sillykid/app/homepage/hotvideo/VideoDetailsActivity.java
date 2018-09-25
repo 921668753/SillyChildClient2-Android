@@ -423,6 +423,7 @@ public class VideoDetailsActivity extends BaseActivity implements VideoDetailsCo
             jzVideoPlayerStandard.setUp(dynamicDetailsBean.getData().getVideo_url(), "", JzvdStd.SCREEN_WINDOW_NORMAL);
             GlideImageLoader.glideOrdinaryLoader(this, smallImg, jzVideoPlayerStandard.thumbImageView, R.mipmap.placeholderfigure);
             Jzvd.setMediaInterface(new JZPLMediaPlayer());
+            Jzvd.SAVE_PROGRESS = false;
             GlideImageLoader.glideLoader(this, dynamicDetailsBean.getData().getFace(), img_head, 0, R.mipmap.avatar);
             tv_nickName.setText(dynamicDetailsBean.getData().getNickname());
             tv_content.setText(dynamicDetailsBean.getData().getVideo_description());

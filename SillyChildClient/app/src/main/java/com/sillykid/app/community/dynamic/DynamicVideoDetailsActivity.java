@@ -580,6 +580,7 @@ public class DynamicVideoDetailsActivity extends BaseActivity implements Dynamic
             jzVideoPlayerStandard.setUp(dynamicDetailsBean.getData().getList().get(0), "", JzvdStd.SCREEN_WINDOW_NORMAL);
             GlideImageLoader.glideOrdinaryLoader(this, dynamicDetailsBean.getData().getList().get(0) + "?vframe/jpg/offset/0", jzVideoPlayerStandard.thumbImageView, R.mipmap.placeholderfigure);
             Jzvd.setMediaInterface(new JZPLMediaPlayer());
+            Jzvd.SAVE_PROGRESS = false;
             jzVideoPlayerStandard.startButton.performClick();
             //这里只有开始播放时才生效
 //            jzVideoPlayerStandard.onPrepared();

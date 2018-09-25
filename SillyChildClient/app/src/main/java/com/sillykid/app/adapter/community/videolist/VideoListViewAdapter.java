@@ -11,6 +11,7 @@ import com.sillykid.app.utils.GlideImageLoader;
 import cn.bingoogolapple.androidcommon.adapter.BGARecyclerViewAdapter;
 import cn.bingoogolapple.androidcommon.adapter.BGAViewHolderHelper;
 import cn.jzvd.JZDataSource;
+import cn.jzvd.Jzvd;
 import cn.jzvd.JzvdStd;
 
 /**
@@ -52,6 +53,7 @@ public class VideoListViewAdapter extends BGARecyclerViewAdapter<ResultBean> {
         helper.setText(R.id.tv_collectionNum1, model.getConcern_number());
         helper.setText(R.id.tv_commentNum1, model.getConcern_number());
         JzvdStd.setMediaInterface(new JZPLMediaPlayer());
+        Jzvd.SAVE_PROGRESS = false;
 //        jzVideoPlayerStandard.onEvent(JZUserAction.ON_CLICK_START_AUTO_COMPLETE);
 //        jzVideoPlayerStandard.startVideo();
     }

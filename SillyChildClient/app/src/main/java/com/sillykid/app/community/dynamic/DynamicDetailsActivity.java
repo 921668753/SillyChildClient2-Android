@@ -147,7 +147,6 @@ public class DynamicDetailsActivity extends BaseActivity implements DynamicDetai
     @BindView(id = R.id.tv_collectionNum)
     private TextView tv_collectionNum;
 
-
     @BindView(id = R.id.ll_comment, click = true)
     private LinearLayout ll_comment;
 

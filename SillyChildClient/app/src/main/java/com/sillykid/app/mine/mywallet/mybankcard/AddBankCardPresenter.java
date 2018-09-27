@@ -80,6 +80,10 @@ public class AddBankCardPresenter implements AddBankCardContract.Presenter {
             mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.hintName1), 0);
             return;
         }
+        if (StringUtils.isEmpty(id_number)) {
+            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.pleaseidNumber1), 0);
+            return;
+        }
 //        if (!(id_number.length() == 15 || id_number.length() == 18)) {
 //            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.pleaseidNumber), 0);
 //            return;

@@ -53,10 +53,10 @@ public class AddNewAddressPresenter implements AddNewAddressContract.Presenter {
             mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.contactWayHint), 0);
             return;
         }
-        if (mobile.length() != 11) {
-            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.contactWayHint1), 0);
-            return;
-        }
+//        if (mobile.length() != 11) {
+//            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.contactWayHint1), 0);
+//            return;
+//        }
         if (province_id == 0 || city_id == 0) {
             mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.region1), 0);
             return;
@@ -99,10 +99,10 @@ public class AddNewAddressPresenter implements AddNewAddressContract.Presenter {
             mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.contactWayHint), 0);
             return;
         }
-        if (mobile.length() != 11) {
-            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.contactWayHint1), 0);
-            return;
-        }
+//        if (mobile.length() != 11) {
+//            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.contactWayHint1), 0);
+//            return;
+//        }
         if (province_id == 0 || city_id == 0 || region_id == 0) {
             mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.region1), 0);
             return;

@@ -43,6 +43,7 @@ public class MyWalletBean extends BaseResult<MyWalletBean.DataBean> {
         private int bank_id;
         private String bankNum;
         private String bonusNum;
+        private String withdrawal_rules;
 
         public int getId() {
             return id;
@@ -178,6 +179,14 @@ public class MyWalletBean extends BaseResult<MyWalletBean.DataBean> {
 
         public void setBonusNum(String bonusNum) {
             this.bonusNum = bonusNum;
+        }
+
+        public String getWithdrawal_rules() {
+            return withdrawal_rules;
+        }
+
+        public void setWithdrawal_rules(String withdrawal_rules) {
+            this.withdrawal_rules = withdrawal_rules;
         }
     }
 }

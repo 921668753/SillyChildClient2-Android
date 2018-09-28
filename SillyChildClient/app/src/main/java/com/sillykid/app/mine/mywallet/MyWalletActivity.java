@@ -69,6 +69,9 @@ public class MyWalletActivity extends BaseActivity implements MyWalletContract.V
     @BindView(id = R.id.tv_bankCard)
     private TextView tv_bankCard;
 
+    @BindView(id = R.id.tv_withdrawalRuleDescription)
+    private TextView tv_withdrawalRuleDescription;
+
 
     @Override
     public void setRootView() {
@@ -149,6 +152,7 @@ public class MyWalletActivity extends BaseActivity implements MyWalletContract.V
                 PreferenceHelper.write(this, StringConstants.FILENAME, "withdrawalAmount", MathUtil.keepTwo(StringUtils.toDouble(myWalletBean.getData().getBalance())));
                 tv_coupons.setText(StringUtils.toInt(myWalletBean.getData().getBonusNum(), 0) + getString(R.string.ge));
                 tv_bankCard.setText(StringUtils.toInt(myWalletBean.getData().getBankNum(), 0) + getString(R.string.ge));
+                tv_withdrawalRuleDescription.setText(myWalletBean.getData().getWithdrawal_rules());
             }
         }
         dismissLoadingDialog();

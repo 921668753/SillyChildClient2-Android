@@ -23,6 +23,8 @@ import com.common.cklibrary.common.BindView;
 import com.common.cklibrary.common.StringConstants;
 import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.JsonUtil;
+import com.common.cklibrary.utils.rx.MsgEvent;
+import com.common.cklibrary.utils.rx.RxBus;
 import com.kymjs.common.PreferenceHelper;
 import com.kymjs.common.StringUtils;
 import com.lzy.imagepicker.ImagePicker;
@@ -139,8 +141,6 @@ public class PersonalDataActivity extends BaseActivity implements PersonalDataCo
     private ArrayList<ArrayList<AddressRegionBean.DataBean.ChildrenBeanX>> options2Items = new ArrayList<>();
     private ArrayList<ArrayList<ArrayList<AddressRegionBean.DataBean.ChildrenBeanX.ChildrenBean>>> options3Items = new ArrayList<>();
 
-    private boolean isRefresh = false;
-
     private OptionsPickerView pvLinkOptions = null;
 
     private Thread mThread = null;
@@ -249,10 +249,6 @@ public class PersonalDataActivity extends BaseActivity implements PersonalDataCo
             @Override
             public void onClickLeftCtv() {
                 super.onClickLeftCtv();
-                if (isRefresh) {
-                    Intent intent = getIntent();
-                    setResult(RESULT_OK, intent);
-                }
                 aty.finish();
             }
 
@@ -321,11 +317,17 @@ public class PersonalDataActivity extends BaseActivity implements PersonalDataCo
                     //     shzcode = data.getStringExtra("nickname");
                     updatanum++;
                     //    et_personalcode.setText(shzcode);
-                    isRefresh = true;
+                    /**
+                     * 发送消息
+                     */
+                    RxBus.getInstance().post(new MsgEvent<String>("RxBusPersonalDataEvent"));
                     break;
                 case RESULT_CODE_BASKET_ADD:
                     tv_personalnickname.setText(data.getStringExtra("nickname"));
-                    isRefresh = true;
+                    /**
+                     * 发送消息
+                     */
+                    RxBus.getInstance().post(new MsgEvent<String>("RxBusPersonalDataEvent"));
                     break;
                 case RESULT_CODE_BASKET_MINUS:
                     int sex = data.getIntExtra("sex", 0);
@@ -342,7 +344,10 @@ public class PersonalDataActivity extends BaseActivity implements PersonalDataCo
                     String signature = data.getStringExtra("signature");
                     tv_signature.setText(signature);
                     PreferenceHelper.write(aty, StringConstants.FILENAME, "signature", signature);
-                    isRefresh = true;
+                    /**
+                     * 发送消息
+                     */
+                    RxBus.getInstance().post(new MsgEvent<String>("RxBusPersonalDataEvent"));
                     break;
                 case REQUEST_CODE_SELECT:
                     if (resultCode == ImagePicker.RESULT_CODE_ITEMS && data != null) {
@@ -579,7 +584,10 @@ public class PersonalDataActivity extends BaseActivity implements PersonalDataCo
                 break;
             case 1:
                 GlideImageLoader.glideLoader(aty, success, iv_personaltx, 0, R.mipmap.avatar);
-                isRefresh = true;
+                /**
+                 * 发送消息
+                 */
+                RxBus.getInstance().post(new MsgEvent<String>("RxBusPersonalDataEvent"));
                 UserInfo userInfo = new UserInfo(UserUtil.getRcId(this), tv_personalnickname.getText().toString(), Uri.parse(success));
                 RongIM.getInstance().refreshUserInfoCache(userInfo);
                 break;
@@ -751,12 +759,12 @@ public class PersonalDataActivity extends BaseActivity implements PersonalDataCo
      * @param event
      * @return
      */
-    @Override
-    public boolean onKeyUp(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK && isRefresh) {
-            Intent intent = getIntent();
-            setResult(RESULT_OK, intent);
-        }
-        return super.onKeyUp(keyCode, event);
-    }
+//    @Override
+//    public boolean onKeyUp(int keyCode, KeyEvent event) {
+//        if (keyCode == KeyEvent.KEYCODE_BACK && isRefresh) {
+//            Intent intent = getIntent();
+//            setResult(RESULT_OK, intent);
+//        }
+//        return super.onKeyUp(keyCode, event);
+//    }
 }

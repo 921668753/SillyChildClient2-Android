@@ -100,9 +100,9 @@ public class PublishedeEvaluationPresenter implements PublishedeEvaluationContra
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("memberCommentExts", listBean);
-        map.put("store_desccredit", store_desccredit);
-        map.put("store_servicecredit", store_servicecredit);
-        map.put("store_deliverycredit", store_deliverycredit);
+        map.put("store_desccredit", String.valueOf(store_desccredit));
+        map.put("store_servicecredit", String.valueOf(store_servicecredit));
+        map.put("store_deliverycredit", String.valueOf(store_deliverycredit));
         httpParams.putJsonParams(JsonUtil.obj2JsonString(map));
         RequestClient.postCommentCreate(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
             @Override

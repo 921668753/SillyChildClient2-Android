@@ -4,6 +4,7 @@ import com.common.cklibrary.common.KJActivityStack;
 import com.common.cklibrary.common.StringConstants;
 import com.common.cklibrary.utils.BitmapCoreUtil;
 import com.common.cklibrary.utils.DataCleanManager;
+import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.httputil.HttpUtilParams;
 import com.common.cklibrary.utils.httputil.ResponseListener;
 import com.common.cklibrary.utils.httputil.ResponseProgressbarListener;
@@ -17,7 +18,9 @@ import com.sillykid.app.retrofit.RequestClient;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by ruitu on 2018/9/24.
@@ -262,11 +265,13 @@ public class ReleaseDynamicPresenter implements ReleaseDynamicContract.Presenter
             return;
         }
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        httpParams.put("post_title", post_title);
-        httpParams.put("content", content);
-        httpParams.put("classification_id", classification_id);
-        httpParams.put("type", mediaType);
-        httpParams.put("file_url", imgsStr.substring(1));
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("post_title", post_title);
+        map.put("content", content);
+        map.put("classification_id", String.valueOf(classification_id));
+        map.put("type", String.valueOf(mediaType));
+        map.put("file_url", imgsStr.substring(1));
+        httpParams.putJsonParams(JsonUtil.getInstance().obj2JsonString(map));
         RequestClient.postAddPost(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
@@ -280,6 +285,13 @@ public class ReleaseDynamicPresenter implements ReleaseDynamicContract.Presenter
         });
     }
 
+//    public String toUtf8(String str) {
+//        if (StringUtils.isEmpty(str)) {
+//            return "";
+//        }
+//        String result = str.replace("-", "%2D");
+//        return result;
+//    }
 
     @Override
     public void postEditPost(String post_title, List<LocalMedia> selectList, int mediaType, String content, int classification_id, int post_id) {
@@ -335,7 +347,7 @@ public class ReleaseDynamicPresenter implements ReleaseDynamicContract.Presenter
                         selectListSize = selectListSize + 1;
                         PreferenceHelper.write(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "selectListSize", selectListSize);
                         if (selectListSize == selectList.size()) {
-                            postEditPost1( post_title,  listStr,  mediaType,  content,  classification_id,  post_id);
+                            postEditPost1(post_title, listStr, mediaType, content, classification_id, post_id);
                         }
                     }
 
@@ -418,12 +430,14 @@ public class ReleaseDynamicPresenter implements ReleaseDynamicContract.Presenter
             return;
         }
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        httpParams.put("post_id", post_id);
-        httpParams.put("post_title", post_title);
-        httpParams.put("content", content);
-        httpParams.put("classification_id", classification_id);
-        httpParams.put("type", mediaType);
-        httpParams.put("file_url", imgsStr.substring(1));
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("post_id", String.valueOf(post_id));
+        map.put("post_title", post_title);
+        map.put("content", content);
+        map.put("classification_id", String.valueOf(classification_id));
+        map.put("type", String.valueOf(mediaType));
+        map.put("file_url", imgsStr.substring(1));
+        httpParams.putJsonParams(JsonUtil.getInstance().obj2JsonString(map));
         RequestClient.postEditPost(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {

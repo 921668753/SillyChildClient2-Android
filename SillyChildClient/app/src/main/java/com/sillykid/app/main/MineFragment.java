@@ -394,12 +394,12 @@ public class MineFragment extends BaseFragment implements MineContract.View, Obs
         super.callMsgEvent(msgEvent);
         if (((String) msgEvent.getData()).equals("RxBusLoginEvent") && mPresenter != null || ((String) msgEvent.getData()).equals("RxBusLogOutEvent") && mPresenter != null || ((String) msgEvent.getData()).equals("RxBusMineFragmentEvent") && mPresenter != null) {
             ((MinePresenter) mPresenter).getInfo(aty);
-        } else if (((String) msgEvent.getData()).equals("RxBusAvatarEvent")) {
-            String avatar = PreferenceHelper.readString(aty, StringConstants.FILENAME, "avatar", "");
-            if (!StringUtils.isEmpty(avatar)) {
-//                GlideImageLoader.glideLoader(this, avatar + "?imageView2/1/w/70/h/70", img_headPortrait, 0);
-//                GlideImageLoader.glideLoader(this, avatar + "?imageView2/1/w/70/h/70", img_headPortrait1, 0);
-            }
+        } else if (((String) msgEvent.getData()).equals("RxBusPersonalDataEvent")) {
+            ((MinePresenter) mPresenter).getInfo(aty);
+//            if (!StringUtils.isEmpty(avatar)) {
+////                GlideImageLoader.glideLoader(this, avatar + "?imageView2/1/w/70/h/70", img_headPortrait, 0);
+////                GlideImageLoader.glideLoader(this, avatar + "?imageView2/1/w/70/h/70", img_headPortrait1, 0);
+//            }
         }
     }
 

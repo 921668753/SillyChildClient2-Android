@@ -3,6 +3,7 @@ package com.sillykid.app.mine.myorder.charterorder.orderevaluation;
 
 import com.common.cklibrary.common.KJActivityStack;
 import com.common.cklibrary.common.StringConstants;
+import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.httputil.HttpUtilParams;
 import com.common.cklibrary.utils.httputil.ResponseListener;
 import com.common.cklibrary.utils.httputil.ResponseProgressbarListener;
@@ -15,7 +16,9 @@ import com.sillykid.app.retrofit.RequestClient;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by ruitu on 2018/9/24.
@@ -127,14 +130,16 @@ public class CommentPresenter implements CommentContract.Presenter {
             }
         }
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        httpParams.put("play_experience", play_experience);
-        httpParams.put("service_attitude", service_attitude);
-        httpParams.put("content", content);
-        httpParams.put("order_number", order_number);
-        httpParams.put("time_degree", time_degree);
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("play_experience", String.valueOf(play_experience));
+        map.put("service_attitude", String.valueOf(service_attitude));
+        map.put("content", content);
+        map.put("order_number", order_number);
+        map.put("time_degree", String.valueOf(time_degree));
         if (!StringUtils.isEmpty(imgsStr)) {
-            httpParams.put("picture", imgsStr.substring(1));
+            map.put("picture", imgsStr.substring(1));
         }
+        httpParams.putJsonParams(JsonUtil.getInstance().obj2JsonString(map));
         RequestClient.postAddProductReview(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {

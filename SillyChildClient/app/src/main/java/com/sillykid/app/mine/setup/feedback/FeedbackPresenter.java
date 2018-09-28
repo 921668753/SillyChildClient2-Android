@@ -16,7 +16,9 @@ import com.sillykid.app.R;
 import com.sillykid.app.retrofit.RequestClient;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -74,15 +76,17 @@ public class FeedbackPresenter implements FeedbackContract.Presenter {
             return;
         }
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        httpParams.put("type", feedType);
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("type", feedType);
         if (imgs.size() > 0) {
             String imgsStr = "";
             for (int i = 0; i < imgs.size(); i++) {
                 imgsStr = imgsStr + "," + imgs.get(i);
             }
-            httpParams.put("imgUrls", imgsStr.substring(1));
+            map.put("imgUrls", imgsStr.substring(1));
         }
-        httpParams.put("text", content);
+        map.put("text", content);
+        httpParams.putJsonParams(JsonUtil.getInstance().obj2JsonString(map));
         RequestClient.postAdvice(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {

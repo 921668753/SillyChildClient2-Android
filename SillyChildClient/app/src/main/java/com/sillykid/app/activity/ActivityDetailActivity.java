@@ -13,8 +13,10 @@ import com.common.cklibrary.utils.myview.WebViewLayout1;
 import com.kymjs.common.Log;
 import com.kymjs.common.PreferenceHelper;
 import com.kymjs.common.StringUtils;
+import com.sillykid.app.BuildConfig;
 import com.sillykid.app.R;
 import com.sillykid.app.constant.URLConstants;
+import com.sillykid.app.homepage.message.interactivemessage.imuitl.RongIMUtil;
 import com.sillykid.app.mine.sharingceremony.dialog.ShareBouncedDialog;
 import com.sillykid.app.utils.SoftKeyboardUtils;
 import com.umeng.socialize.ShareAction;
@@ -25,6 +27,8 @@ import com.umeng.socialize.media.UMImage;
 import com.umeng.socialize.media.UMWeb;
 
 import cn.bingoogolapple.titlebar.BGATitleBar;
+import io.rong.imkit.RongIM;
+import io.rong.imlib.model.Conversation;
 
 /**
  * 活动详情
@@ -116,6 +120,10 @@ public class ActivityDetailActivity extends BaseActivity implements WebViewLayou
     public void backOnclick(String id) {
 //        Intent intent = new Intent();
 //        setResult(RESULT_OK, intent);
+        RongIMUtil.connectRongIM(aty);
+        dismissLoadingDialog();
+        RongIM.getInstance().startConversation(aty, Conversation.ConversationType.CUSTOMER_SERVICE, BuildConfig.RONGYUN_KEFU, getString(R.string.sillyChildCustomerService));
+        RongIM.getInstance().setConversationToTop(Conversation.ConversationType.CUSTOMER_SERVICE, BuildConfig.RONGYUN_KEFU, true);
         finish();
     }
 

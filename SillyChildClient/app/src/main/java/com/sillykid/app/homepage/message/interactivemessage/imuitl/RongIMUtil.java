@@ -42,7 +42,7 @@ public class RongIMUtil {
     /**
      * 首先需要构造使用客服者的用户信息
      */
-    public static CSCustomServiceInfo getCSCustomServiceInfo(final Context context) {
+    public static CSCustomServiceInfo getCSCustomServiceInfo(Context context) {
         //首先需要构造使用客服者的用户信息
         CSCustomServiceInfo.Builder csBuilder = new CSCustomServiceInfo.Builder();
         String nick_name = PreferenceHelper.readString(context, StringConstants.FILENAME, "nick_name", "");

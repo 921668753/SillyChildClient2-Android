@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.util.Log;
 
 import com.sillykid.app.homepage.message.MessageActivity;
-import com.sillykid.app.main.MainActivity;
 
 import io.rong.push.notification.PushMessageReceiver;
 import io.rong.push.notification.PushNotificationMessage;

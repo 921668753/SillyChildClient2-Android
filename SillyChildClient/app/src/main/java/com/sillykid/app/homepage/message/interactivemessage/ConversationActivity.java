@@ -11,7 +11,6 @@ import com.common.cklibrary.utils.ActivityTitleUtils;
 import com.common.cklibrary.utils.JsonUtil;
 import com.kymjs.common.Log;
 import com.kymjs.common.StringUtils;
-import com.sillykid.app.BuildConfig;
 import com.sillykid.app.R;
 import com.sillykid.app.entity.application.RongCloudBean;
 import com.sillykid.app.homepage.message.interactivemessage.dialog.IMMessageSettingDialog;
@@ -42,7 +41,6 @@ import io.rong.message.VoiceMessage;
  * 3，push 和 通知 判断
  */
 public class ConversationActivity extends BaseActivity implements ConversationContract.View {
-
 
     @BindView(id = R.id.titlebar)
     private BGATitleBar titlebar;
@@ -197,9 +195,9 @@ public class ConversationActivity extends BaseActivity implements ConversationCo
 //
 //                    @Override
 //                    public void onModeChanged(CustomServiceMode customServiceMode) {
-//                        //   RongIMClient.getInstance().switchToHumanMode(BuildConfig.RONGYUN_KEFU);
+//                        RongIMClient.getInstance().switchToHumanMode(mTargetId);
 //                        //                    RongIMClient.getInstance().selectCustomServiceGroup(BuildConfig.RONGYUN_KEFU, "b60d3ba1c2534c27af40a1f49fe929f9");
-//                        RongIMClient.getInstance().selectCustomServiceGroup(BuildConfig.RONGYUN_KEFU, "19c9a8685dff4257b6f4aaf3eeab9b82");
+//                        // RongIMClient.getInstance().selectCustomServiceGroup(BuildConfig.RONGYUN_KEFU, "19c9a8685dff4257b6f4aaf3eeab9b82");
 //                    }
 //
 //                    @Override
@@ -215,10 +213,10 @@ public class ConversationActivity extends BaseActivity implements ConversationCo
 //                    @Override
 //                    public void onSelectGroup(List<CSGroupItem> list) {
 //                        Log.d("CSGroupItem", JsonUtil.getInstance().obj2JsonString(list));
-//                        RongIMClient.getInstance().selectCustomServiceGroup(BuildConfig.RONGYUN_KEFU, list.get(0).getId());
+//                        //    RongIMClient.getInstance().selectCustomServiceGroup(BuildConfig.RONGYUN_KEFU, list.get(0).getId());
 //                    }
 //                };
-//                RongIMClient.getInstance().startCustomService(BuildConfig.RONGYUN_KEFU, listener, null);
+//                RongIMClient.getInstance().startCustomService(mTargetId, listener, null);
 //                break;
 //        }
 

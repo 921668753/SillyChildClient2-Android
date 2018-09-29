@@ -39,9 +39,27 @@ public class PriceInformationBean extends BaseResult<PriceInformationBean.DataBe
         private String price;
         private int product_id;
         private String model;
+        private String service_id;
+        private String service_name;
         private List<String> picture;
         private List<ReviewListBean> review_list;
         private List<ServiceBean> service;
+
+        public String getService_id() {
+            return service_id;
+        }
+
+        public void setService_id(String service_id) {
+            this.service_id = service_id;
+        }
+
+        public String getService_name() {
+            return service_name;
+        }
+
+        public void setService_name(String service_name) {
+            this.service_name = service_name;
+        }
 
         public String getService_policy() {
             return service_policy;

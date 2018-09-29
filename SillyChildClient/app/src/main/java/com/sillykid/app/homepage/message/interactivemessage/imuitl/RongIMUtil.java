@@ -4,11 +4,14 @@ package com.sillykid.app.homepage.message.interactivemessage.imuitl;
 import android.app.ActivityManager;
 import android.content.Context;
 
+import com.common.cklibrary.common.StringConstants;
 import com.kymjs.common.Log;
+import com.kymjs.common.PreferenceHelper;
 import com.kymjs.common.StringUtils;
 
 import io.rong.imkit.RongIM;
 import io.rong.imlib.RongIMClient;
+import io.rong.imlib.model.CSCustomServiceInfo;
 
 /**
  * 获取Token
@@ -35,6 +38,21 @@ public class RongIMUtil {
             connect(imToken);
         }
     }
+
+    /**
+     * 首先需要构造使用客服者的用户信息
+     */
+    public static CSCustomServiceInfo getCSCustomServiceInfo(final Context context) {
+        //首先需要构造使用客服者的用户信息
+        CSCustomServiceInfo.Builder csBuilder = new CSCustomServiceInfo.Builder();
+        String nick_name = PreferenceHelper.readString(context, StringConstants.FILENAME, "nick_name", "");
+        String mobile = PreferenceHelper.readString(context, StringConstants.FILENAME, "mobile", "");
+        String city = PreferenceHelper.readString(context, StringConstants.FILENAME, "city", "");
+        String address = PreferenceHelper.readString(context, StringConstants.FILENAME, "address", "");
+        String province = PreferenceHelper.readString(context, StringConstants.FILENAME, "province", "");
+        return csBuilder.nickName(nick_name).name(nick_name).mobileNo(mobile).city(city).province(province).address(address).build();
+    }
+
 
     private static void connect(final String rongYunToken) {
 

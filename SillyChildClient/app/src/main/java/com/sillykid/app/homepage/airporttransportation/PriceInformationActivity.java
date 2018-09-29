@@ -9,7 +9,6 @@ import android.widget.TextView;
 import com.common.cklibrary.common.BaseActivity;
 import com.common.cklibrary.common.BindView;
 import com.common.cklibrary.common.ViewInject;
-import com.common.cklibrary.utils.ActivityTitleUtils;
 import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.MathUtil;
 import com.common.cklibrary.utils.myview.NoScrollGridView;
@@ -21,6 +20,7 @@ import com.sillykid.app.homepage.airporttransportation.airportdropoff.AirportDro
 import com.sillykid.app.homepage.airporttransportation.airportpickup.AirportPickupActivity;
 import com.sillykid.app.homepage.airporttransportation.comments.CharterCommentsActivity;
 import com.sillykid.app.homepage.airporttransportation.dialog.CompensationChangeBackDialog;
+import com.sillykid.app.homepage.message.interactivemessage.imuitl.RongIMUtil;
 import com.sillykid.app.loginregister.LoginActivity;
 import com.sillykid.app.utils.DataUtil;
 import com.sillykid.app.utils.GlideImageLoader;
@@ -28,11 +28,17 @@ import com.sillykid.app.utils.GlideImageLoader;
 import java.util.List;
 
 import cn.bingoogolapple.bgabanner.BGABanner;
+import cn.bingoogolapple.titlebar.BGATitleBar;
+import io.rong.imkit.RongIM;
+import io.rong.imlib.model.CSCustomServiceInfo;
 
 /**
  * 价格信息
  */
 public class PriceInformationActivity extends BaseActivity implements PriceInformationContract.View, BGABanner.Delegate<ImageView, String>, BGABanner.Adapter<ImageView, String> {
+
+    @BindView(id = R.id.titlebar)
+    private BGATitleBar titlebar;
 
     @BindView(id = R.id.tv_productName)
     private TextView tv_productName;
@@ -139,7 +145,23 @@ public class PriceInformationActivity extends BaseActivity implements PriceInfor
     @Override
     public void initWidget() {
         super.initWidget();
-        ActivityTitleUtils.initToolbar(aty, getString(R.string.priceInformation), true, R.id.titlebar);
+        titlebar.setTitleText(getString(R.string.priceInformation));
+        titlebar.setRightDrawable(getResources().getDrawable(R.mipmap.kefu));
+        BGATitleBar.SimpleDelegate simpleDelegate = new BGATitleBar.SimpleDelegate() {
+            @Override
+            public void onClickLeftCtv() {
+                super.onClickLeftCtv();
+                aty.finish();
+            }
+
+            @Override
+            public void onClickRightCtv() {
+                super.onClickRightCtv();
+                showLoadingDialog(getString(R.string.customerServiceLoad));
+                ((PriceInformationContract.Presenter) mPresenter).getIsLogin(aty, 2);
+            }
+        };
+        titlebar.setDelegate(simpleDelegate);
         initBanner();
         gv_containsService.setAdapter(mAdapter);
     }
@@ -322,6 +344,23 @@ public class PriceInformationActivity extends BaseActivity implements PriceInfor
                 tv_zanNum.setTextColor(getResources().getColor(R.color.greenColors));
                 ViewInject.toast(getString(R.string.zanSuccess));
             }
+        } else if (flag == 2) {
+            if (StringUtils.isEmpty(priceInformationBean.getData().getService_id())) {
+                dismissLoadingDialog();
+                return;
+            }
+            RongIMUtil.connectRongIM(aty);
+            dismissLoadingDialog();
+            //首先需要构造使用客服者的用户信息
+            CSCustomServiceInfo csInfo = RongIMUtil.getCSCustomServiceInfo(aty);
+            /**
+             * 启动客户服聊天界面。
+             * @param context           应用上下文。
+             * @param customerServiceId 要与之聊天的客服 Id。
+             * @param title             聊天的标题，开发者可以在聊天界面通过 intent.getData().getQueryParameter("title") 获取该值, 再手动设置为标题。
+             * @param customServiceInfo 当前使用客服者的用户信息。{@link io.rong.imlib.model.CSCustomServiceInfo}
+             */
+            RongIM.getInstance().startCustomerServiceChat(aty, priceInformationBean.getData().getService_id(), priceInformationBean.getData().getService_name(), csInfo);
         }
     }
 

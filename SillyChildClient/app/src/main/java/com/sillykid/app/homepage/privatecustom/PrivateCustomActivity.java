@@ -15,6 +15,7 @@ import com.common.cklibrary.common.BindView;
 import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.ActivityTitleUtils;
 import com.common.cklibrary.utils.JsonUtil;
+import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
 import com.sillykid.app.entity.homepage.airporttransportation.airportpickup.PeopleBean;
 import com.sillykid.app.entity.homepage.privatecustom.CategoryListBean;
@@ -22,6 +23,7 @@ import com.sillykid.app.entity.homepage.privatecustom.CategoryListBean.DataBean.
 import com.sillykid.app.entity.homepage.privatecustom.CategoryListBean.DataBean.StayListBean;
 import com.sillykid.app.entity.homepage.privatecustom.CategoryListBean.DataBean.TravelListBean;
 import com.sillykid.app.homepage.boutiqueline.dialog.CalendarControlBouncedDialog;
+import com.sillykid.app.homepage.message.interactivemessage.imuitl.RongIMUtil;
 import com.sillykid.app.homepage.privatecustom.cityselect.CitySelectActivity;
 import com.sillykid.app.loginregister.LoginActivity;
 import com.sillykid.app.utils.DataUtil;
@@ -30,6 +32,9 @@ import com.sillykid.app.utils.SoftKeyboardUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.rong.imkit.RongIM;
+import io.rong.imlib.model.CSCustomServiceInfo;
 
 import static com.sillykid.app.constant.NumericConstants.RESULT_CODE_GET;
 
@@ -112,6 +117,8 @@ public class PrivateCustomActivity extends BaseActivity implements PrivateCustom
 
     private CalendarControlBouncedDialog calendarControlBouncedDialog;
     private OptionsPickerView dayOptions;
+    private String service_id = "";
+    private String service_name = "";
 
     @Override
     public void setRootView() {
@@ -268,8 +275,6 @@ public class PrivateCustomActivity extends BaseActivity implements PrivateCustom
     @SuppressWarnings("unchecked")
     private void selectRecommendedAccommodation() {
         pvOptions2 = new OptionsPickerBuilder(aty, new OnOptionsSelectListener() {
-
-
             @Override
             public void onOptionsSelect(int options1, int option2, int options3, View v) {
                 //返回的分别是三个级别的选中位置
@@ -291,6 +296,8 @@ public class PrivateCustomActivity extends BaseActivity implements PrivateCustom
             CategoryListBean categoryListBean = (CategoryListBean) JsonUtil.getInstance().json2Obj(success, CategoryListBean.class);
             GlideImageLoader.glideOrdinaryLoader(this, categoryListBean.getData().getPicture(), img_picture, R.mipmap.placeholderfigure);
             tv_content.setText(categoryListBean.getData().getContent());
+            service_id = categoryListBean.getData().getService_id();
+            service_name = categoryListBean.getData().getService_name();
             travel_list = categoryListBean.getData().getTravel_list();
             pvOptions.setPicker(travel_list);
             repast_list = categoryListBean.getData().getRepast_list();
@@ -301,6 +308,23 @@ public class PrivateCustomActivity extends BaseActivity implements PrivateCustom
         } else if (flag == 1) {
             dismissLoadingDialog();
             ViewInject.toast(getString(R.string.customizedItineraryS));
+            if (StringUtils.isEmpty(service_id)) {
+                finish();
+                return;
+            }
+            showLoadingDialog(getString(R.string.customerServiceLoad));
+            RongIMUtil.connectRongIM(aty);
+            //首先需要构造使用客服者的用户信息
+            dismissLoadingDialog();
+            CSCustomServiceInfo csInfo = RongIMUtil.getCSCustomServiceInfo(aty);
+            /**
+             * 启动客户服聊天界面。
+             * @param context           应用上下文。
+             * @param customerServiceId 要与之聊天的客服 Id。
+             * @param title             聊天的标题，开发者可以在聊天界面通过 intent.getData().getQueryParameter("title") 获取该值, 再手动设置为标题。
+             * @param customServiceInfo 当前使用客服者的用户信息。{@link io.rong.imlib.model.CSCustomServiceInfo}
+             */
+            RongIM.getInstance().startCustomerServiceChat(aty, service_id, service_name, csInfo);
             finish();
         }
 

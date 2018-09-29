@@ -59,6 +59,8 @@ import cn.bingoogolapple.androidcommon.adapter.BGAOnRVItemClickListener;
 import cn.bingoogolapple.bgabanner.BGABanner;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 import io.rong.imkit.RongIM;
+import io.rong.imlib.RongIMClient;
+import io.rong.imlib.model.CSCustomServiceInfo;
 import io.rong.imlib.model.Conversation;
 import pub.devrel.easypermissions.EasyPermissions;
 
@@ -277,8 +279,19 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
         } else if (flag == 2) {
             RongIMUtil.connectRongIM(aty);
             dismissLoadingDialog();
-            RongIM.getInstance().startConversation(aty, Conversation.ConversationType.CUSTOMER_SERVICE, BuildConfig.RONGYUN_KEFU, getString(R.string.sillyChildCustomerService));
-            RongIM.getInstance().setConversationToTop(Conversation.ConversationType.CUSTOMER_SERVICE, BuildConfig.RONGYUN_KEFU, true);
+            //首先需要构造使用客服者的用户信息
+            CSCustomServiceInfo csInfo = RongIMUtil.getCSCustomServiceInfo(aty);
+            /**
+             * 启动客户服聊天界面。
+             * @param context           应用上下文。
+             * @param customerServiceId 要与之聊天的客服 Id。
+             * @param title             聊天的标题，开发者可以在聊天界面通过 intent.getData().getQueryParameter("title") 获取该值, 再手动设置为标题。
+             * @param customServiceInfo 当前使用客服者的用户信息。{@link io.rong.imlib.model.CSCustomServiceInfo}
+             */
+            RongIM.getInstance().startCustomerServiceChat(getActivity(), BuildConfig.RONGYUN_KEFU, getString(R.string.sillyChildCustomerService), csInfo);
+            //  RongIM.getInstance().startConversation(aty, Conversation.ConversationType.CUSTOMER_SERVICE, BuildConfig.RONGYUN_KEFU, getString(R.string.sillyChildCustomerService));
+            RongIMClient.getInstance().setConversationToTop(Conversation.ConversationType.CUSTOMER_SERVICE, BuildConfig.RONGYUN_KEFU, true);
+            // RongIMClient.getInstance().onModeChanged("426ddc2714964b5f8e2062eac7946904", "b60d3ba1c2534c27af40a1f49fe929f9");
         } else if (flag == 3) {
             Intent intent = new Intent(aty, VideoDetailsActivity.class);
             intent.putExtra("id", hotVideoViewAdapter.getItem(videoPosition).getId());

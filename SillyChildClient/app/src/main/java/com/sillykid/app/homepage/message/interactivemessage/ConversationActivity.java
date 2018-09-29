@@ -9,21 +9,28 @@ import com.common.cklibrary.common.BaseActivity;
 import com.common.cklibrary.common.BindView;
 import com.common.cklibrary.utils.ActivityTitleUtils;
 import com.common.cklibrary.utils.JsonUtil;
+import com.kymjs.common.Log;
 import com.kymjs.common.StringUtils;
+import com.sillykid.app.BuildConfig;
 import com.sillykid.app.R;
 import com.sillykid.app.entity.application.RongCloudBean;
 import com.sillykid.app.homepage.message.interactivemessage.dialog.IMMessageSettingDialog;
 
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Locale;
 
 import cn.bingoogolapple.titlebar.BGATitleBar;
 import io.rong.imkit.RongIM;
+import io.rong.imlib.CustomServiceConfig;
+import io.rong.imlib.ICustomServiceListener;
 import io.rong.imlib.MessageTag;
 import io.rong.imlib.RongIMClient;
 import io.rong.imlib.TypingMessage.TypingStatus;
+import io.rong.imlib.model.CSGroupItem;
 import io.rong.imlib.model.Conversation;
+import io.rong.imlib.model.CustomServiceMode;
 import io.rong.imlib.model.UserInfo;
 import io.rong.message.TextMessage;
 import io.rong.message.VoiceMessage;
@@ -174,6 +181,47 @@ public class ConversationActivity extends BaseActivity implements ConversationCo
                 }
             }
         });
+
+//        switch (mConversationType) {
+//            case CUSTOMER_SERVICE:
+//                ICustomServiceListener listener = new ICustomServiceListener() {
+//                    @Override
+//                    public void onSuccess(CustomServiceConfig customServiceConfig) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onError(int i, String s) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onModeChanged(CustomServiceMode customServiceMode) {
+//                        //   RongIMClient.getInstance().switchToHumanMode(BuildConfig.RONGYUN_KEFU);
+//                        //                    RongIMClient.getInstance().selectCustomServiceGroup(BuildConfig.RONGYUN_KEFU, "b60d3ba1c2534c27af40a1f49fe929f9");
+//                        RongIMClient.getInstance().selectCustomServiceGroup(BuildConfig.RONGYUN_KEFU, "19c9a8685dff4257b6f4aaf3eeab9b82");
+//                    }
+//
+//                    @Override
+//                    public void onQuit(String s) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onPullEvaluation(String s) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onSelectGroup(List<CSGroupItem> list) {
+//                        Log.d("CSGroupItem", JsonUtil.getInstance().obj2JsonString(list));
+//                        RongIMClient.getInstance().selectCustomServiceGroup(BuildConfig.RONGYUN_KEFU, list.get(0).getId());
+//                    }
+//                };
+//                RongIMClient.getInstance().startCustomService(BuildConfig.RONGYUN_KEFU, listener, null);
+//                break;
+//        }
+
     }
 
 

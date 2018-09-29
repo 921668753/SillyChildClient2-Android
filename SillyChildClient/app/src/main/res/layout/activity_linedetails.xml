@@ -29,6 +29,19 @@
             android:textSize="@dimen/textsize17" />
 
         <ImageView
+            android:id="@+id/img_customerService"
+            android:layout_width="@dimen/dimen55"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dimen45"
+            android:paddingLeft="@dimen/dimen23"
+            android:paddingTop="@dimen/dimen13"
+            android:paddingRight="@dimen/dimen13"
+            android:paddingBottom="@dimen/dimen13"
+            android:scaleType="fitXY"
+            android:src="@mipmap/kefu" />
+
+        <ImageView
             android:id="@+id/img_collection"
             android:layout_width="@dimen/dimen45"
             android:layout_height="@dimen/dimen45"
@@ -140,8 +153,8 @@
                     <TextView
                         android:id="@+id/tv_ratingbar"
                         style="@style/WrapWrap"
-                        android:layout_marginBottom="@dimen/dimen8"
                         android:layout_marginTop="@dimen/dimen8"
+                        android:layout_marginBottom="@dimen/dimen8"
                         android:text="4.8分"
                         android:textColor="@color/fF5656Colors"
                         android:textSize="@dimen/textsize12" />
@@ -154,9 +167,9 @@
                 style="@style/MatchWrap"
                 android:layout_marginTop="@dimen/dimen6"
                 android:background="@color/whiteColors"
-                android:paddingBottom="@dimen/dimen10"
                 android:paddingLeft="@dimen/dimen17"
                 android:paddingTop="@dimen/dimen10"
+                android:paddingBottom="@dimen/dimen10"
                 android:text="@string/experienceBrightSpot"
                 android:textColor="@color/textColor"
                 android:textSize="@dimen/textsize15" />
@@ -165,9 +178,9 @@
                 android:id="@+id/tv_experienceBrightSpot"
                 style="@style/MatchWrap"
                 android:background="@color/whiteColors"
-                android:paddingBottom="@dimen/dimen13"
                 android:paddingLeft="@dimen/dimen17"
                 android:paddingRight="@dimen/dimen17"
+                android:paddingBottom="@dimen/dimen13"
                 android:text="--"
                 android:textColor="@color/hintColors"
                 android:textSize="@dimen/textsize13" />
@@ -190,16 +203,16 @@
             <LinearLayout
                 android:id="@+id/ll_userEvaluation"
                 style="@style/MatchWrap"
-                android:layout_marginBottom="@dimen/dimen6"
                 android:layout_marginTop="@dimen/dimen6"
+                android:layout_marginBottom="@dimen/dimen6"
                 android:background="@color/whiteColors"
                 android:orientation="horizontal"
                 android:paddingLeft="@dimen/dimen24">
 
                 <TextView
                     style="@style/WrapWrap"
-                    android:layout_marginBottom="@dimen/dimen10"
                     android:layout_marginTop="@dimen/dimen10"
+                    android:layout_marginBottom="@dimen/dimen10"
                     android:text="@string/userEvaluation"
                     android:textColor="@color/tabColors"
                     android:textSize="@dimen/textsize13" />
@@ -249,10 +262,10 @@
                 <TextView
                     android:id="@+id/tv_date"
                     style="@style/MatchMatch"
-                    android:layout_marginBottom="@dimen/dimen6"
                     android:layout_marginLeft="@dimen/dimen60"
-                    android:layout_marginRight="@dimen/dimen60"
                     android:layout_marginTop="@dimen/dimen6"
+                    android:layout_marginRight="@dimen/dimen60"
+                    android:layout_marginBottom="@dimen/dimen6"
                     android:background="@drawable/shape_selecttraveldate"
                     android:gravity="center"
                     android:text="@string/selectTravelDate"
@@ -263,9 +276,9 @@
 
             <TextView
                 style="@style/MatchWrap"
-                android:paddingBottom="@dimen/dimen13"
                 android:paddingLeft="@dimen/dimen21"
                 android:paddingTop="@dimen/dimen13"
+                android:paddingBottom="@dimen/dimen13"
                 android:text="@string/servicePolicy"
                 android:textColor="@color/tabColors"
                 android:textSize="@dimen/textsize14" />
@@ -331,10 +344,10 @@
                 style="@style/MatchWrap"
                 android:background="@color/whiteColors"
                 android:hint="@string/ContactName"
-                android:paddingBottom="@dimen/dimen10"
                 android:paddingLeft="@dimen/dimen17"
-                android:paddingRight="@dimen/dimen17"
                 android:paddingTop="@dimen/dimen12"
+                android:paddingRight="@dimen/dimen17"
+                android:paddingBottom="@dimen/dimen10"
                 android:singleLine="true"
                 android:textColor="@color/textColor"
                 android:textColorHint="@color/hintColors"
@@ -372,10 +385,10 @@
                 android:background="@color/whiteColors"
                 android:hint="@string/ContactNumber"
                 android:inputType="phone"
-                android:paddingBottom="@dimen/dimen10"
                 android:paddingLeft="@dimen/dimen17"
-                android:paddingRight="@dimen/dimen17"
                 android:paddingTop="@dimen/dimen12"
+                android:paddingRight="@dimen/dimen17"
+                android:paddingBottom="@dimen/dimen10"
                 android:singleLine="true"
                 android:textColor="@color/textColor"
                 android:textColorHint="@color/hintColors"
@@ -411,8 +424,8 @@
                 style="@style/MatchWrap"
                 android:background="@color/whiteColors"
                 android:orientation="horizontal"
-                android:paddingBottom="@dimen/dimen17"
-                android:paddingTop="@dimen/dimen17">
+                android:paddingTop="@dimen/dimen17"
+                android:paddingBottom="@dimen/dimen17">
 
                 <LinearLayout
                     android:id="@+id/ll_adult"
@@ -566,10 +579,10 @@
                 android:gravity="left"
                 android:hint="@string/remark1"
                 android:minHeight="@dimen/dimen133"
-                android:paddingBottom="@dimen/dimen12"
                 android:paddingLeft="@dimen/dimen17"
-                android:paddingRight="@dimen/dimen17"
                 android:paddingTop="@dimen/dimen12"
+                android:paddingRight="@dimen/dimen17"
+                android:paddingBottom="@dimen/dimen12"
                 android:textColor="@color/textColor"
                 android:textColorHint="@color/hintColors"
                 android:textCursorDrawable="@drawable/shape_cursor"
@@ -579,10 +592,10 @@
             <TextView
                 android:id="@+id/tv_paymentOrder"
                 style="@style/Match40"
-                android:layout_marginBottom="@dimen/dimen25"
                 android:layout_marginLeft="@dimen/dimen93"
-                android:layout_marginRight="@dimen/dimen93"
                 android:layout_marginTop="@dimen/dimen39"
+                android:layout_marginRight="@dimen/dimen93"
+                android:layout_marginBottom="@dimen/dimen25"
                 android:background="@drawable/shape_paymentorder"
                 android:gravity="center"
                 android:text="@string/paymentOrder"

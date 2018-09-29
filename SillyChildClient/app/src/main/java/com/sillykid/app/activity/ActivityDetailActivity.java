@@ -28,6 +28,7 @@ import com.umeng.socialize.media.UMWeb;
 
 import cn.bingoogolapple.titlebar.BGATitleBar;
 import io.rong.imkit.RongIM;
+import io.rong.imlib.model.CSCustomServiceInfo;
 import io.rong.imlib.model.Conversation;
 
 /**
@@ -120,10 +121,24 @@ public class ActivityDetailActivity extends BaseActivity implements WebViewLayou
     public void backOnclick(String id) {
 //        Intent intent = new Intent();
 //        setResult(RESULT_OK, intent);
+        if (StringUtils.isEmpty(getIntent().getStringExtra("service_id"))) {
+            finish();
+            return;
+        }
+        showLoadingDialog(getString(R.string.customerServiceLoad));
         RongIMUtil.connectRongIM(aty);
         dismissLoadingDialog();
-        RongIM.getInstance().startConversation(aty, Conversation.ConversationType.CUSTOMER_SERVICE, BuildConfig.RONGYUN_KEFU, getString(R.string.sillyChildCustomerService));
-        RongIM.getInstance().setConversationToTop(Conversation.ConversationType.CUSTOMER_SERVICE, BuildConfig.RONGYUN_KEFU, true);
+        //首先需要构造使用客服者的用户信息
+        CSCustomServiceInfo csInfo = RongIMUtil.getCSCustomServiceInfo(aty);
+        /**
+         * 启动客户服聊天界面。
+         * @param context           应用上下文。
+         * @param customerServiceId 要与之聊天的客服 Id。
+         * @param title             聊天的标题，开发者可以在聊天界面通过 intent.getData().getQueryParameter("title") 获取该值, 再手动设置为标题。
+         * @param customServiceInfo 当前使用客服者的用户信息。{@link io.rong.imlib.model.CSCustomServiceInfo}
+         */
+        RongIM.getInstance().startCustomerServiceChat(aty, getIntent().getStringExtra("service_id"), getIntent().getStringExtra("service_name"), csInfo);
+//        RongIM.getInstance().setConversationToTop(Conversation.ConversationType.CUSTOMER_SERVICE, BuildConfig.RONGYUN_KEFU, true);
         finish();
     }
 

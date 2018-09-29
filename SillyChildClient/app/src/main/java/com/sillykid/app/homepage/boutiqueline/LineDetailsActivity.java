@@ -29,6 +29,7 @@ import com.sillykid.app.entity.homepage.boutiqueline.LineDetailsBean;
 import com.sillykid.app.homepage.airporttransportation.comments.CharterCommentsActivity;
 import com.sillykid.app.homepage.airporttransportation.dialog.CompensationChangeBackDialog;
 import com.sillykid.app.homepage.boutiqueline.dialog.CalendarControlBouncedDialog;
+import com.sillykid.app.homepage.message.interactivemessage.imuitl.RongIMUtil;
 import com.sillykid.app.loginregister.LoginActivity;
 import com.sillykid.app.mine.sharingceremony.dialog.ShareBouncedDialog;
 import com.sillykid.app.utils.DataUtil;
@@ -43,6 +44,9 @@ import com.umeng.socialize.media.UMWeb;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.rong.imkit.RongIM;
+import io.rong.imlib.model.CSCustomServiceInfo;
 
 
 /**
@@ -149,6 +153,8 @@ public class LineDetailsActivity extends BaseActivity implements LineDetailsCont
     @BindView(id = R.id.et_remark)
     private TextView et_remark;
 
+    @BindView(id = R.id.img_customerService, click = true)
+    private ImageView img_customerService;
 
     private int product_id = 0;
     private String smallImg;
@@ -270,6 +276,11 @@ public class LineDetailsActivity extends BaseActivity implements LineDetailsCont
             case R.id.ll_luggage:
                 SoftKeyboardUtils.packUpKeyboard(this);
                 luggageOptions.show(tv_luggage);
+                break;
+            case R.id.img_customerService:
+                SoftKeyboardUtils.packUpKeyboard(this);
+                showLoadingDialog(getString(R.string.customerServiceLoad));
+                ((LineDetailsContract.Presenter) mPresenter).getIsLogin(aty, 3);
                 break;
             case R.id.tv_paymentOrder:
                 showLoadingDialog(getString(R.string.submissionLoad));
@@ -401,6 +412,23 @@ public class LineDetailsActivity extends BaseActivity implements LineDetailsCont
             intent.putExtra("title", getIntent().getStringExtra("title"));
             intent.putExtra("picture", getIntent().getStringExtra("picture"));
             showActivity(aty, intent);
+        } else if (flag == 3) {
+            if (StringUtils.isEmpty(lineDetailsBean.getData().getService_id())) {
+                dismissLoadingDialog();
+                return;
+            }
+            RongIMUtil.connectRongIM(aty);
+            dismissLoadingDialog();
+            //首先需要构造使用客服者的用户信息
+            CSCustomServiceInfo csInfo = RongIMUtil.getCSCustomServiceInfo(aty);
+            /**
+             * 启动客户服聊天界面。
+             * @param context           应用上下文。
+             * @param customerServiceId 要与之聊天的客服 Id。
+             * @param title             聊天的标题，开发者可以在聊天界面通过 intent.getData().getQueryParameter("title") 获取该值, 再手动设置为标题。
+             * @param customServiceInfo 当前使用客服者的用户信息。{@link io.rong.imlib.model.CSCustomServiceInfo}
+             */
+            RongIM.getInstance().startCustomerServiceChat(aty, lineDetailsBean.getData().getService_id(), lineDetailsBean.getData().getService_name(), csInfo);
         }
         dismissLoadingDialog();
     }

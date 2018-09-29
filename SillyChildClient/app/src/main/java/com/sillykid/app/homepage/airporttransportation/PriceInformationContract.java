@@ -1,5 +1,7 @@
 package com.sillykid.app.homepage.airporttransportation;
 
+import android.content.Context;
+
 import com.common.cklibrary.common.BasePresenter;
 import com.common.cklibrary.common.BaseView;
 
@@ -20,6 +22,11 @@ public interface PriceInformationContract {
          * 给评论点赞
          */
         void postAddCommentLike(int id, int type);
+
+        /**
+         * 获取会员登录状态
+         */
+        void getIsLogin(Context context, int flag);
 
     }
 

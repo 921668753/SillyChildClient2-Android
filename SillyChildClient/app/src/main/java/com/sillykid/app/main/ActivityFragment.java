@@ -72,6 +72,7 @@ public class ActivityFragment extends BaseFragment implements ActivityContract.V
     private TextView tv_button;
 
     private ActivityViewAdapter mAdapter;
+    private int position1 = 0;
 
 
     @Override
@@ -178,6 +179,16 @@ public class ActivityFragment extends BaseFragment implements ActivityContract.V
                 mAdapter.addNewData(activityBean.getData().getActivity_list());
             }
             dismissLoadingDialog();
+        } else if (flag == 1) {
+            Intent intent = new Intent(aty, ActivityDetailActivity.class);
+            intent.putExtra("activity_state", mAdapter.getItem(position1).getActivity_state());
+            intent.putExtra("id", mAdapter.getItem(position1).getId());
+            intent.putExtra("main_picture", mAdapter.getItem(position1).getMain_picture());
+            intent.putExtra("title", mAdapter.getItem(position1).getTitle());
+            intent.putExtra("subtitle", mAdapter.getItem(position1).getSubtitle());
+            intent.putExtra("service_id", mAdapter.getItem(position1).getService_id());
+            intent.putExtra("service_name", mAdapter.getItem(position1).getService_name());
+            aty.showActivity(aty, intent);
         }
     }
 
@@ -228,13 +239,8 @@ public class ActivityFragment extends BaseFragment implements ActivityContract.V
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-        Intent intent = new Intent(aty, ActivityDetailActivity.class);
-        intent.putExtra("activity_state", mAdapter.getItem(position).getActivity_state());
-        intent.putExtra("id", mAdapter.getItem(position).getId());
-        intent.putExtra("main_picture", mAdapter.getItem(position).getMain_picture());
-        intent.putExtra("title", mAdapter.getItem(position).getTitle());
-        intent.putExtra("subtitle", mAdapter.getItem(position).getSubtitle());
-        aty.showActivity(aty, intent);
+        position1 = position;
+        ((ActivityContract.Presenter) mPresenter).getIsLogin(aty, 1);
     }
 
     @Override

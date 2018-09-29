@@ -7,7 +7,6 @@ import java.util.List;
 
 public class PriceInformationBean extends BaseResult<PriceInformationBean.DataBean> {
 
-
     public class DataBean {
         /**
          * service_description : 服务说明服务说明服务说明服务说明服务说明服务说明服务说明服务说明服务说明服务说明服务说明服务说明服务说明服务说明服务说明服务说明服务说明服务说明服务说明服务说明服务说明服务说明服务说明服务说明服务说明服务说明服务说明服务说明服务说明服务说明服务说明服务说明服务说明服务说明服务说明
@@ -42,6 +41,8 @@ public class PriceInformationBean extends BaseResult<PriceInformationBean.DataBe
         private List<ServiceBean> service;
         private List<ReviewListBean> review_list;
         private int review_count;
+        private String service_id;
+        private String service_name;
 
         public int getReview_count() {
             return review_count;
@@ -145,6 +146,22 @@ public class PriceInformationBean extends BaseResult<PriceInformationBean.DataBe
 
         public void setService_policy(String service_policy) {
             this.service_policy = service_policy;
+        }
+
+        public String getService_id() {
+            return service_id;
+        }
+
+        public void setService_id(String service_id) {
+            this.service_id = service_id;
+        }
+
+        public String getService_name() {
+            return service_name;
+        }
+
+        public void setService_name(String service_name) {
+            this.service_name = service_name;
         }
 
         public List<String> getPicture() {
@@ -287,5 +304,6 @@ public class PriceInformationBean extends BaseResult<PriceInformationBean.DataBe
                 this.is_like = is_like;
             }
         }
+
     }
 }

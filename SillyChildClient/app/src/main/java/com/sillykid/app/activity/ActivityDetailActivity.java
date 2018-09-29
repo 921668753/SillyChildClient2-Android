@@ -6,14 +6,11 @@ import android.view.KeyEvent;
 
 import com.common.cklibrary.common.BaseActivity;
 import com.common.cklibrary.common.BindView;
-import com.common.cklibrary.common.StringConstants;
 import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.ActivityTitleUtils;
 import com.common.cklibrary.utils.myview.WebViewLayout1;
 import com.kymjs.common.Log;
-import com.kymjs.common.PreferenceHelper;
 import com.kymjs.common.StringUtils;
-import com.sillykid.app.BuildConfig;
 import com.sillykid.app.R;
 import com.sillykid.app.constant.URLConstants;
 import com.sillykid.app.homepage.message.interactivemessage.imuitl.RongIMUtil;
@@ -29,7 +26,6 @@ import com.umeng.socialize.media.UMWeb;
 import cn.bingoogolapple.titlebar.BGATitleBar;
 import io.rong.imkit.RongIM;
 import io.rong.imlib.model.CSCustomServiceInfo;
-import io.rong.imlib.model.Conversation;
 
 /**
  * 活动详情

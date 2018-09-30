@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.common.cklibrary.common.BaseFragment;
 import com.common.cklibrary.common.BindView;
+import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.RefreshLayoutUtil;
 import com.common.cklibrary.utils.myview.ChildListView;
@@ -213,27 +214,35 @@ public class ActivityFragment extends BaseFragment implements ActivityContract.V
     @Override
     public void errorMsg(String msg, int flag) {
         dismissLoadingDialog();
-        mRefreshLayout.endRefreshing();
-        ll_commonError.setVisibility(View.VISIBLE);
-        tv_hintText.setVisibility(View.VISIBLE);
-        tv_button.setVisibility(View.VISIBLE);
-        if (isLogin(msg)) {
-            img_err.setImageResource(R.mipmap.no_login);
-            tv_hintText.setVisibility(View.GONE);
-            tv_button.setText(getString(R.string.login));
-            // ViewInject.toast(getString(R.string.reloginPrompting));
-        } else if (msg.contains(getString(R.string.checkNetwork))) {
-            img_err.setImageResource(R.mipmap.no_network);
-            tv_hintText.setText(msg);
-            tv_button.setText(getString(R.string.retry));
-        } else if (msg.contains(getString(R.string.noActivity))) {
-            img_err.setImageResource(R.mipmap.no_data);
-            tv_hintText.setText(msg);
-            tv_button.setVisibility(View.GONE);
-        } else {
-            img_err.setImageResource(R.mipmap.no_data);
-            tv_hintText.setText(msg);
-            tv_button.setText(getString(R.string.retry));
+        if (flag == 0) {
+            mRefreshLayout.endRefreshing();
+            ll_commonError.setVisibility(View.VISIBLE);
+            tv_hintText.setVisibility(View.VISIBLE);
+            tv_button.setVisibility(View.VISIBLE);
+            if (isLogin(msg)) {
+                img_err.setImageResource(R.mipmap.no_login);
+                tv_hintText.setVisibility(View.GONE);
+                tv_button.setText(getString(R.string.login));
+                // ViewInject.toast(getString(R.string.reloginPrompting));
+            } else if (msg.contains(getString(R.string.checkNetwork))) {
+                img_err.setImageResource(R.mipmap.no_network);
+                tv_hintText.setText(msg);
+                tv_button.setText(getString(R.string.retry));
+            } else if (msg.contains(getString(R.string.noActivity))) {
+                img_err.setImageResource(R.mipmap.no_data);
+                tv_hintText.setText(msg);
+                tv_button.setVisibility(View.GONE);
+            } else {
+                img_err.setImageResource(R.mipmap.no_data);
+                tv_hintText.setText(msg);
+                tv_button.setText(getString(R.string.retry));
+            }
+        } else if (flag == 1) {
+            if (isLogin(msg)) {
+                aty.showActivity(aty, LoginActivity.class);
+                return;
+            }
+            ViewInject.toast(msg);
         }
     }
 

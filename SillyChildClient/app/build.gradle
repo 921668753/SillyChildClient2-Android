@@ -93,7 +93,7 @@ android {
             buildConfigField "String", "QQ_APPID", "\"1106980891\""
             buildConfigField "String", "QQ_APPKEY", "\"u7RkX4rG9XZxBbd9\""
             buildConfigField "String", "RONGYUN_APPKEY", "\"0vnjpoad069rz\""
-            buildConfigField "String", "RONGYUN_KEFU", "\"KEFU153828850438962\""
+            buildConfigField "String", "RONGYUN_KEFU", "\"KEFU153830471893767\""
 //            buildConfigField "String", "HUANXIN_TENANTID", "\"46895\""
 //            buildConfigField "String", "HUANXIN_PROJECTID", "\"2169000\""
 
@@ -120,7 +120,7 @@ android {
             buildConfigField "String", "QQ_APPID", "\"1106980891\""
             buildConfigField "String", "QQ_APPKEY", "\"u7RkX4rG9XZxBbd9\""
             buildConfigField "String", "RONGYUN_APPKEY", "\"0vnjpoad069rz\""
-            buildConfigField "String", "RONGYUN_KEFU", "\"KEFU153828850438962\""
+            buildConfigField "String", "RONGYUN_KEFU", "\"KEFU153830471893767\""
 //            buildConfigField "String", "HUANXIN_TENANTID", "\"46895\""
 //            buildConfigField "String", "HUANXIN_PROJECTID", "\"2169000\""
 //            buildConfigField "String", "HUANXIN_IM", "\"shahaizi_kefu_001\""

@@ -11,9 +11,14 @@ import com.common.cklibrary.utils.httputil.ResponseListener;
 import com.kymjs.rxvolley.client.HttpParams;
 import com.sillykid.app.constant.StringNewConstants;
 import com.sillykid.app.entity.message.SystemMessageBean;
+import com.sillykid.app.homepage.message.interactivemessage.imuitl.RongIMUtil;
 import com.sillykid.app.retrofit.RequestClient;
 
+import java.util.List;
+
 import io.rong.imkit.RongIM;
+import io.rong.imlib.RongIMClient;
+import io.rong.imlib.model.Conversation;
 
 /**
  * Created by Administrator on 2018/6/27.
@@ -85,7 +90,7 @@ public class MainService extends Service {
      * 获取融云未读消息数量
      */
     public void getRongIMMessage() {
-        int num = RongIM.getInstance().getTotalUnreadCount();
+        int num = RongIMUtil.getTotalUnreadCount();
         if (num > 0) {
             sendCast(true);
             return;

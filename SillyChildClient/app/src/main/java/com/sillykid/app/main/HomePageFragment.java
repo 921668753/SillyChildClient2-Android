@@ -289,6 +289,7 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
              * @param customServiceInfo 当前使用客服者的用户信息。{@link io.rong.imlib.model.CSCustomServiceInfo}
              */
             RongIM.getInstance().startCustomerServiceChat(getActivity(), BuildConfig.RONGYUN_KEFU, getString(R.string.sillyChildCustomerService), csInfo);
+            //   RongIMClient.getInstance().selectCustomServiceGroup(BuildConfig.RONGYUN_KEFU, "4459926479914a00a4fcc8d5e4d897a4");
             //  RongIM.getInstance().startConversation(aty, Conversation.ConversationType.CUSTOMER_SERVICE, BuildConfig.RONGYUN_KEFU, getString(R.string.sillyChildCustomerService));
             RongIMClient.getInstance().setConversationToTop(Conversation.ConversationType.CUSTOMER_SERVICE, BuildConfig.RONGYUN_KEFU, true);
             // RongIMClient.getInstance().onModeChanged("426ddc2714964b5f8e2062eac7946904", "b60d3ba1c2534c27af40a1f49fe929f9");

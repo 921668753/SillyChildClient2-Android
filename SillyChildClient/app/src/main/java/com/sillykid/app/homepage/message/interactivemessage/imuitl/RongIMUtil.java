@@ -12,6 +12,7 @@ import com.kymjs.common.StringUtils;
 import io.rong.imkit.RongIM;
 import io.rong.imlib.RongIMClient;
 import io.rong.imlib.model.CSCustomServiceInfo;
+import io.rong.imlib.model.Conversation;
 
 /**
  * 获取Token
@@ -53,6 +54,15 @@ public class RongIMUtil {
         return csBuilder.nickName(nick_name).name(nick_name).mobileNo(mobile).city(city).province(province).address(address).build();
     }
 
+    public static int getTotalUnreadCount() {
+        Conversation.ConversationType[] types = new Conversation.ConversationType[]{
+                Conversation.ConversationType.PRIVATE,
+                Conversation.ConversationType.DISCUSSION,
+                Conversation.ConversationType.GROUP,
+                Conversation.ConversationType.CUSTOMER_SERVICE
+        };
+        return RongIM.getInstance().getUnreadCount(types);
+    }
 
     private static void connect(final String rongYunToken) {
 

@@ -38,9 +38,8 @@ public final class RongCloudEvent extends RongIMClient.ResultCallback<Conversati
         RongIMClient.ConnectionStatusListener,
         RongIM.LocationProvider,
         RongIM.ConversationBehaviorListener,
-        RongIM.OnSendMessageListener, IUnReadMessageObserver {
-
-    private static final String TAG = RongCloudEvent.class.getSimpleName();
+        RongIM.OnSendMessageListener,
+        IUnReadMessageObserver {
 
     private static RongCloudEvent mRongCloudInstance;
 
@@ -90,8 +89,9 @@ public final class RongCloudEvent extends RongIMClient.ResultCallback<Conversati
     private void setReadReceiptConversationType() {
         Conversation.ConversationType[] types = new Conversation.ConversationType[]{
                 Conversation.ConversationType.PRIVATE,
+                Conversation.ConversationType.DISCUSSION,
                 Conversation.ConversationType.GROUP,
-                Conversation.ConversationType.DISCUSSION
+                Conversation.ConversationType.CUSTOMER_SERVICE
         };
         RongIM.getInstance().setReadReceiptConversationTypeList(types);
         RongIM.getInstance().addUnReadMessageCountChangedObserver(this, types);
@@ -103,7 +103,7 @@ public final class RongCloudEvent extends RongIMClient.ResultCallback<Conversati
     public void setOtherListener() {
         RongIM.setOnReceiveMessageListener(this);// 设置发出消息接收监听器.
         RongIM.setConnectionStatusListener(this);// 设置连接状态监听器。
-     //   RongIM.getInstance().getConversationNotificationStatus(Conversation.ConversationType.PRIVATE, "1", this);// 设置消息免打扰状态。
+        //   RongIM.getInstance().getConversationNotificationStatus(Conversation.ConversationType.PRIVATE, "1", this);// 设置消息免打扰状态。
         setUserInfoEngineListener();   //用户信息提供者回调监听
 //    setGroupInfoEngineListener();  //群组信息提供者回调监听
     }
@@ -259,4 +259,5 @@ public final class RongCloudEvent extends RongIMClient.ResultCallback<Conversati
     public void onError(RongIMClient.ErrorCode errorCode) {
 
     }
+
 }

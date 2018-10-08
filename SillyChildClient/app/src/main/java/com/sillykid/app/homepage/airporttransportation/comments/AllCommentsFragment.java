@@ -177,14 +177,13 @@ public class AllCommentsFragment extends BaseFragment implements CharterComments
     @Override
     public void getSuccess(String success, int flag) {
         if (flag == 0) {
-
             isShowLoadingMore = true;
             ll_commonError.setVisibility(View.GONE);
             mRefreshLayout.setVisibility(View.VISIBLE);
             CharterCommentsBean charterCommentsBean = (CharterCommentsBean) JsonUtil.getInstance().json2Obj(success, CharterCommentsBean.class);
             if (charterCommentsBean.getData() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER || charterCommentsBean.getData().getResultX().size() <= 0 &&
                     mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
-                errorMsg(getString(R.string.goodsNotCommented), 1);
+                errorMsg(getString(R.string.goodsNotCommented), 0);
                 return;
             } else if (charterCommentsBean.getData() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
                     charterCommentsBean.getData().getResultX().size() <= 0 && mMorePageNumber > NumericConstants.START_PAGE_NUMBER) {

@@ -181,8 +181,12 @@ public class ShopHomePageFragment extends BaseFragment implements ShopHomePageCo
                             shopHomePageBean.getData().get(i).setHeight(bitmap.getHeight());
                             shopHomePageBean.getData().get(i).setWidth(bitmap.getWidth());
                         }
-                        if (shopHomePageBean.getData().get(i) != null && !StringUtils.isEmpty(shopHomePageBean.getData().get(i).getName())) {
+                        if (shopHomePageBean.getData().get(i) == null || StringUtils.isEmpty(shopHomePageBean.getData().get(i).getName())) {
+                            continue;
+                        }
+                        try {
                             list.add(shopHomePageBean.getData().get(i));
+                        } catch (Exception e) {
                         }
                     }
                     aty.runOnUiThread(new Runnable() {

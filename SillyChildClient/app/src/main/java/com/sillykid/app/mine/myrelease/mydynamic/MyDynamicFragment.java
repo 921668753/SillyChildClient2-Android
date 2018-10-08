@@ -191,7 +191,11 @@ public class MyDynamicFragment extends BaseFragment implements MyDynamicContract
         thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                list.clear();
+                try {
+                    list.clear();
+                } catch (Exception e) {
+                    list = new ArrayList<MyDynamicBean.DataBean.ResultBean>();
+                }
                 for (int i = 0; i < myDynamicBean.getData().getResult().size(); i++) {
                     Bitmap bitmap = GlideImageLoader.load(aty, myDynamicBean.getData().getResult().get(i).getPicture());
                     if (bitmap != null) {

@@ -74,7 +74,7 @@ public class CompensationChangeBackDialog extends BaseDialog implements View.OnC
 
     public void setText(String text) {
         if (StringUtils.isEmpty(text)) {
-            String code = "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" + mContext.getString(R.string.noExplanation)
+            String code = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" + mContext.getString(R.string.noExplanation)
                     + "</body></html>";
             web_view.loadDataWithBaseURL(null, code, "text/html", "utf-8", null);
         } else {

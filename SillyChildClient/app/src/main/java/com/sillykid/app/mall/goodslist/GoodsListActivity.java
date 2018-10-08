@@ -232,7 +232,13 @@ public class GoodsListActivity extends BaseActivity implements GoodsListContract
                         goodsListBean.getData().get(i).setHeight(bitmap.getHeight());
                         goodsListBean.getData().get(i).setWidth(bitmap.getWidth());
                     }
-                    list.add(goodsListBean.getData().get(i));
+                    if (goodsListBean.getData().get(i) == null) {
+                        continue;
+                    }
+                    try {
+                        list.add(goodsListBean.getData().get(i));
+                    } catch (Exception e) {
+                    }
                 }
                 runOnUiThread(new Runnable() {
                     @Override

@@ -14,7 +14,7 @@
         android:layout_marginLeft="@dimen/dimen2"
         android:layout_marginTop="@dimen/dimen14"
         android:layout_marginRight="@dimen/dimen2"
-        android:scaleType="centerInside"
+        android:scaleType="fitXY"
         android:src="@mipmap/placeholderfigure" />
 
     <LinearLayout

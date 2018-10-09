@@ -20,8 +20,9 @@ public class ByTheDayCharterClassificationPresenter implements ByTheDayCharterCl
 
 
     @Override
-    public void getAirportCountryList() {
+    public void getAirportCountryList(int type) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
+        httpParams.put("category", type);
         RequestClient.getAirportCountryList(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {

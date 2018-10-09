@@ -109,7 +109,7 @@ public class AirportTransportationClassificationActivity extends BaseActivity im
         gv_countriesClassification.setAdapter(mGridViewAdapter);
         gv_countriesClassification.setOnItemClickListener(this);
         showLoadingDialog(getString(R.string.dataLoad));
-        ((AirportTransportationClassificationContract.Presenter) mPresenter).getAirportCountryList();
+        ((AirportTransportationClassificationContract.Presenter) mPresenter).getAirportCountryList(type);
     }
 
     @Override

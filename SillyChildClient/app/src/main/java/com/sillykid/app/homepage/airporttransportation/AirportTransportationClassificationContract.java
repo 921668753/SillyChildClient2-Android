@@ -14,7 +14,7 @@ public interface AirportTransportationClassificationContract {
         /**
          * 获取国家列表
          */
-        void getAirportCountryList();
+        void getAirportCountryList(int type);
 
         /**
          * 获取分类

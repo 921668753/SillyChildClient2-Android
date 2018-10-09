@@ -33,15 +33,13 @@
                 android:layout_height="@dimen/dimen143"
                 android:layout_marginTop="@dimen/dimen6"
                 android:background="@mipmap/placeholderfigure2"
-                android:scaleType="fitXY"
-                app:banner_isNeedShowIndicatorOnOnlyOnePage="true"
+                android:scaleType="centerInside"
                 app:banner_pageChangeDuration="2000"
                 app:banner_pointAutoPlayAble="false"
                 app:banner_pointContainerBackground="@android:color/transparent"
                 app:banner_pointDrawable="@drawable/bga_banner_selector_point"
                 app:banner_pointTopBottomMargin="@dimen/dimen6"
                 app:banner_transitionEffect="alpha" />
-
 
             <LinearLayout
                 style="@style/Match45"

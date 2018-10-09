@@ -108,7 +108,7 @@ public class ByTheDayCharterClassificationActivity extends BaseActivity implemen
         gv_countriesClassification.setAdapter(mGridViewAdapter);
         gv_countriesClassification.setOnItemClickListener(this);
         showLoadingDialog(getString(R.string.dataLoad));
-        ((ByTheDayCharterClassificationContract.Presenter) mPresenter).getAirportCountryList();
+        ((ByTheDayCharterClassificationContract.Presenter) mPresenter).getAirportCountryList(type);
     }
 
     @Override

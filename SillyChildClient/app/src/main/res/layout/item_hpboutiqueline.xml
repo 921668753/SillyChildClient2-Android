@@ -12,9 +12,9 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen147"
         android:layout_marginLeft="@dimen/dimen2"
-        android:layout_marginRight="@dimen/dimen2"
         android:layout_marginTop="@dimen/dimen14"
-        android:scaleType="fitXY"
+        android:layout_marginRight="@dimen/dimen2"
+        android:scaleType="centerInside"
         android:src="@mipmap/placeholderfigure" />
 
     <LinearLayout
@@ -28,8 +28,8 @@
             <TextView
                 android:id="@+id/tv_boutiQueLine"
                 style="@style/AutoWrap"
-                android:layout_marginBottom="@dimen/dimen15"
                 android:layout_marginTop="@dimen/dimen12"
+                android:layout_marginBottom="@dimen/dimen15"
                 android:paddingLeft="@dimen/dimen8"
                 android:paddingRight="@dimen/dimen12"
                 android:singleLine="true"

@@ -20,7 +20,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimen143"
                 android:layout_marginTop="@dimen/dimen6"
-                android:scaleType="fitXY"
+                android:background="@color/whiteColors"
+                android:scaleType="centerInside"
                 android:src="@mipmap/placeholderfigure" />
 
             <LinearLayout
@@ -47,9 +48,9 @@
                 <TextView
                     android:id="@+id/tv_travelTime"
                     style="@style/AutoWrap"
-                    android:paddingBottom="@dimen/dimen14"
                     android:paddingLeft="@dimen/dimen10"
                     android:paddingTop="@dimen/dimen14"
+                    android:paddingBottom="@dimen/dimen14"
                     android:text="@string/selectDate"
                     android:textColor="@color/hintColors"
                     android:textSize="@dimen/textsize13" />
@@ -336,8 +337,8 @@
                 style="@style/MatchWrap"
                 android:background="@color/whiteColors"
                 android:orientation="horizontal"
-                android:paddingBottom="@dimen/dimen13"
-                android:paddingTop="@dimen/dimen25">
+                android:paddingTop="@dimen/dimen25"
+                android:paddingBottom="@dimen/dimen13">
 
                 <LinearLayout
                     android:id="@+id/ll_luggage"
@@ -393,10 +394,10 @@
                 android:gravity="left"
                 android:hint="@string/remark1"
                 android:minHeight="@dimen/dimen126"
-                android:paddingBottom="@dimen/dimen12"
                 android:paddingLeft="@dimen/dimen17"
-                android:paddingRight="@dimen/dimen17"
                 android:paddingTop="@dimen/dimen12"
+                android:paddingRight="@dimen/dimen17"
+                android:paddingBottom="@dimen/dimen12"
                 android:textColor="@color/textColor"
                 android:textColorHint="@color/hintColors"
                 android:textCursorDrawable="@drawable/shape_cursor"
@@ -406,10 +407,10 @@
             <TextView
                 android:id="@+id/tv_submitOrder"
                 style="@style/Match40"
-                android:layout_marginBottom="@dimen/dimen20"
                 android:layout_marginLeft="@dimen/dimen100"
-                android:layout_marginRight="@dimen/dimen100"
                 android:layout_marginTop="@dimen/dimen29"
+                android:layout_marginRight="@dimen/dimen100"
+                android:layout_marginBottom="@dimen/dimen20"
                 android:background="@drawable/shape_charter1"
                 android:gravity="center"
                 android:text="@string/submitOrder"

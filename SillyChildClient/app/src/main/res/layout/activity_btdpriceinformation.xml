@@ -23,15 +23,13 @@
                 android:layout_height="@dimen/dimen143"
                 android:layout_marginTop="@dimen/dimen6"
                 android:background="@mipmap/placeholderfigure2"
-                android:scaleType="fitXY"
-                app:banner_isNeedShowIndicatorOnOnlyOnePage="true"
+                android:scaleType="centerInside"
                 app:banner_pageChangeDuration="2000"
                 app:banner_pointAutoPlayAble="false"
                 app:banner_pointContainerBackground="@android:color/transparent"
                 app:banner_pointDrawable="@drawable/bga_banner_selector_point"
                 app:banner_pointTopBottomMargin="@dimen/dimen6"
                 app:banner_transitionEffect="alpha" />
-
 
             <LinearLayout
                 style="@style/Match45"
@@ -45,7 +43,6 @@
                     android:layout_height="@dimen/dimen19"
                     android:layout_marginLeft="@dimen/dimen17"
                     android:src="@mipmap/img_modelcar" />
-
 
                 <TextView
                     style="@style/WrapWrap"
@@ -142,10 +139,10 @@
             <com.common.cklibrary.utils.myview.NoScrollGridView
                 android:id="@+id/gv_containsService"
                 style="@style/MatchWrap"
-                android:layout_marginBottom="@dimen/dimen19"
                 android:layout_marginLeft="@dimen/dimen27"
-                android:layout_marginRight="@dimen/dimen27"
                 android:layout_marginTop="@dimen/dimen16"
+                android:layout_marginRight="@dimen/dimen27"
+                android:layout_marginBottom="@dimen/dimen19"
                 android:horizontalSpacing="@dimen/dimen27"
                 android:listSelector="@android:color/transparent"
                 android:numColumns="3"
@@ -156,8 +153,8 @@
 
             <TextView
                 style="@style/MatchWrap"
-                android:paddingBottom="@dimen/dimen8"
                 android:paddingLeft="@dimen/dimen21"
+                android:paddingBottom="@dimen/dimen8"
                 android:text="@string/serviceTime1"
                 android:textColor="@color/tabColors"
                 android:textSize="@dimen/textsize14" />
@@ -224,9 +221,9 @@
 
             <TextView
                 style="@style/MatchWrap"
-                android:paddingBottom="@dimen/dimen10"
                 android:paddingLeft="@dimen/dimen21"
                 android:paddingTop="@dimen/dimen10"
+                android:paddingBottom="@dimen/dimen10"
                 android:text="@string/servicePolicy"
                 android:textColor="@color/tabColors"
                 android:textSize="@dimen/textsize14" />
@@ -264,9 +261,9 @@
 
             <TextView
                 style="@style/MatchWrap"
-                android:paddingBottom="@dimen/dimen10"
                 android:paddingLeft="@dimen/dimen21"
                 android:paddingTop="@dimen/dimen10"
+                android:paddingBottom="@dimen/dimen10"
                 android:text="@string/serviceDescription"
                 android:textColor="@color/tabColors"
                 android:textSize="@dimen/textsize14" />
@@ -275,10 +272,10 @@
                 android:id="@+id/tv_serviceDescription"
                 style="@style/MatchWrap"
                 android:background="@color/whiteColors"
-                android:paddingBottom="@dimen/dimen15"
                 android:paddingLeft="@dimen/dimen21"
-                android:paddingRight="@dimen/dimen21"
                 android:paddingTop="@dimen/dimen15"
+                android:paddingRight="@dimen/dimen21"
+                android:paddingBottom="@dimen/dimen15"
                 android:text="有特别要求请备注说明"
                 android:textColor="@color/textColor"
                 android:textSize="@dimen/textsize14" />
@@ -286,9 +283,9 @@
 
             <TextView
                 style="@style/MatchWrap"
-                android:paddingBottom="@dimen/dimen10"
                 android:paddingLeft="@dimen/dimen21"
                 android:paddingTop="@dimen/dimen10"
+                android:paddingBottom="@dimen/dimen10"
                 android:text="@string/serviceNote"
                 android:textColor="@color/tabColors"
                 android:textSize="@dimen/textsize14" />
@@ -300,26 +297,26 @@
                 android:background="@color/whiteColors"
                 android:gravity="left"
                 android:hint="@string/particularRequirement"
-                android:paddingBottom="@dimen/dimen15"
                 android:paddingLeft="@dimen/dimen21"
-                android:paddingRight="@dimen/dimen21"
                 android:paddingTop="@dimen/dimen15"
+                android:paddingRight="@dimen/dimen21"
+                android:paddingBottom="@dimen/dimen15"
                 android:textColor="@color/hintColors"
                 android:textSize="@dimen/textsize14" />
 
             <LinearLayout
                 android:id="@+id/ll_userEvaluation"
                 style="@style/MatchWrap"
-                android:layout_marginBottom="@dimen/dimen6"
                 android:layout_marginTop="@dimen/dimen6"
+                android:layout_marginBottom="@dimen/dimen6"
                 android:background="@color/whiteColors"
                 android:orientation="horizontal"
                 android:paddingLeft="@dimen/dimen24">
 
                 <TextView
                     style="@style/WrapWrap"
-                    android:layout_marginBottom="@dimen/dimen10"
                     android:layout_marginTop="@dimen/dimen10"
+                    android:layout_marginBottom="@dimen/dimen10"
                     android:text="@string/userEvaluation"
                     android:textColor="@color/tabColors"
                     android:textSize="@dimen/textsize13" />
@@ -362,10 +359,10 @@
             <TextView
                 android:id="@+id/tv_nextStep"
                 style="@style/Match40"
-                android:layout_marginBottom="@dimen/dimen20"
                 android:layout_marginLeft="@dimen/dimen100"
-                android:layout_marginRight="@dimen/dimen100"
                 android:layout_marginTop="@dimen/dimen29"
+                android:layout_marginRight="@dimen/dimen100"
+                android:layout_marginBottom="@dimen/dimen20"
                 android:background="@drawable/shape_charter1"
                 android:gravity="center"
                 android:text="@string/nextStep"

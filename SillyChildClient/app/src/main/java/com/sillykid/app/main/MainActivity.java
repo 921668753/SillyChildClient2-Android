@@ -135,7 +135,7 @@ public class MainActivity extends BaseActivity implements MainContract.View {
     @Override
     public void initWidget() {
         super.initWidget();
-        initColors();
+        cleanColors(chageIcon);
     }
 
     public void changeFragment(BaseFragment targetFragment) {
@@ -165,6 +165,8 @@ public class MainActivity extends BaseActivity implements MainContract.View {
             setSimulateClick(bottombar_trip, 160, 100);
         } else if (newChageIcon == 4) {
             setSimulateClick(bottombar_mine, 160, 100);
+        } else {
+            setSimulateClick(bottombar_homePage, 160, 100);
         }
     }
 

@@ -154,7 +154,7 @@ public class CitySearchActivity extends BaseActivity implements TagFlowLayout.On
      * 读取历史
      */
     private void readRecentSearchHistory() {
-        String recentSearch = recentSearch = PreferenceHelper.readString(aty, StringConstants.FILENAME, "recentSearchCityPrivatecustomHistory", "");
+        String recentSearch = PreferenceHelper.readString(aty, StringConstants.FILENAME, "recentSearchCityPrivatecustomHistory", "");
 
         if (StringUtils.isEmpty(recentSearch)) {
             ll_recentSearch.setVisibility(View.GONE);

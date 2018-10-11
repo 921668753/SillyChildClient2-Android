@@ -102,7 +102,7 @@
         <!--选择国家或地区-->
         <activity
             android:name=".loginregister.SelectCountryCodeActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"/>
 
         <!--注册-->
         <activity
@@ -127,7 +127,7 @@
         <!--登录 綁定账号-->
         <activity
             android:name=".loginregister.bindingaccount.BindingAccountActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"/>
 
         <!--主界面-->
         <activity

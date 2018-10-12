@@ -49,6 +49,7 @@ public class SetSignatureActivity extends BaseActivity implements SetSignatureCo
         if (!StringUtils.isEmpty(signature)) {
             et_signature.setText(signature);
             et_signature.setSelection(et_signature.getText().length());
+            tv_number.setText(String.valueOf(signature.length()));
         }
     }
 

@@ -24,14 +24,12 @@
                     android:id="@+id/banner_ad"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dimen210"
-                    android:background="@mipmap/home_banner"
                     app:banner_pageChangeDuration="2000"
                     app:banner_pointAutoPlayAble="false"
                     app:banner_pointContainerBackground="@android:color/transparent"
                     app:banner_pointDrawable="@drawable/bga_banner_selector_point"
                     app:banner_pointTopBottomMargin="2dp"
                     app:banner_transitionEffect="alpha" />
-
 
                 <com.common.cklibrary.utils.myview.NoScrollGridView
                     android:id="@+id/gv_classification"

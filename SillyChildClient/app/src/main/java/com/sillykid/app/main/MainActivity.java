@@ -289,67 +289,17 @@ public class MainActivity extends BaseActivity implements MainContract.View {
      * 清除颜色，并添加颜色
      */
     @SuppressWarnings("deprecation")
-    public void cleanColors(int position) {
-        if (position != chageIcon) {
-            switch (chageIcon) {
-                case 0:
-                    img_homePage.setImageResource(R.mipmap.tab_home);
-                    tv_homePage.setTextColor(getResources().getColor(R.color.textColor));
-                    break;
-                case 1:
-                    img_community.setImageResource(R.mipmap.tab_community);
-                    tv_community.setTextColor(getResources().getColor(R.color.textColor));
-                    break;
-                case 2:
-                    img_mall.setImageResource(R.mipmap.tab_mall);
-                    tv_mall.setTextColor(getResources().getColor(R.color.textColor));
-                    break;
-                case 3:
-                    img_trip.setImageResource(R.mipmap.tab_activity);
-                    tv_trip.setTextColor(getResources().getColor(R.color.textColor));
-                    break;
-                case 4:
-                    img_mine.setImageResource(R.mipmap.tab_personal);
-                    tv_mine.setTextColor(getResources().getColor(R.color.textColor));
-                    break;
-            }
-            chageIcon = position;
-            switch (chageIcon) {
-                case 0:
-                    img_homePage.setImageResource(R.mipmap.tab_home_selected);
-                    tv_homePage.setTextColor(getResources().getColor(R.color.ea73Colors));
-                    changeFragment(contentFragment);
-                    break;
-                case 1:
-                    img_community.setImageResource(R.mipmap.tab_community_selected);
-                    tv_community.setTextColor(getResources().getColor(R.color.fF9955Colors));
-                    changeFragment(contentFragment1);
-                    break;
-                case 2:
-                    img_mall.setImageResource(R.mipmap.tab_mall_selected);
-                    tv_mall.setTextColor(getResources().getColor(R.color.d0a4fcColors));
-                    changeFragment(contentFragment2);
-                    break;
-                case 3:
-                    img_trip.setImageResource(R.mipmap.tab_activity_selected);
-                    tv_trip.setTextColor(getResources().getColor(R.color.fF5656Colors));
-                    changeFragment(contentFragment3);
-                    break;
-                case 4:
-                    img_mine.setImageResource(R.mipmap.tab_personal_selected);
-                    tv_mine.setTextColor(getResources().getColor(R.color.e9e5Colors));
-                    changeFragment(contentFragment4);
-                    break;
-            }
-        }
-
-    }
-
-    /**
-     * 清除颜色，并添加颜色
-     */
-    @SuppressWarnings("deprecation")
-    public void initColors() {
+    public void cleanColors(int chageIcon) {
+        img_homePage.setImageResource(R.mipmap.tab_home);
+        tv_homePage.setTextColor(getResources().getColor(R.color.textColor));
+        img_community.setImageResource(R.mipmap.tab_community);
+        tv_community.setTextColor(getResources().getColor(R.color.textColor));
+        img_mall.setImageResource(R.mipmap.tab_mall);
+        tv_mall.setTextColor(getResources().getColor(R.color.textColor));
+        img_trip.setImageResource(R.mipmap.tab_activity);
+        tv_trip.setTextColor(getResources().getColor(R.color.textColor));
+        img_mine.setImageResource(R.mipmap.tab_personal);
+        tv_mine.setTextColor(getResources().getColor(R.color.textColor));
         switch (chageIcon) {
             case 0:
                 img_homePage.setImageResource(R.mipmap.tab_home_selected);
@@ -363,12 +313,12 @@ public class MainActivity extends BaseActivity implements MainContract.View {
                 break;
             case 2:
                 img_mall.setImageResource(R.mipmap.tab_mall_selected);
-                tv_mall.setTextColor(getResources().getColor(R.color.f3516dColors));
+                tv_mall.setTextColor(getResources().getColor(R.color.d0a4fcColors));
                 changeFragment(contentFragment2);
                 break;
             case 3:
-                img_trip.setImageResource(R.mipmap.tab_trip_selected);
-                tv_trip.setTextColor(getResources().getColor(R.color.d0a4fcColors));
+                img_trip.setImageResource(R.mipmap.tab_activity_selected);
+                tv_trip.setTextColor(getResources().getColor(R.color.fF5656Colors));
                 changeFragment(contentFragment3);
                 break;
             case 4:
@@ -377,7 +327,7 @@ public class MainActivity extends BaseActivity implements MainContract.View {
                 changeFragment(contentFragment4);
                 break;
         }
-    }
+}
 
 
     @Override

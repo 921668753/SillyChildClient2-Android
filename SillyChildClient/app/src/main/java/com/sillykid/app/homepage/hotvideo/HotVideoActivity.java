@@ -171,7 +171,7 @@ public class HotVideoActivity extends BaseActivity implements HotVideoContract.V
             if (hotVideoBean.getData() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
                     hotVideoBean.getData().getResult() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
                     hotVideoBean.getData().getResult().size() <= 0 && mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
-                errorMsg(getString(R.string.noCollectedGoods), 0);
+                errorMsg(getString(R.string.noHotVideo), 0);
                 return;
             } else if (hotVideoBean.getData() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
                     hotVideoBean.getData().getResult() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||

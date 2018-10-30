@@ -10,8 +10,8 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         applicationId "com.sillykid.app"
-        versionCode 74
-        versionName "1.0.0.1810181754"
+        versionCode 76
+        versionName "1.0.0.1810301008"
         multiDexEnabled true
 
         aaptOptions.cruncherEnabled = false

@@ -81,13 +81,21 @@ public class UnusedCouponsBean extends BaseResult<UnusedCouponsBean.DataBean> {
              * coupon_name : 全场通用
              * denomination : 5.00
              */
-
+            private String full_amount;
             private String validity_period;
             private String limit_content;
             private String remark;
             private String coupon_name;
             private String denomination;
             private int coupon_id;
+
+            public String getFull_amount() {
+                return full_amount;
+            }
+
+            public void setFull_amount(String full_amount) {
+                this.full_amount = full_amount;
+            }
 
             public int getCoupon_id() {
                 return coupon_id;

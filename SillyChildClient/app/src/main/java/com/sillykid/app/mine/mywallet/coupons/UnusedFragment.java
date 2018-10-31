@@ -17,14 +17,18 @@ import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.RefreshLayoutUtil;
 import com.common.cklibrary.utils.rx.MsgEvent;
+import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
 import com.sillykid.app.adapter.mine.mywallet.coupons.UnusedCouponsViewAdapter;
 import com.sillykid.app.constant.NumericConstants;
 import com.sillykid.app.entity.mine.mywallet.coupons.UnusedCouponsBean;
 import com.sillykid.app.entity.mine.mywallet.coupons.UseAbleCouponBean;
+import com.sillykid.app.entity.mine.mywallet.coupons.UnusedCouponsBean.DataBean.ResultBean;
 import com.sillykid.app.loginregister.LoginActivity;
 
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * 优惠券中的未使用
@@ -123,19 +127,20 @@ public class UnusedFragment extends BaseFragment implements CouponsContract.View
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//        Object dataBean = couponsAdapter.getItem(i);
-//        if (StringUtils.toDouble(money) < StringUtils.toDouble(dataBean.getMin_goods_amount())) {
-//            ViewInject.toast(getString(R.string.notConformUsageRules));
-//            return;
-//        }
-//        Intent intent = new Intent();
-//        // 获取内容
-//        intent.putExtra("money", dataBean.getType_money());
-//        intent.putExtra("id", dataBean.getBonus_id());
-//        // 设置结果 结果码，一个数据
-//        aty.setResult(RESULT_OK, intent);
-//        // 结束该activity 结束之后，前面的activity才可以处理结果
-//        aty.finish();
+        ResultBean resultBean = couponsAdapter.getItem(i);
+        String money = aty.getIntent().getStringExtra("money");
+        if (StringUtils.toDouble(money) < StringUtils.toDouble(resultBean.getFull_amount())) {
+            ViewInject.toast(getString(R.string.notConformUsageRules));
+            return;
+        }
+        Intent intent = new Intent();
+        // 获取内容
+        intent.putExtra("money", resultBean.getDenomination());
+        intent.putExtra("id", resultBean.getCoupon_id());
+        // 设置结果 结果码，一个数据
+        aty.setResult(RESULT_OK, intent);
+        // 结束该activity 结束之后，前面的activity才可以处理结果
+        aty.finish();
     }
 
 
@@ -145,7 +150,7 @@ public class UnusedFragment extends BaseFragment implements CouponsContract.View
         mRefreshLayout.endRefreshing();
         showLoadingDialog(getString(R.string.dataLoad));
         if (type == -1) {
-            ((CouponsContract.Presenter) mPresenter).getUseAbleCoupon(aty, aty.getIntent().getIntExtra("business_id", 6));
+        ((CouponsContract.Presenter) mPresenter).getUseAbleCoupon(aty, 1);
             return;
         }
         ((CouponsContract.Presenter) mPresenter).getMemberUnusedCoupon(aty, mMorePageNumber);

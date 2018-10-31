@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dimen95"
+    android:background="@mipmap/img_couponredemptioncentre"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="@dimen/dimen76"
+        android:layout_height="@dimen/dimen76"
+        android:layout_marginLeft="@dimen/dimen12"
+        android:scaleType="fitXY"
+        android:src="@mipmap/placeholderfigure"
+        android:visibility="gone" />
+
+    <LinearLayout
+        style="@style/AutoMatch"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_name"
+            style="@style/MatchWrap"
+            android:paddingLeft="@dimen/dimen15"
+            android:paddingRight="@dimen/dimen15"
+            android:text="东京成田机场接送机"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize12" />
+
+        <LinearLayout
+            style="@style/MatchWrap"
+            android:orientation="horizontal"
+            android:paddingTop="@dimen/dimen20">
+
+            <TextView
+                style="@style/WrapWrap"
+                android:layout_marginLeft="@dimen/dimen18"
+                android:paddingTop="@dimen/dimen3"
+                android:text="@string/renminbi"
+                android:textColor="@color/fF5050Colors"
+                android:textSize="@dimen/textsize12" />
+
+            <TextView
+                android:id="@+id/tv_money"
+                style="@style/AutoWrap"
+                android:paddingRight="@dimen/dimen10"
+                android:singleLine="true"
+                android:text="100"
+                android:textColor="@color/fF5050Colors"
+                android:textSize="@dimen/textsize18"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_describe"
+                style="@style/WrapWrap"
+                android:layout_marginRight="@dimen/dimen25"
+                android:text="满699可用"
+                android:textColor="@color/fF5050Colors"
+                android:textSize="@dimen/textsize11" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.45"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_exchange"
+            android:layout_width="@dimen/dimen80"
+            android:layout_height="@dimen/dimen33"
+            android:layout_marginLeft="@dimen/dimen17"
+            android:layout_marginRight="@dimen/dimen13"
+            android:background="@drawable/shape_exchange"
+            android:gravity="center"
+            android:text="@string/toReceive"
+            android:textColor="@color/whiteColors"
+            android:textSize="@dimen/textsize12"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</LinearLayout>

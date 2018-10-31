@@ -16,17 +16,15 @@ import com.common.cklibrary.common.BindView;
 import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.RefreshLayoutUtil;
-import com.kymjs.common.StringUtils;
+import com.common.cklibrary.utils.rx.MsgEvent;
 import com.sillykid.app.R;
-import com.sillykid.app.adapter.mine.mywallet.coupons.CouponsViewAdapter;
+import com.sillykid.app.adapter.mine.mywallet.coupons.UnusedCouponsViewAdapter;
 import com.sillykid.app.constant.NumericConstants;
-import com.sillykid.app.entity.mine.mywallet.coupons.CouponsBean;
-import com.sillykid.app.entity.mine.mywallet.coupons.CouponsBean.DataBean;
+import com.sillykid.app.entity.mine.mywallet.coupons.UnusedCouponsBean;
+import com.sillykid.app.entity.mine.mywallet.coupons.UseAbleCouponBean;
 import com.sillykid.app.loginregister.LoginActivity;
 
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
-
-import static android.app.Activity.RESULT_OK;
 
 /**
  * 优惠券中的未使用
@@ -58,21 +56,26 @@ public class UnusedFragment extends BaseFragment implements CouponsContract.View
     @BindView(id = R.id.tv_button, click = true)
     private TextView tv_button;
 
+    @BindView(id = R.id.tv_couponCentre, click = true)
+    private TextView tv_couponCentre;
+
     /**
      * 当前页码
      */
     private int mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
 
     /**
+     * 总页码
+     */
+    private int totalPageNumber = NumericConstants.START_PAGE_NUMBER;
+
+    /**
      * 是否加载更多
      */
     private boolean isShowLoadingMore = false;
 
-    private CouponsViewAdapter couponsAdapter;
-
-    private int type = 1;
-
-    private String money = "";
+    private UnusedCouponsViewAdapter couponsAdapter;
+    private int type = 0;
 
     @Override
     protected View inflaterView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -84,14 +87,18 @@ public class UnusedFragment extends BaseFragment implements CouponsContract.View
     protected void initData() {
         super.initData();
         mPresenter = new CouponsPresenter(this);
-        couponsAdapter = new CouponsViewAdapter(aty, type, money);
-        money = aty.getIntent().getStringExtra("money");
+        couponsAdapter = new UnusedCouponsViewAdapter(aty, 1);
+        type = aty.getIntent().getIntExtra("type", 0);
     }
 
     @Override
     protected void initWidget(View parentView) {
         super.initWidget(parentView);
-        RefreshLayoutUtil.initRefreshLayout(mRefreshLayout, this, aty, true);
+        if (type == -1) {
+            RefreshLayoutUtil.initRefreshLayout(mRefreshLayout, this, aty, false);
+        } else {
+            RefreshLayoutUtil.initRefreshLayout(mRefreshLayout, this, aty, true);
+        }
         lv_coupons.setAdapter(couponsAdapter);
         lv_coupons.setOnItemClickListener(this);
         mRefreshLayout.beginRefreshing();
@@ -108,24 +115,27 @@ public class UnusedFragment extends BaseFragment implements CouponsContract.View
                 }
                 aty.showActivity(aty, LoginActivity.class);
                 break;
+            case R.id.tv_couponCentre:
+                ((CouponsContract.Presenter) mPresenter).getIsLogin(aty, 1);
+                break;
         }
     }
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        DataBean dataBean = couponsAdapter.getItem(i);
-        if (StringUtils.toDouble(money) < StringUtils.toDouble(dataBean.getMin_goods_amount())) {
-            ViewInject.toast(getString(R.string.notConformUsageRules));
-            return;
-        }
-        Intent intent = new Intent();
-        // 获取内容
-        intent.putExtra("money", dataBean.getType_money());
-        intent.putExtra("id", dataBean.getBonus_id());
-        // 设置结果 结果码，一个数据
-        aty.setResult(RESULT_OK, intent);
-        // 结束该activity 结束之后，前面的activity才可以处理结果
-        aty.finish();
+//        Object dataBean = couponsAdapter.getItem(i);
+//        if (StringUtils.toDouble(money) < StringUtils.toDouble(dataBean.getMin_goods_amount())) {
+//            ViewInject.toast(getString(R.string.notConformUsageRules));
+//            return;
+//        }
+//        Intent intent = new Intent();
+//        // 获取内容
+//        intent.putExtra("money", dataBean.getType_money());
+//        intent.putExtra("id", dataBean.getBonus_id());
+//        // 设置结果 结果码，一个数据
+//        aty.setResult(RESULT_OK, intent);
+//        // 结束该activity 结束之后，前面的activity才可以处理结果
+//        aty.finish();
     }
 
 
@@ -134,19 +144,30 @@ public class UnusedFragment extends BaseFragment implements CouponsContract.View
         mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
         mRefreshLayout.endRefreshing();
         showLoadingDialog(getString(R.string.dataLoad));
-        ((CouponsContract.Presenter) mPresenter).getCoupons(aty, type, mMorePageNumber);
+        if (type == -1) {
+            ((CouponsContract.Presenter) mPresenter).getUseAbleCoupon(aty, aty.getIntent().getIntExtra("business_id", 6));
+            return;
+        }
+        ((CouponsContract.Presenter) mPresenter).getMemberUnusedCoupon(aty, mMorePageNumber);
     }
 
     @Override
     public boolean onBGARefreshLayoutBeginLoadingMore(BGARefreshLayout refreshLayout) {
+        if (type == -1) {
+            return false;
+        }
         mRefreshLayout.endLoadingMore();
         if (!isShowLoadingMore) {
             ViewInject.toast(getString(R.string.noMoreData));
             return false;
         }
         mMorePageNumber++;
+        if (mMorePageNumber > totalPageNumber) {
+            ViewInject.toast(getString(R.string.noMoreData));
+            return false;
+        }
         showLoadingDialog(getString(R.string.dataLoad));
-        ((CouponsContract.Presenter) mPresenter).getCoupons(aty, type, mMorePageNumber);
+        ((CouponsContract.Presenter) mPresenter).getMemberUnusedCoupon(aty, mMorePageNumber);
         return true;
     }
 
@@ -158,71 +179,138 @@ public class UnusedFragment extends BaseFragment implements CouponsContract.View
 
     @Override
     public void getSuccess(String success, int flag) {
-        isShowLoadingMore = true;
-        mRefreshLayout.setPullDownRefreshEnable(true);
-        ll_commonError.setVisibility(View.GONE);
-        mRefreshLayout.setVisibility(View.VISIBLE);
-        CouponsBean couponsBean = (CouponsBean) JsonUtil.getInstance().json2Obj(success, CouponsBean.class);
-        if (couponsBean.getData() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
-                couponsBean.getData().size() <= 0 && mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
-            errorMsg(getString(R.string.unusedCoupons), 1);
-            return;
-        } else if (couponsBean.getData() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
-                couponsBean.getData().size() <= 0 && mMorePageNumber > NumericConstants.START_PAGE_NUMBER) {
-            ViewInject.toast(getString(R.string.noMoreData));
-            isShowLoadingMore = false;
-            dismissLoadingDialog();
-            mRefreshLayout.endLoadingMore();
-            return;
-        }
-        if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
-            mRefreshLayout.endRefreshing();
+        if (flag == 0) {
+            isShowLoadingMore = true;
+            mRefreshLayout.setPullDownRefreshEnable(true);
+            ll_commonError.setVisibility(View.GONE);
+            mRefreshLayout.setVisibility(View.VISIBLE);
+            UnusedCouponsBean couponsBean = (UnusedCouponsBean) JsonUtil.getInstance().json2Obj(success, UnusedCouponsBean.class);
+            if (couponsBean.getData() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
+                    couponsBean.getData().getResultX().size() <= 0 && mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
+                errorMsg(getString(R.string.unusedCoupons), 0);
+                return;
+            } else if (couponsBean.getData() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
+                    couponsBean.getData().getResultX().size() <= 0 && mMorePageNumber > NumericConstants.START_PAGE_NUMBER) {
+                ViewInject.toast(getString(R.string.noMoreData));
+                isShowLoadingMore = false;
+                dismissLoadingDialog();
+                mRefreshLayout.endLoadingMore();
+                return;
+            }
+            mMorePageNumber = couponsBean.getData().getCurrentPageNo();
+            totalPageNumber = couponsBean.getData().getTotalPageCount();
+            if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
+                mRefreshLayout.endRefreshing();
+                couponsAdapter.clear();
+                couponsAdapter.addNewData(couponsBean.getData().getResultX());
+            } else {
+                mRefreshLayout.endLoadingMore();
+                couponsAdapter.addMoreData(couponsBean.getData().getResultX());
+            }
+        } else if (flag == 1) {
+            aty.showActivity(aty, CouponRedemptionCentreActivity.class);
+        } else if (flag == 2) {
+            isShowLoadingMore = true;
+            mRefreshLayout.setPullDownRefreshEnable(true);
+            ll_commonError.setVisibility(View.GONE);
+            mRefreshLayout.setVisibility(View.VISIBLE);
+            UseAbleCouponBean useAbleCouponBean = (UseAbleCouponBean) JsonUtil.getInstance().json2Obj(success, UseAbleCouponBean.class);
+            if (useAbleCouponBean.getData() == null || useAbleCouponBean.getData().size() <= 0) {
+                errorMsg(getString(R.string.unusedCoupons), 0);
+                return;
+            }
             couponsAdapter.clear();
-            couponsAdapter.addNewData(couponsBean.getData());
-        } else {
-            mRefreshLayout.endLoadingMore();
-            couponsAdapter.addMoreData(couponsBean.getData());
+            couponsAdapter.addNewData(useAbleCouponBean.getData());
         }
         dismissLoadingDialog();
-
     }
 
     @Override
     public void errorMsg(String msg, int flag) {
         dismissLoadingDialog();
-        //  if (flag == 0) {
-        isShowLoadingMore = false;
-        if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
-            mRefreshLayout.endRefreshing();
-        } else {
-            mRefreshLayout.endLoadingMore();
-        }
-        mRefreshLayout.setPullDownRefreshEnable(false);
-        mRefreshLayout.setVisibility(View.GONE);
-        ll_commonError.setVisibility(View.VISIBLE);
-        tv_hintText.setVisibility(View.VISIBLE);
-        tv_button.setVisibility(View.VISIBLE);
-        if (isLogin(msg)) {
-            img_err.setImageResource(R.mipmap.no_login);
-            tv_hintText.setVisibility(View.GONE);
-            tv_button.setText(getString(R.string.login));
-            // ViewInject.toast(getString(R.string.reloginPrompting));
-            aty.showActivity(aty, LoginActivity.class);
-            return;
-        } else if (msg.contains(getString(R.string.checkNetwork))) {
-            img_err.setImageResource(R.mipmap.no_network);
-            tv_hintText.setText(msg);
-            tv_button.setText(getString(R.string.retry));
-        } else if (msg.contains(getString(R.string.unusedCoupons))) {
-            img_err.setImageResource(R.mipmap.no_data);
-            tv_hintText.setText(msg);
-            tv_button.setVisibility(View.GONE);
-        } else {
-            img_err.setImageResource(R.mipmap.no_data);
-            tv_hintText.setText(msg);
-            tv_button.setText(getString(R.string.retry));
+        if (flag == 0) {
+            isShowLoadingMore = false;
+            if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
+                mRefreshLayout.endRefreshing();
+            } else {
+                mRefreshLayout.endLoadingMore();
+            }
+            mRefreshLayout.setPullDownRefreshEnable(false);
+            mRefreshLayout.setVisibility(View.GONE);
+            ll_commonError.setVisibility(View.VISIBLE);
+            tv_hintText.setVisibility(View.VISIBLE);
+            tv_button.setVisibility(View.VISIBLE);
+            if (isLogin(msg)) {
+                img_err.setImageResource(R.mipmap.no_login);
+                tv_hintText.setVisibility(View.GONE);
+                tv_button.setText(getString(R.string.login));
+                // ViewInject.toast(getString(R.string.reloginPrompting));
+                aty.showActivity(aty, LoginActivity.class);
+                return;
+            } else if (msg.contains(getString(R.string.checkNetwork))) {
+                img_err.setImageResource(R.mipmap.no_network);
+                tv_hintText.setText(msg);
+                tv_button.setText(getString(R.string.retry));
+            } else if (msg.contains(getString(R.string.unusedCoupons))) {
+                img_err.setImageResource(R.mipmap.no_data);
+                tv_hintText.setText(msg);
+                tv_button.setVisibility(View.GONE);
+            } else {
+                img_err.setImageResource(R.mipmap.no_data);
+                tv_hintText.setText(msg);
+                tv_button.setText(getString(R.string.retry));
+            }
+        } else if (flag == 1) {
+            if (isLogin(msg)) {
+                aty.showActivity(aty, LoginActivity.class);
+                return;
+            }
+            ViewInject.toast(msg);
+        } else if (flag == 2) {
+            mRefreshLayout.setPullDownRefreshEnable(false);
+            mRefreshLayout.setVisibility(View.GONE);
+            ll_commonError.setVisibility(View.VISIBLE);
+            tv_hintText.setVisibility(View.VISIBLE);
+            tv_button.setVisibility(View.VISIBLE);
+            if (isLogin(msg)) {
+                img_err.setImageResource(R.mipmap.no_login);
+                tv_hintText.setVisibility(View.GONE);
+                tv_button.setText(getString(R.string.login));
+                aty.showActivity(aty, LoginActivity.class);
+                return;
+            } else if (msg.contains(getString(R.string.checkNetwork))) {
+                img_err.setImageResource(R.mipmap.no_network);
+                tv_hintText.setText(msg);
+                tv_button.setText(getString(R.string.retry));
+            } else if (msg.contains(getString(R.string.unusedCoupons))) {
+                img_err.setImageResource(R.mipmap.no_data);
+                tv_hintText.setText(msg);
+                tv_button.setVisibility(View.GONE);
+            } else {
+                img_err.setImageResource(R.mipmap.no_data);
+                tv_hintText.setText(msg);
+                tv_button.setText(getString(R.string.retry));
+            }
         }
     }
+
+    /**
+     * 在接收消息的时候，选择性接收消息：
+     */
+    @Override
+    public void callMsgEvent(MsgEvent msgEvent) {
+        super.callMsgEvent(msgEvent);
+        if (((String) msgEvent.getData()).equals("RxBusLoginEvent") && mPresenter != null || ((String) msgEvent.getData()).equals("RxBusLogOutEvent") && mPresenter != null
+                || ((String) msgEvent.getData()).equals("RxBusCouponRedemptionCentreEvent") && mPresenter != null) {
+            mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
+            if (type == -1) {
+                ((CouponsContract.Presenter) mPresenter).getUseAbleCoupon(aty, aty.getIntent().getIntExtra("business_id", 6));
+                return;
+            }
+            ((CouponsContract.Presenter) mPresenter).getMemberUnusedCoupon(aty, mMorePageNumber);
+        }
+    }
+
 
     @Override
     public void onDestroy() {

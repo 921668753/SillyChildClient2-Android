@@ -102,7 +102,7 @@
         <!--选择国家或地区-->
         <activity
             android:name=".loginregister.SelectCountryCodeActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <!--注册-->
         <activity
@@ -127,7 +127,7 @@
         <!--登录 綁定账号-->
         <activity
             android:name=".loginregister.bindingaccount.BindingAccountActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <!--主界面-->
         <activity
@@ -763,6 +763,11 @@
         <!--我的   我的钱包  优惠券-->
         <activity
             android:name=".mine.mywallet.coupons.CouponsActivity"
+            android:screenOrientation="portrait" />
+
+        <!--我的   我的钱包  优惠券 领券中心-->
+        <activity
+            android:name=".mine.mywallet.coupons.CouponRedemptionCentreActivity"
             android:screenOrientation="portrait" />
 
         <!--我的   我的钱包  充值-->

@@ -3046,49 +3046,10 @@ public class RequestClient {
     }
 
     /**
-     * 获取支付宝支付参数
-     */
-    public static void getAlipay(HttpParams httpParams, final ResponseListener<String> listener) {
-        Log.d("tag", "getAlipay");
-//        doServer(new TokenCallback() {
-//            @Override
-//            public void execute() {
-//                String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
-//                if (StringUtils.isEmpty(accessToken)) {
-//                    listener.onFailure(NumericConstants.TOLINGIN + "");
-//                    return;
-//                }
-//                httpParams.put("token", accessToken);
-//                //    HttpRequest.requestGetHttp(URLConstants.ALIPAY, httpParams, listener);
-//            }
-//        }, listener);
-    }
-
-
-    /**
-     * 上传支付凭证
-     */
-    public static void uploadCerPic(HttpParams httpParams, final ResponseListener<String> listener) {
-        Log.d("tag", "uploadCerPic");
-//        doServer(new TokenCallback() {
-//            @Override
-//            public void execute() {
-//                String accessToken = PreferenceHelper.readString(context, StringConstants.FILENAME, "accessToken");
-//                if (StringUtils.isEmpty(accessToken)) {
-//                    listener.onFailure(NumericConstants.TOLINGIN + "");
-//                    return;
-//                }
-//                httpParams.put("token", accessToken);
-//                //    HttpRequest.requestPostFORMHttp(URLConstants.UPLOADCERPIC, httpParams, listener);
-//            }
-//        }, listener);
-    }
-
-    /**
      * 获取优惠券列表
      */
-    public static void getCouponsList(Context context, HttpParams httpParams, final ResponseListener<String> listener) {
-        Log.d("tag", "getCouponsList");
+    public static void getMemberUnusedCoupon(Context context, HttpParams httpParams, final ResponseListener<String> listener) {
+        Log.d("tag", "getMemberUnusedCoupon");
         doServer(context, new TokenCallback() {
             @Override
             public void execute() {
@@ -3098,7 +3059,103 @@ public class RequestClient {
                     return;
                 }
                 httpParams.putHeaders("Cookie", cookies);
-                HttpRequest.requestGetHttp(context, URLConstants.COUPONS, httpParams, listener);
+                HttpRequest.requestGetHttp(context, URLConstants.GETMEMBERUNUSERDCOUPON, httpParams, listener);
+            }
+        }, listener);
+    }
+
+    /**
+     * 获取优惠券列表
+     */
+    public static void getUseAbleCoupon(Context context, HttpParams httpParams, final ResponseListener<String> listener) {
+        Log.d("tag", "getUseAbleCoupon");
+        doServer(context, new TokenCallback() {
+            @Override
+            public void execute() {
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
+                if (StringUtils.isEmpty(cookies)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("Cookie", cookies);
+                HttpRequest.requestGetHttp(context, URLConstants.GETUSEABLECOUPON, httpParams, listener);
+            }
+        }, listener);
+    }
+
+    /**
+     * 获取优惠券列表
+     */
+    public static void getMemberUsedCoupon(Context context, HttpParams httpParams, final ResponseListener<String> listener) {
+        Log.d("tag", "getMemberUsedCoupon");
+        doServer(context, new TokenCallback() {
+            @Override
+            public void execute() {
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
+                if (StringUtils.isEmpty(cookies)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("Cookie", cookies);
+                HttpRequest.requestGetHttp(context, URLConstants.GETMEMBERUSEDCOUPON, httpParams, listener);
+            }
+        }, listener);
+    }
+
+    /**
+     * 获取优惠券列表
+     */
+    public static void getMemberExpiredCoupon(Context context, HttpParams httpParams, final ResponseListener<String> listener) {
+        Log.d("tag", "getMemberExpiredCoupon");
+        doServer(context, new TokenCallback() {
+            @Override
+            public void execute() {
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
+                if (StringUtils.isEmpty(cookies)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("Cookie", cookies);
+                HttpRequest.requestGetHttp(context, URLConstants.GETMEMBEREXPIREDCOUPON, httpParams, listener);
+            }
+        }, listener);
+    }
+
+
+    /**
+     * 优惠券 - 获取商城优惠券中心数据
+     */
+    public static void getMemberCoupon(Context context, HttpParams httpParams, final ResponseListener<String> listener) {
+        Log.d("tag", "getMemberCoupon");
+        doServer(context, new TokenCallback() {
+            @Override
+            public void execute() {
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
+                if (StringUtils.isEmpty(cookies)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("Cookie", cookies);
+                HttpRequest.requestGetHttp(context, URLConstants.GETMEMBERCOUPON, httpParams, listener);
+            }
+        }, listener);
+    }
+
+    /**
+     * 优惠券 - 用户领券
+     */
+    public static void getCoupon(Context context, HttpParams httpParams, final ResponseListener<String> listener) {
+        Log.d("tag", "getCoupon");
+        doServer(context, new TokenCallback() {
+            @Override
+            public void execute() {
+                String cookies = PreferenceHelper.readString(context, StringConstants.FILENAME, "Cookie", "");
+                if (StringUtils.isEmpty(cookies)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("Cookie", cookies);
+                HttpRequest.requestGetHttp(context, URLConstants.GETCOUPON, httpParams, listener);
             }
         }, listener);
     }

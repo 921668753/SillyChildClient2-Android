@@ -1000,7 +1000,7 @@
     <string name="expiredCoupons">亲，您还没有已过期的优惠券哟~</string>
     <string name="notConformUsageRules">该优惠券不符合使用规则</string>
     <string name="selectCoupons">选择优惠券</string>
-
+    <string name="notGotCoupons">亲，您还没有可领取的的优惠券哟~</string>
 
     <!-- 个人中心 充值-->
     <string name="accountRecharge">账户充值</string>
@@ -1463,7 +1463,7 @@
     <string name="lateCancelled1">内付款，逾期订单将被取消</string>
     <string name="payment1">付款</string>
     <string name="checkLogistics">查看物流</string>
-
+    <string name="couponCentre">前往领券中心</string>
     <string name="remindSuccessfulDelivery">提醒发货成功</string>
     <string name="afterType">售后类型</string>
     <string name="afterType1">售后类型：</string>
@@ -1471,6 +1471,13 @@
     <string name="refundAmount">退款金额</string>
     <string name="afterNumber">售后数量</string>
     <string name="afterWhy">售后原因</string>
+
+    <!--个人中心 我的钱包  优惠券  领券中心-->
+    <string name="couponRedemptionCentre">领券中心</string>
+    <string name="exchange">兑换</string>
+    <string name="toReceive">领取</string>
+    <string name="getSuccess">领取成功</string>
+
 
     <!-- 线路详情 -->
     <string name="experienceBrightSpot">体验亮点</string>

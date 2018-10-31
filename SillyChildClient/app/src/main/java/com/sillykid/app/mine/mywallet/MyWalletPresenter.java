@@ -19,7 +19,6 @@ public class MyWalletPresenter implements MyWalletContract.Presenter {
         mView.setPresenter(this);
     }
 
-
     @Override
     public void getMyWallet() {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();

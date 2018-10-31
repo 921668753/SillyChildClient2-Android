@@ -14,7 +14,7 @@
     <color name="dividercolors">#cfcfcf</color>
     <color name="dividercolors1">#cccccc</color>
     <color name="dividercolors2">#DDDDDD</color>
-
+    <color name="fF4C4CColors">#FF4C4C</color>
 
     <!--引导页-->
     <color name="immediatelyColor">#40ffffff</color>

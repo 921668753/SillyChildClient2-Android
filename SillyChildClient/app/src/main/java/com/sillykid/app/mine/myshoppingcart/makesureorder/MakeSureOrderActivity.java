@@ -168,6 +168,7 @@ public class MakeSureOrderActivity extends BaseActivity implements MakeSureOrder
             case R.id.tv_usable:
                 Intent intent1 = new Intent(aty, CouponsActivity.class);
                 intent1.putExtra("type", -1);
+                intent1.putExtra("business_id", 6);
                 intent1.putExtra("money", totalPrice);
                 startActivityForResult(intent1, RESULT_CODE_GET);
                 break;

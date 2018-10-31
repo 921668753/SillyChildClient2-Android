@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title" />
+
+    <cn.bingoogolapple.refreshlayout.BGARefreshLayout
+        android:id="@+id/mRefreshLayout"
+        style="@style/MatchMatch"
+        android:paddingTop="@dimen/dimen6">
+
+        <ScrollView
+            style="@style/MatchMatch"
+            android:scrollbars="none">
+
+            <LinearLayout
+                style="@style/MatchMatch"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/img_couponRedemption"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen118"
+                    android:background="@color/whiteColors"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/placeholderfigure" />
+
+                <com.common.cklibrary.utils.myview.ChildListView
+                    android:id="@+id/clv_couponRedemption"
+                    style="@style/MatchWrap"
+                    android:layout_marginTop="@dimen/dimen18"
+                    android:background="@color/background"
+                    android:divider="@color/background"
+                    android:dividerHeight="@dimen/dimen13"
+                    android:listSelector="@android:color/transparent"
+                    android:overScrollMode="never"
+                    android:paddingLeft="@dimen/dimen10"
+                    android:paddingRight="@dimen/dimen10"
+                    android:scrollbars="none"
+                    tools:listitem="@layout/item_couponredemption" />
+
+                <include layout="@layout/common_error" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
+
+</LinearLayout>

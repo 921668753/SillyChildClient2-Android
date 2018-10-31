@@ -12,10 +12,29 @@ import com.common.cklibrary.common.BaseView;
 public interface CouponsContract {
     interface Presenter extends BasePresenter {
         /**
-         * 获取优惠券列表
+         * 优惠券 - 未使用优惠券
          */
-        void getCoupons(Context context, int type, int page);
+        void getMemberUnusedCoupon(Context context, int page);
 
+        /**
+         * 优惠券 - 未使用优惠券
+         */
+        void getUseAbleCoupon(Context context, int business_id);
+
+        /**
+         * 优惠券 - 已使用优惠券
+         */
+        void getMemberUsedCoupon(Context context, int page);
+
+        /**
+         * 优惠券 - 已过期优惠券
+         */
+        void getMemberExpiredCoupon(Context context, int page);
+
+        /**
+         * 获取会员登录状态
+         */
+        void getIsLogin(Context context, int flag);
     }
 
     interface View extends BaseView<Presenter, String> {

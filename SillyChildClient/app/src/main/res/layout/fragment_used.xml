@@ -7,17 +7,17 @@
 
     <cn.bingoogolapple.refreshlayout.BGARefreshLayout
         android:id="@+id/mRefreshLayout"
-        style="@style/MatchAuto"
+        style="@style/MatchMatch"
         android:background="@color/background"
         android:paddingTop="@dimen/dimen10">
 
         <ListView
             android:id="@+id/lv_coupons"
             style="@style/MatchWrap"
+            android:overScrollMode="never"
             android:divider="@color/background"
             android:dividerHeight="@dimen/dimen15"
             android:listSelector="@android:color/transparent"
-            android:overScrollMode="never"
             android:paddingTop="@dimen/dimen10"
             android:scrollbars="none"
             tools:listitem="@layout/item_coupons" />
@@ -26,18 +26,5 @@
 
     <include layout="@layout/common_error" />
 
-    <TextView
-        android:id="@+id/tv_couponCentre"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen40"
-        android:layout_marginLeft="@dimen/dimen73"
-        android:layout_marginTop="@dimen/dimen15"
-        android:layout_marginRight="@dimen/dimen73"
-        android:layout_marginBottom="@dimen/dimen15"
-        android:background="@drawable/shape_login1"
-        android:gravity="center"
-        android:text="@string/couponCentre"
-        android:textColor="@color/whiteColors"
-        android:textSize="@dimen/textsize16" />
 
 </LinearLayout>

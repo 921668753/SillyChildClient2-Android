@@ -21,7 +21,6 @@ import com.sillykid.app.entity.homepage.airporttransportation.airportpickup.Crea
 import com.sillykid.app.homepage.airporttransportation.AirportTransportationClassificationActivity;
 import com.sillykid.app.homepage.airporttransportation.PriceInformationActivity;
 import com.sillykid.app.homepage.airporttransportation.SelectProductAirportTransportationActivity;
-import com.sillykid.app.homepage.airporttransportation.airportpickup.AirportPickupActivity;
 import com.sillykid.app.homepage.airporttransportation.paymentorder.PaymentTravelOrderActivity;
 import com.sillykid.app.homepage.airporttransportation.search.ProductSearchActivity;
 import com.sillykid.app.homepage.airporttransportation.search.ProductSearchListActivity;
@@ -128,6 +127,7 @@ public class AirportDropOffPayOrderActivity extends BaseActivity implements Airp
             case R.id.tv_vouchers:
                 Intent intent1 = new Intent(aty, CouponsActivity.class);
                 intent1.putExtra("type", -1);
+                intent1.putExtra("business_id", 2);
                 intent1.putExtra("money", totalPrice);
                 startActivityForResult(intent1, RESULT_CODE_GET);
                 break;

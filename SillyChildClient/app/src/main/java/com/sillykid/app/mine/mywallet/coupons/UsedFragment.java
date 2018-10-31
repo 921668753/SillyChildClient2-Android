@@ -15,9 +15,9 @@ import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.RefreshLayoutUtil;
 import com.sillykid.app.R;
-import com.sillykid.app.adapter.mine.mywallet.coupons.CouponsViewAdapter;
+import com.sillykid.app.adapter.mine.mywallet.coupons.UnusedCouponsViewAdapter;
 import com.sillykid.app.constant.NumericConstants;
-import com.sillykid.app.entity.mine.mywallet.coupons.CouponsBean;
+import com.sillykid.app.entity.mine.mywallet.coupons.UnusedCouponsBean;
 import com.sillykid.app.loginregister.LoginActivity;
 
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
@@ -58,25 +58,28 @@ public class UsedFragment extends BaseFragment implements CouponsContract.View, 
     private int mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
 
     /**
+     * 总页码
+     */
+    private int totalPageNumber = NumericConstants.START_PAGE_NUMBER;
+
+    /**
      * 是否加载更多
      */
     private boolean isShowLoadingMore = false;
 
-    private CouponsViewAdapter couponsAdapter;
-
-    private int type = 2;
+    private UnusedCouponsViewAdapter couponsAdapter;
 
     @Override
     protected View inflaterView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
         aty = (CouponsActivity) getActivity();
-        return View.inflate(aty, R.layout.fragment_unused, null);
+        return View.inflate(aty, R.layout.fragment_used, null);
     }
 
     @Override
     protected void initData() {
         super.initData();
         mPresenter = new CouponsPresenter(this);
-        couponsAdapter = new CouponsViewAdapter(aty, type, "");
+        couponsAdapter = new UnusedCouponsViewAdapter(aty, 2);
     }
 
     @Override
@@ -106,7 +109,7 @@ public class UsedFragment extends BaseFragment implements CouponsContract.View, 
         mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
         mRefreshLayout.endRefreshing();
         showLoadingDialog(getString(R.string.dataLoad));
-        ((CouponsContract.Presenter) mPresenter).getCoupons(aty, type, mMorePageNumber);
+        ((CouponsContract.Presenter) mPresenter).getMemberUsedCoupon(aty, mMorePageNumber);
     }
 
     @Override
@@ -117,8 +120,12 @@ public class UsedFragment extends BaseFragment implements CouponsContract.View, 
             return false;
         }
         mMorePageNumber++;
+        if (mMorePageNumber > totalPageNumber) {
+            ViewInject.toast(getString(R.string.noMoreData));
+            return false;
+        }
         showLoadingDialog(getString(R.string.dataLoad));
-        ((CouponsContract.Presenter) mPresenter).getCoupons(aty, type, mMorePageNumber);
+        ((CouponsContract.Presenter) mPresenter).getMemberUsedCoupon(aty, mMorePageNumber);
         return true;
     }
 
@@ -134,26 +141,28 @@ public class UsedFragment extends BaseFragment implements CouponsContract.View, 
         mRefreshLayout.setPullDownRefreshEnable(true);
         ll_commonError.setVisibility(View.GONE);
         mRefreshLayout.setVisibility(View.VISIBLE);
-        CouponsBean couponsBean = (CouponsBean) JsonUtil.getInstance().json2Obj(success, CouponsBean.class);
+        UnusedCouponsBean couponsBean = (UnusedCouponsBean) JsonUtil.getInstance().json2Obj(success, UnusedCouponsBean.class);
         if (couponsBean.getData() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
-                couponsBean.getData().size() <= 0 && mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
-            errorMsg(getString(R.string.usedCoupons), 1);
+                couponsBean.getData().getResultX().size() <= 0 && mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
+            errorMsg(getString(R.string.usedCoupons), 0);
             return;
         } else if (couponsBean.getData() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
-                couponsBean.getData().size() <= 0 && mMorePageNumber > NumericConstants.START_PAGE_NUMBER) {
+                couponsBean.getData().getResultX().size() <= 0 && mMorePageNumber > NumericConstants.START_PAGE_NUMBER) {
             ViewInject.toast(getString(R.string.noMoreData));
             isShowLoadingMore = false;
             dismissLoadingDialog();
             mRefreshLayout.endLoadingMore();
             return;
         }
+        mMorePageNumber = couponsBean.getData().getCurrentPageNo();
+        totalPageNumber = couponsBean.getData().getTotalPageCount();
         if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
             mRefreshLayout.endRefreshing();
             couponsAdapter.clear();
-            couponsAdapter.addNewData(couponsBean.getData());
+            couponsAdapter.addNewData(couponsBean.getData().getResultX());
         } else {
             mRefreshLayout.endLoadingMore();
-            couponsAdapter.addMoreData(couponsBean.getData());
+            couponsAdapter.addMoreData(couponsBean.getData().getResultX());
         }
         dismissLoadingDialog();
 

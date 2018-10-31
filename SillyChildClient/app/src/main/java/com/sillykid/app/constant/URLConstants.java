@@ -17,8 +17,8 @@ public class URLConstants {
     /**
      * 测试服务器地址URL
      */
-//    public static String SERVERURL = "http://192.168.1.247:8080/";
-    public static String SERVERURL = "http://user.api.shahaizhi.com/";
+    public static String SERVERURL = "http://192.168.1.247:8080/";
+    //    public static String SERVERURL = "http://user.api.shahaizhi.com/";
     public static String SERVERURL1 = "http://www.shahaizhi.tech/";
 
     /**
@@ -488,7 +488,23 @@ public class URLConstants {
     /**
      * 优惠券列表
      */
-    public static String COUPONS = APIURL + "member/bonus-main.do";
+    public static String GETMEMBERUNUSERDCOUPON = APIURL + "coupon/get_member_unused_coupon.do";
+
+    public static String GETUSEABLECOUPON = APIURL + "coupon/get_use_able_coupon.do";
+
+    public static String GETMEMBERUSEDCOUPON = APIURL + "coupon/get_member_used_coupon.do";
+
+    public static String GETMEMBEREXPIREDCOUPON = APIURL + "coupon/get_member_expired_coupon.do";
+
+    /**
+     * 优惠券 - 获取商城优惠券中心数据
+     */
+    public static String GETMEMBERCOUPON = APIURL + "coupon/get_member_coupon.do";
+
+    /**
+     * 优惠券 - 用户领券
+     */
+    public static String GETCOUPON = APIURL + "coupon/get_coupon.do";
 
     /**
      * 优惠券使用说明

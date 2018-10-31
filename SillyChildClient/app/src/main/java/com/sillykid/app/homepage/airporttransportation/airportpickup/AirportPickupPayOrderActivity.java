@@ -133,6 +133,7 @@ public class AirportPickupPayOrderActivity extends BaseActivity implements Airpo
             case R.id.tv_vouchers:
                 Intent intent1 = new Intent(aty, CouponsActivity.class);
                 intent1.putExtra("type", -1);
+                intent1.putExtra("business_id", 1);
                 intent1.putExtra("money", totalPrice);
                 startActivityForResult(intent1, RESULT_CODE_GET);
                 break;

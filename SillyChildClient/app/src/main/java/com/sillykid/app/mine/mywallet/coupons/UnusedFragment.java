@@ -150,7 +150,7 @@ public class UnusedFragment extends BaseFragment implements CouponsContract.View
         mRefreshLayout.endRefreshing();
         showLoadingDialog(getString(R.string.dataLoad));
         if (type == -1) {
-        ((CouponsContract.Presenter) mPresenter).getUseAbleCoupon(aty, 1);
+        ((CouponsContract.Presenter) mPresenter).getUseAbleCoupon(aty, aty.getIntent().getIntExtra("business_id", 6));
             return;
         }
         ((CouponsContract.Presenter) mPresenter).getMemberUnusedCoupon(aty, mMorePageNumber);

@@ -22,8 +22,6 @@ import com.kymjs.common.PreferenceHelper;
 import com.kymjs.common.StringUtils;
 import com.sillykid.app.adapter.mine.mywallet.coupons.CouponRedemptionCentreViewAdapter;
 import com.sillykid.app.entity.mine.mywallet.coupons.CouponRedemptionCentreBean;
-import com.sillykid.app.entity.mine.mywallet.coupons.UnusedCouponsBean;
-import com.sillykid.app.main.MinePresenter;
 import com.sillykid.app.mine.sharingceremony.dialog.ShareBouncedDialog;
 import com.sillykid.app.utils.GlideImageLoader;
 import com.umeng.socialize.ShareAction;
@@ -33,7 +31,6 @@ import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.media.UMImage;
 import com.umeng.socialize.media.UMWeb;
 import com.sillykid.app.R;
-import com.sillykid.app.constant.NumericConstants;
 import com.sillykid.app.constant.URLConstants;
 import com.sillykid.app.loginregister.LoginActivity;
 

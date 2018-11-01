@@ -268,6 +268,9 @@ public class CouponRedemptionCentreActivity extends BaseActivity implements Coup
         } else if (flag == 1) {
             ViewInject.toast(getString(R.string.getSuccess));
             mAdapter.removeItem(clickPosition);
+            if (mAdapter.getCount() <= 0) {
+                errorMsg(getString(R.string.notGotCoupons), 0);
+            }
             /**
              * 发送消息
              */

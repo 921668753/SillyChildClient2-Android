@@ -23,7 +23,7 @@ import pub.devrel.easypermissions.EasyPermissions;
 
 
 /**
- * VIP紧急电话
+ * VIP救助电话
  * Created by Administrator on 2017/9/2.
  */
 public class VipEmergencyCallActivity extends BaseActivity implements EasyPermissions.PermissionCallbacks, WebViewLayout1.WebViewCallBack {

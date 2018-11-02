@@ -30,7 +30,7 @@ public class RecentSearchTagAdapter extends TagNewAdapter<DataBean> {
 
     @Override
     public View getView(FlowLayout parent, int position, DataBean s) {
-        TextView tv = (TextView) mInflater.inflate(R.layout.item_productrecentsearch, parent, false);
+        TextView tv = (TextView) mInflater.inflate(R.layout.item_cityrecentsearch, parent, false);
         tv.setText(s.getName());
         ViewGroup.MarginLayoutParams lp = new ViewGroup.MarginLayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT,

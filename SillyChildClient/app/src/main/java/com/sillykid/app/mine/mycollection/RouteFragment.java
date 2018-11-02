@@ -24,7 +24,7 @@ import com.sillykid.app.R;
 import com.sillykid.app.adapter.AllLineViewAdapter;
 import com.sillykid.app.constant.NumericConstants;
 import com.sillykid.app.entity.AllRoutesBean;
-import com.sillykid.app.homepage.chartercustom.routes.RouteDetailsActivity;
+
 import com.sillykid.app.loginregister.LoginActivity;
 
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
@@ -190,10 +190,10 @@ public class RouteFragment extends BaseFragment implements BGARefreshLayout.BGAR
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         currentitem = i;
-        jumpintent = new Intent(aty, RouteDetailsActivity.class);
-        jumpintent.putExtra("line_id", mAdapter.getItem(i).getLine_id() + "");
-        jumpintent.putExtra("line_title", mAdapter.getItem(i).getLine_title());
-        jumpintent.putExtra("line_price", mAdapter.getItem(i).getLine_price());
+//        jumpintent = new Intent(aty, RouteDetailsActivity.class);
+//        jumpintent.putExtra("line_id", mAdapter.getItem(i).getLine_id() + "");
+//        jumpintent.putExtra("line_title", mAdapter.getItem(i).getLine_title());
+//        jumpintent.putExtra("line_price", mAdapter.getItem(i).getLine_price());
         startActivityForResult(jumpintent, 1);
     }
 

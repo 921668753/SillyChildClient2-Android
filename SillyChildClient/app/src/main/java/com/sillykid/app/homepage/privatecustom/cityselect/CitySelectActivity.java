@@ -72,7 +72,9 @@ public class CitySelectActivity extends BaseActivity implements CitySelectContra
         super.widgetClick(v);
         switch (v.getId()) {
             case R.id.ll_search:
-                showActivity(aty, CitySearchActivity.class);
+                Intent intent = new Intent(aty, CitySearchActivity.class);
+                intent.putExtra("type", getIntent().getIntExtra("type", 0));
+                showActivity(aty, intent);
                 break;
             case R.id.tv_cancel:
                 finish();

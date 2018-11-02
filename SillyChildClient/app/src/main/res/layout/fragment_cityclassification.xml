@@ -3,33 +3,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/MatchMatch"
     android:background="@color/background"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:paddingLeft="@dimen/dimen6">
 
     <ListView
         android:id="@+id/lv_country"
-        style="@style/AutoMatch"
-        android:layout_marginLeft="@dimen/dimen6"
+        android:layout_width="@dimen/dimen100"
+        android:layout_height="match_parent"
         android:background="@color/whiteColors"
-        android:divider="@null"
+        android:divider="@color/whiteColors"
+        android:dividerHeight="@dimen/dimen20"
         android:listSelector="@android:color/transparent"
-        android:paddingTop="@dimen/dimen5"
+        android:paddingTop="@dimen/dimen10"
         android:scrollbars="none"
-        android:visibility="gone"
+        android:visibility="visible"
         tools:listitem="@layout/item_country" />
 
     <ListView
         android:id="@+id/lv_city"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
+        style="@style/AutoWrap"
         android:layout_marginLeft="@dimen/dimen6"
-        android:layout_weight="1.65"
         android:background="@color/whiteColors"
-        android:divider="@null"
+        android:divider="@color/whiteColors"
+        android:dividerHeight="@dimen/dimen20"
         android:listSelector="@android:color/transparent"
-        android:paddingTop="@dimen/dimen5"
+        android:paddingTop="@dimen/dimen10"
+        android:paddingBottom="@dimen/dimen10"
         android:scrollbars="none"
-        android:visibility="gone"
-        tools:listitem="@layout/item_countries" />
+        tools:listitem="@layout/item_city" />
 
     <LinearLayout
         android:id="@+id/ll_commonError"

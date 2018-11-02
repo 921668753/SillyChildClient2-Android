@@ -171,6 +171,7 @@ public class PrivateCustomActivity extends BaseActivity implements PrivateCustom
             case R.id.ll_destination:
                 SoftKeyboardUtils.packUpKeyboard(this);
                 Intent intent = new Intent(this, CitySelectActivity.class);
+                intent.putExtra("type", 4);
                 startActivityForResult(intent, RESULT_CODE_GET);
                 break;
             case R.id.ll_playNumberDays:

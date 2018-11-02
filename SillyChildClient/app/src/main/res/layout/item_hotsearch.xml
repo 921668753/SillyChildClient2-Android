@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/dimen49"
+    android:layout_height="@dimen/dimen49"
+    android:background="@color/whiteColors">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+    <!--GradientDrawable类：-->
+    <!--使用实例：-->
+    <!--将对应shape在XML文件中设置给控件-->
+    <!--GradientDrawable gd = xx(控件).getBackground();-->
+    <!--gd.setColor(XX);-->
+
+    <TextView
+        android:id="@+id/tv_hotSearch"
+        style="@style/MatchMatch"
+        android:background="@drawable/shape_hotsearch"
+        android:gravity="center"
+        android:text="@string/share"
+        android:textColor="@color/textColor"
+        android:textSize="@dimen/textsize12" />
+
+
+</RelativeLayout>

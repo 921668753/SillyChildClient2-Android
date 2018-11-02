@@ -18,20 +18,26 @@ public class AirportByCountryIdBean extends BaseResult<List<AirportByCountryIdBe
          * airport_picture : http://img.shahaizhi.com/%28null%291530269095
          */
 
-        private int country_id;
+        private int isSelected;
+        private int id;
         private String country_name;
-        private int region_id;
-        private String region_name;
-        private int airport_id;
-        private String airport_name;
-        private String airport_picture;
+        private String name;
+        private String picture;
 
-        public int getCountry_id() {
-            return country_id;
+        public int getIsSelected() {
+            return isSelected;
         }
 
-        public void setCountry_id(int country_id) {
-            this.country_id = country_id;
+        public void setIsSelected(int isSelected) {
+            this.isSelected = isSelected;
+        }
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
         }
 
         public String getCountry_name() {
@@ -42,44 +48,20 @@ public class AirportByCountryIdBean extends BaseResult<List<AirportByCountryIdBe
             this.country_name = country_name;
         }
 
-        public int getRegion_id() {
-            return region_id;
+        public String getName() {
+            return name;
         }
 
-        public void setRegion_id(int region_id) {
-            this.region_id = region_id;
+        public void setName(String name) {
+            this.name = name;
         }
 
-        public String getRegion_name() {
-            return region_name;
+        public String getPicture() {
+            return picture;
         }
 
-        public void setRegion_name(String region_name) {
-            this.region_name = region_name;
-        }
-
-        public int getAirport_id() {
-            return airport_id;
-        }
-
-        public void setAirport_id(int airport_id) {
-            this.airport_id = airport_id;
-        }
-
-        public String getAirport_name() {
-            return airport_name;
-        }
-
-        public void setAirport_name(String airport_name) {
-            this.airport_name = airport_name;
-        }
-
-        public String getAirport_picture() {
-            return airport_picture;
-        }
-
-        public void setAirport_picture(String airport_picture) {
-            this.airport_picture = airport_picture;
+        public void setPicture(String picture) {
+            this.picture = picture;
         }
     }
 }

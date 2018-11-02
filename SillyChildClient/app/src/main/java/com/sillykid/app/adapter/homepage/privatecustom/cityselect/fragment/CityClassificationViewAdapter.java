@@ -1,7 +1,6 @@
 package com.sillykid.app.adapter.homepage.privatecustom.cityselect.fragment;
 
 import android.content.Context;
-import android.graphics.Typeface;
 
 import com.sillykid.app.R;
 import com.sillykid.app.entity.homepage.privatecustom.cityselect.fragment.CityClassificationBean.DataBean;
@@ -16,7 +15,7 @@ public class CityClassificationViewAdapter extends BGAAdapterViewAdapter<DataBea
 
 
     public CityClassificationViewAdapter(Context context) {
-        super(context, R.layout.item_cities);
+        super(context, R.layout.item_city);
     }
 
     @Override
@@ -26,15 +25,15 @@ public class CityClassificationViewAdapter extends BGAAdapterViewAdapter<DataBea
          * 背景色
          */
         if (model.getIsSelected() == 0) {
-          //  helper.setBackgroundRes(R.id.tv_city, R.color.whiteColors);
+            helper.setBackgroundRes(R.id.tv_city, R.color.whiteColors);
             helper.setTextColorRes(R.id.tv_city, R.color.tabColors);
             //设置不为加粗
-            helper.getTextView(R.id.tv_city).setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
+            helper.setBold(R.id.tv_city, false);
         } else {
-           // helper.setBackgroundRes(R.id.tv_city, R.drawable.shape_followed1);
-            helper.setTextColorRes(R.id.tv_city, R.color.textColor);
+            helper.setBackgroundRes(R.id.tv_city, R.color.background);
+            helper.setTextColorRes(R.id.tv_city, R.color.greenColors);
             //设置为加粗
-            helper.getTextView(R.id.tv_city).setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+            helper.setBold(R.id.tv_city, true);
         }
 
         /**

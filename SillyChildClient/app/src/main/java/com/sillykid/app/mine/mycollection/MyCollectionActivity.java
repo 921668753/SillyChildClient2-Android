@@ -98,7 +98,7 @@ public class MyCollectionActivity extends BaseActivity {
         super.initData();
         baseFragment = new GoodFragment();
         baseFragment1 = new ShopFragment();
-        baseFragment2 = new RouteFragment();
+       // baseFragment2 = new RouteFragment();
         baseFragment3 = new StrategyFragment();
         baseFragment4 = new DynamicStateFragment();
         baseFragment5 = new VideoFragment();

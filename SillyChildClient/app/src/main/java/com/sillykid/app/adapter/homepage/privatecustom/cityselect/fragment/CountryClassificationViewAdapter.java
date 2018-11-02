@@ -28,10 +28,12 @@ public class CountryClassificationViewAdapter extends BGAAdapterViewAdapter<Data
             helper.setBackgroundRes(R.id.tv_country, R.color.whiteColors);
             helper.setTextColorRes(R.id.tv_country, R.color.tabColors);
             helper.setImageResource(R.id.img_arrow, R.mipmap.arrow);
+            helper.setBold(R.id.tv_country, false);
         } else {
-            helper.setBackgroundRes(R.id.tv_country, R.drawable.shape_followed1);
-            helper.setTextColorRes(R.id.tv_country, R.color.whiteColors);
-            helper.setImageResource(R.id.img_arrow, R.mipmap.arrow2);
+            helper.setBackgroundRes(R.id.tv_country, R.color.background);
+            helper.setTextColorRes(R.id.tv_country, R.color.greenColors);
+            helper.setImageResource(R.id.img_arrow, R.mipmap.arrow3);
+            helper.setBold(R.id.tv_country, true);
         }
 
         /**

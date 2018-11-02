@@ -1040,6 +1040,20 @@ public class RequestClient {
     }
 
     /**
+     * 首页----大洲与国家 - 获取大洲信息
+     */
+    public static void getAreaListParent(Context context, HttpParams httpParams, final ResponseListener<String> listener) {
+        HttpRequest.requestGetHttp(context, URLConstants.AREALIST, httpParams, listener);
+    }
+
+    /**
+     * 首页----城市与机场 - 获取接送机城市目录 (新)
+     */
+    public static void getAreaTransfer(Context context, HttpParams httpParams, final ResponseListener<String> listener) {
+        HttpRequest.requestGetHttp(context, URLConstants.AREATRANSFER, httpParams, listener);
+    }
+
+    /**
      * 首页----大洲与国家 - 获取大洲下面的数据
      */
     public static void getCountryAreaListByParentid(Context context, HttpParams httpParams, final ResponseListener<String> listener) {

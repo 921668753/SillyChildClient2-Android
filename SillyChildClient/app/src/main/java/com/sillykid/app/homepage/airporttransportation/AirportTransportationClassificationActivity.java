@@ -130,8 +130,8 @@ public class AirportTransportationClassificationActivity extends BaseActivity im
             selectClassification(position);
         } else if (adapterView.getId() == R.id.gv_countriesClassification) {
             Intent intent = new Intent(aty, SelectProductAirportTransportationActivity.class);
-            intent.putExtra("airport_id", mGridViewAdapter.getItem(position).getAirport_id());
-            intent.putExtra("name", mGridViewAdapter.getItem(position).getCountry_name() + mGridViewAdapter.getItem(position).getRegion_name() + mGridViewAdapter.getItem(position).getAirport_name() + title);
+            intent.putExtra("airport_id", mGridViewAdapter.getItem(position).getId());
+            intent.putExtra("name", mGridViewAdapter.getItem(position).getCountry_name() + mGridViewAdapter.getItem(position).getName() + title);
             intent.putExtra("type", type);
             showActivity(aty, intent);
         }

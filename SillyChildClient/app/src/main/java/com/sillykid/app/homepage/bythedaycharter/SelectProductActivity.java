@@ -73,6 +73,11 @@ public class SelectProductActivity extends BaseActivity implements SelectProduct
         super.initWidget();
         ActivityTitleUtils.initToolbar(aty, getString(R.string.selectProduct), true, R.id.titlebar);
         tv_selectProductName.setText(getIntent().getStringExtra("name"));
+        tv_selectProductName.setEnabled(true);
+        tv_selectProductName.setFocusable(true);
+        tv_selectProductName.setFocusableInTouchMode(true);
+        tv_selectProductName.requestFocus();
+        tv_selectProductName.requestFocusFromTouch();
         gv_productAirportTransportation.setAdapter(mAdapter);
         gv_productAirportTransportation.setOnItemClickListener(this);
     }

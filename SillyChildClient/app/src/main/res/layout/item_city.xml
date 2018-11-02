@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/dimen80">
-
-    <ImageView
-        android:id="@+id/img_city"
-        style="@style/MatchMatch"
-        android:scaleType="fitXY"
-        android:src="@mipmap/placeholderfigure" />
+    android:id="@+id/rl_city"
+    style="@style/MatchWrap">
 
     <TextView
         android:id="@+id/tv_city"
-        style="@style/MatchMatch"
-        android:background="@mipmap/bj_mengban"
+        style="@style/MatchWrap"
+        android:paddingLeft="@dimen/dimen33"
+        android:paddingRight="@dimen/dimen33"
         android:gravity="center"
-        android:text=""
-        android:textColor="@android:color/white" />
+        android:paddingTop="@dimen/dimen13"
+        android:paddingBottom="@dimen/dimen13"
+        android:text="全境"
+        android:textColor="@color/greenColors"
+        android:textSize="@dimen/textsize13"
+        android:textStyle="bold" />
 
 </RelativeLayout>

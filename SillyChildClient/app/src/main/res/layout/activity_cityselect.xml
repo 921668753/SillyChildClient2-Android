@@ -39,7 +39,7 @@
                 android:paddingLeft="@dimen/dimen7"
                 android:paddingRight="@dimen/dimen12"
                 android:singleLine="true"
-                android:textColor="@color/textColor"
+                android:textColor="@color/hintColors"
                 android:textColorHint="@color/hintColors"
                 android:textSize="@dimen/textsize12" />
 
@@ -53,7 +53,7 @@
             android:paddingRight="@dimen/dimen12"
             android:text="@string/cancel"
             android:textColor="@color/textColor"
-            android:textSize="@dimen/textsize14" />
+            android:textSize="@dimen/textsize13" />
 
     </LinearLayout>
 
@@ -67,8 +67,10 @@
             android:layout_width="@dimen/dimen100"
             android:layout_height="match_parent"
             android:background="@color/whiteColors"
-            android:divider="@null"
+            android:divider="@color/whiteColors"
+            android:dividerHeight="@dimen/dimen20"
             android:listSelector="@android:color/transparent"
+            android:paddingTop="@dimen/dimen10"
             android:scrollbars="none"
             tools:listitem="@layout/item_countries" />
 

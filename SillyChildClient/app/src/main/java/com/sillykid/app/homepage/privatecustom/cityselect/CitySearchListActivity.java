@@ -92,6 +92,7 @@ public class CitySearchListActivity extends BaseActivity implements CitySearchLi
         switch (v.getId()) {
             case R.id.ll_search:
                 Intent intent = new Intent(aty, CitySearchActivity.class);
+                intent.putExtra("type", getIntent().getIntExtra("type", 0));
                 intent.putExtra("tag", 1);
                 startActivityForResult(intent, REQUEST_CODE);
                 break;

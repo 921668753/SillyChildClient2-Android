@@ -37,10 +37,11 @@ import com.sillykid.app.constant.StringNewConstants;
 import com.sillykid.app.entity.main.HomePageBean;
 import com.sillykid.app.entity.main.HomePageBean.DataBean.BannerListBean;
 import com.sillykid.app.homepage.BannerDetailsActivity;
-import com.sillykid.app.homepage.airporttransportation.AirportTransportationClassificationActivity;
+import com.sillykid.app.homepage.SearchCityActivity;
+import com.sillykid.app.homepage.airporttransportation.airportselect.AirportSelectActivity;
 import com.sillykid.app.homepage.boutiqueline.BoutiqueLineActivity;
 import com.sillykid.app.homepage.boutiqueline.LineDetailsActivity;
-import com.sillykid.app.homepage.bythedaycharter.ByTheDayCharterClassificationActivity;
+import com.sillykid.app.homepage.bythedaycharter.cityselect.CharterCitySelectActivity;
 import com.sillykid.app.homepage.hotvideo.HotVideoActivity;
 import com.sillykid.app.homepage.hotvideo.VideoDetailsActivity;
 import com.sillykid.app.homepage.message.MessageActivity;
@@ -89,6 +90,9 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
 
     @BindView(id = R.id.mRefreshLayout)
     private BGARefreshLayout mRefreshLayout;
+
+    @BindView(id = R.id.ll_search, click = true)
+    private LinearLayout ll_search;
 
     /**
      * 轮播图
@@ -219,6 +223,9 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
             case R.id.rl_message:
                 ((HomePageContract.Presenter) mPresenter).getIsLogin(aty, 1);
                 break;
+            case R.id.ll_search:
+                ((HomePageContract.Presenter) mPresenter).getIsLogin(aty, 11);
+                break;
             case R.id.ll_airportPickup:
                 ((HomePageContract.Presenter) mPresenter).getIsLogin(aty, 5);
                 break;
@@ -310,12 +317,12 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
 
 
         } else if (flag == 5) {
-            Intent intent = new Intent(aty, AirportTransportationClassificationActivity.class);
+            Intent intent = new Intent(aty, AirportSelectActivity.class);
             intent.putExtra("title", getString(R.string.airportPickup));
             intent.putExtra("type", 1);
             aty.showActivity(aty, intent);
         } else if (flag == 6) {
-            Intent intent1 = new Intent(aty, ByTheDayCharterClassificationActivity.class);
+            Intent intent1 = new Intent(aty, CharterCitySelectActivity.class);
             intent1.putExtra("title", getString(R.string.byTheDay));
             intent1.putExtra("type", 3);
             aty.showActivity(aty, intent1);
@@ -324,17 +331,19 @@ public class HomePageFragment extends BaseFragment implements EasyPermissions.Pe
             //   intent1.putExtra("newChageIcon", 2);
             aty.showActivity(aty, intent2);
         } else if (flag == 8) {
-            Intent intent3 = new Intent(aty, AirportTransportationClassificationActivity.class);
+            Intent intent3 = new Intent(aty, AirportSelectActivity.class);
             intent3.putExtra("title", getString(R.string.airportDropOff));
             intent3.putExtra("type", 2);
             aty.showActivity(aty, intent3);
         } else if (flag == 9) {
             aty.showActivity(aty, HotVideoActivity.class);
         } else if (flag == 10) {
-            Intent intent4 = new Intent(aty, BoutiqueLineActivity.class);
+            Intent intent = new Intent(aty, BoutiqueLineActivity.class);
             // intent4.putExtra("cat", 484);
-            aty.showActivity(aty, intent4);
-
+            aty.showActivity(aty, intent);
+        } else if (flag == 11) {
+            Intent intent = new Intent(aty, SearchCityActivity.class);
+            aty.showActivity(aty, intent);
         }
         dismissLoadingDialog();
 

@@ -17,8 +17,8 @@ public class URLConstants {
     /**
      * 测试服务器地址URL
      */
-    //   public static String SERVERURL = "http://192.168.1.247:8080/";
-    public static String SERVERURL = "http://user.api.shahaizhi.com/";
+    public static String SERVERURL = "http://192.168.1.247:8080/";
+    // public static String SERVERURL = "http://user.api.shahaizhi.com/";
     public static String SERVERURL1 = "http://www.shahaizhi.tech/";
 
     /**
@@ -281,6 +281,10 @@ public class URLConstants {
      * 大洲与国家 - 获取大洲信息
      */
     public static String COUNTRYAREALIST = APIURL + "airport/get_country_area_list.do";
+
+    public static String AREALIST = APIURL + "airport/get_area_list_parent.do";
+
+    public static String AREATRANSFER = APIURL + "airport/get_area_transfer.do";
 
     /**
      * 大洲与国家 - 获取大洲下面的数据

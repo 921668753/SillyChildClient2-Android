@@ -22,7 +22,7 @@ import com.sillykid.app.constant.NumericConstants;
 import com.sillykid.app.entity.homepage.boutiqueline.fragment.BoutiqueLineBean;
 import com.sillykid.app.homepage.boutiqueline.BoutiqueLineActivity;
 import com.sillykid.app.homepage.boutiqueline.LineDetailsActivity;
-import com.sillykid.app.homepage.boutiqueline.selectcity.SelectCityActivity;
+import com.sillykid.app.homepage.privatecustom.cityselect.CitySelectActivity;
 import com.sillykid.app.loginregister.LoginActivity;
 
 import cn.bingoogolapple.androidcommon.adapter.BGADivider;
@@ -134,7 +134,8 @@ public class CitySelectionFragment extends BaseFragment implements BoutiqueLineC
         super.widgetClick(v);
         switch (v.getId()) {
             case R.id.ll_selectCity:
-                Intent intent = new Intent(aty, SelectCityActivity.class);
+                Intent intent = new Intent(aty, CitySelectActivity.class);
+                intent.putExtra("type", 5);
                 startActivityForResult(intent, RESULT_CODE_GET);
                 break;
             case R.id.tv_button:
@@ -258,9 +259,11 @@ public class CitySelectionFragment extends BaseFragment implements BoutiqueLineC
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RESULT_CODE_GET && resultCode == RESULT_OK) {// 如果等于1
-            region_id = data.getIntExtra("region_id", 0);
-            region_name = data.getStringExtra("region_name");
-            tv_selectCity.setText(region_name);
+            int country_id = data.getIntExtra("country_id", 0);
+            String country_name = data.getStringExtra("country_name");
+            region_id = data.getIntExtra("city_id", 0);
+            region_name = data.getStringExtra("city_name");
+            tv_selectCity.setText(country_name + "  " + region_name);
             mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
             ((BoutiqueLineContract.Presenter) mPresenter).getRouteList(aty, region_id, is_recommand, mMorePageNumber);
         }

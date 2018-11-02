@@ -15,10 +15,10 @@
             android:id="@+id/img_customerService"
             android:layout_width="@dimen/dimen69"
             android:layout_height="@dimen/dimen43"
-            android:paddingBottom="@dimen/dimen10"
             android:paddingLeft="@dimen/dimen23"
-            android:paddingRight="@dimen/dimen23"
             android:paddingTop="@dimen/dimen10"
+            android:paddingRight="@dimen/dimen23"
+            android:paddingBottom="@dimen/dimen10"
             android:scaleType="fitXY"
             android:src="@mipmap/kefu" />
 
@@ -65,8 +65,8 @@
                 android:layout_width="@dimen/dimen10"
                 android:layout_height="@dimen/dimen10"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/dimen20"
                 android:layout_marginTop="@dimen/dimen10"
+                android:layout_marginRight="@dimen/dimen20"
                 android:background="@drawable/shape_homepage_dot"
                 android:visibility="gone" />
 
@@ -87,8 +87,53 @@
                 android:descendantFocusability="blocksDescendants">
 
                 <LinearLayout
+                    android:id="@+id/ll_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen54"
+                    android:layout_marginTop="@dimen/dimen3"
+                    android:background="@color/whiteColors"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:visibility="visible">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dimen34"
+                        android:layout_marginLeft="@dimen/dimen19"
+                        android:layout_marginRight="@dimen/dimen19"
+                        android:background="@drawable/shape_communitysearch"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/dimen16"
+                            android:layout_height="@dimen/dimen14"
+                            android:layout_marginLeft="@dimen/dimen14"
+                            android:src="@mipmap/community_search" />
+
+                        <TextView
+                            android:id="@+id/et_search"
+                            style="@style/AutoMatch"
+                            android:background="@android:color/transparent"
+                            android:gravity="center_vertical"
+                            android:hint="@string/cityDoWantGoTo"
+                            android:maxLength="20"
+                            android:paddingLeft="@dimen/dimen7"
+                            android:paddingRight="@dimen/dimen12"
+                            android:singleLine="true"
+                            android:textColor="@color/textColor"
+                            android:textColorHint="@color/hintColors"
+                            android:textSize="@dimen/textsize12" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <LinearLayout
                     android:id="@+id/ll_top"
                     style="@style/MatchWrap"
+                    android:layout_below="@id/ll_search"
                     android:orientation="vertical">
 
                     <cn.bingoogolapple.bgabanner.BGABanner
@@ -226,13 +271,13 @@
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
                         android:paddingLeft="@dimen/dimen13"
-                        android:paddingRight="@dimen/dimen13"
-                        android:paddingTop="@dimen/dimen3">
+                        android:paddingTop="@dimen/dimen3"
+                        android:paddingRight="@dimen/dimen13">
 
                         <TextView
                             style="@style/AutoWrap"
-                            android:paddingBottom="@dimen/dimen10"
                             android:paddingTop="@dimen/dimen10"
+                            android:paddingBottom="@dimen/dimen10"
                             android:text="@string/hotVideo"
                             android:textColor="@color/textColor"
                             android:textSize="@dimen/textsize15" />

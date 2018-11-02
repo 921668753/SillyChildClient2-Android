@@ -35,7 +35,6 @@ import com.sillykid.app.dialog.PublicPromptDialog;
 import com.sillykid.app.entity.ReleaseStrateItemBean;
 import com.sillykid.app.entity.StrateForPCBean;
 import com.sillykid.app.entity.UploadImageBean;
-import com.sillykid.app.homepage.addressselection.AddressSelectionActivity;
 import com.sillykid.app.loginregister.LoginActivity;
 import com.sillykid.app.utils.GlideImageLoader;
 
@@ -132,7 +131,7 @@ public class ReleaseStrateActivity extends BaseActivity implements StrateContrac
 
             case R.id.ll_selectdistrict:
                 Intent intent = new Intent();
-                intent.setClass(aty, AddressSelectionActivity.class);
+           //     intent.setClass(aty, AddressSelectionActivity.class);
                 startActivityForResult(intent, STATUS);
                 break;
 

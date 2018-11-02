@@ -7,12 +7,13 @@
     android:paddingLeft="@dimen/dimen4">
 
     <TextView
+        android:id="@+id/tv_popularDestination"
         style="@style/MatchWrap"
         android:background="@color/whiteColors"
         android:paddingLeft="@dimen/dimen13"
         android:paddingTop="@dimen/dimen11"
         android:text="@string/popularDestination"
-        android:textColor="@color/textColor"
+        android:textColor="@color/fF4A4AColors"
         android:textSize="@dimen/textsize14" />
 
     <FrameLayout
@@ -22,17 +23,18 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv"
             style="@style/MatchMatch"
-            android:paddingLeft="@dimen/dimen10" />
+            android:paddingLeft="@dimen/dimen10"
+            android:paddingRight="@dimen/dimen18" />
 
         <com.common.cklibrary.utils.myview.IndexNewBar
             android:id="@+id/indexBar"
-            android:layout_width="24dp"
+            android:layout_width="@dimen/dimen24"
             android:layout_height="match_parent"
             android:layout_gravity="right"
-            android:layout_marginBottom="@dimen/dimen130"
             android:layout_marginTop="@dimen/dimen130"
+            android:layout_marginBottom="@dimen/dimen130"
             app:indexBarPressBackground="@color/partTranslucent"
-            app:indexBarTextSize="@dimen/textsize10" />
+            app:indexBarTextSize="@dimen/textsize12" />
     </FrameLayout>
 
 </LinearLayout>

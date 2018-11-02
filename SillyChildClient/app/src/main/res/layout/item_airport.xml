@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrap">
+
+    <TextView
+        android:id="@+id/tv_airport"
+        style="@style/MatchWrap"
+        android:gravity="center"
+        android:paddingLeft="@dimen/dimen10"
+        android:paddingTop="@dimen/dimen16"
+        android:paddingRight="@dimen/dimen10"
+        android:paddingBottom="@dimen/dimen16"
+        android:text="韩国"
+        android:textColor="@color/greenColors"
+        android:textSize="@dimen/textsize13"
+        android:textStyle="bold" />
+
+</RelativeLayout>

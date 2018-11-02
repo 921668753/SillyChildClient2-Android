@@ -1,7 +1,7 @@
 package com.sillykid.app.adapter.homepage.privatecustom.cityselect;
 
 import android.content.Context;
-import android.graphics.Typeface;
+import android.view.View;
 
 import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
@@ -27,20 +27,18 @@ public class CitySelectClassificationListViewAdapter extends BGAAdapterViewAdapt
          * 背景色
          */
         if (model.getIsSelected() == 0) {
-            helper.setBackgroundRes(R.id.tv_country, R.color.whiteColors);
+            helper.setBackgroundRes(R.id.ll_countries, R.color.whiteColors);
             helper.setTextColorRes(R.id.tv_country, R.color.tabColors);
+            helper.setVisibility(R.id.img_citySelect, View.INVISIBLE);
+            helper.setBold(R.id.tv_country, false);
         } else {
-            helper.setBackgroundRes(R.id.tv_country, R.drawable.shape_followed1);
-            helper.setTextColorRes(R.id.tv_country, R.color.whiteColors);
+            helper.setBackgroundRes(R.id.ll_countries, R.color.background);
+            helper.setVisibility(R.id.img_citySelect, View.VISIBLE);
+            helper.setTextColorRes(R.id.tv_country, R.color.greenColors);
+            helper.setBold(R.id.tv_country, true);
         }
-
         if (!StringUtils.isEmpty(model.getName()) && model.getName().startsWith(mContext.getString(R.string.recommended)) && model.getIsSelected() == 0) {
-            helper.setTextColorRes(R.id.tv_country, R.color.textColor);
-            //设置为加粗
-            helper.getTextView(R.id.tv_country).setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
-        } else {
-            //设置不为加粗
-            helper.getTextView(R.id.tv_country).setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
+            helper.setTextColorRes(R.id.tv_country, R.color.fF4848Colors);
         }
 
         /**

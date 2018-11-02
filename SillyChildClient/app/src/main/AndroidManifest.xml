@@ -153,9 +153,49 @@
             android:name=".homepage.airporttransportation.AirportTransportationClassificationActivity"
             android:screenOrientation="portrait" />
 
+        <!--首页   分类选择-->
+        <activity
+            android:name=".homepage.SearchCityActivity"
+            android:screenOrientation="portrait" />
+
+        <!--首页   分类选择-->
+        <activity
+            android:name=".homepage.SearchCityClassificationActivity"
+            android:screenOrientation="portrait" />
+
+        <!--首页   接送机分类  机场选择-->
+        <activity
+            android:name=".homepage.airporttransportation.airportselect.AirportSelectActivity"
+            android:screenOrientation="portrait" />
+
+        <!--首页   接送机分类  机场选择 机场搜索-->
+        <activity
+            android:name=".homepage.airporttransportation.airportselect.search.AirportSearchActivity"
+            android:screenOrientation="portrait" />
+
+        <!--首页   接送机分类  机场选择  机场搜索  搜索结果-->
+        <activity
+            android:name=".homepage.airporttransportation.airportselect.search.AirportSearchListActivity"
+            android:screenOrientation="portrait" />
+
         <!--首页   按天包车分类-->
         <activity
             android:name=".homepage.bythedaycharter.ByTheDayCharterClassificationActivity"
+            android:screenOrientation="portrait" />
+
+        <!--首页   按天包车分类  城市选择-->
+        <activity
+            android:name=".homepage.bythedaycharter.cityselect.CharterCitySelectActivity"
+            android:screenOrientation="portrait" />
+
+        <!--首页   按天包车分类  城市选择 城市搜索-->
+        <activity
+            android:name=".homepage.bythedaycharter.cityselect.search.CitySearchActivity"
+            android:screenOrientation="portrait" />
+
+        <!--首页   按天包车分类  城市选择  城市搜索  搜索结果-->
+        <activity
+            android:name=".homepage.bythedaycharter.cityselect.search.CitySearchListActivity"
             android:screenOrientation="portrait" />
 
         <!--首页   精品线路分类-->

@@ -112,7 +112,7 @@ public class CouponRedemptionCentreActivity extends BaseActivity implements Coup
      * SHARE_MEDIA.QQ
      */
     public void umShare(SHARE_MEDIA platform) {
-        UMImage thumb = new UMImage(this, smallImg);
+        UMImage thumb = new UMImage(this, R.mipmap.android_template);
         String invite_code = PreferenceHelper.readString(aty, StringConstants.FILENAME, "invite_code", "");
         String url = URLConstants.REGISTERHTML + invite_code;
         UMWeb web = new UMWeb(url);

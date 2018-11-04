@@ -17,7 +17,7 @@ import com.common.cklibrary.utils.JsonUtil;
 import com.sillykid.app.R;
 import com.sillykid.app.adapter.homepage.airporttransportation.AirportTransportationClassificationListViewAdapter;
 import com.sillykid.app.adapter.homepage.bythedaycharter.ByTheDayCharterClassificationGridViewAdapter;
-import com.sillykid.app.entity.homepage.airporttransportation.AirportCountryListBean;
+import com.sillykid.app.entity.homepage.airporttransportation.airportselect.AirportCountryListBean;
 import com.sillykid.app.entity.homepage.bythedaycharter.RegionByCountryIdBean;
 import com.sillykid.app.homepage.airporttransportation.search.ProductSearchActivity;
 

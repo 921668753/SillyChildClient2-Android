@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.View;
 
 import com.sillykid.app.R;
-import com.sillykid.app.entity.homepage.airporttransportation.AirportByCountryIdBean.DataBean;
+import com.sillykid.app.entity.homepage.airporttransportation.airportselect.AirportByCountryIdBean.DataBean;
 import com.sillykid.app.utils.GlideImageLoader;
 
 import cn.bingoogolapple.androidcommon.adapter.BGAAdapterViewAdapter;

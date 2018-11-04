@@ -3,7 +3,7 @@ package com.sillykid.app.adapter.homepage.airporttransportation.airportselect.fr
 import android.content.Context;
 
 import com.sillykid.app.R;
-import com.sillykid.app.entity.homepage.airporttransportation.AirportByCountryIdBean.DataBean;
+import com.sillykid.app.entity.homepage.airporttransportation.airportselect.AirportByCountryIdBean.DataBean;
 
 import cn.bingoogolapple.androidcommon.adapter.BGAAdapterViewAdapter;
 import cn.bingoogolapple.androidcommon.adapter.BGAViewHolderHelper;

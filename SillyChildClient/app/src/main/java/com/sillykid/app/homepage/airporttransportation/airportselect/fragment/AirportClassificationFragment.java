@@ -18,7 +18,7 @@ import com.common.cklibrary.utils.JsonUtil;
 import com.sillykid.app.R;
 import com.sillykid.app.adapter.homepage.airporttransportation.airportselect.fragment.AirportClassificationViewAdapter;
 import com.sillykid.app.adapter.homepage.airporttransportation.airportselect.fragment.CountryClassificationViewAdapter;
-import com.sillykid.app.entity.homepage.airporttransportation.AirportByCountryIdBean;
+import com.sillykid.app.entity.homepage.airporttransportation.airportselect.AirportByCountryIdBean;
 import com.sillykid.app.entity.homepage.privatecustom.cityselect.fragment.CityClassificationBean;
 import com.sillykid.app.entity.homepage.privatecustom.cityselect.fragment.CityClassificationBean.DataBean;
 import com.sillykid.app.homepage.airporttransportation.SelectProductAirportTransportationActivity;

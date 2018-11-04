@@ -1,4 +1,4 @@
-package com.sillykid.app.adapter.homepage.airporttransportation.airportselect;
+package com.sillykid.app.adapter.homepage.airporttransportation.airportselect.search;
 
 import android.content.Context;
 
@@ -11,7 +11,6 @@ import cn.bingoogolapple.androidcommon.adapter.BGAViewHolderHelper;
 
 
 public class AirportSearchListViewAdapter extends BGAAdapterViewAdapter<DataBean> {
-
 
     public AirportSearchListViewAdapter(Context context) {
         super(context, R.layout.item_citysearchlist);

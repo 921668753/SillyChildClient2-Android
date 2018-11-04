@@ -1,4 +1,4 @@
-package com.sillykid.app.entity.homepage.airporttransportation;
+package com.sillykid.app.entity.homepage.airporttransportation.airportselect;
 
 import com.common.cklibrary.entity.BaseResult;
 

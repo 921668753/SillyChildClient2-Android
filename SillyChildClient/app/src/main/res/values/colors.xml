@@ -17,7 +17,7 @@
     <color name="fF4C4CColors">#FF4C4C</color>
     <color name="fF4A4AColors">#FF4A4A</color>
     <color name="fF5858Colors">#FF5858</color>
-
+    <color name="f4FDF3Colors">#F4FDF3</color>
 
     <!--引导页-->
     <color name="immediatelyColor">#40ffffff</color>
@@ -37,6 +37,8 @@
     <color name="a95989Colors">#95989A</color>
     <color name="fFF5F5Colors">#FFF5F5</color>
     <color name="f3F9FDColors">#F3F9FD</color>
+    <color name="fCF3FDColors">#FCF3FD</color>
+
 
     <!--主界面-->
     <color name="greenColors">#2CD052</color>

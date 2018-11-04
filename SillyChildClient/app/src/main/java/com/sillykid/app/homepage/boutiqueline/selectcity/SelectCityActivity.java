@@ -17,7 +17,7 @@ import com.common.cklibrary.utils.JsonUtil;
 import com.sillykid.app.R;
 import com.sillykid.app.adapter.homepage.airporttransportation.AirportTransportationClassificationListViewAdapter;
 import com.sillykid.app.adapter.homepage.boutiqueline.selectcity.SelectCityGridViewAdapter;
-import com.sillykid.app.entity.homepage.airporttransportation.AirportCountryListBean;
+import com.sillykid.app.entity.homepage.airporttransportation.airportselect.AirportCountryListBean;
 import com.sillykid.app.entity.homepage.boutiqueline.selectcity.SelectCityBean;
 
 import java.util.List;

@@ -21,9 +21,8 @@ public class RecommendedBean extends BaseResult<List<RecommendedBean.DataBean>> 
         private int city_id;
         private int country_id;
         private String city_name;
-        private String city_picture;
+        private String picture;
         private String country_name;
-        private String country_picture;
 
         public int getCity_id() {
             return city_id;
@@ -49,12 +48,12 @@ public class RecommendedBean extends BaseResult<List<RecommendedBean.DataBean>> 
             this.city_name = city_name;
         }
 
-        public String getCity_picture() {
-            return city_picture;
+        public String getPicture() {
+            return picture;
         }
 
-        public void setCity_picture(String city_picture) {
-            this.city_picture = city_picture;
+        public void setPicture(String picture) {
+            this.picture = picture;
         }
 
         public String getCountry_name() {
@@ -65,13 +64,6 @@ public class RecommendedBean extends BaseResult<List<RecommendedBean.DataBean>> 
             this.country_name = country_name;
         }
 
-        public String getCountry_picture() {
-            return country_picture;
-        }
-
-        public void setCountry_picture(String country_picture) {
-            this.country_picture = country_picture;
-        }
 
         @Override
         public String getTarget() {

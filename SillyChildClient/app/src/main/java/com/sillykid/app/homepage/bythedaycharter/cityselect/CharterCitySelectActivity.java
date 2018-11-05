@@ -22,7 +22,7 @@ import com.sillykid.app.entity.homepage.privatecustom.cityselect.CitySelectListB
 import com.sillykid.app.entity.homepage.privatecustom.cityselect.CitySelectListBean.DataBean;
 import com.sillykid.app.homepage.bythedaycharter.cityselect.fragment.CityClassificationFragment;
 import com.sillykid.app.homepage.bythedaycharter.cityselect.fragment.RecommendedFragment;
-import com.sillykid.app.homepage.bythedaycharter.cityselect.search.CitySearchActivity;
+import com.sillykid.app.homepage.bythedaycharter.cityselect.search.CharterCitySearchActivity;
 
 import java.util.ArrayList;
 
@@ -78,7 +78,7 @@ public class CharterCitySelectActivity extends BaseActivity implements CharterCi
         super.widgetClick(v);
         switch (v.getId()) {
             case R.id.ll_search:
-                Intent intent = new Intent(aty, CitySearchActivity.class);
+                Intent intent = new Intent(aty, CharterCitySearchActivity.class);
                 intent.putExtra("title", title);
                 intent.putExtra("type", type);
                 showActivity(aty, intent);

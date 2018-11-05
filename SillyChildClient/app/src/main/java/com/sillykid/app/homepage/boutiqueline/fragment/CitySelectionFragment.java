@@ -16,6 +16,7 @@ import com.common.cklibrary.common.BindView;
 import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.RefreshLayoutUtil;
+import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
 import com.sillykid.app.adapter.homepage.boutiqueline.BoutiqueLineViewAdapter;
 import com.sillykid.app.constant.NumericConstants;
@@ -108,6 +109,12 @@ public class CitySelectionFragment extends BaseFragment implements BoutiqueLineC
         super.initWidget(parentView);
         RefreshLayoutUtil.initRefreshLayout(mRefreshLayout, this, aty, true);
         initRecyclerView();
+        String country_name = aty.getIntent().getStringExtra("country_name");
+        region_id = aty.getIntent().getIntExtra("city_id", 0);
+        region_name = aty.getIntent().getStringExtra("city_name");
+        if (StringUtils.isEmpty(region_name)) {
+            region_name = "";
+        }
         mRefreshLayout.beginRefreshing();
     }
 

@@ -190,12 +190,12 @@
 
         <!--首页   按天包车分类  城市选择 城市搜索-->
         <activity
-            android:name=".homepage.bythedaycharter.cityselect.search.CitySearchActivity"
+            android:name=".homepage.bythedaycharter.cityselect.search.CharterCitySearchActivity"
             android:screenOrientation="portrait" />
 
         <!--首页   按天包车分类  城市选择  城市搜索  搜索结果-->
         <activity
-            android:name=".homepage.bythedaycharter.cityselect.search.CitySearchListActivity"
+            android:name=".homepage.bythedaycharter.cityselect.search.CharterCitySearchListActivity"
             android:screenOrientation="portrait" />
 
         <!--首页   精品线路分类-->
@@ -370,12 +370,12 @@
 
         <!--首页   私人定制   城市搜索-->
         <activity
-            android:name=".homepage.privatecustom.cityselect.CitySearchActivity"
+            android:name=".homepage.privatecustom.cityselect.search.CitySearchActivity"
             android:screenOrientation="portrait" />
 
         <!--首页   私人定制   城市搜索   搜索结果-->
         <activity
-            android:name=".homepage.privatecustom.cityselect.CitySearchListActivity"
+            android:name=".homepage.privatecustom.cityselect.search.CitySearchListActivity"
             android:screenOrientation="portrait" />
 
         <!--&lt;!&ndash;首页   客服过渡页&ndash;&gt;-->

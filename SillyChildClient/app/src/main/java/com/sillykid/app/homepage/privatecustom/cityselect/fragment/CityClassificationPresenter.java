@@ -17,6 +17,25 @@ public class CityClassificationPresenter implements CityClassificationContract.P
     }
 
     @Override
+    public void getCountryAreaListByParentid(Context context, int id, int type, int flag) {
+        HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
+        httpParams.put("parentid", id);
+        httpParams.put("category", type);
+        RequestClient.getAreaListParent(context, httpParams, new ResponseListener<String>() {
+            @Override
+            public void onSuccess(String response) {
+                mView.getSuccess(response, flag);
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                mView.errorMsg(msg, flag);
+            }
+        });
+    }
+
+
+    @Override
     public void getCountryAreaListByParentid(Context context, int id, int flag) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
         httpParams.put("id", id);
@@ -29,6 +48,24 @@ public class CityClassificationPresenter implements CityClassificationContract.P
             @Override
             public void onFailure(String msg) {
                 mView.errorMsg(msg, flag);
+            }
+        });
+    }
+
+
+    @Override
+    public void getRecommendCity(Context context, int type) {
+        HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
+        httpParams.put("category", type);
+        RequestClient.getRecommendCity(context, httpParams, new ResponseListener<String>() {
+            @Override
+            public void onSuccess(String response) {
+                mView.getSuccess(response, 0);
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                mView.errorMsg(msg, 0);
             }
         });
     }

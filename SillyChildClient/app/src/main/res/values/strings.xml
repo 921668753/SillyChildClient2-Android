@@ -644,11 +644,9 @@
     <string name="recommended">推荐</string>
     <string name="popularDestination">热门目的地</string>
     <string name="airportWillLandAt">您将降落在哪座机场</string>
+    <string name="airportArriveAt">将您送达哪座机场</string>
     <string name="hitAirport">热门机场</string>
     <string name="hotSearch">热门搜索</string>
-
-
-
 
 
     <!--首页   民宿预约-->

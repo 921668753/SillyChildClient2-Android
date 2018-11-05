@@ -1,4 +1,4 @@
-package com.sillykid.app.adapter.homepage.bythedaycharter.cityselect;
+package com.sillykid.app.adapter.homepage.bythedaycharter.cityselect.search;
 
 import android.content.Context;
 import android.view.LayoutInflater;

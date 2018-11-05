@@ -72,7 +72,11 @@ public class AirportSelectActivity extends BaseActivity implements AirportSelect
     @Override
     public void initWidget() {
         super.initWidget();
-        tv_search.setHint(getString(R.string.airportWillLandAt));
+        if (type == 1) {
+            tv_search.setHint(getString(R.string.airportWillLandAt));
+        } else if (type == 2) {
+            tv_search.setHint(getString(R.string.airportArriveAt));
+        }
         lv_classification.setAdapter(mAdapter);
         lv_classification.setOnItemClickListener(this);
     }
@@ -84,6 +88,7 @@ public class AirportSelectActivity extends BaseActivity implements AirportSelect
             case R.id.ll_search:
                 Intent intent = new Intent(aty, AirportSearchActivity.class);
                 intent.putExtra("type", type);
+                intent.putExtra("title", title);
                 showActivity(aty, intent);
                 break;
             case R.id.tv_cancel:

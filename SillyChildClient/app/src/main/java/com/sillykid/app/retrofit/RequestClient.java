@@ -1054,11 +1054,40 @@ public class RequestClient {
     }
 
     /**
+     * 首页----城市与机场 - 获取推荐机场信息 (新)
+     */
+    public static void getRecommendAirport(Context context, HttpParams httpParams, final ResponseListener<String> listener) {
+        HttpRequest.requestGetHttp(context, URLConstants.RECOMMENDAIRPORT, httpParams, listener);
+    }
+
+    /**
+     * 首页----城市与机场 - 模糊查询机场信息 (新)
+     */
+    public static void getAirportByName(Context context, HttpParams httpParams, final ResponseListener<String> listener) {
+        HttpRequest.requestPostFORMHttp(context, URLConstants.AIRPOTBYNAME, httpParams, listener);
+    }
+
+    /**
      * 首页----大洲与国家 - 获取大洲下面的数据
      */
     public static void getCountryAreaListByParentid(Context context, HttpParams httpParams, final ResponseListener<String> listener) {
         HttpRequest.requestGetHttp(context, URLConstants.COUNTRYAREALISTBYPARENTID, httpParams, listener);
     }
+
+    /**
+     * 首页----大洲与国家 - 获取大洲下面的数据
+     */
+    public static void getRecommendCity(Context context, HttpParams httpParams, final ResponseListener<String> listener) {
+        HttpRequest.requestGetHttp(context, URLConstants.RECOMMENDCITY, httpParams, listener);
+    }
+
+    /**
+     * 首页----城市与机场 - 模糊查询城市信息 (新)
+     */
+    public static void getCityByName(Context context, HttpParams httpParams, final ResponseListener<String> listener) {
+        HttpRequest.requestPostFORMHttp(context, URLConstants.CITYBYNAME, httpParams, listener);
+    }
+
 
     /**
      * 首页----大洲与国家 - 获取用户搜索的城市

@@ -6,7 +6,6 @@ import java.util.List;
 
 public class CitySearchRListBean extends BaseResult<List<CitySearchRListBean.DataBean>> {
 
-
     public class DataBean {
         /**
          * city_id : 17
@@ -20,9 +19,8 @@ public class CitySearchRListBean extends BaseResult<List<CitySearchRListBean.Dat
         private int city_id;
         private int country_id;
         private String city_name;
-        private String city_picture;
         private String country_name;
-        private String country_picture;
+        private String picture;
 
         public int getCity_id() {
             return city_id;
@@ -48,14 +46,6 @@ public class CitySearchRListBean extends BaseResult<List<CitySearchRListBean.Dat
             this.city_name = city_name;
         }
 
-        public String getCity_picture() {
-            return city_picture;
-        }
-
-        public void setCity_picture(String city_picture) {
-            this.city_picture = city_picture;
-        }
-
         public String getCountry_name() {
             return country_name;
         }
@@ -64,12 +54,12 @@ public class CitySearchRListBean extends BaseResult<List<CitySearchRListBean.Dat
             this.country_name = country_name;
         }
 
-        public String getCountry_picture() {
-            return country_picture;
+        public String getPicture() {
+            return picture;
         }
 
-        public void setCountry_picture(String country_picture) {
-            this.country_picture = country_picture;
+        public void setPicture(String picture) {
+            this.picture = picture;
         }
     }
 }

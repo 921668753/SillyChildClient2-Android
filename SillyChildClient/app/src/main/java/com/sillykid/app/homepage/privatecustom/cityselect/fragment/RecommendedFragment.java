@@ -32,7 +32,6 @@ public class RecommendedFragment extends BaseFragment implements CityClassificat
 
     private CitySelectActivity aty;
 
-
     @BindView(id = R.id.rv)
     private RecyclerView mRv;
 
@@ -90,9 +89,8 @@ public class RecommendedFragment extends BaseFragment implements CityClassificat
                 .setNeedRealIndex(true)//设置需要真实的索引
                 .setmLayoutManager(mManager);//设置RecyclerView的LayoutManager
         showLoadingDialog(getString(R.string.dataLoad));
-        ((CityClassificationContract.Presenter) mPresenter).getCountryAreaListByParentid(aty, classification_id, 0);
+        ((CityClassificationContract.Presenter) mPresenter).getRecommendCity(aty, aty.getIntent().getIntExtra("type", 0));
     }
-
 
     public void setClassificationId(int classification_id1) {
         classification_id = classification_id1;

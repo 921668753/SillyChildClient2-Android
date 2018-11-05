@@ -20,10 +20,10 @@ public class AirportSearchListPresenter implements AirportSearchListContract.Pre
     }
 
     @Override
-    public void getAreaByName(String name) {
+    public void getAirportByName(String name) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
         httpParams.put("name", name);
-        RequestClient.getAreaByName(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
+        RequestClient.getAirportByName(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
                 mView.getSuccess(response, 0);

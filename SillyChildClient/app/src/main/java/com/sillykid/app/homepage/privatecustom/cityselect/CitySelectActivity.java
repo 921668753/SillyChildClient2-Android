@@ -22,6 +22,7 @@ import com.sillykid.app.entity.homepage.privatecustom.cityselect.CitySelectListB
 import com.sillykid.app.entity.homepage.privatecustom.cityselect.CitySelectListBean.DataBean;
 import com.sillykid.app.homepage.privatecustom.cityselect.fragment.CityClassificationFragment;
 import com.sillykid.app.homepage.privatecustom.cityselect.fragment.RecommendedFragment;
+import com.sillykid.app.homepage.privatecustom.cityselect.search.CitySearchActivity;
 
 import java.util.ArrayList;
 
@@ -57,7 +58,7 @@ public class CitySelectActivity extends BaseActivity implements CitySelectContra
         mAdapter = new CitySelectClassificationListViewAdapter(this);
         list = new ArrayList<CityClassificationFragment>();
         showLoadingDialog(getString(R.string.dataLoad));
-        ((CitySelectContract.Presenter) mPresenter).getCountryAreaList();
+        ((CitySelectContract.Presenter) mPresenter).getCountryAreaList(getIntent().getIntExtra("type", 0), 0);
     }
 
     @Override

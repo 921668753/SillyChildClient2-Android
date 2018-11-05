@@ -1,4 +1,4 @@
-package com.sillykid.app.homepage.bythedaycharter.cityselect.search;
+package com.sillykid.app.homepage.privatecustom.cityselect.search;
 
 import android.content.Intent;
 import android.view.View;
@@ -10,16 +10,18 @@ import android.widget.TextView;
 
 import com.common.cklibrary.common.BaseActivity;
 import com.common.cklibrary.common.BindView;
+import com.common.cklibrary.common.KJActivityStack;
 import com.common.cklibrary.common.StringConstants;
 import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.rx.MsgEvent;
 import com.common.cklibrary.utils.rx.RxBus;
 import com.kymjs.common.PreferenceHelper;
 import com.sillykid.app.R;
-import com.sillykid.app.adapter.homepage.bythedaycharter.cityselect.CitySearchListViewAdapter;
+import com.sillykid.app.adapter.homepage.privatecustom.cityselect.CitySearchListViewAdapter;
 import com.sillykid.app.entity.homepage.privatecustom.cityselect.CitySearchRListBean;
 import com.sillykid.app.entity.homepage.privatecustom.cityselect.CitySearchRListBean.DataBean;
-import com.sillykid.app.homepage.bythedaycharter.SelectProductActivity;
+import com.sillykid.app.homepage.SearchCityClassificationActivity;
+import com.sillykid.app.homepage.boutiqueline.BoutiqueLineActivity;
 import com.sillykid.app.loginregister.LoginActivity;
 
 import java.util.List;
@@ -62,8 +64,6 @@ public class CitySearchListActivity extends BaseActivity implements CitySearchLi
     private TextView tv_button;
 
     private String name = "";
-    private String title;
-    private int type;
 
     @Override
     public void setRootView() {
@@ -76,10 +76,8 @@ public class CitySearchListActivity extends BaseActivity implements CitySearchLi
         mPresenter = new CitySearchListPresenter(this);
         mAdapter = new CitySearchListViewAdapter(this);
         name = getIntent().getStringExtra("name");
-        title = getIntent().getStringExtra("title");
-        type = getIntent().getIntExtra("type", 0);
         showLoadingDialog(getString(R.string.dataLoad));
-        ((CitySearchListContract.Presenter) mPresenter).getAreaByName(name);
+        ((CitySearchListContract.Presenter) mPresenter).getCityByName(name);
     }
 
 
@@ -96,9 +94,13 @@ public class CitySearchListActivity extends BaseActivity implements CitySearchLi
         super.widgetClick(v);
         switch (v.getId()) {
             case R.id.ll_search:
+                if (getIntent().getIntExtra("tag", 0) == -1) {
+                    KJActivityStack.create().finishActivity(SearchCityClassificationActivity.class);
+                    finish();
+                    return;
+                }
                 Intent intent = new Intent(aty, CitySearchActivity.class);
-                intent.putExtra("title", title);
-                intent.putExtra("type", type);
+                intent.putExtra("type", getIntent().getIntExtra("type", 0));
                 intent.putExtra("tag", 1);
                 startActivityForResult(intent, REQUEST_CODE);
                 break;
@@ -108,7 +110,7 @@ public class CitySearchListActivity extends BaseActivity implements CitySearchLi
             case R.id.tv_button:
                 if (tv_button.getText().toString().contains(getString(R.string.retry))) {
                     showLoadingDialog(getString(R.string.dataLoad));
-                    ((CitySearchListContract.Presenter) mPresenter).getAreaByName(name);
+                    ((CitySearchListContract.Presenter) mPresenter).getCityByName(name);
                     return;
                 }
                 showActivity(aty, LoginActivity.class);
@@ -118,17 +120,21 @@ public class CitySearchListActivity extends BaseActivity implements CitySearchLi
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Intent intent = new Intent(aty, SelectProductActivity.class);
-        intent.putExtra("country_id", mAdapter.getItem(position).getCountry_id());
-        intent.putExtra("country_name", mAdapter.getItem(position).getCountry_name());
-        intent.putExtra("region_id", mAdapter.getItem(position).getCity_id());
-        intent.putExtra("title", title);
-        intent.putExtra("name", mAdapter.getItem(position).getCountry_name() + mAdapter.getItem(position).getCity_name() + title);
-        intent.putExtra("type", type);
-        // 设置结果 结果码，一个数据
-//            aty.setResult(RESULT_OK, intent);
-//            aty.finish();
-        showActivity(aty, intent);
+        if (getIntent().getIntExtra("tag", 0) == -1) {
+            KJActivityStack.create().finishActivity(SearchCityClassificationActivity.class);
+            Intent intent = new Intent(aty, BoutiqueLineActivity.class);
+            intent.putExtra("country_name", mAdapter.getItem(position).getCountry_name());
+            intent.putExtra("city_id", mAdapter.getItem(position).getCity_id());
+            intent.putExtra("city_name", mAdapter.getItem(position).getCity_name());
+            skipActivity(aty, intent);
+            return;
+        }
+        PreferenceHelper.write(aty, StringConstants.FILENAME, "CitySearchListcountry_id", mAdapter.getItem(position).getCountry_id());
+        PreferenceHelper.write(aty, StringConstants.FILENAME, "CitySearchListcountry_name", mAdapter.getItem(position).getCountry_name());
+        PreferenceHelper.write(aty, StringConstants.FILENAME, "CitySearchListcity_id", mAdapter.getItem(position).getCity_id());
+        PreferenceHelper.write(aty, StringConstants.FILENAME, "CitySearchListcity_name", mAdapter.getItem(position).getCity_name());
+        RxBus.getInstance().post(new MsgEvent<String>("RxBusCitySearchListEvent"));
+        finish();
     }
 
     @Override
@@ -137,7 +143,7 @@ public class CitySearchListActivity extends BaseActivity implements CitySearchLi
         if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {// 如果等于1
             name = data.getStringExtra("name");
             tv_search.setText(name);
-            ((CitySearchListContract.Presenter) mPresenter).getAreaByName(name);
+            ((CitySearchListContract.Presenter) mPresenter).getCityByName(name);
         }
     }
 

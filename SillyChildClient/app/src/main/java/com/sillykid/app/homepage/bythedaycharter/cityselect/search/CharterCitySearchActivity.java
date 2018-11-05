@@ -1,4 +1,4 @@
-package com.sillykid.app.homepage.privatecustom.cityselect;
+package com.sillykid.app.homepage.bythedaycharter.cityselect.search;
 
 import android.content.Intent;
 import android.view.KeyEvent;
@@ -18,7 +18,7 @@ import com.common.cklibrary.utils.JsonUtil;
 import com.kymjs.common.PreferenceHelper;
 import com.kymjs.common.StringUtils;
 import com.sillykid.app.R;
-import com.sillykid.app.adapter.homepage.airporttransportation.search.RecentSearchTagAdapter;
+import com.sillykid.app.adapter.homepage.bythedaycharter.cityselect.search.RecentSearchTagAdapter;
 import com.sillykid.app.community.search.dialog.ClearSearchDialog;
 import com.sillykid.app.entity.community.search.RecentSearchBean;
 import com.sillykid.app.entity.community.search.RecentSearchBean.DataBean;
@@ -30,11 +30,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-
 /**
  * 城市搜索
  */
-public class CitySearchActivity extends BaseActivity implements TagFlowLayout.OnTagClickListener {
+public class CharterCitySearchActivity extends BaseActivity implements TagFlowLayout.OnTagClickListener {
 
     /**
      * 搜索
@@ -66,7 +65,7 @@ public class CitySearchActivity extends BaseActivity implements TagFlowLayout.On
 
     @Override
     public void setRootView() {
-        setContentView(R.layout.activity_productsearch);
+        setContentView(R.layout.activity_citysearch);
     }
 
     @Override
@@ -84,11 +83,7 @@ public class CitySearchActivity extends BaseActivity implements TagFlowLayout.On
         clearSearchDialog = new ClearSearchDialog(this, getString(R.string.clearSearch)) {
             @Override
             public void deleteCollectionDo(int addressId) {
-                if (getIntent().getIntExtra("type", 0) == 4) {
-                    PreferenceHelper.write(aty, StringConstants.FILENAME, "recentSearchCityPrivatecustomHistory", null);
-                } else {
-                    PreferenceHelper.write(aty, StringConstants.FILENAME, "recentSearchBoutiqueLineHistory", null);
-                }
+                PreferenceHelper.write(aty, StringConstants.FILENAME, "recentSearchCharterCityHotRegionHistory", null);
                 ll_recentSearch.setVisibility(View.GONE);
                 tfl_recentSearch.setVisibility(View.GONE);
             }
@@ -115,11 +110,13 @@ public class CitySearchActivity extends BaseActivity implements TagFlowLayout.On
                     Intent beautyCareIntent = new Intent();
                     if (getIntent().getIntExtra("tag", 0) == 1) {
                         beautyCareIntent.putExtra("name", textView.getText().toString().trim());
+                        beautyCareIntent.putExtra("title", getIntent().getStringExtra("title"));
                         beautyCareIntent.putExtra("type", getIntent().getIntExtra("type", 0));
                         setResult(RESULT_OK, beautyCareIntent);
                     } else {
-                        beautyCareIntent.setClass(aty, CitySearchListActivity.class);
+                        beautyCareIntent.setClass(aty, CharterCitySearchListActivity.class);
                         beautyCareIntent.putExtra("name", textView.getText().toString().trim());
+                        beautyCareIntent.putExtra("title", getIntent().getStringExtra("title"));
                         beautyCareIntent.putExtra("type", getIntent().getIntExtra("type", 0));
                         showActivity(aty, beautyCareIntent);
                     }
@@ -152,23 +149,16 @@ public class CitySearchActivity extends BaseActivity implements TagFlowLayout.On
         baseResult.setResult(1);
         Collections.reverse(recentSearchList);
         baseResult.setData(recentSearchList);
-        if (getIntent().getIntExtra("type", 0) == 4) {
-            PreferenceHelper.write(aty, StringConstants.FILENAME, "recentSearchCityPrivatecustomHistory", JsonUtil.getInstance().obj2JsonString(baseResult));
-        } else {
-            PreferenceHelper.write(aty, StringConstants.FILENAME, "recentSearchBoutiqueLineHistory", JsonUtil.getInstance().obj2JsonString(baseResult));
-        }
+        PreferenceHelper.write(aty, StringConstants.FILENAME, "recentSearchCharterCityHotRegionHistory", JsonUtil.getInstance().obj2JsonString(baseResult));
+
     }
 
     /**
      * 读取历史
      */
     private void readRecentSearchHistory() {
-        String recentSearch = "";
-        if (getIntent().getIntExtra("type", 0) == 4) {
-            recentSearch = PreferenceHelper.readString(aty, StringConstants.FILENAME, "recentSearchCityPrivatecustomHistory", "");
-        } else {
-            recentSearch = PreferenceHelper.readString(aty, StringConstants.FILENAME, "recentSearchBoutiqueLineHistory", "");
-        }
+        String recentSearch = PreferenceHelper.readString(aty, StringConstants.FILENAME, "recentSearchCharterCityHotRegionHistory", "");
+
         if (StringUtils.isEmpty(recentSearch)) {
             ll_recentSearch.setVisibility(View.GONE);
             tfl_recentSearch.setVisibility(View.GONE);
@@ -210,11 +200,13 @@ public class CitySearchActivity extends BaseActivity implements TagFlowLayout.On
             Intent beautyCareIntent = new Intent();
             if (getIntent().getIntExtra("tag", 0) == 1) {
                 beautyCareIntent.putExtra("name", recentSearchTagAdapter.getItem(position).getName());
+                beautyCareIntent.putExtra("title", getIntent().getStringExtra("title"));
                 beautyCareIntent.putExtra("type", getIntent().getIntExtra("type", 0));
                 setResult(RESULT_OK, beautyCareIntent);
             } else {
-                beautyCareIntent.setClass(aty, CitySearchListActivity.class);
+                beautyCareIntent.setClass(aty, CharterCitySearchListActivity.class);
                 beautyCareIntent.putExtra("name", recentSearchTagAdapter.getItem(position).getName());
+                beautyCareIntent.putExtra("title", getIntent().getStringExtra("title"));
                 beautyCareIntent.putExtra("type", getIntent().getIntExtra("type", 0));
                 showActivity(aty, beautyCareIntent);
             }

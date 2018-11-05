@@ -63,6 +63,7 @@ public class CityClassificationFragment extends BaseFragment implements CityClas
     private CityClassificationViewAdapter mCityAdapter;
     private List<DataBean> cityClassificationList;
     private DataBean cityBean;
+    private int type = 0;
 
 
     @Override
@@ -78,8 +79,9 @@ public class CityClassificationFragment extends BaseFragment implements CityClas
         mPresenter = new CityClassificationPresenter(this);
         mCountryAdapter = new CountryClassificationViewAdapter(aty);
         mCityAdapter = new CityClassificationViewAdapter(aty);
+        type = aty.getIntent().getIntExtra("type", 0);
         showLoadingDialog(getString(R.string.dataLoad));
-        ((CityClassificationContract.Presenter) mPresenter).getCountryAreaListByParentid(aty, classification_id, 0);
+        ((CityClassificationContract.Presenter) mPresenter).getCountryAreaListByParentid(aty, classification_id, type, 0);
     }
 
 
@@ -98,7 +100,7 @@ public class CityClassificationFragment extends BaseFragment implements CityClas
         switch (v.getId()) {
             case R.id.tv_button:
                 if (tv_button.getText().toString().contains(getString(R.string.retry))) {
-                    ((CityClassificationContract.Presenter) mPresenter).getCountryAreaListByParentid(aty, countryBean.getId(), 0);
+                    ((CityClassificationContract.Presenter) mPresenter).getCountryAreaListByParentid(aty, countryBean.getId(), type, 0);
                 }
                 break;
         }
@@ -171,7 +173,7 @@ public class CityClassificationFragment extends BaseFragment implements CityClas
             if (position == i || position == i && position == 0) {
                 countryBean = countryClassificationList.get(i);
                 countryBean.setIsSelected(1);
-                ((CityClassificationContract.Presenter) mPresenter).getCountryAreaListByParentid(aty, countryBean.getId(), 1);
+                ((CityClassificationContract.Presenter) mPresenter).getCountryAreaListByParentid(aty, countryBean.getId(), type, 1);
             } else {
                 countryClassificationList.get(i).setIsSelected(0);
             }

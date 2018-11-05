@@ -1,4 +1,4 @@
-package com.sillykid.app.homepage.privatecustom.cityselect;
+package com.sillykid.app.homepage.bythedaycharter.cityselect.search;
 
 import com.common.cklibrary.common.BasePresenter;
 import com.common.cklibrary.common.BaseView;
@@ -7,14 +7,14 @@ import com.common.cklibrary.common.BaseView;
  * Created by ruitu on 2016/9/24.
  */
 
-public interface CitySearchListContract {
+public interface CharterCitySearchListContract {
 
     interface Presenter extends BasePresenter {
 
         /**
          * 获取分类
          */
-        void getAreaByName(String name);
+        void getCityByName(String name);
 
     }
 

@@ -19,9 +19,11 @@ public class CitySelectPresenter implements CitySelectContract.Presenter {
 
 
     @Override
-    public void getCountryAreaList() {
+    public void getCountryAreaList(int type, int parentId) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        RequestClient.getCountryAreaList(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
+        httpParams.put("category", type);
+        httpParams.put("parentid", parentId);
+        RequestClient.getAreaListParent(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
                 mView.getSuccess(response, 0);

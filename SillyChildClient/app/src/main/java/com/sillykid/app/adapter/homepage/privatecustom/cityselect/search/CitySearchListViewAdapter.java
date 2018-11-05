@@ -1,7 +1,6 @@
 package com.sillykid.app.adapter.homepage.privatecustom.cityselect;
 
 import android.content.Context;
-import android.view.View;
 
 import com.sillykid.app.R;
 import com.sillykid.app.entity.homepage.privatecustom.cityselect.CitySearchRListBean.DataBean;
@@ -24,7 +23,7 @@ public class CitySearchListViewAdapter extends BGAAdapterViewAdapter<DataBean> {
         /**
          * 图片
          */
-        GlideImageLoader.glideOrdinaryLoader(mContext, model.getCity_picture(), helper.getImageView(R.id.img_classification), R.mipmap.placeholderfigure);
+        GlideImageLoader.glideOrdinaryLoader(mContext, model.getPicture(), helper.getImageView(R.id.img_classification), R.mipmap.placeholderfigure);
 
 
         /**

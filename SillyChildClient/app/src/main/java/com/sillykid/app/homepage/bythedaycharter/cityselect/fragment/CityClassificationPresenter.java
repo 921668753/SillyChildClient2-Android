@@ -53,4 +53,21 @@ public class CityClassificationPresenter implements CityClassificationContract.P
     }
 
 
+    @Override
+    public void getRecommendCity(Context context, int type) {
+        HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
+        httpParams.put("category", type);
+        RequestClient.getRecommendCity(context, httpParams, new ResponseListener<String>() {
+            @Override
+            public void onSuccess(String response) {
+                mView.getSuccess(response, 0);
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                mView.errorMsg(msg, 0);
+            }
+        });
+    }
+
 }

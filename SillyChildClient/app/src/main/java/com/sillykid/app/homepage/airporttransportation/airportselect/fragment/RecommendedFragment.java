@@ -80,7 +80,7 @@ public class RecommendedFragment extends BaseFragment implements AirportClassifi
                 Intent intent = new Intent(aty, SelectProductAirportTransportationActivity.class);
                 intent.putExtra("airport_id", dataBean.getAirport_id());
                 intent.putExtra("title", title);
-                intent.putExtra("name", dataBean.getCountry_name() + dataBean.getAirport_name() + title);
+                intent.putExtra("name", dataBean.getCity_name() + dataBean.getAirport_name() + title);
                 intent.putExtra("type", type);
                 // 设置结果 结果码，一个数据
 //            aty.setResult(RESULT_OK, intent);
@@ -96,7 +96,7 @@ public class RecommendedFragment extends BaseFragment implements AirportClassifi
                 .setNeedRealIndex(true)//设置需要真实的索引
                 .setmLayoutManager(mManager);//设置RecyclerView的LayoutManager
         showLoadingDialog(getString(R.string.dataLoad));
-        ((AirportClassificationContract.Presenter) mPresenter).getCountryAreaListByParentid(aty, classification_id, type, 0);
+        ((AirportClassificationContract.Presenter) mPresenter).getRecommendAirport(aty, type);
     }
 
 

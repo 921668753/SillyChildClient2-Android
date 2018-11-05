@@ -105,6 +105,11 @@ public class AirportSearchActivity extends BaseActivity implements TagFlowLayout
     @Override
     public void initWidget() {
         super.initWidget();
+        if (type == 1) {
+            et_search.setHint(getString(R.string.airportWillLandAt));
+        } else if (type == 2) {
+            et_search.setHint(getString(R.string.airportArriveAt));
+        }
         tfl_recentSearch.setAdapter(recentSearchTagAdapter);
         tfl_recentSearch.setOnTagClickListener(this);
         et_search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -122,10 +127,12 @@ public class AirportSearchActivity extends BaseActivity implements TagFlowLayout
                     Intent beautyCareIntent = new Intent();
                     if (getIntent().getIntExtra("tag", 0) == 1) {
                         beautyCareIntent.putExtra("name", textView.getText().toString().trim());
+                        beautyCareIntent.putExtra("title", getIntent().getStringExtra("title"));
                         setResult(RESULT_OK, beautyCareIntent);
                     } else {
                         beautyCareIntent.setClass(aty, AirportSearchListActivity.class);
                         beautyCareIntent.putExtra("name", textView.getText().toString().trim());
+                        beautyCareIntent.putExtra("title", getIntent().getStringExtra("title"));
                         beautyCareIntent.putExtra("type", type);
                         showActivity(aty, beautyCareIntent);
                     }
@@ -232,11 +239,13 @@ public class AirportSearchActivity extends BaseActivity implements TagFlowLayout
             Intent beautyCareIntent = new Intent();
             if (getIntent().getIntExtra("tag", 0) == 1) {
                 beautyCareIntent.putExtra("name", recentSearchTagAdapter.getItem(position).getName());
+                beautyCareIntent.putExtra("title", getIntent().getStringExtra("title"));
                 beautyCareIntent.putExtra("type", recentSearchTagAdapter.getItem(position).getType());
                 setResult(RESULT_OK, beautyCareIntent);
             } else {
                 beautyCareIntent.setClass(aty, AirportSearchListActivity.class);
                 beautyCareIntent.putExtra("name", recentSearchTagAdapter.getItem(position).getName());
+                beautyCareIntent.putExtra("title", getIntent().getStringExtra("title"));
                 beautyCareIntent.putExtra("type", recentSearchTagAdapter.getItem(position).getType());
                 showActivity(aty, beautyCareIntent);
             }

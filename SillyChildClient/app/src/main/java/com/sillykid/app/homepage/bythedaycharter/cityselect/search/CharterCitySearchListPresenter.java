@@ -1,4 +1,4 @@
-package com.sillykid.app.homepage.privatecustom.cityselect;
+package com.sillykid.app.homepage.bythedaycharter.cityselect.search;
 
 import com.common.cklibrary.common.KJActivityStack;
 import com.common.cklibrary.utils.httputil.HttpUtilParams;
@@ -10,20 +10,20 @@ import com.sillykid.app.retrofit.RequestClient;
  * Created by ruitu on 2018/9/24.
  */
 
-public class CitySearchListPresenter implements CitySearchListContract.Presenter {
+public class CharterCitySearchListPresenter implements CharterCitySearchListContract.Presenter {
 
-    private CitySearchListContract.View mView;
+    private CharterCitySearchListContract.View mView;
 
-    public CitySearchListPresenter(CitySearchListContract.View view) {
+    public CharterCitySearchListPresenter(CharterCitySearchListContract.View view) {
         mView = view;
         mView.setPresenter(this);
     }
 
     @Override
-    public void getAreaByName(String name) {
+    public void getCityByName(String name) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
         httpParams.put("name", name);
-        RequestClient.getAreaByName(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
+        RequestClient.getCityByName(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
                 mView.getSuccess(response, 0);

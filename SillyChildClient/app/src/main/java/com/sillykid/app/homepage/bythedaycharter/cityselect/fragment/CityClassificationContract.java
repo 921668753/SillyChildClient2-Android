@@ -19,6 +19,11 @@ public interface CityClassificationContract {
          */
         void getCountryAreaListByParentid(Context context, int id, int flag);
 
+        /**
+         * 获取大洲下面的数据
+         */
+        void getRecommendCity(Context context, int type);
+
     }
 
     interface View extends BaseView<Presenter, String> {

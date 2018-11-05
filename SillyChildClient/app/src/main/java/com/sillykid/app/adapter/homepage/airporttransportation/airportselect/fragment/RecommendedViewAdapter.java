@@ -54,11 +54,11 @@ public class RecommendedViewAdapter extends RecyclerView.Adapter<RecommendedView
         /**
          * 图片
          */
-        GlideImageLoader.glideOrdinaryLoader(mContext, resultBean.getPicture(), holder.img_classification, R.mipmap.placeholderfigure);
+        GlideImageLoader.glideOrdinaryLoader(mContext, resultBean.getAirport_picture(), holder.img_classification, R.mipmap.placeholderfigure);
         /**
          * 城市名字
          */
-        holder.tv_classificationName.setText(resultBean.getCountry_name());
+        holder.tv_classificationName.setText(resultBean.getCity_name());
         holder.tv_airportName.setVisibility(View.VISIBLE);
         holder.tv_airportName.setText(resultBean.getAirport_name());
         holder.content.setOnClickListener(new View.OnClickListener() {

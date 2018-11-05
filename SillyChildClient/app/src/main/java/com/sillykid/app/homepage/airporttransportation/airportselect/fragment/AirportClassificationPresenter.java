@@ -50,4 +50,21 @@ public class AirportClassificationPresenter implements AirportClassificationCont
             }
         });
     }
+
+    @Override
+    public void getRecommendAirport(Context context, int type) {
+        HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
+        httpParams.put("category", type);
+        RequestClient.getRecommendAirport(context, httpParams, new ResponseListener<String>() {
+            @Override
+            public void onSuccess(String response) {
+                mView.getSuccess(response, 0);
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                mView.errorMsg(msg, 0);
+            }
+        });
+    }
 }

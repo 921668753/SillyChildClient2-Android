@@ -1,4 +1,4 @@
-package com.sillykid.app.homepage.bythedaycharter.cityselect.search;
+package com.sillykid.app.homepage.privatecustom.cityselect.search;
 
 import com.common.cklibrary.common.BasePresenter;
 import com.common.cklibrary.common.BaseView;
@@ -14,7 +14,7 @@ public interface CitySearchListContract {
         /**
          * 获取分类
          */
-        void getAreaByName(String name);
+        void getCityByName(String name);
 
     }
 

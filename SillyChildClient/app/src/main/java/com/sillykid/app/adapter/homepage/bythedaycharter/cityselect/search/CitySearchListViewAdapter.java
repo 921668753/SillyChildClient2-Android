@@ -1,4 +1,4 @@
-package com.sillykid.app.adapter.homepage.bythedaycharter.cityselect;
+package com.sillykid.app.adapter.homepage.bythedaycharter.cityselect.search;
 
 import android.content.Context;
 
@@ -24,7 +24,7 @@ public class CitySearchListViewAdapter extends BGAAdapterViewAdapter<DataBean> {
         /**
          * 图片
          */
-        GlideImageLoader.glideOrdinaryLoader(mContext, model.getCity_picture(), helper.getImageView(R.id.img_classification), R.mipmap.placeholderfigure);
+        GlideImageLoader.glideOrdinaryLoader(mContext, model.getPicture(), helper.getImageView(R.id.img_classification), R.mipmap.placeholderfigure);
 
 
         /**

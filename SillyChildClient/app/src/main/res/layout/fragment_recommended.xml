@@ -24,7 +24,7 @@
             android:id="@+id/rv"
             style="@style/MatchMatch"
             android:paddingLeft="@dimen/dimen10"
-            android:paddingRight="@dimen/dimen18" />
+            android:paddingRight="@dimen/dimen24" />
 
         <com.common.cklibrary.utils.myview.IndexNewBar
             android:id="@+id/indexBar"

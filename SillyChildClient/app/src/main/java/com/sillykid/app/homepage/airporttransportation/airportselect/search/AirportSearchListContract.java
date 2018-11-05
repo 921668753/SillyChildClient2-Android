@@ -14,7 +14,7 @@ public interface AirportSearchListContract {
         /**
          * 获取分类
          */
-        void getAreaByName(String name);
+        void getAirportByName(String name);
 
     }
 

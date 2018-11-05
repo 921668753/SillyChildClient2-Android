@@ -19,10 +19,10 @@ public class RecommendedBean extends BaseResult<List<RecommendedBean.DataBean>> 
          */
 
         private int airport_id;
-        private int country_id;
-        private String country_name;
+        private int city_id;
+        private String city_name;
         private String airport_name;
-        private String picture;
+        private String airport_picture;
 
 
         public int getAirport_id() {
@@ -33,14 +33,6 @@ public class RecommendedBean extends BaseResult<List<RecommendedBean.DataBean>> 
             this.airport_id = airport_id;
         }
 
-        public int getCountry_id() {
-            return country_id;
-        }
-
-        public void setCountry_id(int country_id) {
-            this.country_id = country_id;
-        }
-
         public String getAirport_name() {
             return airport_name;
         }
@@ -49,25 +41,33 @@ public class RecommendedBean extends BaseResult<List<RecommendedBean.DataBean>> 
             this.airport_name = airport_name;
         }
 
-        public String getCountry_name() {
-            return country_name;
+        public int getCity_id() {
+            return city_id;
         }
 
-        public void setCountry_name(String country_name) {
-            this.country_name = country_name;
+        public void setCity_id(int city_id) {
+            this.city_id = city_id;
         }
 
-        public String getPicture() {
-            return picture;
+        public String getCity_name() {
+            return city_name;
         }
 
-        public void setPicture(String picture) {
-            this.picture = picture;
+        public void setCity_name(String city_name) {
+            this.city_name = city_name;
+        }
+
+        public String getAirport_picture() {
+            return airport_picture;
+        }
+
+        public void setAirport_picture(String airport_picture) {
+            this.airport_picture = airport_picture;
         }
 
         @Override
         public String getTarget() {
-            return country_name;
+            return airport_name;
         }
     }
 

@@ -10,15 +10,14 @@ import android.widget.TextView;
 
 import com.common.cklibrary.common.BaseActivity;
 import com.common.cklibrary.common.BindView;
-import com.common.cklibrary.common.StringConstants;
+import com.common.cklibrary.common.KJActivityStack;
 import com.common.cklibrary.utils.JsonUtil;
-import com.common.cklibrary.utils.rx.MsgEvent;
-import com.common.cklibrary.utils.rx.RxBus;
-import com.kymjs.common.PreferenceHelper;
 import com.sillykid.app.R;
-import com.sillykid.app.adapter.homepage.privatecustom.cityselect.CitySearchListViewAdapter;
-import com.sillykid.app.entity.homepage.privatecustom.cityselect.CitySearchRListBean;
-import com.sillykid.app.entity.homepage.privatecustom.cityselect.CitySearchRListBean.DataBean;
+import com.sillykid.app.adapter.homepage.airporttransportation.airportselect.search.AirportSearchListViewAdapter;
+import com.sillykid.app.entity.homepage.airporttransportation.airportselect.search.AirportSearchListBean;
+import com.sillykid.app.entity.homepage.airporttransportation.airportselect.search.AirportSearchListBean.DataBean;
+import com.sillykid.app.homepage.SearchCityClassificationActivity;
+import com.sillykid.app.homepage.airporttransportation.SelectProductAirportTransportationActivity;
 import com.sillykid.app.loginregister.LoginActivity;
 
 import java.util.List;
@@ -42,7 +41,7 @@ public class AirportSearchListActivity extends BaseActivity implements AirportSe
     @BindView(id = R.id.gv_productAirportTransportation)
     private GridView gv_productAirportTransportation;
 
-    private CitySearchListViewAdapter mAdapter;
+    private AirportSearchListViewAdapter mAdapter;
 
     /**
      * 错误提示页
@@ -64,18 +63,18 @@ public class AirportSearchListActivity extends BaseActivity implements AirportSe
 
     @Override
     public void setRootView() {
-        setContentView(R.layout.activity_productsearchlist);
+        setContentView(R.layout.activity_airportsearchlist);
     }
 
     @Override
     public void initData() {
         super.initData();
         mPresenter = new AirportSearchListPresenter(this);
-        mAdapter = new CitySearchListViewAdapter(this);
+        mAdapter = new AirportSearchListViewAdapter(this);
         name = getIntent().getStringExtra("name");
         type = getIntent().getIntExtra("type", 0);
         showLoadingDialog(getString(R.string.dataLoad));
-        ((AirportSearchListContract.Presenter) mPresenter).getAreaByName(name);
+        ((AirportSearchListContract.Presenter) mPresenter).getAirportByName(name);
     }
 
 
@@ -92,8 +91,12 @@ public class AirportSearchListActivity extends BaseActivity implements AirportSe
         super.widgetClick(v);
         switch (v.getId()) {
             case R.id.ll_search:
+                if (getIntent().getIntExtra("tag", 0) == -1) {
+                    KJActivityStack.create().finishActivity(SearchCityClassificationActivity.class);
+                }
                 Intent intent = new Intent(aty, AirportSearchActivity.class);
                 intent.putExtra("tag", 1);
+                intent.putExtra("title", getIntent().getStringExtra("title"));
                 intent.putExtra("type", type);
                 startActivityForResult(intent, REQUEST_CODE);
                 break;
@@ -103,7 +106,7 @@ public class AirportSearchListActivity extends BaseActivity implements AirportSe
             case R.id.tv_button:
                 if (tv_button.getText().toString().contains(getString(R.string.retry))) {
                     showLoadingDialog(getString(R.string.dataLoad));
-                    ((AirportSearchListContract.Presenter) mPresenter).getAreaByName(name);
+                    ((AirportSearchListContract.Presenter) mPresenter).getAirportByName(name);
                     return;
                 }
                 showActivity(aty, LoginActivity.class);
@@ -113,12 +116,15 @@ public class AirportSearchListActivity extends BaseActivity implements AirportSe
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        PreferenceHelper.write(aty, StringConstants.FILENAME, "CitySearchListcountry_id", mAdapter.getItem(position).getCountry_id());
-        PreferenceHelper.write(aty, StringConstants.FILENAME, "CitySearchListcountry_name", mAdapter.getItem(position).getCountry_name());
-        PreferenceHelper.write(aty, StringConstants.FILENAME, "CitySearchListcity_id", mAdapter.getItem(position).getCity_id());
-        PreferenceHelper.write(aty, StringConstants.FILENAME, "CitySearchListcity_name", mAdapter.getItem(position).getCity_name());
-        RxBus.getInstance().post(new MsgEvent<String>("RxBusCitySearchListEvent"));
-        finish();
+        if (getIntent().getIntExtra("tag", 0) == -1) {
+            KJActivityStack.create().finishActivity(SearchCityClassificationActivity.class);
+        }
+        Intent intent = new Intent(aty, SelectProductAirportTransportationActivity.class);
+        intent.putExtra("airport_id", mAdapter.getItem(position).getCity_id());
+        intent.putExtra("title", getIntent().getStringExtra("title"));
+        intent.putExtra("name", mAdapter.getItem(position).getCity_name() + mAdapter.getItem(position).getAirport_name() + getIntent().getStringExtra("title"));
+        intent.putExtra("type", type);
+        showActivity(aty, intent);
     }
 
     @Override
@@ -127,7 +133,7 @@ public class AirportSearchListActivity extends BaseActivity implements AirportSe
         if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {// 如果等于1
             name = data.getStringExtra("name");
             tv_search.setText(name);
-            ((AirportSearchListContract.Presenter) mPresenter).getAreaByName(name);
+            ((AirportSearchListContract.Presenter) mPresenter).getAirportByName(name);
         }
     }
 
@@ -139,8 +145,8 @@ public class AirportSearchListActivity extends BaseActivity implements AirportSe
 
     @Override
     public void getSuccess(String success, int flag) {
-        CitySearchRListBean citySearchRListBean = (CitySearchRListBean) JsonUtil.getInstance().json2Obj(success, CitySearchRListBean.class);
-        List<DataBean> citySearchRList = citySearchRListBean.getData();
+        AirportSearchListBean airportSearchListBean = (AirportSearchListBean) JsonUtil.getInstance().json2Obj(success, AirportSearchListBean.class);
+        List<DataBean> citySearchRList = airportSearchListBean.getData();
         if (citySearchRList == null || citySearchRList.size() <= 0) {
             errorMsg(getString(R.string.noData), 0);
             return;

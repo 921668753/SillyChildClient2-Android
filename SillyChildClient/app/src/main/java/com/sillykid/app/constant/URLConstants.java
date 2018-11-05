@@ -286,6 +286,20 @@ public class URLConstants {
 
     public static String AREATRANSFER = APIURL + "airport/get_area_transfer.do";
 
+    public static String RECOMMENDAIRPORT = APIURL + "airport/get_recommend_airport.do";
+
+    /**
+     * 城市与机场 - 模糊查询机场信息 (新
+     */
+    public static String AIRPOTBYNAME = APIURL + "airport/get_airport_by_name.do";
+
+    public static String RECOMMENDCITY = APIURL + "airport/get_recommend_city.do";
+
+    /**
+     * 城市与机场 - 模糊查询城市信息 (新)
+     */
+    public static String CITYBYNAME = APIURL + "airport/get_city_by_name.do";
+
     /**
      * 大洲与国家 - 获取大洲下面的数据
      */

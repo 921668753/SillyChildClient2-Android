@@ -54,7 +54,7 @@ public class RecommendedViewAdapter extends RecyclerView.Adapter<RecommendedView
         /**
          * 图片
          */
-        GlideImageLoader.glideOrdinaryLoader(mContext, resultBean.getCity_picture(),holder.img_classification, R.mipmap.placeholderfigure);
+        GlideImageLoader.glideOrdinaryLoader(mContext, resultBean.getPicture(),holder.img_classification, R.mipmap.placeholderfigure);
         /**
          * 城市名字
          */

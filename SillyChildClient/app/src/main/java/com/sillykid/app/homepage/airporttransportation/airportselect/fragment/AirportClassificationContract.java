@@ -19,6 +19,11 @@ public interface AirportClassificationContract {
          */
         void getAirportByCountryId(Context context, int country_id);
 
+        /**
+         * 获取分类
+         */
+        void getRecommendAirport(Context context, int type);
+
     }
 
     interface View extends BaseView<Presenter, String> {

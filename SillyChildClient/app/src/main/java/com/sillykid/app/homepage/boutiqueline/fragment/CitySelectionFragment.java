@@ -114,6 +114,8 @@ public class CitySelectionFragment extends BaseFragment implements BoutiqueLineC
         region_name = aty.getIntent().getStringExtra("city_name");
         if (StringUtils.isEmpty(region_name)) {
             region_name = "";
+        } else {
+            tv_selectCity.setText(country_name + "  " + region_name);
         }
         mRefreshLayout.beginRefreshing();
     }

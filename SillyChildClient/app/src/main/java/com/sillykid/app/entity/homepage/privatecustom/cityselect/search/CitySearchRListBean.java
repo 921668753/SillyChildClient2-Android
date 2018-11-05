@@ -1,4 +1,4 @@
-package com.sillykid.app.entity.homepage.privatecustom.cityselect;
+package com.sillykid.app.entity.homepage.privatecustom.cityselect.search;
 
 import com.common.cklibrary.entity.BaseResult;
 

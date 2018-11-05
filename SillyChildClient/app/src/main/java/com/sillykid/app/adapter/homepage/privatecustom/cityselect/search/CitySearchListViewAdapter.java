@@ -1,9 +1,9 @@
-package com.sillykid.app.adapter.homepage.privatecustom.cityselect;
+package com.sillykid.app.adapter.homepage.privatecustom.cityselect.search;
 
 import android.content.Context;
 
 import com.sillykid.app.R;
-import com.sillykid.app.entity.homepage.privatecustom.cityselect.CitySearchRListBean.DataBean;
+import com.sillykid.app.entity.homepage.privatecustom.cityselect.search.CitySearchRListBean.DataBean;
 import com.sillykid.app.utils.GlideImageLoader;
 
 import cn.bingoogolapple.androidcommon.adapter.BGAAdapterViewAdapter;

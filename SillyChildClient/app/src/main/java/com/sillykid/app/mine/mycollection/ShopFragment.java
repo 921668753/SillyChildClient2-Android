@@ -20,7 +20,6 @@ import com.common.cklibrary.utils.rx.MsgEvent;
 import com.sillykid.app.R;
 import com.sillykid.app.adapter.mine.mycollection.ShopViewAdapter;
 import com.sillykid.app.constant.NumericConstants;
-import com.sillykid.app.entity.mine.mycollection.GoodBean;
 import com.sillykid.app.entity.mine.mycollection.ShopBean;
 import com.sillykid.app.loginregister.LoginActivity;
 import com.sillykid.app.mall.goodslist.shop.ShopActivity;

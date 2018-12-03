@@ -137,7 +137,6 @@ public class MineFragment extends BaseFragment implements MineContract.View, Obs
     @BindView(id = R.id.ll_myRelease, click = true)
     private LinearLayout ll_myRelease;
 
-
     @Override
     protected View inflaterView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
         aty = (MainActivity) getActivity();

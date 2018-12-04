@@ -486,7 +486,6 @@
         </LinearLayout>
     </ScrollView>
 
-
     <View style="@style/DividerWidth" />
 
     <include layout="@layout/gooddetails_bottombar" />

@@ -1343,7 +1343,6 @@
     <string name="merchantRefund">商家已退款，待平台退款</string>
     <string name="platformRefundCompleted">平台退款完成,拒绝再次申请</string>
 
-
     <!-- 个人中心 我的订单  服务详情-->
     <string name="remark">备注：</string>
     <string name="remark1">备注</string>
@@ -1476,14 +1475,11 @@
     <string name="toReceive">领取</string>
     <string name="getSuccess">领取成功</string>
 
-
     <!-- 线路详情 -->
     <string name="experienceBrightSpot">体验亮点</string>
 
-
     <!-- 个人中心 我的订单  订单跟踪-->
     <string name="orderTracking">订单跟踪</string>
-
 
     <!-- 个人中心 我的订单  订单详情   发表评价-->
     <string name="storeRatings">店铺评分</string>
@@ -1491,7 +1487,6 @@
     <string name="logisticsService">物流服务</string>
     <string name="serviceAttitude">服务态度</string>
     <string name="goodsSatisfactory">亲，您对这个商品还满意么？\n您的评价会帮助我们选择更好的产品哦~</string>
-
 
     <!-- 个人中心  我的发布  动态-->
     <string name="myDynamic">我的动态</string>

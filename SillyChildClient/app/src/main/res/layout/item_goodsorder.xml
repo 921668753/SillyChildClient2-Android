@@ -101,7 +101,6 @@
                     android:textSize="@dimen/textsize13" />
             </LinearLayout>
 
-
         </LinearLayout>
 
         <include layout="@layout/gooddetails_bottombar" />

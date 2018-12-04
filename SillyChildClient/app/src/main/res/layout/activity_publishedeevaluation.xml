@@ -124,7 +124,6 @@
 
             </LinearLayout>
 
-
             <LinearLayout
                 style="@style/MatchWrap"
                 android:background="@color/whiteColors"
@@ -157,7 +156,6 @@
 
             </LinearLayout>
 
-
             <TextView
                 android:id="@+id/tv_release"
                 android:layout_width="match_parent"
@@ -173,8 +171,6 @@
 
         </LinearLayout>
 
-
     </ScrollView>
-
 
 </LinearLayout>

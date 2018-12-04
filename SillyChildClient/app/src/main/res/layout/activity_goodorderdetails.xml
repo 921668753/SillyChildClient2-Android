@@ -69,7 +69,6 @@
                     android:textColor="@color/titletextcolors"
                     android:textSize="@dimen/textsize14" />
 
-
                 <TextView
                     android:id="@+id/tv_courierName"
                     style="@style/AutoWrap"
@@ -483,7 +482,6 @@
                     android:textColor="@color/titletextcolors"
                     android:textSize="@dimen/textsize13" />
             </LinearLayout>
-
 
         </LinearLayout>
     </ScrollView>
